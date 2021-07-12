@@ -1,0 +1,37 @@
+
+.landingImage{
+    width: 500px;
+    z-index:0;
+    background-size: cover;
+    height: 500px;
+    
+    }
+
+
+
+
+
+.p1{
+    position: absolute;
+    z-index: 0;
+    background-color: black;
+    color: white;
+    text-align: left;
+   align-items: left;
+   margin-top: 180px;
+   margin-left: 50px;
+   top: 0;
+ 
+}
+
+.p2{
+    position: absolute;
+    z-index: 0;
+    background-color: black;
+    color: white;
+    text-align: left;
+   align-items: left;
+   margin-top: 228px;
+   margin-left: 50px;
+  top: 0;
+}
