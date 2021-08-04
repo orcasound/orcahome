@@ -8,7 +8,7 @@ import logo3 from '../images/ccollege.png'
 import logo4 from '../images/CWR_logo.png'
 import logo5 from '../images/crt.png'
 import logo6 from '../images/deepgreen.png'
-import logo7 from '../images/obi.png'
+
 import logo8 from '../images/OI.png'
 import logo9 from '../images/pacman.png'
 import logo10 from '../images/orcanetwork.png'
@@ -200,7 +200,7 @@ Memorandum Of Agreements
 
 <Image src={logo8}/>
 <Image src={logo9}/>
-<Image src={logo10}/>
+
 <Image src={logo11}/>
 
 
