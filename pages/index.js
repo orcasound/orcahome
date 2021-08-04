@@ -9,7 +9,7 @@ import orcas from '../images/orca-breach.jpg'
 
 export const index =() =>{
   return (
-    <div classname={indexStyles.home}>
+    <>
     <Head>
       <title>Orcasound liste live for orcas</title>
       <meta name ='keywords' content='orcasound allows your to listen to live southern killer resident whales live through our hydrophones'/>
@@ -29,7 +29,7 @@ export const index =() =>{
 
 </body>
 
-  </div>
+  </>
   
   )
 }
