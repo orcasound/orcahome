@@ -11,7 +11,7 @@ import roundorca from '../images/roundorca.png'
 import learnStyles from '../styles/Learn.module.css'
 import audio from '../public/frequency.mp3'
 import ReactAudioPlayer from 'react-audio-player';
-import orcasound from '../public/music/frequency.mp3'
+import orcasound from '../public/frequency.mp3'
 export const learn = () => {
    
     return (
