@@ -1,118 +1,88 @@
-
-.landingImage{
-    width: 500px;
-    z-index:0;
-    background-size: cover;
-    height: 500px;
-
+.landingImage {
+  width: 500px;
+  z-index: 0;
+  background-size: cover;
+  height: 500px;
 }
 
-
-
-
-.landingText{
-    position: absolute;
-    z-index: 0;
-    background-color: black;
-    color:white;
-    text-align: left;
-   align-items: left;
-   margin-top: 200px;
-   margin-left: 50px;
-   top: 0;
-}
-
-
-.landingPa{
-    position: absolute;
-    z-index: 0;
-    background-color: black;
-    color: white;
-    text-align: left;
-   align-items: left;
-   margin-top: 238px;
-   margin-left: 50px;
+.landingText {
+  position: absolute;
+  z-index: 0;
+  background-color: black;
+  color: white;
+  text-align: left;
+  align-items: left;
+  margin-top: 200px;
+  margin-left: 50px;
   top: 0;
-
 }
 
-.introduction{
-    margin: 20px 40px;
-    padding: 5px 2px;
+.landingPa {
+  position: absolute;
+  z-index: 0;
+  background-color: black;
+  color: white;
+  text-align: left;
+  align-items: left;
+  margin-top: 238px;
+  margin-left: 50px;
+  top: 0;
 }
 
-
-
-
-.projects{ margin: 30px 30px;
-    padding: 5px 2px;}
-
-
-.card{
-    border-color: none;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    margin-left: 40px;
-    margin-right: 40px;
-    padding: 50px 50px;
-   
-
+.introduction {
+  margin: 20px 40px;
+  padding: 5px 2px;
 }
 
-
- .Title{
-    background-color: blue;
+.projects {
+  margin: 30px 30px;
+  padding: 5px 2px;
 }
 
-
-
-.particiation{
-    text-align: center;
-    margin: 60px 50px;
+.card {
+  border-color: none;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding: 50px 50px;
 }
 
-.join{
-    align-content: center;
-    margin: 20px 50px;
-    text-align: center;
+.Title {
+  background-color: blue;
 }
 
-.button{
- align-content: center;
- text-align: center;
-    margin: 30px 120px;
+.particiation {
+  text-align: center;
+  margin: 60px 50px;
+}
+
+.join {
+  align-content: center;
+  margin: 20px 50px;
+  text-align: center;
+}
+
+.button {
+  align-content: center;
+  text-align: center;
+  margin: 30px 120px;
 }
 
 @media only screen and (max-width: 768px) {
-   .landingText {
-      position:absolute;
-      z-index: 0;
-     top: 0rem;
-     margin-top: 155px;
+  .landingText {
+    position: absolute;
+    z-index: 0;
+    top: 0rem;
+    margin-top: 155px;
+  }
 }
-
-
-}
-
-
 
 @media only screen and (max-width: 768px) {
-  .landingPa{
-     position: absolute;
-    
+  .landingPa {
+    position: absolute;
+
     top: 0rem;
     margin-top: 190px;
+  }
 }
-
-
-}
-
-
-
-
-
-
-  
-
-
-

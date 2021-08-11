@@ -1,5 +1,5 @@
-.header{
-  border-bottom: 1px solid #E2E8F0;
+.header {
+  border-bottom: 1px solid #e2e8f0;
   list-style-type: none;
 }
 
@@ -41,7 +41,7 @@
   list-style-type: none;
 }
 
-.navlink{
+.navlink {
   font-size: 1rem;
   font-weight: 100;
   color: white;
@@ -49,7 +49,7 @@
   list-style-type: none;
 }
 
-.navlink:hover{
+.navlink:hover {
   color: #4792e7;
 }
 
@@ -61,48 +61,46 @@
 
 @media only screen and (max-width: 768px) {
   .navmenu {
-      position:fixed;
-      z-index: 1;
-      right: -100%;
-      top: 5rem;
-      flex-direction: column;
-      background-color:black;
-      width: 100%;
-      border-radius: 10px;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow:
-          0 10px 27px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    z-index: 1;
+    right: -100%;
+    top: 5rem;
+    flex-direction: column;
+    background-color: black;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
   }
 
   .navmenu.active {
-      left: 0;
+    left: 0;
   }
 
   .navitem {
-      margin: 2.5rem 0;
+    margin: 2.5rem 0;
   }
 
   .hamburger {
     display: block;
-      cursor: pointer;
-     
-     align-content: flex-end;
-    
+    cursor: pointer;
+
+    align-content: flex-end;
   }
 
   .hamburger.active .bar:nth-child(2) {
-      opacity: 0;
+    opacity: 0;
   }
 
   .hamburger.active .bar:nth-child(1) {
-      -webkit-transform: translateY(8px) rotate(45deg);
-      transform: translateY(8px) rotate(45deg);
+    -webkit-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
 
   .hamburger.active .bar:nth-child(3) {
-      -webkit-transform: translateY(-8px) rotate(-45deg);
-      transform: translateY(-8px) rotate(-45deg);
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 }
 

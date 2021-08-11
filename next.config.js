@@ -1,6 +1,6 @@
 module.exports = {
   webpack(config, options) {
-    const { isServer } = options;
+    const { isServer } = options
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
       exclude: config.exclude,
@@ -17,8 +17,8 @@ module.exports = {
           },
         },
       ],
-    });
+    })
 
-    return config;
+    return config
   },
-};
+}
