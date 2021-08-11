@@ -1,15 +1,17 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Head from 'next/head'
 import Image from 'next/image'
-import orcas from '../images/orca-breach.jpg'
-import homeStyles from '../styles/Home.module.css'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CardColumns from 'react-bootstrap/CardColumns'
+
+import orcas from '../images/orca-breach.jpg'
+import homeStyles from '../styles/Home.module.css'
 
 export const home = () => {
   return (
-    <div classname={homeStyles.home}>
+    <div className={homeStyles.home}>
       <body>
         <Image
           className={homeStyles.landingImage}

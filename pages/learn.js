@@ -1,17 +1,17 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import ReactAudioPlayer from 'react-audio-player'
+
+import frequency1 from '../images/frequency2.png'
 import orca from '../images/orca2.png'
-import salishsea from '../images/salishsea.png'
 import organization1 from '../images/partner1.png'
 import organization2 from '../images/partner2.png'
-import frequency1 from '../images/frequency2.png'
-
 import roundorca from '../images/roundorca.png'
-import learnStyles from '../styles/Learn.module.css'
+import salishsea from '../images/salishsea.png'
 import audio from '../public/frequency.mp3'
-import ReactAudioPlayer from 'react-audio-player'
 import orcasound from '../public/frequency.mp3'
+import learnStyles from '../styles/Learn.module.css'
 export const learn = () => {
   return (
     <div className={learnStyles.learn}>

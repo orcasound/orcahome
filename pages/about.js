@@ -1,12 +1,14 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
-import orca from '../images/orca2.png'
-import aboutStyles from '../styles/About.module.css'
+import Link from 'next/link'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CardColumns from 'react-bootstrap/CardColumns'
+
+import orca from '../images/orca2.png'
+import aboutStyles from '../styles/About.module.css'
 
 export const About = () => {
   return (

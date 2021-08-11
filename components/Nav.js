@@ -1,10 +1,12 @@
-import Link from 'next/link'
-import navStyles from '../styles/Nav.module.css'
-import Image from 'next/image'
-import Button from 'react-bootstrap/Button'
-import { useState } from 'react'
-import orcasoundlogo from '../images/orcasoundlogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import Button from 'react-bootstrap/Button'
+
+import orcasoundlogo from '../images/orcasoundlogo.png'
+import navStyles from '../styles/Nav.module.css'
 
 export default function Nav({ children }) {
   const [isOpen, setIsOpen] = useState(false)

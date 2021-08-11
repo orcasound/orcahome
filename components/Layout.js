@@ -1,6 +1,7 @@
-import Nav from './Nav'
-import styles from '../styles/Layout.module.css'
 import Navbar from 'react-bootstrap/Navbar'
+
+import styles from '../styles/Layout.module.css'
+import Nav from './Nav'
 
 const Layout = ({ children }) => {
   return (

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+
 import orcas from '../images/orca-breach.jpg'
 
 export const index = () => {
