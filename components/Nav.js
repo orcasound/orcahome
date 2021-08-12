@@ -15,7 +15,7 @@ export default function Nav({ children }) {
     <>
       <header className={navStyles.header}>
         <nav className={navStyles.navbar}>
-          <Link href="/home">
+          <Link href="/">
             <a className={navStyles.navlogo}>
               <Image src={orcasoundlogo} width={90} height={70} />
             </a>
