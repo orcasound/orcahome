@@ -84,6 +84,15 @@ export const index = () => {
           </CardColumns>
         </div>
       </body>
+      {/* Netlify badge for open source plan https://www.netlify.com/legal/open-source-policy */}
+      <a href="https://netlify.com">
+        <Image
+          src="https://netlify.com/img/global/badges/netlify-color-accent.svg"
+          alt="Deploys by Netlify"
+          width="114"
+          height="51"
+        />
+      </a>
     </div>
   )
 }

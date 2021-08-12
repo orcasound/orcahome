@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['netlify.com'],
+  },
   webpack(config, options) {
     const { isServer } = options
     config.module.rules.push({
