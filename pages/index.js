@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-import orcas from '../images/orca-breach.jpg'
+import orcas from '../images/srkw2-10.jpg''
 import homeStyles from '../styles/Home.module.css'
 
 export const index = () => {
