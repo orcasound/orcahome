@@ -1,91 +1,95 @@
-.landingImage {
-  width: 500px;
-  z-index: 0;
-  background-size: cover;
-  height: 500px;
+
+.landingImage{
+    width: 500px;
+    z-index:0;
+    background-size: cover;
+    height: 500px;
+    
+    }
+
+    .landingText{
+        position: absolute;
+        top: 0;
+        z-index: 0;
+        margin: 150px 50px;
+        background-color: black;
+        color:white;
+      }
+      
+      
+      .landingPa{
+        position: absolute;
+        top: 0;
+        z-index: 0;
+        margin: 190px 50px;
+        background-color: black;
+        color:white;
+      }  
+
+
+
+
+
+.p1{
+    position: absolute;
+    z-index: 0;
+    background-color: black;
+    color: white;
+    text-align: left;
+   align-items: left;
+   margin-top: 180px;
+   margin-left: 50px;
+   top: 0;
+ 
 }
 
-.landingText {
-  position: absolute;
+.p2{
+    position: absolute;
+    z-index: 0;
+    background-color: black;
+    color: white;
+    text-align: left;
+   align-items: left;
+   margin-top: 228px;
+   margin-left: 50px;
   top: 0;
-  z-index: 0;
-  margin: 150px 50px;
-  background-color: black;
-  color: white;
 }
 
-.landingPa {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 190px 50px;
-  background-color: black;
-  color: white;
+.ul{list-style: none;
+}
+.particiation{
+    margin: 30px 60px;
+    text-align: center;
+    align-content: center;
+  
+}
+.card{
+    border-color: none;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    margin-left: 90px;
+    margin-right: 90px;
+    line-height: 1cm;
+   padding: 20px 50px;
+   justify-content: space-between;
 }
 
-.p1 {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 180px;
-  margin-left: 50px;
-  top: 0;
+.rows{float: left;
+    width: 25%;
+    height: auto;
+    padding: 15px;
+margin: 20px 60px;
+align-content: center;
+text-align:left;}
+.paris ::after{
+    margin: 20px 60px;
+    content: "";
+    clear: both;
+    display: table;
 }
 
-.p2 {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 228px;
-  margin-left: 50px;
-  top: 0;
-}
-
-.ul {
-  list-style: none;
-}
-.particiation {
-  margin: 30px 60px;
-  text-align: center;
-  align-content: center;
-}
-.card {
-  border-color: none;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  margin-left: 90px;
-  margin-right: 90px;
-  line-height: 1cm;
-  padding: 20px 50px;
-  justify-content: space-between;
-}
-
-.rows {
-  float: left;
-  width: 25%;
-  height: auto;
-  padding: 15px;
-  margin: 20px 60px;
-  align-content: center;
-  text-align: left;
-}
-.paris ::after {
-  margin: 20px 60px;
-  content: '';
-  clear: both;
-  display: table;
-}
-
-.space {
-  margin-top: 60px;
-}
-.card {
+.space{ margin-top: 60px;}
+.card{
   border-color: none;
   margin-top: 0px;
   margin-bottom: 60px;
@@ -94,122 +98,134 @@
   padding: 50px 50px;
 }
 
-.wrapper {
-  text-align: center;
-  margin: 40px 20px;
-}
-.spacing {
-  margin-top: 10px;
-}
-.car {
-  margin-top: 0px;
-}
-.web {
-  text-align: center;
-  margin-top: 40px;
-}
 
-.card {
-  margin: 0px 0px;
-  text-align: center;
-  align-content: center;
-  height: 100%;
-  width: 100%;
-}
-.button {
-  border-radius: 50%;
-  align-content: center;
-  text-align: center;
-  margin: 20px 20px;
-}
-.wrap {
-  margin-top: 40px;
-  text-align: center;
-}
-.wrapping {
-  text-align: center;
-}
+.wrapper{text-align: center;
+    margin: 40px 20px;}
+    .spacing{margin-top: 10px;}
+    .car{margin-top: 0px;}
+    .web{text-align: center;
+        margin-top: 40px;}
 
-.memorandum {
-  margin: 20px 40px;
-}
+        
+        .card{
+            margin: 0px 0px;
+          text-align: center;
+          align-content: center;
+              height: 100%;
+              width: 100%;
+          }
+          .button{border-radius: 50%;
+          align-content: center;
+          text-align: center;
+          margin: 20px 20px;}
+          .wrap{margin-top: 40px;
+          text-align: center;}
+          .wrapping{
+            text-align: center;
+          }
 
-.textmemorandum {
-  margin: 20px 20px;
-}
+          .memorandum{ margin: 20px 40px;
 
-.donate {
-  margin: 20px 40px;
-}
+          }
 
-.donatetext {
-  margin: 20px 20px;
-}
+          .textmemorandum{
+            margin: 20px 20px;
+          }
 
-.logos {
-  display: grid;
+          .donate{
+              margin: 20px 40px;
+          }
+
+          .donatetext{
+            margin: 20px 20px;
+        }
+
+          .logos{
+            display: grid;
   grid-template-columns: 200px 200px 200px 200px;
   text-align: center;
   grid-gap: 30px;
-  margin: 20px 200px;
+ margin: 20px 200px;
   padding: 30px;
-}
+  width: 50px;
+  height: 450px;
+              }
 
-@media only screen and (max-width: 768px) {
-  .car {
-    float: inline-start;
-    margin-top: 890px;
-  }
-}
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
-  .card {
-    align-content: center;
-    text-align: center;
-    margin-top: 30px;
+          @media only screen and (max-width: 768px) {
+              .car  {
+                 
+                float: inline-start;
+              margin-top: 890px;
+            }
+            
+            
+            }
+            @media screen 
+            and (min-device-width: 1200px) 
+            and (max-device-width: 1600px) 
+            and (-webkit-min-device-pixel-ratio: 1) { 
+              .card  {
+                  align-content: center;
+                text-align: center;
+                margin-top: 30px;
+              
+                background-size: cover;
+             
+             }
+          }
+          @media only screen 
+          and (min-device-width: 375px) 
+          and (max-device-width: 667px) 
+          and (-webkit-min-device-pixel-ratio: 2) { 
+            .card  {
+                align-content: center;
+              text-align: center;
+              margin-top: 30px;
+              margin-left: 0px;
+           
+           }
+        }
+        
+        @media screen 
+        and (min-device-width: 1200px) 
+        and (max-device-width: 1600px) 
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (min-resolution: 192dpi) { 
+          .card  {
+              
+            text-align: center;
+           margin-top: 30px;
+           margin-left: 280px;
+         
+         }
+      }
 
-    background-size: cover;
-  }
-}
-@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
-  .card {
-    align-content: center;
-    text-align: center;
-    margin-top: 30px;
-    margin-left: 0px;
-  }
-}
 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
-  .card {
-    text-align: center;
-    margin-top: 30px;
-    margin-left: 280px;
-  }
-}
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  .paris,
-  .rows {
-    width: 33.3%;
-    align-content: center;
-    margin: 10px 100px;
-    content: '';
-    clear: both;
-    display: table;
-    padding: 5px 5px;
-    text-align: left;
-  }
+      @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 768px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+   .paris, .rows {
+       width: 33.3%;
+       align-content: center;
+       margin: 10px 100px;
+       content: "";
+       clear: both; display: table;
+       padding: 5px 5px;
+       text-align: left;
+     
+      }
 }
 @media (max-width: 800px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
+    .column {
+      flex: 50%;
+      max-width: 50%;
+    }
   }
-}
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-  .column {
-    flex: 100%;
-    max-width: 100%;
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media (max-width: 600px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
   }
-}
