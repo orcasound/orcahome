@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactAudioPlayer from 'react-audio-player'
 import Button from 'react-bootstrap/Button'
 import frequency1 from '../images/frequency2.png'
