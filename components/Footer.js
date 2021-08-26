@@ -10,7 +10,7 @@ import { Container, Navbar, Nav , NavDropdown} from 'react-bootstrap'
 </style>
 export const NavLink = (props) => {
 
-  let className = classNames({
+  const className = classNames({
     "nav-link": true,
     "is-active": props.pathname
   })
