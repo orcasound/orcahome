@@ -24,7 +24,7 @@ export const index =() =>{
 
     </Head>
   
-    <div classname={indexStyles.home}>
+    <div className={indexStyles.home}>
      <Head>
      <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
@@ -78,11 +78,11 @@ export const index =() =>{
       </Card.Text>
       <div className={indexStyles.button}>
       <br></br>
-<a href= "/learn"> 
-<Button variant="outline-primary"> LEARN</Button>{' '}</a>
-<a href="/getinvolved">
+ 
+<Button variant="outline-primary"> LEARN</Button>{' '}
+
   <Button variant="outline-primary"> GET INVOLVED!</Button>{' '} 
-  </a>
+  
 </div>
     </Card.Body>
   </Card>
