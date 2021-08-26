@@ -22,7 +22,7 @@ export const NavLink = (props) => {
 
 const Footer = ({ router: { pathname } }) => (
   <div className={footerStyles.footer}>
-  <header className={footerStyles.foot}>
+  <footer className={footerStyles.foot}>
   
  
   <Nav className="justify-content-end" defaultActiveKey="/home" as="ul"  bg="dark" expand="lg">
@@ -72,7 +72,7 @@ const Footer = ({ router: { pathname } }) => (
 
        
    
-  </Footer>
+  </footer>
   </div>
 )
 
