@@ -10,7 +10,7 @@ import { Container, Navbar, Nav , NavDropdown} from 'react-bootstrap'
 </style>
 export const NavLink = (props) => {
 
-  const className = classNames({
+  let className = classNames({
     "nav-link": true,
     "is-active": props.pathname
   })
@@ -29,37 +29,37 @@ const Header = ({ router: { pathname } }) => (
     <Nav.Link href="/donate">Donate</Nav.Link>
   </Nav.Item>
   <Nav.Item as="li">
-    <Nav.Link eventKey="link-1"><a href="#" class='fa fa-facebook'> </a></Nav.Link>
+    <Nav.Link eventKey="link-1"><a href="#" className='fa fa-facebook'> </a></Nav.Link>
   </Nav.Item>
 
   <Nav.Item as="li">
-    <Nav.Link eventKey="link-1">  <a href="#" class="fa fa-instagram"> </a></Nav.Link>
+    <Nav.Link eventKey="link-1">  <a href="#" className="fa fa-instagram"> </a></Nav.Link>
   </Nav.Item>
 
   <Nav.Item as="li">
     <Nav.Link eventKey="link-1"> 
-  <a href="#" class="fa fa-linkedin"></a></Nav.Link>
+  <a href="#" className="fa fa-linkedin"></a></Nav.Link>
   </Nav.Item>
 
 
   <Nav.Item as="li">
-    <Nav.Link eventKey="link-1">  <a href="#" class="fa fa-youtube"></a></Nav.Link>
+    <Nav.Link eventKey="link-1">  <a href="#" className="fa fa-youtube"></a></Nav.Link>
   </Nav.Item>
 
 
   <Nav.Item as="li">
     <Nav.Link eventKey="link-1">  
-  <a href="#" class="fa fa-reddit"></a></Nav.Link>
+  <a href="#" className="fa fa-reddit"></a></Nav.Link>
   </Nav.Item>
 
   <Nav.Item as="li">
-    <Nav.Link eventKey="link-1">   <a href="#" class="fa fa-twitter"></a>
+    <Nav.Link eventKey="link-1">   <a href="#" className="fa fa-twitter"></a>
  </Nav.Link>
   </Nav.Item>
 
 
   <Nav.Item as="li">
-    <Nav.Link eventKey="link-1">   <a href="#" class="fa-solid fa-bell"></a>
+    <Nav.Link eventKey="link-1">   <a href="#" className="fa-solid fa-bell"></a>
  </Nav.Link>
   </Nav.Item>
 
