@@ -1,17 +1,14 @@
-import Navbar from 'react-bootstrap/Navbar'
-
-import styles from '../styles/Layout.module.css'
+import {Navbar, Container }from 'react-bootstrap/Navbar'
 import Nav from './Nav'
+import Footer from './Footer'
 
-const Layout = ({ children }) => {
+export default function Layout({ children }) {
   return (
     <>
-     <Nav />
+      <Nav />
   
       <main>{children}</main>
      <Footer />
     </>
   )
 }
-
-export default Layout
