@@ -114,7 +114,7 @@ software & hardware projects.
 If you'd like to host a hydrophone, do research, or incorporate Orcasound into the educational or outreach efforts of your organization,please reach out!
 </p>
 <div className={aboutStyles.button}>
-<a href='getinvolved>'<Button variant="outline-primary"> GET INVOLVED!</Button>{' '}</a>
+<Button variant="outline-primary"> GET INVOLVED!</Button>{' '}
 </div>
 </body>
 </div>
