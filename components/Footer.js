@@ -72,7 +72,7 @@ const Footer = ({ router: { pathname } }) => (
 
        
    
-  </header>
+  </Footer>
   </div>
 )
 
