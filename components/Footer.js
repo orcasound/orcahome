@@ -1,4 +1,4 @@
-
+import footerStyles from '../styles/Footer.module.css'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
 import classNames from 'classnames'
