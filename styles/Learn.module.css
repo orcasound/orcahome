@@ -24,11 +24,12 @@
 }
 .tex{
     position: absolute;
-    top: 0;
-    z-index: 0;
+    top: -0;
+    z-index: 1;
     margin: 190px 50px;
     background-color: black;
     color:white;
+    float: right;
 }
 
 .hello{
@@ -105,13 +106,19 @@ border-radius: 50%;
 .property{
    
     margin-top: 1750px;
-  }
+
+    align-content: center;
+    margin-left: 400px;
+    margin-right: 400px;
+  
+
+}
 
 
 
 .exhibits{
 
-margin: 20px 390px;
+
 text-align: center;
 
 }
@@ -138,3 +145,15 @@ margin: 20px 0px;
    
 }
 
+
+
+ @media only screen and (max-width: 768px) {
+    .exhibits,  .property {
+        margin-top: 1700px;
+     text-align: center;
+     margin-left: 100px;
+     margin-right: 100px;
+  }
+  
+  
+  }
