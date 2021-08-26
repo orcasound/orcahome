@@ -20,9 +20,9 @@ export const NavLink = (props) => {
 
 }
 
-const Footer = ({ router: { pathname } }) => (
+const Header = ({ router: { pathname } }) => (
   <div className={footerStyles.footer}>
-  <footer className={footerStyles.foot}>
+  <header className={footerStyles.foot}>
   
  
   <Nav className="justify-content-end" defaultActiveKey="/home" as="ul"  bg="dark" expand="lg">
@@ -72,8 +72,8 @@ const Footer = ({ router: { pathname } }) => (
 
        
    
-  </footer>
+  </header>
   </div>
 )
 
-export default withRouter(Footer)
+export default withRouter(Header)
