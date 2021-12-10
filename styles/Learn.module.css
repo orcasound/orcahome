@@ -1,159 +1,135 @@
-.learn{
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    overflow: auto;
+.learn {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow: auto;
 }
 
-
-.img{
-    width: 500px;
-    z-index:0;
-    background-size: cover;
-    height: 500px;
-    
-    }
-
-
-
-.intro{  
-  
-    margin: 150px 50px;
-    background-color: black;
-    color:white;
-}
-.tex{
-    position: absolute;
-    top: -0;
-    z-index: 1;
-    margin: 190px 50px;
-    background-color: black;
-    color:white;
-    float: right;
+.img {
+  width: 500px;
+  z-index: 0;
+  background-size: cover;
+  height: 500px;
 }
 
-.hello{
-    margin: 50px 10px;
-    text-align: left;
-    list-style-type: none;
+.intro {
+  margin: 150px 50px;
+  background-color: black;
+  color: white;
+}
+.tex {
+  position: absolute;
+  top: -0;
+  z-index: 1;
+  margin: 190px 50px;
+  background-color: black;
+  color: white;
+  float: right;
+}
+
+.hello {
+  margin: 50px 10px;
+  text-align: left;
+  list-style-type: none;
 }
 .imageWrapper {
-text-align: center;
-overflow: hidden;
- }
-.orca{
-    overflow: hidden;
-    margin: 60px 40px;
-    float: right;
-border-radius: 50%;
-  text-align: center;}
+  text-align: center;
+  overflow: hidden;
+}
+.orca {
+  overflow: hidden;
+  margin: 60px 40px;
+  float: right;
+  border-radius: 50%;
+  text-align: center;
+}
 
-  .calls{margin: 15px 40px;}
- .callone{
-     float: inline-start;
-     margin: 40px 40px;
-     text-align: justify;
- }
+.calls {
+  margin: 15px 40px;
+}
+.callone {
+  float: inline-start;
+  margin: 40px 40px;
+  text-align: justify;
+}
 
- .gallery{
-    overflow: hidden;
-    float: left;
+.gallery {
+  overflow: hidden;
+  float: left;
+  text-align: center;
+  margin: 36px 30px;
+  background-color: rgba(190, 255, 246, 0.76);
+}
+
+.image {
+  margin-top: 200px;
+  margin-left: 290px;
+  margin-right: 150px;
+  float: right;
+
+  background-color: rgba(190, 255, 246, 0.76);
+}
+.gallery2 {
+  overflow: hidden;
+  float: left;
+  background-color: rgba(190, 255, 246, 0.76);
+  margin: 495px 30px;
+}
+.audio {
+  top: 0;
+}
+
+.box {
+  height: 100%;
+  width: auto;
+  margin: 30px 200px;
+}
+
+.audiosample {
+  display: flex;
+  width: 100%;
+  margin: 10px;
+}
+.audios {
+  display: flex;
+}
+
+.property {
+  margin-top: 1750px;
+
+  align-content: center;
+  margin-left: 400px;
+  margin-right: 400px;
+}
+
+.exhibits {
+  text-align: center;
+}
+
+.exhibit {
+  margin: 20px 20px;
+  text-align: center !important;
+  align-items: left;
+}
+
+.org {
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+
+  text-align: center;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0px;
+  padding: 5px 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  .exhibits,
+  .property {
+    margin-top: 1700px;
     text-align: center;
-    margin: 36px 30px;
-    background-color: rgba(190, 255, 246, 0.76);
-}
-
-.image{
-  
- 
-    margin-top: 200px;
- margin-left: 290px;
-    margin-right: 150px;
-    float:right;
-   
-    background-color: rgba(190, 255, 246, 0.76);
-
-   
-}
-.gallery2{
-    overflow: hidden;
-    float: left;
-    background-color: rgba(190, 255, 246, 0.76);
-    margin: 495px 30px;
- }
- .audio{
-    top: 0;
- }
-
-
-.box{
-   height: 100%;
-   width: auto;
-   margin: 30px 200px;
-}
-
-.audiosample{
-    display: flex;
-    width: 100%;
-    margin: 10px;
-}
-.audios{
-    display: flex;
-}
-
-
-
-.property{
-   
-    margin-top: 1750px;
-
-    align-content: center;
-    margin-left: 400px;
-    margin-right: 400px;
-  
-
-}
-
-
-
-.exhibits{
-
-
-text-align: center;
-
-}
-
-.exhibit{ 
-    margin: 20px 20px;
-    text-align:center!important;
-    align-items:left;
-
-}
-
-
-
-.org{
-    overflow: hidden;
-    width: 100%;
-    height: auto;
-  
-    text-align: center;
-align-items: center;
-text-align: center;
-margin: 20px 0px;
-    padding: 5px 5px;
-   
-}
-
-
-
- @media only screen and (max-width: 768px) {
-    .exhibits,  .property {
-        margin-top: 1700px;
-     text-align: center;
-     margin-left: 100px;
-     margin-right: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
   }
-  
-  
-  }
+}
