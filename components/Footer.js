@@ -1,13 +1,13 @@
-import footerStyles from '../styles/Footer.module.css'
+import classNames from 'classnames'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-import classNames from 'classnames'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import footerStyles from '../styles/Footer.module.css'
 
 ;<style></style>
 export const NavLink = (props) => {
-  let className = classNames({
+  const className = classNames({
     'nav-link': true,
     'is-active': props.pathname,
   })

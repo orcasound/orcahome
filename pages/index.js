@@ -1,12 +1,14 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import orcas from '../images/srkw2-10.jpg'
-import indexStyles from '../styles/Index.module.css'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import CardColumns from 'react-bootstrap/CardColumns'
+
+import orcas from '../images/srkw2-10.jpg'
+import indexStyles from '../styles/Index.module.css'
 
 export const index = () => {
   return (

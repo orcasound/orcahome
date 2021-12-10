@@ -1,16 +1,16 @@
-import Button from 'react-bootstrap/Button'
+import classNames from 'classnames'
 import Image from 'next/image'
-import orcasoundlogo from '../images/orcasoundlogo.png'
-import navStyles from '../styles/Nav.module.css'
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-import classNames from 'classnames'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import orcasoundlogo from '../images/orcasoundlogo.png'
+import navStyles from '../styles/Nav.module.css'
 
 ;<style></style>
 export const NavLink = (props) => {
-  let className = classNames({
+  const className = classNames({
     'nav-link': true,
     'is-active': props.pathname,
   })

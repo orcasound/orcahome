@@ -1,9 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import ReactAudioPlayer from 'react-audio-player'
 import Button from 'react-bootstrap/Button'
+
 import frequency1 from '../images/frequency2.png'
 import orca from '../images/orca2.png'
 import organization1 from '../images/partner1.png'

@@ -1,10 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
-import 'bootstrap/dist/css/bootstrap.min.css'
+
 import logo3 from '../images/ccollege.png'
 import logo5 from '../images/crt.png'
 import logo4 from '../images/CWR_logo.png'

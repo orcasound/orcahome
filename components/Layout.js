@@ -1,6 +1,7 @@
-import { Navbar, Container } from 'react-bootstrap/Navbar'
-import Nav from './Nav'
+import { Container,Navbar } from 'react-bootstrap/Navbar'
+
 import Footer from './Footer'
+import Nav from './Nav'
 
 export default function Layout({ children }) {
   return (
