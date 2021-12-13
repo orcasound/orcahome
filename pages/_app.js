@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 
 import Layout from '../components/Layout'
+const elements = ['Learn More', 'Get Involved']
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -10,4 +11,5 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
+export { elements }
 export default MyApp

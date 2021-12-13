@@ -1,13 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { elements } from './_app.js'
 
 import Head from 'next/head'
 import Image from 'next/image'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
+import MainButton from './../components/MainButton'
 
 import orcas from '../images/orca-breach.jpg'
 import homeStyles from '../styles/Home.module.css'
+
+
 
 export const index = () => {
   return (
@@ -76,8 +80,8 @@ export const index = () => {
                 </Card.Text>
                 <div className={homeStyles.button}>
                   <br></br>
-                  <Button variant="outline-primary"> LEARN</Button>{' '}
-                  <Button variant="outline-primary"> GET INVOLVED!</Button>{' '}
+                  <MainButton elements={elements[0]} />{' '}
+                  <MainButton elements={elements[1]} />{' '}
                 </div>
               </Card.Body>
             </Card>

@@ -12,6 +12,8 @@ import salishsea from '../images/salishsea.png'
 import audio from '../public/frequency.mp3'
 import orcasound from '../public/frequency.mp3'
 import learnStyles from '../styles/Learn.module.css'
+
+
 export const learn = () => {
   return (
     <div className={learnStyles.learn}>
