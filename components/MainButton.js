@@ -1,8 +1,7 @@
-import styled from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { createTheme } from '@material-ui/core/styles';
-
+import styled from '@material-ui/core/styles'
+import PropTypes from 'prop-types'
+import Button from '@material-ui/core/Button'
+import { createTheme } from '@material-ui/core/styles'
 
 //custom theme for coloring
 const theme = createTheme({
@@ -20,19 +19,26 @@ const theme = createTheme({
       contrastText: '#000',
     },
   },
-});
+})
 
 //receives 'buttonElements' from index.js -- Custom text can be passed using the elements array. //
-const MainButton = ({elements}) => {
+const MainButton = ({ elements }) => {
   return (
     <div>
-      <Button variant='contained' sx={{margin: '1rem', bgcolor:'#101738 !important', width: '12rem', borderRadius:'40px'}} size='small'
+      <Button
+        variant="contained"
+        sx={{
+          margin: '1rem',
+          bgcolor: '#101738 !important',
+          width: '12rem',
+          borderRadius: '40px',
+        }}
+        size="small"
       >
-      {elements}
+        {elements}
       </Button>
     </div>
-    );
+  )
 }
 
-export default MainButton;
-
+export default MainButton
