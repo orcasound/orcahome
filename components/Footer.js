@@ -14,10 +14,17 @@ import FacebookIcon from '@mui/icons-material/Facebook'
 import RedditIcon from '@mui/icons-material/Reddit'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import useCheckMobileScreen from '../utils/useCheckMobileScreen'
+import { makeStyles } from '@mui/styles'
 
+const useStyles = makeStyles({
+  footer_mobile: {
+    backgroundColor: '#080d26',
+    padding: '20px',
+  },
+})
 export default function Footer() {
   const isMobile = useCheckMobileScreen()
-
+  const classes = useStyles()
   const iconContainer = (
     <div className={FooterStyles.iconContainer}>
       <a
@@ -67,7 +74,7 @@ export default function Footer() {
   if (isMobile)
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" className={FooterStyles.footer_mobile}>
+        <AppBar position="static" className={classes.footer_mobile}>
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
