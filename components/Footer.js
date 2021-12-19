@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import FooterStyles from '../styles/Footer.module.css'
+// import FooterStyles from '../styles/Footer.module.css'
 import Link from 'next/link'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import InstagramIcon from '@mui/icons-material/Instagram'
@@ -21,51 +21,78 @@ const useStyles = makeStyles({
     backgroundColor: '#080d26',
     padding: '20px',
   },
+  typo: {
+    color: 'white',
+    marginRight: '32px',
+    '&:hover': {
+      textDecoration: 'none',
+      color: 'white',
+      cursor: 'pointer',
+    },
+  },
+  div: {
+    flexGrow: 1,
+  },
+  icon: {
+    marginRight: '4px',
+    color: 'white',
+    '&:hover': {
+      cursor: 'pointer',
+      color: 'white',
+    },
+  },
+  iconContainer: {
+    marginRight: '32px',
+  },
+  footer: {
+    backgroundColor: '#080d26',
+  },
 })
+
 export default function Footer() {
-  const isMobile = useCheckMobileScreen()
   const classes = useStyles()
+  const isMobile = useCheckMobileScreen()
+
   const iconContainer = (
-    <div className={FooterStyles.iconContainer}>
-      <a
-        href="https://www.facebook.com/OrcasoundApp/"
-        className={FooterStyles.icon}
-      >
+    <div className={classes.iconContainer}>
+      <a href="https://www.facebook.com/OrcasoundApp/" className={classes.icon}>
         <FacebookIcon fontSize="large" />
       </a>
       <a
         href="https://www.linkedin.com/company/75491849/admin/"
-        className={FooterStyles.icon}
+        className={classes.icon}
       >
         <LinkedInIcon fontSize="large" />
       </a>
       <a
         href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg"
-        className={FooterStyles.icon}
+        className={classes.icon}
       >
         <YouTubeIcon fontSize="large" />
       </a>
-      <a href="https://twitter.com/OrcasoundApp" className={FooterStyles.icon}>
+      <a href="https://twitter.com/OrcasoundApp" className={classes.icon}>
         <TwitterIcon fontSize="large" />
       </a>
       <a
         href="https://www.instagram.com/orcasoundapp/"
-        className={FooterStyles.icon}
+        className={classes.icon}
       >
         <InstagramIcon fontSize="large" />
       </a>
     </div>
   )
+
   const sendFeedbackLink = (
     <Link href="/">
-      <Typography variant="h6" component="a" className={FooterStyles.typo}>
+      <Typography variant="h6" component="a" className={classes.typo}>
         Send Feedback
       </Typography>
     </Link>
   )
+
   const blogLink = (
     <Link href="/">
-      <Typography variant="h6" component="a" className={FooterStyles.typo}>
+      <Typography variant="h6" component="a" className={classes.typo}>
         Blog
       </Typography>
     </Link>
@@ -79,11 +106,7 @@ export default function Footer() {
           <div>{blogLink}</div>
           <div>
             <Link href="/">
-              <Typography
-                variant="h6"
-                component="a"
-                className={FooterStyles.typo}
-              >
+              <Typography variant="h6" component="a" className={classes.typo}>
                 Donate
               </Typography>
             </Link>
@@ -92,12 +115,11 @@ export default function Footer() {
         </AppBar>
       </Box>
     )
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={FooterStyles.footer}>
+      <AppBar position="static" className={classes.footer}>
         <Toolbar>
-          <div className={FooterStyles.div}></div>
+          <div className={classes.div}></div>
           {sendFeedbackLink}
           {blogLink}
           {iconContainer}
