@@ -72,18 +72,21 @@ export default function Nav({ children }) {
             </li>
 
             <li className={navStyles.navitem}>
-              <Link href="/https://live.orcasound.net/">
-                <a
-                  className={
-                    isOpen === false
-                      ? navStyles.navlink
-                      : navStyles.navlink + ' ' + navStyles.active
-                  }
-                  onClick={openMenu}
-                >
-                  Listen
-                </a>
-              </Link>
+              {/* <Link href="/https://live.orcasound.net/"> */}
+              <a
+                rel="noopener noreferrer"
+                target="_blank"
+                href="https://live.orcasound.net/"
+                className={
+                  isOpen === false
+                    ? navStyles.navlink
+                    : navStyles.navlink + ' ' + navStyles.active
+                }
+                onClick={openMenu}
+              >
+                Listen
+              </a>
+              {/* </Link> */}
             </li>
             <li className={navStyles.navitem}>
               <Link href="/">
