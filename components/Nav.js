@@ -1,19 +1,20 @@
-import * as React from 'react'
+import MenuIcon from '@mui/icons-material/Menu'
+import NotificationsIcon from '@mui/icons-material/Notifications'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import Menu from '@mui/material/Menu'
-import MenuIcon from '@mui/icons-material/Menu'
-import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
 import { makeStyles } from '@mui/styles'
 import Image from 'next/image'
 import Link from 'next/link'
+import * as React from 'react'
+
 import orcasoundlogo from '../images/orcasoundlogo.png'
-import NotificationsIcon from '@mui/icons-material/Notifications'
 
 const navLinks = [
   {

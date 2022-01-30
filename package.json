@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -34,9 +35,15 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "file-loader": "^6.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.2",
     "prettier": "^2.3.2",
     "typescript": "4.3.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.45.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*": "prettier --ignore-unknown --write"
   }
 }
