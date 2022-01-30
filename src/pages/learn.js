@@ -106,7 +106,7 @@ export const learn = () => {
         <div className={learnStyles.property}>
           <h2 className={learnStyles.exhibits}>Exhibits</h2>
           <p className={learnStyles.exhibit}>
-            Learn About the Marine acoustic landscape and the hydrophone network{' '}
+            Learn About the Marine acoustic landscape and the hydrophone network
             <br></br>by exploring these Orcasound Exhibit screens designed for
             educational organizations in the Pudget Sound regions
           </p>
@@ -114,7 +114,7 @@ export const learn = () => {
         <div className={learnStyles.org}>
           <Image src={organization1} alt="Seattle aquarium exhibit" />
           <a href="https://killerwhaletales.org/">
-            <Image src={organization2} alt="Marine Science Center Logo" />{' '}
+            <Image src={organization2} alt="Marine Science Center Logo" />
           </a>
         </div>
       </body>

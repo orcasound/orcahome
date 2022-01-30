@@ -31,11 +31,10 @@ export const About = () => {
         </p>
 
         <p className={aboutStyles.introduction}>
-          {' '}
           Orcasound is a coperative effort of many dedicated individuals and
           great organizations.Here are our recent projects-- created by
           volunteers,stewards,citizens,scientist,hackers and generous funders--
-          all working together for the orcas{' '}
+          all working together for the orcas
         </p>
 
         <h2 className={aboutStyles.projects}>Our Projects</h2>
@@ -138,7 +137,7 @@ export const About = () => {
           organization,please reach out!
         </p>
         <div className={aboutStyles.button}>
-          <Button variant="outline-primary"> GET INVOLVED!</Button>{' '}
+          <Button variant="outline-primary"> GET INVOLVED!</Button>
         </div>
       </body>
     </div>

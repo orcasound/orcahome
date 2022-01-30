@@ -38,7 +38,6 @@ export const index = () => {
         <br></br>
 
         <p className={homeStyles.paragraph}>
-          {' '}
           Orcasound Connets your Headphones to live hydrophones (underwater
           microphones), your ears to the ocean sound. <br></br>
           Orcasound helps us explore and conserve marine life around the
@@ -76,8 +75,8 @@ export const index = () => {
                 </Card.Text>
                 <div className={homeStyles.button}>
                   <br></br>
-                  <Button variant="outline-primary"> LEARN</Button>{' '}
-                  <Button variant="outline-primary"> GET INVOLVED!</Button>{' '}
+                  <Button variant="outline-primary"> LEARN</Button>
+                  <Button variant="outline-primary"> GET INVOLVED!</Button>
                 </div>
               </Card.Body>
             </Card>
