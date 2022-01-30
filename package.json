@@ -29,7 +29,7 @@
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/react": "17.0.15",
+    "@types/react": "^17.0.38",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
     "eslint-config-prettier": "^8.3.0",
