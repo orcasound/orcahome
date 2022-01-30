@@ -5,10 +5,8 @@ export const listen = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <body>
-        <h1>Listen</h1>
-        <h2>orcasound</h2>
-      </body>
+      <h1>Listen</h1>
+      <h2>orcasound</h2>
     </>
   )
 }
