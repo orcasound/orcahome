@@ -14,7 +14,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
 
-import orcasoundlogo from '../images/orcasoundlogo.png'
+import orcasoundlogo from '../../public/images/orcasoundlogo.png'
 
 const navLinks = [
   {

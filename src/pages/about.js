@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
-import orca from '../images/orca2.png'
+import orca from '../../public/images/orca2.png'
 import aboutStyles from '../styles/About.module.css'
 
 export const About = () => {
