@@ -5,7 +5,6 @@ import { CacheProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
 import Head from 'next/head'
-import React from 'react'
 
 import Layout from '../components/Layout'
 import theme from '../styles/theme'

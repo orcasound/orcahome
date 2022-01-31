@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import ReactAudioPlayer from 'react-audio-player'
 
 import audio from '../../public/audio/frequency.mp3'
