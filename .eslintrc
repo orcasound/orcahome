@@ -5,19 +5,7 @@
     "prefer-const": "warn",
     "react/no-unescaped-entities": "warn",
     "simple-import-sort/imports": "warn",
-    "simple-import-sort/exports": "warn",
-    "import/no-unused-modules": [
-      "warn",
-      {
-        "unusedExports": true,
-        "ignoreExports": [
-          // pages are automatically imported by nextjs
-          // match js, jsx, ts, and tsx using extended globs
-          // https://github.com/micromatch/micromatch#extglobs
-          "src/pages/*.@(j|t)s?(x)"
-        ]
-      }
-    ]
+    "simple-import-sort/exports": "warn"
   },
   "overrides": [
     {
