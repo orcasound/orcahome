@@ -1,5 +1,8 @@
 module.exports = {
   reactStrictMode: true,
+  eslint: {
+    dirs: ['.'], // run eslint on everything
+  },
   images: {
     domains: ['netlify.com'],
   },
