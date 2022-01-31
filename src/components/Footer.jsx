@@ -4,110 +4,89 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
+import { styled } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import { makeStyles } from '@mui/styles'
 import Link from 'next/link'
 import * as React from 'react'
 
 import useCheckMobileScreen from '../utils/useCheckMobileScreen'
 
-const useStyles = makeStyles({
-  footer_mobile: {
-    backgroundColor: '#080d26',
-    padding: '20px',
-  },
-  typo: {
+const StyledTypography = styled(Typography)({
+  color: 'white',
+  marginRight: '32px',
+  '&:hover': {
+    textDecoration: 'none',
     color: 'white',
-    marginRight: '32px',
-    '&:hover': {
-      textDecoration: 'none',
-      color: 'white',
-      cursor: 'pointer',
-    },
+    cursor: 'pointer',
   },
-  div: {
-    flexGrow: 1,
-  },
-  icon: {
-    marginRight: '4px',
+})
+
+const IconLink = styled('a')({
+  marginRight: '4px',
+  color: 'white',
+  '&:hover': {
+    cursor: 'pointer',
     color: 'white',
-    '&:hover': {
-      cursor: 'pointer',
-      color: 'white',
-    },
-  },
-  iconContainer: {
-    marginRight: '32px',
-  },
-  footer: {
-    backgroundColor: '#080d26',
   },
 })
 
 export default function Footer() {
-  const classes = useStyles()
   const isMobile = useCheckMobileScreen()
 
   const iconContainer = (
-    <div className={classes.iconContainer}>
-      <a href="https://www.facebook.com/OrcasoundApp/" className={classes.icon}>
+    <Box sx={{ marginRight: '32px' }}>
+      <IconLink href="https://www.facebook.com/OrcasoundApp/">
         <FacebookIcon fontSize="large" />
-      </a>
-      <a
-        href="https://www.linkedin.com/company/75491849/admin/"
-        className={classes.icon}
-      >
+      </IconLink>
+      <IconLink href="https://www.linkedin.com/company/75491849/admin/">
         <LinkedInIcon fontSize="large" />
-      </a>
-      <a
-        href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg"
-        className={classes.icon}
-      >
+      </IconLink>
+      <IconLink href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg">
         <YouTubeIcon fontSize="large" />
-      </a>
-      <a href="https://twitter.com/OrcasoundApp" className={classes.icon}>
+      </IconLink>
+      <IconLink href="https://twitter.com/OrcasoundApp">
         <TwitterIcon fontSize="large" />
-      </a>
-      <a
-        href="https://www.instagram.com/orcasoundapp/"
-        className={classes.icon}
-      >
+      </IconLink>
+      <IconLink href="https://www.instagram.com/orcasoundapp/">
         <InstagramIcon fontSize="large" />
-      </a>
-    </div>
+      </IconLink>
+    </Box>
   )
 
   const sendFeedbackLink = (
     <Link href="/">
-      <Typography variant="h6" component="a" className={classes.typo}>
+      <StyledTypography variant="h6" component="a">
         Send Feedback
-      </Typography>
+      </StyledTypography>
     </Link>
   )
 
   const blogLink = (
     <Link href="/">
-      <Typography variant="h6" component="a" className={classes.typo}>
+      <StyledTypography variant="h6" component="a">
         Blog
-      </Typography>
+      </StyledTypography>
     </Link>
   )
 
   if (isMobile)
     return (
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" className={classes.footer_mobile}>
+        <AppBar
+          position="static"
+          sx={{ backgroundColor: '#080d26', padding: '20px' }}
+        >
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
             <Link href="/">
-              <Typography variant="h6" component="a" className={classes.typo}>
+              <StyledTypography variant="h6" component="a">
                 Donate
-              </Typography>
+              </StyledTypography>
             </Link>
           </div>
           {iconContainer}
@@ -116,9 +95,9 @@ export default function Footer() {
     )
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.footer}>
+      <AppBar position="static" sx={{ backgroundColor: '#080d26' }}>
         <Toolbar>
-          <div className={classes.div}></div>
+          <Box sx={{ flexGrow: 1 }}></Box>
           {sendFeedbackLink}
           {blogLink}
           {iconContainer}
