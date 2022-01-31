@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 import { CacheProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
