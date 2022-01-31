@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
@@ -12,7 +11,6 @@ import logo6 from '../../public/images/deepgreen.png'
 import logo2 from '../../public/images/folks.png'
 import hackathon from '../../public/images/hackathon.png'
 import logo8 from '../../public/images/OI.png'
-import logo10 from '../../public/images/orcanetwork.png'
 import logo9 from '../../public/images/pacman.png'
 import roadmap from '../../public/images/roadmap.png'
 import orcas from '../../public/images/srkw2-10.jpg'
@@ -26,21 +24,19 @@ export const getinvolved = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <body>
-        <Image
-          className={getinvolvedStyles.landingImage}
-          src={orcas}
-          width={1400}
-          height={600}
-        />
-        <h1 className={getinvolvedStyles.p1}>Get involved</h1>
-        <p className={getinvolvedStyles.p2}>
-          There is many ways you can help in the recovery of marine life{' '}
-          <br></br>, especially for the Souther Resident Killer Whales that call
-          the Salish Sea Home.
-          <br></br>Check out the ways you can help below!
-        </p>
-      </body>
+      <Image
+        className={getinvolvedStyles.landingImage}
+        src={orcas}
+        width={1400}
+        height={600}
+      />
+      <h1 className={getinvolvedStyles.p1}>Get involved</h1>
+      <p className={getinvolvedStyles.p2}>
+        There is many ways you can help in the recovery of marine life
+        <br></br>, especially for the Souther Resident Killer Whales that call
+        the Salish Sea Home.
+        <br></br>Check out the ways you can help below!
+      </p>
       <div>
         <ul className={getinvolvedStyles.ul}>
           <li>
@@ -63,7 +59,6 @@ export const getinvolved = () => {
             <div className={getinvolvedStyles.rows}>
               <h2>Citizen Scientist</h2>
               <p>
-                {' '}
                 First and foremost, you can volunter as a citizen scientist. Not
                 only an you listen for whales to marvel at the symphony of
                 ssounds they make.<br></br> but also you can listen 'for'
@@ -76,7 +71,6 @@ export const getinvolved = () => {
           <div className={getinvolvedStyles.rows}>
             <h2>In Person</h2>
             <p>
-              {' '}
               You can also volunteer in-person with any of them current
               Orcasound network members, or with a new organizationin your
               neighborhood that you convince to become a new member<br></br>
@@ -154,7 +148,7 @@ export const getinvolved = () => {
           Our crown jewel is the Orcasound Web App-- a suite of new cloud and
           browser based ways for citizens scientist and artifical intelligence
           to listen for whales in real time.As of april 2020 this is the
-          Orcasound tech Stack{' '}
+          Orcasound tech Stack
         </p>
 
         <ul className={getinvolvedStyles.list}>
@@ -184,9 +178,8 @@ export const getinvolved = () => {
         </p>
         <div className={getinvolvedStyles.button}>
           <Button variant="outline-primary">
-            {' '}
             LEARN MORE ABOUT VOLUNTEERING!
-          </Button>{' '}
+          </Button>
         </div>
         <h2 className={getinvolvedStyles.memorandum}>
           Memorandum Of Agreements
@@ -223,7 +216,7 @@ export const getinvolved = () => {
           sponsoring the work of our most-dedicated contributors.
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outline-primary"> DONATE NOW</Button>{' '}
+          <Button variant="outline-primary"> DONATE NOW</Button>
         </div>
         <div className={getinvolvedStyles.logos}>
           <Image src={logo1} />
