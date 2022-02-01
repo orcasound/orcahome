@@ -1,3 +1,6 @@
+// Document needs to be customized in order to make material-ui work with SSR
+// From https://github.com/mui-org/material-ui/blob/master/examples/nextjs-with-typescript/pages/_document.tsx
+
 import createEmotionServer from '@emotion/server/create-instance'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
@@ -17,7 +20,7 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
-          {this.props.emotionStyleTags}
+          {(this.props as any).emotionStyleTags}
         </Head>
         <body>
           <Main />
@@ -62,7 +65,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) =>
+      enhanceApp: (App: any) =>
         function EnhanceApp(props) {
           return <App emotionCache={cache} {...props} />
         },

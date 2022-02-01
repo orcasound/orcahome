@@ -1,29 +1,26 @@
 import '../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { CacheProvider } from '@emotion/react'
+import { CacheProvider, EmotionCache } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
+import { AppProps } from 'next/app'
 import Head from 'next/head'
 
 import Layout from '../components/Layout'
 import theme from '../styles/theme'
 import createEmotionCache from '../utils/createEmotionCache'
 
-// Client-side cache, shared for the whole session of the user in the browser.
+// Client-side cache, shared for the whole session of the user in the browser
+// https://github.com/mui-org/material-ui/blob/master/examples/nextjs-with-typescript/pages/_app.tsx
 const clientSideEmotionCache = createEmotionCache()
 
-function MyApp(props) {
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache
+}
+
+export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-
-  // React.useEffect(() => {
-  //   // Remove the server-side injected CSS.
-  //   const jssStyles = document.querySelector('#jss-server-side')
-  //   if (jssStyles) {
-  //     jssStyles.parentElement.removeChild(jssStyles)
-  //   }
-  // }, [])
-
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -39,5 +36,3 @@ function MyApp(props) {
     </CacheProvider>
   )
 }
-
-export default MyApp
