@@ -38,7 +38,7 @@ export const About = () => {
 
       <h2 className={aboutStyles.projects}>Our Projects</h2>
       <div className={aboutStyles.card}>
-        <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
+        <Card sx={{ maxWidth: 345, mb: 2 }}>
           <CardMedia
             component="img"
             height="140"
