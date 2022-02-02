@@ -1,55 +1,82 @@
-.landingImage {
-  width: 500px;
-  z-index: 0;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+.topScreen {
+  min-height: 90vh;
+  max-height: 90vh;
+  max-width: 100vw;
+  background-image: url('../../public/images/srkw2-25.png');
+  background-position: center center;
   background-size: cover;
-  height: 500px;
+  background-repeat: no-repeat;
 }
 
-.landingText {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 150px 50px;
-  background-color: black;
-  color: white;
+.titleScreen {
+  position: relative;
+  min-height: 85vh;
+  max-height: 85vh;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
-.landingPa {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 190px 50px;
-  background-color: black;
-  color: white;
+.pageTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10vw;
+  margin-bottom: 2vw;
 }
 
-.p1 {
+.scrollDown {
   position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
+  bottom: 0px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 15px;
+}
+
+.expandIcon {
+  font-size: 4vw;
+  color: #ffffff;
+}
+
+.secexpandIcon {
+  transform: translateY(-3vw);
+}
+
+.pageDesc {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  background-color: #080d26;
+  width: 40vw;
+  max-width: 450px;
+  padding: 15px;
+  margin: 10px 25px;
+}
+
+.involveLinks {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
   align-items: left;
-  margin-top: 180px;
-  margin-left: 50px;
-  top: 0;
 }
 
-.p2 {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 228px;
-  margin-left: 50px;
-  top: 0;
+.scrollLink {
+  font-size: 20px;
+  color: #1b2b7b;
+  text-decoration: none !important;
+  cursor: pointer;
 }
 
-.ul {
-  list-style: none;
+.scrollLink:hover {
+  color: #080d26;
 }
+
 .particiation {
   margin: 30px 60px;
   text-align: center;
@@ -147,11 +174,10 @@
 }
 
 .logos {
-  display: grid;
-  grid-template-columns: 200px 200px 200px 200px;
-  text-align: center;
-  grid-gap: 30px;
-  margin: 20px 200px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
   padding: 30px;
 }
 
