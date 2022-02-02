@@ -6,12 +6,14 @@ import CardColumns from 'react-bootstrap/CardColumns'
 
 import orcas from '../../public/images/orca-breach.jpg'
 import homeStyles from '../styles/Home.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export const index = () => {
   return (
     <div className={homeStyles.home}>
       <Head>
         <title>Orcasound liste live for orcas</title>
+
         <meta
           name="keywords"
           content="orcasound allows your to listen to live southern killer resident whales live through our hydrophones"
@@ -72,8 +74,11 @@ export const index = () => {
               </Card.Text>
               <div className={homeStyles.button}>
                 <br></br>
-                <Button variant="outline-primary"> LEARN</Button>
-                <Button variant="outline-primary"> GET INVOLVED!</Button>
+                <ActionButton buttonLink="learn" buttonText="LEARN" />
+                <ActionButton
+                  buttonLink="getinvolved"
+                  buttonText="GET INVOLVED!"
+                />
               </div>
             </Card.Body>
           </Card>
