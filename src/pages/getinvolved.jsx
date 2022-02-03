@@ -1,5 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { IconButton, Slide } from '@mui/material'
+import { Box, IconButton, Slide,Typography } from '@mui/material'
+import { styled } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button'
@@ -21,69 +22,144 @@ import logo1 from '../../public/images/twt.png'
 import logo11 from '../../public/images/ws_logo.png'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
 
+const TopScreen = styled('div')(({ theme }) => ({
+  minHeight: '90vh',
+  maxHeight: '90vh',
+  maxWidth: '100vw',
+  backgroundImage: `url(${topbanner.src})`,
+  backgroundPosition: 'center center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  [theme.breakpoints.down('sm')]: {
+    minHeight: '68vh',
+    maxHeight: '68vh',
+    maxWidth: '100vw',
+  },
+}))
+
+const TitleScreen = styled('div')(({ theme }) => ({
+  position: 'relative',
+  minHeight: '85vh',
+  maxHeight: '85vh',
+  maxWidth: '100vw',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: '#fff',
+  [theme.breakpoints.down('sm')]: {
+    minHeight: '68vh',
+    maxHeight: '68vh',
+    maxWidth: '100vw',
+    paddingBottom: '200px',
+  },
+}))
+
+const ScrollDownButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '0',
+  padding: '0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '15px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}))
+
+const PageDesc = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: '0',
+  left: '10px',
+  backgroundColor: '#080d26',
+  width: '40vw',
+  maxWidth: '450px',
+  padding: '15px',
+  margin: '10px 25px',
+  [theme.breakpoints.down('sm')]: {
+    left: '0',
+    margin: '0',
+    width: '100%',
+    maxWidth: '100vw',
+    margin: '0',
+  },
+}))
+
+const ScrollLink = styled(ScrollElement)({
+  fontSize: '20px',
+  color: '#1b2b7b',
+  textDecoration: 'none !important',
+  cursor: 'pointer',
+  '&:hover': {
+    color: '#080d26',
+  },
+})
+
 export const Getinvolved = () => {
   const [checked, setChecked] = useState(false)
+  const InviteLinks = [
+    { name: 'Volunteer', id: 'volunteer' },
+    { name: 'For Developers', id: 'for-developers' },
+    { name: 'Donate', id: 'donate' },
+  ]
 
   useEffect(() => {
     setChecked(true)
   }, [])
 
   return (
-    <div>
-      <div
-        className={getinvolvedStyles.topScreen}
-        style={{ backgroundImage: `url(${topbanner.src})` }}
-      >
+    <>
+      <TopScreen>
         <Slide
           in={checked}
           direction="up"
           {...(checked ? { timeout: 1000 } : {})}
         >
-          <div className={getinvolvedStyles.titleScreen}>
-            <h1 className={getinvolvedStyles.pageTitle}>Get Involved</h1>
+          <TitleScreen>
+            <Typography
+              variant="h1"
+              sx={{ fontSize: '10vw', marginBottom: '2vw' }}
+            >
+              Get Involved
+            </Typography>
             <ScrollElement to="invite-links" smooth={true} spy={true}>
-              <IconButton className={getinvolvedStyles.scrollDown}>
-                <ExpandMoreIcon className={getinvolvedStyles.expandIcon} />
+              <ScrollDownButton>
+                <ExpandMoreIcon sx={{ fontSize: '4vw', color: '#ffffff' }} />
                 <ExpandMoreIcon
-                  className={`${getinvolvedStyles.expandIcon} ${getinvolvedStyles.secexpandIcon}`}
+                  sx={{
+                    fontSize: '4vw',
+                    color: '#ffffff',
+                    transform: 'translateY(-3vw)',
+                  }}
                 />
-              </IconButton>
+              </ScrollDownButton>
             </ScrollElement>
-            <div className={getinvolvedStyles.pageDesc}>
-              There are many ways to help in the recovering of marine life,
+            <PageDesc>
+              {`There are many ways to help in the recovering of marine life,
               especially for the Souther Resident Killer Whales that call the
-              Salish Sea home. Check out the ways you can help below!
-            </div>
-          </div>
+              Salish Sea home. Check out the ways you can help below!`}
+            </PageDesc>
+          </TitleScreen>
         </Slide>
-      </div>
+      </TopScreen>
 
-      <div className={getinvolvedStyles.involveLinks} id="invite-links">
-        <ScrollElement
-          to="volunteer"
-          smooth={true}
-          spy={true}
-          className={getinvolvedStyles.scrollLink}
-        >
-          Volunteer
-        </ScrollElement>
-        <ScrollElement
-          to="for-developers"
-          smooth={true}
-          spy={true}
-          className={getinvolvedStyles.scrollLink}
-        >
-          For Developers
-        </ScrollElement>
-        <ScrollElement
-          to="donate"
-          smooth={true}
-          spy={true}
-          className={getinvolvedStyles.scrollLink}
-        >
-          Donate
-        </ScrollElement>
-      </div>
+      <Box
+        id="invite-links"
+        sx={{
+          padding: '30px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'left',
+        }}
+      >
+        {InviteLinks.map((link, i) => (
+          <ScrollLink key={i} to={link.id} smooth={true} spy={true}>
+            {link.name}
+          </ScrollLink>
+        ))}
+      </Box>
 
       <div id="volunteer">
         <h2 className={getinvolvedStyles.particiation}>
@@ -280,7 +356,7 @@ export const Getinvolved = () => {
           <Image src={logo11} width={150} height={150} alt="donate-here" />
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
