@@ -17,10 +17,6 @@ export const index = () => {
           content="orcasound allows your to listen to live southern killer resident whales live through our hydrophones"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
       </Head>
       <Image
         className={homeStyles.landingImage}
