@@ -1,0 +1,22 @@
+.banner {
+  background: url('../../public/images/srkw2-36.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 55%;
+}
+
+.overlay {
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(46, 87, 201, 0.3);
+  position: relative;
+}
+
+.bannerText {
+  color: #fff;
+  font-size: 160px;
+  margin-bottom: 20px;
+}
