@@ -16,6 +16,7 @@ import hackathon from '../../public/images/hackathon.png'
 import logo8 from '../../public/images/OI.png'
 import logo9 from '../../public/images/pacman.png'
 import roadmap from '../../public/images/roadmap.png'
+import topbanner from '../../public/images/srkw2-25.jpg'
 import logo1 from '../../public/images/twt.png'
 import logo11 from '../../public/images/ws_logo.png'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
@@ -29,7 +30,10 @@ export const Getinvolved = () => {
 
   return (
     <div>
-      <div className={getinvolvedStyles.topScreen}>
+      <div
+        className={getinvolvedStyles.topScreen}
+        style={{ backgroundImage: `url(${topbanner.src})` }}
+      >
         <Slide
           in={checked}
           direction="up"
