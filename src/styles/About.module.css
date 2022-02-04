@@ -39,27 +39,3 @@
   text-align: center;
   margin: 30px 120px;
 }
-
-@media only screen and (max-width: 1000px) {
-  .landingtitle {
-    position: absolute;
-    top: 0;
-    bottom: 10%;
-  }
-  .landingdesc {
-    width: 50%;
-  }
-}
-@media only screen and (max-width: 700px) {
-  .landingtitle {
-    position: absolute;
-    top: 0;
-    bottom: 30%;
-  }
-  .landingdesc {
-    width: 100%;
-    position: relative;
-    left: 0;
-    bottom: 6px;
-  }
-}
