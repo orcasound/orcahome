@@ -1,33 +1,4 @@
-.landingImage {
-  width: 500px;
-  z-index: 0;
-  background-size: cover;
-  height: 500px;
-}
-
-.landingText {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 200px;
-  margin-left: 50px;
-  top: 0;
-}
-
-.landingPa {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 238px;
-  margin-left: 50px;
-  top: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Mukta:wght@500&display=swap');
 
 .introduction {
   margin: 20px 40px;
@@ -69,20 +40,26 @@
   margin: 30px 120px;
 }
 
-@media only screen and (max-width: 768px) {
-  .landingText {
+@media only screen and (max-width: 1000px) {
+  .landingtitle {
     position: absolute;
-    z-index: 0;
-    top: 0rem;
-    margin-top: 155px;
+    top: 0;
+    bottom: 10%;
+  }
+  .landingdesc {
+    width: 50%;
   }
 }
-
-@media only screen and (max-width: 768px) {
-  .landingPa {
+@media only screen and (max-width: 700px) {
+  .landingtitle {
     position: absolute;
-
-    top: 0rem;
-    margin-top: 190px;
+    top: 0;
+    bottom: 30%;
+  }
+  .landingdesc {
+    width: 100%;
+    position: relative;
+    left: 0;
+    bottom: 6px;
   }
 }

@@ -1,11 +1,90 @@
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
+import { Typography } from '@mui/material'
+import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
+import { Link as ReactScroller } from 'react-scroll'
 
-import orca from '../../public/images/orca2.png'
+import orca from '../../public/images/about/hero image 3 1.png'
 import aboutStyles from '../styles/About.module.css'
+
+const LandingScreen = styled('div')(({ theme }) => ({
+  color: 'white',
+  position: 'relative',
+}))
+
+const LandingImage = styled('div')(({ theme }) => ({
+  width: '100%',
+  objectFit: 'cover',
+  userSelect: 'none',
+  position: 'relative',
+}))
+const Landingtitle = styled('h2')(({ theme }) => ({
+  position: 'absolute',
+  top: '50%',
+  bottom: '50%',
+  left: '50%',
+  right: '50%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  [theme.breakpoints.down(1000)]: {
+    position: 'absolute',
+    top: 0,
+    bottom: '10%',
+  },
+  [theme.breakpoints.down(700)]: {
+    position: 'absolute',
+    top: 0,
+    bottom: '30%',
+  },
+}))
+const Landingdesc = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  background: '#080d26',
+  width: '35%',
+  padding: '10px',
+  bottom: '4%',
+  left: '5%',
+  fontWeight: 500,
+  fontStyle: 'normal',
+
+  [theme.breakpoints.down(1000)]: {
+    width: '40%',
+    fontSize: '2vw',
+  },
+  [theme.breakpoints.down(500)]: {
+    width: '100%',
+    fontSize: '4vw',
+    position: 'relative',
+    left: 0,
+    bottom: 6,
+  },
+}))
+
+const ScrollDown = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: '3%',
+  left: '50%',
+  right: '50%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  textAlign: 'center',
+  cursor: 'pointer',
+  transition: 'all 0.5s ease-in-out',
+
+  '&:hover': {
+    transform: 'translateY(5px)',
+  },
+  [theme.breakpoints.down(700)]: {
+    display: 'none',
+  },
+}))
 
 export const About = () => {
   return (
@@ -13,7 +92,49 @@ export const About = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <Image
+      <LandingScreen>
+        <LandingImage>
+          <Image
+            src={orca}
+            //   width={100}
+            height={600}
+            alt="landing image"
+          />
+        </LandingImage>
+        <Landingtitle>
+          <Typography
+            variant="h3"
+            sx={{
+              fontSize: '10vw',
+              fontFamily: 'Montserrat',
+            }}
+          >
+            About
+          </Typography>
+        </Landingtitle>
+
+        <Landingdesc
+          sx={{
+            fontFamily: 'Mukta',
+            fontSize: '1.5vw',
+          }}
+        >
+          {`Orcasound is a software & hardware Web app to listen to whales, save
+          orcas and advance bioacustics(AI Technology)`}
+        </Landingdesc>
+
+        <ScrollDown>
+          <ReactScroller to="page" smooth="true" duration={1000}>
+            <KeyboardDoubleArrowDownIcon
+              sx={{
+                color: 'white',
+                fontSize: '5vw',
+              }}
+            />
+          </ReactScroller>
+        </ScrollDown>
+      </LandingScreen>
+      {/* <Image
         className={aboutStyles.landingImage}
         src={orca}
         width={1400}
@@ -25,9 +146,9 @@ export const About = () => {
         Orcasound is a software & hardware Web app to <br></br>
         listen to whales, save orcas and advance <br></br>
         bioacustics(AI Technology)
-      </p>
+      </p> */}
 
-      <p className={aboutStyles.introduction}>
+      <p className={aboutStyles.introduction} id="page">
         Orcasound is a coperative effort of many dedicated individuals and great
         organizations.Here are our recent projects-- created by
         volunteers,stewards,citizens,scientist,hackers and generous funders--
