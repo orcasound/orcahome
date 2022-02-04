@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 import { Link as ReactScroller } from 'react-scroll'
 
-import orca from '../../public/images/about/hero image 3 1.png'
+import orca from '../../public/images/about/heroimage.png'
 import aboutStyles from '../styles/About.module.css'
 
 const LandingScreen = styled('div')(({ theme }) => ({
@@ -21,6 +21,9 @@ const LandingImage = styled('div')(({ theme }) => ({
   objectFit: 'cover',
   userSelect: 'none',
   position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }))
 const Landingtitle = styled('h2')(({ theme }) => ({
   position: 'absolute',
@@ -96,9 +99,9 @@ export const About = () => {
         <LandingImage>
           <Image
             src={orca}
-            //   width={100}
-            height={600}
-            alt="landing image"
+            alt="About us Landing image"
+            height={650}
+            width={1550}
           />
         </LandingImage>
         <Landingtitle>
