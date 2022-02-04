@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
-
+import "@fontsource/mukta"
+import "@fontsource/montserrat"
 import audio from '../../public/audio/frequency.mp3'
 import frequency1 from '../../public/images/frequency2.png'
 import orca from '../../public/images/orca2.png'
@@ -10,6 +11,7 @@ import organization2 from '../../public/images/partner2.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import learnStyles from '../styles/Learn.module.css'
+import {List,ListItem,ListItemText,Button,Box} from "@mui/material"
 export const learn = () => {
   return (
     <div className={learnStyles.learn}>
@@ -24,18 +26,20 @@ export const learn = () => {
         <li>Souther Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
-      <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
-      <p className={learnStyles.salishsea}>
-        Explore common sounds of the Salish Sea by selecting the animals and
-        other objects in this anoramic soundscape of the inlandwaters of
-        Washington State(USA) and British Columbia(Canada)
-      </p>
+      <h1 className={learnStyles.salish} style={{marginLeft:"119px",fontSize:"44px",fontFamily:"Mukta",fontWeight:"600"}}> Sounds Of The Salish Sea</h1>
+      <Box width={969} height={84} sx={{fontSize:"20px",ml:"119px",fontFamily:"Montserrat",marginTop:"30px",marginBottom:"14px"}}>
+        <p className={learnStyles.salishsea}>
+          Explore common sounds of the Salish Sea by selecting the animals and
+          other objects in this anoramic soundscape of the inlandwaters of
+          Washington State(USA) and British Columbia(Canada)
+        </p>
+      </Box>
       <div className={learnStyles.imageWrapper}>
         <Image
           className={learnStyles.salishseaimg}
           src={salishsea}
-          width={800}
-          height={450}
+          width={1234}
+          height={701}
           layout="intrinsic"
           quality={65}
         />
