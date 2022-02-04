@@ -77,7 +77,7 @@ export default function Footer() {
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
-            <Link href="/">
+            <Link href="/donate">
               <StyledTypography variant="h6" component="a">
                 Donate
               </StyledTypography>
@@ -95,18 +95,20 @@ export default function Footer() {
           {sendFeedbackLink}
           {blogLink}
           {iconContainer}
-          <Button
-            variant="contained"
-            sx={{
-              color: 'black',
-              backgroundColor: 'white',
-              borderRadius: '100px',
-              '&:hover': { color: 'black', backgroundColor: 'white' },
-            }}
-            startIcon={<NotificationsIcon sx={{ color: '#F79234' }} />}
-          >
-            Donate
-          </Button>
+          <Link href="donate">
+            <Button
+              variant="contained"
+              sx={{
+                color: 'black',
+                backgroundColor: 'white',
+                borderRadius: '100px',
+                '&:hover': { color: 'black', backgroundColor: 'white' },
+              }}
+              startIcon={<NotificationsIcon sx={{ color: '#F79234' }} />}
+            >
+              Donate
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
