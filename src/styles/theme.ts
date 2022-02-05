@@ -8,10 +8,19 @@ const theme = createTheme({
       main: '#556cd6',
     },
     secondary: {
-      main: '#19857b',
+      main: '#F79234',
     },
     error: {
       main: red.A400,
+    },
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#080d26',
+        },
+      },
     },
   },
 })
