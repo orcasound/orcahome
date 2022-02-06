@@ -13,7 +13,7 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material'
-import { ThemeProvider,useTheme } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'

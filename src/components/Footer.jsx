@@ -5,10 +5,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, Button, styled, Toolbar, Typography } from '@mui/material'
-import { ThemeProvider,useTheme } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Link from 'next/link'
 
-import useCheckMobileScreen from '../utils/useCheckMobileScreen'
+import useIsMobile from '../utils/useIsMobile'
 
 const StyledTypography = styled(Typography)({
   color: 'white',
@@ -66,7 +66,7 @@ const blogLink = (
 )
 
 export default function Footer() {
-  const isMobile = useCheckMobileScreen()
+  const isMobile = useIsMobile()
 
   return <Box>{isMobile ? <Mobile /> : <Desktop />}</Box>
 }
