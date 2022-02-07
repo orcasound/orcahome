@@ -1,11 +1,17 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { Box, IconButton, Slide,Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Card,
+  CardMedia,
+  IconButton,
+  Slide,
+  Typography,
+} from '@mui/material'
 import { styled } from '@mui/material'
+import Head from 'next/head'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
 import { Link as ScrollElement } from 'react-scroll'
 
 import logo3 from '../../public/images/ccollege.png'
@@ -64,6 +70,10 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   height: '15px',
+  transition: 'all 0.5s ease-in-out',
+  '&:hover': {
+    transform: 'translateY(5px)',
+  },
   [theme.breakpoints.down('sm')]: {
     display: 'none',
   },
@@ -76,7 +86,7 @@ const PageDesc = styled('div')(({ theme }) => ({
   backgroundColor: '#080d26',
   width: '40vw',
   maxWidth: '450px',
-  padding: '15px',
+  padding: '20px',
   margin: '10px 25px',
   [theme.breakpoints.down('sm')]: {
     left: '0',
@@ -111,6 +121,9 @@ export const Getinvolved = () => {
 
   return (
     <>
+      <Head>
+        <title>Orcasound</title>
+      </Head>
       <TopScreen>
         <Slide
           in={checked}
@@ -120,18 +133,18 @@ export const Getinvolved = () => {
           <TitleScreen>
             <Typography
               variant="h1"
-              sx={{ fontSize: '10vw', marginBottom: '2vw' }}
+              sx={{ fontSize: '10vw', marginBottom: '2vw', fontWeight: '500' }}
             >
               Get Involved
             </Typography>
             <ScrollElement to="invite-links" smooth={true} spy={true}>
               <ScrollDownButton>
-                <ExpandMoreIcon sx={{ fontSize: '4vw', color: '#ffffff' }} />
+                <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
                 <ExpandMoreIcon
                   sx={{
-                    fontSize: '4vw',
+                    fontSize: '5vw',
                     color: '#ffffff',
-                    transform: 'translateY(-3vw)',
+                    transform: 'translateY(-3.5vw)',
                   }}
                 />
               </ScrollDownButton>
@@ -148,7 +161,7 @@ export const Getinvolved = () => {
       <Box
         id="invite-links"
         sx={{
-          padding: '30px',
+          padding: '20px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'left',
@@ -200,42 +213,13 @@ export const Getinvolved = () => {
 
       <div className={getinvolvedStyles.space}>
         <div className={getinvolvedStyles.card}>
-          <CardColumns>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i1.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2018/04/IMG_20180426_120021.jpg?fit=660%2C880&ssl=1"
-              />
-            </Card>
-
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i0.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2017/08/orca-tanker.jpg?resize=1024%2C683&ssl=1"
-              />
-            </Card>
-
-            <Card bg="primary" text="white" className="text-center p-3">
-              <blockquote className="blockquote mb-0 card-body">
-                <p>
-                  {`There is many ways you can help in the recovery of marine life
-                  , especially for the Souther Resident Killer Whales`}
-                </p>
-                <footer className="blockquote-footer">
-                  <small className="text-muted">
-                    Listen Live for Orcas in{' '}
-                    <cite title="Source Title">Source Title</cite>
-                  </small>
-                </footer>
-              </blockquote>
-            </Card>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i0.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2019/09/Screen-Shot-2019-09-26-at-1.00.03-AM.png?resize=780%2C733"
-              />
-            </Card>
-          </CardColumns>
+          <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
+            <CardMedia
+              component="img"
+              height="140"
+              image="https://i1.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2018/04/IMG_20180426_120021.jpg?fit=660%2C880&ssl=1"
+            />
+          </Card>
         </div>
         <div className={getinvolvedStyles.spacing} id="for-developers">
           <div className={getinvolvedStyles.car}>
@@ -298,9 +282,7 @@ export const Getinvolved = () => {
           Fame`}
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outline-primary">
-            LEARN MORE ABOUT VOLUNTEERING!
-          </Button>
+          <Button variant="outlined">LEARN MORE ABOUT VOLUNTEERING!</Button>
         </div>
         <h2 className={getinvolvedStyles.memorandum}>
           Memorandum Of Agreements
@@ -341,7 +323,7 @@ export const Getinvolved = () => {
           sponsoring the work of our most-dedicated contributors.`}
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outline-primary"> DONATE NOW</Button>
+          <Button variant="outlined"> DONATE NOW</Button>
         </div>
 
         <div className={getinvolvedStyles.logos}>
