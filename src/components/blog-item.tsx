@@ -11,7 +11,7 @@ interface blogItemProps {
   author?: string
 }
 
-const blogItem = ({
+const BlogItem = ({
   image,
   title,
   summary,
@@ -36,4 +36,4 @@ const blogItem = ({
   )
 }
 
-export default blogItem
+export default BlogItem
