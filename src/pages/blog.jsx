@@ -1,4 +1,5 @@
 import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded'
+import { Typography } from '@mui/material'
 
 import frequency1 from '../../public/images/frequency.png'
 import BlogItem from '../components/blog-item'
@@ -25,10 +26,15 @@ const Blog = () => {
   ]
 
   return (
-    <>
+    <main>
       <div className={blogStyles.banner}>
         <div className={blogStyles.overlay}>
-          <h1 className={blogStyles.bannerText}>Blog</h1>
+          <Typography
+            variant="h1"
+            sx={{ fontSize: 160, color: '#fff', fontWeight: 450 }}
+          >
+            Blog
+          </Typography>
           <KeyboardDoubleArrowDownRoundedIcon
             sx={{
               fontSize: 100,
@@ -51,7 +57,7 @@ const Blog = () => {
           />
         ))}
       </section>
-    </>
+    </main>
   )
 }
 

@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -21,14 +22,25 @@ const BlogItem = ({
   return (
     <>
       <div className={blogStyles.blogItem}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <Image src={image} alt={title} width={300} height={260} />
+        <Image src={image} alt={title} width={300} height={250} />
         <div className={blogStyles.blogItemBody}>
-          <h3 className={blogStyles.blogItemTitle}>{title}</h3>
-          <p className={blogStyles.blogItemMetadata}>
+          <Typography variant="h3" sx={{ fontSize: 22, fontWeight: 500 }}>
+            {title}
+          </Typography>
+          <Typography
+            paragraph={true}
+            sx={{
+              fontSize: 13,
+              fontWeight: 600,
+              color: '#999999',
+              textTransform: 'uppercase',
+            }}
+          >
             Posted on {datePublished} By {author}
-          </p>
-          <p className={blogStyles.blogItemSummary}>{summary}</p>
+          </Typography>
+          <Typography paragraph={true} sx={{ fontSize: 16, fontWeight: 450 }}>
+            {summary}
+          </Typography>
           <Link href="/blog">Read More...</Link>
         </div>
       </div>
