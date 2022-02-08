@@ -6,7 +6,6 @@ import { useTheme } from '@mui/material/styles'
 //buttonLink determines the href that the user is directed to after clicking the button.
 const ActionButton = ({ buttonLink, buttonText }) => {
   //theme utilized from theme.ts
-  const theme = useTheme()
   return (
     <div>
       <Button
