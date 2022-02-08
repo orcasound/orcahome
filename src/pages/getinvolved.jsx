@@ -17,6 +17,7 @@ import orcas from '../../public/images/srkw2-10.jpg'
 import logo1 from '../../public/images/twt.png'
 import logo11 from '../../public/images/ws_logo.png'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
+import ActionButton from './../components/ActionButton'
 
 export const getinvolved = () => {
   return (
@@ -177,9 +178,10 @@ export const getinvolved = () => {
           Fame
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outline-primary">
-            LEARN MORE ABOUT VOLUNTEERING!
-          </Button>
+          <ActionButton
+            buttonLink=""
+            buttonText="LEARN MORE ABOUT VOLUNTEERING!"
+          />
         </div>
         <h2 className={getinvolvedStyles.memorandum}>
           Memorandum Of Agreements
@@ -216,7 +218,7 @@ export const getinvolved = () => {
           sponsoring the work of our most-dedicated contributors.
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outline-primary"> DONATE NOW</Button>
+          <ActionButton buttonLink="" buttonText="DONATE NOW" />
         </div>
         <div className={getinvolvedStyles.logos}>
           <Image src={logo1} />

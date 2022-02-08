@@ -1,17 +1,17 @@
 import Button from '@mui/material/Button'
 import { useTheme } from '@mui/material/styles'
 
-//ActionButton receives 'buttonLink and buttonText' as props.
 //'buttonText' recieves the text you want to place inside of the button.
 //buttonLink determines the href that the user is directed to after clicking the button.
 const ActionButton = ({ buttonLink, buttonText }) => {
   //theme utilized from theme.ts
+  const theme = useTheme()
   return (
     <div>
       <Button
         href={buttonLink}
         variant="contained"
-        sx={ (theme) => ({
+        sx={{
           margin: '1rem',
           color: `${theme.palette.text.primary}`,
           bgcolor: `${theme.palette.primary.main}`,

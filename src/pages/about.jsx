@@ -6,6 +6,7 @@ import CardColumns from 'react-bootstrap/CardColumns'
 
 import orca from '../../public/images/orca2.png'
 import aboutStyles from '../styles/About.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export const About = () => {
   return (
@@ -134,7 +135,7 @@ export const About = () => {
         organization,please reach out!
       </p>
       <div className={aboutStyles.button}>
-        <Button variant="outline-primary"> GET INVOLVED!</Button>
+        <ActionButton buttonLink="getinvolved" buttonText="GET INVOLVED!" />
       </div>
     </div>
   )
