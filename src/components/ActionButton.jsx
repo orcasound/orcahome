@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles'
 //ActionButton receives 'buttonLink and buttonText' as props.
 //'buttonText' recieves the text you want to place inside of the button.
 //buttonLink determines the href that the user is directed to after clicking the button.
-const ActionButton = ({ buttonLink, buttonText }) => {
+const ActionButton = ({ link, text }) => {
   //theme utilized from theme.ts
   return (
     <div>
