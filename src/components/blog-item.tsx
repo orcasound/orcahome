@@ -4,7 +4,7 @@ import Link from 'next/link'
 import blogStyles from '../styles/blog.module.css'
 
 interface blogItemProps {
-  image?: string
+  image: string
   title?: string
   summary?: string
   datePublished?: string
@@ -22,7 +22,7 @@ const BlogItem = ({
     <>
       <div className={blogStyles.blogItem}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={title} className={blogStyles.blogImage} />
+        <Image src={image} alt={title} width={300} height={260} />
         <div className={blogStyles.blogItemBody}>
           <h3 className={blogStyles.blogItemTitle}>{title}</h3>
           <p className={blogStyles.blogItemMetadata}>
