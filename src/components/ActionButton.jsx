@@ -12,7 +12,7 @@ const ActionButton = ({ buttonLink, buttonText }) => {
       <Button
         href={buttonLink}
         variant="contained"
-        sx={{
+        sx={ (theme) => ({
           margin: '1rem',
           color: `${theme.palette.text.primary}`,
           bgcolor: `${theme.palette.primary.main}`,
