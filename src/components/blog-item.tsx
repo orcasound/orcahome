@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 import blogStyles from '../styles/blog.module.css'
 
-interface blogProps {
+interface blogItemProps {
   image?: string
   title?: string
   summary?: string
@@ -17,7 +17,7 @@ const blogItem = ({
   summary,
   datePublished,
   author,
-}: blogProps) => {
+}: blogItemProps) => {
   return (
     <>
       <div className={blogStyles.blogItem}>
