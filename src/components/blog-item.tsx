@@ -18,12 +18,20 @@ const BlogItemContainer = styled('div')({
   flexDirection: 'row',
   alignItems: 'center',
   margin: '20px 0',
+  '@media(max-width: 785px)': {
+    width: '68%',
+    flexWrap: 'wrap',
+  },
 })
 
 const BlogItemBody = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 20px',
+  '@media(max-width: 785px)': {
+    margin: 0,
+    marginTop: 20,
+  },
 })
 
 const BlogItem = ({
@@ -35,9 +43,9 @@ const BlogItem = ({
 }: blogItemProps) => {
   return (
     <BlogItemContainer>
-      <Image src={image} alt={title} width={300} height={250} />
+      <Image src={image} alt={title} width="300%" height="240%" />
       <BlogItemBody>
-        <Typography variant="h3" sx={{ fontSize: 22, fontWeight: 500 }}>
+        <Typography variant="h3" sx={{ fontSize: 20, fontWeight: 550 }}>
           {title}
         </Typography>
         <Typography
