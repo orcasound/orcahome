@@ -1,9 +1,32 @@
 import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded'
 import { Typography } from '@mui/material'
+import { styled } from '@mui/system'
 
 import frequency1 from '../../public/images/frequency.png'
 import BlogItem from '../components/blog-item'
 import blogStyles from '../styles/blog.module.css'
+
+const Banner = styled('div')({
+  // backgroundImage: "url('../../public/images/frequency.png')",
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: '50% 55%',
+})
+
+const Overlay = styled('div')({
+  height: '88vh',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(5, 28, 90, 0.3)',
+})
+
+const BlogItemList = styled('section')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+})
 
 const Blog = () => {
   const data = [
@@ -28,7 +51,7 @@ const Blog = () => {
   return (
     <main>
       <div className={blogStyles.banner}>
-        <div className={blogStyles.overlay}>
+        <Overlay>
           <Typography
             variant="h1"
             sx={{ fontSize: 160, color: '#fff', fontWeight: 450 }}
@@ -43,9 +66,9 @@ const Blog = () => {
               bottom: 1,
             }}
           />
-        </div>
+        </Overlay>
       </div>
-      <section className={blogStyles.blogList}>
+      <BlogItemList>
         {data.map((item, id) => (
           <BlogItem
             key={id}
@@ -56,7 +79,7 @@ const Blog = () => {
             datePublished={item.date}
           />
         ))}
-      </section>
+      </BlogItemList>
     </main>
   )
 }
