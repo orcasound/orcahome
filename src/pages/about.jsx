@@ -1,14 +1,15 @@
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
-import { Typography } from '@mui/material'
 import { styled } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
-import { Link as ReactScroller } from 'react-scroll'
 
 import orca from '../../public/images/about/heroimage.png'
+import ScrollDownIcon from '../components/About/ScrollDownIcon'
 import aboutStyles from '../styles/About.module.css'
 
 const LandingScreen = styled('div')(({ theme }) => ({
@@ -127,14 +128,7 @@ export const About = () => {
         </Landingdesc>
 
         <ScrollDown>
-          <ReactScroller to="page" smooth="true" duration={1000}>
-            <KeyboardDoubleArrowDownIcon
-              sx={{
-                color: 'white',
-                fontSize: '5vw',
-              }}
-            />
-          </ReactScroller>
+          <ScrollDownIcon />
         </ScrollDown>
       </LandingScreen>
       {/* <Image
@@ -160,7 +154,7 @@ export const About = () => {
 
       <h2 className={aboutStyles.projects}>Our Projects</h2>
       <div className={aboutStyles.card}>
-        <CardColumns>
+        {/* <CardColumns>
           <Card>
             <Card.Img
               variant="top"
@@ -243,7 +237,7 @@ export const About = () => {
               <Card.Title>Salish Sea Vessel Research</Card.Title>
             </Card.Body>
           </Card>
-        </CardColumns>
+        </CardColumns> */}
       </div>
       <h2 className={aboutStyles.particiation}>
         <strong>We Welcome Your Participation</strong>
