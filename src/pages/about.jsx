@@ -75,19 +75,21 @@ export const About = () => {
               justifyContent="center"
               spacing={mobileActive ? 0 : 5}
             >
-              {Items.map((item) => (
-                <Grid item xs={12} sm={6} md={3} key={item.id}>
-                  {((mobileActive && item.id <= 2) ||
-                    seeMore ||
-                    !mobileActive) && (
-                    <AboutCard
-                      item={item}
-                      mobileActive={mobileActive}
-                      seeMore={seeMore}
-                    />
-                  )}
-                </Grid>
-              ))}
+              {Items.map((item) => {
+                return (
+                  <Grid item xs={12} sm={6} md={3} key={item.id}>
+                    {((mobileActive && item.id <= 2) ||
+                      seeMore ||
+                      !mobileActive) && (
+                      <AboutCard
+                        item={item}
+                        mobileActive={mobileActive}
+                        seeMore={seeMore}
+                      />
+                    )}
+                  </Grid>
+                )
+              })}
             </Grid>
           </Box>
           {mobileActive && (
