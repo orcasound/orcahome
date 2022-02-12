@@ -1,43 +1,82 @@
-.body {
-  margin: 0px, 50px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Mukta:wght@500;600&display=swap');
 
-.home {
-  margin-left: 20px;
-  margin-right: 20px;
-  padding: 5px 5px;
+.landing {
+  position: relative;
+  display: grid;
+  width: 100%;
+  max-height: fit-content;
 }
 
 .landingImage {
-  width: 500px;
-  z-index: 0;
-  background-size: cover;
-  height: 500px;
-  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.flex {
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  background-color: #000000;
+  position: relative;
+
+  border-radius: 20px;
+  margin: 0 36% 0 36%;
+  max-width: 600px;
+  transform: translateY(-450px);
 }
 
 .landingText {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
+  font-family: 'Mukta', sans-serif;
+  font-style: normal;
+  font-size: 44px;
+  line-height: 100%;
   color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 200px;
-  margin-left: 100px;
-  top: 0;
+  display: inline-block;
+  padding: 27px 10px 29px 33px;
+}
+
+.landingArrow {
+  position: relative;
+  top: 35%;
+  right: 2px;
+  width: 30px;
+  flex-shrink: 0;
+  padding-right: 4px;
+}
+
+.vector {
+  z-index: 2;
+  align-items: center;
+  padding: 20px;
+  transform: translateY(-110%);
+  margin-left: 50%;
+  width: 10%;
 }
 
 .landingIntro {
-  margin: 20px 40px;
+  margin: -200px 160px 20px 115px;
+  font-family: 'Mukta', sans-serif;
+  color: #373f41;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+  font-size: 44px;
   padding: 5px 2px;
   text-align: left;
+  left: calc(50% - 800.05px / 2 - 204.98px);
+  letter-spacing: -0.02em;
 }
 
 .paragraph {
-  margin: 10px 40px;
+  margin: 0px 160px 0px 115px;
   padding: 5px 2px;
-  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  color: #080d26;
+
+  font-style: normal;
+  font-size: 20px;
+  line-height: 140%;
+  text-align: justify;
 }
 
 .card {
@@ -45,4 +84,30 @@
   margin-bottom: 60px;
   margin-left: 40px;
   margin-right: 40px;
+}
+
+@media (max-width: 1025px) {
+  .landingIntro {
+    margin: -320px 56px 0px 33px;
+  }
+  .paragraph,
+  .card {
+    margin: 0px 56px 0px 33px;
+  }
+}
+
+@media (max-width: 377px) {
+  .vector {
+    visibility: hidden;
+  }
+  .landingIntro {
+    margin: -330px 16px 20px 20px;
+  }
+  .paragraph {
+    margin: 0px 16px 20px 20px;
+  }
+
+  .col {
+    margin-left: -50px;
+  }
 }
