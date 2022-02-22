@@ -1,7 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 
@@ -16,7 +14,7 @@ const AboutCard = ({ item, mobileActive, seeMore }) => {
         <CardMedia
           component="img"
           alt={item.title}
-          height={'170'}
+          height={'165'}
           image={item.path}
           sx={{
             userSelect: 'none',
