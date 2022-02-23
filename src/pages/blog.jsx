@@ -6,6 +6,9 @@ import frequency1 from '../../public/images/frequency.png'
 import BlogItem from '../components/blog-item'
 import blogStyles from '../styles/blog.module.css'
 
+// TODO: replace CSS module with MUI styled()
+// should use next/image instead of backgroundImage
+// eslint-disable-next-line no-unused-vars
 const Banner = styled('div')({
   // backgroundImage: "url('../../public/images/frequency.png')",
   backgroundSize: 'cover',
