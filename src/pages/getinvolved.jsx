@@ -36,7 +36,7 @@ export const Getinvolved = () => {
   ]
 
   return (
-    <>
+    <div>
       <Head>
         <title>Orcasound</title>
       </Head>
@@ -47,27 +47,27 @@ export const Getinvolved = () => {
           especially for the Souther Resident Killer Whales that call the
           Salish Sea home. Check out the ways you can help below!`}
       />
+      <div>
+        <Box
+          id="invite-links"
+          sx={{
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'left',
+          }}
+        >
+          {InviteLinks.map((link, i) => (
+            <ScrollLink key={i} to={link.id} smooth={true} spy={true}>
+              {link.name}
+            </ScrollLink>
+          ))}
+        </Box>
 
-      <Box
-        id="invite-links"
-        sx={{
-          padding: '20px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'left',
-        }}
-      >
-        {InviteLinks.map((link, i) => (
-          <ScrollLink key={i} to={link.id} smooth={true} spy={true}>
-            {link.name}
-          </ScrollLink>
-        ))}
-      </Box>
-
-      <div id="volunteer">
         <h2 className={getinvolvedStyles.particiation}>
           <strong>Volunteer</strong>
         </h2>
+
         <div>
           <div className={getinvolvedStyles.paris}>
             <div className={getinvolvedStyles.rows}>
@@ -75,11 +75,9 @@ export const Getinvolved = () => {
               <p>
                 First and foremost, you can volunter as a citizen scientist. Not
                 only an you listen for whales to marvel at the symphony of
-                ssounds they make.
-                <br></br>
-                but also you can listen 'for' whales-- helping monitor their
-                habitat and notifying the network when you hear them or a noise
-                that could endager them.
+                ssounds they make.<br></br> but also you can listen 'for'
+                whales-- helping monitor their habitat and notifying the network
+                when you hear them or a noise that could endager them.
               </p>
             </div>
           </div>
@@ -89,7 +87,7 @@ export const Getinvolved = () => {
             <p>
               You can also volunteer in-person with any of them current
               Orcasound network members, or with a new organizationin your
-              neighborhood that you convince to become a new member
+              neighborhood that you convince to become a new member<br></br>
               <br></br>
               Volunteer opportunities can include helping deploy or fix
               hydrophones, teaching groups how to 'listen for whales,' or
@@ -111,7 +109,7 @@ export const Getinvolved = () => {
             />
           </Card>
         </div>
-        <div className={getinvolvedStyles.spacing} id="for-developers">
+        <div className={getinvolvedStyles.spacing}>
           <div className={getinvolvedStyles.car}>
             <h2> For Developers</h2>
             <p>
@@ -127,11 +125,7 @@ export const Getinvolved = () => {
 
         <h3 className={getinvolvedStyles.web}>Orcasound Web App</h3>
         <div className={getinvolvedStyles.wrapping}>
-          <Image
-            className={getinvolvedStyles.hackathon}
-            src={hackathon}
-            alt="hackathon"
-          />
+          <Image className={getinvolvedStyles.hackathon} src={hackathon} />
           <p>Democracy Lab Hackathon</p>
         </div>
 
@@ -154,11 +148,7 @@ export const Getinvolved = () => {
           <li>Public site-- live.orcasound.net</li>
         </ul>
         <div className={getinvolvedStyles.wrapper}>
-          <Image
-            className={getinvolvedStyles.hackathon}
-            src={roadmap}
-            alt="roadmap"
-          />
+          <Image className={getinvolvedStyles.hackathon} src={roadmap} />
           <br></br>
         </div>
         <p className={getinvolvedStyles.textroadmap}>
@@ -172,7 +162,9 @@ export const Getinvolved = () => {
           Fame
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outlined">LEARN MORE ABOUT VOLUNTEERING!</Button>
+          <Button variant="outline-primary">
+            LEARN MORE ABOUT VOLUNTEERING!
+          </Button>
         </div>
         <h2 className={getinvolvedStyles.memorandum}>
           Memorandum Of Agreements
@@ -184,8 +176,7 @@ export const Getinvolved = () => {
           Memorandum of Agreements(MOA)Any organization or individual is welcome
           to join the network(for free!)either as the host of an hydrophone
           node, a researcher or citizen scientist an educator/activist or
-          general volunteer.
-          <br></br>
+          general volunteer.<br></br>
           If you are an individual wanting to volunteer , collaborate or donate,
           check out the many ways you can support Orcasound.Everyone can listen
           for whales, and learn the diverse sounds of Salish Sea.
@@ -196,10 +187,7 @@ export const Getinvolved = () => {
           then email info@orcasound.net to begin collaborating.There are no
           membership fees-- just benefits roles and responsibilities.
         </p>
-        <h2 className={getinvolvedStyles.donate} id="donate">
-          {' '}
-          Donate
-        </h2>
+        <h2 className={getinvolvedStyles.donate}> Donate</h2>
         <p className={getinvolvedStyles.donatetext}>
           Help us and our Orcasound network members by making charitable
           contribution to our partners, many of whom are 501(c)3 organizations
@@ -213,22 +201,23 @@ export const Getinvolved = () => {
           sponsoring the work of our most-dedicated contributors.
         </p>
         <div className={getinvolvedStyles.button}>
-          <Button variant="outlined"> DONATE NOW</Button>
+          <Button variant="outline-primary"> DONATE NOW</Button>
         </div>
-
         <div className={getinvolvedStyles.logos}>
-          <Image src={logo1} width={150} height={150} />
-          <Image src={logo2} width={150} height={150} />
-          <Image src={logo3} width={150} height={150} />
-          <Image src={logo4} width={150} height={150} />
-          <Image src={logo5} width={150} height={150} />
-          <Image src={logo6} width={150} height={150} />
-          <Image src={logo8} width={150} height={150} />
-          <Image src={logo9} width={150} height={150} />
-          <Image src={logo11} width={150} height={150} />
+          <Image src={logo1} />
+          <Image src={logo2} />
+          <Image src={logo3} />
+          <Image src={logo4} />
+          <Image src={logo5} />
+          <Image src={logo6} />
+
+          <Image src={logo8} />
+          <Image src={logo9} />
+
+          <Image src={logo11} />
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
