@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
@@ -9,6 +8,7 @@ import Image from 'next/image'
 
 import orcas from '../../public/images/orca-breach.jpg'
 import homeStyles from '../styles/Home.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export const index = () => {
   return (
@@ -85,8 +85,8 @@ export const index = () => {
           <CardActions>
             <div className={homeStyles.button}>
               <br></br>
-              <Button variant="outline-primary"> LEARN</Button>
-              <Button variant="outline-primary"> GET INVOLVED!</Button>
+              <ActionButton link="learn" text="LEARN" />
+              <ActionButton link="getinvolved" text="GET INVOLVED!" />
             </div>
           </CardActions>
         </Card>
