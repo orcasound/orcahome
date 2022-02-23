@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { styled } from '@mui/system'
 
 import frequency1 from '../../public/images/frequency.png'
-import BlogItem from '../components/blog-item'
+import BlogItem from '../components/BlogItem'
 import blogStyles from '../styles/blog.module.css'
 
 // TODO: replace CSS module with MUI styled()
