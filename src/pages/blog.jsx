@@ -49,7 +49,7 @@ const Blog = () => {
   ]
 
   return (
-    <main>
+    <>
       <div className={blogStyles.banner}>
         <Overlay>
           <Typography
@@ -80,7 +80,7 @@ const Blog = () => {
           />
         ))}
       </BlogItemList>
-    </main>
+    </>
   )
 }
 
