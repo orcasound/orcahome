@@ -1,8 +1,8 @@
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardMedia from '@mui/material/CardMedia'
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
 
 import logo3 from '../../public/images/ccollege.png'
 import logo5 from '../../public/images/crt.png'
@@ -87,42 +87,13 @@ export const getinvolved = () => {
 
       <div className={getinvolvedStyles.space}>
         <div className={getinvolvedStyles.card}>
-          <CardColumns>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i1.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2018/04/IMG_20180426_120021.jpg?fit=660%2C880&ssl=1"
-              />
-            </Card>
-
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i0.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2017/08/orca-tanker.jpg?resize=1024%2C683&ssl=1"
-              />
-            </Card>
-
-            <Card bg="primary" text="white" className="text-center p-3">
-              <blockquote className="blockquote mb-0 card-body">
-                <p>
-                  There is many ways you can help in the recovery of marine life
-                  , especially for the Souther Resident Killer Whales
-                </p>
-                <footer className="blockquote-footer">
-                  <small className="text-muted">
-                    Listen Live for Orcas in{' '}
-                    <cite title="Source Title">Source Title</cite>
-                  </small>
-                </footer>
-              </blockquote>
-            </Card>
-            <Card>
-              <Card.Img
-                variant="top"
-                src="https://i0.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2019/09/Screen-Shot-2019-09-26-at-1.00.03-AM.png?resize=780%2C733"
-              />
-            </Card>
-          </CardColumns>
+          <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
+            <CardMedia
+              component="img"
+              height="140"
+              image="https://i1.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2018/04/IMG_20180426_120021.jpg?fit=660%2C880&ssl=1"
+            />
+          </Card>
         </div>
         <div className={getinvolvedStyles.spacing}>
           <div className={getinvolvedStyles.car}>
