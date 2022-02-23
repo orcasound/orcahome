@@ -1,10 +1,9 @@
 import { styled, Typography } from '@mui/material'
 import Image from 'next/image'
-import Link from 'next/link'
 
-import blogStyles from '../styles/blog.module.css'
+import Link from './Link'
 
-interface blogItemProps {
+interface BlogItemProps {
   image: string
   title?: string
   summary?: string
@@ -40,7 +39,7 @@ const BlogItem = ({
   summary,
   datePublished,
   author,
-}: blogItemProps) => {
+}: BlogItemProps) => {
   return (
     <BlogItemContainer>
       <Image src={image} alt={title} width="300%" height="240%" />
@@ -49,7 +48,7 @@ const BlogItem = ({
           {title}
         </Typography>
         <Typography
-          paragraph={true}
+          paragraph
           sx={{
             fontSize: 13,
             fontWeight: 600,
@@ -59,7 +58,7 @@ const BlogItem = ({
         >
           Posted on {datePublished} By {author}
         </Typography>
-        <Typography paragraph={true} sx={{ fontSize: 16, fontWeight: 450 }}>
+        <Typography paragraph sx={{ fontSize: 16, fontWeight: 450 }}>
           {summary}
         </Typography>
         <Link href="/blog">Read More...</Link>
