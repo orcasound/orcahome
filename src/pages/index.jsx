@@ -74,11 +74,8 @@ export const index = () => {
               </Card.Text>
               <div className={homeStyles.button}>
                 <br></br>
-                <ActionButton buttonLink="learn" buttonText="LEARN" />
-                <ActionButton
-                  buttonLink="getinvolved"
-                  buttonText="GET INVOLVED!"
-                />
+                <ActionButton link="learn" text="LEARN" />
+                <ActionButton link="getinvolved" text="GET INVOLVED!" />
               </div>
             </Card.Body>
           </Card>

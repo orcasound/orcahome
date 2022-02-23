@@ -9,9 +9,9 @@ const ActionButton = ({ link, text }) => {
   return (
     <div>
       <Button
-        href={buttonLink}
+        href={link}
         variant="contained"
-        sx={ (theme) => ({
+        sx={(theme) => ({
           margin: '1rem',
           color: `${theme.palette.text.primary}`,
           bgcolor: `${theme.palette.primary.main}`,
@@ -20,10 +20,10 @@ const ActionButton = ({ link, text }) => {
           ':hover': {
             color: `${theme.palette.text.primary}`,
           },
-        }}
+        })}
         size="small"
       >
-        {buttonText}
+        {text}
       </Button>
     </div>
   )
