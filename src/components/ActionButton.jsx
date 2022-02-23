@@ -1,10 +1,9 @@
 import Button from '@mui/material/Button'
 
-//ActionButton receives 'buttonLink and buttonText' as props.
-//'buttonText' recieves the text you want to place inside of the button.
-//buttonLink determines the href that the user is directed to after clicking the button.
+// ActionButton receives `link` and `text` as props.
+// `text` receives the text you want to place inside of the button.
+// `link` determines the href that the user is directed to after clicking the button.
 const ActionButton = ({ link, text }) => {
-  //theme utilized from theme.ts
   return (
     <div>
       <Button
