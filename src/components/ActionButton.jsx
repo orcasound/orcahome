@@ -11,12 +11,12 @@ const ActionButton = ({ link, text }) => {
         variant="contained"
         sx={(theme) => ({
           margin: '1rem',
-          color: theme.palette.text.primary,
-          bgcolor: theme.palette.primary.main,
+          color: theme.palette.ActionButton.color,
+          bgcolor: theme.palette.ActionButton.bgColor,
           width: '12rem',
           borderRadius: 40,
           ':hover': {
-            color: theme.palette.text.primary,
+            color: theme.palette.ActionButton.color,
           },
         })}
         size="small"
