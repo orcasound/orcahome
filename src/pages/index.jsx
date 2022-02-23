@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 
