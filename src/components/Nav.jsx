@@ -65,7 +65,7 @@ const Nav = () => {
                 borderRadius: '100px',
               }}
             >
-              <Link href="/">
+              <Link href="/" passHref>
                 <Box
                   component="a"
                   sx={{
@@ -77,7 +77,12 @@ const Nav = () => {
                     position: 'absolute',
                   }}
                 >
-                  <Image src={orcasoundlogo} width={90} height={70} />
+                  <Image
+                    src={orcasoundlogo}
+                    alt="Orcasound"
+                    width={90}
+                    height={70}
+                  />
                 </Box>
               </Link>
             </Box>
@@ -95,7 +100,7 @@ const Nav = () => {
                   textTransform: 'none',
                 }}
               >
-                <Link href={navLink.url}>
+                <Link href={navLink.url} passHref>
                   <Typography
                     variant="h6"
                     component="a"

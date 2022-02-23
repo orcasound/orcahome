@@ -18,6 +18,7 @@ export const About = () => {
       <Image
         className={aboutStyles.landingImage}
         src={orca}
+        alt="About Us"
         width={1400}
         height={500}
       />
@@ -30,10 +31,10 @@ export const About = () => {
       </p>
 
       <p className={aboutStyles.introduction}>
-        Orcasound is a coperative effort of many dedicated individuals and great
+        {`Orcasound is a coperative effort of many dedicated individuals and great
         organizations.Here are our recent projects-- created by
         volunteers,stewards,citizens,scientist,hackers and generous funders--
-        all working together for the orcas
+        all working together for the orcas`}
       </p>
 
       <h2 className={aboutStyles.projects}>Our Projects</h2>
@@ -67,13 +68,13 @@ export const About = () => {
         <strong>We Welcome Your Participation</strong>
       </h2>
       <p className={aboutStyles.join}>
-        You can join us anytime as a volunteer to our open-source software &
-        hardware projects.
+        {`You can join us anytime as a volunteer to our open-source software &
+        hardware projects.`}
         <br></br>
         <br></br>
-        If you'd like to host a hydrophone, do research, or incorporate
+        {`If you'd like to host a hydrophone, do research, or incorporate
         Orcasound into the educational or outreach efforts of your
-        organization,please reach out!
+        organization,please reach out!`}
       </p>
       <div className={aboutStyles.button}>
         <Button variant="outline-primary"> GET INVOLVED!</Button>

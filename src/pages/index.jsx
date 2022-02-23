@@ -20,13 +20,10 @@ export const index = () => {
           content="orcasound allows your to listen to live southern killer resident whales live through our hydrophones"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
       </Head>
       <Image
         className={homeStyles.landingImage}
+        alt="Listen to Orcas Live"
         src={orcas}
         width={1400}
         height={600}
@@ -38,13 +35,15 @@ export const index = () => {
       <br></br>
 
       <p className={homeStyles.paragraph}>
-        Orcasound Connets your Headphones to live hydrophones (underwater
-        microphones), your ears to the ocean sound. <br></br>
-        Orcasound helps us explore and conserve marine life around the
+        {`Orcasound Connets your Headphones to live hydrophones 
+        (underwater microphones), your ears to the ocean sound. `}
+        <br></br>
+        {`Orcasound helps us explore and conserve marine life around the
         globe.Starting with studying and saving the Southern Resident of the
-        Pacific Northwest. <br></br>
-        At Orcasound you can listen for whales or learn more about marine
-        bioacustics.
+        Pacific Northwest. `}
+        <br></br>
+        {`At Orcasound you can listen for whales or learn more about marine
+        bioacustics.`}
       </p>
 
       <div className={homeStyles.card}>
@@ -71,14 +70,14 @@ export const index = () => {
               Hydrophone Location
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Orcasound is a cooperative hydrophne network and an open-source
-              software & hardware project.
+              {`Orcasound is a cooperative hydrophne network and an open-source
+              software & hardware project.`}
               <br></br>
               <br></br>
-              We Welcome your participation. If you'd like to host a hydrophone,
+              {`We Welcome your participation. If you'd like to host a hydrophone,
               do research or incorporate Orcasound into the educational or
               research efforts of your organization , you can join us as a
-              member of the network.
+              member of the network.`}
               <br></br>
             </Typography>
           </CardContent>
