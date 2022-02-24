@@ -7,6 +7,10 @@
   max-height: fit-content;
 }
 
+.home{
+  margin:0px 115px 0 115px
+}
+
 .landingImage {
   width: 100%;
   z-index: 1;
@@ -18,11 +22,16 @@
   flex-direction: row;
   background-color: #000000;
   position: relative;
-
   border-radius: 20px;
-  margin: 0 36% 0 36%;
+  margin: 0 36px 0 380px;
   max-width: 600px;
-  transform: translateY(-450px);
+  margin:0px auto 0 auto;
+  transform: translateY(-500%);
+  align-items: center;
+  justify-items: center;
+  width: fit-content;
+  height:5rem
+
 }
 
 .landingText {
@@ -31,8 +40,11 @@
   font-size: 44px;
   line-height: 100%;
   color: white;
-  display: inline-block;
   padding: 27px 10px 29px 33px;
+  position: relative;
+  text-align: center;
+  font-weight: 600;
+  
 }
 
 .landingArrow {
@@ -40,8 +52,8 @@
   top: 35%;
   right: 2px;
   width: 30px;
-  flex-shrink: 0;
   padding-right: 4px;
+  transform: translateY(-80%);
 }
 
 .vector {
@@ -54,15 +66,9 @@
 }
 
 .landingIntro {
-  margin: -200px 160px 20px 115px;
-  font-family: 'Mukta', sans-serif;
-  color: #373f41;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%;
-  font-size: 44px;
-  padding: 5px 2px;
-  text-align: left;
+  position: relative;
+  margin: -20% 160px 20px 115px;
+  
   left: calc(50% - 800.05px / 2 - 204.98px);
   letter-spacing: -0.02em;
 }
@@ -79,35 +85,78 @@
   text-align: justify;
 }
 
-.card {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  margin-left: 40px;
-  margin-right: 40px;
+.button{
+  background-color: #1B2B7B;
+  align-content: 'center';
+  font-family: 'Montserrat',sans-serif;
+  border-radius: 30px;
+  margin: 7px 5% 7px 0px;
+  width: 194px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  box-shadow: none;
+  }
+
+.button:hover {
+  background-color: #1B2B7B;
+  color: 'white'
 }
 
 @media (max-width: 1025px) {
   .landingIntro {
     margin: -320px 56px 0px 33px;
   }
+  .home{
+    margin:0px
+  }
   .paragraph,
   .card {
     margin: 0px 56px 0px 33px;
   }
+  .flex {
+    transform: translateY(-350%);
+    height:10vh;
+  }
+  .landingText {
+    line-height: 100%;
+    font-size: 30px;
+    color: white;
+    padding: 0px 27px 27px 48px; 
+    position: relative;  
+  }
+  .landingArrow {
+    position: relative;
+    top: 35%;
+    right: 2px;
+    width: 30px;
+    flex-shrink: 0;
+    padding-right: 4px;
+  }
+
 }
 
 @media (max-width: 377px) {
   .vector {
     visibility: hidden;
   }
-  .landingIntro {
-    margin: -330px 16px 20px 20px;
-  }
-  .paragraph {
-    margin: 0px 16px 20px 20px;
+  
+  .home{
+    margin:0px
   }
 
-  .col {
-    margin-left: -50px;
+  .flex {
+    margin: 20% auto -20% auto;
+    transform: translateY(-300%);
+    width: 70vw;
+    height:10vh
+  
+  }
+  .landingText {
+    font-size: 24px;
+    line-height: 100%;
+    color: white;
+    padding: 25px 10px 27px 48px;
+    font-weight: 500;
   }
 }
