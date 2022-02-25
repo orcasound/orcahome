@@ -50,7 +50,7 @@ const iconContainer = (
 )
 
 const sendFeedbackLink = (
-  <Link href="/">
+  <Link href="/" passHref>
     <StyledTypography variant="h6" component="a">
       Send Feedback
     </StyledTypography>
@@ -58,7 +58,7 @@ const sendFeedbackLink = (
 )
 
 const blogLink = (
-  <Link href="/">
+  <Link href="/" passHref>
     <StyledTypography variant="h6" component="a">
       Blog
     </StyledTypography>
@@ -81,7 +81,7 @@ function Mobile() {
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
-            <Link href="/">
+            <Link href="/" passHref>
               <StyledTypography variant="h6" component="a">
                 Donate
               </StyledTypography>

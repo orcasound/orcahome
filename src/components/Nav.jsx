@@ -64,7 +64,7 @@ const Nav = () => {
                   borderRadius: '100px',
                 }}
               >
-                <Link href="/">
+                <Link href="/" passHref>
                   <Box
                     component="a"
                     sx={{
