@@ -1,5 +1,4 @@
-import { styled } from '@mui/material'
-import { Box,Button, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -30,6 +29,7 @@ export const GetInvolved = () => {
       </Head>
       <Image
         className={getinvolvedStyles.landingImage}
+        alt="Get Involved"
         src={orcas}
         width={1400}
         height={600}
@@ -44,13 +44,13 @@ export const GetInvolved = () => {
       <div>
         <ul className={getinvolvedStyles.ul}>
           <li>
-            <a>Volunteer</a>
+            <a href="#volunteer">Volunteer</a>
           </li>
           <li>
-            <a>For Developers</a>
+            <a href="#for_developers">For Developers</a>
           </li>
           <li>
-            <a>Donate</a>
+            <a href="#donate">Donate</a>
           </li>
         </ul>
       </div>
@@ -146,7 +146,7 @@ export const GetInvolved = () => {
       </Box>
 
       <Box
-        id="for-developers"
+        id="for_developers"
         sx={{
           margin: '50px 25px 20px',
         }}
@@ -196,17 +196,22 @@ export const GetInvolved = () => {
       </Box>
 
       <div className={getinvolvedStyles.wrapper}>
-        <Image className={getinvolvedStyles.hackathon} src={roadmap} />
+        <Image
+          className={getinvolvedStyles.hackathon}
+          src={roadmap}
+          alt="Current Roadmap"
+        />
         <br></br>
       </div>
       <p className={getinvolvedStyles.textroadmap}>
-        If you're based in the Pacific Northwest you can work with Orcasound
+        {`If you're based in the Pacific Northwest you can work with Orcasound
         in-person at a hackathon (see the Orcasound projects at democracy lab)
         No matter where you are, you can join Orcasound Slack, check out our
         Github repository and Trello boards, subscribe to the Orcasound dev
-        email distribution list, and finish a place to contribute your talents.
-        We hope you will share your expertise and innovations with us, and maybe
-        even earn your way into the Orcasound HacHacker hall of Fame
+        email distribution list, and finish a place to contribute your
+        talents. We hope you will share your expertise and innovations with
+        us, and maybe even earn your way into the Orcasound HacHacker hall of
+        Fame`}
       </p>
       <div className={getinvolvedStyles.button}>
         <Button variant="outline-primary">
@@ -215,50 +220,53 @@ export const GetInvolved = () => {
       </div>
       <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
       <p className={getinvolvedStyles.textmemorandum}>
-        The real time audio streams, citizen science projects, educational
+        {`The real time audio streams, citizen science projects, educational
         material and outreach projects of Orcasound are brought to you by the
         current network member, listed below who have e-signed the 2016-2020
         Memorandum of Agreements(MOA)Any organization or individual is welcome
-        to join the network(for free!)either as the host of an hydrophone node,
-        a researcher or citizen scientist an educator/activist or general
-        volunteer.<br></br>
-        If you are an individual wanting to volunteer , collaborate or donate,
+        to join the network(for free!)either as the host of an hydrophone
+        node, a researcher or citizen scientist an educator/activist or
+        general volunteer.`}
+        <br></br>
+        {`If you are an individual wanting to volunteer , collaborate or donate,
         check out the many ways you can support Orcasound.Everyone can listen
-        for whales, and learn the diverse sounds of Salish Sea.
+        for whales, and learn the diverse sounds of Salish Sea.`}
         <br></br>
-        If you are an organization wanting to join the network as the host of a
-        new hydrophone node, an educational/outreacg node, or both -- just read
-        the history, mission and vision of the netowrk e-sign the MOA and then
-        email info@orcasound.net to begin collaborating.There are no membership
-        fees-- just benefits roles and responsibilities.
+        {`If you are an organization wanting to join the network as the host of
+        a new hydrophone node, an educational/outreacg node, or both -- just
+        read the history, mission and vision of the netowrk e-sign the MOA and
+        then email info@orcasound.net to begin collaborating.There are no
+        membership fees-- just benefits roles and responsibilities.`}
       </p>
-      <h2 className={getinvolvedStyles.donate}> Donate</h2>
+      <h2 className={getinvolvedStyles.donate} id="donate">
+        {' '}
+        Donate
+      </h2>
       <p className={getinvolvedStyles.donatetext}>
-        Help us and our Orcasound network members by making charitable
+        {`Help us and our Orcasound network members by making charitable
         contribution to our partners, many of whom are 501(c)3 organizations
-        Check out the link below to help strengthen and grow our network, while
-        supporting our on-going conservation, research, and educational efforts.
+        Check out the link below to help strengthen and grow our network,
+        while supporting our on-going conservation, research, and educational
+        efforts.`}
         <br></br>
-        You can also directly support the many dedicated volunteers who help
-        Orcasound keep running and improve over time. Take a look at our 'Hacker
-        hall of fame ' and our Github repositories and consider sponsoring the
-        work of our most-dedicated contributors.
+        {`You can also directly support the many dedicated volunteers who help
+        Orcasound keep running and improve over time. Take a look at our
+        'Hacker hall of fame ' and our Github repositories and consider
+        sponsoring the work of our most-dedicated contributors.`}
       </p>
       <div className={getinvolvedStyles.button}>
         <Button variant="outline-primary"> DONATE NOW</Button>
       </div>
       <div className={getinvolvedStyles.logos}>
-        <Image src={logo1} />
-        <Image src={logo2} />
-        <Image src={logo3} />
-        <Image src={logo4} />
-        <Image src={logo5} />
-        <Image src={logo6} />
-
-        <Image src={logo8} />
-        <Image src={logo9} />
-
-        <Image src={logo11} />
+        <Image src={logo1} alt="The Whaletrail" />
+        <Image src={logo2} alt="Friends of Lime Kiln Society" />
+        <Image src={logo3} alt="Colorado College" />
+        <Image src={logo4} alt="Center of Whale Research" />
+        <Image src={logo5} alt="Cetacean Research Technology" />
+        <Image src={logo6} alt="Deep Green Wilderness" />
+        <Image src={logo8} alt="Oceans Initiative" />
+        <Image src={logo9} alt="Pacman" />
+        <Image src={logo11} alt="While Scout" />
       </div>
     </div>
   )
