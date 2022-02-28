@@ -13,7 +13,7 @@ import arrow from '../../public/images/Arrow.png'
 import vector from '../../public/images/vector.png'
 import homeStyles from '../styles/Home.module.css'
 
-
+//styles
 const styles = ({
   gridContainer: {
     paddingLeft: "40px",
