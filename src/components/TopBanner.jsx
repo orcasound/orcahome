@@ -64,7 +64,6 @@ const PageDesc = styled(Box)(({ theme }) => ({
     margin: '0',
     width: '100%',
     maxWidth: '100vw',
-    margin: '0',
   },
 }))
 
