@@ -24,6 +24,7 @@ export default function About() {
       <Image
         className={aboutStyles.landingImage}
         src={orca}
+        alt="About Us"
         width={1400}
         height={500}
         alt="landing img"
