@@ -1,25 +1,17 @@
-import Button from '@mui/material/Button'
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import orcas from '../../public/images/homepage.png'
 import arrow from '../../public/images/Arrow.png'
+import orcas from '../../public/images/homepage.png'
 import vector from '../../public/images/vector.png'
 import homeStyles from '../styles/Home.module.css'
-
-//styles
-const styles = ({
-  gridContainer: {
-    paddingLeft: "40px",
-    paddingRight: "40px"
-  }
-});
 
 
 export const index = () => {
@@ -32,23 +24,19 @@ export const index = () => {
           content="orcasound allows your to listen to live southern killer resident whales live through our hydrophones"
         />
         <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Mukta:wght@500;600&display=swap"
-        />
       </Head>
 
       <div className={homeStyles.landing}>
-        <Image className={homeStyles.landingImage} src={orcas} />
+        <Image className={homeStyles.landingImage} src={orcas} alt='orca background image'/>
         <div className={homeStyles.vector}>
-          <Image src={vector} />
+          <Image src={vector} alt='vector'/>
         </div>
         <div className={homeStyles.flex}>
           <div>
             <h1 className={homeStyles.landingText}>LISTEN TO ORCAS LIVE!</h1>{' '}
           </div>
           <div className={homeStyles.landingArrow}>
-            <Image src={arrow} width="30px" height="30px" />
+            <Image src={arrow} width="30px" height="30px" alt='arrow down'/>
           </div>
         </div>
       </div>
