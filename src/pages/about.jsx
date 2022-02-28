@@ -27,7 +27,6 @@ export default function About() {
         alt="About Us"
         width={1400}
         height={500}
-        alt="landing img"
       />
       <h2 className={aboutStyles.landingText}> What is Orcasound</h2>
 
