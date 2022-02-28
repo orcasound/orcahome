@@ -52,7 +52,7 @@ export default function Footer() {
   )
 
   const sendFeedbackLink = (
-    <Link href="/">
+    <Link href="/" passHref>
       <StyledTypography variant="h6" component="a">
         Send Feedback
       </StyledTypography>
@@ -60,7 +60,7 @@ export default function Footer() {
   )
 
   const blogLink = (
-    <Link href="/">
+    <Link href="/" passHref>
       <StyledTypography variant="h6" component="a">
         Blog
       </StyledTypography>
@@ -77,7 +77,7 @@ export default function Footer() {
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
-            <Link href="/">
+            <Link href="/" passHref>
               <StyledTypography variant="h6" component="a">
                 Donate
               </StyledTypography>
