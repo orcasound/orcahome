@@ -1,8 +1,8 @@
-import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardMedia from '@mui/material/CardMedia'
+import { Box, Button, Card, CardMedia } from '@mui/material'
+import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
+import { Link as ScrollElement } from 'react-scroll'
 
 import logo3 from '../../public/images/ccollege.png'
 import logo5 from '../../public/images/crt.png'
@@ -13,43 +13,56 @@ import hackathon from '../../public/images/hackathon.png'
 import logo8 from '../../public/images/OI.png'
 import logo9 from '../../public/images/pacman.png'
 import roadmap from '../../public/images/roadmap.png'
-import orcas from '../../public/images/srkw2-10.jpg'
+import topbanner from '../../public/images/srkw2-25.jpg'
 import logo1 from '../../public/images/twt.png'
 import logo11 from '../../public/images/ws_logo.png'
+import TopBanner from '../components/TopBanner'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
 
-export const getinvolved = () => {
+const ScrollLink = styled(ScrollElement)({
+  fontSize: '20px',
+  color: '#1b2b7b',
+  cursor: 'pointer',
+  '&:hover': {
+    color: '#080d26',
+  },
+})
+
+export const Getinvolved = () => {
+  const InviteLinks = [
+    { name: 'Volunteer', id: 'volunteer' },
+    { name: 'For Developers', id: 'for_developers' },
+    { name: 'Donate', id: 'donate' },
+  ]
+
   return (
-    <div className={getinvolvedStyles.getinvolved}>
+    <div>
       <Head>
         <title>Orcasound</title>
       </Head>
-      <Image
-        className={getinvolvedStyles.landingImage}
-        alt="Get Involved"
-        src={orcas}
-        width={1400}
-        height={600}
+      <TopBanner
+        bannerImg={topbanner}
+        pageTitle={`Get Involved`}
+        pageDesc={`There are many ways to help in the recovering of marine life,
+        especially for the Souther Resident Killer Whales that call the
+        Salish Sea home. Check out the ways you can help below!`}
       />
-      <h1 className={getinvolvedStyles.p1}>Get involved</h1>
-      <p className={getinvolvedStyles.p2}>
-        There is many ways you can help in the recovery of marine life
-        <br></br>, especially for the Souther Resident Killer Whales that call
-        the Salish Sea Home.
-        <br></br>Check out the ways you can help below!
-      </p>
       <div>
-        <ul className={getinvolvedStyles.ul}>
-          <li>
-            <a href="#volunteer">Volunteer</a>
-          </li>
-          <li>
-            <a href="#for_developers">For Developers</a>
-          </li>
-          <li>
-            <a href="#donate">Donate</a>
-          </li>
-        </ul>
+        <Box
+          id="invite-links"
+          sx={{
+            padding: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'left',
+          }}
+        >
+          {InviteLinks.map((link, i) => (
+            <ScrollLink key={i} to={link.id} smooth={true} spy={true}>
+              {link.name}
+            </ScrollLink>
+          ))}
+        </Box>
 
         <h2 className={getinvolvedStyles.particiation} id="volunteer">
           <strong>Volunteer</strong>
@@ -79,7 +92,7 @@ export const getinvolved = () => {
               neighborhood that you convince to become a new member`}
               <br></br>
               <br></br>
-              {` Volunteer opportunities can include helping deploy or fix
+              {`Volunteer opportunities can include helping deploy or fix
               hydrophones, teaching groups how to 'listen for whales,' or
               helping create new educational or outreach projects.`}
             </p>
@@ -221,4 +234,4 @@ export const getinvolved = () => {
   )
 }
 
-export default getinvolved
+export default Getinvolved
