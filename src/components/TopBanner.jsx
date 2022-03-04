@@ -107,7 +107,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
               />
             </ScrollDownButton>
           </ScrollElement>
-          <PageDesc>{pageDesc}</PageDesc>
+          {pageDesc ? <PageDesc>{pageDesc}</PageDesc> : null}
         </TitleScreen>
       </Slide>
     </TopScreen>
