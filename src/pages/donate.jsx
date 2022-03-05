@@ -1,125 +1,27 @@
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import { styled } from '@mui/material'
-import { Box, Button, IconButton, Slide, Typography } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import Head from 'next/head'
-import React, { useEffect, useState } from 'react'
-import { Link as ScrollElement } from 'react-scroll'
+import React from 'react'
 
-import donatebanner from '../../public/images/srkw2-17.jpg'
-
-const TopScreen = styled('div')(({ theme }) => ({
-  minHeight: '88vh',
-  maxHeight: '88vh',
-  maxWidth: '100vw',
-  backgroundImage: `url(${donatebanner.src})`,
-  backgroundPosition: 'center center',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  [theme.breakpoints.down('sm')]: {
-    minHeight: '68vh',
-    maxHeight: '68vh',
-    maxWidth: '100vw',
-  },
-}))
-
-const TitleScreen = styled('div')(({ theme }) => ({
-  position: 'relative',
-  minHeight: '88vh',
-  maxHeight: '88vh',
-  maxWidth: '100vw',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: '#ffffff',
-  paddingBottom: '150px',
-  [theme.breakpoints.down('sm')]: {
-    minHeight: '68vh',
-    maxHeight: '68vh',
-    maxWidth: '100vw',
-  },
-}))
-
-const ScrollDownButton = styled(IconButton)(({ theme }) => ({
-  position: 'absolute',
-  bottom: '0',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  height: '15px',
-  marginBottom: '10px',
-  transition: 'all 0.5s ease-in-out',
-  '&:hover': {
-    transform: 'translateY(5px)',
-  },
-  [theme.breakpoints.down('sm')]: {
-    display: 'none',
-  },
-}))
-
-const PageDesc = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  bottom: '0',
-  left: '0',
-  backgroundColor: '#000000',
-  width: '40vw',
-  padding: '15px',
-  [theme.breakpoints.down('sm')]: {
-    left: '0',
-    width: '100%',
-    maxWidth: '100vw',
-  },
-}))
+import topbanner from '../../public/images/srkw2-17.jpg'
+import TopBanner from '../components/TopBanner'
 
 export const Donate = () => {
-  const [checked, setChecked] = useState(false)
-
-  useEffect(() => {
-    setChecked(true)
-  }, [])
-
   return (
     <>
       <Head>
         <title>Orcasound</title>
       </Head>
-      <TopScreen>
-        <Slide
-          in={checked}
-          direction="up"
-          {...(checked ? { timeout: 1000 } : {})}
-        >
-          <TitleScreen>
-            <Typography
-              variant="h1"
-              sx={{ fontSize: '10vw', marginBottom: '5vw', fontWeight: '500' }}
-            >
-              Donate
-            </Typography>
-            <ScrollElement to="donate-ways" smooth={true} spy={true}>
-              <ScrollDownButton>
-                <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
-                <ExpandMoreIcon
-                  sx={{
-                    fontSize: '5vw',
-                    color: '#ffffff',
-                    transform: 'translateY(-3.5vw)',
-                  }}
-                />
-              </ScrollDownButton>
-            </ScrollElement>
-            <PageDesc>
-              {`There are many ways to help in the recovering of marine life, 
-              especially for the Souther Resident Killer Whales that call the Salish Sea home. 
-              Check out the ways you can help below!`}
-            </PageDesc>
-          </TitleScreen>
-        </Slide>
-      </TopScreen>
+      <TopBanner
+        bannerImg={topbanner}
+        pageTitle={`Donate`}
+        pageDesc={`There are many ways to help in the recovering of marine life, 
+        especially for the Souther Resident Killer Whales that call the Salish Sea home. 
+        Check out the ways you can help below!`}
+        isDonate
+      />
       <br />
       <Box
-        id="donate-ways"
+        id="scroll-link"
         sx={{
           display: 'flex',
           flexDirection: 'column',

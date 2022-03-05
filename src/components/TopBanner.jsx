@@ -5,19 +5,19 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
-const TopScreen = styled(Box)(({ theme }) => ({
+const TopScreen = styled(Box)(({ theme, isDonate }) => ({
   position: 'relative',
   overflow: 'hidden',
-  height: '90vh',
+  height: isDonate ? '88vh' : '90vh',
   [theme.breakpoints.down('sm')]: {
     height: '68vh',
   },
 }))
 
-const TitleScreen = styled(Box)(({ theme }) => ({
+const TitleScreen = styled(Box)(({ theme, isDonate }) => ({
   position: 'relative',
-  minHeight: '85vh',
-  maxHeight: '85vh',
+  minHeight: isDonate ? '88vh' : '85vh',
+  maxHeight: isDonate ? '88vh' : '85vh',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -49,15 +49,15 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   },
 }))
 
-const PageDesc = styled(Box)(({ theme }) => ({
+const PageDesc = styled(Box)(({ theme, isDonate }) => ({
   position: 'absolute',
   bottom: '0',
-  left: '10px',
-  backgroundColor: '#080d26',
+  left: isDonate ? '0' : '10px',
+  backgroundColor: isDonate ? '#000000' : '#080d26',
   width: '40vw',
-  maxWidth: '450px',
+  maxWidth: isDonate ? '600px' : '450px',
+  margin: isDonate ? '0' : '10px 25px',
   padding: '20px',
-  margin: '10px 25px',
   letterSpacing: '0.75px',
   [theme.breakpoints.down('sm')]: {
     left: '0',
@@ -67,7 +67,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
+const TopBanner = ({ bannerImg, pageTitle, pageDesc, isDonate }) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -75,9 +75,9 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
   }, [])
 
   return (
-    <TopScreen>
+    <TopScreen isDonate={isDonate}>
       <Image
-        alt="Get Involved"
+        alt={pageTitle}
         src={bannerImg}
         layout="fill"
         objectFit="cover"
@@ -88,14 +88,14 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
         direction="up"
         {...(checked ? { timeout: 1000 } : {})}
       >
-        <TitleScreen>
+        <TitleScreen isDonate={isDonate}>
           <Typography
             variant="h1"
             sx={{ fontSize: '10vw', marginBottom: '2vw', fontWeight: '500' }}
           >
             {pageTitle}
           </Typography>
-          <ScrollElement to="invite-links" smooth={true} spy={true}>
+          <ScrollElement to="scroll-link" smooth={true} spy={true}>
             <ScrollDownButton>
               <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
               <ExpandMoreIcon
@@ -107,7 +107,9 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
               />
             </ScrollDownButton>
           </ScrollElement>
-          <PageDesc>{pageDesc}</PageDesc>
+          {pageDesc ? (
+            <PageDesc isDonate={isDonate}>{pageDesc}</PageDesc>
+          ) : null}
         </TitleScreen>
       </Slide>
     </TopScreen>

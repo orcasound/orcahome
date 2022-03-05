@@ -58,7 +58,7 @@ const sendFeedbackLink = (
 )
 
 const blogLink = (
-  <Link href="/" passHref>
+  <Link href="/blog" passHref>
     <StyledTypography variant="h6" component="a">
       Blog
     </StyledTypography>
@@ -81,7 +81,7 @@ function Mobile() {
           <div>{sendFeedbackLink}</div>
           <div>{blogLink}</div>
           <div>
-            <Link href="/" passHref>
+            <Link href="/donate" passHref>
               <StyledTypography variant="h6" component="a">
                 Donate
               </StyledTypography>
@@ -106,22 +106,24 @@ function Desktop() {
             {sendFeedbackLink}
             {blogLink}
             {iconContainer}
-            <Button
-              variant="contained"
-              sx={{
-                color: 'black',
-                backgroundColor: 'white',
-                borderRadius: '100px',
-                '&:hover': { color: 'black', backgroundColor: 'white' },
-              }}
-              startIcon={
-                <NotificationsIcon
-                  sx={{ color: `${theme.palette.secondary.main}` }}
-                />
-              }
-            >
-              Donate
-            </Button>
+            <Link href="/donate" passHref>
+              <Button
+                variant="contained"
+                sx={{
+                  color: 'black',
+                  backgroundColor: 'white',
+                  borderRadius: '100px',
+                  '&:hover': { color: 'black', backgroundColor: 'white' },
+                }}
+                startIcon={
+                  <NotificationsIcon
+                    sx={{ color: `${theme.palette.secondary.main}` }}
+                  />
+                }
+              >
+                Donate
+              </Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </Box>
