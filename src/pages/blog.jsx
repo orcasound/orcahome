@@ -1,12 +1,9 @@
-import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded'
-import { Typography } from '@mui/material'
 import { styled } from '@mui/system'
 
 import frequency1 from '../../public/images/frequency.png'
 import topbanner from '../../public/images/srkw2-36.jpg'
 import BlogItem from '../components/BlogItem'
 import TopBanner from '../components/TopBanner'
-import blogStyles from '../styles/blog.module.css'
 
 const BlogItemList = styled('section')({
   display: 'flex',
