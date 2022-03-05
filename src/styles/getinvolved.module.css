@@ -1,56 +1,3 @@
-.landingImage {
-  width: 500px;
-  z-index: 0;
-  background-size: cover;
-  height: 500px;
-}
-
-.landingText {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 150px 50px;
-  background-color: black;
-  color: white;
-}
-
-.landingPa {
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  margin: 190px 50px;
-  background-color: black;
-  color: white;
-}
-
-.p1 {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 180px;
-  margin-left: 50px;
-  top: 0;
-}
-
-.p2 {
-  position: absolute;
-  z-index: 0;
-  background-color: black;
-  color: white;
-  text-align: left;
-  align-items: left;
-  margin-top: 228px;
-  margin-left: 50px;
-  top: 0;
-}
-
-.ul {
-  list-style: none;
-}
-
 .wrapper {
   text-align: center;
   margin: 40px 20px;
@@ -85,18 +32,4 @@
   justify-content: space-around;
   align-items: center;
   padding: 30px;
-}
-
-@media (max-width: 800px) {
-  .column {
-    flex: 50%;
-    max-width: 50%;
-  }
-}
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-  .column {
-    flex: 100%;
-    max-width: 100%;
-  }
 }
