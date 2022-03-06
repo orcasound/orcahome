@@ -3,7 +3,6 @@
   "plugins": ["simple-import-sort"],
   "rules": {
     "prefer-const": "warn",
-    "react/no-unescaped-entities": "warn", // TODO: Remove once warnings are fixed
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn"
   },
