@@ -18,7 +18,7 @@ export const About = () => {
       <Image
         className={aboutStyles.landingImage}
         src={orca}
-        alt="About Us"
+        alt="About Us HerImage"
         width={1400}
         height={500}
       />
