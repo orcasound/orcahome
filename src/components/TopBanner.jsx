@@ -77,7 +77,7 @@ const TopBanner = ({ bannerImg, bannerAlt, pageTitle, pageDesc }) => {
   return (
     <TopScreen>
       <Image
-        alt={bannerAlt ? bannerAlt : ''}
+        alt={bannerAlt ?? ''}
         src={bannerImg}
         layout="fill"
         objectFit="cover"
@@ -107,7 +107,7 @@ const TopBanner = ({ bannerImg, bannerAlt, pageTitle, pageDesc }) => {
               />
             </ScrollDownButton>
           </ScrollElement>
-          {pageDesc ? <PageDesc>{pageDesc}</PageDesc> : null}
+          {pageDesc && <PageDesc>{pageDesc}</PageDesc>}
         </TitleScreen>
       </Slide>
     </TopScreen>
