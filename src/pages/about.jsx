@@ -20,9 +20,10 @@ export const About = () => {
         bannerImg={AboutBanner}
         pageTitle={`About`}
         pageDesc={`Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`}
+        scrollToID={`about`}
       />
 
-      <Box>
+      <Box id="about">
         <p className={aboutStyles.introduction}>
           {`Orcasound is a coperative effort of many dedicated individuals and great
         organizations.Here are our recent projects-- created by

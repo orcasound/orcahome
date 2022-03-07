@@ -38,20 +38,26 @@ const Blog = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <TopBanner bannerImg={BlogBanner} pageTitle={`Blog`} ispageDesc={false} />
-
-      <BlogItemList>
-        {data.map((item, id) => (
-          <BlogItem
-            key={id}
-            image={item.image}
-            title={item.title}
-            summary={item.summary}
-            author={item.author}
-            datePublished={item.date}
-          />
-        ))}
-      </BlogItemList>
+      <TopBanner
+        bannerImg={BlogBanner}
+        pageTitle={`Blog`}
+        ispageDesc={false}
+        scrollToID={`blog`}
+      />
+      <Box id="blog">
+        <BlogItemList>
+          {data.map((item, id) => (
+            <BlogItem
+              key={id}
+              image={item.image}
+              title={item.title}
+              summary={item.summary}
+              author={item.author}
+              datePublished={item.date}
+            />
+          ))}
+        </BlogItemList>
+      </Box>
     </Box>
   )
 }

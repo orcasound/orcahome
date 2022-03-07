@@ -14,9 +14,12 @@ export const listen = () => {
         bannerImg={DonateBanner}
         pageTitle={`Donate`}
         pageDesc={`There are many ways to help in the recovering of marine life, especially for the Souther Resident Killer Whales that call the Salish Sea home. Check out the ways you can help below!`}
+        scrollToID={`donate`}
       />
-      <h1>Donate</h1>
-      <h2>orcasound</h2>
+      <Box id="donate">
+        <h1>Donate</h1>
+        <h2>orcasound</h2>
+      </Box>
     </Box>
   )
 }

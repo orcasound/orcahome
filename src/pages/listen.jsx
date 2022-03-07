@@ -14,9 +14,12 @@ export const listen = () => {
         bannerImg={ListenBanner}
         pageTitle={`Listen`}
         pageDesc={`You’ll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape. `}
+        scrollToID={`listen`}
       />
-      <h1>Listen</h1>
-      <h2>orcasound</h2>
+      <Box id="listen">
+        <h1>Listen</h1>
+        <h2>orcasound</h2>
+      </Box>
     </Box>
   )
 }

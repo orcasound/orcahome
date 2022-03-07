@@ -72,6 +72,7 @@ const TopBanner = ({
   pageTitle,
   pageDesc = '',
   ispageDesc = true,
+  scrollToID,
 }) => {
   const [checked, setChecked] = useState(false)
 
@@ -100,7 +101,7 @@ const TopBanner = ({
           >
             {pageTitle}
           </Typography>
-          <ScrollElement to="invite-links" smooth={true} spy={true}>
+          <ScrollElement to={scrollToID} smooth={true} spy={true}>
             <ScrollDownButton>
               <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
               <ExpandMoreIcon
