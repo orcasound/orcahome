@@ -58,7 +58,7 @@ const sendFeedbackLink = (
 )
 
 const blogLink = (
-  <Link href="/" passHref>
+  <Link href="/blog" passHref>
     <StyledTypography variant="h6" component="a">
       Blog
     </StyledTypography>

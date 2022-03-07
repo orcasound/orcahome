@@ -67,7 +67,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
+const TopBanner = ({ bannerImg, bannerAlt, pageTitle, pageDesc }) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
   return (
     <TopScreen>
       <Image
-        alt="Get Involved"
+        alt={bannerAlt ?? ''}
         src={bannerImg}
         layout="fill"
         objectFit="cover"
@@ -95,7 +95,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
           >
             {pageTitle}
           </Typography>
-          <ScrollElement to="invite-links" smooth={true} spy={true}>
+          <ScrollElement to={'scroll-link'} smooth={true} spy={true}>
             <ScrollDownButton>
               <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
               <ExpandMoreIcon
@@ -107,7 +107,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
               />
             </ScrollDownButton>
           </ScrollElement>
-          <PageDesc>{pageDesc}</PageDesc>
+          {pageDesc && <PageDesc>{pageDesc}</PageDesc>}
         </TitleScreen>
       </Slide>
     </TopScreen>

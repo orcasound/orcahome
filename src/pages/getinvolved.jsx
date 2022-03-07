@@ -47,6 +47,7 @@ export const GetInvolved = () => {
       </Head>
       <TopBanner
         bannerImg={topbanner}
+        bannerAlt={`Get Involved`}
         pageTitle={`Get Involved`}
         pageDesc={`There are many ways to help in the recovering of marine life,
           especially for the Souther Resident Killer Whales that call the
@@ -54,7 +55,7 @@ export const GetInvolved = () => {
       />
 
       <Box
-        id="invite-links"
+        id="scroll-link"
         sx={{
           padding: '20px',
           display: 'flex',

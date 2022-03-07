@@ -1,6 +1,6 @@
 import CircleIcon from '@mui/icons-material/Circle'
 import { styled } from '@mui/material'
-import { Box, List, ListItem, ListItemIcon,ListItemText } from '@mui/material'
+import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 
 const TechListIcon = styled(CircleIcon)({
   color: '#000',
