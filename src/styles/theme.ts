@@ -8,7 +8,7 @@ const theme = createTheme({
       main: '#556cd6',
     },
     secondary: {
-      main: '#19857b',
+      main: '#F79234',
     },
     error: {
       main: red.A400,
@@ -16,6 +16,24 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#080d26',
+        },
+      },
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 780,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
   },
 })
 
