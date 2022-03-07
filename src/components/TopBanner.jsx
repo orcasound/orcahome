@@ -67,7 +67,12 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
+const TopBanner = ({
+  bannerImg,
+  pageTitle,
+  pageDesc = '',
+  ispageDesc = true,
+}) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -107,7 +112,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
               />
             </ScrollDownButton>
           </ScrollElement>
-          <PageDesc>{pageDesc}</PageDesc>
+          {ispageDesc && <PageDesc>{pageDesc}</PageDesc>}
         </TitleScreen>
       </Slide>
     </TopScreen>
