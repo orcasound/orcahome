@@ -17,7 +17,6 @@ export const Donate = () => {
         pageDesc={`There are many ways to help in the recovering of marine life, 
         especially for the Souther Resident Killer Whales that call the Salish Sea home. 
         Check out the ways you can help below!`}
-        isDonate
       />
       <br />
       <Box
