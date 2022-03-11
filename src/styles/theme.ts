@@ -23,8 +23,8 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
-    accents: {
-      accent1: '#007bff',
+    accent1: {
+      main: '#007bff',
     },
   },
   typography: {
