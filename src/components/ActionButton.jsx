@@ -11,12 +11,12 @@ const ActionButton = ({ link, text }) => {
         variant="contained"
         sx={(theme) => ({
           margin: '1rem',
-          color: theme.palette.ActionButton.color,
-          bgcolor: theme.palette.ActionButton.bgColor,
+          bgcolor: 'accents.accent1',
+          color: 'accents.contrastText',
           width: '12rem',
           borderRadius: 40,
           ':hover': {
-            color: theme.palette.ActionButton.color,
+            bgcolor: 'accents.accent1',
           },
         })}
         size="small"
@@ -28,3 +28,5 @@ const ActionButton = ({ link, text }) => {
 }
 
 export default ActionButton
+
+/**/

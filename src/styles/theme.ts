@@ -13,9 +13,8 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
-    ActionButton: {
-      bgColor: '#007bff',
-      color: '#ffffff',
+    accents: {
+      accent1: '#007bff',
     },
   },
 })
