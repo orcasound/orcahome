@@ -1,6 +1,16 @@
 import { red } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
 
+//Augmentation allows for custom color additions to theme (TypeScript specific)
+declare module '@mui/material/styles' {
+  interface Palette {
+    accent1: Palette['primary']
+  }
+  interface PaletteOptions {
+    accent1: PaletteOptions['primary']
+  }
+}
+
 // Create a theme instance.
 const theme = createTheme({
   palette: {
@@ -12,6 +22,9 @@ const theme = createTheme({
     },
     error: {
       main: red.A400,
+    },
+    accent1: {
+      main: '#007bff',
     },
   },
   typography: {
