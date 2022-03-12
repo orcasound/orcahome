@@ -76,7 +76,12 @@ const Nav = () => {
                       position: 'absolute',
                     }}
                   >
-                    <Image src={orcasoundlogo} width={90} height={70} />
+                    <Image
+                      src={orcasoundlogo}
+                      alt="Orcasound"
+                      width={90}
+                      height={70}
+                    />
                   </Box>
                 </Link>
               </Box>
@@ -109,13 +114,13 @@ function Mobile() {
         }}
       >
         {navLinks.map((navLink) => (
-          <Link key={navLink.name} href={navLink.url}>
+          <Link key={navLink.name} href={navLink.url} passHref>
             <ListItem button sx={{ borderBottom: '1px solid white' }}>
               <ListItemText primary={navLink.name} />
             </ListItem>
           </Link>
         ))}
-        <Link href="/">
+        <Link href="/" passHref>
           <ListItem button>
             <ListItemText primary="Notify Me" />
           </ListItem>
@@ -165,7 +170,7 @@ function Desktop() {
               textTransform: 'none',
             }}
           >
-            <Link href={navLink.url}>
+            <Link href={navLink.url} passHref>
               <Typography
                 variant="h6"
                 component="a"
