@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "lint:ci": "npm run lint -- --max-warnings 0",
     "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "format:ci": "npm run format:check",
     "prepare": "husky install"
   },
   "dependencies": {
