@@ -41,7 +41,6 @@ const Blog = () => {
       <TopBanner
         bannerImg={BlogBanner}
         pageTitle={`Blog`}
-        ispageDesc={false}
         scrollToID={`blog`}
       />
       <Box id="blog">

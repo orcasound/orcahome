@@ -67,13 +67,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({
-  bannerImg,
-  pageTitle,
-  pageDesc = '',
-  ispageDesc = true,
-  scrollToID,
-}) => {
+const TopBanner = ({ bannerImg, pageTitle, pageDesc = '', scrollToID }) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
