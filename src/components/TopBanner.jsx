@@ -56,8 +56,8 @@ const PageDesc = styled(Box)(({ theme }) => ({
   backgroundColor: '#080d26',
   width: '40vw',
   maxWidth: '450px',
-  padding: '20px',
   margin: '10px 25px',
+  padding: '20px',
   letterSpacing: '0.75px',
   [theme.breakpoints.down('sm')]: {
     left: '0',
@@ -67,7 +67,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, bannerAlt, pageTitle, pageDesc }) => {
+const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const TopBanner = ({ bannerImg, bannerAlt, pageTitle, pageDesc }) => {
   return (
     <TopScreen>
       <Image
-        alt={bannerAlt ?? ''}
+        alt={pageTitle ?? ''}
         src={bannerImg}
         layout="fill"
         objectFit="cover"

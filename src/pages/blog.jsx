@@ -33,7 +33,7 @@ const Blog = () => {
 
   return (
     <>
-      <TopBanner bannerImg={topbanner} bannerAlt={`Blog`} pageTitle={`Blog`} />
+      <TopBanner bannerImg={topbanner} pageTitle={`Blog`} />
       <BlogItemList id="scroll-link">
         {data.map((item, id) => (
           <BlogItem
