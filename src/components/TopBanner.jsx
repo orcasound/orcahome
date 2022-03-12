@@ -56,8 +56,8 @@ const PageDesc = styled(Box)(({ theme }) => ({
   backgroundColor: '#080d26',
   width: '40vw',
   maxWidth: '450px',
-  padding: '20px',
   margin: '10px 25px',
+  padding: '20px',
   letterSpacing: '0.75px',
   [theme.breakpoints.down('sm')]: {
     left: '0',
@@ -83,7 +83,7 @@ const TopBanner = ({
   return (
     <TopScreen>
       <Image
-        alt="Get Involved"
+        alt={pageTitle ?? ''}
         src={bannerImg}
         layout="fill"
         objectFit="cover"
@@ -113,7 +113,7 @@ const TopBanner = ({
               />
             </ScrollDownButton>
           </ScrollElement>
-          {ispageDesc && <PageDesc>{pageDesc}</PageDesc>}
+          {pageDesc && <PageDesc>{pageDesc}</PageDesc>}
         </TitleScreen>
       </Slide>
     </TopScreen>
