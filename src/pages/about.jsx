@@ -7,10 +7,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
 
-import orca from '../../public/images/orca2.png'
 import AboutCard from '../components/About/AbouCard'
 import Items from '../components/About/db.json'
+import AboutBanner from '../../public/images/about.webp'
+import TopBanner from '../components/TopBanner'
+
 import aboutStyles from '../styles/About.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export default function About() {
   const mobileActive = useMediaQuery('(max-width:600px)')
@@ -21,22 +24,14 @@ export default function About() {
       <Head>
         <title>About us - Orcasound</title>
       </Head>
-      <Image
-        className={aboutStyles.landingImage}
-        src={orca}
-        alt="About Us"
-        width={1400}
-        height={500}
+      <TopBanner
+        bannerImg={AboutBanner}
+        pageTitle={`About`}
+        pageDesc={`Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`}
+        scrollToId={`about`}
       />
-      <h2 className={aboutStyles.landingText}> What is Orcasound</h2>
 
-      <p className={aboutStyles.landingPa}>
-        Orcasound is a software & hardware Web app to <br></br>
-        listen to whales, save orcas and advance <br></br>
-        bioacustics(AI Technology)
-      </p>
-
-      <Box m={3}>
+      <Box m={3} id="about">
         <Container>
           <Typography mt={9} align="justify" variant="body1">
             Orcasound is a cooperative effort of many dedicated individuals and

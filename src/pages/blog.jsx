@@ -1,7 +1,8 @@
 import { styled } from '@mui/system'
+import Head from 'next/head'
 
 import frequency1 from '../../public/images/frequency.png'
-import topbanner from '../../public/images/srkw2-36.jpg'
+import BlogBanner from '../../public/images/srkw2-36.jpg'
 import BlogItem from '../components/BlogItem'
 import TopBanner from '../components/TopBanner'
 
@@ -33,8 +34,16 @@ const Blog = () => {
 
   return (
     <>
-      <TopBanner bannerImg={topbanner} bannerAlt={`Blog`} pageTitle={`Blog`} />
-      <BlogItemList id="scroll-link">
+      <Head>
+        <title>Orcasound</title>
+      </Head>
+      <TopBanner
+        bannerImg={BlogBanner}
+        pageTitle={`Blog`}
+        scrollToId={`blog`}
+      />
+      <div id="blog" />
+      <BlogItemList>
         {data.map((item, id) => (
           <BlogItem
             key={id}

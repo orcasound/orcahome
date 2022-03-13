@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -23,6 +23,7 @@ import logo11 from '../../public/images/getinvolved/ws_logo.png'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import TopBanner from '../components/TopBanner'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
+import ActionButton from './../components/ActionButton'
 
 export const GetInvolved = () => {
   const ScrollLink = styled(ScrollElement)({
@@ -47,7 +48,7 @@ export const GetInvolved = () => {
       </Head>
       <TopBanner
         bannerImg={topbanner}
-        bannerAlt={`Get Involved`}
+        scrollToId={`scroll-link`}
         pageTitle={`Get Involved`}
         pageDesc={`There are many ways to help in the recovering of marine life,
           especially for the Souther Resident Killer Whales that call the
@@ -227,9 +228,7 @@ export const GetInvolved = () => {
         Fame`}
       </p>
       <div className={getinvolvedStyles.button}>
-        <Button variant="outline-primary">
-          LEARN MORE ABOUT VOLUNTEERING!
-        </Button>
+        <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
       </div>
       <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
       <p className={getinvolvedStyles.textmemorandum}>
@@ -268,7 +267,7 @@ export const GetInvolved = () => {
         sponsoring the work of our most-dedicated contributors.`}
       </p>
       <div className={getinvolvedStyles.button}>
-        <Button variant="outline-primary"> DONATE NOW</Button>
+        <ActionButton link="" text="DONATE NOW" />
       </div>
       <div className={getinvolvedStyles.logos}>
         <Image src={logo1} alt="The Whaletrail" />
