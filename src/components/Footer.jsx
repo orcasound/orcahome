@@ -106,7 +106,6 @@ function Desktop() {
             {sendFeedbackLink}
             {blogLink}
             {iconContainer}
-
             <Link href="/donate" passHref>
               <Button
                 variant="contained"

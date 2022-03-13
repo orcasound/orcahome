@@ -1,4 +1,3 @@
-import { Box } from '@mui/material'
 import { styled } from '@mui/system'
 import Head from 'next/head'
 
@@ -34,30 +33,29 @@ const Blog = () => {
   ]
 
   return (
-    <Box>
+    <>
       <Head>
         <title>Orcasound</title>
       </Head>
       <TopBanner
         bannerImg={BlogBanner}
         pageTitle={`Blog`}
-        scrollToID={`blog`}
+        scrollToId={`blog`}
       />
-      <Box id="blog">
-        <BlogItemList>
-          {data.map((item, id) => (
-            <BlogItem
-              key={id}
-              image={item.image}
-              title={item.title}
-              summary={item.summary}
-              author={item.author}
-              datePublished={item.date}
-            />
-          ))}
-        </BlogItemList>
-      </Box>
-    </Box>
+      <div id="blog" />
+      <BlogItemList>
+        {data.map((item, id) => (
+          <BlogItem
+            key={id}
+            image={item.image}
+            title={item.title}
+            summary={item.summary}
+            author={item.author}
+            datePublished={item.date}
+          />
+        ))}
+      </BlogItemList>
+    </>
   )
 }
 
