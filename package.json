@@ -6,11 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "echo 'No tests configured'",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
+    "lint:ci": "npm run lint -- --max-warnings 0",
     "format": "prettier . --write",
-    "prepare": "husky install",
-    "version": "node --version"
+    "format:check": "prettier . --check",
+    "format:ci": "npm run format:check",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/cache": "^11.7.1",

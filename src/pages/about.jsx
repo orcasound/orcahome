@@ -1,5 +1,4 @@
 import { Box } from '@mui/material'
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -9,6 +8,7 @@ import Head from 'next/head'
 import AboutBanner from '../../public/images/about.webp'
 import TopBanner from '../components/TopBanner'
 import aboutStyles from '../styles/About.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export const About = () => {
   return (
@@ -71,7 +71,7 @@ export const About = () => {
         organization,please reach out!`}
         </p>
         <div className={aboutStyles.button}>
-          <Button variant="outline-primary"> GET INVOLVED!</Button>
+          <ActionButton link="getinvolved" text="GET INVOLVED!" />
         </div>
       </Box>
     </div>
