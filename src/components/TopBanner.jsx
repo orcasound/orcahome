@@ -67,7 +67,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
+const TopBanner = ({ bannerImg, pageTitle, pageDesc, scrollToId }) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -95,7 +95,7 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc }) => {
           >
             {pageTitle}
           </Typography>
-          <ScrollElement to={'scroll-link'} smooth={true} spy={true}>
+          <ScrollElement to={scrollToId} smooth={true} spy={true}>
             <ScrollDownButton>
               <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
               <ExpandMoreIcon

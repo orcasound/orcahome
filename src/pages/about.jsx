@@ -3,9 +3,9 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
-import Image from 'next/image'
 
-import orca from '../../public/images/orca2.png'
+import AboutBanner from '../../public/images/about.webp'
+import TopBanner from '../components/TopBanner'
 import aboutStyles from '../styles/About.module.css'
 import ActionButton from './../components/ActionButton.jsx'
 
@@ -15,21 +15,14 @@ export const About = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <Image
-        className={aboutStyles.landingImage}
-        src={orca}
-        alt="About Us"
-        width={1400}
-        height={500}
+      <TopBanner
+        bannerImg={AboutBanner}
+        pageTitle={`About`}
+        pageDesc={`Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`}
+        scrollToId={`about`}
       />
-      <h2 className={aboutStyles.landingText}> What is Orcasound</h2>
 
-      <p className={aboutStyles.landingPa}>
-        Orcasound is a software & hardware Web app to <br></br>
-        listen to whales, save orcas and advance <br></br>
-        bioacustics(AI Technology)
-      </p>
-
+      <div id="about" />
       <p className={aboutStyles.introduction}>
         {`Orcasound is a coperative effort of many dedicated individuals and great
         organizations.Here are our recent projects-- created by

@@ -48,6 +48,7 @@ export const GetInvolved = () => {
       </Head>
       <TopBanner
         bannerImg={topbanner}
+        scrollToId={`scroll-link`}
         pageTitle={`Get Involved`}
         pageDesc={`There are many ways to help in the recovering of marine life,
           especially for the Souther Resident Killer Whales that call the
