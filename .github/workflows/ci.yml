@@ -7,18 +7,29 @@ on:
     branches: [main]
 
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/build
+  test:
+    name: Test
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/build
+      - name: Run tests
+        run: npm run test
   format:
     name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.node-version'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
+      - uses: ./.github/actions/setup
       - name: Run prettier
         run: npm run format:ci
   lint:
@@ -26,26 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.node-version'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
+      - uses: ./.github/actions/setup
       - name: Run eslint
         run: npm run lint:ci
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.node-version'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build project
-        run: npm run build --if-present
