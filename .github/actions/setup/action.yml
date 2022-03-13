@@ -11,3 +11,4 @@ runs:
         cache: 'npm'
     - name: Install dependencies
       run: npm ci
+      shell: bash
