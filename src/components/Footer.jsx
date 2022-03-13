@@ -5,7 +5,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, Button, styled, Toolbar, Typography } from '@mui/material'
-import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Link from 'next/link'
 
 import useIsMobile from '../utils/useIsMobile'
@@ -72,61 +71,55 @@ export default function Footer() {
 }
 
 function Mobile() {
-  const theme = useTheme()
-
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ padding: '20px' }}>
-          <div>{sendFeedbackLink}</div>
-          <div>{blogLink}</div>
-          <div>
-            <Link href="/donate" passHref>
-              <StyledTypography variant="h6" component="a">
-                Donate
-              </StyledTypography>
-            </Link>
-          </div>
-          {iconContainer}
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{ padding: '20px' }}>
+        <div>{sendFeedbackLink}</div>
+        <div>{blogLink}</div>
+        <div>
+          <Link href="/donate" passHref>
+            <StyledTypography variant="h6" component="a">
+              Donate
+            </StyledTypography>
+          </Link>
+        </div>
+        {iconContainer}
+      </AppBar>
+    </Box>
   )
 }
 
 function Desktop() {
-  const theme = useTheme()
-
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-          <Toolbar>
-            <Box sx={{ flexGrow: 1 }}></Box>
-            {sendFeedbackLink}
-            {blogLink}
-            {iconContainer}
-            <Link href="/donate" passHref>
-              <Button
-                variant="contained"
-                sx={{
-                  color: 'black',
-                  backgroundColor: 'white',
-                  borderRadius: '100px',
-                  '&:hover': { color: 'black', backgroundColor: 'white' },
-                }}
-                startIcon={
-                  <NotificationsIcon
-                    sx={{ color: `${theme.palette.secondary.main}` }}
-                  />
-                }
-              >
-                Donate
-              </Button>
-            </Link>
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </ThemeProvider>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Box sx={{ flexGrow: 1 }}></Box>
+          {sendFeedbackLink}
+          {blogLink}
+          {iconContainer}
+          <Link href="/donate" passHref>
+            <Button
+              variant="contained"
+              sx={{
+                color: 'black',
+                backgroundColor: 'white',
+                borderRadius: '100px',
+                '&:hover': { color: 'black', backgroundColor: 'white' },
+              }}
+              startIcon={
+                <NotificationsIcon
+                  sx={(theme) => ({
+                    color: `${theme.palette.secondary.main}`,
+                  })}
+                />
+              }
+            >
+              Donate
+            </Button>
+          </Link>
+        </Toolbar>
+      </AppBar>
+    </Box>
   )
 }
