@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
@@ -8,6 +7,7 @@ import Image from 'next/image'
 
 import orca from '../../public/images/orca2.png'
 import aboutStyles from '../styles/About.module.css'
+import ActionButton from './../components/ActionButton.jsx'
 
 export const About = () => {
   return (
@@ -77,7 +77,7 @@ export const About = () => {
         organization,please reach out!`}
       </p>
       <div className={aboutStyles.button}>
-        <Button variant="outline-primary"> GET INVOLVED!</Button>
+        <ActionButton link="getinvolved" text="GET INVOLVED!" />
       </div>
     </div>
   )
