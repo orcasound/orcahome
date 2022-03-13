@@ -1,32 +1,30 @@
 import { Box, Typography } from '@mui/material'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
+import { Paper } from '@mui/material'
+import Image from 'next/image'
 
-const AboutCard = ({ item, mobileActive, seeMore }) => {
+const AboutCard = ({ item, mobileActive }) => {
   return (
     <Box mb={mobileActive ? 4 : 0} mx={{ xs: 1, sm: 0 }}>
-      <Card
-        sx={{
-          borderRadius: '0px',
-        }}
-      >
-        <CardMedia
-          component="img"
-          alt={item.title}
-          height={'165'}
-          image={item.path}
+      <Paper square elevation={3}>
+        <Box>
+          <Image
+            width={700}
+            height={500}
+            alt={item.title}
+            src={item.path}
+            layout="responsive"
+            sx={{
+              userSelect: 'none',
+            }}
+          />
+        </Box>
+        <Box
           sx={{
-            userSelect: 'none',
-          }}
-        />
-        <CardContent
-          sx={{
-            backgroundColor: '#080d26',
-            color: 'white',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            backgroundColor: '#080d26',
+            color: 'white',
             height: '100px',
             width: '100%',
           }}
@@ -36,7 +34,6 @@ const AboutCard = ({ item, mobileActive, seeMore }) => {
             variant="h7"
             component="div"
             align="center"
-            mt={2}
             sx={{
               fontFamily: 'Montserrat',
               fontWeight: '500',
@@ -49,8 +46,8 @@ const AboutCard = ({ item, mobileActive, seeMore }) => {
           >
             {item.title}
           </Typography>
-        </CardContent>
-      </Card>
+        </Box>
+      </Paper>
     </Box>
   )
 }

@@ -2,25 +2,21 @@ import { Box, Typography } from '@mui/material'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useState } from 'react'
 
-import AboutCard from '../components/About/AbouCard'
-import Items from '../components/About/db.json'
 import AboutBanner from '../../public/images/about.webp'
+import AboutCard from '../components/About/AboutCard'
+import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
-
-import aboutStyles from '../styles/About.module.css'
-import ActionButton from './../components/ActionButton.jsx'
+import useIsMobile from '../utils/useIsMobile'
 
 export default function About() {
-  const mobileActive = useMediaQuery('(max-width:600px)')
-  const [seeMore, setseeMore] = useState(mobileActive)
+  const mobileActive = useIsMobile()
+  const [seeMore, setSeeMore] = useState(!mobileActive)
 
   return (
-    <Box>
+    <>
       <Head>
         <title>About us - Orcasound</title>
       </Head>
@@ -34,10 +30,10 @@ export default function About() {
       <Box m={3} id="about">
         <Container>
           <Typography mt={9} align="justify" variant="body1">
-            Orcasound is a cooperative effort of many dedicated individuals and
+            {`Orcasound is a cooperative effort of many dedicated individuals and
             great organizations. Here are our recent projects — created by
             volunteers, stewards, citizen scientists, hackers, and generous
-            funders — all working together for the orcas.
+            funders — all working together for the orcas.`}
           </Typography>
 
           <Typography
@@ -69,11 +65,7 @@ export default function About() {
                     {((mobileActive && index < 2) ||
                       seeMore ||
                       !mobileActive) && (
-                      <AboutCard
-                        item={item}
-                        mobileActive={mobileActive}
-                        seeMore={seeMore}
-                      />
+                      <AboutCard item={item} mobileActive={mobileActive} />
                     )}
                   </Grid>
                 )
@@ -81,7 +73,7 @@ export default function About() {
             </Grid>
           </Box>
 
-          {mobileActive && <Mobile setseeMore={setseeMore} seeMore={seeMore} />}
+          {mobileActive && <Mobile setSeeMore={setSeeMore} seeMore={seeMore} />}
 
           <Box mx={{ xs: 1, sm: 10, md: 20, lg: 40 }} my={13}>
             <Typography
@@ -105,8 +97,8 @@ export default function About() {
                 variant="body1"
                 gutterBottom
               >
-                You can join us anytime as a volunteer to our open-source
-                software & hardware projects.
+                {`You can join us anytime as a volunteer to our open-source
+                software & hardware projects.`}
               </Typography>
               <Typography
                 mx={1}
@@ -115,15 +107,14 @@ export default function About() {
                 variant="body1"
                 gutterBottom
               >
-                If you'd like to host a hydrophone, do research, or incorporate
+                {`If you'd like to host a hydrophone, do research, or incorporate
                 Orcasound into the educational or outreach efforts of your
-                organization,please reach out!
+                organization,please reach out!`}
               </Typography>
             </Box>
 
             <Box
-              my={3}
-              mt={4}
+              my={4}
               mx={1}
               sx={{
                 display: 'flex',
@@ -150,16 +141,16 @@ export default function About() {
           </Box>
         </Container>
       </Box>
-    </Box>
+    </>
   )
 }
 
-function Mobile({ setseeMore, seeMore }) {
+function Mobile({ setSeeMore, seeMore }) {
   return (
     <Typography
       mt={1}
       gutterBottom
-      onClick={() => setseeMore(!seeMore)}
+      onClick={() => setSeeMore(!seeMore)}
       align="center"
       sx={{
         textDecorationLine: 'underline',
