@@ -31,7 +31,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build project
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -61,7 +60,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Install dependencies
-        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build project
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -80,7 +78,6 @@ jobs:
           node-version-file: '.node-version'
           cache: 'npm'
       - name: Install dependencies
-        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run prettier
         run: npm run format:ci
@@ -96,7 +93,6 @@ jobs:
           node-version-file: '.node-version'
           cache: 'npm'
       - name: Install dependencies
-        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run eslint
         run: npm run lint:ci
