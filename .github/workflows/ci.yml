@@ -7,17 +7,80 @@ on:
     branches: [main]
 
 jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        id: setup-node
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+      # Based on https://nextjs.org/docs/messages/no-cache#github-actions
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        if: steps.setup-node.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Build project
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: npm run build
+  test:
+    name: Test
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        id: setup-node
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+      # Based on https://nextjs.org/docs/messages/no-cache#github-actions
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+      - name: Install dependencies
+        if: steps.setup-node.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Build project
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: npm run build
+      - name: Run tests
+        run: npm run test
   format:
     name: Format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
+        id: setup-node
         uses: actions/setup-node@v2
         with:
           node-version-file: '.node-version'
           cache: 'npm'
       - name: Install dependencies
+        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run prettier
         run: npm run format:ci
@@ -27,25 +90,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
+        id: setup-node
         uses: actions/setup-node@v2
         with:
           node-version-file: '.node-version'
           cache: 'npm'
       - name: Install dependencies
+        if: steps.setup-node.outputs.cache-hit != 'true'
         run: npm ci
       - name: Run eslint
         run: npm run lint:ci
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.node-version'
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build project
-        run: npm run build --if-present
