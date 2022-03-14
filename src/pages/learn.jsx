@@ -11,8 +11,23 @@ import organization2 from '../../public/images/partner2.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import learnStyles from '../styles/Learn.module.css'
-import {List,ListItem,ListItemText,Button,Box} from "@mui/material"
+import {Box, Typography} from "@mui/material"
+import { createTheme,ThemeProvider } from '@mui/material/styles'
 export const learn = () => {
+  const paragraph=createTheme();
+paragraph.typography.p={
+  fontFamily:"Montserrat",
+  fontSize:'1.25rem',
+  fontWeight: '600'
+
+}
+const heading=createTheme();
+heading.typography.h1={
+  fontFamily: 'Montserrat',
+  fontSize: '2.75rem',
+  fontWeight: '600'
+
+}
   return (
     <div className={learnStyles.learn}>
       <Head>
@@ -26,14 +41,18 @@ export const learn = () => {
         <li>Souther Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
-      <h1 className={learnStyles.salish} style={{marginLeft:"119px",fontSize:"44px",fontFamily:"Mukta",fontWeight:"600"}}> Sounds Of The Salish Sea</h1>
-      <Box width={969} height={84} sx={{fontSize:"20px",ml:"119px",fontFamily:"Montserrat",marginTop:"30px",marginBottom:"14px"}}>
-        <p className={learnStyles.salishsea}>
+       <ThemeProvider theme={heading}><Box sx={{marginLeft:"85px"}}><Typography variant="h1"><h1>Sounds Of The Salish Sea</h1></Typography></Box></ThemeProvider>
+     <ThemeProvider theme={paragraph} > 
+      <Box width={969}height={84} sx={{ml:"85px",marginTop:"30px",marginBottom:"29px"}}>
+        <Typography variant="p">
+       <p className={learnStyles.salishsea}>
           Explore common sounds of the Salish Sea by selecting the animals and
           other objects in this anoramic soundscape of the inlandwaters of
-          Washington State(USA) and British Columbia(Canada)
+          Washington State(USA) and British Columbia(Canada) 
         </p>
+        </Typography>
       </Box>
+  </ThemeProvider>
       <div className={learnStyles.imageWrapper}>
         <Image
           className={learnStyles.salishseaimg}
