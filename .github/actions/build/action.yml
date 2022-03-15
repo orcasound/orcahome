@@ -3,9 +3,13 @@ description: 'Builds project'
 runs:
   using: 'composite'
   steps:
-    # Based on https://nextjs.org/docs/messages/no-cache#github-actions
     - uses: actions/cache@v2
       id: cache-build
+      with:
+        path: ${{ github.workspace }}/.next
+        key: nextjs-${{ github.run_id }}-${{ github.run_attempt }}
+    # Based on https://nextjs.org/docs/messages/no-cache#github-actions
+    - uses: actions/cache@v2
       with:
         path: |
           ~/.npm
@@ -16,9 +20,6 @@ runs:
         restore-keys: |
           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
     - name: Build project
+      if: steps.cache-build.outputs.cache-hit != 'true'
       run: npm run build
       shell: bash
-    - uses: actions/upload-artifact@v3
-      with:
-        name: nextjs-build
-        path: ${{ github.workspace }}/.next/

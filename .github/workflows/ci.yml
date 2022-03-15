@@ -7,15 +7,16 @@ on:
     branches: [main]
 
 jobs:
-  setup:
-    name: Setup
+  install:
+    name: Install
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup
       - uses: ./.github/actions/install
   build:
     name: Build
-    needs: [setup]
+    needs: [install]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,15 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - uses: actions/download-artifact@v3
-        with:
-          name: nextjs-build
-          path: ${{ github.workspace }}/.next/
+      - uses: ./.github/actions/build
       - name: Run tests
         run: npm run test
   format:
     name: Format
-    needs: [setup]
+    needs: [install]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -45,7 +43,7 @@ jobs:
         run: npm run format:ci
   lint:
     name: Lint
-    needs: [setup]
+    needs: [install]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

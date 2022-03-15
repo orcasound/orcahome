@@ -3,14 +3,13 @@ description: 'Setup node and dependencies'
 runs:
   using: 'composite'
   steps:
+    - uses: actions/cache@v2
+      with:
+        path: ${{ github.workspace }}/node_modules
+        key: node_modules-${{ github.run_id }}-${{ github.run_attempt }}
     - name: Setup node
       id: setup-node
       uses: actions/setup-node@v2
       with:
         node-version-file: '.node-version'
         cache: 'npm'
-    - name: Download node modules
-      uses: actions/download-artifact@v3
-      with:
-        name: node-modules
-        path: ${{ github.workspace }}/node_modules/
