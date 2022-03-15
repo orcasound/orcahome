@@ -18,3 +18,7 @@ runs:
     - name: Build project
       run: npm run build
       shell: bash
+    - uses: actions/upload-artifact@v3
+      with:
+        name: nextjs-build
+        path: ${{ github.workspace }}/.next/
