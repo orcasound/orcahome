@@ -16,6 +16,5 @@ runs:
         restore-keys: |
           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
     - name: Build project
-      if: steps.cache-build.outputs.cache-hit != 'true'
       run: npm run build
       shell: bash
