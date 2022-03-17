@@ -11,6 +11,9 @@ import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import TopBanner from '../components/TopBanner'
 import learnStyles from '../styles/Learn.module.css'
+import theme from '../styles/theme'
+import { ThemeProvider,Typography } from '@mui/material'
+import { Box } from '@mui/system'
 
 export const learn = () => {
   return (
@@ -32,19 +35,32 @@ export const learn = () => {
         <li>Souther Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
+      <ThemeProvider theme={theme}>
+        <Box  sx={{marginLeft:"85px"}}>
+        <Typography variant="h1">
       <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
+      </Typography>
+      </Box>
+      </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <Box width={969}height={84} sx={{ml:"85px",marginTop:"30px",marginBottom:"29px"}}>
+        <Typography variant="body1">
       <p className={learnStyles.salishsea}>
         Explore common sounds of the Salish Sea by selecting the animals and
         other objects in this anoramic soundscape of the inlandwaters of
         Washington State(USA) and British Columbia(Canada)
       </p>
+      
+      </Typography>
+      </Box>
+      </ThemeProvider>
       <div className={learnStyles.imageWrapper}>
         <Image
           className={learnStyles.salishseaimg}
           src={salishsea}
           alt="Sounds Of The Salish Sea"
-          width={800}
-          height={450}
+          width={1234}
+          height={701}
           layout="intrinsic"
           quality={65}
         />
