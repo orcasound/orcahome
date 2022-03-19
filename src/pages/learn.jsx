@@ -1,4 +1,4 @@
-import { ThemeProvider, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -13,7 +13,6 @@ import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import TopBanner from '../components/TopBanner'
 import learnStyles from '../styles/Learn.module.css'
-import theme from '../styles/theme'
 
 export const learn = () => {
   return (
