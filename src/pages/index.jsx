@@ -5,14 +5,24 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography'
+import { styled,spacing, createTheme, ThemeProvider } from '@mui/system';
 import Head from 'next/head'
 import Image from 'next/image'
 
 import arrow from '../../public/images/Arrow.png'
 import orcas from '../../public/images/homepage.png'
-import vector from '../../public/images/vector.png'
+import vector from '../../public/images/Vector.png'
 import homeStyles from '../styles/Home.module.css'
 
+const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 377, // phone
+      sm: 1025, // tablets
+      md: 900, // small laptop
+    }
+  }
+});
 
 export const index = () => {
   return (
@@ -26,26 +36,132 @@ export const index = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={homeStyles.landing}>
-        <Image className={homeStyles.landingImage} src={orcas} alt='orca background image'/>
-        <div className={homeStyles.vector}>
+
+      <div sx={{
+        position: 'relative',
+        display: 'grid',
+        width: '2vw',
+        maxHeight:'fit-content'
+      }} 
+      position= 'relative' 
+      display= 'grid' 
+      width= '100%' 
+      max-height= 'fit-content'
+      /*className={homeStyles.landing}*/
+      >
+
+        <Image sx={{
+          width: '100%',
+          zIndex: 'tooltip' ,
+          position: 'relative',
+          display: 'grid',
+          maxHeight:'fit-content'
+        }} src={orcas} alt='orca background image'/>
+
+        <Box 
+        sx={{
+          zIndex: '2',
+          alignItems: 'center',
+          padding:'20px',
+          transform: 'translateY(-110%)',
+          marginLeft: '50%',
+          width: '10%',
+          visibility:{
+            xs:'hidden',
+            sm:'visible'
+          }
+        }}
+        
+        >
           <Image src={vector} alt='vector'/>
-        </div>
-        <div className={homeStyles.flex}>
-          <div>
-            <h1 className={homeStyles.landingText}>LISTEN TO ORCAS LIVE!</h1>{' '}
-          </div>
-          <div className={homeStyles.landingArrow}>
+        </Box>
+      
+        <Box 
+
+
+        sx={{
+          zIndex: '2',
+          display: 'flex',
+          flexDirection: 'row',
+          backgroundColor: '#000000',
+          position: 'relative',
+          borderRadius: '20px',
+          mx: {
+            xs:'20%',
+            sm:'auto'
+          },
+          transform: {
+            xs:'translateY(-250%)',
+            sm:'translateY(-350%)',
+            md:'translateY(-500%)',
+          },
+          alignItems: 'center',
+          justifyItems: 'center',
+          width: {
+            xs:'60vw',
+            sm:'fit-content'},
+          height:{
+            xs:'10vh',
+            md:'5rem',
+          },
+        
+        }}
+        >
+
+            <Typography 
+            variant="h1"
+            sx={{
+              fontFamily: 'Mukta',
+              fontSize: {
+                xs:'20px',
+                sm:'24px',
+                md:'44px'
+              },
+              color:'white',
+              fontStyle: 'normal',
+              lineHeight: '100%',
+              p:{
+                xs:'25px 10px 27px 48px',
+                sm:'0px 27px 27px 48px',
+                md:'27px 10px 29px 33px'
+              },
+              position: 'relative',
+              textAlign: 'center',
+              fontWeight: {
+                xs:'500',
+                sm:'600'},
+              }}>
+            LISTEN TO ORCAS LIVE!
+            </Typography>
+
+          <Box 
+          sx={{
+            position: 'relative',
+            top: '35%',
+            right: '2px',
+            width: '30px',
+            pr: '4px',
+            transform: 'translateY(-80%)'
+          
+          }} 
+          >
             <Image src={arrow} width="30px" height="30px" alt='arrow down'/>
-          </div>
-        </div>
+          </Box>
+        </Box>
       </div>
 
     
 
-    <div className={homeStyles.home}>
-      <body>
-      
+    <Box 
+    sx={{
+      mx: {
+        sm: 0,
+        md: 0,
+        lg: 10,
+      },
+    }} 
+    >
+
       <Box component={Grid} item sx={{ml:2, mt:{xs:-18, sm:-15}, mb:{xs:3, sm:8}}} >
             <Typography variant= 'h1' fontFamily={"Mukta"} fontSize = '44px' fontWeight={'600'} mb={{ xs: 3, sm: 4 }} mr={{xs: 10}} mt={{xs:3}}>
             What is Orcasound
@@ -98,11 +214,43 @@ export const index = () => {
                   can join us as a member of the network.
                 </Typography>
                 <Button variant="contained"
-                  className={homeStyles.button}
+                  sx={{
+                    backgroundColor: '#1B2B7B',
+                    alignContent: 'center',
+                    mx:1.5,
+                    my:1,
+                    fontFamily: 'Montserrat',
+                    borderRadius: '30px',
+                    width: '194px',
+                    height: '40px',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    boxShadow: 0,
+                    '&:hover': {
+                      backgroundColor: '#1B2B7B',
+                      color: 'white',
+                    },
+                  }}
 
              > LEARN</Button>
                   <Button variant="contained"
-                  className={homeStyles.button}
+                  sx={{
+                    backgroundColor: '#1B2B7B',
+                    alignContent: 'center',
+                    mx:1.5,
+                    my:1,
+                    fontFamily: 'Montserrat',
+                    borderRadius: '30px',
+                    width: '194px',
+                    height: '40px',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    boxShadow: 0,
+                    '&:hover': {
+                      backgroundColor: '#1B2B7B',
+                      color: 'white',
+                    },
+                  }}
                > GET INVOLVED</Button>
           </Box>
           
@@ -124,10 +272,42 @@ export const index = () => {
                   can join us as a member of the network.
                 </Typography>
                 <Button variant="contained"
-                  className={homeStyles.button}
+                  sx={{
+                    backgroundColor: '#1B2B7B',
+                    alignContent: 'center',
+                    mx:1.5,
+                    my:1,
+                    fontFamily: 'Montserrat',
+                    borderRadius: '30px',
+                    width: '194px',
+                    height: '40px',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    boxShadow: 0,
+                    '&:hover': {
+                      backgroundColor: '#1B2B7B',
+                      color: 'white',
+                    },
+                  }}
              > LEARN</Button>
                   <Button variant="contained"
-                  className={homeStyles.button}
+                  sx={{
+                    backgroundColor: '#1B2B7B',
+                    alignContent: 'center',
+                    mx:1.5,
+                    my:1,
+                    fontFamily: 'Montserrat',
+                    borderRadius: '30px',
+                    width: '194px',
+                    height: '40px',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    boxShadow: 0,
+                    '&:hover': {
+                      backgroundColor: '#1B2B7B',
+                      color: 'white',
+                    },
+                  }}
                > GET INVOLVED</Button>
           </Box>
           
@@ -142,8 +322,8 @@ export const index = () => {
           height="51"
         />
       </a>
-      </body>
-    </div>
+
+    </Box>
     </>
   )
 }

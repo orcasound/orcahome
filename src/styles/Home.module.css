@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Mukta:wght@500;600&display=swap');
 
+
+/*
+sx={{
+  position: 'relative',
+  display: 'grid',
+  width: '100%',
+  minHeight:'fit-content'
+}}
+
 .landing {
   position: relative;
   display: grid;
   width: 100%;
   max-height: fit-content;
 }
-
-.home{
-  margin:0px 115px 0 115px
-}
-
-.landingImage {
-  width: 100%;
-  z-index: 1;
-}
+ */
 
 .flex {
   z-index: 2;
@@ -23,8 +24,6 @@
   background-color: #000000;
   position: relative;
   border-radius: 20px;
-  margin: 0 36px 0 380px;
-  max-width: 600px;
   margin:0px auto 0 auto;
   transform: translateY(-500%);
   align-items: center;
@@ -33,7 +32,23 @@
   height:5rem
 
 }
+/*
+sx={{
+  zIndex: '2',
+  display: 'flex',
+  flexDirection: 'row',
+  backgroundColor: '#000000',
+  position: 'relative',
+  borderRadius: '20px',
+  mx: 'auto',
+  transform: 'translateY(-500%)',
+  alignItems: 'center',
+  justifyItems: 'center',
+  width: 'fit-content',
+  height:'5rem'
 
+}}
+ */
 .landingText {
   font-family: 'Mukta', sans-serif;
   font-style: normal;
@@ -47,115 +62,31 @@
   
 }
 
-.landingArrow {
-  position: relative;
-  top: 35%;
-  right: 2px;
-  width: 30px;
-  padding-right: 4px;
-  transform: translateY(-80%);
-}
 
-.vector {
-  z-index: 2;
-  align-items: center;
-  padding: 20px;
-  transform: translateY(-110%);
-  margin-left: 50%;
-  width: 10%;
-}
 
-.landingIntro {
-  position: relative;
-  margin: -20% 160px 20px 115px;
-  
-  left: calc(50% - 800.05px / 2 - 204.98px);
-  letter-spacing: -0.02em;
-}
-
-.paragraph {
-  margin: 0px 160px 0px 115px;
-  padding: 5px 2px;
-  font-family: 'Montserrat', sans-serif;
-  color: #080d26;
-
-  font-style: normal;
-  font-size: 20px;
-  line-height: 140%;
-  text-align: justify;
-}
-
-.button{
-  background-color: #1B2B7B;
-  align-content: 'center';
-  font-family: 'Montserrat',sans-serif;
-  border-radius: 30px;
-  margin: 7px 5% 7px 0px;
-  width: 194px;
-  height: 40px;
-  font-size: 16px;
-  font-weight: 500;
-  box-shadow: none;
-  }
-
-.button:hover {
-  background-color: #1B2B7B;
-  color: 'white'
-}
 
 @media (max-width: 1025px) {
-  .landingIntro {
-    margin: -320px 56px 0px 33px;
-  }
-  .home{
-    margin:0px
-  }
-  .paragraph,
-  .card {
-    margin: 0px 56px 0px 33px;
-  }
+
+
   .flex {
-    transform: translateY(-350%);
     height:10vh;
   }
   .landingText {
-    line-height: 100%;
     font-size: 30px;
-    color: white;
     padding: 0px 27px 27px 48px; 
-    position: relative;  
-  }
-  .landingArrow {
-    position: relative;
-    top: 35%;
-    right: 2px;
-    width: 30px;
-    flex-shrink: 0;
-    padding-right: 4px;
   }
 
 }
 
 @media (max-width: 377px) {
-  .vector {
-    visibility: hidden;
-  }
-  
-  .home{
-    margin:0px
-  }
 
   .flex {
-    margin: 20% auto -20% auto;
-    transform: translateY(-300%);
     width: 70vw;
     height:10vh
   
   }
   .landingText {
     font-size: 24px;
-    line-height: 100%;
-    color: white;
     padding: 25px 10px 27px 48px;
     font-weight: 500;
   }
