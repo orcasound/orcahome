@@ -34,11 +34,11 @@ const theme = createTheme({
       fontSize: '40px',
       fontWeight: '600',
     },
-   body1: {
+    body1: {
       fontFamily: 'Montserrat',
       fontSize: '20px',
       fontWeight: '600',
-  }
+    },
   },
   components: {
     MuiAppBar: {
