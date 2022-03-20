@@ -35,30 +35,25 @@ export const learn = () => {
         <li>Exhibits</li>
       </ul>
 
-      <Box sx={{ marginLeft: '85px' }}>
-        <Typography variant="h1">
-          <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
-        </Typography>
+      <Box>
+        <Typography variant="h1">Sounds Of The Salish Sea</Typography>
       </Box>
 
       <Box
         width={969}
         height={84}
-        sx={{ ml: '85px', marginTop: '30px', marginBottom: '29px' }}
+        sx={{ marginTop: '30px', marginBottom: '29px' }}
       >
         <Typography variant="body1">
-          <p className={learnStyles.salishsea}>
-            Explore common sounds of the Salish Sea by selecting the animals and
-            other objects in this anoramic soundscape of the inlandwaters of
-            Washington State(USA) and British Columbia(Canada)
-          </p>
+          Explore common sounds of the Salish Sea by selecting the animals and
+          other objects in this anoramic soundscape of the inlandwaters of
+          Washington State(USA) and British Columbia(Canada)
         </Typography>
       </Box>
 
-      <Box sx={{ marginLeft: '84px' }}>
-        <div className={learnStyles.imageWrapper}>
+      <Box>
+        <div>
           <Image
-            className={learnStyles.salishseaimg}
             src={salishsea}
             alt="Sounds Of The Salish Sea"
             width={1234}
@@ -68,6 +63,7 @@ export const learn = () => {
           />
         </div>
       </Box>
+
       <div className={learnStyles.orca}>
         <Image
           src={roundorca}
