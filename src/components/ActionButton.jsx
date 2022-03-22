@@ -12,7 +12,7 @@ const ActionButton = ({ link, text }) => {
         variant="contained"
         sx={(theme) => ({
           margin: '1rem',
-          bgcolor: '#1B2B7B',
+          bgcolor: 'accents.accent1',
           padding: '8px 24px 8px 24px',
           color: 'accents.contrastText',
           borderRadius: 40,
