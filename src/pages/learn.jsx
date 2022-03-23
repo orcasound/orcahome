@@ -35,9 +35,11 @@ export const learn = () => {
         <li>Souther Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
-      <Container>
+      <Container maxWidth="xl">
         <Box>
-          <Typography variant="h1">Sounds Of The Salish Sea</Typography>
+          <Typography variant="h1" sx={{ fontSize: '44px' }}>
+            Sounds Of The Salish Sea
+          </Typography>
         </Box>
 
         <Box
@@ -45,7 +47,7 @@ export const learn = () => {
           height={84}
           sx={{ marginTop: '30px', marginBottom: '29px' }}
         >
-          <Typography variant="body1">
+          <Typography variant="body1" sx={{ fontSize: '20px' }}>
             Explore common sounds of the Salish Sea by selecting the animals and
             other objects in this anoramic soundscape of the inlandwaters of
             Washington State(USA) and British Columbia(Canada)
