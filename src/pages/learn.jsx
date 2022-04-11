@@ -26,29 +26,25 @@ export const learn = () => {
         scrollToId={`learn`}
       />
       <div id="learn" />
-      <ul className={learnStyles.hello}>
-        <li>Sounds of the Salish Sea</li>
-        <li>3 common calls</li>
-        <li>Souther Resident Killer Whale Call Catalog</li>
-        <li>Exhibits</li>
-      </ul>
-      <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
-      <p className={learnStyles.salishsea}>
-        Explore common sounds of the Salish Sea by selecting the animals and
-        other objects in this anoramic soundscape of the inlandwaters of
-        Washington State(USA) and British Columbia(Canada)
-      </p>
-      <div className={learnStyles.imageWrapper}>
+      <section aria-labelledby="salish" className={learnStyles.salishSection}>
+        <h1 id="salish" className={learnStyles.salishHeading}>
+          {' '}
+          Sounds Of The Salish Sea
+        </h1>
+        <p className={learnStyles.salishBodyText}>
+          Explore common sounds of the Salish Sea by selecting the animals and
+          other objects in this anoramic soundscape of the inlandwaters of
+          Washington State(USA) and British Columbia(Canada)
+        </p>
         <Image
-          className={learnStyles.salishseaimg}
+          className={learnStyles.salishImg}
           src={salishsea}
           alt="Sounds Of The Salish Sea"
-          width={800}
-          height={450}
-          layout="intrinsic"
-          quality={65}
+          height={700}
+          width={1300}
+          layout="responsive"
         />
-      </div>
+      </section>
       <div className={learnStyles.orca}>
         <Image
           src={roundorca}
