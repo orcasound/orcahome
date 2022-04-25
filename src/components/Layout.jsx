@@ -1,4 +1,8 @@
 import styles from '../styles/Layout.module.css'
+import UserReportAPILayer, {
+  UserReportContextConsumer,
+  UserReportContextProvider,
+} from './../contexts/UserReportAPILayer'
 import Footer from './Footer'
 import Nav from './Nav'
 
