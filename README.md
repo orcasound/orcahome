@@ -4,6 +4,7 @@
 [![Slack](https://img.shields.io/badge/slack-%23orcahome-blue.svg?logo=slack)](https://join.slack.com/t/orcasound/shared_invite/zt-bd1jk2q9-FjeWr3OzocDBwDgS0g1FdQ)
 [![License](https://img.shields.io/github/license/orcasound/orcahome)](https://github.com/orcasound/orcahome/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/orcasound/orcahome/blob/master/CONTRIBUTING.md)
+[![CI](https://github.com/orcasound/orcahome/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/orcasound/orcahome/actions/workflows/ci.yml)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
