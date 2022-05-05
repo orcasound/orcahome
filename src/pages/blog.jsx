@@ -1,29 +1,10 @@
-import KeyboardDoubleArrowDownRoundedIcon from '@mui/icons-material/KeyboardDoubleArrowDownRounded'
-import { Typography } from '@mui/material'
 import { styled } from '@mui/system'
+import Head from 'next/head'
 
 import frequency1 from '../../public/images/frequency.png'
+import BlogBanner from '../../public/images/srkw2-36.jpg'
 import BlogItem from '../components/BlogItem'
-import blogStyles from '../styles/blog.module.css'
-
-// TODO: replace CSS module with MUI styled()
-// should use next/image instead of backgroundImage
-// eslint-disable-next-line no-unused-vars
-const Banner = styled('div')({
-  // backgroundImage: "url('../../public/images/frequency.png')",
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
-  backgroundPosition: '50% 55%',
-})
-
-const Overlay = styled('div')({
-  height: '88vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  backgroundColor: 'rgba(5, 28, 90, 0.3)',
-})
+import TopBanner from '../components/TopBanner'
 
 const BlogItemList = styled('section')({
   display: 'flex',
@@ -53,24 +34,15 @@ const Blog = () => {
 
   return (
     <>
-      <div className={blogStyles.banner}>
-        <Overlay>
-          <Typography
-            variant="h1"
-            sx={{ fontSize: 160, color: '#fff', fontWeight: 450 }}
-          >
-            Blog
-          </Typography>
-          <KeyboardDoubleArrowDownRoundedIcon
-            sx={{
-              fontSize: 100,
-              color: '#fff',
-              position: 'absolute',
-              bottom: 1,
-            }}
-          />
-        </Overlay>
-      </div>
+      <Head>
+        <title>Orcasound</title>
+      </Head>
+      <TopBanner
+        bannerImg={BlogBanner}
+        pageTitle={`Blog`}
+        scrollToId={`blog`}
+      />
+      <div id="blog" />
       <BlogItemList>
         {data.map((item, id) => (
           <BlogItem

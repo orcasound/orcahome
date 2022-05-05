@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography'
-import { styled,spacing, createTheme, ThemeProvider } from '@mui/system';
+import { styled,spacing, createTheme, ThemeProvider, fontStyle } from '@mui/system';
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -36,27 +36,30 @@ export const index = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+      {/*
       <div sx={{
         position: 'relative',
         display: 'grid',
-        width: '2vw',
+        width: '100%',
         maxHeight:'fit-content'
       }} 
       position= 'relative' 
       display= 'grid' 
       width= '100%' 
       max-height= 'fit-content'
-      /*className={homeStyles.landing}*/
+      className={homeStyles.landing}
+    > */}
+      <Box
+      sx={{
+        position: 'relative',
+        display: 'grid',
+        width: '100%',
+        maxHeight:'fit-content',
+      }} 
+  
       >
 
-        <Image sx={{
-          width: '100%',
-          zIndex: 'tooltip' ,
-          position: 'relative',
-          display: 'grid',
-          maxHeight:'fit-content'
-        }} src={orcas} alt='orca background image'/>
+        <Image  src={orcas} alt='orca background image'/>
 
         <Box 
         sx={{
@@ -71,14 +74,11 @@ export const index = () => {
             sm:'visible'
           }
         }}
-        
         >
           <Image src={vector} alt='vector'/>
         </Box>
       
         <Box 
-
-
         sx={{
           zIndex: '2',
           display: 'flex',
@@ -113,8 +113,7 @@ export const index = () => {
             sx={{
               fontFamily: 'Mukta',
               fontSize: {
-                xs:'20px',
-                sm:'24px',
+                xs:'24px',
                 md:'44px'
               },
               color:'white',
@@ -148,8 +147,8 @@ export const index = () => {
             <Image src={arrow} width="30px" height="30px" alt='arrow down'/>
           </Box>
         </Box>
-      </div>
-
+     {/* </div> */}
+      </Box>
     
 
     <Box 

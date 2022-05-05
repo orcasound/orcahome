@@ -4,11 +4,12 @@ import ReactAudioPlayer from 'react-audio-player'
 
 import audio from '../../public/audio/frequency.mp3'
 import frequency1 from '../../public/images/frequency2.png'
-import orca from '../../public/images/orca2.png'
+import LearnBanner from '../../public/images/learn.jpg'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
+import TopBanner from '../components/TopBanner'
 import learnStyles from '../styles/Learn.module.css'
 
 export const learn = () => {
@@ -17,14 +18,14 @@ export const learn = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-      <Image
-        className={learnStyles.img}
-        alt="Learn"
-        src={orca}
-        width={1400}
-        height={500}
+
+      <TopBanner
+        bannerImg={LearnBanner}
+        pageTitle={`Learn`}
+        pageDesc={`You’ll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape. `}
+        scrollToId={`learn`}
       />
-      <h2 className={learnStyles.tex}>orcasound</h2>
+      <div id="learn" />
       <ul className={learnStyles.hello}>
         <li>Sounds of the Salish Sea</li>
         <li>3 common calls</li>

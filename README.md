@@ -1,3 +1,11 @@
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Forcahome.netlify.app)](https://orcahome.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a747055d-dd45-4de4-a666-57578ff6837b/deploy-status)](https://app.netlify.com/sites/orcahome/deploys)
+
+[![Slack](https://img.shields.io/badge/slack-%23orcahome-blue.svg?logo=slack)](https://join.slack.com/t/orcasound/shared_invite/zt-bd1jk2q9-FjeWr3OzocDBwDgS0g1FdQ)
+[![License](https://img.shields.io/github/license/orcasound/orcahome)](https://github.com/orcasound/orcahome/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/orcasound/orcahome/blob/master/CONTRIBUTING.md)
+[![CI](https://github.com/orcasound/orcahome/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/orcasound/orcahome/actions/workflows/ci.yml)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
