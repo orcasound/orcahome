@@ -5,14 +5,12 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import { createTheme} from '@mui/system'
 import Head from 'next/head'
 import Image from 'next/image'
 
 import arrow from '../../public/images/Arrow.png'
 import orcas from '../../public/images/homepage.png'
 import vector from '../../public/images/Vector.png'
-
 
 export const index = () => {
   return (
