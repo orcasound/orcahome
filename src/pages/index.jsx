@@ -167,14 +167,14 @@ export const index = () => {
             <br></br>
             </Typography>
             <Typography variant="body1" fontFamily={'Montserrat'} fontSize = '20px' fontWeight={'600'} lineHeight = '140%'>
-            Orcasound connects your headphones to live hydrophones (underwater
-            microphones), your ears to an ocean of sound.
+            {`Orcasound connects your headphones to live hydrophones (underwater
+            microphones), your ears to an ocean of sound.`}
             <br></br>
             <br></br>
-            Orcasound help us explore and conserve marine life around the globe,
+            {`Orcasound help us explore and conserve marine life around the globe,
             starting with studying and saving the southern resident killer
             whales of the Pacific Northwest. At Orcasound you can listen for
-            whales or learn more about marine bioacoustics.
+            whales or learn more about marine bioacoustics.`}
               </Typography>
         </Box>
 
@@ -185,8 +185,8 @@ export const index = () => {
             </Typography>
             <Typography variant="body" fontSize = '20px' fontWeight={'600'}>
               <br></br>
-                Orcasound is a cooperative hydrophne network and an
-                open-source software & hardware project.
+                {`Orcasound is a cooperative hydrophne network and an
+                open-source software & hardware project.`}
               </Typography>
         </Box>
 
@@ -207,10 +207,10 @@ export const index = () => {
 
           <Box component={Grid} item display={{ xs: "block", sm: "none" }} sx={{ml:2}}>
                 <Typography fontFamily = 'Montserrat' fontSize = '20px' fontWeight={'600'} mb={{ xs: 3 }} mt={{ xs: -5 }}>
-                  We Welcome your participation. If you'd like to host a
+                  {`We Welcome your participation. If you'd like to host a
                   hydrophone, do research or incorporate Orcasound into the
                   educational or research efforts of your organization , you
-                  can join us as a member of the network.
+                  can join us as a member of the network.`}
                 </Typography>
                 <Button variant="contained"
                   sx={{
@@ -259,16 +259,16 @@ export const index = () => {
               </Typography>
               <Typography variant="body" fontFamily = 'Montserrat' fontSize = '20px' fontWeight={'600'}>
                 <br></br>
-                  Orcasound is a cooperative hydrophne network and an
-                  open-source software & hardware project.
+                  {`Orcasound is a cooperative hydrophne network and an
+                  open-source software & hardware project.`}
                   <br></br>
                   <br></br>
                 </Typography>
                 <Typography fontFamily = 'Montserrat' fontSize = '20px' fontWeight={'600'} mb={5}>
-                  We Welcome your participation. If you'd like to host a
+                  {`We welcome your participation. If you'd like to host a
                   hydrophone, do research or incorporate Orcasound into the
                   educational or research efforts of your organization , you
-                  can join us as a member of the network.
+                  can join us as a member of the network.`}
                 </Typography>
                 <Button variant="contained"
                   sx={{
