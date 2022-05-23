@@ -23,20 +23,6 @@ export const index = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      {/*
-      <div sx={{
-        position: 'relative',
-        display: 'grid',
-        width: '100%',
-        maxHeight:'fit-content'
-      }} 
-      position= 'relative' 
-      display= 'grid' 
-      width= '100%' 
-      max-height= 'fit-content'
-      className={homeStyles.landing}
-    > */}
       <Box
         sx={{
           position: 'relative',
@@ -133,7 +119,6 @@ export const index = () => {
             <Image src={arrow} width="30px" height="30px" alt="arrow down" />
           </Box>
         </Box>
-        {/* </div> */}
       </Box>
 
       <Box
