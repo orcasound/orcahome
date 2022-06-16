@@ -111,3 +111,21 @@
   margin-left: 300px;
   padding: 5px 5px;
 }
+
+.salishSection {
+  padding: 3rem 6rem 0;
+}
+
+.salishHeading {
+  font-size: 44px;
+  margin: 0;
+}
+
+.salishBodyText {
+  font-size: 20px;
+}
+
+.salishImg {
+  width: 1300px;
+  height: 700px;
+}
