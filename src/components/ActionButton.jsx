@@ -13,11 +13,14 @@ const ActionButton = ({ link, text }) => {
         sx={(theme) => ({
           margin: '1rem',
           bgcolor: 'accents.accent1',
+          padding: '8px 24px 8px 24px',
           color: 'accents.contrastText',
-          width: '12rem',
           borderRadius: 40,
           ':hover': {
             bgcolor: 'accents.accent1',
+          },
+          [theme.breakpoints.down('sm')]: {
+            width: '300px',
           },
         })}
         size="small"
