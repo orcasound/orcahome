@@ -7,13 +7,10 @@ import { LastDetection } from '../components/LastDetection'
 interface UserReport {
   date: number | string
   setDate: Dispatch<SetStateAction<number | string>>
-  time: number | string
-  setTime: Dispatch<SetStateAction<number | string>>
 }
 
 export const UserReportAPILayer = (props: UserReport): JSX.Element => {
   const [date, setDate]: any = useState('')
-  const [time, setTime] = useState('')
 
   useEffect(() => {
     const detectionQuery: string = gql`
@@ -46,22 +43,14 @@ export const UserReportAPILayer = (props: UserReport): JSX.Element => {
       //Reformatting of time data for LastDetection component
       //Array time data
       const dateIsolate = data.detections.entries[0].timestamp
-      //stringTimeStamp = stringified time data
-      const stringTimestamp = JSON.stringify(
-        data.detections.entries[0].timestamp
-      )
       const replaceChars: string = dateIsolate
         .replace('Z', '')
         .replace('T', '-')
         .replace('/-/g', '/')
-      const dateTimeSeparate: string = String(replaceChars.split(''))
       const splitChars: any = replaceChars.split('-')
       const splitHrMinSec: any = String(splitChars[3]).split(':')
 
       setDate(splitChars[1] + '-' + splitChars[2] + '-' + splitChars[0])
-      setTime(
-        splitHrMinSec[0] + ':' + splitHrMinSec[1] + ':' + splitHrMinSec[1]
-      )
     })
   }, [])
   return (

@@ -17,11 +17,11 @@ export const LastDetection = (props: dateProps): JSX.Element => {
       <Button variant="contained">
         {dateDiff < 8.64e7
           ? hoursDiff > 1
-            ? hoursDiff + ' ' + 'Hours'
-            : '< 1' + ' ' + 'Hour'
+            ? `${hoursDiff} Hours`
+            : `< 1 Hour `
           : dayDiff === 1
-          ? dayDiff + ' ' + 'Day'
-          : dayDiff + ' ' + 'Days'}{' '}
+          ? `${dayDiff} Day`
+          : `${dayDiff} days`}
         since activity
       </Button>
     </>
