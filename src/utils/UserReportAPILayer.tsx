@@ -48,8 +48,6 @@ export const UserReportAPILayer = (props: UserReport): JSX.Element => {
         .replace('T', '-')
         .replace('/-/g', '/')
       const splitChars: any = replaceChars.split('-')
-      const splitHrMinSec: any = String(splitChars[3]).split(':')
-
       setDate(splitChars[1] + '-' + splitChars[2] + '-' + splitChars[0])
     })
   }, [])
