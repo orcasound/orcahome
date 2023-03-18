@@ -1,3 +1,6 @@
+import { Box } from '@mui/material'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -25,30 +28,47 @@ export const learn = () => {
         pageDesc={`You’ll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape. `}
         scrollToId={`learn`}
       />
+      <Box m={3} id="learn">
+        <Container>
+          <ul className={learnStyles.hello}>
+            <li>Sounds of the Salish Sea</li>
+            <li>3 common calls</li>
+            <li>Souther Resident Killer Whale Call Catalog</li>
+            <li>Exhibits</li>
+          </ul>
+          <Typography
+            variant="h1"
+            fontFamily={'Mukta'}
+            fontSize="34px"
+            fontWeight={'600'}
+            mb={{ xs: 3, sm: 4 }}
+            mt={{ xs: 3 }}
+          >
+            Sounds of the Salish Sea
+            <br></br>
+          </Typography>
+          <Typography
+            variant="body1"
+            textAlign="justify"
+            width={{ md: '100%', xl: '70%', lg: '70%' }}
+            sx={{ marginBottom: '20px' }}
+          >
+            {`Explore common sounds of the Salish Sea by selecting the animals and
+            other objects in this anoramic soundscape of the inlandwaters of
+            Washington State(USA) and British Columbia(Canada)`}
+          </Typography>
+          <Image
+            alt="Sounds Of The Salish Sea"
+            src={salishsea}
+            sx={{ objectFit: 'contain' }}
+            width={1300}
+            height={700}
+            layout="intrinsic"
+            quality={65}
+          />
+        </Container>
+      </Box>
       <div id="learn" />
-      <ul className={learnStyles.hello}>
-        <li>Sounds of the Salish Sea</li>
-        <li>3 common calls</li>
-        <li>Souther Resident Killer Whale Call Catalog</li>
-        <li>Exhibits</li>
-      </ul>
-      <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
-      <p className={learnStyles.salishsea}>
-        Explore common sounds of the Salish Sea by selecting the animals and
-        other objects in this anoramic soundscape of the inlandwaters of
-        Washington State(USA) and British Columbia(Canada)
-      </p>
-      <div className={learnStyles.imageWrapper}>
-        <Image
-          className={learnStyles.salishseaimg}
-          src={salishsea}
-          alt="Sounds Of The Salish Sea"
-          width={800}
-          height={450}
-          layout="intrinsic"
-          quality={65}
-        />
-      </div>
       <div className={learnStyles.orca}>
         <Image
           src={roundorca}
