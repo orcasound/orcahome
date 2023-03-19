@@ -16,7 +16,7 @@
 }
 
 .hello {
-  margin: 50px 10px;
+  margin: 50px 0px;
   text-align: left;
 }
 .imageWrapper {
@@ -52,6 +52,11 @@
   float: right;
   background-color: rgba(190, 255, 246, 0.76);
 }
+
+.player {
+  width: -webkit-fill-available;
+}
+
 .gallery2 {
   float: left;
   background-color: rgba(190, 255, 246, 0.76);
