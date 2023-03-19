@@ -110,6 +110,7 @@ export const learn = () => {
                 />
               </Box>
             </Box>
+            {/* card 1 */}
             <Box
               display={{ lg: 'flex', sm: 'flex', md: 'flex-direction: row' }}
               position={'relative'}
@@ -150,6 +151,7 @@ export const learn = () => {
                   pb={{ xs: '2rem', sm: '0rem' }}
                 >{`Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem praesentium, ducimus eaque adipisci quam placeat perspiciatis! Est deserunt quasi, ad inventore consequuntur beatae maxime! In exercitationem debitis corporis iusto sequi.`}</Typography>
               </Box>
+              {/* card 2 */}
               <Box
                 pl={{ sm: '20px' }}
                 position={{ lg: 'absolute', sm: 'absolute', md: 'absolute' }}
@@ -191,6 +193,7 @@ export const learn = () => {
                 >{`Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem praesentium, ducimus eaque adipisci quam placeat perspiciatis! Est deserunt quasi, ad inventore consequuntur beatae maxime! In exercitationem debitis corporis iusto sequi.`}</Typography>
               </Box>
             </Box>
+            {/* card 3 */}
             <Box
               pl={{ sm: '20px' }}
               maxWidth={{ md: 'fit-content' }}
