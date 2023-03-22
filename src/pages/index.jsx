@@ -25,8 +25,6 @@ export const index = () => {
       </Head>
       <Box
         sx={{
-          position: 'relative',
-          display: 'grid',
           width: '100%',
           maxHeight: 'fit-content',
         }}
@@ -36,45 +34,44 @@ export const index = () => {
         <Box
           sx={{
             zIndex: '2',
-            alignItems: 'center',
-            padding: '20px',
-            transform: 'translateY(-110%)',
-            marginLeft: '50%',
-            width: '10%',
+            transform: 'translateY(-170%)',
             visibility: {
               xs: 'hidden',
               sm: 'visible',
             },
+            display: 'flex',
+            justifyContent: 'center',
           }}
         >
-          <Image src={vector} alt="vector" />
+          <Box>
+            <Image src={vector} alt="vector" width={40} height={40} />
+          </Box>
         </Box>
 
         <Box
           sx={{
             zIndex: '2',
             display: 'flex',
-            flexDirection: 'row',
             backgroundColor: '#000000',
-            position: 'relative',
             borderRadius: '20px',
             mx: {
-              xs: '20%',
-              sm: 'auto',
+              xs: 'auto',
+            },
+            px: {
+              xs: '15px',
             },
             transform: {
-              xs: 'translateY(-250%)',
-              sm: 'translateY(-350%)',
-              md: 'translateY(-500%)',
+              xs: 'translateY(-350%)',
+              sm: 'translateY(-500%)',
             },
             alignItems: 'center',
             justifyItems: 'center',
+            justifyContent: 'center',
             width: {
-              xs: '60vw',
-              sm: 'fit-content',
+              xs: 'fit-content',
             },
             height: {
-              xs: '10vh',
+              xs: '20vh',
               md: '5rem',
             },
           }}
@@ -85,18 +82,10 @@ export const index = () => {
               fontFamily: 'Mukta',
               fontSize: {
                 xs: '24px',
-                md: '44px',
+                md: '40px',
               },
               color: 'white',
               fontStyle: 'normal',
-              lineHeight: '100%',
-              p: {
-                xs: '25px 10px 27px 48px',
-                sm: '0px 27px 27px 48px',
-                md: '27px 10px 29px 33px',
-              },
-              position: 'relative',
-              textAlign: 'center',
               fontWeight: {
                 xs: '500',
                 sm: '600',
@@ -111,12 +100,22 @@ export const index = () => {
               position: 'relative',
               top: '35%',
               right: '2px',
-              width: '30px',
-              pr: '4px',
-              transform: 'translateY(-80%)',
+              width: {
+                xs: '20px',
+                md: '30px',
+              },
+              height: {
+                xs: '20px',
+                md: '30px',
+              },
+              transform: {
+                xs: 'translateY(-95%)',
+                md: 'translateY(-85%)',
+              },
+              marginLeft: '15px',
             }}
           >
-            <Image src={arrow} width="30px" height="30px" alt="arrow down" />
+            <Image src={arrow} width="100%" height="100%" alt="arrow down" />
           </Box>
         </Box>
       </Box>
@@ -133,7 +132,17 @@ export const index = () => {
         <Box
           component={Grid}
           item
-          sx={{ ml: 2, mt: { xs: -18, sm: -15 }, mb: { xs: 3, sm: 8 } }}
+          sx={{
+            ml: 2,
+            mt: {
+              xs: -18,
+              sm: -15,
+            },
+            mb: {
+              xs: 3,
+              sm: 8,
+            },
+          }}
         >
           <Typography
             variant="h1"
@@ -142,7 +151,7 @@ export const index = () => {
             fontWeight={'600'}
             mb={{ xs: 3, sm: 4 }}
             mr={{ xs: 10 }}
-            mt={{ xs: 3 }}
+            mt={{ xs: 6, md: 3 }}
           >
             What is Orcasound
             <br></br>
@@ -165,7 +174,7 @@ export const index = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={5} sx={{}}>
+        <Grid container spacing={5} mb={4}>
           <Box
             component={Grid}
             item
@@ -282,12 +291,16 @@ export const index = () => {
             item
             sm={6}
             display={{ xs: 'none', sm: 'block' }}
+            sx={{}}
           >
             <Typography
               variant="h1"
               fontFamily={'Mukta'}
               fontSize="44px"
               fontWeight={'600'}
+              sx={{
+                marginTop: '10%',
+              }}
             >
               Hydrophone Location
             </Typography>
@@ -362,16 +375,6 @@ export const index = () => {
             </Button>
           </Box>
         </Grid>
-
-        {/* Netlify badge for open source plan https://www.netlify.com/legal/open-source-policy */}
-        <a href="https://netlify.com">
-          <Image
-            src="https://netlify.com/img/global/badges/netlify-color-accent.svg"
-            alt="Deploys by Netlify"
-            width="114"
-            height="51"
-          />
-        </a>
       </Box>
     </>
   )
