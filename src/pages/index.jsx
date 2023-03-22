@@ -299,7 +299,11 @@ export const index = () => {
               fontSize="44px"
               fontWeight={'600'}
               sx={{
-                marginTop: '10%',
+                // marginTop: '10%',
+                marginTop: {
+                  lg: '10%',
+                  md: '0',
+                },
               }}
             >
               Hydrophone Location
