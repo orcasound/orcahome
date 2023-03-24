@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -18,7 +20,6 @@ export const learn = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-
       <TopBanner
         bannerImg={LearnBanner}
         pageTitle={`Learn`}
@@ -113,6 +114,36 @@ export const learn = () => {
           educational organizations in the Pudget Sound regions`}
         </p>
       </div>
+
+      <div className={learnStyles.callCatalog}>
+        <h1>Southern Resident Killer Whale Call Catalog</h1>
+        <p>
+          Now that you’ve familiarized youself with the 3 most common calls,
+          dive in to the call catalog to learn the vocalizations you will hear
+          when listening to the livestreaming hydrophones during orca events.
+        </p>
+        <Box
+          sx={{
+            display: 'grid',
+            gap: 1,
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            borderRadius: '33px',
+            bgcolor: '#ffff',
+            mb: '10px',
+          }}
+        >
+          <h1>1</h1>
+          <h1>2</h1>
+          <h1>3</h1>
+          <h1>4</h1>
+          <h1>5</h1>
+          <h1>6</h1>
+        </Box>
+        <Button variant="contained" sx={{ borderRadius: '30px' }}>
+          Access Call Catalog
+        </Button>
+      </div>
+
       <div className={learnStyles.org}>
         <Image src={organization1} alt="Seattle aquarium exhibit" />
         <a href="https://killerwhaletales.org/">

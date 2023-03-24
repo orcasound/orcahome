@@ -102,6 +102,17 @@
   text-align: left;
 }
 
+.callCatalog {
+  background-color: #090f2e;
+  color: white;
+  text-align: center;
+  padding: 30px 100px;
+}
+
+.callCatalog p {
+  text-align: left;
+}
+
 .org {
   width: 100%;
   height: auto;
