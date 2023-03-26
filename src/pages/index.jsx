@@ -349,7 +349,7 @@ export const index = () => {
                 },
               }}
             >
-              {' '}
+              {/* {' '} */}
               GET INVOLVED
             </Button>
           </Box>
