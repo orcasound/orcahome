@@ -1,5 +1,7 @@
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -9,6 +11,7 @@ import frequency1 from '../../public/images/frequency2.png'
 import LearnBanner from '../../public/images/learn.jpg'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
+import OrcaSound from '../../public/images/learn/orcasound.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import TopBanner from '../components/TopBanner'
@@ -116,32 +119,45 @@ export const learn = () => {
       </div>
 
       <div className={learnStyles.callCatalog}>
-        <h1>Southern Resident Killer Whale Call Catalog</h1>
-        <p>
+        <Typography variant="h1" fontSize="44px" align="left" my={5}>
+          Southern Resident Killer Whale Call Catalog
+        </Typography>
+        <Typography variant="p" fontSize="20px" align="left">
           Now that you’ve familiarized youself with the 3 most common calls,
           dive in to the call catalog to learn the vocalizations you will hear
           when listening to the livestreaming hydrophones during orca events.
-        </p>
+        </Typography>
         <Box
           sx={{
-            display: 'grid',
-            gap: 1,
-            gridTemplateColumns: 'repeat(3, 1fr)',
             borderRadius: '33px',
             bgcolor: '#ffff',
-            mb: '10px',
+            my: '50px',
+            p: '50px',
+            textAlign: 'center',
           }}
         >
-          <h1>1</h1>
-          <h1>2</h1>
-          <h1>3</h1>
-          <h1>4</h1>
-          <h1>5</h1>
-          <h1>6</h1>
+          <Grid
+            container
+            spacing={{ xs: 2, md: 12 }}
+            columns={{ xs: 4, sm: 8, md: 12 }}
+          >
+            {Array.from(Array(6)).map((_, index) => (
+              <Grid item xs={2} sm={4} md={4} key={index}>
+                <Image src={OrcaSound} alt="Orca Call" />
+              </Grid>
+            ))}
+          </Grid>
+
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: '30px',
+              mt: 10,
+            }}
+          >
+            Access Call Catalog
+          </Button>
         </Box>
-        <Button variant="contained" sx={{ borderRadius: '30px' }}>
-          Access Call Catalog
-        </Button>
       </div>
 
       <div className={learnStyles.org}>

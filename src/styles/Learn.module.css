@@ -105,12 +105,8 @@
 .callCatalog {
   background-color: #090f2e;
   color: white;
-  text-align: center;
-  padding: 30px 100px;
-}
-
-.callCatalog p {
-  text-align: left;
+  padding: 40px 100px;
+  margin: 300px 0;
 }
 
 .org {
