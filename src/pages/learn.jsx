@@ -119,7 +119,7 @@ export const learn = () => {
       </div>
 
       <div className={learnStyles.callCatalog}>
-        <Typography variant="h1" fontSize="44px" align="left" my={5}>
+        <Typography variant="h1" fontSize="44px" align="left" mt={5} mb={3}>
           Southern Resident Killer Whale Call Catalog
         </Typography>
         <Typography variant="p" fontSize="20px" align="left">
@@ -132,7 +132,8 @@ export const learn = () => {
             borderRadius: '33px',
             bgcolor: '#ffff',
             my: '50px',
-            p: '50px',
+            py: '50px',
+            px: '90px',
             textAlign: 'center',
           }}
         >
@@ -153,6 +154,8 @@ export const learn = () => {
             sx={{
               borderRadius: '30px',
               mt: 10,
+              py: 2,
+              px: 5,
             }}
           >
             Access Call Catalog
