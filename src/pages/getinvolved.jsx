@@ -244,13 +244,33 @@ export const GetInvolved = () => {
           align="justify"
         >
           If you’re based in the Pacific Northwest, you can work with Orcasound
-          in-person at a hackathon (see the Orcasound project at DemocracyLab).
-          No matter where you are, you can join the Orcasound Slack, check out
-          our Github repositories and Trello boards, subscribe to the Orcasound
-          dev email distribution list, and find a place to contribute your
-          talents. We hope you will share your expertise and innovations with
-          us, and maybe even earn your way into the Orcasound Hacker Hall of
-          Fame!
+          in-person at a hackathon (see the{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound project at DemocracyLab
+          </Typography>
+          {''}). No matter where you are, you can join the{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound Slack
+          </Typography>
+          {''}, check out our{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Github repositories
+          </Typography>
+          {''} and{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Trello boards
+          </Typography>
+          {''}, subscribe to the{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound dev email distribution list
+          </Typography>
+          {''}, and find a place to contribute your talents. We hope you will
+          share your expertise and innovations with us, and maybe even earn your
+          way into the{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound Hacker Hall of Fame!
+          </Typography>
+          {''}
         </Typography>
         <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
       </Box>
@@ -313,7 +333,7 @@ export const GetInvolved = () => {
           <Link color="#1B2B7B" href="mailto:info@orcasound.net">
             info@orcasound.net
           </Link>
-          {''} to begin collaborating.There are no membership fees-- just
+          {''} to begin collaborating. There are no membership fees-- just
           benefits roles and responsibilities.
         </Typography>
       </Box>
@@ -342,11 +362,14 @@ export const GetInvolved = () => {
           paragraph={true}
           align="justify"
         >
-          Help us and our Orcasound network members by making charitable
-          contribution to our partners, many of whom are 501(c)3 organizations
-          Check out the link below to help strengthen and grow our network,
-          while supporting our on-going conservation, research, and educational
-          efforts.
+          Help us and our{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound network members
+          </Typography>
+          {''} by making charitable contribution to our partners, many of whom
+          are 501(c)3 organizations Check out the link below to help strengthen
+          and grow our network, while supporting our on-going conservation,
+          research, and educational efforts.
         </Typography>
         <Typography
           variant="p"
