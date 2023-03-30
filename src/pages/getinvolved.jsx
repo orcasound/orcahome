@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Container, Button } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -209,27 +209,52 @@ export const GetInvolved = () => {
         <TechStackList />
       </Box>
 
-      <div className={getinvolvedStyles.wrapper}>
-        <Image
-          className={getinvolvedStyles.hackathon}
-          src={roadmap}
-          alt="Current Roadmap"
-        />
-        <br></br>
-      </div>
-      <p className={getinvolvedStyles.textroadmap}>
-        {`If you're based in the Pacific Northwest you can work with Orcasound
-        in-person at a hackathon (see the Orcasound projects at democracy lab)
-        No matter where you are, you can join Orcasound Slack, check out our
-        Github repository and Trello boards, subscribe to the Orcasound dev
-        email distribution list, and finish a place to contribute your
-        talents. We hope you will share your expertise and innovations with
-        us, and maybe even earn your way into the Orcasound HacHacker hall of
-        Fame`}
-      </p>
-      <div className={getinvolvedStyles.button}>
+      <Container maxWidth="md">
+        <Box sx={{ lineHeight: 1.3 }}>
+          <Image src={roadmap} alt="Current Roadmap" />
+          <Typography
+            variant="p"
+            fontSize="16px"
+            align="justify"
+            paragraph={true}
+            mt="10px"
+          >
+            From hydrophone to headphone, this is how we intend to deliver an
+            ocean of sound! 2020 Roadmap: components above the gray dashed line
+            launched November 1, 2018; green features are being beta-tested
+            since November 2019; red features are in development or requested.
+            Click to view expanded image.
+          </Typography>
+        </Box>
+      </Container>
+
+      <Box
+        sx={{
+          py: '50px',
+          px: '50px',
+          textAlign: 'center',
+          lineHeight: 1.8,
+          letterSpacing: 0.2,
+        }}
+      >
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you’re based in the Pacific Northwest, you can work with Orcasound
+          in-person at a hackathon (see the Orcasound project at DemocracyLab).
+          No matter where you are, you can join the Orcasound Slack, check out
+          our Github repositories and Trello boards, subscribe to the Orcasound
+          dev email distribution list, and find a place to contribute your
+          talents. We hope you will share your expertise and innovations with
+          us, and maybe even earn your way into the Orcasound Hacker Hall of
+          Fame!
+        </Typography>
         <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
-      </div>
+      </Box>
+
       <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
       <p className={getinvolvedStyles.textmemorandum}>
         {`The real time audio streams, citizen science projects, educational
