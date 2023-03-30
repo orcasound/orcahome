@@ -1,4 +1,4 @@
-import { Box, Typography, Container } from '@mui/material'
+import { Box, Typography, Container, Link } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -279,11 +279,16 @@ export const GetInvolved = () => {
         >
           The real time audio streams, citizen science projects, educational
           material and outreach projects of Orcasound are brought to you by the
-          current network member, listed below who have e-signed the 2016-2020
-          Memorandum of Agreements(MOA). Any organization or individual is
-          welcome to join the network(for free!)either as the host of an
-          hydrophone node, a researcher or citizen scientist an
-          educator/activist or general volunteer.
+          current network member, listed below who have e-signed the {''}
+          <Link
+            color="#1B2B7B"
+            href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit#heading=h.3w043898gdia"
+          >
+            2016-2020 Memorandum of Agreements(MOA)
+          </Link>
+          . Any organization or individual is welcome to join the network(for
+          free!)either as the host of an hydrophone node, a researcher or
+          citizen scientist an educator/activist or general volunteer.
         </Typography>
         <Typography
           variant="p"
@@ -304,8 +309,12 @@ export const GetInvolved = () => {
           If you are an organization wanting to join the network as the host of
           a new hydrophone node, an educational/outreacg node, or both -- just
           read the history, mission and vision of the netowrk e-sign the MOA and
-          then email info@orcasound.net to begin collaborating.There are no
-          membership fees-- just benefits roles and responsibilities.
+          then email{' '}
+          <Link color="#1B2B7B" href="mailto:info@orcasound.net">
+            info@orcasound.net
+          </Link>
+          {''} to begin collaborating.There are no membership fees-- just
+          benefits roles and responsibilities.
         </Typography>
       </Box>
 
