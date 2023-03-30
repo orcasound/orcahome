@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Button } from '@mui/material'
+import { Box, Typography, Container } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -234,7 +234,7 @@ export const GetInvolved = () => {
           px: '50px',
           textAlign: 'center',
           lineHeight: 1.8,
-          letterSpacing: 0.2,
+          letterSpacing: 0.02,
         }}
       >
         <Typography
@@ -255,45 +255,103 @@ export const GetInvolved = () => {
         <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
       </Box>
 
-      <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
-      <p className={getinvolvedStyles.textmemorandum}>
-        {`The real time audio streams, citizen science projects, educational
-        material and outreach projects of Orcasound are brought to you by the
-        current network member, listed below who have e-signed the 2016-2020
-        Memorandum of Agreements(MOA)Any organization or individual is welcome
-        to join the network(for free!)either as the host of an hydrophone
-        node, a researcher or citizen scientist an educator/activist or
-        general volunteer.`}
-        <br></br>
-        {`If you are an individual wanting to volunteer , collaborate or donate,
-        check out the many ways you can support Orcasound.Everyone can listen
-        for whales, and learn the diverse sounds of Salish Sea.`}
-        <br></br>
-        {`If you are an organization wanting to join the network as the host of
-        a new hydrophone node, an educational/outreacg node, or both -- just
-        read the history, mission and vision of the netowrk e-sign the MOA and
-        then email info@orcasound.net to begin collaborating.There are no
-        membership fees-- just benefits roles and responsibilities.`}
-      </p>
-      <h2 className={getinvolvedStyles.donate} id="donate">
-        {' '}
-        Donate
-      </h2>
-      <p className={getinvolvedStyles.donatetext}>
-        {`Help us and our Orcasound network members by making charitable
-        contribution to our partners, many of whom are 501(c)3 organizations
-        Check out the link below to help strengthen and grow our network,
-        while supporting our on-going conservation, research, and educational
-        efforts.`}
-        <br></br>
-        {`You can also directly support the many dedicated volunteers who help
-        Orcasound keep running and improve over time. Take a look at our
-        'Hacker hall of fame ' and our Github repositories and consider
-        sponsoring the work of our most-dedicated contributors.`}
-      </p>
-      <div className={getinvolvedStyles.button}>
+      <Box
+        sx={{
+          py: '50px',
+          px: '50px',
+          lineHeight: 1.8,
+          letterSpacing: 0.02,
+        }}
+      >
+        <Typography
+          variant="subtitle1"
+          fontSize="44px"
+          align="left"
+          fontWeight="600"
+        >
+          Memorandum Of Agreements
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          The real time audio streams, citizen science projects, educational
+          material and outreach projects of Orcasound are brought to you by the
+          current network member, listed below who have e-signed the 2016-2020
+          Memorandum of Agreements(MOA)Any organization or individual is welcome
+          to join the network(for free!)either as the host of an hydrophone
+          node, a researcher or citizen scientist an educator/activist or
+          general volunteer.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you are an individual wanting to volunteer , collaborate or donate,
+          check out the many ways you can support Orcasound.Everyone can listen
+          for whales, and learn the diverse sounds of Salish Sea.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you are an organization wanting to join the network as the host of
+          a new hydrophone node, an educational/outreacg node, or both -- just
+          read the history, mission and vision of the netowrk e-sign the MOA and
+          then email info@orcasound.net to begin collaborating.There are no
+          membership fees-- just benefits roles and responsibilities.
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          py: '50px',
+          px: '50px',
+          lineHeight: 1.8,
+          letterSpacing: 0.02,
+          textAlign: 'center',
+        }}
+      >
+        <Typography
+          variant="subtitle1"
+          fontSize="44px"
+          align="left"
+          fontWeight="600"
+        >
+          Donate
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          Help us and our Orcasound network members by making charitable
+          contribution to our partners, many of whom are 501(c)3 organizations
+          Check out the link below to help strengthen and grow our network,
+          while supporting our on-going conservation, research, and educational
+          efforts.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          You can also directly support the many dedicated volunteers who help
+          Orcasound keep running and improve over time. Take a look at our
+          Hacker hall of fame and our Github repositories and consider
+          sponsoring the work of our most-dedicated contributors.
+        </Typography>
         <ActionButton link="" text="DONATE NOW" />
-      </div>
+      </Box>
+
       <div className={getinvolvedStyles.logos}>
         <Image src={logo1} alt="The Whaletrail" />
         <Image src={logo2} alt="Friends of Lime Kiln Society" />
