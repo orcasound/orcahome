@@ -280,10 +280,10 @@ export const GetInvolved = () => {
           The real time audio streams, citizen science projects, educational
           material and outreach projects of Orcasound are brought to you by the
           current network member, listed below who have e-signed the 2016-2020
-          Memorandum of Agreements(MOA)Any organization or individual is welcome
-          to join the network(for free!)either as the host of an hydrophone
-          node, a researcher or citizen scientist an educator/activist or
-          general volunteer.
+          Memorandum of Agreements(MOA). Any organization or individual is
+          welcome to join the network(for free!)either as the host of an
+          hydrophone node, a researcher or citizen scientist an
+          educator/activist or general volunteer.
         </Typography>
         <Typography
           variant="p"
@@ -310,6 +310,7 @@ export const GetInvolved = () => {
       </Box>
 
       <Box
+        id="donate"
         sx={{
           py: '50px',
           px: '50px',
