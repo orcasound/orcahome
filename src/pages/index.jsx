@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import { textAlign } from '@mui/system'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -226,7 +227,9 @@ export const index = () => {
             component={Grid}
             item
             display={{ xs: 'block', sm: 'none' }}
-            sx={{ ml: 2 }}
+            sx={{
+              ml: 2,
+            }}
           >
             <Typography
               fontFamily="Montserrat"
@@ -241,52 +244,57 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-            <Button
-              variant="contained"
+
+            <Box
               sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
-                  backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
+                textAlign: 'center',
               }}
             >
-              {' '}
-              LEARN
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
-              }}
-            >
-              {' '}
-              GET INVOLVED
-            </Button>
+                  alignContent: 'center',
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                LEARN
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: '#1B2B7B',
+                  alignContent: 'center',
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                GET INVOLVED
+              </Button>
+            </Box>
           </Box>
 
           <Box
