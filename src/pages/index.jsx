@@ -244,57 +244,58 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-
-            <Box
+          </Box>
+          <Box
+            display={{ xs: 'block', sm: 'none' }}
+            sx={{
+              width: '100%',
+              textAlign: 'center',
+            }}
+          >
+            <Button
+              variant="contained"
               sx={{
-                textAlign: 'center',
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
+                  backgroundColor: '#1B2B7B',
+                  color: 'white',
+                },
               }}
             >
-              <Button
-                variant="contained"
-                sx={{
+              {' '}
+              LEARN
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
                   backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                LEARN
-              </Button>
-              <Button
-                variant="contained"
-                sx={{
-                  backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                GET INVOLVED
-              </Button>
-            </Box>
+                  color: 'white',
+                },
+              }}
+            >
+              {' '}
+              GET INVOLVED
+            </Button>
           </Box>
 
           <Box
