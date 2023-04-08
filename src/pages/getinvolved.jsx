@@ -2,6 +2,7 @@ import { Box, Typography, Container, Link } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
+import Zoom from "next-image-zoom";
 import { Link as ScrollElement } from 'react-scroll'
 
 import logo3 from '../../public/images/getinvolved/ccollege.png'
@@ -223,14 +224,13 @@ export const GetInvolved = () => {
           >
             Current Roadmap
           </Typography>
-          <Image src={roadmap} alt="Current Roadmap"/>
+          <Zoom src={roadmap} layout={"responsive"} />
           <Typography
             variant="p"
             fontSize="16px"
             align="justify"
             paragraph={true}
             mt="40px"
-            width="800px"
             lineHeight= "19.5px"
             
             
