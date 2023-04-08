@@ -210,14 +210,30 @@ export const GetInvolved = () => {
       </Box>
 
       <Container maxWidth="md">
-        <Box sx={{ lineHeight: 1.3 }}>
-          <Image src={roadmap} alt="Current Roadmap" />
+        <Box >
+        <Typography
+            variant="p"
+            fontSize="30px"
+            align="justify"
+            paragraph={true}
+            my="40px"
+            textAlign= 'center'
+            lineHeight= "30px"
+            
+          >
+            Current Roadmap
+          </Typography>
+          <Image src={roadmap} alt="Current Roadmap"/>
           <Typography
             variant="p"
             fontSize="16px"
             align="justify"
             paragraph={true}
-            mt="10px"
+            mt="40px"
+            width="800px"
+            lineHeight= "19.5px"
+            
+            
           >
             From hydrophone to headphone, this is how we intend to deliver an
             ocean of sound! 2020 Roadmap: components above the gray dashed line
@@ -233,8 +249,7 @@ export const GetInvolved = () => {
           py: '50px',
           px: '50px',
           textAlign: 'center',
-          lineHeight: 1.8,
-          letterSpacing: 0.02,
+          lineHeight:"28px"
         }}
       >
         <Typography
@@ -279,8 +294,7 @@ export const GetInvolved = () => {
         sx={{
           py: '50px',
           px: '50px',
-          lineHeight: 1.8,
-          letterSpacing: 0.02,
+          lineHeight:"28px"
         }}
       >
         <Typography
@@ -296,6 +310,7 @@ export const GetInvolved = () => {
           fontSize="20px"
           paragraph={true}
           align="justify"
+          
         >
           The real time audio streams, citizen science projects, educational
           material and outreach projects of Orcasound are brought to you by the
@@ -346,6 +361,7 @@ export const GetInvolved = () => {
           lineHeight: 1.8,
           letterSpacing: 0.02,
           textAlign: 'center',
+          lineHeight:"28px"
         }}
       >
         <Typography
