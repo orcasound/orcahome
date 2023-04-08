@@ -260,34 +260,34 @@ export const GetInvolved = () => {
         >
           If you’re based in the Pacific Northwest, you can work with Orcasound
           in-person at a hackathon (see the{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Orcasound project at DemocracyLab
-          </Typography>
+          <Link href="https://www.democracylab.org/projects/81" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Orcasound project at DemocracyLab
+          </Link>
           {''}). No matter where you are, you can join the{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Orcasound Slack
-          </Typography>
+          <Link href="https://orcasound.slack.com/" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Orcasound Slack
+          </Link>
           {''}, check out our{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Github repositories
-          </Typography>
+          <Link href="https://github.com/orgs/orcasound/repositories" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Github repositories
+          </Link>
           {''} and{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Trello boards
-          </Typography>
+          <Link href="https://trello.com/w/hydrophonenetwork/home" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Trello boards
+          </Link>
           {''}, subscribe to the{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Orcasound dev email distribution list
-          </Typography>
+          <Link href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Orcasound dev email distribution list
+          </Link>
           {''}, and find a place to contribute your talents. We hope you will
           share your expertise and innovations with us, and maybe even earn your
           way into the{' '}
-          <Typography variant="soft" color="#1B2B7B">
-            Orcasound Hacker Hall of Fame!
-          </Typography>
+          <Link href="https://www.orcasound.net/hacker-hall-of-fame/" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          Orcasound Hacker Hall of Fame!
+          </Link>
           {''}
         </Typography>
-        <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
+        <ActionButton link="https://www.orcasound.net/support/" text="LEARN MORE ABOUT VOLUNTEERING!" />
       </Box>
 
       <Box
@@ -317,12 +317,12 @@ export const GetInvolved = () => {
           current network member, listed below who have e-signed the {''}
           <Link
             color="#1B2B7B"
-            href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit#heading=h.3w043898gdia"
+            href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
           >
             2016-2020 Memorandum of Agreements(MOA)
           </Link>
-          . Any organization or individual is welcome to join the network(for
-          free!)either as the host of an hydrophone node, a researcher or
+          . Any organization or individual is welcome to join the network (for
+          free!) either as the host of an hydrophone node, a researcher or
           citizen scientist an educator/activist or general volunteer.
         </Typography>
         <Typography
@@ -332,7 +332,7 @@ export const GetInvolved = () => {
           align="justify"
         >
           If you are an individual wanting to volunteer , collaborate or donate,
-          check out the many ways you can support Orcasound.Everyone can listen
+          check out the many ways you can support Orcasound. Everyone can listen
           for whales, and learn the diverse sounds of Salish Sea.
         </Typography>
         <Typography
@@ -342,10 +342,10 @@ export const GetInvolved = () => {
           align="justify"
         >
           If you are an organization wanting to join the network as the host of
-          a new hydrophone node, an educational/outreacg node, or both -- just
-          read the history, mission and vision of the netowrk e-sign the MOA and
+          a new hydrophone node, an educational/outreach node, or both -- just
+          read the history, mission and vision of the network e-sign the MOA and
           then email{' '}
-          <Link color="#1B2B7B" href="mailto:info@orcasound.net">
+          <Link href="mailto:info@orcasound.net" style={{textDecoration: 'none', color:"#1B2B7B"}}>
             info@orcasound.net
           </Link>
           {''} to begin collaborating. There are no membership fees-- just
