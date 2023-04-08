@@ -211,7 +211,7 @@ export const GetInvolved = () => {
       </Box>
 
       <Container maxWidth="md">
-        <Box >
+        <Box px={{xs: "50px", md: "20px"}} >
         <Typography
             variant="p"
             fontSize="30px"
@@ -246,7 +246,7 @@ export const GetInvolved = () => {
 
       <Box
         sx={{
-          py: '50px',
+          my: "70px",
           px: '50px',
           textAlign: 'center',
           lineHeight:"28px"
@@ -292,9 +292,9 @@ export const GetInvolved = () => {
 
       <Box
         sx={{
-          py: '50px',
+          my: "150px",
           px: '50px',
-          lineHeight:"28px"
+          lineHeight:"28px",
         }}
       >
         <Typography
@@ -302,6 +302,7 @@ export const GetInvolved = () => {
           fontSize="44px"
           align="left"
           fontWeight="600"
+          mb="40px"
         >
           Memorandum Of Agreements
         </Typography>
@@ -356,7 +357,7 @@ export const GetInvolved = () => {
       <Box
         id="donate"
         sx={{
-          py: '50px',
+          my: '100px',
           px: '50px',
           lineHeight: 1.8,
           letterSpacing: 0.02,
@@ -369,6 +370,7 @@ export const GetInvolved = () => {
           fontSize="44px"
           align="left"
           fontWeight="600"
+          mb="40px"
         >
           Donate
         </Typography>
