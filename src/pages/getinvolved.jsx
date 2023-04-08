@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Link as ScrollElement } from 'react-scroll'
 
 import logo9 from '../../public/images/getinvolved/Beam-Reach.svg'
@@ -231,9 +232,11 @@ export const GetInvolved = () => {
         us, and maybe even earn your way into the Orcasound HacHacker hall of
         Fame`}
       </p>
-      <div className={getinvolvedStyles.button}>
-        <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
-      </div>
+      <Link href="/learn">
+        <div className={getinvolvedStyles.button}>
+          <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
+        </div>
+      </Link>
       <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
       <p className={getinvolvedStyles.textmemorandum}>
         {`The real time audio streams, citizen science projects, educational
@@ -271,12 +274,16 @@ export const GetInvolved = () => {
         sponsoring the work of our most-dedicated contributors.`}
       </p>
       <div className={getinvolvedStyles.button}>
-        <ActionButton link="" text="DONATE NOW" />
+        <ActionButton link="/donate" text="DONATE NOW" />
       </div>
       <div className={getinvolvedStyles.logos}>
         <div className={getinvolvedStyles.logone}>
-          <Image src={logo1} alt="oceans-initiative" />
-          <Image src={logo2} alt="whale-scout" />
+          <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+            <Image src={logo1} alt="oceans-initiative" />
+          </Link>
+          <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+            <Image src={logo2} alt="whale-scout" />
+          </Link>
           <Image src={logo3} alt="Colorado College" />
           <Image src={logo4} alt="Whale Trail" />
           <Image src={logo5} alt="orca-behavior-institute" />
@@ -296,8 +303,12 @@ export const GetInvolved = () => {
       </div>
 
       <div className={getinvolvedStyles.logostab}>
-        <Image src={logo1} alt="oceans-initiative" />
-        <Image src={logo2} alt="whale-scout" />
+        <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+          <Image src={logo1} alt="oceans-initiative" />
+        </Link>
+        <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+          <Image src={logo2} alt="whale-scout" />
+        </Link>
         <Image src={logo3} alt="Colorado College" />
         <Image src={logo6} alt="Orca Network" />
         <Image src={logo7} alt="CRT" />
@@ -312,9 +323,13 @@ export const GetInvolved = () => {
       </div>
 
       <div className={getinvolvedStyles.logosmobile}>
-        <Image src={logo1} alt="oceans-initiative" />
+        <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+          <Image src={logo1} alt="oceans-initiative" />
+        </Link>
         <Image src={logo3} alt="Colorado College" />
-        <Image src={logo2} alt="whale-scout" />
+        <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+          <Image src={logo2} alt="whale-scout" />
+        </Link>
         <Image src={logo7} alt="CRT" />
         <Image src={logo6} alt="Orca Network" />
         <Image src={logo4} alt="Whale Trail" />
