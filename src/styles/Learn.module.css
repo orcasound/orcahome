@@ -55,7 +55,7 @@
 .gallery2 {
   float: left;
   background-color: rgba(190, 255, 246, 0.76);
-  margin: 295px 30px;
+  margin: 270px 30px;
 }
 .audio {
   top: 0;
@@ -82,12 +82,15 @@
 
 .pods {
   text-align: center;
-
   align-items: center;
 }
 
 .property {
-  text-align: left;
+  justify-content: left;
+  width: 100%;
+  /* flex-wrap: wrap; */
+  /* margin: 1200px 0; */
+  padding: 40px 10px 100px 100px;
 }
 
 .exhibits {
@@ -101,13 +104,20 @@
   margin-left: 40px;
   text-align: left;
 }
-
+/* This is selecting the row container holding the two images. */
 .org {
   width: 100%;
   height: auto;
   display: flex;
-  margin-top: 80px;
+  margin: 0 30px 50px 30px;
   text-align: center;
-  margin-left: 300px;
-  padding: 5px 5px;
+  padding: 0 5px 30px 5px;
+  justify-content: space-evenly;
+}
+.org :nth-of-type(1) {
+  border-radius: 10%;
+}
+.org :nth-of-type(2) {
+  /* border: solid 1px; */
+  border-radius: 10%;
 }
