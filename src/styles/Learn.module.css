@@ -106,7 +106,7 @@
   background-color: #090f2e;
   color: white;
   padding: 40px 100px;
-  margin: 0;
+  /* margin: top & bottom depending on sections above and below */
 }
 
 .org {
