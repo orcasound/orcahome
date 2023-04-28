@@ -1,9 +1,9 @@
-import { Box, Typography, Container, Link } from '@mui/material'
+import { Box, Container, Link,Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
-import Zoom from "next-image-zoom";
 import { Link as ScrollElement } from 'react-scroll'
+import { TransformComponent,TransformWrapper } from 'react-zoom-pan-pinch'
 
 import logo3 from '../../public/images/getinvolved/ccollege.png'
 import logo5 from '../../public/images/getinvolved/crt.png'
@@ -211,29 +211,34 @@ export const GetInvolved = () => {
       </Box>
 
       <Container maxWidth="md">
-        <Box px={{xs: "50px", md: "20px"}} >
-        <Typography
+        <Box px={{ xs: '50px', md: '20px' }}>
+          <Typography
             variant="p"
             fontSize="30px"
             align="justify"
             paragraph={true}
             my="40px"
-            textAlign= 'center'
-            lineHeight= "30px"
-            
+            textAlign="center"
+            lineHeight="30px"
           >
             Current Roadmap
           </Typography>
-          <Zoom src={roadmap} layout={"responsive"} />
+          <TransformWrapper
+            initialScale={1}
+            initialPositionX={200}
+            initialPositionY={100}
+          >
+            <TransformComponent>
+              <Image src={roadmap} alt="roadmap" />
+            </TransformComponent>
+          </TransformWrapper>
           <Typography
             variant="p"
             fontSize="16px"
             align="justify"
             paragraph={true}
             mt="40px"
-            lineHeight= "19.5px"
-            
-            
+            lineHeight="19.5px"
           >
             From hydrophone to headphone, this is how we intend to deliver an
             ocean of sound! 2020 Roadmap: components above the gray dashed line
@@ -246,10 +251,10 @@ export const GetInvolved = () => {
 
       <Box
         sx={{
-          my: "70px",
+          my: '70px',
           px: '50px',
           textAlign: 'center',
-          lineHeight:"28px"
+          lineHeight: '28px',
         }}
       >
         <Typography
@@ -260,41 +265,62 @@ export const GetInvolved = () => {
         >
           If you’re based in the Pacific Northwest, you can work with Orcasound
           in-person at a hackathon (see the{' '}
-          <Link href="https://www.democracylab.org/projects/81" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Orcasound project at DemocracyLab
+          <Link
+            href="https://www.democracylab.org/projects/81"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound project at DemocracyLab
           </Link>
           {''}). No matter where you are, you can join the{' '}
-          <Link href="https://orcasound.slack.com/" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Orcasound Slack
+          <Link
+            href="https://orcasound.slack.com/"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound Slack
           </Link>
           {''}, check out our{' '}
-          <Link href="https://github.com/orgs/orcasound/repositories" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Github repositories
+          <Link
+            href="https://github.com/orgs/orcasound/repositories"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Github repositories
           </Link>
           {''} and{' '}
-          <Link href="https://trello.com/w/hydrophonenetwork/home" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Trello boards
+          <Link
+            href="https://trello.com/w/hydrophonenetwork/home"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Trello boards
           </Link>
           {''}, subscribe to the{' '}
-          <Link href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Orcasound dev email distribution list
+          <Link
+            href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound dev email distribution list
           </Link>
           {''}, and find a place to contribute your talents. We hope you will
           share your expertise and innovations with us, and maybe even earn your
           way into the{' '}
-          <Link href="https://www.orcasound.net/hacker-hall-of-fame/" style={{textDecoration: 'none', color:"#1B2B7B"}}>
-          Orcasound Hacker Hall of Fame!
+          <Link
+            href="https://www.orcasound.net/hacker-hall-of-fame/"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound Hacker Hall of Fame!
           </Link>
           {''}
         </Typography>
-        <ActionButton link="https://www.orcasound.net/support/" text="LEARN MORE ABOUT VOLUNTEERING!" />
+        <ActionButton
+          link="https://www.orcasound.net/support/"
+          text="LEARN MORE ABOUT VOLUNTEERING!"
+        />
       </Box>
 
       <Box
         sx={{
-          my: "150px",
+          my: '150px',
           px: '50px',
-          lineHeight:"28px",
+          lineHeight: '28px',
         }}
       >
         <Typography
@@ -311,7 +337,6 @@ export const GetInvolved = () => {
           fontSize="20px"
           paragraph={true}
           align="justify"
-          
         >
           The real time audio streams, citizen science projects, educational
           material and outreach projects of Orcasound are brought to you by the
@@ -346,7 +371,10 @@ export const GetInvolved = () => {
           a new hydrophone node, an educational/outreach node, or both -- just
           read the history, mission and vision of the network e-sign the MOA and
           then email{' '}
-          <Link href="mailto:info@orcasound.net" style={{textDecoration: 'none', color:"#1B2B7B"}}>
+          <Link
+            href="mailto:info@orcasound.net"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
             info@orcasound.net
           </Link>
           {''} to begin collaborating. There are no membership fees-- just
@@ -362,7 +390,7 @@ export const GetInvolved = () => {
           lineHeight: 1.8,
           letterSpacing: 0.02,
           textAlign: 'center',
-          lineHeight:"28px"
+          lineHeight: '28px',
         }}
       >
         <Typography
