@@ -1,9 +1,12 @@
-import { Box, Container, Link,Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import { Box, Button,Container, Link, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
-import { TransformComponent,TransformWrapper } from 'react-zoom-pan-pinch'
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
 import logo3 from '../../public/images/getinvolved/ccollege.png'
 import logo5 from '../../public/images/getinvolved/crt.png'
@@ -223,14 +226,46 @@ export const GetInvolved = () => {
           >
             Current Roadmap
           </Typography>
-          <TransformWrapper
-            initialScale={1}
-            initialPositionX={200}
-            initialPositionY={100}
-          >
-            <TransformComponent>
-              <Image src={roadmap} alt="roadmap" />
-            </TransformComponent>
+          <TransformWrapper initialScale={1}>
+            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+              <>
+                <Box
+                  sx={{
+                    my: '20px',
+                    textAlign: 'center',
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    sx={{ m: 1 }}
+                    onClick={() => zoomIn()}
+                  >
+                    Zoom in
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    startIcon={<RemoveIcon />}
+                    sx={{ m: 1 }}
+                    onClick={() => zoomOut()}
+                  >
+                    {' '}
+                    Zoom out
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    sx={{ m: 1 }}
+                    startIcon={<RestartAltIcon />}
+                    onClick={() => resetTransform()}
+                  >
+                    Reset
+                  </Button>
+                </Box>
+                <TransformComponent>
+                  <Image src={roadmap} alt="roadmap" />
+                </TransformComponent>
+              </>
+            )}
           </TransformWrapper>
           <Typography
             variant="p"
