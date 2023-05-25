@@ -39,4 +39,4 @@ yarn-error.log*
 .vscode/*
 # but allow files with default or shared to be included as example setups
 !.vscode/*.default*
-!.vscode/*.shared*
+!.vscode/*.shared*package.json
