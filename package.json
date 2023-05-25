@@ -1,0 +1,46 @@
+{
+  "name": "orcahome",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo 'No tests configured'",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "lint:ci": "npm run lint -- --max-warnings 0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "format:ci": "npm run format:check",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/material": "^5.3.1",
+    "next": "^12.0.9",
+    "react": "^17.0.2",
+    "react-audio-player": "^0.17.0",
+    "react-dom": "^18.2.0",
+    "react-scroll": "^1.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.22",
+    "@types/react": "^17.0.38",
+    "eslint": "8.8.0",
+    "eslint-config-next": "^13.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^7.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "file-loader": "^6.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.2",
+    "prettier": "2.5.1",
+    "typescript": "4.5.5",
+    "url-loader": "^4.1.1"
+  }
+}
