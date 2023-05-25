@@ -25,7 +25,7 @@
     "next": "^12.0.9",
     "react": "^17.0.2",
     "react-audio-player": "^0.17.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^17.0.2",
     "react-scroll": "^1.8.4"
   },
   "devDependencies": {
