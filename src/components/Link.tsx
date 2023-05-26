@@ -1,25 +1,30 @@
 // Special component that combines nextjs and material-ui Link into one
 // From https://github.com/mui-org/material-ui/blob/master/examples/nextjs-with-typescript/src/Link.tsx
 
-import { styled } from '@mui/material'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
+import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import { forwardRef } from 'react'
+import * as React from 'react'
 
 // Add support for the sx prop for consistency with the other branches.
+
 const Anchor = styled('a')({})
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+    Omit<
+      NextLinkProps,
+      'href' | 'as' | 'onClick' | 'onMouseEnter' | 'onTouchStart'
+    > {
   to: NextLinkProps['href']
   linkAs?: NextLinkProps['as']
   href?: NextLinkProps['href']
 }
 
-export const NextLinkComposed = forwardRef<
+export const NextLinkComposed = React.forwardRef<
   HTMLAnchorElement,
   NextLinkComposedProps
 >(function NextLinkComposed(props, ref) {
