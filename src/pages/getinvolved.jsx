@@ -422,7 +422,6 @@ export const GetInvolved = () => {
         sx={{
           my: '100px',
           px: '50px',
-          lineHeight: 1.8,
           letterSpacing: 0.02,
           textAlign: 'center',
           lineHeight: '28px',
