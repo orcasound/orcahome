@@ -1,7 +1,5 @@
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
+import PlayCircleIcon from '@mui/icons-material/PlayCircle'
+import { Box, Button, Grid, IconButton, Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -9,9 +7,9 @@ import ReactAudioPlayer from 'react-audio-player'
 import audio from '../../public/audio/frequency.mp3'
 import frequency1 from '../../public/images/frequency2.png'
 import LearnBanner from '../../public/images/learn.jpg'
+import OrcaSound from '../../public/images/learn/orcasound.png'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
-import OrcaSound from '../../public/images/learn/orcasound.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
 import TopBanner from '../components/TopBanner'
@@ -145,6 +143,9 @@ export const learn = () => {
             {Array.from(Array(6)).map((_, index) => (
               <Grid item xs={2} sm={4} md={4} key={index}>
                 <Image src={OrcaSound} alt="Orca Call" />
+                <IconButton>
+                  <PlayCircleIcon fontSize="large" />
+                </IconButton>
               </Grid>
             ))}
           </Grid>
