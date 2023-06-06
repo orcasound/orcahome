@@ -306,44 +306,43 @@ export const GetInvolved = () => {
           >
             Orcasound project at DemocracyLab
           </Link>
-          {''}). No matter where you are, you can join the{' '}
+          ). No matter where you are, you can join the{' '}
           <Link
             href="https://orcasound.slack.com/"
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             Orcasound Slack
           </Link>
-          {''}, check out our{' '}
+          , check out our{' '}
           <Link
             href="https://github.com/orgs/orcasound/repositories"
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             Github repositories
-          </Link>
-          {''} and{' '}
+          </Link>{' '}
+          and{' '}
           <Link
             href="https://trello.com/w/hydrophonenetwork/home"
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             Trello boards
           </Link>
-          {''}, subscribe to the{' '}
+          , subscribe to the{' '}
           <Link
             href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             Orcasound dev email distribution list
           </Link>
-          {''}, and find a place to contribute your talents. We hope you will
-          share your expertise and innovations with us, and maybe even earn your
-          way into the{' '}
+          , and find a place to contribute your talents. We hope you will share
+          your expertise and innovations with us, and maybe even earn your way
+          into the{' '}
           <Link
             href="https://www.orcasound.net/hacker-hall-of-fame/"
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             Orcasound Hacker Hall of Fame!
           </Link>
-          {''}
         </Typography>
         <ActionButton
           link="https://www.orcasound.net/support/"
@@ -375,7 +374,7 @@ export const GetInvolved = () => {
         >
           The real time audio streams, citizen science projects, educational
           material and outreach projects of Orcasound are brought to you by the
-          current network member, listed below who have e-signed the {''}
+          current network member, listed below who have e-signed the{' '}
           <Link
             color="#1B2B7B"
             href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
@@ -392,7 +391,7 @@ export const GetInvolved = () => {
           paragraph={true}
           align="justify"
         >
-          If you are an individual wanting to volunteer , collaborate or donate,
+          If you are an individual wanting to volunteer, collaborate or donate,
           check out the many ways you can support Orcasound. Everyone can listen
           for whales, and learn the diverse sounds of Salish Sea.
         </Typography>
@@ -411,9 +410,9 @@ export const GetInvolved = () => {
             style={{ textDecoration: 'none', color: '#1B2B7B' }}
           >
             info@orcasound.net
-          </Link>
-          {''} to begin collaborating. There are no membership fees-- just
-          benefits roles and responsibilities.
+          </Link>{' '}
+          to begin collaborating. There are no membership fees-- just benefits
+          roles and responsibilities.
         </Typography>
       </Box>
 
