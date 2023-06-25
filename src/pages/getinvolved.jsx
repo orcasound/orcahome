@@ -232,7 +232,7 @@ export const GetInvolved = () => {
         us, and maybe even earn your way into the Orcasound HacHacker hall of
         Fame`}
       </p>
-      <Link href="/learn">
+      <Link href="/learn" passHref>
         <div className={getinvolvedStyles.button}>
           <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
         </div>
@@ -278,10 +278,16 @@ export const GetInvolved = () => {
       </div>
       <div className={getinvolvedStyles.logos}>
         <div className={getinvolvedStyles.logone}>
-          <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+          <Link
+            href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+            passHref
+          >
             <Image src={logo1} alt="oceans-initiative" />
           </Link>
-          <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+          <Link
+            href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+            passHref
+          >
             <Image src={logo2} alt="whale-scout" />
           </Link>
           <Image src={logo3} alt="Colorado College" />
@@ -303,10 +309,16 @@ export const GetInvolved = () => {
       </div>
 
       <div className={getinvolvedStyles.logostab}>
-        <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+        <Link
+          href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+          passHref
+        >
           <Image src={logo1} alt="oceans-initiative" />
         </Link>
-        <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+        <Link
+          href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+          passHref
+        >
           <Image src={logo2} alt="whale-scout" />
         </Link>
         <Image src={logo3} alt="Colorado College" />
@@ -323,11 +335,17 @@ export const GetInvolved = () => {
       </div>
 
       <div className={getinvolvedStyles.logosmobile}>
-        <Link href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp">
+        <Link
+          href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+          passHref
+        >
           <Image src={logo1} alt="oceans-initiative" />
         </Link>
         <Image src={logo3} alt="Colorado College" />
-        <Link href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537">
+        <Link
+          href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+          passHref
+        >
           <Image src={logo2} alt="whale-scout" />
         </Link>
         <Image src={logo7} alt="CRT" />

@@ -85,7 +85,7 @@ export const index = () => {
             },
           }}
         >
-          <Link href="https://www.orcasound.net/">
+          <Link href="https://www.orcasound.net/" passHref>
             <Typography
               variant="h1"
               sx={{
@@ -263,7 +263,7 @@ export const index = () => {
               textAlign: 'center',
             }}
           >
-            <Link href="https://www.orcasound.net/learn/">
+            <Link href="https://www.orcasound.net/learn/" passHref>
               <Button
                 variant="contained"
                 sx={{
@@ -288,7 +288,7 @@ export const index = () => {
               </Button>
             </Link>
 
-            <Link href="https://www.orcasound.net/support/">
+            <Link href="https://www.orcasound.net/support/" passHref>
               <Button
                 variant="contained"
                 sx={{
@@ -352,7 +352,7 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-            <Link href="https://www.orcasound.net/learn/">
+            <Link href="https://www.orcasound.net/learn/" passHref>
               <Button
                 variant="contained"
                 sx={{
@@ -378,7 +378,7 @@ export const index = () => {
               </Button>
             </Link>
 
-            <Link href="https://www.orcasound.net/support/">
+            <Link href="https://www.orcasound.net/support/" passHref>
               <Button
                 variant="contained"
                 sx={{
