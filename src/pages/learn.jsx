@@ -1,3 +1,4 @@
+import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -105,16 +106,21 @@ export const learn = () => {
         </div>
       </div>
       <div className={learnStyles.property}>
-        <h2 className={learnStyles.exhibits}>Exhibits</h2>
-        <p className={learnStyles.exhibit}>
-          {`Learn About the Marine acoustic landscape and the hydrophone network`}
-          <br></br>
-          {`by exploring these Orcasound Exhibit screens designed for
-          educational organizations in the Pudget Sound regions`}
-        </p>
+        <Typography variant="h2" fontSize="40px" align="left" mt={5} mb={2}>
+          Exhibit
+        </Typography>
+        <Typography variant="p" fontSize="18px" align="left">
+          Learn About the Marine acoustic landscape and the hydrophone network
+          by exploring these Orcasound Exhibit screens designed for educational
+          organizations in the Pudget Sound regions
+        </Typography>
       </div>
+
       <div className={learnStyles.org}>
-        <Image src={organization1} alt="Seattle aquarium exhibit" />
+        <a href="https://www.seattleaquarium.org/">
+          <Image src={organization1} alt="Seattle aquarium exhibit" />
+        </a>
+
         <a href="https://killerwhaletales.org/">
           <Image src={organization2} alt="Marine Science Center Logo" />
         </a>
