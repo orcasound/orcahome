@@ -2,24 +2,29 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Link as ScrollElement } from 'react-scroll'
 
-import logo3 from '../../public/images/getinvolved/ccollege.png'
-import logo5 from '../../public/images/getinvolved/crt.png'
-import logo4 from '../../public/images/getinvolved/CWR_logo.png'
-import logo6 from '../../public/images/getinvolved/deepgreen.png'
-import logo2 from '../../public/images/getinvolved/folks.png'
+import logo9 from '../../public/images/getinvolved/Beam-Reach.svg'
+import logo3 from '../../public/images/getinvolved/CC.svg'
+import logo7 from '../../public/images/getinvolved/cetacean-research-technology.svg'
+import logo12 from '../../public/images/getinvolved/CWR.svg'
+import logo11 from '../../public/images/getinvolved/deep-green-wilderness.svg'
+import logo10 from '../../public/images/getinvolved/folks.png'
 import hackathon from '../../public/images/getinvolved/hackathon.png'
 import hydrophonestand from '../../public/images/getinvolved/hydrophone-stand.png'
 import livediy from '../../public/images/getinvolved/live-diy.png'
 import lonhydrophone from '../../public/images/getinvolved/lon-hydrophone.png'
-import logo8 from '../../public/images/getinvolved/OI.png'
-import logo9 from '../../public/images/getinvolved/pacman.png'
+import logo13 from '../../public/images/getinvolved/MSC.svg'
+import logo1 from '../../public/images/getinvolved/oceans-initiative.svg'
+import logo5 from '../../public/images/getinvolved/orca-behavior-institute.svg'
+import logo6 from '../../public/images/getinvolved/Orca-Network.svg'
+import logo8 from '../../public/images/getinvolved/Pacmam.svg'
 import roadmap from '../../public/images/getinvolved/roadmap.png'
 import topbanner from '../../public/images/getinvolved/srkw2-25.jpg'
-import logo1 from '../../public/images/getinvolved/twt.png'
+import logo4 from '../../public/images/getinvolved/twt.png'
 import valhacking from '../../public/images/getinvolved/val-hacking.png'
-import logo11 from '../../public/images/getinvolved/ws_logo.png'
+import logo2 from '../../public/images/getinvolved/whale-scout.svg'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import TopBanner from '../components/TopBanner'
 import getinvolvedStyles from '../styles/getinvolved.module.css'
@@ -227,9 +232,11 @@ export const GetInvolved = () => {
         us, and maybe even earn your way into the Orcasound HacHacker hall of
         Fame`}
       </p>
-      <div className={getinvolvedStyles.button}>
-        <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
-      </div>
+      <Link href="/learn" passHref>
+        <div className={getinvolvedStyles.button}>
+          <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
+        </div>
+      </Link>
       <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
       <p className={getinvolvedStyles.textmemorandum}>
         {`The real time audio streams, citizen science projects, educational
@@ -267,18 +274,90 @@ export const GetInvolved = () => {
         sponsoring the work of our most-dedicated contributors.`}
       </p>
       <div className={getinvolvedStyles.button}>
-        <ActionButton link="" text="DONATE NOW" />
+        <ActionButton link="/donate" text="DONATE NOW" />
       </div>
       <div className={getinvolvedStyles.logos}>
-        <Image src={logo1} alt="The Whaletrail" />
-        <Image src={logo2} alt="Friends of Lime Kiln Society" />
+        <div className={getinvolvedStyles.logone}>
+          <Link
+            href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+            passHref
+          >
+            <Image src={logo1} alt="oceans-initiative" />
+          </Link>
+          <Link
+            href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+            passHref
+          >
+            <Image src={logo2} alt="whale-scout" />
+          </Link>
+          <Image src={logo3} alt="Colorado College" />
+          <Image src={logo4} alt="Whale Trail" />
+          <Image src={logo5} alt="orca-behavior-institute" />
+        </div>
+        <div className={getinvolvedStyles.logtwo}>
+          <Image src={logo6} alt="Orca Network" />
+          <Image src={logo7} alt="CRT" />
+          <Image src={logo8} alt="pacmam" />
+          <Image src={logo9} alt="Beam Reach" />
+          <Image src={logo10} alt="folks" />
+        </div>
+        <div className={getinvolvedStyles.logthree}>
+          <Image src={logo11} alt="deep-green-wilderness" />
+          <Image src={logo12} alt="CWR" />
+          <Image src={logo13} alt="MSC" />
+        </div>
+      </div>
+
+      <div className={getinvolvedStyles.logostab}>
+        <Link
+          href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+          passHref
+        >
+          <Image src={logo1} alt="oceans-initiative" />
+        </Link>
+        <Link
+          href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+          passHref
+        >
+          <Image src={logo2} alt="whale-scout" />
+        </Link>
         <Image src={logo3} alt="Colorado College" />
-        <Image src={logo4} alt="Center of Whale Research" />
-        <Image src={logo5} alt="Cetacean Research Technology" />
-        <Image src={logo6} alt="Deep Green Wilderness" />
-        <Image src={logo8} alt="Oceans Initiative" />
-        <Image src={logo9} alt="Pacman" />
-        <Image src={logo11} alt="While Scout" />
+        <Image src={logo6} alt="Orca Network" />
+        <Image src={logo7} alt="CRT" />
+        <Image src={logo8} alt="pacmam" />
+        <Image src={logo13} alt="MSC" />
+        <Image src={logo4} alt="Whale Trail" />
+        <Image src={logo11} alt="deep-green-wilderness" />
+        <Image src={logo12} alt="CWR" />
+        <Image src={logo5} alt="orca-behavior-institute" />
+        <Image src={logo10} alt="folks" />
+        <Image src={logo9} alt="Beam Reach" />
+      </div>
+
+      <div className={getinvolvedStyles.logosmobile}>
+        <Link
+          href="https://oceansinitiative.app.neoncrm.com/np/clients/oceansinitiative/donation.jsp"
+          passHref
+        >
+          <Image src={logo1} alt="oceans-initiative" />
+        </Link>
+        <Image src={logo3} alt="Colorado College" />
+        <Link
+          href="https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=7P57R2WS8MM8Q&source=url&ssrt=1680554908537"
+          passHref
+        >
+          <Image src={logo2} alt="whale-scout" />
+        </Link>
+        <Image src={logo7} alt="CRT" />
+        <Image src={logo6} alt="Orca Network" />
+        <Image src={logo4} alt="Whale Trail" />
+        <Image src={logo9} alt="Beam Reach" />
+        <Image src={logo11} alt="deep-green-wilderness" />
+        <Image src={logo10} alt="folks" />
+        <Image src={logo5} alt="orca-behavior-institute" />
+        <Image src={logo13} alt="MSC" />
+        <Image src={logo12} alt="CWR" />
+        <Image src={logo8} alt="pacmam" />
       </div>
     </div>
   )
