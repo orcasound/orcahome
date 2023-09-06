@@ -1,3 +1,6 @@
+import { Typography } from '@mui/material'
+import Container from '@mui/material/Container'
+import { Box } from '@mui/system'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -32,23 +35,38 @@ export const learn = () => {
         <li>Souther Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
-      <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
-      <p className={learnStyles.salishsea}>
-        Explore common sounds of the Salish Sea by selecting the animals and
-        other objects in this anoramic soundscape of the inlandwaters of
-        Washington State(USA) and British Columbia(Canada)
-      </p>
-      <div className={learnStyles.imageWrapper}>
-        <Image
-          className={learnStyles.salishseaimg}
-          src={salishsea}
-          alt="Sounds Of The Salish Sea"
-          width={800}
-          height={450}
-          layout="intrinsic"
-          quality={65}
-        />
-      </div>
+      <Container maxWidth="xl">
+        <Box>
+          <Typography variant="h1" sx={{ fontSize: '44px' }}>
+            Sounds Of The Salish Sea
+          </Typography>
+        </Box>
+
+        <Box
+          width={969}
+          height={84}
+          sx={{ marginTop: '30px', marginBottom: '29px' }}
+        >
+          <Typography variant="body1" sx={{ fontSize: '20px' }}>
+            Explore common sounds of the Salish Sea by selecting the animals and
+            other objects in this anoramic soundscape of the inlandwaters of
+            Washington State(USA) and British Columbia(Canada)
+          </Typography>
+        </Box>
+
+        <Box>
+          <div>
+            <Image
+              src={salishsea}
+              alt="Sounds Of The Salish Sea"
+              width={1234}
+              height={701}
+              layout="intrinsic"
+              quality={65}
+            />
+          </div>
+        </Box>
+      </Container>
       <div className={learnStyles.orca}>
         <Image
           src={roundorca}

@@ -29,6 +29,16 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
+    h1: {
+      fontFamily: 'Mukta',
+
+      fontWeight: '600',
+    },
+    body1: {
+      fontFamily: 'Montserrat',
+
+      fontWeight: '600',
+    },
   },
   components: {
     MuiAppBar: {
