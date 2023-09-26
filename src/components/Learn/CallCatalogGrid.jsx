@@ -68,38 +68,44 @@ const CallCatalogGrid = () => {
                 position: 'relative',
               }}
             >
-              <Image src={OrcaSound} alt="OrcaCall" style={{ width: '100%' }} />
-              <IconButton
-                onClick={() => stopSound(index)}
-                sx={{
-                  position: 'absolute',
-                  right: 85,
-                  bottom: 40,
-                  color: '#c4c4c4',
-                }}
-              >
-                <PauseCircleIcon
+              <Image
+                src={OrcaSound}
+                alt={`Orca Call ${index}`}
+                style={{ width: '100%' }}
+              />
+              {isPlaying[index] ? (
+                <IconButton
+                  onClick={() => stopSound(index)}
                   sx={{
-                    fontSize: 100,
+                    position: 'absolute',
+                    right: 85,
+                    bottom: 45,
+                    color: '#c4c4c4',
                   }}
-                />
-              </IconButton>
-
-              <IconButton
-                onClick={() => playSound(index)}
-                sx={{
-                  position: 'absolute',
-                  right: 85,
-                  bottom: 45,
-                  color: '#c4c4c4',
-                }}
-              >
-                <PlayCircleIcon
+                >
+                  <PauseCircleIcon
+                    sx={{
+                      fontSize: 100,
+                    }}
+                  />
+                </IconButton>
+              ) : (
+                <IconButton
+                  onClick={() => playSound(index)}
                   sx={{
-                    fontSize: 100,
+                    position: 'absolute',
+                    right: 85,
+                    bottom: 45,
+                    color: '#c4c4c4',
                   }}
-                />
-              </IconButton>
+                >
+                  <PlayCircleIcon
+                    sx={{
+                      fontSize: 100,
+                    }}
+                  />
+                </IconButton>
+              )}
             </Grid>
           ))}
         </Grid>
