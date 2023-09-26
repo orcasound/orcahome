@@ -48,64 +48,83 @@ const CallCatalogGrid = () => {
           bgcolor: '#ffff',
           my: '50px',
           py: '50px',
-          px: '90px',
+          px: '20px',
           textAlign: 'center',
         }}
       >
         <Grid
           container
-          spacing={{ xs: 2, md: 12 }}
+          spacing={{ xs: 2, md: 8 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
+          px={{ xs: '5px', md: '30px' }}
         >
           {playArray.map((play, index) => (
             <Grid
               item
-              xs={2}
-              sm={4}
+              xs={12}
+              sm={6}
               md={4}
               key={index}
               sx={{
                 position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
               }}
             >
-              <Image
-                src={OrcaSound}
-                alt={`Orca Call ${index}`}
-                style={{ width: '100%' }}
-              />
-              {isPlaying[index] ? (
-                <IconButton
-                  onClick={() => stopSound(index)}
+              <Box
+                sx={{
+                  position: 'relative',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '100%',
+                }}
+              >
+                <Image
+                  src={OrcaSound}
+                  alt={`Orca Call ${index}`}
+                  style={{ width: '100%' }}
+                />
+
+                <Box
                   sx={{
                     position: 'absolute',
-                    right: 85,
-                    bottom: 45,
-                    color: '#c4c4c4',
+                    top: '40%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    marginTop: '20px',
                   }}
                 >
-                  <PauseCircleIcon
-                    sx={{
-                      fontSize: 100,
-                    }}
-                  />
-                </IconButton>
-              ) : (
-                <IconButton
-                  onClick={() => playSound(index)}
-                  sx={{
-                    position: 'absolute',
-                    right: 85,
-                    bottom: 45,
-                    color: '#c4c4c4',
-                  }}
-                >
-                  <PlayCircleIcon
-                    sx={{
-                      fontSize: 100,
-                    }}
-                  />
-                </IconButton>
-              )}
+                  {isPlaying[index] ? (
+                    <IconButton
+                      onClick={() => stopSound(index)}
+                      sx={{
+                        color: '#c4c4c4',
+                      }}
+                    >
+                      <PauseCircleIcon
+                        sx={{
+                          fontSize: 100,
+                        }}
+                      />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      onClick={() => playSound(index)}
+                      sx={{
+                        color: '#c4c4c4',
+                      }}
+                    >
+                      <PlayCircleIcon
+                        sx={{
+                          fontSize: { xs: 80, md: 90, lg: 100 },
+                        }}
+                      />
+                    </IconButton>
+                  )}
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>
@@ -113,7 +132,7 @@ const CallCatalogGrid = () => {
           variant="contained"
           sx={{
             borderRadius: '30px',
-            mt: 10,
+            mt: 6,
             py: 2,
             px: 5,
           }}
