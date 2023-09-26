@@ -26,6 +26,13 @@ const CallCatalogGrid = () => {
   const playArray = [playS01, playS02, playS03, playS04, playS05, playS06]
   const stopArray = [stopS01, stopS02, stopS03, stopS04, stopS05, stopS06]
 
+  function playSound(index) {
+    const updatedIsPlaying = [...isPlaying]
+    updatedIsPlaying[index] = true
+    setIsPlaying(updatedIsPlaying)
+    playArray[index]()
+  }
+
   return (
     <div>
       <Box
@@ -71,6 +78,7 @@ const CallCatalogGrid = () => {
               </IconButton>
 
               <IconButton
+                onClick={() => playSound(index)}
                 sx={{
                   position: 'absolute',
                   right: 85,
