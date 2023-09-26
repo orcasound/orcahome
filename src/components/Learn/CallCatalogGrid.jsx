@@ -61,6 +61,21 @@ const CallCatalogGrid = () => {
                   color: '#c4c4c4',
                 }}
               >
+                <PauseCircleIcon
+                  sx={{
+                    fontSize: 100,
+                  }}
+                />
+              </IconButton>
+
+              <IconButton
+                sx={{
+                  position: 'absolute',
+                  right: 85,
+                  bottom: 45,
+                  color: '#c4c4c4',
+                }}
+              >
                 <PlayCircleIcon
                   sx={{
                     fontSize: 100,
