@@ -33,6 +33,13 @@ const CallCatalogGrid = () => {
     playArray[index]()
   }
 
+  function stopSound(index) {
+    const updatedIsPlaying = [...isPlaying]
+    updatedIsPlaying[index] = false
+    setIsPlaying(updatedIsPlaying)
+    stopArray[index]()
+  }
+
   return (
     <div>
       <Box
@@ -63,10 +70,11 @@ const CallCatalogGrid = () => {
             >
               <Image src={OrcaSound} alt="OrcaCall" style={{ width: '100%' }} />
               <IconButton
+                onClick={() => stopSound(index)}
                 sx={{
                   position: 'absolute',
                   right: 85,
-                  bottom: 45,
+                  bottom: 40,
                   color: '#c4c4c4',
                 }}
               >
