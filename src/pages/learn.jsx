@@ -1,5 +1,4 @@
-import PlayCircleIcon from '@mui/icons-material/PlayCircle'
-import { Box, Button, Grid, IconButton, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -7,11 +6,11 @@ import ReactAudioPlayer from 'react-audio-player'
 import audio from '../../public/audio/frequency.mp3'
 import frequency1 from '../../public/images/frequency2.png'
 import LearnBanner from '../../public/images/learn.jpg'
-import OrcaSound from '../../public/images/learn/orcasound.png'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
+import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import TopBanner from '../components/TopBanner'
 import learnStyles from '../styles/Learn.module.css'
 
@@ -125,43 +124,9 @@ export const learn = () => {
           dive in to the call catalog to learn the vocalizations you will hear
           when listening to the livestreaming hydrophones during orca events.
         </Typography>
-        <Box
-          sx={{
-            borderRadius: '33px',
-            bgcolor: '#ffff',
-            my: '50px',
-            py: '50px',
-            px: '90px',
-            textAlign: 'center',
-          }}
-        >
-          <Grid
-            container
-            spacing={{ xs: 2, md: 12 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {Array.from(Array(6)).map((_, index) => (
-              <Grid item xs={2} sm={4} md={4} key={index}>
-                <Image src={OrcaSound} alt="Orca Call" />
-                <IconButton>
-                  <PlayCircleIcon fontSize="large" />
-                </IconButton>
-              </Grid>
-            ))}
-          </Grid>
-
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: '30px',
-              mt: 10,
-              py: 2,
-              px: 5,
-            }}
-          >
-            Access Call Catalog
-          </Button>
-        </Box>
+        <br />
+        <br />
+        <CallCatalogGrid />
       </div>
 
       <div className={learnStyles.org}>
