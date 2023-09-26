@@ -14,6 +14,8 @@ import SO6 from '../../../public/audio/FO-S06.mp3'
 import OrcaSound from '../../../public/images/learn/orcasound.png'
 
 const CallCatalogGrid = () => {
+  const [isPlaying, setIsPlaying] = React.useState(Array(6).fill(false))
+
   const [playS01, { stop: stopS01 }] = useSound(SO1)
   const [playS02, { stop: stopS02 }] = useSound(SO2)
   const [playS03, { stop: stopS03 }] = useSound(SO3)
