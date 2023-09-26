@@ -3,10 +3,27 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import { Box, Button, Grid, IconButton } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
+import useSound from 'use-sound'
 
+import SO1 from '../../../public/audio/FO-S01.mp3'
+import SO2 from '../../../public/audio/FO-S02.mp3'
+import SO3 from '../../../public/audio/FO-S03.mp3'
+import SO4 from '../../../public/audio/FO-S04.mp3'
+import SO5 from '../../../public/audio/FO-S05.mp3'
+import SO6 from '../../../public/audio/FO-S06.mp3'
 import OrcaSound from '../../../public/images/learn/orcasound.png'
 
 const CallCatalogGrid = () => {
+  const [playS01, { stop: stopS01 }] = useSound(SO1)
+  const [playS02, { stop: stopS02 }] = useSound(SO2)
+  const [playS03, { stop: stopS03 }] = useSound(SO3)
+  const [playS04, { stop: stopS04 }] = useSound(SO4)
+  const [playS05, { stop: stopS05 }] = useSound(SO5)
+  const [playS06, { stop: stopS06 }] = useSound(SO6)
+
+  const playArray = [playS01, playS02, playS03, playS04, playS05, playS06]
+  const stopArray = [stopS01, stopS02, stopS03, stopS04, stopS05, stopS06]
+
   return (
     <div>
       <Box
@@ -24,7 +41,7 @@ const CallCatalogGrid = () => {
           spacing={{ xs: 2, md: 12 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {Array.from(Array(6)).map((_, index) => (
+          {playArray.map((play, index) => (
             <Grid
               item
               xs={2}
