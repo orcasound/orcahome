@@ -1,6 +1,6 @@
 import PauseCircleIcon from '@mui/icons-material/PauseCircle'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
-import { Box, Button, Grid, IconButton } from '@mui/material'
+import { Box, Button, Grid, IconButton, Typography } from '@mui/material'
 import Image from 'next/image'
 import React from 'react'
 import useSound from 'use-sound'
@@ -25,6 +25,14 @@ const CallCatalogGrid = () => {
 
   const playArray = [playS01, playS02, playS03, playS04, playS05, playS06]
   const stopArray = [stopS01, stopS02, stopS03, stopS04, stopS05, stopS06]
+  const orcaCallTags = [
+    'Orca call SO1',
+    'Orca call SO2',
+    'Orca call SO3',
+    'Orca call SO4',
+    'Orca call SO5',
+    'Orca call SO6-L',
+  ]
 
   function playSound(index) {
     const updatedIsPlaying = [...isPlaying]
@@ -86,7 +94,6 @@ const CallCatalogGrid = () => {
                   alt={`Orca Call ${index}`}
                   style={{ width: '100%' }}
                 />
-
                 <Box
                   sx={{
                     position: 'absolute',
@@ -125,9 +132,13 @@ const CallCatalogGrid = () => {
                   )}
                 </Box>
               </Box>
+              <Typography mt={1} variant="p" fontSize="20px" color="black">
+                {orcaCallTags[index]}
+              </Typography>
             </Grid>
           ))}
         </Grid>
+
         <Button
           variant="contained"
           sx={{
