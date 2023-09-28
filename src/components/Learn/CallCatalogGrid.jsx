@@ -11,7 +11,12 @@ import SO3 from '../../../public/audio/FO-S03.mp3'
 import SO4 from '../../../public/audio/FO-S04.mp3'
 import SO5 from '../../../public/audio/FO-S05.mp3'
 import SO6 from '../../../public/audio/FO-S06.mp3'
-import OrcaSound from '../../../public/images/learn/orcasound.png'
+import FOS01 from '../../../public/images/learn/FO-S01.png'
+import FOS02 from '../../../public/images/learn/FO-S02.png'
+import FOS03 from '../../../public/images/learn/FO-S03.png'
+import FOS04 from '../../../public/images/learn/FO-S04.png'
+import FOS05 from '../../../public/images/learn/FO-S05.png'
+import FOS06 from '../../../public/images/learn/FO-S06.png'
 
 const CallCatalogGrid = () => {
   const [isPlaying, setIsPlaying] = React.useState(Array(6).fill(false))
@@ -25,13 +30,14 @@ const CallCatalogGrid = () => {
 
   const playArray = [playS01, playS02, playS03, playS04, playS05, playS06]
   const stopArray = [stopS01, stopS02, stopS03, stopS04, stopS05, stopS06]
+  const spectrogram = [FOS01, FOS02, FOS03, FOS04, FOS05, FOS06]
   const orcaCallTags = [
-    'Orca call SO1',
-    'Orca call SO2',
-    'Orca call SO3',
-    'Orca call SO4',
-    'Orca call SO5',
-    'Orca call SO6-L',
+    'Orca call S01',
+    'Orca call S02',
+    'Orca call S03',
+    'Orca call S04',
+    'Orca call S05',
+    'Orca call S06-L',
   ]
 
   function playSound(index) {
@@ -90,7 +96,7 @@ const CallCatalogGrid = () => {
                 }}
               >
                 <Image
-                  src={OrcaSound}
+                  src={spectrogram[index]}
                   alt={`Orca Call ${index}`}
                   style={{ width: '100%' }}
                 />
