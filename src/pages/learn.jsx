@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -9,6 +10,7 @@ import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import roundorca from '../../public/images/roundorca.png'
 import salishsea from '../../public/images/salishsea.png'
+import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import TopBanner from '../components/TopBanner'
 import learnStyles from '../styles/Learn.module.css'
 
@@ -18,7 +20,6 @@ export const learn = () => {
       <Head>
         <title>Orcasound</title>
       </Head>
-
       <TopBanner
         bannerImg={LearnBanner}
         pageTitle={`Learn`}
@@ -113,6 +114,21 @@ export const learn = () => {
           educational organizations in the Pudget Sound regions`}
         </p>
       </div>
+
+      <div className={learnStyles.callCatalog}>
+        <Typography variant="h1" fontSize="44px" align="left" mt={5} mb={3}>
+          Southern Resident Killer Whale Call Catalog
+        </Typography>
+        <Typography variant="p" fontSize="20px" align="left">
+          Now that you’ve familiarized youself with the 3 most common calls,
+          dive in to the call catalog to learn the vocalizations you will hear
+          when listening to the livestreaming hydrophones during orca events.
+        </Typography>
+        <br />
+        <br />
+        <CallCatalogGrid />
+      </div>
+
       <div className={learnStyles.org}>
         <Image src={organization1} alt="Seattle aquarium exhibit" />
         <a href="https://killerwhaletales.org/">
