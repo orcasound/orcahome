@@ -54,8 +54,8 @@ export const Donate = () => {
           Donate Now
         </Button>
         <br />
+        <DonatePartners />
       </Box>
-      <DonatePartners />
     </>
   )
 }
