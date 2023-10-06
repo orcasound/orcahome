@@ -84,8 +84,8 @@ const DonatePartners = () => {
   return (
     <>
       <div className={styles.titleContainer}>
-        <div>Donate to our 501(c)3 partners</div>
-        <div>
+        <div className={styles.title}>Donate to our 501(c)3 Partners</div>
+        <div className={styles.titleDescription}>
           Contribute to our partners to support on-going conservation, research,
           and education efforts.
         </div>
@@ -97,15 +97,15 @@ const DonatePartners = () => {
             <div>
               <div className={styles.header}>{partner.name}</div>
               <div>{partner.description}</div>
-            </div>
-            <div>
-              <a
-                href={partner.linkTo}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn more
-              </a>
+              <div>
+                <a
+                  href={partner.linkTo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more
+                </a>
+              </div>
             </div>
           </div>
         ))}
