@@ -1,9 +1,9 @@
 .titleContainer {
-  background-color: #485595;
+  background-color: #1b2b7b;
   border-radius: 15px;
   color: white;
   padding: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,13 +12,14 @@
 }
 
 .title {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 
 .titleDescription {
-  font-size: 23px;
+  font-size: 15px;
 }
 
 .container {
@@ -52,8 +53,26 @@
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
+/* Tblet */
+@media (min-width: 768px) {
+  .title {
+    font-size: 30px;
+    margin-bottom: 0rem;
+  }
+  .titleDescription {
+    font-size: 20px;
+  }
+}
+
+/* PC */
+@media (min-width: 1024px) {
+  .titleContainer {
+    background-color: #485595;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .titleDescription {
+    font-size: 23px;
   }
 }
