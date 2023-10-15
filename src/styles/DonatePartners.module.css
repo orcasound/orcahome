@@ -27,7 +27,6 @@
   border: 1px solid black;
   padding: 16px 35px;
   margin-bottom: 16px;
-  display: flex;
   align-items: center;
   box-shadow: 0 4px 8px #b4cede;
 }
@@ -37,10 +36,6 @@
   height: 120px;
   margin-right: 35px;
 }
-
-/* .container div {
-  margin-right: 16px;
-} */
 
 .container a {
   /* margin-top: 8px; */
@@ -60,7 +55,7 @@
     margin-bottom: 0rem;
   }
   .titleDescription {
-    font-size: 20px;
+    font-size: 19px;
   }
 }
 
@@ -68,11 +63,5 @@
 @media (min-width: 1024px) {
   .titleContainer {
     background-color: #485595;
-  }
-  .title {
-    font-size: 36px;
-  }
-  .titleDescription {
-    font-size: 23px;
   }
 }
