@@ -22,31 +22,60 @@
   font-size: 15px;
 }
 
-.container {
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 1px solid black;
+  padding: 1rem 1rem;
+  margin-bottom: 16px;
+  align-items: center;
+  box-shadow: 0 4px 8px #b4cede;
+}
+
+.mobilePartner {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.mobilePartner img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+.mobileHeader {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* .container {
+  display: flex;
   border-radius: 15px;
   border: 1px solid black;
   padding: 16px 35px;
   margin-bottom: 16px;
   align-items: center;
   box-shadow: 0 4px 8px #b4cede;
-}
+} */
 
-.container img {
+/* .container img {
   width: 120px;
   height: 120px;
-  margin-right: 35px;
-}
+} */
 
-.container a {
-  /* margin-top: 8px; */
+/* .container a {
   display: block;
   color: blue;
   text-decoration: none;
-}
+} */
 
-.header {
+/* .header {
   font-weight: bold;
-}
+} */
 
 /* Tblet */
 @media (min-width: 768px) {

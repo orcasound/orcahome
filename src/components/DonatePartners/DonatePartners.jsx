@@ -91,6 +91,29 @@ const DonatePartners = () => {
         </div>
       </div>
       <div>
+        {/* mobile */}
+        {partners.map((partner, index) => (
+          <div key={index} className={styles.mobileContainer}>
+            <div className={styles.mobilePartner}>
+              <img src={partner.icon} alt={partner.name} />
+              <div className={styles.mobileHeader}>{partner.name}</div>
+            </div>
+            <div>
+              <div>{partner.description}</div>
+              <div>
+                <a
+                  href={partner.linkTo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Learn more
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* <div>
         {partners.map((partner, index) => (
           <div key={index} className={styles.container}>
             <img src={partner.icon} alt={partner.name} />
@@ -109,7 +132,7 @@ const DonatePartners = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   )
 }
