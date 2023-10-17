@@ -99,8 +99,10 @@ const DonatePartners = () => {
               <div className={styles.mobileHeader}>{partner.name}</div>
             </div>
             <div>
-              <div>{partner.description}</div>
-              <div>
+              <div className={styles.mobileDescription}>
+                {partner.description}
+              </div>
+              <div className={styles.mobileLink}>
                 <a
                   href={partner.linkTo}
                   target="_blank"
