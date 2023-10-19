@@ -1,3 +1,4 @@
+/* mobile */
 .titleContainer {
   background-color: #1b2b7b;
   border-radius: 15px;
@@ -71,43 +72,71 @@
   text-decoration: underline;
 }
 
-/* .container {
-  display: flex;
-  border-radius: 15px;
-  border: 1px solid black;
-  padding: 16px 35px;
-  margin-bottom: 16px;
-  align-items: center;
-  box-shadow: 0 4px 8px #b4cede;
-} */
-
-/* .container img {
-  width: 120px;
-  height: 120px;
-} */
-
-/* .container a {
-  display: block;
-  color: blue;
-  text-decoration: none;
-} */
-
-/* .header {
-  font-weight: bold;
-} */
+.container {
+  display: none;
+}
 
 /* Tblet */
 @media (min-width: 768px) {
+  .mobileContainer {
+    display: none;
+  }
   .title {
     font-size: 30px;
+    text-transform: uppercase;
     margin-bottom: 0rem;
   }
   .titleDescription {
     font-size: 19px;
   }
+  .container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 1rem 2rem;
+    margin-bottom: 16px;
+    align-items: center;
+    box-shadow: 0 4px 8px #b4cede;
+  }
+
+  .container img {
+    width: 6rem;
+    height: 6rem;
+    margin-right: 1rem;
+  }
+
+  .partnerDetails {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .link {
+    font-size: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .link a {
+    text-decoration: none;
+  }
+
+  .link .underlineText {
+    text-decoration: underline;
+  }
 }
 
-/* PC */
+/* Laptop */
 @media (min-width: 1024px) {
   .titleContainer {
     background-color: #485595;

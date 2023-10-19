@@ -116,26 +116,28 @@ const DonatePartners = () => {
           </div>
         ))}
       </div>
-      {/* <div>
+      {/* Tablet & Laptop */}
+      <div>
         {partners.map((partner, index) => (
           <div key={index} className={styles.container}>
             <img src={partner.icon} alt={partner.name} />
-            <div>
+            <div className={styles.partnersDetails}>
               <div className={styles.header}>{partner.name}</div>
-              <div>{partner.description}</div>
-              <div>
+              <div className={styles.description}>{partner.description}</div>
+              <div className={styles.link}>
                 <a
                   href={partner.linkTo}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Learn more
+                  <span className={styles.underlineText}>Learn more</span>{' '}
+                  &gt;&gt;
                 </a>
               </div>
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </>
   )
 }
