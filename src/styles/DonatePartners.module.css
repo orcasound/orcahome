@@ -27,7 +27,7 @@
   flex-direction: column;
   border-radius: 15px;
   border: 1px solid black;
-  padding: 1rem 1rem;
+  padding: 0.6rem 0.6rem;
   margin-bottom: 16px;
   align-items: center;
   box-shadow: 0 4px 8px #b4cede;
@@ -61,6 +61,14 @@
   font-size: 0.7rem;
   display: flex;
   justify-content: flex-end;
+}
+
+.mobileLink a {
+  text-decoration: none;
+}
+
+.mobileLink .underlineText {
+  text-decoration: underline;
 }
 
 /* .container {

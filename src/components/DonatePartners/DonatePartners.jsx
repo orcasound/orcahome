@@ -108,7 +108,8 @@ const DonatePartners = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Learn more
+                  <span className={styles.underlineText}>Learn more</span>{' '}
+                  &gt;&gt;
                 </a>
               </div>
             </div>
