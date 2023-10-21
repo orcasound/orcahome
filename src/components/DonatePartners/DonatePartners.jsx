@@ -121,9 +121,11 @@ const DonatePartners = () => {
         {partners.map((partner, index) => (
           <div key={index} className={styles.container}>
             <img src={partner.icon} alt={partner.name} />
-            <div className={styles.partnersDetails}>
-              <div className={styles.header}>{partner.name}</div>
-              <div className={styles.description}>{partner.description}</div>
+            <div className={styles.partnersContainer}>
+              <div className={styles.partnersDetails}>
+                <div className={styles.header}>{partner.name}</div>
+                <div className={styles.description}>{partner.description}</div>
+              </div>
               <div className={styles.link}>
                 <a
                   href={partner.linkTo}

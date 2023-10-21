@@ -106,7 +106,7 @@
     margin-right: 1rem;
   }
 
-  .partnerDetails {
+  .partnersContainer {
     display: flex;
     flex-direction: column;
   }
@@ -118,7 +118,7 @@
 
   .description {
     font-size: 1rem;
-    padding: 0.5rem 0;
+    padding: 0.1rem 0;
   }
 
   .link {
@@ -140,5 +140,21 @@
 @media (min-width: 1024px) {
   .titleContainer {
     background-color: #485595;
+  }
+
+  .partnersContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .partnersDetails {
+    width: 85%;
+  }
+  .link {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-end;
   }
 }
