@@ -8,8 +8,6 @@ import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
-import logo3 from '../../public/images/getinvolved/ccollege.png'
-import logo5 from '../../public/images/getinvolved/crt.png'
 import logo4 from '../../public/images/getinvolved/CWR_logo.png'
 import logo6 from '../../public/images/getinvolved/deepgreen.png'
 import logo2 from '../../public/images/getinvolved/folks.png'
