@@ -31,5 +31,14 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  padding: 30px;
+  margin: 50px;
+}
+
+.logos a {
+  margin: 30px;
+}
+
+.logos img {
+  max-width: 300px !important;
+  max-height: 250px !important;
 }
