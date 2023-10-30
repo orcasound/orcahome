@@ -15,9 +15,7 @@ export const Donate = () => {
       <TopBanner
         bannerImg={topbanner}
         pageTitle={`Donate`}
-        pageDesc={`There are many ways to help in the recovering of marine life, 
-        especially for the Souther Resident Killer Whales that call the Salish Sea home. 
-        Check out the ways you can help below!`}
+        pageDesc={`Help protect marine life like the Southern Resident Killer whales by donating today`}
         scrollToId={`donate`}
       />
       <br />
