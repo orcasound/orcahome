@@ -9,10 +9,11 @@ import { Link as ScrollElement } from 'react-scroll'
 const TopScreen = styled(Box)(({ theme }) => ({
   position: 'relative',
   overflow: 'clip',
-  height: '50vh',
-  minHeight: '250px',
+  aspectRatio: '2.9',
+  width: '100%',
   [theme.breakpoints.down('sm')]: {
-    height: '26vh',
+    minHeight: '26vh',
+    aspectRatio: '2.03',
   },
 }))
 
@@ -24,10 +25,6 @@ const TitleScreen = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   color: '#fff',
-  marginBottom: '100px',
-  [theme.breakpoints.down('sm')]: {
-    paddingBottom: '20px',
-  },
 }))
 
 const ScrollDownButton = styled(IconButton)(({ theme }) => ({
@@ -52,6 +49,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   position: 'absolute',
   borderRadius: '10px',
   marginBottom: '10%',
+  fontSize: '1.5em',
   right: '0px',
   backgroundColor: '#1b2b7bcf',
   width: '40vw',
@@ -63,6 +61,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
     width: '68vw',
     maxWidth: '70vw',
     maxHeight: '230px',
+    fontSize: '1em',
   },
 }))
 
@@ -75,7 +74,7 @@ const ImageContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '150%',
   minHeight: '250px',
-  top: '-40%',
+  top: '-50%',
   [theme.breakpoints.down('sm')]: {
     top: '-60%',
     height: '180%',
