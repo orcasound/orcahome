@@ -29,13 +29,16 @@ const TitleScreen = styled(Box)(({ theme }) => ({
 
 const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
-  bottom: '10px',
-  padding: '0',
+  margin: '0 auto',
+  left: 0,
+  right: 0,
+  height: '15px',
+  width: '15px',
   display: 'flex',
+  bottom: '0',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '15px',
   transition: 'all 0.5s ease-in-out',
   '&:hover': {
     transform: 'translateY(5px)',
@@ -49,7 +52,7 @@ const PageDesc = styled(Box)(({ theme }) => ({
   position: 'absolute',
   borderRadius: '10px',
   marginBottom: '10%',
-  fontSize: '1.5em',
+  fontSize: '1.25em',
   right: '0px',
   backgroundColor: '#1b2b7bcf',
   width: '40vw',
