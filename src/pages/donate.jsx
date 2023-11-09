@@ -28,12 +28,15 @@ export const Donate = () => {
           display: 'flex',
           flexDirection: 'column',
           padding: 'max(3vw, 15px)',
+          paddingTop: '0',
         }}
       >
         <DonateOrcasound
           donateOrcasoundImage={donateOrcasoundImage}
+          donateOrcasoundTitle="Donate to Orcasound"
           donateOrcasoundMessage="Help us build and matain the technology to listen to orcas in the world."
           donateVolunteersImage={donateVolunteersImage}
+          donateVolunteersTitle="Donate to Volunteers"
           donateVolunteersMessage="Support those who keep the orcasound website and hydrophone nodes running."
         />
         <br />
