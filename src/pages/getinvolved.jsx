@@ -475,7 +475,7 @@ export const GetInvolved = () => {
           <Image src={logo2} alt="Friends of Lime Kiln Society" />
         </a>
         <a href="https://www.whaleresearch.com/supportcwr">
-          <Image src={logo4} alt="Center of Whale Research" />
+          <Image src={logo4} alt="Center for Whale Research" />
         </a>
         <a href="https://www.deepgreenwilderness.com/donate">
           <Image src={logo6} alt="Deep Green Wilderness" />
