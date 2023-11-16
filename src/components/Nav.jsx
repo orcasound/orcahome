@@ -165,12 +165,12 @@ function Desktop() {
 
   return (
     <React.Fragment>
-      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.5 }}>
         {navLinks.map((navLink) => (
           <Button
             key={navLink.name}
             sx={{
-              m: 2,
+              m: 3,
               color: 'white',
               display: 'block',
               textTransform: 'none',
@@ -178,7 +178,7 @@ function Desktop() {
           >
             <Link href={navLink.url} passHref>
               <Typography
-                variant="h6"
+                //variant="h7"
                 component="a"
                 sx={{
                   color: 'white',
@@ -203,9 +203,10 @@ function Desktop() {
             borderColor: 'white',
             borderStyle: 'solid',
             borderRadius: '100px',
-            '&:hover': { color: 'black', backgroundColor: 'white' },
             display: { xs: 'none', sm: 'flex' },
             textTransform: 'none',
+            width: 150,
+            '&:hover': { color: 'black', backgroundColor: 'white' },
           }}
           startIcon={
             <NotificationsIcon
@@ -227,9 +228,11 @@ function Desktop() {
               borderColor: 'white',
               borderStyle: 'solid',
               borderRadius: '100px',
-              '&:hover': { color: 'black', backgroundColor: 'white' },
               display: { xs: 'none', sm: 'flex' },
               textTransform: 'none',
+              width: 150,
+              '&:hover': { color: 'black', backgroundColor: 'white' },
+              '&:hover .MuiSvgIcon-root': { color: 'black' },
             }}
             startIcon={
               <VolunteerActivismIcon
