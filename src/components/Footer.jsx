@@ -5,8 +5,17 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, Button, styled, Toolbar, Typography } from '@mui/material'
+import Image from 'next/image'
 import Link from 'next/link'
 
+import facebooklogo from '../../public/images/facebook.png'
+import githublogo from '../../public/images/github.png'
+import instagramlogo from '../../public/images/instagram.png'
+import linkedinlogo from '../../public/images/linkedin.png'
+import licenselogo from '../../public/images/orcasound-all-rights-reserved-2023.png'
+import orcasoundlogo from '../../public/images/orcasoundlogo_3.png'
+import xlogo from '../../public/images/x.png'
+import youtubelogo from '../../public/images/youtube.png'
 import useIsMobile from '../utils/useIsMobile'
 
 const StyledTypography = styled(Typography)({
@@ -64,6 +73,96 @@ const blogLink = (
   </Link>
 )
 
+const supportUsLink = (
+  <Link href="" passHref>
+    <StyledTypography variant="h6" component="a">
+      Support Us
+    </StyledTypography>
+  </Link>
+)
+
+const learnMoreLink = (
+  <Link href="" passHref>
+    <StyledTypography variant="h6" component="a">
+      Learn More
+    </StyledTypography>
+  </Link>
+)
+
+const navLinksLeftCol = [
+  {
+    name: 'Get Involved',
+    url: '/getinvolved',
+    icon: '',
+  },
+  {
+    name: 'Send Feedback',
+    url: '/',
+    icon: '',
+  },
+  {
+    name: 'Donate',
+    url: '/donate',
+    icon: '',
+  },
+]
+
+const navLinksRightCol = [
+  {
+    name: 'About Us',
+    url: '/about',
+    icon: '',
+  },
+  {
+    name: 'Learn',
+    url: '/learn',
+    icon: '',
+  },
+  {
+    name: 'Listen',
+    url: '/listen',
+    icon: '',
+  },
+  {
+    name: 'Blog',
+    url: '/blog',
+    icon: '',
+  },
+]
+
+const iconLinks = [
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/orcasoundapp/',
+    icon: instagramlogo,
+  },
+  {
+    name: 'X',
+    url: 'https://twitter.com/OrcasoundApp',
+    icon: xlogo,
+  },
+  {
+    name: 'Facebook',
+    url: 'https://www.facebook.com/OrcasoundApp/',
+    icon: facebooklogo,
+  },
+  {
+    name: 'Youtube',
+    url: 'https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg',
+    icon: youtubelogo,
+  },
+  {
+    name: 'Github',
+    url: '',
+    icon: githublogo,
+  },
+  {
+    name: 'Linkedin',
+    url: 'https://www.linkedin.com/company/75491849/admin/',
+    icon: linkedinlogo,
+  },
+]
+
 export default function Footer() {
   const isMobile = useIsMobile()
 
@@ -73,7 +172,7 @@ export default function Footer() {
 function Mobile() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ padding: '20px' }}>
+      <AppBar position="relative" sx={{ padding: '20px' }}>
         <div>{sendFeedbackLink}</div>
         <div>{blogLink}</div>
         <div>
@@ -93,32 +192,127 @@ function Desktop() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <Box sx={{ flexGrow: 1 }}></Box>
-          {sendFeedbackLink}
-          {blogLink}
-          {iconContainer}
-          <Link href="/donate" passHref>
-            <Button
-              variant="contained"
+        <Box display="flex" sx={{ position: 'relative', height: '400px' }}>
+          <Box
+            sx={{
+              flexGrow: 0.5,
+              position: 'relative',
+              top: '70px',
+              left: '50px',
+              width: '250px',
+              height: '180px',
+              margin: '10px',
+            }}
+          >
+            <Image src={orcasoundlogo} alt="Orcasound"></Image>
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="column"
+            sx={{
+              position: 'relative',
+              top: '70px',
+              margin: '10px',
+            }}
+          >
+            <Box
+              display="flex"
               sx={{
-                color: 'black',
-                backgroundColor: 'white',
-                borderRadius: '100px',
-                '&:hover': { color: 'black', backgroundColor: 'white' },
+                height: '50px',
+                margin: '3px',
               }}
-              startIcon={
-                <NotificationsIcon
-                  sx={(theme) => ({
-                    color: `${theme.palette.secondary.main}`,
-                  })}
-                />
-              }
             >
-              Donate
-            </Button>
-          </Link>
-        </Toolbar>
+              {supportUsLink}
+            </Box>
+
+            {navLinksLeftCol.map((navLink) => (
+              <Box
+                key={navLink.name}
+                display="flex"
+                sx={{
+                  margin: '3px',
+                  height: '30px',
+                }}
+              >
+                <Link href={navLink.url} passHref>
+                  <StyledTypography component="a">
+                    {navLink.name}
+                  </StyledTypography>
+                </Link>
+              </Box>
+            ))}
+          </Box>
+
+          <Box
+            display="flex"
+            flexDirection="column"
+            sx={{
+              position: 'relative',
+              top: '70px',
+              left: '40px',
+              margin: '10px',
+            }}
+          >
+            <Box
+              display="flex"
+              sx={{
+                height: '50px',
+                margin: '3px',
+              }}
+            >
+              {learnMoreLink}
+            </Box>
+
+            {navLinksRightCol.map((navLink) => (
+              <Box
+                key={navLink.name}
+                display="flex"
+                sx={{
+                  margin: '3px',
+                  height: '30px',
+                }}
+              >
+                <Link href={navLink.url} passHref>
+                  <StyledTypography component="a">
+                    {navLink.name}
+                  </StyledTypography>
+                </Link>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+
+        <Box display="flex" sx={{ position: 'relative' }}>
+          <Box
+            display="flex"
+            sx={{
+              flexGrow: 0.95,
+              width: '360px',
+              height: '60px',
+              position: 'relative',
+              top: '160%',
+              bottom: '30px',
+              left: '50px',
+            }}
+          >
+            {iconLinks.map((iconLink) => (
+              <Link key={iconLink.name} href={iconLink.url} passHref>
+                <Box
+                  component="a"
+                  sx={{
+                    margin: '10px',
+                  }}
+                >
+                  <Image src={iconLink.icon} alt={iconLink.name}></Image>
+                </Box>
+              </Link>
+            ))}
+          </Box>
+          <Box>
+            <Image src={licenselogo} alt="License"></Image>
+          </Box>
+        </Box>
       </AppBar>
     </Box>
   )
