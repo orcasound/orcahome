@@ -21,6 +21,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
+import blueWaveLine from '../../public/images/blue-wave.png'
 import orcasoundlogo from '../../public/images/orcasoundlogo_2.png'
 import useIsMobile from '../utils/useIsMobile'
 
@@ -52,7 +53,7 @@ const navLinks = [
   },
   {
     name: 'Send Feedback',
-    url: '',
+    url: '/',
     icon: '',
   },
 ]
@@ -167,31 +168,51 @@ function Desktop() {
     <React.Fragment>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.5 }}>
         {navLinks.map((navLink) => (
-          <Button
+          <Box
             key={navLink.name}
             sx={{
-              m: 3,
-              color: 'white',
-              display: 'block',
-              textTransform: 'none',
+              position: 'relative',
+              margin: 3,
+              '&:hover .MuiButtonBase-root .MuiTypography-root': {
+                //color: 'grey',
+              },
+              '&:hover .MuiBox-root': {
+                opacity: 1,
+              },
             }}
           >
-            <Link href={navLink.url} passHref>
-              <Typography
-                //variant="h7"
-                component="a"
-                sx={{
-                  color: 'white',
-                  '&:hover': {
-                    textDecoration: 'none',
+            <Button
+              key={navLink.name}
+              sx={{
+                color: 'white',
+                display: 'block',
+                textTransform: 'none',
+              }}
+            >
+              <Link href={navLink.url} passHref>
+                <Typography
+                  component="a"
+                  sx={{
                     color: 'white',
-                  },
-                }}
-              >
-                {navLink.name}
-              </Typography>
-            </Link>
-          </Button>
+                    textDecoration: 'none',
+                  }}
+                >
+                  {navLink.name}
+                </Typography>
+              </Link>
+            </Button>
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                opacity: 0,
+                transition: 'opacity 0.3s ease-in-out',
+                pointerEvents: 'none',
+              }}
+            >
+              <Image src={blueWaveLine} />
+            </Box>
+          </Box>
         ))}
       </Box>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
