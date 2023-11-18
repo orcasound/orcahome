@@ -21,7 +21,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import blueWaveLine from '../../public/images/blue-wave.png'
 import orcasoundlogo from '../../public/images/orcasoundlogo_2.png'
 import useIsMobile from '../utils/useIsMobile'
 
@@ -187,6 +186,10 @@ function Desktop() {
                 color: 'white',
                 display: 'block',
                 textTransform: 'none',
+                '&:hover': {
+                  textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
+                  textUnderlineOffset: '7px',
+                },
               }}
             >
               <Link href={navLink.url} passHref>
@@ -201,17 +204,6 @@ function Desktop() {
                 </Typography>
               </Link>
             </Button>
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                opacity: 0,
-                transition: 'opacity 0.3s ease-in-out',
-                pointerEvents: 'none',
-              }}
-            >
-              <Image src={blueWaveLine} />
-            </Box>
           </Box>
         ))}
       </Box>
