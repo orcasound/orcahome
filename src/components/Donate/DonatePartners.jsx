@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import styles from '../../styles/DonatePartners.module.css'
 
 const partners = [
@@ -95,7 +97,12 @@ const DonatePartners = () => {
         {partners.map((partner, index) => (
           <div key={index} className={styles.mobileContainer}>
             <div className={styles.mobilePartner}>
-              <img src={partner.icon} alt={partner.name} />
+              <Image
+                width={100}
+                height={100}
+                src={partner.icon}
+                alt={partner.name}
+              />
               <div className={styles.mobileHeader}>{partner.name}</div>
             </div>
             <div>
@@ -120,7 +127,12 @@ const DonatePartners = () => {
       <div>
         {partners.map((partner, index) => (
           <div key={index} className={styles.container}>
-            <img src={partner.icon} alt={partner.name} />
+            <Image
+              width={100}
+              height={100}
+              src={partner.icon}
+              alt={partner.name}
+            />
             <div className={styles.partnersContainer}>
               <div className={styles.partnersDetails}>
                 <div className={styles.header}>{partner.name}</div>
