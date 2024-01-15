@@ -136,7 +136,7 @@ function Mobile() {
   )
 
   return (
-    <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+    <Box sx={{ display: { xs: 'flex', sm: 'flex' } }}>
       <IconButton
         size="large"
         aria-label="account of current user"
@@ -151,7 +151,7 @@ function Mobile() {
         anchor="top"
         open={menuIsOpen}
         onClose={handleMenuToggle}
-        sx={{ display: { xs: 'flex', sm: 'none' } }}
+        sx={{ display: { xs: 'flex', sm: 'flex' } }}
       >
         <Toolbar sx={{ height: '80px' }} />
         {list}
@@ -172,12 +172,6 @@ function Desktop() {
             sx={{
               position: 'relative',
               margin: 3,
-              '&:hover .MuiButtonBase-root .MuiTypography-root': {
-                //color: 'grey',
-              },
-              '&:hover .MuiBox-root': {
-                opacity: 1,
-              },
             }}
           >
             <Button
@@ -216,16 +210,13 @@ function Desktop() {
             borderColor: 'white',
             borderStyle: 'solid',
             borderRadius: '100px',
-            display: { xs: 'none', sm: 'flex' },
             textTransform: 'none',
-            width: 150,
-            '&:hover': { color: 'black', backgroundColor: 'white' },
+            maxwidth: 150,
           }}
           startIcon={
             <NotificationsIcon
               sx={{
                 color: 'white',
-                '&:hover': { color: `${theme.palette.secondary.main}` },
               }}
             />
           }
@@ -241,11 +232,8 @@ function Desktop() {
               borderColor: 'white',
               borderStyle: 'solid',
               borderRadius: '100px',
-              display: { xs: 'none', sm: 'flex' },
               textTransform: 'none',
-              width: 150,
-              '&:hover': { color: 'black', backgroundColor: 'white' },
-              '&:hover .MuiSvgIcon-root': { color: 'black' },
+              maxwidth: 150,
             }}
             startIcon={
               <VolunteerActivismIcon
