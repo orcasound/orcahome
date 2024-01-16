@@ -1,7 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close'
 import MenuIcon from '@mui/icons-material/Menu'
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
 import {
   AppBar,

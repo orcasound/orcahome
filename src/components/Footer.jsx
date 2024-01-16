@@ -1,10 +1,9 @@
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import NotificationsIcon from '@mui/icons-material/Notifications'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
-import { AppBar, Box, Button, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, styled, Typography } from '@mui/material'
 import Image from 'next/image'
 import Link from 'next/link'
 
