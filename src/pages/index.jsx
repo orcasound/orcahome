@@ -183,7 +183,7 @@ export const index = () => {
             </Typography>
             <Typography variant="body" fontSize="20px" fontWeight={'600'}>
               <br></br>
-              {`Orcasound is a cooperative hydrophne network and an
+              {`Orcasound is a cooperative hydrophone network and an
                 open-source software & hardware project.`}
             </Typography>
           </Box>
@@ -298,7 +298,7 @@ export const index = () => {
               fontWeight={'600'}
             >
               <br></br>
-              {`Orcasound is a cooperative hydrophne network and an
+              {`Orcasound is a cooperative hydrophone network and an
                   open-source software & hardware project.`}
               <br></br>
               <br></br>

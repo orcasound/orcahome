@@ -15,7 +15,7 @@ export const Donate = () => {
         bannerImg={topbanner}
         pageTitle={`Donate`}
         pageDesc={`There are many ways to help in the recovering of marine life, 
-        especially for the Souther Resident Killer Whales that call the Salish Sea home. 
+        especially for the Southern Resident Killer Whales that call the Salish Sea home. 
         Check out the ways you can help below!`}
         scrollToId={`donate`}
       />
@@ -29,7 +29,7 @@ export const Donate = () => {
         }}
       >
         <Box>
-          {`The only way you can donate to Orcasound is through our parner-organizations. 
+          {`The only way you can donate to Orcasound is through our partner-organizations. 
             Help us and our Orcasound network members by making a charitable contribution to our partners, many of whom are 501(c)3 organizations. 
             Check out the links below to help strengthen and grow our network, while supporting our on-going conservation, research, and educational efforts.`}
         </Box>

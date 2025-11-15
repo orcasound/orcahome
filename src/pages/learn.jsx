@@ -30,7 +30,7 @@ export const learn = () => {
       <ul className={learnStyles.hello}>
         <li>Sounds of the Salish Sea</li>
         <li>3 common calls</li>
-        <li>Souther Resident Killer Whale Call Catalog</li>
+        <li>Southern Resident Killer Whale Call Catalog</li>
         <li>Exhibits</li>
       </ul>
       <h1 className={learnStyles.salish}> Sounds Of The Salish Sea</h1>
