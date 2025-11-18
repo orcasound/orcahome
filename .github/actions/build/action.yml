@@ -5,7 +5,7 @@ runs:
   steps:
     # Cache build cache folder between workflow runs to speed up builds
     # Based on https://nextjs.org/docs/messages/no-cache#github-actions
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       with:
         path: |
           ~/.npm
@@ -16,7 +16,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
     # Cache entire build output for this workflow run to speed up tests
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       id: cache-build
       with:
         path: ${{ github.workspace }}/.next
