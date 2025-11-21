@@ -8,8 +8,6 @@ import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
-import logo3 from '../../public/images/getinvolved/ccollege.png'
-import logo5 from '../../public/images/getinvolved/crt.png'
 import logo4 from '../../public/images/getinvolved/CWR_logo.png'
 import logo6 from '../../public/images/getinvolved/deepgreen.png'
 import logo2 from '../../public/images/getinvolved/folks.png'
@@ -18,15 +16,19 @@ import hydrophonestand from '../../public/images/getinvolved/hydrophone-stand.pn
 import livediy from '../../public/images/getinvolved/live-diy.png'
 import lonhydrophone from '../../public/images/getinvolved/lon-hydrophone.png'
 import logo8 from '../../public/images/getinvolved/OI.png'
+import logo12 from '../../public/images/getinvolved/orca-conservancy.png'
+import logo13 from '../../public/images/getinvolved/orca-network.png'
 import logo9 from '../../public/images/getinvolved/pacman.png'
+import logo14 from '../../public/images/getinvolved/Port-Townsend-Marine-Science-Center.jpg'
 import roadmap from '../../public/images/getinvolved/roadmap.png'
+import logo15 from '../../public/images/getinvolved/sound-action.png'
 import topbanner from '../../public/images/getinvolved/srkw2-25.jpg'
 import logo1 from '../../public/images/getinvolved/twt.png'
 import valhacking from '../../public/images/getinvolved/val-hacking.png'
+import logo16 from '../../public/images/getinvolved/VashonNatureCenter-logo.png'
 import logo11 from '../../public/images/getinvolved/ws_logo.png'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import TopBanner from '../components/TopBanner'
-import getinvolvedStyles from '../styles/getinvolved.module.css'
 import ActionButton from './../components/ActionButton'
 
 export const GetInvolved = () => {
@@ -55,7 +57,7 @@ export const GetInvolved = () => {
         scrollToId={`scroll-link`}
         pageTitle={`Get Involved`}
         pageDesc={`There are many ways to help in the recovering of marine life,
-          especially for the Souther Resident Killer Whales that call the
+          especially for the Southern Resident Killer Whales that call the
           Salish Sea home. Check out the ways you can help below!`}
       />
 
@@ -464,17 +466,281 @@ export const GetInvolved = () => {
         <ActionButton link="" text="DONATE NOW" />
       </Box>
 
-      <div className={getinvolvedStyles.logos}>
-        <Image src={logo1} alt="The Whaletrail" />
-        <Image src={logo2} alt="Friends of Lime Kiln Society" />
-        <Image src={logo3} alt="Colorado College" />
-        <Image src={logo4} alt="Center of Whale Research" />
-        <Image src={logo5} alt="Cetacean Research Technology" />
-        <Image src={logo6} alt="Deep Green Wilderness" />
-        <Image src={logo8} alt="Oceans Initiative" />
-        <Image src={logo9} alt="Pacman" />
-        <Image src={logo11} alt="While Scout" />
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          margin: '50px',
+        }}
+      >
+        <Box
+          component="a"
+          href="https://thewhaletrail.org/connect/donate/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo1}
+            alt="The Whaletrail"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://folkssji.org/donate/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo2}
+            alt="Friends of Lime Kiln Society"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.whaleresearch.com/supportcwr"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo4}
+            alt="Center for Whale Research"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.deepgreenwilderness.com/donate"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo6}
+            alt="Deep Green Wilderness"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://oceansinitiative.org/get-involved/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo8}
+            alt="Oceans Initiative"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://pacmam.org/wp/donate/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image src={logo9} alt="Pacmam" layout="fill" objectFit="contain" />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.whalescout.org/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo11}
+            alt="Whale Scout"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.orcaconservancy.org/donate"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo12}
+            alt="Orca Conservancy"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.orcanetwork.org/donate"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo13}
+            alt="Orca Network"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://ptmsc.org/donate/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo14}
+            alt="Port Townsend Marine Science Center"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://soundaction.org/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo15}
+            alt="Sound Action"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://vashonnaturecenter.org/donate/"
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={logo16}
+            alt="Vashon Nature Center"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Box>
+
+        <Box
+          component="a"
+          href="https://orcabehaviorinstitute.org/"
+          sx={{ margin: '30px' }}
+        >
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+            color="#1B2B7B"
+            sx={{
+              textDecoration: 'underline',
+              fontWeight: '600',
+              mt: '20px',
+            }}
+          >
+            Orca Behavior Institute
+          </Typography>
+        </Box>
+
+        <Box
+          component="a"
+          href="https://www.projectseawolf.org/projectseawolforg/How_to_Help.html"
+          sx={{ margin: '30px' }}
+        >
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+            color="#1B2B7B"
+            sx={{
+              textDecoration: 'underline',
+              fontWeight: '600',
+              mt: '20px',
+            }}
+          >
+            Project SeaWolf
+          </Typography>
+        </Box>
+      </Box>
     </div>
   )
 }
