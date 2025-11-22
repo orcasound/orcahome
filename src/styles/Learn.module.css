@@ -115,6 +115,7 @@
   display: flex;
   margin-top: 80px;
   text-align: center;
-  margin-left: 300px;
+  justify-content: center;
+  gap: 20px;
   padding: 5px 5px;
 }

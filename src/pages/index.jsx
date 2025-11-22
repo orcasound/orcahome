@@ -1,16 +1,17 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
+import { Link as ScrollElement } from 'react-scroll'
 
-import arrow from '../../public/images/Arrow.png'
 import orcas from '../../public/images/homepage.png'
-import vector from '../../public/images/Vector.png'
 
 export const index = () => {
   return (
@@ -26,102 +27,104 @@ export const index = () => {
       <Box
         sx={{
           position: 'relative',
-          display: 'grid',
           width: '100%',
-          maxHeight: 'fit-content',
+          height: '90vh',
+          overflow: 'hidden',
         }}
       >
-        <Image src={orcas} alt="orca background image" />
+        <Image
+          src={orcas}
+          alt="orca background image"
+          layout="fill"
+          objectFit="cover"
+        />
 
         <Box
           sx={{
-            zIndex: '2',
-            alignItems: 'center',
-            padding: '20px',
-            transform: 'translateY(-110%)',
-            marginLeft: '50%',
-            width: '10%',
-            visibility: {
-              xs: 'hidden',
-              sm: 'visible',
-            },
-          }}
-        >
-          <Image src={vector} alt="vector" />
-        </Box>
-
-        <Box
-          sx={{
-            zIndex: '2',
-            display: 'flex',
-            flexDirection: 'row',
-            backgroundColor: '#000000',
             position: 'relative',
-            borderRadius: '20px',
-            mx: {
-              xs: '20%',
-              sm: 'auto',
-            },
-            transform: {
-              xs: 'translateY(-250%)',
-              sm: 'translateY(-350%)',
-              md: 'translateY(-500%)',
-            },
+            zIndex: '2',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            justifyItems: 'center',
-            width: {
-              xs: '60vw',
-              sm: 'fit-content',
-            },
-            height: {
-              xs: '10vh',
-              md: '5rem',
-            },
+            justifyContent: 'center',
+            paddingBottom: '100px',
           }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              fontFamily: 'Mukta',
-              fontSize: {
-                xs: '24px',
-                md: '44px',
-              },
-              color: 'white',
-              fontStyle: 'normal',
-              lineHeight: '100%',
-              p: {
-                xs: '25px 10px 27px 48px',
-                sm: '0px 27px 27px 48px',
-                md: '27px 10px 29px 33px',
-              },
-              position: 'relative',
-              textAlign: 'center',
-              fontWeight: {
-                xs: '500',
-                sm: '600',
-              },
-            }}
-          >
-            LISTEN TO ORCAS LIVE!
-          </Typography>
-
           <Box
             sx={{
-              position: 'relative',
-              top: '35%',
-              right: '2px',
-              width: '30px',
-              pr: '4px',
-              transform: 'translateY(-80%)',
+              backgroundColor: '#000000',
+              borderRadius: '20px',
+              px: {
+                xs: '30px',
+                sm: '40px',
+                md: '50px',
+              },
+              py: {
+                xs: '20px',
+                sm: '25px',
+                md: '30px',
+              },
             }}
           >
-            <Image src={arrow} width="30px" height="30px" alt="arrow down" />
+            <Typography
+              variant="h1"
+              sx={{
+                fontFamily: 'Mukta',
+                fontSize: {
+                  xs: '24px',
+                  sm: '32px',
+                  md: '44px',
+                },
+                color: 'white',
+                fontStyle: 'normal',
+                lineHeight: '100%',
+                textAlign: 'center',
+                fontWeight: {
+                  xs: '500',
+                  sm: '600',
+                },
+              }}
+            >
+              LISTEN TO ORCAS LIVE!
+            </Typography>
           </Box>
+
+          <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
+            <IconButton
+              sx={{
+                position: 'absolute',
+                bottom: '30px',
+                padding: '0',
+                display: {
+                  xs: 'none',
+                  sm: 'flex',
+                },
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '15px',
+                transition: 'all 0.5s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(5px)',
+                },
+              }}
+            >
+              <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
+              <ExpandMoreIcon
+                sx={{
+                  fontSize: '5vw',
+                  color: '#ffffff',
+                  transform: 'translateY(-3.5vw)',
+                }}
+              />
+            </IconButton>
+          </ScrollElement>
         </Box>
       </Box>
 
       <Box
+        id="what-is-orcasound"
         sx={{
           mx: {
             sm: 0,
@@ -133,7 +136,7 @@ export const index = () => {
         <Box
           component={Grid}
           item
-          sx={{ ml: 2, mt: { xs: -18, sm: -15 }, mb: { xs: 3, sm: 8 } }}
+          sx={{ ml: 2, mt: { xs: 3, sm: 5 }, mb: { xs: 3, sm: 8 } }}
         >
           <Typography
             variant="h1"
