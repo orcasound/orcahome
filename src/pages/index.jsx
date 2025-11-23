@@ -92,6 +92,7 @@ export const index = () => {
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
             <IconButton
+              aria-label="Scroll down to What is Orcasound section"
               sx={{
                 position: 'absolute',
                 bottom: '30px',
