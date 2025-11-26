@@ -11,7 +11,6 @@ import facebooklogo from '../../public/images/facebook.png'
 import githublogo from '../../public/images/github_invert.png'
 import instagramlogo from '../../public/images/instagram.png'
 import linkedinlogo from '../../public/images/linkedin.png'
-import licenselogo from '../../public/images/orcasound-all-rights-reserved-2023.png'
 import orcasoundlogo from '../../public/images/orcasoundlogo_3.png'
 import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
@@ -307,9 +306,6 @@ function Desktop() {
                 </Box>
               </Link>
             ))}
-          </Box>
-          <Box>
-            <Image src={licenselogo} alt="License"></Image>
           </Box>
         </Box>
       </AppBar>
