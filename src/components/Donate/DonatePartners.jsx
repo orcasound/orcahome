@@ -77,7 +77,7 @@ const partners = [
     icon: '/images/donatePartners/TheWhaleTrail-LogoSpyhop_RGB.svg',
     name: 'The Whale Trail ',
     description:
-      'The Whale Trail idenfities orca migration paths along the Salish Sea and Pacific Coast.',
+      'The Whale Trail identifies orca migration paths along the Salish Sea and Pacific Coast.',
     linkTo: 'https://thewhaletrail.org/connect/donate/',
   },
 ]
