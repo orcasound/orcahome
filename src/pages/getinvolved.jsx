@@ -1,8 +1,12 @@
-import { Box, Typography } from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import RestartAltIcon from '@mui/icons-material/RestartAlt'
+import { Box, Button, Container, Link, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
 import logo3 from '../../public/images/getinvolved/ccollege.png'
 import logo5 from '../../public/images/getinvolved/crt.png'
@@ -209,66 +213,257 @@ export const GetInvolved = () => {
         <TechStackList />
       </Box>
 
-      <div className={getinvolvedStyles.wrapper}>
-        <Image
-          className={getinvolvedStyles.hackathon}
-          src={roadmap}
-          alt="Current Roadmap"
+      <Container maxWidth="md">
+        <Box px={{ xs: '50px', md: '20px' }}>
+          <Typography
+            variant="p"
+            fontSize="30px"
+            align="justify"
+            paragraph={true}
+            my="40px"
+            textAlign="center"
+            lineHeight="30px"
+          >
+            Current Roadmap
+          </Typography>
+          <TransformWrapper initialScale={1}>
+            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+              <>
+                <Box
+                  sx={{
+                    my: '20px',
+                    textAlign: 'center',
+                  }}
+                >
+                  <Button
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    sx={{ m: 1 }}
+                    onClick={() => zoomIn()}
+                  >
+                    Zoom in
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    startIcon={<RemoveIcon />}
+                    sx={{ m: 1 }}
+                    onClick={() => zoomOut()}
+                  >
+                    {' '}
+                    Zoom out
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    sx={{ m: 1 }}
+                    startIcon={<RestartAltIcon />}
+                    onClick={() => resetTransform()}
+                  >
+                    Reset
+                  </Button>
+                </Box>
+                <TransformComponent>
+                  <Image src={roadmap} alt="roadmap" />
+                </TransformComponent>
+              </>
+            )}
+          </TransformWrapper>
+          <Typography
+            variant="p"
+            fontSize="16px"
+            align="justify"
+            paragraph={true}
+            mt="40px"
+            lineHeight="19.5px"
+          >
+            From hydrophone to headphone, this is how we intend to deliver an
+            ocean of sound! 2020 Roadmap: components above the gray dashed line
+            launched November 1, 2018; green features are being beta-tested
+            since November 2019; red features are in development or requested.
+            Click to view expanded image.
+          </Typography>
+        </Box>
+      </Container>
+
+      <Box
+        sx={{
+          my: '70px',
+          px: '50px',
+          textAlign: 'center',
+          lineHeight: '28px',
+        }}
+      >
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you’re based in the Pacific Northwest, you can work with Orcasound
+          in-person at a hackathon (see the{' '}
+          <Link
+            href="https://www.democracylab.org/projects/81"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound project at DemocracyLab
+          </Link>
+          ). No matter where you are, you can join the{' '}
+          <Link
+            href="https://orcasound.slack.com/"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound Slack
+          </Link>
+          , check out our{' '}
+          <Link
+            href="https://github.com/orgs/orcasound/repositories"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Github repositories
+          </Link>{' '}
+          and{' '}
+          <Link
+            href="https://trello.com/w/hydrophonenetwork/home"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Trello boards
+          </Link>
+          , subscribe to the{' '}
+          <Link
+            href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound dev email distribution list
+          </Link>
+          , and find a place to contribute your talents. We hope you will share
+          your expertise and innovations with us, and maybe even earn your way
+          into the{' '}
+          <Link
+            href="https://www.orcasound.net/hacker-hall-of-fame/"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            Orcasound Hacker Hall of Fame!
+          </Link>
+        </Typography>
+        <ActionButton
+          link="https://www.orcasound.net/support/"
+          text="LEARN MORE ABOUT VOLUNTEERING!"
         />
-        <br></br>
-      </div>
-      <p className={getinvolvedStyles.textroadmap}>
-        {`If you're based in the Pacific Northwest you can work with Orcasound
-        in-person at a hackathon (see the Orcasound projects at democracy lab)
-        No matter where you are, you can join Orcasound Slack, check out our
-        Github repository and Trello boards, subscribe to the Orcasound dev
-        email distribution list, and finish a place to contribute your
-        talents. We hope you will share your expertise and innovations with
-        us, and maybe even earn your way into the Orcasound HacHacker hall of
-        Fame`}
-      </p>
-      <div className={getinvolvedStyles.button}>
-        <ActionButton link="" text="LEARN MORE ABOUT VOLUNTEERING!" />
-      </div>
-      <h2 className={getinvolvedStyles.memorandum}>Memorandum Of Agreements</h2>
-      <p className={getinvolvedStyles.textmemorandum}>
-        {`The real time audio streams, citizen science projects, educational
-        material and outreach projects of Orcasound are brought to you by the
-        current network member, listed below who have e-signed the 2016-2020
-        Memorandum of Agreements(MOA)Any organization or individual is welcome
-        to join the network(for free!)either as the host of an hydrophone
-        node, a researcher or citizen scientist an educator/activist or
-        general volunteer.`}
-        <br></br>
-        {`If you are an individual wanting to volunteer , collaborate or donate,
-        check out the many ways you can support Orcasound.Everyone can listen
-        for whales, and learn the diverse sounds of Salish Sea.`}
-        <br></br>
-        {`If you are an organization wanting to join the network as the host of
-        a new hydrophone node, an educational/outreacg node, or both -- just
-        read the history, mission and vision of the netowrk e-sign the MOA and
-        then email info@orcasound.net to begin collaborating.There are no
-        membership fees-- just benefits roles and responsibilities.`}
-      </p>
-      <h2 className={getinvolvedStyles.donate} id="donate">
-        {' '}
-        Donate
-      </h2>
-      <p className={getinvolvedStyles.donatetext}>
-        {`Help us and our Orcasound network members by making charitable
-        contribution to our partners, many of whom are 501(c)3 organizations
-        Check out the link below to help strengthen and grow our network,
-        while supporting our on-going conservation, research, and educational
-        efforts.`}
-        <br></br>
-        {`You can also directly support the many dedicated volunteers who help
-        Orcasound keep running and improve over time. Take a look at our
-        'Hacker hall of fame ' and our Github repositories and consider
-        sponsoring the work of our most-dedicated contributors.`}
-      </p>
-      <div className={getinvolvedStyles.button}>
+      </Box>
+
+      <Box
+        sx={{
+          my: '150px',
+          px: '50px',
+          lineHeight: '28px',
+        }}
+      >
+        <Typography
+          variant="subtitle1"
+          fontSize="44px"
+          align="left"
+          fontWeight="600"
+          mb="40px"
+        >
+          Memorandum Of Agreements
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          The real time audio streams, citizen science projects, educational
+          material and outreach projects of Orcasound are brought to you by the
+          current network member, listed below who have e-signed the{' '}
+          <Link
+            color="#1B2B7B"
+            href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
+          >
+            2016-2020 Memorandum of Agreements(MOA)
+          </Link>
+          . Any organization or individual is welcome to join the network (for
+          free!) either as the host of an hydrophone node, a researcher or
+          citizen scientist an educator/activist or general volunteer.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you are an individual wanting to volunteer, collaborate or donate,
+          check out the many ways you can support Orcasound. Everyone can listen
+          for whales, and learn the diverse sounds of Salish Sea.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          If you are an organization wanting to join the network as the host of
+          a new hydrophone node, an educational/outreach node, or both -- just
+          read the history, mission and vision of the network e-sign the MOA and
+          then email{' '}
+          <Link
+            href="mailto:info@orcasound.net"
+            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+          >
+            info@orcasound.net
+          </Link>{' '}
+          to begin collaborating. There are no membership fees-- just benefits
+          roles and responsibilities.
+        </Typography>
+      </Box>
+
+      <Box
+        id="donate"
+        sx={{
+          my: '100px',
+          px: '50px',
+          letterSpacing: 0.02,
+          textAlign: 'center',
+          lineHeight: '28px',
+        }}
+      >
+        <Typography
+          variant="subtitle1"
+          fontSize="44px"
+          align="left"
+          fontWeight="600"
+          mb="40px"
+        >
+          Donate
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          Help us and our{' '}
+          <Typography variant="soft" color="#1B2B7B">
+            Orcasound network members
+          </Typography>
+          {''} by making charitable contribution to our partners, many of whom
+          are 501(c)3 organizations Check out the link below to help strengthen
+          and grow our network, while supporting our on-going conservation,
+          research, and educational efforts.
+        </Typography>
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
+        >
+          You can also directly support the many dedicated volunteers who help
+          Orcasound keep running and improve over time. Take a look at our
+          Hacker hall of fame and our Github repositories and consider
+          sponsoring the work of our most-dedicated contributors.
+        </Typography>
         <ActionButton link="" text="DONATE NOW" />
-      </div>
+      </Box>
+
       <div className={getinvolvedStyles.logos}>
         <Image src={logo1} alt="The Whaletrail" />
         <Image src={logo2} alt="Friends of Lime Kiln Society" />
