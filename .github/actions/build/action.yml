@@ -1,0 +1,27 @@
+name: 'Build'
+description: 'Builds project'
+runs:
+  using: 'composite'
+  steps:
+    # Cache build cache folder between workflow runs to speed up builds
+    # Based on https://nextjs.org/docs/messages/no-cache#github-actions
+    - uses: actions/cache@v4
+      with:
+        path: |
+          ~/.npm
+          ${{ github.workspace }}/.next/cache
+        # Generate a new cache whenever packages or source files change.
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+        # If source files changed but packages didn't, rebuild from a prior cache.
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+    # Cache entire build output for this workflow run to speed up tests
+    - uses: actions/cache@v4
+      id: cache-build
+      with:
+        path: ${{ github.workspace }}/.next
+        key: nextjs-${{ github.run_id }}-${{ github.run_attempt }}
+    - name: Build project
+      if: steps.cache-build.outputs.cache-hit != 'true'
+      run: npm run build
+      shell: bash

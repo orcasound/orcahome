@@ -1,143 +1,165 @@
+import { Box, Typography } from '@mui/material'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import Head from 'next/head'
-import Image from 'next/image'
-import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
+import { useState } from 'react'
 
-import orca from '../../public/images/orca2.png'
-import aboutStyles from '../styles/About.module.css'
+import AboutBanner from '../../public/images/about.webp'
+import AboutCard from '../components/About/AboutCard'
+import Items from '../components/About/db.json'
+import TopBanner from '../components/TopBanner'
+import useIsMobile from '../utils/useIsMobile'
 
-export const About = () => {
+export default function About() {
+  const mobileActive = useIsMobile()
+  const [seeMore, setSeeMore] = useState(!mobileActive)
+
   return (
-    <div className={aboutStyles.about}>
+    <>
       <Head>
-        <title>Orcasound</title>
+        <title>About us - Orcasound</title>
       </Head>
-      <Image
-        className={aboutStyles.landingImage}
-        src={orca}
-        width={1400}
-        height={500}
+      <TopBanner
+        bannerImg={AboutBanner}
+        pageTitle={`About`}
+        pageDesc={`Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`}
+        scrollToId={`about`}
       />
-      <h2 className={aboutStyles.landingText}> What is Orcasound</h2>
 
-      <p className={aboutStyles.landingPa}>
-        Orcasound is a software & hardware Web app to <br></br>
-        listen to whales, save orcas and advance <br></br>
-        bioacustics(AI Technology)
-      </p>
+      <Box m={3} id="about">
+        <Container>
+          <Typography mt={9} align="justify" variant="body1">
+            {`Orcasound is a cooperative effort of many dedicated individuals and
+            great organizations. Here are our recent projects — created by
+            volunteers, stewards, citizen scientists, hackers, and generous
+            funders — all working together for the orcas.`}
+          </Typography>
 
-      <p className={aboutStyles.introduction}>
-        Orcasound is a coperative effort of many dedicated individuals and great
-        organizations.Here are our recent projects-- created by
-        volunteers,stewards,citizens,scientist,hackers and generous funders--
-        all working together for the orcas
-      </p>
+          <Typography
+            mt={8}
+            mb={5}
+            variant="h4"
+            sx={{
+              fontFamily: 'Mukta',
+              fontWeight: '600',
+            }}
+          >
+            Our Projects
+          </Typography>
 
-      <h2 className={aboutStyles.projects}>Our Projects</h2>
-      <div className={aboutStyles.card}>
-        <CardColumns>
-          <Card>
-            <Card.Img
-              variant="top"
-              src=" https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Orcasound App</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
+          <Box>
+            <Grid
+              container
+              justifyContent="center"
+              spacing={mobileActive ? 0 : 5}
+            >
+              {Items.map((item, index) => {
+                return (
+                  <Grid item xs={12} sm={6} md={3} key={index}>
+                    {/* There are two conditions 
+                    1) for mobile
+                      a) showing default only two projects  -> (mobileActive && index < 2)
+                      b) if user wants to see more Projects -> (seeMore)
+                    2) for Desktop, show all projects       -> (!mobileActive) */}
+                    {((mobileActive && index < 2) ||
+                      seeMore ||
+                      !mobileActive) && (
+                      <AboutCard item={item} mobileActive={mobileActive} />
+                    )}
+                  </Grid>
+                )
+              })}
+            </Grid>
+          </Box>
 
-            <Card.Body>
-              <Card.Title>Port Townsend Hydrophone</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Bush Point Hydrophone</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Ocean Listening Exhibit</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Google summer of code</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Blog</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title> 2017 Orca Behavior Study</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Sailish Sea Vessel Research</Card.Title>
-            </Card.Body>
-          </Card>
-          <Card>
-            <Card.Img
-              variant="top"
-              src="https://www.aquariumcostadealmeria.com/wp-content/uploads/2019/01/shutterstock_554899423-1-1280x720.jpg"
-            />
-            <Card.Body>
-              <Card.Title>Salish Sea Vessel Research</Card.Title>
-            </Card.Body>
-          </Card>
-        </CardColumns>
-      </div>
-      <h2 className={aboutStyles.particiation}>
-        <strong>We Welcome Your Participation</strong>
-      </h2>
-      <p className={aboutStyles.join}>
-        You can join us anytime as a volunteer to our open-source software &
-        hardware projects.
-        <br></br>
-        <br></br>
-        If you'd like to host a hydrophone, do research, or incorporate
-        Orcasound into the educational or outreach efforts of your
-        organization,please reach out!
-      </p>
-      <div className={aboutStyles.button}>
-        <Button variant="outline-primary"> GET INVOLVED!</Button>
-      </div>
-    </div>
+          {mobileActive && <Mobile setSeeMore={setSeeMore} seeMore={seeMore} />}
+
+          <Box mx={{ xs: 1, sm: 10, md: 20, lg: 40 }} my={13}>
+            <Typography
+              mt={1}
+              mx={1}
+              align="center"
+              variant="h5"
+              sx={{
+                fontFamily: 'Mukta',
+                fontWeight: '600',
+              }}
+            >
+              We Welcome Your Participation!
+            </Typography>
+
+            <Box my={3}>
+              <Typography
+                mx={1}
+                mt={3}
+                align="justify"
+                variant="body1"
+                gutterBottom
+              >
+                {`You can join us anytime as a volunteer to our open-source
+                software & hardware projects.`}
+              </Typography>
+              <Typography
+                mx={1}
+                mt={3}
+                align="justify"
+                variant="body1"
+                gutterBottom
+              >
+                {`If you'd like to host a hydrophone, do research, or incorporate
+                Orcasound into the educational or outreach efforts of your
+                organization,please reach out!`}
+              </Typography>
+            </Box>
+
+            <Box
+              my={4}
+              mx={1}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: '#002984',
+                  alignContent: 'center',
+                  borderRadius: '30px',
+                  '&:hover': {
+                    backgroundColor: '#002984',
+                    color: 'white',
+                  },
+                }}
+                href="#contained-buttons"
+              >
+                GET INVOLVED
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+    </>
   )
 }
 
-export default About
+function Mobile({ setSeeMore, seeMore }) {
+  return (
+    <Typography
+      mt={1}
+      gutterBottom
+      onClick={() => setSeeMore(!seeMore)}
+      align="center"
+      sx={{
+        textDecorationLine: 'underline',
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      }}
+    >
+      {seeMore ? 'Show less...' : 'See more...'}
+    </Typography>
+  )
+}

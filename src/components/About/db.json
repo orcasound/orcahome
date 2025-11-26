@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "Orcasound App",
+    "path": "/images/about/iPhone_coffee.webp"
+  },
+  {
+    "id": 2,
+    "title": "AI for Orcas : Open Bioacoustics Data Science",
+    "path": "/images/about/AIforOrcas.webp"
+  },
+  {
+    "id": 3,
+    "title": "Salish Sea Vessel Research",
+    "path": "/images/about/orca-ships.webp"
+  },
+  {
+    "id": 4,
+    "title": "Port Townsend Hydrophone",
+    "path": "/images/about/PortTownsendHydrophone.webp"
+  },
+  {
+    "id": 5,
+    "title": "Orcasound Lab Hydrophone",
+    "path": "/images/about/salish-sea-sunset.webp"
+  },
+  {
+    "id": 6,
+    "title": "Bush Point Hydrophone",
+    "path": "/images/about/PortTownsendHydrophone.webp"
+  },
+  {
+    "id": 7,
+    "title": "Ocean Listening Exhibit (Langley Whale Center)",
+    "path": "/images/about/sounds.webp"
+  },
+  {
+    "id": 8,
+    "title": "Orca Behavior Study 2017 ",
+    "path": "/images/about/orca-J1-tanker.webp"
+  }
+]
