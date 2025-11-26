@@ -181,6 +181,11 @@ function Mobile() {
           </Link>
         </div>
         {iconContainer}
+        <Box sx={{ marginTop: '20px', textAlign: 'center' }}>
+          <Typography variant="body2" color="white">
+            &copy; 2025 Orcasound. All rights reserved.
+          </Typography>
+        </Box>
       </AppBar>
     </Box>
   )
@@ -281,7 +286,10 @@ function Desktop() {
           </Box>
         </Box>
 
-        <Box display="flex" sx={{ position: 'relative' }}>
+        <Box
+          display="flex"
+          sx={{ position: 'relative', flexDirection: 'column' }}
+        >
           <Box
             display="flex"
             sx={{
@@ -306,6 +314,17 @@ function Desktop() {
                 </Box>
               </Link>
             ))}
+          </Box>
+          <Box
+            sx={{
+              textAlign: 'center',
+              paddingBottom: '20px',
+              marginTop: '20px',
+            }}
+          >
+            <Typography variant="body2" color="white">
+              &copy; 2025 Orcasound. All rights reserved.
+            </Typography>
           </Box>
         </Box>
       </AppBar>

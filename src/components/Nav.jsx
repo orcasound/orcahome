@@ -160,8 +160,6 @@ function Mobile() {
 }
 
 function Desktop() {
-  const theme = useTheme()
-
   return (
     <React.Fragment>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.5 }}>
