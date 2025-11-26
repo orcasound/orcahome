@@ -76,7 +76,7 @@
   display: none;
 }
 
-/* Tblet */
+/* Tablet */
 @media (min-width: 768px) {
   .mobileContainer {
     display: none;
