@@ -34,7 +34,7 @@ export const Donate = () => {
         <DonateOrcasound
           donateOrcasoundImage={donateOrcasoundImage}
           donateOrcasoundTitle="Donate to Orcasound"
-          donateOrcasoundMessage="Help us build and matain the technology to listen to orcas in the world."
+          donateOrcasoundMessage="Help us build and maintain the technology to listen to orcas in the world."
           donateVolunteersImage={donateVolunteersImage}
           donateVolunteersTitle="Donate to Volunteers"
           donateVolunteersMessage="Support those who keep the orcasound website and hydrophone nodes running."
