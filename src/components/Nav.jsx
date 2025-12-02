@@ -1,6 +1,7 @@
 import CloseIcon from '@mui/icons-material/Close'
 import MenuIcon from '@mui/icons-material/Menu'
 import NotificationsIcon from '@mui/icons-material/Notifications'
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism'
 import {
   AppBar,
   Box,
@@ -19,10 +20,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import orcasoundlogo from '../../public/images/orcasoundlogo.png'
+import orcasoundlogo from '../../public/images/orcasoundlogo_2.png'
 import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
+  {
+    name: 'Get Involved',
+    url: '/getinvolved',
+    icon: '',
+  },
+  {
+    name: 'Learn',
+    url: '/learn',
+    icon: '',
+  },
   {
     name: 'About Us',
     url: '/about',
@@ -34,13 +45,13 @@ const navLinks = [
     icon: '',
   },
   {
-    name: 'Learn',
-    url: '/learn',
+    name: 'Blog',
+    url: '/blog',
     icon: '',
   },
   {
-    name: 'Get Involved',
-    url: '/getinvolved',
+    name: 'Send Feedback',
+    url: '/',
     icon: '',
   },
 ]
@@ -57,7 +68,6 @@ const Nav = () => {
             <Box sx={{ flexGrow: 1 }}>
               <Box
                 sx={{
-                  backgroundColor: 'white',
                   width: '69px',
                   height: '66px',
                   margin: '10px',
@@ -76,12 +86,7 @@ const Nav = () => {
                       position: 'absolute',
                     }}
                   >
-                    <Image
-                      src={orcasoundlogo}
-                      alt="Orcasound"
-                      width={90}
-                      height={70}
-                    />
+                    <Image src={orcasoundlogo} alt="Orcasound" />
                   </Box>
                 </Link>
               </Box>
@@ -130,7 +135,7 @@ function Mobile() {
   )
 
   return (
-    <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+    <Box sx={{ display: { xs: 'flex', sm: 'flex' } }}>
       <IconButton
         size="large"
         aria-label="account of current user"
@@ -145,7 +150,7 @@ function Mobile() {
         anchor="top"
         open={menuIsOpen}
         onClose={handleMenuToggle}
-        sx={{ display: { xs: 'flex', sm: 'none' } }}
+        sx={{ display: { xs: 'flex', sm: 'flex' } }}
       >
         <Toolbar sx={{ height: '80px' }} />
         {list}
@@ -155,56 +160,90 @@ function Mobile() {
 }
 
 function Desktop() {
-  const theme = useTheme()
-
   return (
     <React.Fragment>
-      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.5 }}>
         {navLinks.map((navLink) => (
-          <Button
+          <Box
             key={navLink.name}
+            sx={{
+              position: 'relative',
+              margin: 3,
+            }}
+          >
+            <Button
+              key={navLink.name}
+              sx={{
+                color: 'white',
+                display: 'block',
+                textTransform: 'none',
+                '&:hover': {
+                  textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
+                  textUnderlineOffset: '7px',
+                },
+              }}
+            >
+              <Link href={navLink.url} passHref>
+                <Typography
+                  component="a"
+                  sx={{
+                    color: 'white',
+                    textDecoration: 'none',
+                  }}
+                >
+                  {navLink.name}
+                </Typography>
+              </Link>
+            </Button>
+          </Box>
+        ))}
+      </Box>
+      <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
+        <Button
+          variant="outlined"
+          sx={{
+            m: 2,
+            color: 'white',
+            borderColor: 'white',
+            borderStyle: 'solid',
+            borderRadius: '100px',
+            textTransform: 'none',
+            maxwidth: 150,
+          }}
+          startIcon={
+            <NotificationsIcon
+              sx={{
+                color: 'white',
+              }}
+            />
+          }
+        >
+          Notify Me
+        </Button>
+        <Link href="/donate" passHref>
+          <Button
+            variant="outlined"
             sx={{
               m: 2,
               color: 'white',
-              display: 'block',
+              borderColor: 'white',
+              borderStyle: 'solid',
+              borderRadius: '100px',
               textTransform: 'none',
+              maxwidth: 150,
             }}
-          >
-            <Link href={navLink.url} passHref>
-              <Typography
-                variant="h6"
-                component="a"
+            startIcon={
+              <VolunteerActivismIcon
                 sx={{
                   color: 'white',
-                  '&:hover': {
-                    textDecoration: 'none',
-                    color: 'white',
-                  },
                 }}
-              >
-                {navLink.name}
-              </Typography>
-            </Link>
+              />
+            }
+          >
+            Support
           </Button>
-        ))}
+        </Link>
       </Box>
-      <Button
-        variant="contained"
-        sx={{
-          color: 'black',
-          backgroundColor: 'white',
-          borderRadius: '100px',
-          '&:hover': { color: 'black', backgroundColor: 'white' },
-          display: { xs: 'none', sm: 'flex' },
-        }}
-        startIcon={
-          <NotificationsIcon
-            sx={{ color: `${theme.palette.secondary.main}` }}
-          />
-        }
-      >
-        Notify Me
-      </Button>
     </React.Fragment>
   )
 }
