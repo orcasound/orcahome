@@ -1,0 +1,160 @@
+/* mobile */
+.titleContainer {
+  background-color: #1b2b7b;
+  border-radius: 15px;
+  color: white;
+  padding: 16px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.titleDescription {
+  font-size: 15px;
+}
+
+.mobileContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 1px solid black;
+  padding: 0.6rem 0.6rem;
+  margin-bottom: 16px;
+  align-items: center;
+  box-shadow: 0 4px 8px #b4cede;
+}
+
+.mobilePartner {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.mobilePartner img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+.mobileHeader {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.mobileDescription {
+  font-size: 0.7rem;
+  padding: 0.8rem 1rem;
+}
+
+.mobileLink {
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mobileLink a {
+  text-decoration: none;
+}
+
+.mobileLink .underlineText {
+  text-decoration: underline;
+}
+
+.container {
+  display: none;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .mobileContainer {
+    display: none;
+  }
+  .title {
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-bottom: 0rem;
+  }
+  .titleDescription {
+    font-size: 19px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 1rem 2rem;
+    margin-bottom: 16px;
+    align-items: center;
+    box-shadow: 0 4px 8px #b4cede;
+  }
+
+  .container img {
+    width: 6rem;
+    height: 6rem;
+    margin-right: 1rem;
+  }
+
+  .partnersContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    padding: 0.1rem 0;
+  }
+
+  .link {
+    font-size: 1rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .link a {
+    text-decoration: none;
+  }
+
+  .link .underlineText {
+    text-decoration: underline;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+  .titleContainer {
+    background-color: #485595;
+  }
+
+  .partnersContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .partnersDetails {
+    width: 85%;
+  }
+  .link {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: flex-end;
+  }
+}
