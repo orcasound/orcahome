@@ -1,7 +1,7 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Forcahome.netlify.app)](https://orcahome.netlify.app/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/a747055d-dd45-4de4-a666-57578ff6837b/deploy-status)](https://app.netlify.com/sites/orcahome/deploys)
 
-[![Slack](https://img.shields.io/badge/slack-%23orcahome-blue.svg?logo=slack)](https://join.slack.com/t/orcasound/shared_invite/zt-bd1jk2q9-FjeWr3OzocDBwDgS0g1FdQ)
+[![Slack](https://img.shields.io/badge/slack-%23orcahome-blue.svg?logo=slack)](https://join.slack.com/t/orcasound/shared_invite/zt-293mdpy47-El~xXZA6YmHOWoCzB~8WpQ)
 [![License](https://img.shields.io/github/license/orcasound/orcahome)](https://github.com/orcasound/orcahome/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/orcasound/orcahome/blob/master/CONTRIBUTING.md)
 [![CI](https://github.com/orcasound/orcahome/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/orcasound/orcahome/actions/workflows/ci.yml)
@@ -40,3 +40,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+# Contributing

@@ -1,23 +1,19 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-// import { textAlign } from '@mui/system'
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
-import Scroll from 'react-scroll'
+import { Link as ScrollElement } from 'react-scroll'
 
-import arrow from '../../public/images/Arrow.png'
 import orcas from '../../public/images/homepage.png'
-import vector from '../../public/images/Vector.png'
 
 export const index = () => {
-  const ScrollLink = Scroll.Link
-
   return (
     <>
       <Head>
@@ -31,76 +27,59 @@ export const index = () => {
       <Box
         sx={{
           position: 'relative',
-          display: 'grid',
           width: '100%',
-          maxHeight: 'fit-content',
+          height: '90vh',
+          overflow: 'hidden',
         }}
       >
-        <Image src={orcas} alt="orca background image" />
+        <Image
+          src={orcas}
+          alt="orca background image"
+          layout="fill"
+          objectFit="cover"
+        />
 
         <Box
           sx={{
+            position: 'relative',
             zIndex: '2',
-            transform: {
-              md: 'translateY(-210%)',
-              lg: 'translateY(-180%)',
-            },
+            height: '100%',
             display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             justifyContent: 'center',
-
-            visibility: {
-              xs: 'hidden',
-              sm: 'visible',
-            },
+            paddingBottom: '100px',
           }}
         >
-          <ScrollLink to="whatisorcasound" smooth={true} duration={500}>
-            <Image src={vector} alt="vector" width={40} height={40} />
-          </ScrollLink>
-        </Box>
-
-        <Box
-          sx={{
-            zIndex: '2',
-            display: 'flex',
-            justifyContent: 'center',
-            backgroundColor: '#000000',
-            borderRadius: '20px',
-            mx: {
-              xs: 'auto',
-            },
-            padding: {
-              xs: '10px',
-              md: '15px',
-              lg: '20px',
-            },
-            transform: {
-              xs: 'translateY(-250%)',
-              sm: 'translateY(-350%)',
-              md: 'translateY(-400%)',
-              lg: 'translateY(-500%)',
-            },
-            width: {
-              md: 'fit content',
-            },
-          }}
-        >
-          <Link href="https://www.orcasound.net/" passHref>
+          <Box
+            sx={{
+              backgroundColor: '#000000',
+              borderRadius: '20px',
+              px: {
+                xs: '30px',
+                sm: '40px',
+                md: '50px',
+              },
+              py: {
+                xs: '20px',
+                sm: '25px',
+                md: '30px',
+              },
+            }}
+          >
             <Typography
               variant="h1"
               sx={{
-                cursor: 'pointer',
                 fontFamily: 'Mukta',
                 fontSize: {
                   xs: '24px',
+                  sm: '32px',
                   md: '44px',
                 },
                 color: 'white',
                 fontStyle: 'normal',
-                width: {},
-                p: {
-                  xs: '10px 0px 0px 0px',
-                },
+                lineHeight: '100%',
+                textAlign: 'center',
                 fontWeight: {
                   xs: '500',
                   sm: '600',
@@ -109,33 +88,48 @@ export const index = () => {
             >
               LISTEN TO ORCAS LIVE!
             </Typography>
-          </Link>
-
-          <Box
-            sx={{
-              ml: {
-                xs: '6px',
-                md: '10px',
-                lg: '15px',
-              },
-              pt: {
-                xs: '10px',
-                md: '19px',
-                lg: '18px',
-              },
-            }}
-          >
-            <Image src={arrow} width="30px" height="30px" alt="arrow down" />
           </Box>
+
+          <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
+            <IconButton
+              aria-label="Scroll down to What is Orcasound section"
+              sx={{
+                position: 'absolute',
+                bottom: '30px',
+                padding: '0',
+                display: {
+                  xs: 'none',
+                  sm: 'flex',
+                },
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '15px',
+                transition: 'all 0.5s ease-in-out',
+                '&:hover': {
+                  transform: 'translateY(5px)',
+                },
+              }}
+            >
+              <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
+              <ExpandMoreIcon
+                sx={{
+                  fontSize: '5vw',
+                  color: '#ffffff',
+                  transform: 'translateY(-3.5vw)',
+                }}
+              />
+            </IconButton>
+          </ScrollElement>
         </Box>
       </Box>
 
       <Box
-        name="whatisorcasound"
+        id="what-is-orcasound"
         sx={{
           mx: {
             sm: 0,
-            md: 3,
+            md: 0,
             lg: 10,
           },
         }}
@@ -143,7 +137,7 @@ export const index = () => {
         <Box
           component={Grid}
           item
-          sx={{ ml: 2, mt: { xs: -18, sm: -15 }, mb: { xs: 3, sm: 8 } }}
+          sx={{ ml: 2, mt: { xs: 3, sm: 5 }, mb: { xs: 3, sm: 8 } }}
         >
           <Typography
             variant="h1"
@@ -152,8 +146,7 @@ export const index = () => {
             fontWeight={'600'}
             mb={{ xs: 3, sm: 4 }}
             mr={{ xs: 10 }}
-            mt={{ xs: 10, md: 5 }}
-            id="typo"
+            mt={{ xs: 3 }}
           >
             What is Orcasound
             <br></br>
@@ -176,17 +169,7 @@ export const index = () => {
           </Typography>
         </Box>
 
-        <Grid
-          container
-          spacing={{ lg: 5, md: 3 }}
-          sx={{
-            mb: {
-              xs: '10%',
-              md: '3%',
-              lg: '4%',
-            },
-          }}
-        >
+        <Grid container spacing={5} sx={{}}>
           <Box
             component={Grid}
             item
@@ -206,8 +189,6 @@ export const index = () => {
               <br></br>
               {`Orcasound is a cooperative hydrophne network and an
                 open-source software & hardware project.`}
-              <br></br>
-              <br></br>
             </Typography>
           </Box>
 
@@ -238,9 +219,7 @@ export const index = () => {
             component={Grid}
             item
             display={{ xs: 'block', sm: 'none' }}
-            sx={{
-              ml: 2,
-            }}
+            sx={{ ml: 2 }}
           >
             <Typography
               fontFamily="Montserrat"
@@ -249,69 +228,57 @@ export const index = () => {
               mb={{ xs: 3 }}
               mt={{ xs: -5 }}
             >
-              <br></br>
               {`We Welcome your participation. If you'd like to host a
                   hydrophone, do research or incorporate Orcasound into the
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-          </Box>
-          <Box
-            display={{ xs: 'block', sm: 'none' }}
-            sx={{
-              width: '100%',
-              textAlign: 'center',
-            }}
-          >
-            <Link href="https://www.orcasound.net/learn/" passHref>
-              <Button
-                variant="contained"
-                sx={{
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                mx: 1.5,
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
                   backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                LEARN
-              </Button>
-            </Link>
-
-            <Link href="https://www.orcasound.net/support/" passHref>
-              <Button
-                variant="contained"
-                sx={{
+                  color: 'white',
+                },
+              }}
+            >
+              {' '}
+              LEARN
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                mx: 1.5,
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
                   backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                GET INVOLVED
-              </Button>
-            </Link>
+                  color: 'white',
+                },
+              }}
+            >
+              {' '}
+              GET INVOLVED
+            </Button>
           </Box>
 
           <Box
@@ -325,7 +292,6 @@ export const index = () => {
               fontFamily={'Mukta'}
               fontSize="44px"
               fontWeight={'600'}
-              mt={{ lg: 8 }}
             >
               Hydrophone Location
             </Typography>
@@ -352,69 +318,64 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-            <Link href="https://www.orcasound.net/learn/" passHref>
-              <Button
-                variant="contained"
-                sx={{
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                mx: 1.5,
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
                   backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  mx: 1.5,
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                LEARN
-              </Button>
-            </Link>
-
-            <Link href="https://www.orcasound.net/support/" passHref>
-              <Button
-                variant="contained"
-                sx={{
+                  color: 'white',
+                },
+              }}
+            >
+              {' '}
+              LEARN
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: '#1B2B7B',
+                alignContent: 'center',
+                mx: 1.5,
+                my: 1,
+                fontFamily: 'Montserrat',
+                borderRadius: '30px',
+                width: '194px',
+                height: '40px',
+                fontSize: '16px',
+                fontWeight: '500',
+                boxShadow: 0,
+                '&:hover': {
                   backgroundColor: '#1B2B7B',
-                  alignContent: 'center',
-                  mx: 1.5,
-                  my: 1,
-                  fontFamily: 'Montserrat',
-                  borderRadius: '30px',
-                  width: '194px',
-                  height: '40px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  boxShadow: 0,
-                  '&:hover': {
-                    backgroundColor: '#1B2B7B',
-                    color: 'white',
-                  },
-                }}
-              >
-                {' '}
-                GET INVOLVED
-              </Button>
-            </Link>
+                  color: 'white',
+                },
+              }}
+            >
+              {' '}
+              GET INVOLVED
+            </Button>
           </Box>
         </Grid>
 
         {/* Netlify badge for open source plan https://www.netlify.com/legal/open-source-policy */}
-        {/* <a href="https://netlify.com">
+        <a href="https://netlify.com">
           <Image
             src="https://netlify.com/img/global/badges/netlify-color-accent.svg"
             alt="Deploys by Netlify"
             width="114"
             height="51"
           />
-        </a> */}
+        </a>
       </Box>
     </>
   )
