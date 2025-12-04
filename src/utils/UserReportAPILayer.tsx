@@ -4,12 +4,12 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { LastDetection } from '../components/LastDetection'
 //Feel free to add additional GraphQL queries as needed
 
-interface UserReport {
-  date: number | string
-  setDate: Dispatch<SetStateAction<number | string>>
-}
 
-export const UserReportAPILayer = (props: UserReport): JSX.Element => {
+
+
+
+
+export const UserReportAPILayer = (): JSX.Element => {
   const [date, setDate]: any = useState('')
 
   useEffect(() => {
