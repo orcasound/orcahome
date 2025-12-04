@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button'
 
 interface dateProps {
-  date: Date
+  date: string | Date
 }
 
 export const LastDetection = (props: dateProps): JSX.Element => {
