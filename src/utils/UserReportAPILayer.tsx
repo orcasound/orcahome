@@ -1,5 +1,5 @@
 import { gql, request } from 'graphql-request'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { LastDetection } from '../components/LastDetection'
 //Feel free to add additional GraphQL queries as needed
