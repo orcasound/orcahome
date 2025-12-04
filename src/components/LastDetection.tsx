@@ -17,7 +17,7 @@ export const LastDetection = (props: dateProps): JSX.Element => {
       <Button variant="contained">
         {dateDiff < 8.64e7
           ? hoursDiff > 1
-            ? `${hoursDiff} Hours`
+            ? `${hoursDiff.toFixed(1)} Hours`
             : `< 1 Hour `
           : dayDiff === 1
           ? `${dayDiff} Day`
