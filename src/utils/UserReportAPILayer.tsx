@@ -46,7 +46,7 @@ export const UserReportAPILayer = (): JSX.Element => {
       const replaceChars: string = dateIsolate
         .replace('Z', '')
         .replace('T', '-')
-        .replace('/-/g', '/')
+        .replace(/-/g, '/')
       const splitChars: string[] = replaceChars.split('-')
       setDate(splitChars[1] + '-' + splitChars[2] + '-' + splitChars[0])
     })
