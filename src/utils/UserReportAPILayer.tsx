@@ -10,7 +10,7 @@ import { LastDetection } from '../components/LastDetection'
 
 
 export const UserReportAPILayer = (): JSX.Element => {
-  const [date, setDate]: any = useState('')
+  const [date, setDate] = useState<string>('')
 
   useEffect(() => {
     const detectionQuery: string = gql`
