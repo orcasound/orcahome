@@ -20,7 +20,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import orcasoundlogo from '../../public/images/orcasoundlogo_2.png'
+import orcasoundlogo from '../../public/images/logo-white.svg'
 import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
