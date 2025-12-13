@@ -20,7 +20,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-import orcasoundlogo from '../../public/images/orcasoundlogo_2.png'
+import orcasoundlogo from '../../public/images/logo-white.svg'
 import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
@@ -65,12 +65,20 @@ const Nav = () => {
       <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1 }}>
+            <Box
+              sx={{
+                flexGrow: { xs: 0, sm: 0.5 },
+                display: 'flex',
+                justifyContent: { xs: 'flex-start', sm: 'center' },
+                alignItems: 'center',
+              }}
+            >
               <Box
                 sx={{
-                  width: '69px',
-                  height: '66px',
-                  margin: '10px',
+                  width: { xs: '60px', sm: '69px' },
+                  height: { xs: '44px', sm: '66px' },
+                  margin: { xs: 0, sm: '10px' },
+                  position: 'relative',
                   borderRadius: '100px',
                 }}
               >
@@ -80,18 +88,30 @@ const Nav = () => {
                     sx={{
                       width: '60px',
                       height: '44px',
-                      top: '20px',
-                      left: '15px',
+                      top: { xs: 0, sm: '13px' },
+                      left: { xs: 0, sm: '50%' },
+                      transform: { xs: 'none', sm: 'translateX(-50%)' },
                       borderRadius: '100px',
                       position: 'absolute',
                     }}
                   >
-                    <Image src={orcasoundlogo} alt="Orcasound" />
+                    <Image
+                      src={orcasoundlogo}
+                      alt="Orcasound"
+                      width={60}
+                      height={44}
+                    />
                   </Box>
                 </Link>
               </Box>
             </Box>
-            {isMobile ? <Mobile /> : <Desktop />}
+            {isMobile ? (
+              <Box sx={{ marginLeft: 'auto' }}>
+                <Mobile />
+              </Box>
+            ) : (
+              <Desktop />
+            )}
           </Toolbar>
         </Container>
       </AppBar>
@@ -150,9 +170,14 @@ function Mobile() {
         anchor="top"
         open={menuIsOpen}
         onClose={handleMenuToggle}
-        sx={{ display: { xs: 'flex', sm: 'flex' } }}
+        sx={{
+          display: { xs: 'flex', sm: 'flex' },
+          '& .MuiDrawer-paper': {
+            backgroundColor: 'black',
+          },
+        }}
       >
-        <Toolbar sx={{ height: '80px' }} />
+        <Toolbar sx={{ height: '80px', backgroundColor: 'black' }} />
         {list}
       </Drawer>
     </Box>
