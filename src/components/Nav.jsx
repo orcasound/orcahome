@@ -65,8 +65,8 @@ const Nav = () => {
       <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Box 
-              sx={{ 
+            <Box
+              sx={{
                 flexGrow: { xs: 0, sm: 0.5 },
                 display: 'flex',
                 justifyContent: { xs: 'flex-start', sm: 'center' },
@@ -95,7 +95,12 @@ const Nav = () => {
                       position: 'absolute',
                     }}
                   >
-                    <Image src={orcasoundlogo} alt="Orcasound" width={60} height={44} />
+                    <Image
+                      src={orcasoundlogo}
+                      alt="Orcasound"
+                      width={60}
+                      height={44}
+                    />
                   </Box>
                 </Link>
               </Box>
@@ -165,7 +170,7 @@ function Mobile() {
         anchor="top"
         open={menuIsOpen}
         onClose={handleMenuToggle}
-        sx={{ 
+        sx={{
           display: { xs: 'flex', sm: 'flex' },
           '& .MuiDrawer-paper': {
             backgroundColor: 'black',
