@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'
+import Link from '../components/Link'
 
 export const index = () => {
   return (
@@ -234,6 +235,8 @@ export const index = () => {
                   can join us as a member of the network.`}
             </Typography>
             <Button
+              component={Link}
+              href="/learn"
               variant="contained"
               sx={{
                 backgroundColor: '#1B2B7B',
@@ -257,6 +260,8 @@ export const index = () => {
               LEARN
             </Button>
             <Button
+              component={Link}
+              href="/getinvolved"
               variant="contained"
               sx={{
                 backgroundColor: '#1B2B7B',
@@ -319,6 +324,8 @@ export const index = () => {
                   can join us as a member of the network.`}
             </Typography>
             <Button
+              component={Link}
+              href="/learn"
               variant="contained"
               sx={{
                 backgroundColor: '#1B2B7B',
@@ -342,6 +349,8 @@ export const index = () => {
               LEARN
             </Button>
             <Button
+              component={Link}
+              href="/getinvolved"
               variant="contained"
               sx={{
                 backgroundColor: '#1B2B7B',
