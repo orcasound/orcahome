@@ -67,7 +67,13 @@ const PageDesc = styled(Box)(({ theme }) => ({
   },
 }))
 
-const TopBanner = ({ bannerImg, pageTitle, pageDesc, scrollToId }) => {
+const TopBanner = ({
+  bannerImg,
+  pageTitle,
+  pageDesc,
+  scrollToId,
+  imageFilter,
+}) => {
   const [checked, setChecked] = useState(false)
 
   useEffect(() => {
@@ -76,13 +82,24 @@ const TopBanner = ({ bannerImg, pageTitle, pageDesc, scrollToId }) => {
 
   return (
     <TopScreen>
-      <Image
-        alt={pageTitle ?? ''}
-        src={bannerImg}
-        layout="fill"
-        objectFit="cover"
-        quality={100}
-      />
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          filter: imageFilter || 'none',
+        }}
+      >
+        <Image
+          alt={pageTitle ?? ''}
+          src={bannerImg}
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+        />
+      </Box>
       <Slide
         in={checked}
         direction="up"
