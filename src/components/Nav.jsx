@@ -18,6 +18,7 @@ import {
 import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/logo-white.svg'
@@ -185,43 +186,51 @@ function Mobile() {
 }
 
 function Desktop() {
+  const router = useRouter()
+
   return (
     <React.Fragment>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.5 }}>
-        {navLinks.map((navLink) => (
-          <Box
-            key={navLink.name}
-            sx={{
-              position: 'relative',
-              margin: 3,
-            }}
-          >
-            <Button
+        {navLinks.map((navLink) => {
+          const isActive = router.pathname === navLink.url
+          return (
+            <Box
               key={navLink.name}
               sx={{
-                color: 'white',
-                display: 'block',
-                textTransform: 'none',
-                '&:hover': {
-                  textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
-                  textUnderlineOffset: '7px',
-                },
+                position: 'relative',
+                margin: 3,
               }}
             >
-              <Link href={navLink.url} passHref>
-                <Typography
-                  component="a"
-                  sx={{
-                    color: 'white',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {navLink.name}
-                </Typography>
-              </Link>
-            </Button>
-          </Box>
-        ))}
+              <Button
+                sx={{
+                  color: 'white',
+                  display: 'block',
+                  textTransform: 'none',
+                  ...(isActive && {
+                    textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
+                    textUnderlineOffset: '7px',
+                  }),
+                  '&:hover': {
+                    textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
+                    textUnderlineOffset: '7px',
+                  },
+                }}
+              >
+                <Link href={navLink.url} passHref>
+                  <Typography
+                    component="a"
+                    sx={{
+                      color: 'white',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {navLink.name}
+                  </Typography>
+                </Link>
+              </Button>
+            </Box>
+          )
+        })}
       </Box>
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
         <Button
