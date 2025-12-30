@@ -20,6 +20,7 @@ export const Donate = () => {
         pageTitle={`Donate`}
         pageDesc={`Help protect marine life like the Southern Resident Killer whales by donating today`}
         scrollToId={`donate`}
+        imageFilter="brightness(0.8)"
       />
       <br />
       <Box
