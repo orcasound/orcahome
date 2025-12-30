@@ -53,6 +53,11 @@ export const index = () => {
           }}
         >
           <Box
+            component="a"
+            href="https://live.orcasound.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Listen to orcas live on Orcasound"
             sx={{
               backgroundColor: '#000000',
               borderRadius: '20px',
@@ -65,6 +70,12 @@ export const index = () => {
                 xs: '20px',
                 sm: '25px',
                 md: '30px',
+              },
+              textDecoration: 'none',
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
               },
             }}
           >
