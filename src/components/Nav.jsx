@@ -51,7 +51,7 @@ const navLinks = [
   },
   {
     name: 'Send Feedback',
-    url: '/',
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLScsBwU_ZX0W2GUrxJ5JKb3PfR-NmloHxm7zetkyOBC5RM2ajA/viewform',
     icon: '',
   },
 ]
