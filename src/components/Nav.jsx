@@ -202,7 +202,6 @@ function Desktop() {
               }}
             >
               <Button
-                key={navLink.name}
                 sx={{
                   color: 'white',
                   display: 'block',
