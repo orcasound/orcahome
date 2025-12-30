@@ -71,7 +71,6 @@ export const index = () => {
                 md: '30px',
               },
               textDecoration: 'none',
-              cursor: 'pointer',
               transition: 'all 0.3s ease',
               '&:hover': {
                 transform: 'scale(1.05)',
