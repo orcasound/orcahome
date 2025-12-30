@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'
+import Link from '../components/Link'
 
 export const index = () => {
   return (
@@ -233,52 +234,56 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
+            <Link href="/learn" noLinkStyle>
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
-              }}
-            >
-              {' '}
-              LEARN
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
+                  alignContent: 'center',
+                  mx: 1.5,
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                LEARN
+              </Button>
+            </Link>
+            <Link href="/getinvolved" noLinkStyle>
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
-              }}
-            >
-              {' '}
-              GET INVOLVED
-            </Button>
+                  alignContent: 'center',
+                  mx: 1.5,
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                GET INVOLVED
+              </Button>
+            </Link>
           </Box>
 
           <Box
@@ -318,52 +323,56 @@ export const index = () => {
                   educational or research efforts of your organization , you
                   can join us as a member of the network.`}
             </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
+            <Link href="/learn" noLinkStyle>
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
-              }}
-            >
-              {' '}
-              LEARN
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: '#1B2B7B',
-                alignContent: 'center',
-                mx: 1.5,
-                my: 1,
-                fontFamily: 'Montserrat',
-                borderRadius: '30px',
-                width: '194px',
-                height: '40px',
-                fontSize: '16px',
-                fontWeight: '500',
-                boxShadow: 0,
-                '&:hover': {
+                  alignContent: 'center',
+                  mx: 1.5,
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                LEARN
+              </Button>
+            </Link>
+            <Link href="/getinvolved" noLinkStyle>
+              <Button
+                variant="contained"
+                sx={{
                   backgroundColor: '#1B2B7B',
-                  color: 'white',
-                },
-              }}
-            >
-              {' '}
-              GET INVOLVED
-            </Button>
+                  alignContent: 'center',
+                  mx: 1.5,
+                  my: 1,
+                  fontFamily: 'Montserrat',
+                  borderRadius: '30px',
+                  width: '194px',
+                  height: '40px',
+                  fontSize: '16px',
+                  fontWeight: '500',
+                  boxShadow: 0,
+                  '&:hover': {
+                    backgroundColor: '#1B2B7B',
+                    color: 'white',
+                  },
+                }}
+              >
+                {' '}
+                GET INVOLVED
+              </Button>
+            </Link>
           </Box>
         </Grid>
 
