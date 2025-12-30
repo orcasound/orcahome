@@ -56,6 +56,7 @@ export const index = () => {
             href="https://live.orcasound.net/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Listen to orcas live on Orcasound"
             sx={{
               backgroundColor: '#000000',
               borderRadius: '20px',
