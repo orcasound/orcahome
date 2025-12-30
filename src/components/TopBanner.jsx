@@ -90,6 +90,7 @@ const TopBanner = ({
           width: '100%',
           height: '100%',
           filter: imageFilter || 'none',
+          zIndex: 0,
         }}
       >
         <Image
