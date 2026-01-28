@@ -133,7 +133,7 @@ export default function About() {
                     color: 'white',
                   },
                 }}
-                href="#contained-buttons"
+                href="/getinvolved"
               >
                 GET INVOLVED
               </Button>
