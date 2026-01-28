@@ -21,12 +21,32 @@ import FOS06 from '../../../public/images/learn/FO-S06.png'
 const CallCatalogGrid = () => {
   const [isPlaying, setIsPlaying] = React.useState(Array(6).fill(false))
 
-  const [playS01, { stop: stopS01 }] = useSound(SO1)
-  const [playS02, { stop: stopS02 }] = useSound(SO2)
-  const [playS03, { stop: stopS03 }] = useSound(SO3)
-  const [playS04, { stop: stopS04 }] = useSound(SO4)
-  const [playS05, { stop: stopS05 }] = useSound(SO5)
-  const [playS06, { stop: stopS06 }] = useSound(SO6)
+  const handleSoundEnd = (index) => {
+    setIsPlaying((prev) => {
+      const updated = [...prev]
+      updated[index] = false
+      return updated
+    })
+  }
+
+  const [playS01, { stop: stopS01 }] = useSound(SO1, {
+    onend: () => handleSoundEnd(0),
+  })
+  const [playS02, { stop: stopS02 }] = useSound(SO2, {
+    onend: () => handleSoundEnd(1),
+  })
+  const [playS03, { stop: stopS03 }] = useSound(SO3, {
+    onend: () => handleSoundEnd(2),
+  })
+  const [playS04, { stop: stopS04 }] = useSound(SO4, {
+    onend: () => handleSoundEnd(3),
+  })
+  const [playS05, { stop: stopS05 }] = useSound(SO5, {
+    onend: () => handleSoundEnd(4),
+  })
+  const [playS06, { stop: stopS06 }] = useSound(SO6, {
+    onend: () => handleSoundEnd(5),
+  })
 
   const playArray = [playS01, playS02, playS03, playS04, playS05, playS06]
   const stopArray = [stopS01, stopS02, stopS03, stopS04, stopS05, stopS06]

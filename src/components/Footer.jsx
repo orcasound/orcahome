@@ -37,19 +37,39 @@ const IconLink = styled('a')({
 
 const iconContainer = (
   <Box sx={{ marginRight: '32px' }}>
-    <IconLink href="https://www.facebook.com/OrcasoundApp/">
+    <IconLink
+      href="https://www.facebook.com/OrcasoundApp/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <FacebookIcon fontSize="large" />
     </IconLink>
-    <IconLink href="https://www.linkedin.com/company/75491849/admin/">
+    <IconLink
+      href="https://www.linkedin.com/company/75491849/admin/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <LinkedInIcon fontSize="large" />
     </IconLink>
-    <IconLink href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg">
+    <IconLink
+      href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <YouTubeIcon fontSize="large" />
     </IconLink>
-    <IconLink href="https://twitter.com/OrcasoundApp">
+    <IconLink
+      href="https://twitter.com/OrcasoundApp"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <TwitterIcon fontSize="large" />
     </IconLink>
-    <IconLink href="https://www.instagram.com/orcasoundapp/">
+    <IconLink
+      href="https://www.instagram.com/orcasoundapp/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <InstagramIcon fontSize="large" />
     </IconLink>
   </Box>
@@ -64,11 +84,15 @@ const sendFeedbackLink = (
 )
 
 const blogLink = (
-  <Link href="/blog" passHref>
-    <StyledTypography variant="h6" component="a">
-      Blog
-    </StyledTypography>
-  </Link>
+  <StyledTypography
+    variant="h6"
+    component="a"
+    href="https://www.orcasound.net/blog/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Blog
+  </StyledTypography>
 )
 
 const supportUsLink = (
@@ -118,13 +142,15 @@ const navLinksRightCol = [
   },
   {
     name: 'Listen',
-    url: '/listen',
+    url: 'https://live.orcasound.net/',
     icon: '',
+    external: true,
   },
   {
     name: 'Blog',
-    url: '/blog',
+    url: 'https://www.orcasound.net/blog/',
     icon: '',
+    external: true,
   },
 ]
 
@@ -151,7 +177,7 @@ const iconLinks = [
   },
   {
     name: 'Github',
-    url: '',
+    url: 'https://github.com/orcasound',
     icon: githublogo,
   },
   {
@@ -276,11 +302,22 @@ function Desktop() {
                   height: '30px',
                 }}
               >
-                <Link href={navLink.url} passHref>
-                  <StyledTypography component="a">
+                {navLink.external ? (
+                  <StyledTypography
+                    component="a"
+                    href={navLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {navLink.name}
                   </StyledTypography>
-                </Link>
+                ) : (
+                  <Link href={navLink.url} passHref>
+                    <StyledTypography component="a">
+                      {navLink.name}
+                    </StyledTypography>
+                  </Link>
+                )}
               </Box>
             ))}
           </Box>
@@ -303,16 +340,18 @@ function Desktop() {
             }}
           >
             {iconLinks.map((iconLink) => (
-              <Link key={iconLink.name} href={iconLink.url} passHref>
-                <Box
-                  component="a"
-                  sx={{
-                    margin: '10px',
-                  }}
-                >
-                  <Image src={iconLink.icon} alt={iconLink.name}></Image>
-                </Box>
-              </Link>
+              <Box
+                key={iconLink.name}
+                component="a"
+                href={iconLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  margin: '10px',
+                }}
+              >
+                <Image src={iconLink.icon} alt={iconLink.name}></Image>
+              </Box>
             ))}
           </Box>
           <Box
