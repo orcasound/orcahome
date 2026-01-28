@@ -50,7 +50,7 @@ const partners = [
     name: 'Port Townsend Marine Science Center',
     description:
       'Port Townsend Marine Science Center offers education, science, and volunteer opportunities on the Salish Sea.',
-    linkTo: 'https://ptmsc.org/get-involved/donate',
+    linkTo: 'https://ptmsc.org/donate/',
   },
   {
     icon: '/images/donatePartners/Rectangle 887.svg',
