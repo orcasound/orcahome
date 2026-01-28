@@ -107,7 +107,7 @@ export const learn = () => {
 
           <Box sx={{ textAlign: 'center', my: 4 }}>
             <a
-              href="https://orcasound.net/ed/booth/local.html?learn&_gl=1*jwjqg6*_ga*MTg5NjAwNDY5Mi4xNzY2MTYwMjQz*_ga_JN7TFP646P*czE3NjkwNDU2OTAkbzQkZzEkdDE3NjkwNDc2OTEkajU3JGwwJGgw"
+              href="https://orcasound.net/ed/booth/local.html?learn"
               target="_blank"
               rel="noopener noreferrer"
             >
