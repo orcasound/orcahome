@@ -99,6 +99,7 @@ const TopBanner = ({
           layout="fill"
           objectFit="cover"
           quality={100}
+          priority
         />
       </Box>
       <Slide
