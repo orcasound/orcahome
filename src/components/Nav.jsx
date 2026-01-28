@@ -42,18 +42,21 @@ const navLinks = [
   },
   {
     name: 'Listen',
-    url: '/listen',
+    url: 'https://live.orcasound.net/',
     icon: '',
+    external: true,
   },
   {
     name: 'Blog',
-    url: '/blog',
+    url: 'https://www.orcasound.net/blog/',
     icon: '',
+    external: true,
   },
   {
     name: 'Send Feedback',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLScsBwU_ZX0W2GUrxJ5JKb3PfR-NmloHxm7zetkyOBC5RM2ajA/viewform',
     icon: '',
+    external: true,
   },
 ]
 
@@ -139,18 +142,36 @@ function Mobile() {
           backgroundColor: 'black',
         }}
       >
-        {navLinks.map((navLink) => (
-          <Link key={navLink.name} href={navLink.url} passHref>
-            <ListItem button sx={{ borderBottom: '1px solid white' }}>
+        {navLinks.map((navLink) =>
+          navLink.external ? (
+            <ListItem
+              key={navLink.name}
+              button
+              component="a"
+              href={navLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ borderBottom: '1px solid white' }}
+            >
               <ListItemText primary={navLink.name} />
             </ListItem>
-          </Link>
-        ))}
-        <Link href="/" passHref>
-          <ListItem button>
-            <ListItemText primary="Notify Me" />
-          </ListItem>
-        </Link>
+          ) : (
+            <Link key={navLink.name} href={navLink.url} passHref>
+              <ListItem button sx={{ borderBottom: '1px solid white' }}>
+                <ListItemText primary={navLink.name} />
+              </ListItem>
+            </Link>
+          )
+        )}
+        <ListItem
+          button
+          component="a"
+          href="https://www.orcasound.net/subscribe/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <ListItemText primary="Notify Me" />
+        </ListItem>
       </List>
     </Box>
   )
@@ -216,9 +237,12 @@ function Desktop() {
                   },
                 }}
               >
-                <Link href={navLink.url} passHref>
+                {navLink.external ? (
                   <Typography
                     component="a"
+                    href={navLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     sx={{
                       color: 'white',
                       textDecoration: 'none',
@@ -226,7 +250,19 @@ function Desktop() {
                   >
                     {navLink.name}
                   </Typography>
-                </Link>
+                ) : (
+                  <Link href={navLink.url} passHref>
+                    <Typography
+                      component="a"
+                      sx={{
+                        color: 'white',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {navLink.name}
+                    </Typography>
+                  </Link>
+                )}
               </Button>
             </Box>
           )
@@ -235,6 +271,10 @@ function Desktop() {
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
         <Button
           variant="outlined"
+          component="a"
+          href="https://www.orcasound.net/subscribe/"
+          target="_blank"
+          rel="noopener noreferrer"
           sx={{
             m: 2,
             color: 'white',

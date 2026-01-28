@@ -1,4 +1,5 @@
-import styles from '../styles/Layout.module.css'
+import { Box } from '@mui/material'
+
 import Footer from './Footer'
 import Nav from './Nav'
 
@@ -6,10 +7,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Nav />
-
-      <div className={styles.container}>
-        <main className={styles.main}>{children}</main>
-      </div>
+      <Box component="main">{children}</Box>
       <Footer />
     </>
   )

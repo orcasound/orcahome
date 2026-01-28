@@ -16,6 +16,7 @@ import hydrophonestand from '../../public/images/getinvolved/hydrophone-stand.pn
 import livediy from '../../public/images/getinvolved/live-diy.png'
 import lonhydrophone from '../../public/images/getinvolved/lon-hydrophone.png'
 import logo8 from '../../public/images/getinvolved/OI.png'
+import logo18 from '../../public/images/getinvolved/orca-behavior-institute.svg'
 import logo12 from '../../public/images/getinvolved/orca-conservancy.png'
 import logo13 from '../../public/images/getinvolved/orca-network.png'
 import logo9 from '../../public/images/getinvolved/pacman.png'
@@ -148,11 +149,27 @@ export const GetInvolved = () => {
               gridGap: '20px',
             }}
           >
-            <Image alt="Val hacking node code." src={valhacking} />
-            <Image alt="Binaural hydrophone stand." src={hydrophonestand} />
+            <Image
+              alt="Val hacking node code."
+              src={valhacking}
+              style={{ width: '100%', height: 'auto' }}
+            />
+            <Image
+              alt="Binaural hydrophone stand."
+              src={hydrophonestand}
+              style={{ width: '100%', height: 'auto' }}
+            />
           </Box>
-          <Image alt="Lon does hydrophone wizardly!" src={lonhydrophone} />
-          <Image alt="The live-streaming DIY solution." src={livediy} />
+          <Image
+            alt="Lon does hydrophone wizardly!"
+            src={lonhydrophone}
+            style={{ width: '100%', height: 'auto' }}
+          />
+          <Image
+            alt="The live-streaming DIY solution."
+            src={livediy}
+            style={{ width: '100%', height: 'auto' }}
+          />
         </Box>
         <Typography variant="body1">
           {`Volunteers are currently helping Orcasound take huge strides forward. 
@@ -304,52 +321,35 @@ export const GetInvolved = () => {
           in-person at a hackathon (see the{' '}
           <Link
             href="https://www.democracylab.org/projects/81"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
           >
             Orcasound project at DemocracyLab
           </Link>
-          ). No matter where you are, you can join the{' '}
+          ). No matter where you are, you can find out how to volunteer with us
+          by going to our{' '}
           <Link
-            href="https://orcasound.slack.com/"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+            href="https://github.com/orcasound"
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
           >
-            Orcasound Slack
-          </Link>
-          , check out our{' '}
-          <Link
-            href="https://github.com/orgs/orcasound/repositories"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
-          >
-            Github repositories
+            GitHub page
           </Link>{' '}
-          and{' '}
-          <Link
-            href="https://trello.com/w/hydrophonenetwork/home"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
-          >
-            Trello boards
-          </Link>
-          , subscribe to the{' '}
+          and subscribe to the{' '}
           <Link
             href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
           >
             Orcasound dev email distribution list
-          </Link>
-          , and find a place to contribute your talents. We hope you will share
+          </Link>{' '}
+          to find a place to contribute your talents. We hope you will share
           your expertise and innovations with us, and maybe even earn your way
           into the{' '}
           <Link
             href="https://www.orcasound.net/hacker-hall-of-fame/"
-            style={{ textDecoration: 'none', color: '#1B2B7B' }}
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
           >
             Orcasound Hacker Hall of Fame!
           </Link>
         </Typography>
-        <ActionButton
-          link="https://www.orcasound.net/support/"
-          text="LEARN MORE ABOUT VOLUNTEERING!"
-        />
       </Box>
 
       <Box
@@ -463,7 +463,10 @@ export const GetInvolved = () => {
           Hacker hall of fame and our Github repositories and consider
           sponsoring the work of our most-dedicated contributors.
         </Typography>
-        <ActionButton link="" text="DONATE NOW" />
+        <ActionButton
+          link="https://orcahome.netlify.app/donate"
+          text="DONATE NOW"
+        />
       </Box>
 
       <Box
@@ -702,27 +705,26 @@ export const GetInvolved = () => {
         <Box
           component="a"
           href="https://orcabehaviorinstitute.org/"
-          sx={{ margin: '30px' }}
+          sx={{
+            margin: '30px',
+            width: '300px',
+            height: '250px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
         >
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-            color="#1B2B7B"
-            sx={{
-              textDecoration: 'underline',
-              fontWeight: '600',
-              mt: '20px',
-            }}
-          >
-            Orca Behavior Institute
-          </Typography>
+          <Image
+            src={logo18}
+            alt="Orca Behavior Institute"
+            layout="fill"
+            objectFit="contain"
+          />
         </Box>
 
         <Box
           component="a"
-          href="https://www.projectseawolf.org/projectseawolforg/How_to_Help.html"
+          href="https://www.projectseawolf.org/How_to_Help.html"
           sx={{ margin: '30px' }}
         >
           <Typography

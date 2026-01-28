@@ -106,14 +106,20 @@ export const learn = () => {
           </Typography>
 
           <Box sx={{ textAlign: 'center', my: 4 }}>
-            <Image
-              src={salishsea}
-              alt="Sounds Of The Salish Sea"
-              width={800}
-              height={450}
-              layout="intrinsic"
-              quality={65}
-            />
+            <a
+              href="https://orcasound.net/ed/booth/local.html?learn&_gl=1*jwjqg6*_ga*MTg5NjAwNDY5Mi4xNzY2MTYwMjQz*_ga_JN7TFP646P*czE3NjkwNDU2OTAkbzQkZzEkdDE3NjkwNDc2OTEkajU3JGwwJGgw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={salishsea}
+                alt="Sounds Of The Salish Sea"
+                width={800}
+                height={450}
+                layout="intrinsic"
+                quality={65}
+              />
+            </a>
           </Box>
 
           {/* <Box sx={{ maxWidth: 400, mx: 'auto', my: 10, borderRadius: '50%', overflow: 'hidden' }}>
@@ -208,32 +214,6 @@ export const learn = () => {
             </CallCard>
           </Box>
         </Box>
-
-        {/* Exhibits Section */}
-        <Box component="section" id="exhibits" sx={{ my: 8 }}>
-          <Typography variant="h4" component="h2" fontWeight="600" mb={3}>
-            Exhibits
-          </Typography>
-          <Typography
-            variant="body1"
-            fontSize="18px"
-            color="text.secondary"
-            mb={2}
-          >
-            For another tour of the sounds that are most commonly heard in the
-            Salish Sea,{' '}
-            <a href="http://orcasound.net/sakiosk/node/os/index.php?os-listen">
-              visit the listening station at the Seattle Aquarium
-            </a>{' '}
-            and click on &quot;More recordings.&quot;
-          </Typography>
-          <Typography variant="body1" fontSize="18px" color="text.secondary">
-            For a challenge beyond the three favorite calls of the SRKWs, learn
-            a bunch more of the calls made by the southern resident killer
-            whales (developed by educators at NOAA, the Port Townsend Marine
-            Science Center, and Killer Whale Tales).
-          </Typography>
-        </Box>
       </Container>
 
       {/* Call Catalog Section */}
@@ -271,6 +251,32 @@ export const learn = () => {
 
       {/* Organization Logos */}
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
+        {/* Exhibits Section */}
+        <Box component="section" id="exhibits" sx={{ my: 8 }}>
+          <Typography variant="h4" component="h2" fontWeight="600" mb={3}>
+            Exhibits
+          </Typography>
+          <Typography
+            variant="body1"
+            fontSize="18px"
+            color="text.secondary"
+            mb={2}
+          >
+            For another tour of the sounds that are most commonly heard in the
+            Salish Sea,{' '}
+            <a href="http://orcasound.net/sakiosk/node/os/index.php?os-listen">
+              visit the listening station at the Seattle Aquarium
+            </a>{' '}
+            and click on &quot;More recordings.&quot;
+          </Typography>
+          <Typography variant="body1" fontSize="18px" color="text.secondary">
+            For a challenge beyond the three favorite calls of the SRKWs, learn
+            a bunch more of the calls made by the southern resident killer
+            whales (developed by educators at NOAA, the Port Townsend Marine
+            Science Center, and Killer Whale Tales).
+          </Typography>
+        </Box>
+
         <Box
           sx={{
             display: 'flex',
