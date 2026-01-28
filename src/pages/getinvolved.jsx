@@ -464,10 +464,7 @@ export const GetInvolved = () => {
             Hacker hall of fame and our Github repositories and consider
             sponsoring the work of our most-dedicated contributors.
           </Typography>
-          <ActionButton
-            link="/donate"
-            text="DONATE NOW"
-          />
+          <ActionButton link="/donate" text="DONATE NOW" />
         </Box>
 
         <Box
