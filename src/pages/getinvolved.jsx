@@ -465,7 +465,7 @@ export const GetInvolved = () => {
             sponsoring the work of our most-dedicated contributors.
           </Typography>
           <ActionButton
-            link="https://orcahome.netlify.app/donate"
+            link="/donate"
             text="DONATE NOW"
           />
         </Box>
