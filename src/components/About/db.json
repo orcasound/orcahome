@@ -2,41 +2,49 @@
   {
     "id": 1,
     "title": "Orcasound App",
-    "path": "/images/about/iPhone_coffee.webp"
+    "path": "/images/about/iPhone_coffee.webp",
+    "url": "https://www.orcasound.net/portfolio/orcasound-app/"
   },
   {
     "id": 2,
     "title": "AI for Orcas : Open Bioacoustics Data Science",
-    "path": "/images/about/AIforOrcas.webp"
+    "path": "/images/about/AIforOrcas.webp",
+    "url": "https://www.orcasound.net/portfolio/ai-for-orcas-open-bioacoustic-data-science/"
   },
   {
     "id": 3,
     "title": "Salish Sea Vessel Research",
-    "path": "/images/about/orca-ships.webp"
+    "path": "/images/about/orca-ships.webp",
+    "url": "https://www.orcasound.net/portfolio/salish-sea-vessel-research/"
   },
   {
     "id": 4,
     "title": "Port Townsend Hydrophone",
-    "path": "/images/about/PortTownsendHydrophone.webp"
+    "path": "/images/about/PortTownsendHydrophone.webp",
+    "url": "https://www.orcasound.net/portfolio/port-townsend-hydrophone/"
   },
   {
     "id": 5,
     "title": "Orcasound Lab Hydrophone",
-    "path": "/images/about/salish-sea-sunset.webp"
+    "path": "/images/about/salish-sea-sunset.webp",
+    "url": "https://www.orcasound.net/portfolio/orcasound-lab-hydrophone/"
   },
   {
     "id": 6,
     "title": "Bush Point Hydrophone",
-    "path": "/images/about/PortTownsendHydrophone.webp"
+    "path": "/images/about/PortTownsendHydrophone.webp",
+    "url": "https://www.orcasound.net/portfolio/bush-point-hydrophone/"
   },
   {
     "id": 7,
     "title": "Ocean Listening Exhibit (Langley Whale Center)",
-    "path": "/images/about/sounds.webp"
+    "path": "/images/about/sounds.webp",
+    "url": "https://www.orcasound.net/portfolio/ocean-listening-exhibit/"
   },
   {
     "id": 8,
     "title": "Orca Behavior Study 2017 ",
-    "path": "/images/about/orca-J1-tanker.webp"
+    "path": "/images/about/orca-J1-tanker.webp",
+    "url": "https://www.orcasound.net/portfolio/2017-orca-behavior-study/"
   }
 ]

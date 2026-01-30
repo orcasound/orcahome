@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import Head from 'next/head'
 import React from 'react'
 
@@ -23,26 +23,28 @@ export const Donate = () => {
         imageFilter="brightness(0.8)"
       />
       <br />
-      <Box
-        id="donate"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: 'max(3vw, 15px)',
-          paddingTop: '0',
-        }}
-      >
-        <DonateOrcasound
-          donateOrcasoundImage={donateOrcasoundImage}
-          donateOrcasoundTitle="Donate to Orcasound"
-          donateOrcasoundMessage="Help us build and maintain the technology to listen to orcas in the world."
-          donateVolunteersImage={donateVolunteersImage}
-          donateVolunteersTitle="Donate to Volunteers"
-          donateVolunteersMessage="Support those who keep the orcasound website and hydrophone nodes running."
-        />
-        <br />
-        <DonatePartners />
-      </Box>
+      <Container maxWidth="lg">
+        <Box
+          id="donate"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: 'max(3vw, 15px)',
+            paddingTop: '0',
+          }}
+        >
+          <DonateOrcasound
+            donateOrcasoundImage={donateOrcasoundImage}
+            donateOrcasoundTitle="Donate to Orcasound"
+            donateOrcasoundMessage="Help us build and maintain the technology to listen to orcas in the world."
+            donateVolunteersImage={donateVolunteersImage}
+            donateVolunteersTitle="Donate to Volunteers"
+            donateVolunteersMessage="Support those who keep the orcasound website and hydrophone nodes running."
+          />
+          <br />
+          <DonatePartners />
+        </Box>
+      </Container>
     </>
   )
 }
