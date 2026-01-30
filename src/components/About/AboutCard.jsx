@@ -9,7 +9,15 @@ const AboutCard = ({ item, mobileActive }) => {
       href={item.url}
       target="_blank"
       rel="noopener noreferrer"
-      sx={{ textDecoration: 'none' }}
+      aria-label={`Learn more about ${item.title}`}
+      sx={{
+        textDecoration: 'none',
+        display: 'block',
+        transition: 'transform 0.2s ease',
+        '&:hover': {
+          transform: 'scale(1.02)',
+        },
+      }}
       mb={mobileActive ? 4 : 0}
       mx={{ xs: 1, sm: 0 }}
     >
