@@ -75,7 +75,7 @@ export default function About() {
 
           {mobileActive && <Mobile setSeeMore={setSeeMore} seeMore={seeMore} />}
 
-          <Box mx={{ xs: 1, sm: 10, md: 20, lg: 40 }} my={13}>
+          <Box my={13}>
             <Typography
               mt={1}
               mx={1}
@@ -93,7 +93,7 @@ export default function About() {
               <Typography
                 mx={1}
                 mt={3}
-                align="justify"
+                align="left"
                 variant="body1"
                 gutterBottom
               >
@@ -103,13 +103,13 @@ export default function About() {
               <Typography
                 mx={1}
                 mt={3}
-                align="justify"
+                align="left"
                 variant="body1"
                 gutterBottom
               >
                 {`If you'd like to host a hydrophone, do research, or incorporate
                 Orcasound into the educational or outreach efforts of your
-                organization,please reach out!`}
+                organization, please reach out!`}
               </Typography>
             </Box>
 

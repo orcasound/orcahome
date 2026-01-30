@@ -233,7 +233,11 @@ function Desktop() {
               margin: '10px',
             }}
           >
-            <Image src={orcasoundlogo} alt="Orcasound"></Image>
+            <Link href="/" passHref>
+              <Box component="a" sx={{ cursor: 'pointer' }}>
+                <Image src={orcasoundlogo} alt="Orcasound"></Image>
+              </Box>
+            </Link>
           </Box>
 
           <Box

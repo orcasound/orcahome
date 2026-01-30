@@ -4,7 +4,15 @@ import Image from 'next/image'
 
 const AboutCard = ({ item, mobileActive }) => {
   return (
-    <Box mb={mobileActive ? 4 : 0} mx={{ xs: 1, sm: 0 }}>
+    <Box
+      component="a"
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      sx={{ textDecoration: 'none' }}
+      mb={mobileActive ? 4 : 0}
+      mx={{ xs: 1, sm: 0 }}
+    >
       <Paper square elevation={3}>
         <Box>
           <Image
