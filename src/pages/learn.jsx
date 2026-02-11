@@ -156,10 +156,7 @@ export const learn = () => {
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                J pod&apos;s Favorite call: 501
-              </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
-                More description goes here
+                J pod&apos;s Favorite call: S01
               </Typography>
               <ReactAudioPlayer
                 src={audio}
@@ -178,10 +175,7 @@ export const learn = () => {
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                K pod&apos;s Favorite call: 516
-              </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
-                More description goes here
+                K pod&apos;s Favorite call: S16
               </Typography>
               <ReactAudioPlayer
                 src={audio}
@@ -200,10 +194,7 @@ export const learn = () => {
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                L pod&apos;s Favorite call: 519
-              </Typography>
-              <Typography variant="body2" color="text.secondary" mb={2}>
-                More description goes here
+                L pod&apos;s Favorite call: S19
               </Typography>
               <ReactAudioPlayer
                 src={audio}
