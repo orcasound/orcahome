@@ -21,6 +21,7 @@ import logo12 from '../../public/images/getinvolved/orca-conservancy.png'
 import logo13 from '../../public/images/getinvolved/orca-network.png'
 import logo9 from '../../public/images/getinvolved/pacman.png'
 import logo14 from '../../public/images/getinvolved/Port-Townsend-Marine-Science-Center.jpg'
+import logo17 from '../../public/images/getinvolved/project-seawolf.jpg'
 import roadmap from '../../public/images/getinvolved/roadmap.png'
 import logo15 from '../../public/images/getinvolved/sound-action.png'
 import topbanner from '../../public/images/getinvolved/srkw2-25.jpg'
@@ -724,18 +725,39 @@ export const GetInvolved = () => {
           <Box
             component="a"
             href="https://www.projectseawolf.org/How_to_Help.html"
-            sx={{ margin: '30px' }}
+            sx={{
+              margin: '15px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textDecoration: 'none',
+            }}
           >
+            <Box
+              sx={{
+                width: '200px',
+                height: '150px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={logo17}
+                alt="Project SeaWolf"
+                layout="fill"
+                objectFit="contain"
+              />
+            </Box>
             <Typography
               variant="p"
               fontSize="20px"
               paragraph={true}
-              align="justify"
+              align="center"
               color="#1B2B7B"
               sx={{
                 textDecoration: 'underline',
                 fontWeight: '600',
-                mt: '20px',
+                mt: '10px',
               }}
             >
               Project SeaWolf
