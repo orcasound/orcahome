@@ -665,7 +665,7 @@ export const GetInvolved = () => {
           </Box>
           <Box
             component="a"
-            href="https://soundaction.org/"
+            href="https://crm.bloomerang.co/HostedDonation?ApiKey=pub_d0480152-d37a-11ea-b90d-0a908e1cc508&WidgetId=808960"
             sx={{
               margin: '15px',
               width: '200px',
