@@ -35,17 +35,24 @@ import ActionButton from './../components/ActionButton'
 
 export const GetInvolved = () => {
   const ScrollLink = styled(ScrollElement)({
-    fontSize: '20px',
-    color: '#1b2b7b',
+    display: 'block',
+    padding: '12px 24px',
+    backgroundColor: '#1e3a8a',
+    color: 'white',
+    borderRadius: '8px',
+    fontWeight: 500,
+    fontSize: '16px',
     cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    textDecoration: 'none',
     '&:hover': {
-      color: '#080d26',
+      backgroundColor: '#1d4ed8',
     },
   })
 
   const InviteLinks = [
     { name: 'Volunteer', id: 'volunteer' },
-    { name: 'For Developers', id: 'for_developers' },
+    { name: 'Developers', id: 'for_developers' },
     { name: 'Donate', id: 'donate' },
   ]
 
@@ -64,20 +71,28 @@ export const GetInvolved = () => {
       />
 
       <Container maxWidth="lg">
-        <Box
-          id="scroll-link"
-          sx={{
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'left',
-          }}
-        >
-          {InviteLinks.map((link, i) => (
-            <ScrollLink key={i} to={link.id} smooth={true} spy={true}>
-              {link.name}
-            </ScrollLink>
-          ))}
+        <Box component="nav" id="scroll-link" sx={{ my: 6 }}>
+          <Box
+            component="ul"
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              flexWrap: 'wrap',
+              gap: 1.5,
+              justifyContent: 'center',
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+            }}
+          >
+            {InviteLinks.map((link, i) => (
+              <Box component="li" key={i}>
+                <ScrollLink to={link.id} smooth={true} spy={true} offset={-80}>
+                  {link.name}
+                </ScrollLink>
+              </Box>
+            ))}
+          </Box>
         </Box>
 
         <Box
