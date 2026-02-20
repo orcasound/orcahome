@@ -167,7 +167,7 @@ export const learn = () => {
               <Box mb={2}>
                 <Image
                   src={callS01}
-                  alt="J pod's call S01 - Frequency and Time"
+                  alt="J Pod's call S01 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -197,7 +197,7 @@ export const learn = () => {
               <Box mb={2}>
                 <Image
                   src={callS16}
-                  alt="K pod's call S16 - Frequency and Time"
+                  alt="K Pod's call S16 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -226,7 +226,7 @@ export const learn = () => {
               <Box mb={2}>
                 <Image
                   src={callS19}
-                  alt="L pod's call S19 - Frequency and Time"
+                  alt="L Pod's call S19 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -269,7 +269,7 @@ export const learn = () => {
                 fontWeight: 600,
               }}
             >
-              Orcasound Youtube channel
+              Orcasound YouTube channel
             </a>
             .
           </Typography>
