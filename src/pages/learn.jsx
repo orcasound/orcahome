@@ -179,6 +179,17 @@ export const learn = () => {
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                J pod is the most local of the pods, commonly visiting Seattle
+                about once a month throughout the year, and is famous for
+                J2/Granny who may have been the oldest female orca living to be
+                about 100 years old.
+              </Typography>
             </CallCard>
 
             {/* K Pod Call */}
@@ -198,6 +209,16 @@ export const learn = () => {
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                K pod is the smallest pod with less than ~20 members since an
+                annual census began in the 1970s, but they have the cutest call
+                which most listeners think sounds like a kitten mewing.
+              </Typography>
             </CallCard>
 
             {/* L Pod Call */}
@@ -217,8 +238,36 @@ export const learn = () => {
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                L pod travels the furthest each year, often foraging as far
+                south as San Francisco in wintertime, and is the largest pod
+                with more than 30 members now (and almost 60 in 1993).
+              </Typography>
             </CallCard>
           </Box>
+
+          <Typography
+            variant="body1"
+            fontSize="18px"
+            mt={4}
+            color="text.secondary"
+            textAlign="center"
+          >
+            To learn about different pods, please visit the{' '}
+            <a
+              href="https://www.youtube.com/@OrcasoundHydrophones"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Orcasound Youtube channel
+            </a>
+            .
+          </Typography>
         </Box>
       </Container>
 
