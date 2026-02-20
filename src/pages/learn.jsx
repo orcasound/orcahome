@@ -263,6 +263,11 @@ export const learn = () => {
               href="https://www.youtube.com/@OrcasoundHydrophones"
               target="_blank"
               rel="noopener noreferrer"
+              style={{
+                color: '#1e3a8a',
+                textDecoration: 'underline',
+                fontWeight: 600,
+              }}
             >
               Orcasound Youtube channel
             </a>
