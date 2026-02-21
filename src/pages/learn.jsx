@@ -5,9 +5,13 @@ import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
 import { Link as ScrollLink } from 'react-scroll'
 
-import audio from '../../public/audio/frequency.mp3'
-import frequency1 from '../../public/images/frequency2.png'
+import audioS01 from '../../public/audio/FO-S01.mp3'
+import audioS16 from '../../public/audio/FO-S16.mp3'
+import audioS19 from '../../public/audio/FO-S19.mp3'
 import LearnBanner from '../../public/images/learn.jpg'
+import callS01 from '../../public/images/learn/Call-S01.png'
+import callS16 from '../../public/images/learn/Call-S16.png'
+import callS19 from '../../public/images/learn/Call-S19.png'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import salishsea from '../../public/images/salishsea.png'
@@ -136,8 +140,19 @@ export const learn = () => {
 
         {/* 3 Common Calls Section */}
         <Box component="section" id="common-calls" sx={{ my: 8 }}>
-          <Typography variant="h4" component="h2" fontWeight="600" mb={4}>
+          <Typography variant="h4" component="h2" fontWeight="600" mb={2}>
             3 Common Calls
+          </Typography>
+          <Typography
+            variant="body1"
+            fontSize="18px"
+            mb={4}
+            color="text.secondary"
+          >
+            Conveniently, a few calls are used almost exclusively by each
+            Southern Resident Killer Whale pod. This means that by memorizing
+            just 3 calls, you can tell with great certainty that you are hearing
+            a particular pod!
           </Typography>
 
           <Box
@@ -151,59 +166,113 @@ export const learn = () => {
             <CallCard>
               <Box mb={2}>
                 <Image
-                  src={frequency1}
-                  alt="J pod's call - Frequency and Time"
+                  src={callS01}
+                  alt="J Pod's call S01 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                J pod&apos;s Favorite call: S01
+                J Pod&apos;s Favorite Call: S01
               </Typography>
               <ReactAudioPlayer
-                src={audio}
+                src={audioS01}
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                J pod is the most local of the pods, commonly visiting Seattle
+                about once a month throughout the year, and is famous for
+                J2/Granny who may have been the oldest female orca living to be
+                about 100 years old.
+              </Typography>
             </CallCard>
 
             {/* K Pod Call */}
             <CallCard>
               <Box mb={2}>
                 <Image
-                  src={frequency1}
-                  alt="K pod's call - Frequency and Time"
+                  src={callS16}
+                  alt="K Pod's call S16 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                K pod&apos;s Favorite call: S16
+                K Pod&apos;s Favorite Call: S16
               </Typography>
               <ReactAudioPlayer
-                src={audio}
+                src={audioS16}
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                K pod is the smallest pod with less than ~20 members since an
+                annual census began in the 1970s, but they have the cutest call
+                which most listeners think sounds like a kitten mewing.
+              </Typography>
             </CallCard>
 
             {/* L Pod Call */}
             <CallCard>
               <Box mb={2}>
                 <Image
-                  src={frequency1}
-                  alt="L pod's call - Frequency and Time"
+                  src={callS19}
+                  alt="L Pod's call S19 - Frequency and Time"
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
-                L pod&apos;s Favorite call: S19
+                L Pod&apos;s Favorite Call: S19
               </Typography>
               <ReactAudioPlayer
-                src={audio}
+                src={audioS19}
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
               />
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                mt={2}
+                textAlign="left"
+              >
+                L pod travels the furthest each year, often foraging as far
+                south as San Francisco in wintertime, and is the largest pod
+                with more than 30 members now (and almost 60 in 1993).
+              </Typography>
             </CallCard>
           </Box>
+
+          <Typography
+            variant="body1"
+            fontSize="18px"
+            mt={4}
+            color="text.secondary"
+            textAlign="center"
+          >
+            To learn about different pods, please visit the{' '}
+            <a
+              href="https://www.youtube.com/@OrcasoundHydrophones"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#1e3a8a',
+                textDecoration: 'underline',
+                fontWeight: 600,
+              }}
+            >
+              Orcasound YouTube channel
+            </a>
+            .
+          </Typography>
         </Box>
       </Container>
 
