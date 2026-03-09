@@ -5,6 +5,7 @@ module.exports = {
     dirs: ['.'], // run eslint on everything
   },
   images: {
+    unoptimized: true,
     domains: ['netlify.com'],
   },
   webpack(config, options) {
