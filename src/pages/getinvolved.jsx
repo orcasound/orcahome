@@ -234,11 +234,11 @@ export const GetInvolved = () => {
                 textAlign: 'center',
               }}
             >
-              OrcaSound Web App
+              Orcasound Web App
             </Typography>
             <Box sx={{ maxWidth: '600px', margin: 'auto' }}>
               <Image
-                alt="Democracy Lab Hackathon"
+                alt="DemocracyLab Hackathon"
                 src={hackathon}
                 layout="responsive"
               />
@@ -250,7 +250,7 @@ export const GetInvolved = () => {
                 textAlign: 'center',
               }}
             >
-              Democracy Lab Hackathon
+              DemocracyLab Hackathon
             </Typography>
           </Box>
           <Typography variant="body1" sx={{ margin: '50px 0 0px' }}>
