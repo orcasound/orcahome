@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 
+import { pushToDataLayer } from '../../utils/gtm'
+
 const partners = [
   {
     icon: '/images/donatePartners/center for whale research 1.svg',
@@ -197,6 +199,12 @@ const DonatePartners = () => {
                   href={partner.linkTo}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    pushToDataLayer('partner_link_click', {
+                      partner_name: partner.name,
+                      page: 'donate',
+                    })
+                  }
                 >
                   <span>Learn more</span> &gt;&gt;
                 </StyledLink>
@@ -246,6 +254,12 @@ const DonatePartners = () => {
                   href={partner.linkTo}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    pushToDataLayer('partner_link_click', {
+                      partner_name: partner.name,
+                      page: 'donate',
+                    })
+                  }
                 >
                   <span>Learn more</span> &gt;&gt;
                 </StyledLink>

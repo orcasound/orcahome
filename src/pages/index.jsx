@@ -13,6 +13,7 @@ import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'
 import Link from '../components/Link'
+import { pushToDataLayer } from '../utils/gtm'
 
 export const index = () => {
   return (
@@ -58,6 +59,13 @@ export const index = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Listen to orcas live on Orcasound"
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Listen to Orcas Live!',
+                section: 'hero',
+                page: 'home',
+              })
+            }
             sx={{
               backgroundColor: '#000000',
               borderRadius: '20px',
@@ -105,6 +113,9 @@ export const index = () => {
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
             <IconButton
               aria-label="Scroll down to What is Orcasound section"
+              onClick={() =>
+                pushToDataLayer('scroll_arrow_click', { page: 'home' })
+              }
               sx={{
                 position: 'absolute',
                 bottom: '30px',
@@ -249,6 +260,13 @@ export const index = () => {
               component={Link}
               href="/learn"
               variant="contained"
+              onClick={() =>
+                pushToDataLayer('cta_click', {
+                  cta_text: 'Learn',
+                  section: 'body',
+                  page: 'home',
+                })
+              }
               sx={{
                 backgroundColor: '#1B2B7B',
                 alignContent: 'center',
@@ -274,6 +292,13 @@ export const index = () => {
               component={Link}
               href="/getinvolved"
               variant="contained"
+              onClick={() =>
+                pushToDataLayer('cta_click', {
+                  cta_text: 'Get Involved',
+                  section: 'body',
+                  page: 'home',
+                })
+              }
               sx={{
                 backgroundColor: '#1B2B7B',
                 alignContent: 'center',
@@ -338,6 +363,13 @@ export const index = () => {
               component={Link}
               href="/learn"
               variant="contained"
+              onClick={() =>
+                pushToDataLayer('cta_click', {
+                  cta_text: 'Learn',
+                  section: 'body',
+                  page: 'home',
+                })
+              }
               sx={{
                 backgroundColor: '#1B2B7B',
                 alignContent: 'center',
@@ -363,6 +395,13 @@ export const index = () => {
               component={Link}
               href="/getinvolved"
               variant="contained"
+              onClick={() =>
+                pushToDataLayer('cta_click', {
+                  cta_text: 'Get Involved',
+                  section: 'body',
+                  page: 'home',
+                })
+              }
               sx={{
                 backgroundColor: '#1B2B7B',
                 alignContent: 'center',

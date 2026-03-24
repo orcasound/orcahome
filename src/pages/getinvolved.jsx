@@ -31,6 +31,7 @@ import logo16 from '../../public/images/getinvolved/VashonNatureCenter-logo.png'
 import logo11 from '../../public/images/getinvolved/ws_logo.png'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import TopBanner from '../components/TopBanner'
+import { pushToDataLayer } from '../utils/gtm'
 import ActionButton from './../components/ActionButton'
 
 export const GetInvolved = () => {
@@ -87,7 +88,18 @@ export const GetInvolved = () => {
           >
             {InviteLinks.map((link, i) => (
               <Box component="li" key={i}>
-                <ScrollLink to={link.id} smooth={true} spy={true} offset={-80}>
+                <ScrollLink
+                  to={link.id}
+                  smooth={true}
+                  spy={true}
+                  offset={-80}
+                  onClick={() =>
+                    pushToDataLayer('jump_link_click', {
+                      link_text: link.name,
+                      page: 'get_involved',
+                    })
+                  }
+                >
                   {link.name}
                 </ScrollLink>
               </Box>
@@ -275,7 +287,12 @@ export const GetInvolved = () => {
                       variant="outlined"
                       startIcon={<AddIcon />}
                       sx={{ m: 1 }}
-                      onClick={() => zoomIn()}
+                      onClick={() => {
+                        zoomIn()
+                        pushToDataLayer('roadmap_interaction', {
+                          action: 'zoom_in',
+                        })
+                      }}
                     >
                       Zoom in
                     </Button>
@@ -283,7 +300,12 @@ export const GetInvolved = () => {
                       variant="outlined"
                       startIcon={<RemoveIcon />}
                       sx={{ m: 1 }}
-                      onClick={() => zoomOut()}
+                      onClick={() => {
+                        zoomOut()
+                        pushToDataLayer('roadmap_interaction', {
+                          action: 'zoom_out',
+                        })
+                      }}
                     >
                       {' '}
                       Zoom out
@@ -292,7 +314,12 @@ export const GetInvolved = () => {
                       variant="outlined"
                       sx={{ m: 1 }}
                       startIcon={<RestartAltIcon />}
-                      onClick={() => resetTransform()}
+                      onClick={() => {
+                        resetTransform()
+                        pushToDataLayer('roadmap_interaction', {
+                          action: 'reset',
+                        })
+                      }}
                     >
                       Reset
                     </Button>
@@ -339,6 +366,12 @@ export const GetInvolved = () => {
             <Link
               href="https://www.democracylab.org/projects/81"
               style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'Orcasound project at DemocracyLab',
+                  destination: 'https://www.democracylab.org/projects/81',
+                })
+              }
             >
               Orcasound project at DemocracyLab
             </Link>
@@ -347,6 +380,12 @@ export const GetInvolved = () => {
             <Link
               href="https://github.com/orcasound"
               style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'GitHub repositories',
+                  destination: 'https://github.com/orcasound',
+                })
+              }
             >
               GitHub page
             </Link>{' '}
@@ -354,6 +393,13 @@ export const GetInvolved = () => {
             <Link
               href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
               style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'Orcasound dev email distribution list',
+                  destination:
+                    'http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net',
+                })
+              }
             >
               Orcasound dev email distribution list
             </Link>{' '}
@@ -363,6 +409,12 @@ export const GetInvolved = () => {
             <Link
               href="https://www.orcasound.net/hacker-hall-of-fame/"
               style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'Orcasound Hacker Hall of Fame',
+                  destination: 'https://www.orcasound.net/hacker-hall-of-fame/',
+                })
+              }
             >
               Orcasound Hacker Hall of Fame!
             </Link>
@@ -397,6 +449,13 @@ export const GetInvolved = () => {
             <Link
               color="#1B2B7B"
               href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: '2016-2020 Memorandum of Agreements (MOA)',
+                  destination:
+                    'https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing',
+                })
+              }
             >
               2021-2025 Memorandum of Agreement (MOA)
             </Link>
@@ -428,6 +487,12 @@ export const GetInvolved = () => {
             <Link
               href="mailto:info@orcasound.net"
               style={{ textDecoration: 'none', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'info@orcasound.net',
+                  destination: 'mailto:info@orcasound.net',
+                })
+              }
             >
               info@orcasound.net
             </Link>{' '}
@@ -481,7 +546,17 @@ export const GetInvolved = () => {
             Hacker hall of fame and our Github repositories and consider
             sponsoring the work of our most-dedicated contributors.
           </Typography>
-          <ActionButton link="/donate" text="DONATE NOW" />
+          <ActionButton
+            link="/donate"
+            text="DONATE NOW"
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Donate Now',
+                section: 'donate',
+                page: 'get_involved',
+              })
+            }
+          />
         </Box>
 
         <Box
@@ -504,6 +579,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'The Whale Trail',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo1}
@@ -523,6 +604,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'F.O.L.K.S',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo2}
@@ -542,6 +629,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Center for Whale Research',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo4}
@@ -561,6 +654,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Deep Green Wilderness',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo6}
@@ -580,6 +679,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Oceans Initiative',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo8}
@@ -599,6 +704,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'PacMAN',
+                page: 'get_involved',
+              })
+            }
           >
             <Image src={logo9} alt="Pacmam" layout="fill" objectFit="contain" />
           </Box>
@@ -613,6 +724,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Whale Scout',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo11}
@@ -632,6 +749,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Orca Conservancy',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo12}
@@ -651,6 +774,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Orca Network',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo13}
@@ -670,6 +799,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Port Townsend Marine Science Center',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo14}
@@ -689,6 +824,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Sound Action',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo15}
@@ -708,6 +849,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Vashon Nature Center',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo16}
@@ -728,6 +875,12 @@ export const GetInvolved = () => {
               position: 'relative',
               overflow: 'hidden',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Orca Behavior Institute',
+                page: 'get_involved',
+              })
+            }
           >
             <Image
               src={logo18}
@@ -747,6 +900,12 @@ export const GetInvolved = () => {
               alignItems: 'center',
               textDecoration: 'none',
             }}
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Project SeaWolf',
+                page: 'get_involved',
+              })
+            }
           >
             <Box
               sx={{

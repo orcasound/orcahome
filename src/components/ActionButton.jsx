@@ -4,12 +4,13 @@ import Button from '@mui/material/Button'
 // `text` receives the text you want to place inside of the button.
 // `link` determines the href that the user is directed to after clicking the button.
 // 'accent1' is a custom variable declared in theme.ts through a custom value and module delcaration.
-const ActionButton = ({ link, text }) => {
+const ActionButton = ({ link, text, onClick }) => {
   return (
     <div>
       <Button
         href={link}
         variant="contained"
+        onClick={onClick}
         sx={(theme) => ({
           margin: '1rem',
           bgcolor: 'accents.accent1',

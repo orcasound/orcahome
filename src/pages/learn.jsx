@@ -17,6 +17,7 @@ import organization2 from '../../public/images/partner2.png'
 import salishsea from '../../public/images/salishsea.png'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import TopBanner from '../components/TopBanner'
+import { pushToDataLayer } from '../utils/gtm'
 
 const NavLink = styled(ScrollLink)(() => ({
   display: 'block',
@@ -85,7 +86,18 @@ export const learn = () => {
           >
             {navLinks.map((link) => (
               <Box component="li" key={link.id}>
-                <NavLink to={link.id} smooth={true} spy={true} offset={-80}>
+                <NavLink
+                  to={link.id}
+                  smooth={true}
+                  spy={true}
+                  offset={-80}
+                  onClick={() =>
+                    pushToDataLayer('jump_link_click', {
+                      link_text: link.name,
+                      page: 'learn',
+                    })
+                  }
+                >
                   {link.name}
                 </NavLink>
               </Box>
@@ -178,6 +190,12 @@ export const learn = () => {
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
+                onPlay={() =>
+                  pushToDataLayer('audio_play', {
+                    call_name: 'S01',
+                    section: '3_common_calls',
+                  })
+                }
               />
               <Typography
                 variant="body2"
@@ -208,6 +226,12 @@ export const learn = () => {
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
+                onPlay={() =>
+                  pushToDataLayer('audio_play', {
+                    call_name: 'S16',
+                    section: '3_common_calls',
+                  })
+                }
               />
               <Typography
                 variant="body2"
@@ -237,6 +261,12 @@ export const learn = () => {
                 autoPlay={false}
                 controls
                 style={{ width: '100%' }}
+                onPlay={() =>
+                  pushToDataLayer('audio_play', {
+                    call_name: 'S19',
+                    section: '3_common_calls',
+                  })
+                }
               />
               <Typography
                 variant="body2"
@@ -324,7 +354,17 @@ export const learn = () => {
           >
             For another tour of the sounds that are most commonly heard in the
             Salish Sea,{' '}
-            <a href="http://orcasound.net/sakiosk/node/os/index.php?os-listen">
+            <a
+              href="http://orcasound.net/sakiosk/node/os/index.php?os-listen"
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text:
+                    'visit the listening station at the Seattle Aquarium',
+                  destination:
+                    'http://orcasound.net/sakiosk/node/os/index.php?os-listen',
+                })
+              }
+            >
               visit the listening station at the Seattle Aquarium
             </a>{' '}
             and click on &quot;More recordings.&quot;
@@ -352,6 +392,12 @@ export const learn = () => {
             href="https://killerwhaletales.org/"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              pushToDataLayer('partner_click', {
+                partner_name: 'Marine Science Center',
+                page: 'learn',
+              })
+            }
           >
             <Image src={organization2} alt="Marine Science Center Logo" />
           </a>

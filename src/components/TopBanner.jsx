@@ -5,6 +5,8 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
+import { pushToDataLayer } from '../utils/gtm'
+
 const TopScreen = styled(Box)(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
@@ -115,7 +117,13 @@ const TopBanner = ({
             {pageTitle}
           </Typography>
           <ScrollElement to={scrollToId} smooth={true} spy={true}>
-            <ScrollDownButton>
+            <ScrollDownButton
+              onClick={() =>
+                pushToDataLayer('scroll_arrow_click', {
+                  page: pageTitle?.toLowerCase().replace(/ /g, '_'),
+                })
+              }
+            >
               <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
               <ExpandMoreIcon
                 sx={{

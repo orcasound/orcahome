@@ -13,7 +13,6 @@ import {
   ListItem,
   ListItemText,
   Toolbar,
-  Typography,
 } from '@mui/material'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Image from 'next/image'
@@ -22,6 +21,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/logo-white.svg'
+import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 
 const navLinks = [
@@ -152,12 +152,33 @@ function Mobile() {
               target="_blank"
               rel="noopener noreferrer"
               sx={{ borderBottom: '1px solid white' }}
+              onClick={() =>
+                pushToDataLayer('nav_click', {
+                  link_text: navLink.name,
+                  page_location:
+                    typeof window !== 'undefined'
+                      ? window.location.pathname
+                      : '',
+                })
+              }
             >
               <ListItemText primary={navLink.name} />
             </ListItem>
           ) : (
             <Link key={navLink.name} href={navLink.url} passHref>
-              <ListItem button sx={{ borderBottom: '1px solid white' }}>
+              <ListItem
+                button
+                sx={{ borderBottom: '1px solid white' }}
+                onClick={() =>
+                  pushToDataLayer('nav_click', {
+                    link_text: navLink.name,
+                    page_location:
+                      typeof window !== 'undefined'
+                        ? window.location.pathname
+                        : '',
+                  })
+                }
+              >
                 <ListItemText primary={navLink.name} />
               </ListItem>
             </Link>
@@ -222,48 +243,60 @@ function Desktop() {
                 margin: 3,
               }}
             >
-              <Button
-                sx={{
-                  color: 'white',
-                  display: 'block',
-                  textTransform: 'none',
-                  ...(isActive && {
-                    textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
-                    textUnderlineOffset: '7px',
-                  }),
-                  '&:hover': {
-                    textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
-                    textUnderlineOffset: '7px',
-                  },
-                }}
-              >
-                {navLink.external ? (
-                  <Typography
+              {navLink.external ? (
+                <Button
+                  component="a"
+                  href={navLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    color: 'white',
+                    display: 'block',
+                    textTransform: 'none',
+                    '&:hover': {
+                      textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
+                      textUnderlineOffset: '7px',
+                    },
+                  }}
+                  onClick={() =>
+                    pushToDataLayer('nav_click', {
+                      link_text: navLink.name,
+                      page_location: router.pathname,
+                    })
+                  }
+                >
+                  {navLink.name}
+                </Button>
+              ) : (
+                <Link href={navLink.url} passHref>
+                  <Button
                     component="a"
-                    href={navLink.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     sx={{
                       color: 'white',
-                      textDecoration: 'none',
+                      display: 'block',
+                      textTransform: 'none',
+                      ...(isActive && {
+                        textDecoration:
+                          '3px rgba(0, 139, 223, 1) wavy underline',
+                        textUnderlineOffset: '7px',
+                      }),
+                      '&:hover': {
+                        textDecoration:
+                          '3px rgba(0, 139, 223, 1) wavy underline',
+                        textUnderlineOffset: '7px',
+                      },
                     }}
+                    onClick={() =>
+                      pushToDataLayer('nav_click', {
+                        link_text: navLink.name,
+                        page_location: router.pathname,
+                      })
+                    }
                   >
                     {navLink.name}
-                  </Typography>
-                ) : (
-                  <Link href={navLink.url} passHref>
-                    <Typography
-                      component="a"
-                      sx={{
-                        color: 'white',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      {navLink.name}
-                    </Typography>
-                  </Link>
-                )}
-              </Button>
+                  </Button>
+                </Link>
+              )}
             </Box>
           )
         })}

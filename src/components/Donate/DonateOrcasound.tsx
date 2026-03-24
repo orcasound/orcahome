@@ -3,6 +3,7 @@ import { styled } from '@mui/material'
 import Image from 'next/image'
 
 import theme from '../../styles/theme'
+import { pushToDataLayer } from '../../utils/gtm'
 
 interface DonateOrcasoundProps {
   donateOrcasoundImage: string
@@ -84,6 +85,13 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               margin: '10px',
               // width is not necessary here since the Box is already centering the button
             }}
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Donate',
+                section: 'donate_orcasound',
+                page: 'donate',
+              })
+            }
           >
             Donate
           </Button>
@@ -125,6 +133,13 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               margin: '10px',
               width: 'fit-content',
             }}
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Support',
+                section: 'donate_orcasound',
+                page: 'donate',
+              })
+            }
           >
             {' '}
             Support

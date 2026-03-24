@@ -14,6 +14,7 @@ import linkedinlogo from '../../public/images/linkedin.png'
 import orcasoundlogo from '../../public/images/logo-white.svg'
 import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
+import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 
 const StyledTypography = styled(Typography)({
@@ -269,7 +270,14 @@ function Desktop() {
                 }}
               >
                 <Link href={navLink.url} passHref>
-                  <StyledTypography component="a">
+                  <StyledTypography
+                    component="a"
+                    onClick={() =>
+                      pushToDataLayer('footer_nav_click', {
+                        link_text: navLink.name,
+                      })
+                    }
+                  >
                     {navLink.name}
                   </StyledTypography>
                 </Link>
@@ -312,12 +320,24 @@ function Desktop() {
                     href={navLink.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      pushToDataLayer('footer_nav_click', {
+                        link_text: navLink.name,
+                      })
+                    }
                   >
                     {navLink.name}
                   </StyledTypography>
                 ) : (
                   <Link href={navLink.url} passHref>
-                    <StyledTypography component="a">
+                    <StyledTypography
+                      component="a"
+                      onClick={() =>
+                        pushToDataLayer('footer_nav_click', {
+                          link_text: navLink.name,
+                        })
+                      }
+                    >
                       {navLink.name}
                     </StyledTypography>
                   </Link>
@@ -353,6 +373,9 @@ function Desktop() {
                 sx={{
                   margin: '10px',
                 }}
+                onClick={() =>
+                  pushToDataLayer('social_click', { platform: iconLink.name })
+                }
               >
                 <Image src={iconLink.icon} alt={iconLink.name}></Image>
               </Box>
