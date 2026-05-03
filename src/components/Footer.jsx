@@ -209,7 +209,7 @@ function Mobile() {
         {iconContainer}
         <Box sx={{ marginTop: '20px', textAlign: 'center' }}>
           <Typography variant="body2" color="white">
-            &copy; 2025 Orcasound. All rights reserved.
+            &copy; 2026 Orcasound. All rights reserved.
           </Typography>
         </Box>
       </AppBar>
