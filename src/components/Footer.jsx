@@ -17,6 +17,8 @@ import youtubelogo from '../../public/images/youtube.png'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 
+const currentYear = new Date().getFullYear()
+
 const StyledTypography = styled(Typography)({
   color: 'white',
   marginRight: '32px',
@@ -210,7 +212,7 @@ function Mobile() {
         {iconContainer}
         <Box sx={{ marginTop: '20px', textAlign: 'center' }}>
           <Typography variant="body2" color="white">
-            &copy; 2025 Orcasound. All rights reserved.
+            &copy; {currentYear} Orcasound. All rights reserved.
           </Typography>
         </Box>
       </AppBar>
@@ -389,7 +391,7 @@ function Desktop() {
             }}
           >
             <Typography variant="body2" color="white">
-              &copy; 2025 Orcasound. All rights reserved.
+              &copy; {currentYear} Orcasound. All rights reserved.
             </Typography>
           </Box>
         </Box>
