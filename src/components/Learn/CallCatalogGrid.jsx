@@ -17,6 +17,7 @@ import FOS03 from '../../../public/images/learn/FO-S03.png'
 import FOS04 from '../../../public/images/learn/FO-S04.png'
 import FOS05 from '../../../public/images/learn/FO-S05.png'
 import FOS06 from '../../../public/images/learn/FO-S06.png'
+import { pushToDataLayer } from '../../utils/gtm'
 
 const CallCatalogGrid = () => {
   const [isPlaying, setIsPlaying] = React.useState(Array(6).fill(false))
@@ -65,6 +66,10 @@ const CallCatalogGrid = () => {
     updatedIsPlaying[index] = true
     setIsPlaying(updatedIsPlaying)
     playArray[index]()
+    pushToDataLayer('audio_play', {
+      call_name: orcaCallTags[index],
+      section: 'call_catalog',
+    })
   }
 
   function stopSound(index) {
@@ -176,6 +181,13 @@ const CallCatalogGrid = () => {
               py: 2,
               px: 5,
             }}
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Access Call Catalog',
+                section: 'call_catalog',
+                page: 'learn',
+              })
+            }
           >
             Access Call Catalog
           </Button>

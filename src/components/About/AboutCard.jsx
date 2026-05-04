@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { Paper } from '@mui/material'
 import Image from 'next/image'
 
-const AboutCard = ({ item, mobileActive }) => {
+const AboutCard = ({ item, mobileActive, onClick }) => {
   return (
     <Box
       component="a"
@@ -10,6 +10,7 @@ const AboutCard = ({ item, mobileActive }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Learn more about ${item.title}`}
+      onClick={onClick}
       sx={{
         textDecoration: 'none',
         display: 'block',

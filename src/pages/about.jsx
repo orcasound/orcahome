@@ -9,6 +9,7 @@ import AboutBanner from '../../public/images/about.webp'
 import AboutCard from '../components/About/AboutCard'
 import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
+import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 
 export default function About() {
@@ -65,7 +66,15 @@ export default function About() {
                     {((mobileActive && index < 2) ||
                       seeMore ||
                       !mobileActive) && (
-                      <AboutCard item={item} mobileActive={mobileActive} />
+                      <AboutCard
+                        item={item}
+                        mobileActive={mobileActive}
+                        onClick={() =>
+                          pushToDataLayer('about_card_click', {
+                            card_title: item.title,
+                          })
+                        }
+                      />
                     )}
                   </Grid>
                 )
@@ -134,6 +143,13 @@ export default function About() {
                   },
                 }}
                 href="/getinvolved"
+                onClick={() =>
+                  pushToDataLayer('cta_click', {
+                    cta_text: 'Get Involved',
+                    section: 'body',
+                    page: 'about',
+                  })
+                }
               >
                 GET INVOLVED
               </Button>
