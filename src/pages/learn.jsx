@@ -346,61 +346,32 @@ export const learn = () => {
           <Typography variant="h4" component="h2" fontWeight="600" mb={3}>
             Exhibits
           </Typography>
-          <Typography
-            variant="body1"
-            fontSize="18px"
-            color="text.secondary"
-            mb={2}
-          >
-            For another tour of the sounds that are most commonly heard in the
-            Salish Sea,{' '}
-            <a
-              href="http://orcasound.net/sakiosk/node/os/index.php?os-listen"
-              onClick={() =>
-                pushToDataLayer('external_link_click', {
-                  link_text:
-                    'visit the listening station at the Seattle Aquarium',
-                  destination:
-                    'http://orcasound.net/sakiosk/node/os/index.php?os-listen',
-                })
-              }
-            >
-              visit the listening station at the Seattle Aquarium
-            </a>{' '}
-            and click on &quot;More recordings.&quot;
-          </Typography>
-          <Typography variant="body1" fontSize="18px" color="text.secondary">
-            For a challenge beyond the three favorite calls of the SRKWs, learn
-            a bunch more of the calls made by the southern resident killer
-            whales (developed by educators at NOAA, the Port Townsend Marine
-            Science Center, and Killer Whale Tales).
-          </Typography>
-        </Box>
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 4,
-            my: 10,
-          }}
-        >
-          <Image src={organization1} alt="Seattle aquarium exhibit" />
-          <a
-            href="https://killerwhaletales.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() =>
-              pushToDataLayer('partner_click', {
-                partner_name: 'Marine Science Center',
-                page: 'learn',
-              })
-            }
-          >
-            <Image src={organization2} alt="Marine Science Center Logo" />
-          </a>
+          {/* Seattle Aquarium */}
+          <Box sx={{ mb: 4, textAlign: 'center' }}>
+            <Box sx={{ mb: 2 }}>
+              <Image src={organization1} alt="Seattle Aquarium exhibit" />
+            </Box>
+            <Typography variant="body1" fontSize="18px" color="text.secondary">
+              For another tour of the sounds that are most commonly heard in the
+              Salish Sea, visit the listening station at the Seattle Aquarium in
+              Washington State.
+            </Typography>
+          </Box>
+
+          {/* Marine Science Center */}
+          <Box sx={{ mb: 4, textAlign: 'center' }}>
+            <Box sx={{ mb: 2 }}>
+              <Image src={organization2} alt="Marine Science Center exhibit" />
+            </Box>
+            <Typography variant="body1" fontSize="18px" color="text.secondary">
+              For a challenge beyond the three favorite calls of the SRKWs,
+              learn a bunch more of the calls made by the Southern Resident
+              Killer Whales (developed by educators at NOAA, the Port Townsend
+              Marine Science Center, and Killer Whale Tales) at the Marine
+              Science Center in Port Townsend in Washington State.
+            </Typography>
+          </Box>
         </Box>
       </Container>
     </div>
