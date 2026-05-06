@@ -31,7 +31,7 @@ const partners = [
     name: 'Orca Behavior Institute',
     description:
       'Orca Behavior Institute conducts non-invasive research on orcas and helps others learn how to protect these animals.',
-    linkTo: 'https://orcabehaviorinstitute.org/',
+    linkTo: 'https://www.orcabehaviorinstitute.org/donate',
   },
   {
     icon: '/images/donatePartners/OrcaConservancy.svg',
