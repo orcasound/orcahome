@@ -24,14 +24,14 @@ const partners = [
     name: 'F.O.L.K.S',
     description:
       "F.O.L.K.S. provides visitors with education on the Salish Sea's diverse marine ecosystem.",
-    linkTo: 'https://folkssji.org/donate/',
+    linkTo: 'https://folkssji.org/donate-today',
   },
   {
     icon: '/images/donatePartners/orca-behavior-institute-logo-white.svg',
     name: 'Orca Behavior Institute',
     description:
       'Orca Behavior Institute conducts non-invasive research on orcas and helps others learn how to protect these animals.',
-    linkTo: 'https://orcabehaviorinstitute.org/',
+    linkTo: 'https://www.orcabehaviorinstitute.org/donate',
   },
   {
     icon: '/images/donatePartners/OrcaConservancy.svg',
