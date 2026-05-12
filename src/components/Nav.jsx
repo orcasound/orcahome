@@ -41,6 +41,11 @@ const navLinks = [
     icon: '',
   },
   {
+    name: 'Contributors',
+    url: '/contributors',
+    icon: '',
+  },
+  {
     name: 'Listen',
     url: 'https://live.orcasound.net/',
     icon: '',
