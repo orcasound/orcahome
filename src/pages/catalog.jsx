@@ -1,27 +1,22 @@
 import { Box, Button, Container, Typography } from '@mui/material'
-import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import React from 'react'
+import React, { useState } from 'react'
 
 import heroImg from '../../public/images/callcatalog.png'
+import { CALLS } from '../components/Catalog/callsData'
+import CatalogCallList from '../components/Catalog/CatalogCallList'
+import { POD_FILTERS } from '../components/Catalog/constants'
 import TopBanner from '../components/TopBanner'
 
-// CatalogCallList uses use-sound (client-only), load without SSR
-const CatalogCallList = dynamic(
-  () => import('../components/Catalog/CatalogCallList'),
-  { ssr: false }
-)
-
-const POD_FILTERS = ['All Calls', 'J Pod', 'K Pod', 'L Pod']
-
 export default function Catalog() {
+  const [activePod, setActivePod] = useState('All Calls')
+
   return (
     <div>
       <Head>
         <title>Orcasound | Call Catalog</title>
       </Head>
 
-      {/* Hero — swap heroImg for catalog-hero.jpg once the asset is ready */}
       <TopBanner
         bannerImg={heroImg}
         pageTitle="Call Catalog"
@@ -60,17 +55,16 @@ export default function Catalog() {
           Orcasound maintains an online catalog of the SRKW calls (built by Val
           Veirs and his students at Colorado College, based on the Osborne-Ford
           tape, March 1981, and the call classification of Ford, 1987). You can
-          select from over 46 whale calls that have been recorded throughout the
-          habitat of J, K, and L pod. The next goal is to add a fourth column,
-          or additional labels in the first column, to indicate common human
-          names that have been given by the community to the sounds, in part to
-          help discuss and remember them. For now, select labels (favored by
-          Scott Veirs!) have been hard-coded in by hand. Other name ideas, and a
-          standardized nomenclature, are getting organized.
+          browse {CALLS.length} Ford call entries and variants recorded
+          throughout the habitat of J, K, and L pod, with available audio,
+          generated waveform images, color spectrograms, and Ford catalog
+          spectrograms.
         </Typography>
 
         {/* Pod filter tabs */}
         <Box
+          role="group"
+          aria-label="Filter calls by pod"
           sx={{
             display: 'flex',
             gap: 8,
@@ -82,6 +76,8 @@ export default function Catalog() {
           {POD_FILTERS.map((filter) => (
             <Button
               key={filter}
+              onClick={() => setActivePod(filter)}
+              aria-pressed={activePod === filter}
               sx={{
                 fontFamily: 'Montserrat',
                 fontWeight: 400,
@@ -91,9 +87,11 @@ export default function Catalog() {
                 height: '59px',
                 width: '144px',
                 borderRadius: '10px',
-                bgcolor: '#1B2B7B',
+                bgcolor: activePod === filter ? '#0f1a4d' : '#1B2B7B',
                 color: '#FFFFFF',
-                '&:hover': { bgcolor: '#2d3ea3' },
+                '&:hover': {
+                  bgcolor: activePod === filter ? '#0f1a4d' : '#2d3ea3',
+                },
               }}
             >
               {filter}
@@ -101,10 +99,8 @@ export default function Catalog() {
           ))}
         </Box>
 
-        {/* Call list — client-only (audio playback) */}
-        <CatalogCallList />
-
-        {/* TODO: add large FO-S03 spectrogram comparison images here once assets are ready */}
+        {/* Call list */}
+        <CatalogCallList activePod={activePod} />
 
         {/* Image credit */}
         <Typography
@@ -112,7 +108,7 @@ export default function Catalog() {
             fontFamily: 'Mukta',
             fontWeight: 400,
             fontSize: '15px',
-            textAlign: 'center',
+            textAlign: 'left',
             mt: 6,
             color: '#000',
           }}

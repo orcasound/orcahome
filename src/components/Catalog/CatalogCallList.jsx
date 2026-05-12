@@ -2,125 +2,17 @@ import DownloadIcon from '@mui/icons-material/Download'
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined'
 import PauseIcon from '@mui/icons-material/Pause'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
+import VolumeOffIcon from '@mui/icons-material/VolumeOff'
 import VolumeUpIcon from '@mui/icons-material/VolumeUp'
 import { Box, Divider, IconButton, Typography } from '@mui/material'
 import Image from 'next/image'
-import React, { useState } from 'react'
-import useSound from 'use-sound'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
-import SO1 from '../../../public/audio/FO-S01.mp3'
-import SO2 from '../../../public/audio/FO-S02.mp3'
-import SO3 from '../../../public/audio/FO-S03.mp3'
-import SO4 from '../../../public/audio/FO-S04.mp3'
-import SO5 from '../../../public/audio/FO-S05.mp3'
-import SO6 from '../../../public/audio/FO-S06.mp3'
-import SO16 from '../../../public/audio/FO-S16.mp3'
-import CallS03 from '../../../public/images/learn/Call-S03.png'
-import FOS16 from '../../../public/images/learn/Call-S16.png'
-import FOS01 from '../../../public/images/learn/FO-S01.png'
-import FOS02 from '../../../public/images/learn/FO-S02.png'
-import FOS03 from '../../../public/images/learn/FO-S03.png'
-import FOS04 from '../../../public/images/learn/FO-S04.png'
-import FOS05 from '../../../public/images/learn/FO-S05.png'
-import FOS06 from '../../../public/images/learn/FO-S06.png'
 import { pushToDataLayer } from '../../utils/gtm'
+import { CALLS } from './callsData'
+import { POD_KEY } from './constants'
 
-const CALLS = [
-  {
-    id: 'S01',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: 0,
-    spectrogram: FOS01,
-  },
-  {
-    id: 'S02',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: 1,
-    spectrogram: FOS02,
-  },
-  {
-    id: 'S03',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: 2,
-    spectrogram: FOS03,
-  },
-  {
-    id: 'S04',
-    nickname: 'Goose Honk',
-    pod: null,
-    audioIndex: 3,
-    spectrogram: FOS04,
-  },
-  {
-    id: 'S05',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: 4,
-    spectrogram: FOS05,
-  },
-  {
-    id: 'S06',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: 5,
-    spectrogram: FOS06,
-  },
-  {
-    id: 'S07',
-    nickname: 'Oh well darn',
-    pod: null,
-    audioIndex: null,
-    spectrogram: null,
-  },
-  {
-    id: 'S09',
-    nickname: 'Figaro',
-    pod: null,
-    audioIndex: null,
-    spectrogram: null,
-  },
-  {
-    id: 'S10',
-    nickname: 'Excitement call',
-    pod: null,
-    audioIndex: null,
-    spectrogram: null,
-  },
-  {
-    id: 'S13',
-    nickname: 'Donkey',
-    pod: null,
-    audioIndex: null,
-    spectrogram: null,
-  },
-  {
-    id: 'S14',
-    nickname: 'Commonly used by J pod',
-    pod: 'J',
-    audioIndex: null,
-    spectrogram: null,
-  },
-  {
-    id: 'S16',
-    nickname: 'Commonly used by K pod',
-    pod: 'K',
-    audioIndex: 6,
-    spectrogram: FOS16,
-  },
-]
-
-const AUDIO_DOWNLOAD_PATHS = [
-  '/audio/FO-S01.mp3',
-  '/audio/FO-S02.mp3',
-  '/audio/FO-S03.mp3',
-  '/audio/FO-S04.mp3',
-  '/audio/FO-S05.mp3',
-  '/audio/FO-S06.mp3',
-  '/audio/FO-S16.mp3',
-]
+export { CALLS }
 
 const PLAYER_ICON_SIZES = {
   playButton: { width: 27, height: 26, icon: 30, pauseIcon: 24 },
@@ -129,74 +21,124 @@ const PLAYER_ICON_SIZES = {
   downloadButton: { width: 24, height: 24, icon: 20 },
 }
 
-export { CALLS }
+function clearAudioHandlers(audio) {
+  audio.ontimeupdate = null
+  audio.onended = null
+}
 
-export default function CatalogCallList() {
+export default function CatalogCallList({ activePod }) {
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null)
+  const [playbackTime, setPlaybackTime] = useState(0)
+  const [isMuted, setIsMuted] = useState(false)
+  const audioRef = useRef(null)
+  const [expandedId, setExpandedId] = useState(null)
 
-  const [playS01, { stop: stopS01 }] = useSound(SO1, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS02, { stop: stopS02 }] = useSound(SO2, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS03, { stop: stopS03 }] = useSound(SO3, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS04, { stop: stopS04 }] = useSound(SO4, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS05, { stop: stopS05 }] = useSound(SO5, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS06, { stop: stopS06 }] = useSound(SO6, {
-    onend: () => setCurrentlyPlaying(null),
-  })
-  const [playS16, { stop: stopS16 }] = useSound(SO16, {
-    onend: () => setCurrentlyPlaying(null),
-  })
+  const handlePlay = useCallback(
+    (call) => {
+      if (!call.audio) return
 
-  const playFns = [
-    playS01,
-    playS02,
-    playS03,
-    playS04,
-    playS05,
-    playS06,
-    playS16,
-  ]
-  const stopFns = [
-    stopS01,
-    stopS02,
-    stopS03,
-    stopS04,
-    stopS05,
-    stopS06,
-    stopS16,
-  ]
+      if (audioRef.current) {
+        audioRef.current.pause()
+        clearAudioHandlers(audioRef.current)
+        audioRef.current.currentTime = 0
+      }
 
-  function handlePlay(call) {
-    if (call.audioIndex === null) return
+      const audio = new Audio(call.audio)
+      audio.muted = isMuted
+      audioRef.current = audio
+      audio.ontimeupdate = () => {
+        if (audioRef.current === audio) setPlaybackTime(audio.currentTime)
+      }
+      audio.onended = () => {
+        if (audioRef.current !== audio) return
+        clearAudioHandlers(audio)
+        audioRef.current = null
+        setCurrentlyPlaying(null)
+        setPlaybackTime(0)
+      }
 
-    if (currentlyPlaying !== null) {
-      const prev = CALLS.find((c) => c.id === currentlyPlaying)
-      if (prev?.audioIndex !== null) stopFns[prev.audioIndex]()
+      setPlaybackTime(0)
+      audio
+        .play()
+        .then(() => {
+          if (audioRef.current !== audio) return
+          setCurrentlyPlaying(call.id)
+          pushToDataLayer('audio_play', {
+            call_name: call.id,
+            section: 'call_catalog',
+          })
+        })
+        .catch(() => {
+          if (audioRef.current !== audio) return
+          clearAudioHandlers(audio)
+          audioRef.current = null
+          setCurrentlyPlaying(null)
+          setPlaybackTime(0)
+        })
+    },
+    [isMuted]
+  )
+
+  const handleStop = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      clearAudioHandlers(audioRef.current)
+      audioRef.current.currentTime = 0
+      audioRef.current = null
+    }
+    setCurrentlyPlaying(null)
+    setPlaybackTime(0)
+  }, [])
+
+  const handleToggleMute = useCallback(() => {
+    setIsMuted((currentMuted) => {
+      const nextMuted = !currentMuted
+      if (audioRef.current) {
+        audioRef.current.muted = nextMuted
+      }
+      return nextMuted
+    })
+  }, [])
+
+  const handleToggle = useCallback(
+    (callId) => {
+      if (expandedId === callId) {
+        if (currentlyPlaying === callId) handleStop()
+        setExpandedId(null)
+      } else {
+        if (currentlyPlaying !== null) handleStop()
+        setExpandedId(callId)
+      }
+    },
+    [expandedId, currentlyPlaying, handleStop]
+  )
+
+  const filteredCalls = useMemo(() => {
+    const podKey = POD_KEY[activePod]
+    return CALLS.filter((call) => !podKey || call.pods.includes(podKey))
+  }, [activePod])
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        clearAudioHandlers(audioRef.current)
+        audioRef.current = null
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    const visibleCallIds = new Set(filteredCalls.map((call) => call.id))
+
+    if (currentlyPlaying && !visibleCallIds.has(currentlyPlaying)) {
+      handleStop()
     }
 
-    setCurrentlyPlaying(call.id)
-    playFns[call.audioIndex]()
-    pushToDataLayer('audio_play', {
-      call_name: call.id,
-      section: 'call_catalog',
-    })
-  }
-
-  function handleStop(call) {
-    stopFns[call.audioIndex]()
-    setCurrentlyPlaying(null)
-  }
-
-  const filteredCalls = CALLS
+    if (expandedId && !visibleCallIds.has(expandedId)) {
+      setExpandedId(null)
+    }
+  }, [activePod, currentlyPlaying, expandedId, filteredCalls, handleStop])
 
   return (
     <Box>
@@ -206,26 +148,42 @@ export default function CatalogCallList() {
           key={call.id}
           call={call}
           isPlaying={currentlyPlaying === call.id}
+          expanded={expandedId === call.id}
+          playbackTime={currentlyPlaying === call.id ? playbackTime : 0}
+          isMuted={isMuted}
+          onToggle={() => handleToggle(call.id)}
           onPlay={() => handlePlay(call)}
-          onStop={() => handleStop(call)}
-          downloadPath={
-            call.audioIndex !== null
-              ? AUDIO_DOWNLOAD_PATHS[call.audioIndex]
-              : null
-          }
+          onStop={handleStop}
+          onToggleMute={handleToggleMute}
+          downloadPath={call.audio}
         />
       ))}
     </Box>
   )
 }
 
-function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
-  const hasAudio = call.audioIndex !== null
-  const [expanded, setExpanded] = useState(false)
+function CallRow({
+  call,
+  isPlaying,
+  expanded,
+  playbackTime,
+  isMuted,
+  onToggle,
+  onPlay,
+  onStop,
+  onToggleMute,
+  downloadPath,
+}) {
+  const hasAudio = !!call.audio
+  const callLabel = call.label ?? call.id
+  const thumbnailSrc = call.colorSpec
+  const waveformSrc = call.waveform
+  const duration = call.duration ?? 0
 
   return (
     <>
       <Box
+        onClick={onToggle}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -236,6 +194,7 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
           flexWrap: { xs: 'wrap', md: 'nowrap' },
           pl: { md: '33px' },
           pr: { md: '31px' },
+          cursor: 'pointer',
         }}
       >
         <Box
@@ -252,65 +211,79 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
               width: 75,
               height: 75,
               flexShrink: 0,
-              bgcolor: '#f0f0f0',
+              background: thumbnailSrc ? '#f0f0f0' : 'transparent',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 1,
               overflow: 'hidden',
+              border: 'none',
+              boxSizing: 'border-box',
             }}
           >
-            {call.spectrogram ? (
+            {thumbnailSrc ? (
               <Image
-                src={call.spectrogram}
-                alt={`Spectrogram for ${call.id}`}
+                src={thumbnailSrc}
+                alt={`Spectrogram for ${callLabel}`}
                 width={75}
                 height={75}
                 style={{ objectFit: 'cover' }}
               />
-            ) : (
-              <Typography
-                sx={{ fontSize: '11px', color: '#999', textAlign: 'center' }}
-              >
-                {call.id}
-              </Typography>
-            )}
+            ) : null}
           </Box>
 
           {/* Play / Pause button */}
-          <IconButton
-            onClick={isPlaying ? onStop : onPlay}
-            disabled={!hasAudio}
-            aria-label={`${isPlaying ? 'Pause' : 'Play'} ${call.id}`}
-            sx={{
-              bgcolor: '#fff',
-              borderRadius: '2px',
-              width: PLAYER_ICON_SIZES.playButton.width,
-              height: PLAYER_ICON_SIZES.playButton.height,
-              padding: 0,
-              flexShrink: 0,
-              ml: { xs: 1.25, md: '37px' },
-              '&.Mui-disabled': { bgcolor: '#ccc' },
-            }}
-          >
-            {isPlaying ? (
-              <PauseIcon
-                sx={{
-                  color: '#000',
-                  fontSize: PLAYER_ICON_SIZES.playButton.pauseIcon,
-                }}
-              />
-            ) : (
-              <PlayArrowIcon
-                sx={{
-                  color: '#000',
-                  fontSize: PLAYER_ICON_SIZES.playButton.icon,
-                }}
-              />
-            )}
-          </IconButton>
+          {hasAudio && (
+            <IconButton
+              onClick={(event) => {
+                event.stopPropagation()
+                if (isPlaying) {
+                  onStop()
+                } else {
+                  onPlay()
+                }
+              }}
+              aria-label={`${isPlaying ? 'Pause' : 'Play'} ${callLabel}`}
+              sx={{
+                bgcolor: '#fff',
+                borderRadius: '2px',
+                width: PLAYER_ICON_SIZES.playButton.width,
+                height: PLAYER_ICON_SIZES.playButton.height,
+                padding: 0,
+                flexShrink: 0,
+                ml: { xs: 1.25, md: '37px' },
+              }}
+            >
+              {isPlaying ? (
+                <PauseIcon
+                  sx={{
+                    color: '#000',
+                    fontSize: PLAYER_ICON_SIZES.playButton.pauseIcon,
+                  }}
+                />
+              ) : (
+                <PlayArrowIcon
+                  sx={{
+                    color: '#000',
+                    fontSize: PLAYER_ICON_SIZES.playButton.icon,
+                  }}
+                />
+              )}
+            </IconButton>
+          )}
+          {!hasAudio && (
+            <Box
+              aria-hidden="true"
+              sx={{
+                width: PLAYER_ICON_SIZES.playButton.width,
+                height: PLAYER_ICON_SIZES.playButton.height,
+                flexShrink: 0,
+                ml: { xs: 1.25, md: '37px' },
+              }}
+            />
+          )}
 
-          {/* Call ID + nickname */}
+          {/* Call ID */}
           <Box
             sx={{
               width: { xs: 'auto', md: 260 },
@@ -328,25 +301,18 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
                   lineHeight: 1.2,
                 }}
               >
-                {call.id}
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: 'Montserrat',
-                  fontWeight: 400,
-                  fontSize: '18px',
-                  color: '#000',
-                }}
-              >
-                {call.nickname}
+                {callLabel}
               </Typography>
             </Box>
           </Box>
 
           {/* Expand toggle */}
           <IconButton
-            onClick={() => setExpanded(!expanded)}
-            aria-label={`${expanded ? 'Collapse' : 'Expand'} ${call.id}`}
+            onClick={(event) => {
+              event.stopPropagation()
+              onToggle()
+            }}
+            aria-label={`${expanded ? 'Collapse' : 'Expand'} ${callLabel}`}
             sx={{
               width: PLAYER_ICON_SIZES.toggleButton.width,
               height: PLAYER_ICON_SIZES.toggleButton.height,
@@ -366,105 +332,116 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
           </IconButton>
         </Box>
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            flex: { xs: '1 1 100%', md: '0 0 auto' },
-            flexShrink: 0,
-            ml: { md: 'auto' },
-          }}
-        >
-          {/* Timestamp */}
-          <Typography
-            sx={{
-              fontFamily: 'Montserrat',
-              fontWeight: 400,
-              fontSize: { xs: '14px', md: '18px' },
-              lineHeight: 1,
-              width: { xs: 'auto', md: 96 },
-              textAlign: { xs: 'left', md: 'right' },
-              flexShrink: 0,
-            }}
-          >
-            0:00/0:12
-          </Typography>
-
-          {/* Spectrogram / waveform strip from the Figma audio row */}
+        {hasAudio && (
           <Box
             sx={{
-              width: { xs: 'min(48vw, 220px)', md: 295 },
-              height: 64,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              flex: { xs: '1 1 100%', md: '0 0 auto' },
               flexShrink: 0,
-              ml: { xs: 1.25, md: '27px' },
+              ml: { md: 'auto' },
             }}
           >
+            {/* Timestamp */}
+            <Typography
+              sx={{
+                fontFamily: 'Montserrat',
+                fontWeight: 400,
+                fontSize: { xs: '14px', md: '18px' },
+                lineHeight: 1,
+                width: { xs: 'auto', md: 96 },
+                textAlign: { xs: 'left', md: 'right' },
+                flexShrink: 0,
+              }}
+            >
+              {formatPlaybackTime(playbackTime)}/{formatDuration(duration)}
+            </Typography>
+
+            {/* Waveform strip from the audio file */}
             <Box
-              component="img"
-              src="/images/learn/audio-waveform.svg"
-              alt=""
-              aria-hidden="true"
               sx={{
-                display: 'block',
-                width: '100%',
-                height: '100%',
+                width: { xs: 'min(48vw, 220px)', md: 295 },
+                height: 64,
+                flexShrink: 0,
+                ml: { xs: 1.25, md: '27px' },
               }}
-            />
+            >
+              <Box
+                component="img"
+                src={waveformSrc}
+                alt=""
+                aria-hidden="true"
+                sx={{
+                  display: 'block',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                }}
+              />
+            </Box>
+
+            <IconButton
+              onClick={(event) => {
+                event.stopPropagation()
+                onToggleMute()
+              }}
+              aria-label={`${isMuted ? 'Unmute' : 'Mute'} ${callLabel}`}
+              sx={{
+                width: PLAYER_ICON_SIZES.volumeButton.width,
+                height: PLAYER_ICON_SIZES.volumeButton.height,
+                p: 0,
+                flexShrink: 0,
+                ml: { xs: 1.25, md: '33px' },
+              }}
+            >
+              {isMuted ? (
+                <VolumeOffIcon
+                  sx={{
+                    color: '#000',
+                    fontSize: PLAYER_ICON_SIZES.volumeButton.icon,
+                  }}
+                />
+              ) : (
+                <VolumeUpIcon
+                  sx={{
+                    color: '#000',
+                    fontSize: PLAYER_ICON_SIZES.volumeButton.icon,
+                  }}
+                />
+              )}
+            </IconButton>
+
+            {/* Download */}
+            <IconButton
+              component="a"
+              href={downloadPath}
+              download={`${callLabel}.mp3`}
+              aria-label={`Download ${callLabel}`}
+              sx={{
+                width: PLAYER_ICON_SIZES.downloadButton.width,
+                height: PLAYER_ICON_SIZES.downloadButton.height,
+                p: 0,
+                flexShrink: 0,
+                ml: { xs: 1.25, md: '16px' },
+              }}
+              onClick={(event) => {
+                event.stopPropagation()
+                pushToDataLayer('download_click', {
+                  call_name: call.id,
+                  section: 'call_catalog',
+                })
+              }}
+            >
+              <DownloadIcon
+                sx={{
+                  color: '#000',
+                  fontSize: PLAYER_ICON_SIZES.downloadButton.icon,
+                }}
+              />
+            </IconButton>
           </Box>
-
-          {/* Volume */}
-          <IconButton
-            disabled={!hasAudio}
-            aria-label={`Volume for ${call.id}`}
-            sx={{
-              width: PLAYER_ICON_SIZES.volumeButton.width,
-              height: PLAYER_ICON_SIZES.volumeButton.height,
-              p: 0,
-              flexShrink: 0,
-              ml: { xs: 1.25, md: '33px' },
-              '&.Mui-disabled': { opacity: 0.3 },
-            }}
-          >
-            <VolumeUpIcon
-              sx={{
-                color: '#000',
-                fontSize: PLAYER_ICON_SIZES.volumeButton.icon,
-              }}
-            />
-          </IconButton>
-
-          {/* Download */}
-          <IconButton
-            component="a"
-            href={downloadPath ?? '#'}
-            download={downloadPath ? `${call.id}.mp3` : undefined}
-            disabled={!hasAudio}
-            aria-label={`Download ${call.id}`}
-            sx={{
-              width: PLAYER_ICON_SIZES.downloadButton.width,
-              height: PLAYER_ICON_SIZES.downloadButton.height,
-              p: 0,
-              flexShrink: 0,
-              ml: { xs: 1.25, md: '16px' },
-              '&.Mui-disabled': { opacity: 0.3 },
-            }}
-            onClick={() =>
-              hasAudio &&
-              pushToDataLayer('download_click', {
-                call_name: call.id,
-                section: 'call_catalog',
-              })
-            }
-          >
-            <DownloadIcon
-              sx={{
-                color: '#000',
-                fontSize: PLAYER_ICON_SIZES.downloadButton.icon,
-              }}
-            />
-          </IconButton>
-        </Box>
+        )}
       </Box>
       {expanded && (
         <Box
@@ -488,13 +465,13 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
             }}
           >
             <SpectrogramPanel
-              src={FOS03}
-              alt="Modern spectrogram placeholder"
+              src={call.colorSpec}
+              alt={`Color spectrogram for ${callLabel}`}
               maxWidth={432}
             />
             <SpectrogramPanel
-              src={CallS03}
-              alt="Ford catalog spectrogram placeholder"
+              src={call.bwSpec}
+              alt={`Ford catalog spectrogram for ${callLabel}`}
               maxWidth={434}
             />
           </Box>
@@ -505,18 +482,44 @@ function CallRow({ call, isPlaying, onPlay, onStop, downloadPath }) {
   )
 }
 
+function formatWholeSeconds(totalSeconds) {
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = totalSeconds % 60
+
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+}
+
+function formatPlaybackTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds <= 0) return '0:00'
+
+  return formatWholeSeconds(Math.floor(seconds))
+}
+
+function formatDuration(seconds) {
+  if (!Number.isFinite(seconds) || seconds <= 0) return '0:00'
+
+  return formatWholeSeconds(Math.ceil(seconds))
+}
+
 function SpectrogramPanel({ src, alt, maxWidth }) {
   return (
     <Box
+      aria-hidden={src ? undefined : 'true'}
       sx={{
-        position: 'relative',
         width: { xs: '100%', sm: maxWidth },
         maxWidth,
-        aspectRatio: `${src.width} / ${src.height}`,
         overflow: 'hidden',
+        visibility: src ? 'visible' : 'hidden',
       }}
     >
-      <Image src={src} alt={alt} layout="fill" objectFit="contain" />
+      {src && (
+        <Box
+          component="img"
+          src={src}
+          alt={alt}
+          sx={{ width: '100%', height: 'auto', display: 'block' }}
+        />
+      )}
     </Box>
   )
 }
