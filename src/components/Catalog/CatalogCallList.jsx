@@ -4,7 +4,7 @@ import PauseIcon from '@mui/icons-material/Pause'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import VolumeOffIcon from '@mui/icons-material/VolumeOff'
 import VolumeUpIcon from '@mui/icons-material/VolumeUp'
-import { Box, Divider, IconButton, Typography } from '@mui/material'
+import { Box, Divider, IconButton, Pagination, Typography } from '@mui/material'
 import Image from 'next/image'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
@@ -13,6 +13,8 @@ import { CALLS } from './callsData'
 import { POD_KEY } from './constants'
 
 export { CALLS }
+
+const PAGE_SIZE = 15
 
 const PLAYER_ICON_SIZES = {
   playButton: { width: 27, height: 26, icon: 30, pauseIcon: 24 },
@@ -32,6 +34,7 @@ export default function CatalogCallList({ activePod }) {
   const [isMuted, setIsMuted] = useState(false)
   const audioRef = useRef(null)
   const [expandedId, setExpandedId] = useState(null)
+  const [page, setPage] = useState(1)
 
   const handlePlay = useCallback(
     (call) => {
@@ -118,6 +121,17 @@ export default function CatalogCallList({ activePod }) {
     return CALLS.filter((call) => !podKey || call.pods.includes(podKey))
   }, [activePod])
 
+  const pageCount = Math.ceil(filteredCalls.length / PAGE_SIZE)
+
+  const pagedCalls = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE
+    return filteredCalls.slice(start, start + PAGE_SIZE)
+  }, [filteredCalls, page])
+
+  useEffect(() => {
+    setPage(1)
+  }, [activePod])
+
   useEffect(() => {
     return () => {
       if (audioRef.current) {
@@ -129,7 +143,7 @@ export default function CatalogCallList({ activePod }) {
   }, [])
 
   useEffect(() => {
-    const visibleCallIds = new Set(filteredCalls.map((call) => call.id))
+    const visibleCallIds = new Set(pagedCalls.map((call) => call.id))
 
     if (currentlyPlaying && !visibleCallIds.has(currentlyPlaying)) {
       handleStop()
@@ -138,12 +152,12 @@ export default function CatalogCallList({ activePod }) {
     if (expandedId && !visibleCallIds.has(expandedId)) {
       setExpandedId(null)
     }
-  }, [activePod, currentlyPlaying, expandedId, filteredCalls, handleStop])
+  }, [pagedCalls, currentlyPlaying, expandedId, handleStop])
 
   return (
     <Box>
       <Divider sx={{ borderColor: '#000' }} />
-      {filteredCalls.map((call) => (
+      {pagedCalls.map((call) => (
         <CallRow
           key={call.id}
           call={call}
@@ -158,6 +172,16 @@ export default function CatalogCallList({ activePod }) {
           downloadPath={call.audio}
         />
       ))}
+      {pageCount > 1 && (
+        <Box sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
+          <Pagination
+            count={pageCount}
+            page={page}
+            onChange={(_, value) => setPage(value)}
+            shape="rounded"
+          />
+        </Box>
+      )}
     </Box>
   )
 }
