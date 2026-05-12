@@ -3,7 +3,7 @@
  * Desc : Page for the Hacker Hall of Fame contributors page.
  *  */
 
-import { Box, Container, Link, Typography } from '@mui/material'
+import { Box, Container, Link, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 
 import HackerBanner from '../../public/images/Hacker_HOF.webp'
@@ -49,26 +49,51 @@ const contributors = () => {
 
       {/* First Section for this page- top */}
       <Container maxWidth="md">
-        <Box
-          sx={{
-            height: '10em',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'black',
-          }}
-        >
-          <Typography variant="body2">
-            We would like to acknowledge the tremendous contributions of time,
-            technology, and code that have been made to our open source project.
-            Beginning in the fall of 2018, we began participating in hackathons
-            in Seattle and at the University of Washington. In summer, 2019, we
-            partnered with Microsoft through their amazing hackathon community.
-            In 2020, Orcasound became a host organization for Google Summer of
-            Code (GSoC).
-          </Typography>
-        </Box>
+        <Stack spacing={1} alignItems="center">
+          {/* first paragraph */}
+          <Box
+            sx={{
+              height: '10em',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'black',
+            }}
+          >
+            <Typography variant="body2">
+              We would like to acknowledge the tremendous contributions of time,
+              technology, and code that have been made to our open source
+              project. Beginning in the fall of 2018, we began participating in
+              hackathons in Seattle and at the University of Washington. In
+              summer, 2019, we partnered with Microsoft through their amazing
+              hackathon community. In 2020, Orcasound became a host organization
+              for Google Summer of Code (GSoC).
+            </Typography>
+          </Box>
+
+          {/*Second paragraph */}
+          <Box
+            sx={{
+              height: '10em',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'black',
+            }}
+          >
+            <Typography variant="body2">
+              In combination with our Github repositories, these events have
+              brought many talented programmers, designers, engineers,
+              researchers, and “geeks for good” to the project. They have made
+              it possible to rapidly develop and refine the Orcasound app — a
+              new way to listen for whales — based on a cutting-edge suite of
+              inexpensive and open source hardware and software for live
+              streaming audio data.
+            </Typography>
+          </Box>
+        </Stack>
       </Container>
     </>
   )
