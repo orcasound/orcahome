@@ -4,8 +4,8 @@
  *  */
 
 import Head from 'next/head'
-import { useState } from 'react'
 
+import HackerBanner from '../../public/images/Hacker_HOF.webp'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
@@ -16,6 +16,13 @@ const contributors = () => {
       <Head>
         <title>Orcasound | Hacker Hall of Fame</title>
       </Head>
+      <div style={{ whiteSpace: 'pre-wrap' }}>
+        <TopBanner
+          bannerImg={HackerBanner}
+          pageTitle={`    Hacker\nHall of Fame`}
+          scrollToId={'contributors'}
+        />
+      </div>
     </>
   )
 }
