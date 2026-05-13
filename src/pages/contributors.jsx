@@ -5,7 +5,9 @@
 
 import { Box, Container, Link, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
+import Image from 'next/image'
 
+import hackathon from '../../public/images/getinvolved/hackathon.png'
 import HackerBanner from '../../public/images/Hacker_HOF.webp'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
@@ -48,8 +50,11 @@ const contributors = () => {
       </Container>
 
       {/* First Section for this page- top */}
-      <Container maxWidth="md">
-        <Stack spacing={1} alignItems="center">
+      <Container
+        maxWidth="md"
+        sx={{ minHeight: '100vh', position: 'relative' }}
+      >
+        <Stack spacing={2} alignItems="center">
           {/* first paragraph */}
           <Box
             sx={{
@@ -91,6 +96,31 @@ const contributors = () => {
               new way to listen for whales — based on a cutting-edge suite of
               inexpensive and open source hardware and software for live
               streaming audio data.
+            </Typography>
+          </Box>
+          {/*Hackathon image */}
+          <Box
+            sx={{
+              position: 'relative',
+              width: '100%',
+              height: '25em',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Image
+              src={hackathon}
+              alt="Orcasound at a democracy lab hackathon in Seattle"
+              fill
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                borderRadius: '20px',
+              }}
+            />
+            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              Orcasound at a democracy lab hackathon in Seattle (photo by Mark
+              Frischmuth).
             </Typography>
           </Box>
         </Stack>
