@@ -123,6 +123,28 @@ const contributors = () => {
               Frischmuth).
             </Typography>
           </Box>
+
+          {/*Third paragraph after first image */}
+          <Box
+            sx={{
+              height: '10em',
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'black',
+            }}
+          >
+            <Typography variant="body2">
+              So, let’s have a virtual round of applause for the following
+              stand-out members of the Orcasound open source community. If
+              you’re inspired by their contributions to our Github repositories
+              or Democracy Lab hackathons, don’t hesitate to support the
+              Founders and Influencers directly! Sing their praises on social
+              media and networks; join them in hacking for orca conservation;
+              reinforce their volunteerism financially.
+            </Typography>
+          </Box>
         </Stack>
       </Container>
     </>
