@@ -39,7 +39,7 @@ const contributors = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'blue',
+            backgroundColor: 'navy',
             color: 'white',
           }}
         >
@@ -145,7 +145,63 @@ const contributors = () => {
               reinforce their volunteerism financially.
             </Typography>
           </Box>
+
+          {/*Founders Box */}
+          <Box
+            sx={{
+              height: '20em',
+              width: '120%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              backgroundColor: 'navy',
+              borderRadius: '20px',
+              boxSizing: 'border-box',
+              boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+            }}
+          >
+            <Typography variant="h4" gutterBottom>
+              Founders
+            </Typography>
+            <Typography variant="body2">(Long-Term Contributors)</Typography>
+            <Typography variant="body1" sx={{ width: '90%', marginTop: '1em' }}>
+              Like Orcasound organizational members (who have their own amazing
+              volunteers!), founders can raise funds under the auspices of
+              Orcasound to support their own Orcasound efforts or the project in
+              general. The also have shown leadership in the community and often
+              have administrative access to key parts of the Orcasound
+              infrastructure.
+            </Typography>
+            <Typography variant="body1" sx={{ width: '90%' }}>
+              Founders can raise funds under the auspices of Orcasound to
+              support their own Orcasound efforts or the project in general.
+            </Typography>
+          </Box>
         </Stack>
+        {/*Founders list */}
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
+          <Stack
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+            }}
+          >
+            <Box>
+              <Typography variant="body1">Paul Cretu</Typography>
+            </Box>
+          </Stack>
+        </Container>
       </Container>
     </>
   )
