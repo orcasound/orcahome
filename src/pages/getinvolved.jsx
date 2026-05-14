@@ -54,7 +54,7 @@ export const GetInvolved = () => {
   const InviteLinks = [
     { name: 'Volunteer', id: 'volunteer' },
     { name: 'Developers', id: 'for_developers' },
-    { name: 'Donate', id: 'donate' },
+    { name: 'Support', id: 'donate' },
   ]
 
   return (
@@ -518,7 +518,7 @@ export const GetInvolved = () => {
             fontWeight="600"
             mb="40px"
           >
-            Donate
+            Support
           </Typography>
           <Typography
             variant="p"
@@ -548,7 +548,7 @@ export const GetInvolved = () => {
           </Typography>
           <ActionButton
             link="/donate"
-            text="DONATE NOW"
+            text="SUPPORT NOW"
             onClick={() =>
               pushToDataLayer('cta_click', {
                 cta_text: 'Donate Now',
