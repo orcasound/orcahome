@@ -51,7 +51,7 @@ const contributors = () => {
 
       {/* First Section for this page- top */}
       <Container
-        maxWidth="md"
+        maxWidth="sm"
         sx={{ minHeight: '100vh', position: 'relative' }}
       >
         <Stack spacing={2} alignItems="center">
@@ -150,7 +150,7 @@ const contributors = () => {
           <Box
             sx={{
               height: '20em',
-              width: '120%',
+              width: '110%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -180,25 +180,509 @@ const contributors = () => {
             </Typography>
           </Box>
         </Stack>
-        {/*Founders list */}
+
         <Container
+          maxWidth={false}
           sx={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-evenly',
+            justifyContent: 'space-between',
             alignItems: 'center',
+            minwidth: '65vw',
+            mt: 1,
+            ml: -30,
+            mb: 4,
+            minHeight: '120vh',
           }}
         >
+          {/*Founders list */}
           <Stack
             sx={{
               display: 'flex',
-              flexDirection: 'column',
+              flex: 1,
+              gap: 2,
               justifyContent: 'space-evenly',
               alignItems: 'center',
+              minHeight: '130vh',
             }}
           >
-            <Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '25em',
+                height: '5em',
+              }}
+            >
               <Typography variant="body1">Paul Cretu</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Skander Mzali</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Steve Hicks</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Brendan Thatcher</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Val Viers</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Scott Viers</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Mike Castor</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Ty Crisafulli</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Christian Sarason</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Valentina Staneva</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Prakruti Gogia</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Akash Mahajan</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Praful Mathur</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Michelle Yang</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Jesse Lopez</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography variant="body1">Liam Reese</Typography>
+            </Box>
+          </Stack>
+          {/*Founder role list */}
+          <Stack
+            sx={{
+              display: 'flex',
+              flex: 1,
+              gap: 2,
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              minHeight: '125vh',
+            }}
+          >
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Orcasound site & player (2017+)</div>
+                <div>GSoC mentor (2021)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Orcasound site (2017-2020)</div>
+                <div>Admin UI (2019)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Orcanode repository (2018+)</div>
+                <div>GSoC mentor (2020+)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>User research & UX team lead (2020+)</div>
+                <div>GSoC mentor (2021)</div>
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Node engineering and machine learning (2017+)</div>
+                <div>GSoC mentor (2020+)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Project management (2017+)</div>
+                <div>GSoC mentor (2020+)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>UI v2 implementation (2019-2020)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>2017 Kickstarter and design guidance (2017+)</div>
+                <div>GSoC mentor (2021)</div>
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Orcamap repository (2018+)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Microsoft AI4Earth Innovation Grant lead (2019)</div>
+                <div>GSoC mentor and administrative lead (2020+)</div>
+                <div>UW MS Data Science mentor (2022-23)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>OrcaHello project manager</div>
+                <div>Pod.Cast creator (Microsoft hackathons, 2019-2021)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Pod.Cast creator</div>
+                <div>OrcaHello ML developer (Microsoft, 2019-2020)</div>
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Experiment.com funding (2021)</div>
+                <div>GSoC mentor (2022)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Microsoft hackathon project manager (2020+)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>GSoC mentor (2020-2021)</div>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: '30em',
+                height: '5em',
+              }}
+            >
+              <Typography
+                variant="body1"
+                component="div"
+                sx={{ width: '30em' }}
+              >
+                <div>Graphic design (2017+)</div>
+              </Typography>
             </Box>
           </Stack>
         </Container>
