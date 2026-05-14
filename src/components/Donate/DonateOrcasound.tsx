@@ -60,7 +60,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
         <ImageContainer>
           <Image
             src={props.donateOrcasoundImage}
-            alt="Picture of Support Orcasound"
+            alt="Support Orcasound"
             quality={100}
             layout="responsive"
             objectFit="contain"
@@ -108,7 +108,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
         <ImageContainer>
           <Image
             src={props.donateVolunteersImage}
-            alt="Picture of Support Volunteers"
+            alt="Support Volunteers"
             quality={100}
             layout="responsive"
             objectFit="contain"

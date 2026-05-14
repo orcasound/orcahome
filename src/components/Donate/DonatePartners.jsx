@@ -148,7 +148,7 @@ const DonatePartners = () => {
             mb: { xs: '0.5rem', md: 0 },
           }}
         >
-          Support Our 501(c)3 Partners
+          Support our 501(c)3 Partners
         </Typography>
         <Typography sx={{ fontSize: { xs: '15px', md: '19px' } }}>
           Contribute to our partners to support on-going conservation, research,
