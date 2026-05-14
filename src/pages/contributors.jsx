@@ -686,6 +686,32 @@ const contributors = () => {
             </Box>
           </Stack>
         </Container>
+        {/*End of founder contributors list */}
+
+        {/* Beginning of the influencers list */}
+        <Container maxWidth="xl">
+          {/* Influencer's box */}
+          <Box
+            sx={{
+              height: '10em',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              backgroundColor: 'navy',
+              borderRadius: '20px',
+              boxSizing: 'border-box',
+              boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+            }}
+          >
+            <Typography variant="h4" gutterBottom>
+              Influencers
+            </Typography>
+            <Typography variant="body2">(Major Contributors)</Typography>
+          </Box>
+        </Container>
       </Container>
     </>
   )
