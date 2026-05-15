@@ -853,6 +853,73 @@ const contributors = () => {
           Live Listening App UI & Development Team
         </Typography>
       </Box>
+
+      {/*Live Listening contributors */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '50em',
+          justifySelf: 'center',
+          height: '100%',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ width: '55%' }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Zarema Ross </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Elena Bukhonok</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Sam St Michael</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">James Pedersen </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Michelle Bocklage </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Kristen Gillaspy </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Wei Li </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Catherine Zeng </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Carina Cheng </Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              UX/UI/design project manager (2021+)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              UX/UI/design project manager (2020-21)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Design, branding, social media (2020+)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Full stack developer (2020)</Typography>
+          </Box>
+        </Stack>
+      </Box>
     </>
   )
 }
