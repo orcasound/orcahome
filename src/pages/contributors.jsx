@@ -732,6 +732,127 @@ const contributors = () => {
           Google Summer of Code (GSoc) Participants
         </Typography>
       </Box>
+
+      {/* google contributors */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '49em',
+          justifySelf: 'center',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ width: '75%' }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Kunal Mehta</Typography>
+            <Typography variant="caption">(India)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Diego Roderiguez</Typography>
+            <Typography variant="caption">(Mexico)</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Isabella Macchiavello</Typography>
+            <Typography variant="caption">(Equador)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Dmitry Volodin </Typography>
+            <Typography variant="caption">(Russia)</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Dhananjay Purohit </Typography>
+            <Typography variant="caption">(India)</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Jose Giraldo </Typography>
+            <Typography variant="caption">(Columbia, Spain)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Ambra Jin </Typography>
+            <Typography variant="caption">(Italy,UK, Germany)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Devdoot Chatterjee </Typography>
+            <Typography variant="caption">(India)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Benjamin Chew </Typography>
+            <Typography variant="caption">(Singapore, USA)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Karan Mishra</Typography>
+            <Typography variant="caption">(India)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Paul Nguyen Hong Duc</Typography>
+            <Typography variant="caption">(France,Canada)</Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ width: '30%' }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2020)</Typography>
+            <Typography variant="body1">GSoC mentor (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2020)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2022)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2022)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2022)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC contributor (2022)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">GSoC mentor (2022)</Typography>
+          </Box>
+        </Stack>
+      </Box>
+
+      {/* End of google contributors */}
+
+      {/* Live Listening app & UI team header */}
+      <Box
+        sx={{
+          height: '10em',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          Live Listening App UI & Development Team
+        </Typography>
+      </Box>
     </>
   )
 }
