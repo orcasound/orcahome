@@ -208,6 +208,7 @@ const contributors = () => {
               alignItems: 'center',
               justifyContent: 'center',
               color: 'white',
+              gap: 1,
               backgroundColor: 'navy',
               borderRadius: '20px',
               boxSizing: 'border-box',
@@ -219,12 +220,20 @@ const contributors = () => {
             </Typography>
             <Typography variant="body2">(Long-Term Contributors)</Typography>
             <Typography variant="body1" sx={{ width: '90%', marginTop: '1em' }}>
-              Like Orcasound organizational members (who have their own amazing
-              volunteers!), founders can raise funds under the auspices of
-              Orcasound to support their own Orcasound efforts or the project in
-              general. The also have shown leadership in the community and often
-              have administrative access to key parts of the Orcasound
-              infrastructure.
+              Like{' '}
+              <Link
+                sx={{ color: 'white', textDecoration: 'underline' }}
+                href="https://www.orcasound.net/join/"
+                target="_blank"
+                rel="noopener"
+              >
+                Orcasound organizational members
+              </Link>
+              (who have their own amazing volunteers!), founders can raise funds
+              under the auspices of Orcasound to support their own Orcasound
+              efforts or the project in general. The also have shown leadership
+              in the community and often have administrative access to key parts
+              of the Orcasound infrastructure.
             </Typography>
             <Typography variant="body1" sx={{ width: '90%' }}>
               Founders can raise funds under the auspices of Orcasound to
