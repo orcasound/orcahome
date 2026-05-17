@@ -3,7 +3,14 @@
  * Desc : Page for the Hacker Hall of Fame contributors page.
  *  */
 
-import { Box, Container, Link, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Breadcrumbs,
+  Container,
+  Link,
+  Stack,
+  Typography,
+} from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -1076,6 +1083,37 @@ const contributors = () => {
           </Box>
         </Stack>
       </Box>
+
+      {/*Podcast header */}
+      <Box
+        sx={{
+          height: '10em',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          PodCast
+        </Typography>
+        <Typography variant="caption">(ML-Assisted Annotation Tool)</Typography>
+      </Box>
+
+      <Breadcrumbs
+        sx={{ display: 'flex', justifyContent: 'center' }}
+        separator="•"
+        aria-label="breadcrumb"
+      >
+        <Typography color="text.primary">Prakruti Gogia</Typography>
+        <Typography color="text.primary">Akash Mahajan</Typography>
+        <Typography color="text.primary">Nithya Govindarajan</Typography>
+      </Breadcrumbs>
     </>
   )
 }
