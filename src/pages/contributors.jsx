@@ -920,6 +920,94 @@ const contributors = () => {
           </Box>
         </Stack>
       </Box>
+
+      {/*Arcatia.io Data Cooperative header */}
+      <Box
+        sx={{
+          height: '10em',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          Arcatia.io Data Cooperative
+        </Typography>
+        <Typography variant="caption">
+          (Sharing Acoustic & Visual Observations)
+        </Typography>
+      </Box>
+
+      {/*Arcatia.io Data Cooperative contributors */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '50em',
+          justifySelf: 'center',
+          height: '100%',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Maria Palamar </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Graise Lee Jenni</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Ali Alaydrus</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Peter Ince </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Nick Bryne </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Virgil Zetterlind </Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Facilitation & user research (2020+)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Facilitation & user research (2020+)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Development (2020; 2022-3)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Development (2020-22)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Design & Project Management (2020-21)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Data Exchange + Mobile App</Typography>
+            <Typography variant="body1">Customization (2019+)</Typography>
+          </Box>
+        </Stack>
+      </Box>
     </>
   )
 }
