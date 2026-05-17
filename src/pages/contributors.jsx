@@ -956,7 +956,7 @@ const contributors = () => {
         }}
       >
         {/*contributor names */}
-        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
+        <Stack sx={{ width: '55%', mt: -5 }}>
           <Box sx={{ height: '5em' }}>
             <Typography variant="body1">Maria Palamar </Typography>
           </Box>
@@ -980,7 +980,7 @@ const contributors = () => {
           </Box>
         </Stack>
         {/*contributor roles */}
-        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
+        <Stack sx={{ width: '45%', mt: -5 }}>
           <Box sx={{ height: '5em' }}>
             <Typography variant="body1">
               Facilitation & user research (2020+)
@@ -1007,6 +1007,27 @@ const contributors = () => {
             <Typography variant="body1">Customization (2019+)</Typography>
           </Box>
         </Stack>
+      </Box>
+
+      {/*Project Management Team Header */}
+      <Box
+        sx={{
+          height: '10em',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          Project Management Team
+        </Typography>
+        <Typography variant="caption">(Initiated 2021)</Typography>
       </Box>
     </>
   )
