@@ -1029,6 +1029,53 @@ const contributors = () => {
         </Typography>
         <Typography variant="caption">(Initiated 2021)</Typography>
       </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '50em',
+          justifySelf: 'center',
+          height: '100%',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ width: '55%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Firuze Gokce </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Heather Gordon</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Sanjari Jain</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Garima Chandra </Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ width: '45%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Project Manager, Fundraising (2022-23)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Project Manager (2021-2)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Project Manager (2021)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Development Project Manager (2021)
+            </Typography>
+          </Box>
+        </Stack>
+      </Box>
     </>
   )
 }
