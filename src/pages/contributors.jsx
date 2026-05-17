@@ -52,7 +52,15 @@ const contributors = () => {
             color: 'white',
           }}
         >
-          <Typography variant="h3">
+          <Typography
+            variant="h3"
+            sx={{
+              /*iphone  formatting */
+              '@media (max-width:414px)': {
+                fontSize: 'medium',
+              },
+            }}
+          >
             Thank you, Orcasound App Hackers!
           </Typography>
         </Box>
