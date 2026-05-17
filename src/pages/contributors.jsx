@@ -16,6 +16,8 @@ import Image from 'next/image'
 
 import hackathon from '../../public/images/getinvolved/hackathon.png'
 import HackerBanner from '../../public/images/Hacker_HOF.webp'
+import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.PNG'
+import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
@@ -1334,6 +1336,66 @@ const contributors = () => {
           </Box>
         </Stack>
       </Box>
+
+      {/*final pictures above footer */}
+      <Stack
+        direction="row"
+        sx={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          m: 'auto',
+          gap: 10,
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            width: '30%',
+            height: '25em',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Image
+            src={hackCollab}
+            alt="Erika facilitating an early discussion of machine learning and the orca data repository"
+            fill
+            style={{
+              objectFit: 'cover',
+              width: '30%',
+              borderRadius: '20px',
+            }}
+          />
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            Erika facilitating an early discussion of machine learning and the
+            Orcadata repository.
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            position: 'relative',
+            width: '30%',
+            height: '25em',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          <Image
+            src={hackVal}
+            alt="Val working on the Orcanode software and hardware."
+            fill
+            style={{
+              objectFit: 'cover',
+              width: '30%',
+              borderRadius: '20px',
+            }}
+          />
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            Val working on the Orcanode software and hardware.
+          </Typography>
+        </Box>
+      </Stack>
     </>
   )
 }
