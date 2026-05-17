@@ -48,7 +48,7 @@ const contributors = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'navy',
+            backgroundColor: '#111184',
             color: 'white',
           }}
         >
@@ -209,7 +209,7 @@ const contributors = () => {
               justifyContent: 'center',
               color: 'white',
               gap: 1,
-              backgroundColor: 'navy',
+              backgroundColor: '#111184',
               borderRadius: '20px',
               boxSizing: 'border-box',
               boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
