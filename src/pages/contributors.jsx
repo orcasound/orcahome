@@ -98,13 +98,41 @@ const contributors = () => {
             }}
           >
             <Typography variant="body2">
-              In combination with our Github repositories, these events have
-              brought many talented programmers, designers, engineers,
-              researchers, and “geeks for good” to the project. They have made
-              it possible to rapidly develop and refine the Orcasound app — a
-              new way to listen for whales — based on a cutting-edge suite of
-              inexpensive and open source hardware and software for live
-              streaming audio data.
+              In combination with our{' '}
+              <Link
+                href="https://github.com/orcasound"
+                target="_blank"
+                rel="noopener"
+              >
+                Github repositories
+              </Link>
+              , these events have brought many talented programmers, designers,
+              engineers, researchers, and “geeks for good” to the project. They
+              have made it possible to rapidly develop and refine the{' '}
+              <Link
+                href="https://www.orcasound.net/portfolio/orcasound-app/"
+                target="_blank"
+                rel="noopener"
+              >
+                Orcasound app
+              </Link>{' '}
+              — a new way to{' '}
+              <Link
+                href="https://live.orcasound.net/"
+                target="_blank"
+                rel="noopener"
+              >
+                listen for whales
+              </Link>{' '}
+              — based on a{' '}
+              <Link
+                href="https://www.orcasound.net/2018/04/27/orcasounds-new-live-audio-solution-from-hydrophone-to-headphone-with-a-raspberry-pi-computer-and-hls-dash-streaming-software/"
+                target="_blank"
+                rel="noopener"
+              >
+                cutting-edge suite of inexpensive and open source hardware and
+                software for live streaming audio data.
+              </Link>
             </Typography>
           </Box>
           {/*Hackathon image */}
@@ -147,11 +175,26 @@ const contributors = () => {
             <Typography variant="body2">
               So, let’s have a virtual round of applause for the following
               stand-out members of the Orcasound open source community. If
-              you’re inspired by their contributions to our Github repositories
-              or Democracy Lab hackathons, don’t hesitate to support the
-              Founders and Influencers directly! Sing their praises on social
-              media and networks; join them in hacking for orca conservation;
-              reinforce their volunteerism financially.
+              you’re inspired by their contributions to our{' '}
+              <Link
+                href="https://github.com/orcasound"
+                target="_blank"
+                rel="noopener"
+              >
+                Github repositories{' '}
+              </Link>
+              or{' '}
+              <Link
+                href="https://www.democracylab.org/projects/81"
+                target="_blank"
+                rel="noopener"
+              >
+                Democracy Lab hackathons
+              </Link>
+              , don’t hesitate to support the Founders and Influencers directly!
+              Sing their praises on social media and networks; join them in
+              hacking for orca conservation; reinforce their volunteerism
+              financially.
             </Typography>
           </Box>
 
