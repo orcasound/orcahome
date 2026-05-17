@@ -1114,6 +1114,101 @@ const contributors = () => {
         <Typography color="text.primary">Akash Mahajan</Typography>
         <Typography color="text.primary">Nithya Govindarajan</Typography>
       </Breadcrumbs>
+
+      {/*OrcaHello header */}
+      <Box
+        sx={{
+          height: '10em',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h4"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          OrcaHello
+        </Typography>
+        <Typography variant="caption">
+          (Real-Time Inference System Leads)
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '50em',
+          justifySelf: 'center',
+          height: '100%',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ width: '55%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Prakruti Gogia </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Mike Cowan</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Claire Goetschel</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Akash Mahajan </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Aayush Agrawal </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Chris Hanke </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Adele Bai </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Michelle Yang </Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ width: '45%', mt: -5 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Overall Lead</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Moderation system, Front End
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Moderation system, Design</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Annotation System</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Machine Learning Development
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Public Relations</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Notification System</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Azure Administration+</Typography>
+          </Box>
+        </Stack>
+      </Box>
     </>
   )
 }
