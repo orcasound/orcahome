@@ -1209,6 +1209,131 @@ const contributors = () => {
           </Box>
         </Stack>
       </Box>
+
+      {/*Individual contributors small header */}
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant="h6"
+          gutterBottom
+          sx={{ display: 'flex', alignItems: 'center', fontWeight: 'bold' }}
+        >
+          Individual Contributors
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: '50em',
+          justifySelf: 'center',
+          height: '100%',
+        }}
+      >
+        {/*contributor names */}
+        <Stack sx={{ width: '55%' }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Erin </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Shawn Vita</Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Samantha Berk</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Nóra Mészáros </Typography>
+          </Box>
+
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Erika Pelaez </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Jennifer Rogers </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Ivan Storck </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Joyce Liao </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Adrian MacDonald </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Maria Palamar </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Glenn Block </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Amie Dabu </Typography>
+          </Box>
+        </Stack>
+        {/*contributor roles */}
+        <Stack sx={{ width: '45%', mt: -20 }}>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              User-centered design of 2019 UI v2 (2019)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Implementation of 2019 UI v2 (2019)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Administrative back end (2018-19)
+            </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Graphic design (2017-2020)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">Machine learning (2018)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Machine learning & spectrograms from
+            </Typography>
+            <Typography variant="body1">FLAC files (2018+)</Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Orcamap code clean-up & contribution{' '}
+            </Typography>
+            <Typography variant="body1">standards (2020-21) </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Orcanode repo & Raspberry Pi testing{' '}
+            </Typography>
+            <Typography variant="body1">(2020+) </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Content strategy, analytics, conservation{' '}
+            </Typography>
+            <Typography variant="body1">impact (2021+) </Typography>
+          </Box>
+          <Box sx={{ height: '5em' }}>
+            <Typography variant="body1">
+              Conservation impact (2020+){' '}
+            </Typography>
+          </Box>
+        </Stack>
+      </Box>
     </>
   )
 }
