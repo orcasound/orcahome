@@ -7,6 +7,7 @@ import {
   Box,
   Breadcrumbs,
   Container,
+  Grid,
   Link,
   Stack,
   Typography,
@@ -19,10 +20,92 @@ import HackerBanner from '../../public/images/Hacker_HOF.webp'
 import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.PNG'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
 import TopBanner from '../components/TopBanner'
-import { pushToDataLayer } from '../utils/gtm'
-import useIsMobile from '../utils/useIsMobile'
 
 const contributors = () => {
+  // Founders array
+  const contributors = [
+    {
+      name: 'Paul Cretu',
+      roles: ['Orcasound site & player (2017+)', 'GSoC mentor (2021)'],
+    },
+    {
+      name: 'Skander Mzali',
+      roles: ['Orcasound site (2017-2020)', 'Admin UI (2019)'],
+    },
+    {
+      name: 'Steve Hicks',
+      roles: ['Orcanode repository (2018+)', 'GSoC mentor (2020+)'],
+    },
+    {
+      name: 'Brendan Thatcher',
+      roles: ['User research & UX team lead (2020+)', 'GSoC mentor (2021)'],
+    },
+    {
+      name: 'Val Veirs',
+      roles: [
+        'Node engineering and machine learning (2017+)',
+        'GSoC mentor (2020+)',
+      ],
+    },
+    {
+      name: 'Scott Veirs',
+      roles: ['Project management (2017+)', 'GSoC mentor (2020+)'],
+    },
+    {
+      name: 'Mike Castor',
+      roles: ['UI v2 implementation (2019-2020)'],
+    },
+    {
+      name: 'Ty Crisafulli',
+      roles: [
+        '2017 Kickstarter and design guidance (2017+)',
+        'GSoC mentor (2021)',
+      ],
+    },
+    {
+      name: 'Christian Sarason',
+      roles: ['Orcamap repository (2018+)'],
+    },
+    {
+      name: 'Valentina Staneva',
+      roles: [
+        'Microsoft AI4Earth Innovation Grant lead (2019)',
+        'GSoC mentor and administrative lead (2020+)',
+        'UW MS Data Science mentor (2022-23)',
+      ],
+    },
+    {
+      name: 'Prakruti Gogia',
+      roles: [
+        'OrcaHello project manager',
+        'Pod.Cast creator (Microsoft hackathons, 2019-2021)',
+      ],
+    },
+    {
+      name: 'Akash Mahajan',
+      roles: [
+        'Pod.Cast creator',
+        'OrcaHello ML developer (Microsoft, 2019-2020)',
+      ],
+    },
+    {
+      name: 'Praful Mathur',
+      roles: ['Experiment.com funding (2021)', 'GSoC mentor (2022)'],
+    },
+    {
+      name: 'Michelle Yang',
+      roles: ['Microsoft hackathon project manager (2020+)'],
+    },
+    {
+      name: 'Jesse Lopez',
+      roles: ['GSoC mentor (2020-2021)'],
+    },
+    {
+      name: 'Liam Reese',
+      roles: ['Graphic design (2017+)'],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -343,512 +426,52 @@ const contributors = () => {
             </Typography>
           </Box>
         </Stack>
-
-        <Container
-          maxWidth={false}
-          sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            minwidth: '65vw',
-            mt: 1,
-            ml: -30,
-            mb: 4,
-            minHeight: '120vh',
-          }}
-        >
-          {/*Founders list */}
-          <Stack
+        {/*Founders list */}
+        {contributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
             sx={{
-              display: 'flex',
-              flex: 1,
-              gap: 2,
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              minHeight: '130vh',
+              mb: 3,
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
             }}
           >
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '25em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Paul Cretu</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Skander Mzali</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Steve Hicks</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Brendan Thatcher</Typography>
-            </Box>
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Val Viers</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Scott Viers</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Mike Castor</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Ty Crisafulli</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Christian Sarason</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Valentina Staneva</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Prakruti Gogia</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Akash Mahajan</Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Praful Mathur</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Michelle Yang</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Jesse Lopez</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography variant="body1">Liam Reese</Typography>
-            </Box>
-          </Stack>
-          {/*Founder role list */}
-          <Stack
-            sx={{
-              display: 'flex',
-              flex: 1,
-              gap: 2,
-              justifyContent: 'space-evenly',
-              alignItems: 'center',
-              minHeight: '125vh',
-            }}
-          >
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Orcasound site & player (2017+)</div>
-                <div>GSoC mentor (2021)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Orcasound site (2017-2020)</div>
-                <div>Admin UI (2019)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Orcanode repository (2018+)</div>
-                <div>GSoC mentor (2020+)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>User research & UX team lead (2020+)</div>
-                <div>GSoC mentor (2021)</div>
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Node engineering and machine learning (2017+)</div>
-                <div>GSoC mentor (2020+)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Project management (2017+)</div>
-                <div>GSoC mentor (2020+)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>UI v2 implementation (2019-2020)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>2017 Kickstarter and design guidance (2017+)</div>
-                <div>GSoC mentor (2021)</div>
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Orcamap repository (2018+)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Microsoft AI4Earth Innovation Grant lead (2019)</div>
-                <div>GSoC mentor and administrative lead (2020+)</div>
-                <div>UW MS Data Science mentor (2022-23)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>OrcaHello project manager</div>
-                <div>Pod.Cast creator (Microsoft hackathons, 2019-2021)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Pod.Cast creator</div>
-                <div>OrcaHello ML developer (Microsoft, 2019-2020)</div>
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Experiment.com funding (2021)</div>
-                <div>GSoC mentor (2022)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Microsoft hackathon project manager (2020+)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>GSoC mentor (2020-2021)</div>
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: '30em',
-                height: '5em',
-              }}
-            >
-              <Typography
-                variant="body1"
-                component="div"
-                sx={{ width: '30em' }}
-              >
-                <div>Graphic design (2017+)</div>
-              </Typography>
-            </Box>
-          </Stack>
-        </Container>
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
         {/*End of founder contributors list */}
 
         {/* Beginning of the influencers list */}
