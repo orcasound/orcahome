@@ -31,13 +31,17 @@ const contributors = () => {
       </Head>
 
       {/* Banner and Banner Text */}
-      <div style={{ whiteSpace: 'pre-wrap' }}>
+      <Box
+        sx={{
+          whiteSpace: 'pre-wrap',
+        }}
+      >
         <TopBanner
           bannerImg={HackerBanner}
           pageTitle={`    Hacker\nHall of Fame`}
           scrollToId={'contributors'}
         />
-      </div>
+      </Box>
 
       {/* Container for Thank you Message for contributors */}
       <Container maxWidth={false} disableGutters>
@@ -56,8 +60,12 @@ const contributors = () => {
             variant="h3"
             sx={{
               /*iphone  formatting */
-              '@media (max-width:414px)': {
+              '@media (min-width:200px) and (max-width:500px)': {
                 fontSize: 'medium',
+              },
+              /*ipad */
+              '@media (min-width:768px) and (max-width:899px)': {
+                fontSize: 'x-large',
               },
             }}
           >
@@ -69,13 +77,30 @@ const contributors = () => {
       {/* First Section for this page- top */}
       <Container
         maxWidth="sm"
-        sx={{ minHeight: '100vh', position: 'relative' }}
+        sx={{
+          minHeight: '100vh',
+        }}
       >
-        <Stack spacing={2} alignItems="center">
+        <Stack
+          spacing={2}
+          alignItems="center"
+          sx={{
+            /*iphone  formatting */
+            '@media (min-width:200px) and (max-width:500px)': {
+              gap: 10,
+
+              width: '100%',
+            },
+            /*ipad */
+            '@media (min-width:768px) and (max-width:899px)': {
+              fontSize: 'x-large',
+            },
+          }}
+        >
           {/* first paragraph */}
           <Box
             sx={{
-              height: '10em',
+              maxHeight: '10em',
               width: '100%',
               display: 'flex',
               alignItems: 'center',
@@ -83,7 +108,19 @@ const contributors = () => {
               color: 'black',
             }}
           >
-            <Typography variant="body2">
+            <Typography
+              variant="body2"
+              sx={{
+                /*iphone  formatting */
+                '@media (min-width:200px) and (max-width:500px)': {
+                  mt: 15,
+                },
+                /*ipad */
+                '@media (min-width:768px) and (max-width:899px)': {
+                  fontSize: 'x-large',
+                },
+              }}
+            >
               We would like to acknowledge the tremendous contributions of time,
               technology, and code that have been made to our open source
               project. Beginning in the fall of 2018, we began participating in
@@ -105,7 +142,19 @@ const contributors = () => {
               color: 'black',
             }}
           >
-            <Typography variant="body2">
+            <Typography
+              variant="body2"
+              sx={{
+                /*iphone  formatting */
+                '@media (min-width:200px) and (max-width:500px)': {
+                  mt: 15,
+                },
+                /*ipad */
+                '@media (min-width:768px) and (max-width:899px)': {
+                  fontSize: 'x-large',
+                },
+              }}
+            >
               In combination with our{' '}
               <Link
                 href="https://github.com/orcasound"
@@ -151,6 +200,15 @@ const contributors = () => {
               height: '25em',
               display: 'flex',
               flexDirection: 'column',
+
+              /*iphone  formatting */
+              '@media (min-width:200px) and (max-width:500px)': {
+                pt: 3,
+              },
+              /*ipad */
+              '@media (min-width:768px) and (max-width:899px)': {
+                fontSize: 'x-large',
+              },
             }}
           >
             <Image
@@ -172,7 +230,7 @@ const contributors = () => {
           {/*Third paragraph after first image */}
           <Box
             sx={{
-              height: '10em',
+              maxHeight: '10em',
               width: '100%',
               display: 'flex',
               alignItems: 'center',
@@ -180,7 +238,20 @@ const contributors = () => {
               color: 'black',
             }}
           >
-            <Typography variant="body2">
+            <Typography
+              variant="body2"
+              sx={{
+                /*iphone  formatting */
+                '@media (min-width:200px) and (max-width:500px)': {
+                  mt: -30,
+                  mb: -10,
+                },
+                /*ipad */
+                '@media (min-width:768px) and (max-width:899px)': {
+                  fontSize: 'x-large',
+                },
+              }}
+            >
               So, let’s have a virtual round of applause for the following
               stand-out members of the Orcasound open source community. If
               you’re inspired by their contributions to our{' '}
@@ -209,7 +280,7 @@ const contributors = () => {
           {/*Founders Box */}
           <Box
             sx={{
-              height: '20em',
+              maxHeight: '30em',
               width: '110%',
               display: 'flex',
               flexDirection: 'column',
@@ -221,9 +292,32 @@ const contributors = () => {
               borderRadius: '20px',
               boxSizing: 'border-box',
               boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+
+              /*iphone  formatting */
+              '@media (min-width:200px) and (max-width:500px)': {
+                maxWidth: '100%',
+                maxHeight: '45em',
+              },
+              /*ipad */
+              '@media (min-width:768px) and (max-width:899px)': {
+                fontSize: 'x-large',
+              },
             }}
           >
-            <Typography variant="h4" gutterBottom>
+            <Typography
+              variant="h4"
+              gutterBottom
+              sx={{
+                /*iphone  formatting */
+                '@media (min-width:200px) and (max-width:500px)': {
+                  mt: 2,
+                },
+                /*ipad */
+                '@media (min-width:768px) and (max-width:899px)': {
+                  fontSize: 'x-large',
+                },
+              }}
+            >
               Founders
             </Typography>
             <Typography variant="body2">(Long-Term Contributors)</Typography>
@@ -243,7 +337,7 @@ const contributors = () => {
               in the community and often have administrative access to key parts
               of the Orcasound infrastructure.
             </Typography>
-            <Typography variant="body1" sx={{ width: '90%' }}>
+            <Typography variant="body1" sx={{ width: '90%', mb: 5 }}>
               Founders can raise funds under the auspices of Orcasound to
               support their own Orcasound efforts or the project in general.
             </Typography>
