@@ -1,0 +1,60 @@
+name: Donate page change
+description: Any change to the Donate page partner list, Orcasound support flow, or donation URLs.
+title: '[Donate page]: '
+labels:
+  - 'type: story'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a Donate page change. Two canonical files to know:
+
+        - Partner list data: `src/data/donatePartners.json`
+        - Orcasound support flow component: `src/components/Donate/DonateOrcasound.tsx`
+
+        See the Donate page data section of the README for the full convention.
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What is the change and why is it needed? Cite the source (research finding, partner request, stakeholder direction, etc.).
+      placeholder: |
+        Example: Orca Network requested their donation URL update from /donate to /support. Confirmed via email from their development director 2026-05-18.
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed change
+      description: Specifically what fields change. If multiple partners, list each.
+      placeholder: |
+        Example:
+
+        Partner: Orca Network
+        Field: linkTo
+        From: https://www.orcanetwork.org/donate
+        To: https://www.orcanetwork.org/support
+
+        File to edit: src/data/donatePartners.json
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: verification
+    attributes:
+      label: Pre-merge verification checklist
+      options:
+        - label: Destination URL is live (HTTPS, 200 response, lands on a real donation page)
+        - label: Icon asset exists at the path in the icon field (or icon asset added in this PR)
+        - label: Description copy reviewed for accuracy and tone
+        - label: Smoke check confirms partner card renders correctly on deploy preview
+        - label: Smoke check confirms partner_link_click analytics event fires on link click
+
+  - type: input
+    id: assignee_suggestion
+    attributes:
+      label: Suggested assignee
+      description: Optional. Brendan reviews and confirms at the next sprint planning.
+      placeholder: 'Optional. Brendan assigns at planning.'
