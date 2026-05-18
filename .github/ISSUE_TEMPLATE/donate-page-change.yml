@@ -1,8 +1,8 @@
 name: Donate page change
 description: Any change to the Donate page partner list, Orcasound support flow, or donation URLs.
-title: "[Donate page]: "
+title: '[Donate page]: '
 labels:
-  - "type: story"
+  - 'type: story'
 body:
   - type: markdown
     attributes:
@@ -57,4 +57,4 @@ body:
     attributes:
       label: Suggested assignee
       description: Optional. Brendan reviews and confirms at the next sprint planning.
-      placeholder: "Optional. Brendan assigns at planning."
+      placeholder: 'Optional. Brendan assigns at planning.'
