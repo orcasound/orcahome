@@ -9,7 +9,7 @@ import {
   styled,
   Typography,
 } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useState } from 'react'
 
 import theme from '../../styles/theme'
@@ -123,8 +123,12 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               src={props.donateOrcasoundImage}
               alt="Support Orcasound"
               quality={100}
-              layout="responsive"
-              objectFit="contain"
+              sizes="100vw"
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
             />
           </ImageContainer>
           <Typography sx={{ margin: '10px' }}>
@@ -164,8 +168,12 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               src={props.donateVolunteersImage}
               alt="Support Volunteers"
               quality={100}
-              layout="responsive"
-              objectFit="contain"
+              sizes="100vw"
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
             />
           </ImageContainer>
           <Typography sx={{ margin: '10px' }}>
@@ -203,7 +211,6 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           </Box>
         </DonateContainer>
       </Box>
-
       <Dialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
@@ -285,8 +292,11 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 <Image
                   src={props.donateOrcasoundImage}
                   alt="Support Orcasound"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </DonateOptionImage>
               <Box sx={{ flex: 1 }}>
@@ -322,8 +332,11 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 <Image
                   src={props.donateVolunteersImage}
                   alt="Support Volunteers"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </DonateOptionImage>
               <Box sx={{ flex: 1 }}>

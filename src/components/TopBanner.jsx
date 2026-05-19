@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Box, IconButton, Slide, Typography } from '@mui/material'
 import { styled } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
@@ -98,10 +98,13 @@ const TopBanner = ({
         <Image
           alt={pageTitle ?? ''}
           src={bannerImg}
-          layout="fill"
-          objectFit="cover"
           quality={100}
           priority
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </Box>
       <Slide

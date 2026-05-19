@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import { pushToDataLayer } from '../../utils/gtm'
 
@@ -155,7 +155,6 @@ const DonatePartners = () => {
           and education efforts.
         </Typography>
       </TitleContainer>
-
       {/* Mobile */}
       <Box>
         {partners.map((partner, index) => (
@@ -179,6 +178,10 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
               <Typography sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
                 {partner.name}
@@ -213,7 +216,6 @@ const DonatePartners = () => {
           </MobilePartnerCard>
         ))}
       </Box>
-
       {/* Tablet & Laptop */}
       <Box>
         {partners.map((partner, index) => (
@@ -224,6 +226,10 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
             <Box

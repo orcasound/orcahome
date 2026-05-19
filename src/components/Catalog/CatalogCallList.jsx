@@ -5,7 +5,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import VolumeOffIcon from '@mui/icons-material/VolumeOff'
 import VolumeUpIcon from '@mui/icons-material/VolumeUp'
 import { Box, Divider, IconButton, Pagination, Typography } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { pushToDataLayer } from '../../utils/gtm'
@@ -251,7 +251,11 @@ function CallRow({
                 alt={`Spectrogram for ${callLabel}`}
                 width={75}
                 height={75}
-                style={{ objectFit: 'cover' }}
+                style={{
+                  objectFit: 'cover',
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             ) : null}
           </Box>

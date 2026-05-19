@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'
@@ -37,8 +37,11 @@ export const index = () => {
         <Image
           src={orcas}
           alt="orca background image"
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
 
         <Box
@@ -146,7 +149,6 @@ export const index = () => {
           </ScrollElement>
         </Box>
       </Box>
-
       <Box
         id="what-is-orcasound"
         sx={{
@@ -433,6 +435,10 @@ export const index = () => {
             alt="Deploys by Netlify"
             width="114"
             height="51"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </a>
       </Box>

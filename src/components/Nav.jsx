@@ -15,7 +15,7 @@ import {
   Toolbar,
 } from '@mui/material'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -104,6 +104,10 @@ const Nav = () => {
                       alt="Orcasound"
                       width={60}
                       height={44}
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </Box>
                 </Link>

@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Head from 'next/head'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
 import { Link as ScrollLink } from 'react-scroll'
 
@@ -66,7 +66,6 @@ export const learn = () => {
         scrollToId={`learn`}
       />
       <div id="learn" />
-
       {/* Content Container */}
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
         {/* Jump Links Navigation */}
@@ -132,8 +131,11 @@ export const learn = () => {
                 alt="Sounds Of The Salish Sea"
                 width={800}
                 height={450}
-                layout="intrinsic"
                 quality={65}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </a>
           </Box>
@@ -180,6 +182,10 @@ export const learn = () => {
                 <Image
                   src={callS01}
                   alt="J Pod's call S01 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -216,6 +222,10 @@ export const learn = () => {
                 <Image
                   src={callS16}
                   alt="K Pod's call S16 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -251,6 +261,10 @@ export const learn = () => {
                 <Image
                   src={callS19}
                   alt="L Pod's call S19 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -305,7 +319,6 @@ export const learn = () => {
           </Typography>
         </Box>
       </Container>
-
       {/* Call Catalog Section */}
       <Box
         component="section"
@@ -338,7 +351,6 @@ export const learn = () => {
           <CallCatalogGrid />
         </Container>
       </Box>
-
       {/* Organization Logos */}
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
         {/* Exhibits Section */}
@@ -350,7 +362,14 @@ export const learn = () => {
           {/* Seattle Aquarium */}
           <Box sx={{ mb: 4, textAlign: 'center' }}>
             <Box sx={{ mb: 2 }}>
-              <Image src={organization1} alt="Seattle Aquarium exhibit" />
+              <Image
+                src={organization1}
+                alt="Seattle Aquarium exhibit"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Typography variant="body1" fontSize="18px" color="text.secondary">
               For another tour of the sounds that are most commonly heard in the
@@ -362,7 +381,14 @@ export const learn = () => {
           {/* Marine Science Center */}
           <Box sx={{ mb: 4, textAlign: 'center' }}>
             <Box sx={{ mb: 2 }}>
-              <Image src={organization2} alt="Marine Science Center exhibit" />
+              <Image
+                src={organization2}
+                alt="Marine Science Center exhibit"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Typography variant="body1" fontSize="18px" color="text.secondary">
               For a challenge beyond the three favorite calls of the SRKWs,

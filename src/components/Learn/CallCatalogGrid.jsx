@@ -1,7 +1,7 @@
 import PauseCircleIcon from '@mui/icons-material/PauseCircle'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import { Box, Button, Grid, IconButton, Link, Typography } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import React from 'react'
 import useSound from 'use-sound'
 
@@ -123,7 +123,11 @@ const CallCatalogGrid = () => {
                 <Image
                   src={spectrogram[index]}
                   alt={`Orca Call ${index}`}
-                  style={{ width: '100%' }}
+                  style={{
+                    width: '100%',
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
                 <Box
                   sx={{

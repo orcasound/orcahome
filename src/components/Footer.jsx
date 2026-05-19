@@ -4,7 +4,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, styled, Typography } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import facebooklogo from '../../public/images/facebook.png'
@@ -238,7 +238,14 @@ function Desktop() {
           >
             <Link href="/" passHref>
               <Box component="a" sx={{ cursor: 'pointer' }}>
-                <Image src={orcasoundlogo} alt="Orcasound"></Image>
+                <Image
+                  src={orcasoundlogo}
+                  alt="Orcasound"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                ></Image>
               </Box>
             </Link>
           </Box>
@@ -379,7 +386,14 @@ function Desktop() {
                   pushToDataLayer('social_click', { platform: iconLink.name })
                 }
               >
-                <Image src={iconLink.icon} alt={iconLink.name}></Image>
+                <Image
+                  src={iconLink.icon}
+                  alt={iconLink.name}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                ></Image>
               </Box>
             ))}
           </Box>

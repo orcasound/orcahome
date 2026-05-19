@@ -1,5 +1,5 @@
 import { styled, Typography } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import Link from './Link'
 
@@ -42,7 +42,16 @@ const BlogItem = ({
 }: BlogItemProps) => {
   return (
     <BlogItemContainer>
-      <Image src={image} alt={title} width="300%" height="240%" />
+      <Image
+        src={image}
+        alt={title}
+        width="300%"
+        height="240%"
+        style={{
+          maxWidth: '100%',
+          height: 'auto',
+        }}
+      />
       <BlogItemBody>
         <Typography variant="h3" sx={{ fontSize: 20, fontWeight: 550 }}>
           {title}

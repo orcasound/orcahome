@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { Paper } from '@mui/material'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 const AboutCard = ({ item, mobileActive, onClick }) => {
   return (
@@ -29,9 +29,13 @@ const AboutCard = ({ item, mobileActive, onClick }) => {
             height={500}
             alt={item.title}
             src={item.path}
-            layout="responsive"
             sx={{
               userSelect: 'none',
+            }}
+            sizes="100vw"
+            style={{
+              width: '100%',
+              height: 'auto',
             }}
           />
         </Box>
