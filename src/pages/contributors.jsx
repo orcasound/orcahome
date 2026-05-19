@@ -234,6 +234,26 @@ const contributors = () => {
     },
   ]
 
+  // project management contributors
+  const projectManagementContributors = [
+    {
+      name: 'Firuze Gokce',
+      roles: ['Project Manager, Fundraising (2022-23)'],
+    },
+    {
+      name: 'Heather Gordon',
+      roles: ['Project Manager (2021-2)'],
+    },
+    {
+      name: 'Sanjari Jain',
+      roles: ['Project Manager (2021)'],
+    },
+    {
+      name: 'Garima Chandra',
+      roles: ['Development Project Manager (2021)'],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -941,59 +961,82 @@ const contributors = () => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ display: 'flex', alignItems: 'center' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '@media (min-width:375px) and (max-width:415px)': {
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+          }}
         >
           Project Management Team
         </Typography>
         <Typography variant="caption">(Initiated 2021)</Typography>
       </Box>
 
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          minWidth: '50em',
-          justifySelf: 'center',
-          height: '100%',
+          width: '55%',
         }}
       >
-        {/*contributor names */}
-        <Stack sx={{ width: '55%', mt: -5 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Firuze Gokce </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Heather Gordon</Typography>
-          </Box>
+        {projectManagementContributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
+            sx={{
+              mb: 3,
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '100%',
+              },
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
+            }}
+          >
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Sanjari Jain</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Garima Chandra </Typography>
-          </Box>
-        </Stack>
-        {/*contributor roles */}
-        <Stack sx={{ width: '45%', mt: -5 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Project Manager, Fundraising (2022-23)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Project Manager (2021-2)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Project Manager (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Development Project Manager (2021)
-            </Typography>
-          </Box>
-        </Stack>
-      </Box>
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    ml: 15,
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'small',
+
+                      ml: 0,
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
+      </Container>
 
       {/*Podcast header */}
       <Box
