@@ -17,7 +17,7 @@ export const Donate = () => {
       </Head>
       <TopBanner
         bannerImg={topbanner}
-        pageTitle={`Donate`}
+        pageTitle={`Support`}
         pageDesc={`Help protect marine life like the Southern Resident Killer whales by donating today`}
         scrollToId={`donate`}
         imageFilter="brightness(0.8)"
@@ -35,10 +35,10 @@ export const Donate = () => {
         >
           <DonateOrcasound
             donateOrcasoundImage={donateOrcasoundImage}
-            donateOrcasoundTitle="Donate to Orcasound"
+            donateOrcasoundTitle="Support Orcasound"
             donateOrcasoundMessage="Help us build and maintain the technology to listen to orcas in the world."
             donateVolunteersImage={donateVolunteersImage}
-            donateVolunteersTitle="Donate to Volunteers"
+            donateVolunteersTitle="Support Volunteers"
             donateVolunteersMessage="Support those who keep the orcasound website and hydrophone nodes running."
           />
           <br />

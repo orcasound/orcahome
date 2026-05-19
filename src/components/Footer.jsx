@@ -126,7 +126,7 @@ const navLinksLeftCol = [
     icon: '',
   },
   {
-    name: 'Donate',
+    name: 'Support',
     url: '/donate',
     icon: '',
   },
@@ -210,7 +210,7 @@ function Mobile() {
         <div>
           <Link href="/donate" passHref>
             <StyledTypography variant="h6" component="a">
-              Donate
+              Support
             </StyledTypography>
           </Link>
         </div>
