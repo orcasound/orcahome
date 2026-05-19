@@ -254,6 +254,42 @@ const contributors = () => {
     },
   ]
 
+  // orca hello contributors
+  const orcaContributors = [
+    {
+      name: 'Prakruti Gogia',
+      roles: ['Overall Lead'],
+    },
+    {
+      name: 'Mike Cowan',
+      roles: ['Moderation system, Front End'],
+    },
+    {
+      name: 'Claire Goetschel',
+      roles: ['Moderation system, Design'],
+    },
+    {
+      name: 'Akash Mahajan',
+      roles: ['Annotation System'],
+    },
+    {
+      name: 'Aayush Agrawal',
+      roles: ['Machine Learning Development'],
+    },
+    {
+      name: 'Chris Hanke',
+      roles: ['Public Relations'],
+    },
+    {
+      name: 'Adele Bai',
+      roles: ['Notification System'],
+    },
+    {
+      name: 'Michelle Yang',
+      roles: ['Azure Administration+'],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -1121,77 +1157,67 @@ const contributors = () => {
         </Typography>
       </Box>
 
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          minWidth: '50em',
-          justifySelf: 'center',
-          height: '100%',
+          width: '55%',
         }}
       >
-        {/*contributor names */}
-        <Stack sx={{ width: '55%', mt: -5 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Prakruti Gogia </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Mike Cowan</Typography>
-          </Box>
+        {orcaContributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
+            sx={{
+              mb: 3,
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '100%',
+              },
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
+            }}
+          >
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Claire Goetschel</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Akash Mahajan </Typography>
-          </Box>
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    ml: 15,
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'small',
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Aayush Agrawal </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Chris Hanke </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Adele Bai </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Michelle Yang </Typography>
-          </Box>
-        </Stack>
-        {/*contributor roles */}
-        <Stack sx={{ width: '45%', mt: -5 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Overall Lead</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Moderation system, Front End
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Moderation system, Design</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Annotation System</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Machine Learning Development
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Public Relations</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Notification System</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Azure Administration+</Typography>
-          </Box>
-        </Stack>
-      </Box>
+                      ml: 0,
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
+      </Container>
 
       {/*Individual contributors small header */}
       <Box
