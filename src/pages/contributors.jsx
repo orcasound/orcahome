@@ -166,6 +166,46 @@ const contributors = () => {
     },
   ]
 
+  // Live Listening contributors
+  const liveContributors = [
+    {
+      name: 'Zarema Ross',
+      roles: ['UX/UI/design project manager (2021+)'],
+    },
+    {
+      name: 'Elena Bukhonok',
+      roles: ['UX/UI/design project manager (2020-21)'],
+    },
+    {
+      name: 'Sam St Michael',
+      roles: ['Design, branding, social media (2020+)'],
+    },
+    {
+      name: 'James Pedersen',
+      roles: ['Full stack developer (2020)'],
+    },
+    {
+      name: 'Michelle Bocklage',
+      roles: [],
+    },
+    {
+      name: 'Kristen Gillaspy',
+      roles: [],
+    },
+    {
+      name: 'Wei Li',
+      roles: [],
+    },
+    {
+      name: 'Catherine Zeng',
+      roles: [],
+    },
+    {
+      name: 'Carina Cheng',
+      roles: [],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -659,7 +699,7 @@ const contributors = () => {
                       sm: '0.95rem',
                     },
                     '@media (min-width:375px) and (max-width:415px)': {
-                      fontSize: 'x-small',
+                      fontSize: 'small',
                       textAlign: 'center',
                       ml: 0,
                     },
@@ -703,71 +743,67 @@ const contributors = () => {
       </Box>
 
       {/*Live Listening contributors */}
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          minWidth: '50em',
-          justifySelf: 'center',
-          height: '100%',
+          width: '55%',
         }}
       >
-        {/*contributor names */}
-        <Stack sx={{ width: '55%' }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Zarema Ross </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Elena Bukhonok</Typography>
-          </Box>
+        {liveContributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
+            sx={{
+              mb: 3,
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '100%',
+              },
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
+            }}
+          >
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Sam St Michael</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">James Pedersen </Typography>
-          </Box>
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    ml: 15,
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'small',
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Michelle Bocklage </Typography>
-          </Box>
-
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Kristen Gillaspy </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Wei Li </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Catherine Zeng </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Carina Cheng </Typography>
-          </Box>
-        </Stack>
-        {/*contributor roles */}
-        <Stack sx={{ mb: 45, width: '45%', mt: -5 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              UX/UI/design project manager (2021+)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              UX/UI/design project manager (2020-21)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Design, branding, social media (2020+)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Full stack developer (2020)</Typography>
-          </Box>
-        </Stack>
-      </Box>
+                      ml: 0,
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
+      </Container>
 
       {/*Arcatia.io Data Cooperative header */}
       <Box
