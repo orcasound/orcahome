@@ -688,7 +688,15 @@ const contributors = () => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ display: 'flex', alignItems: 'center' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '@media (min-width:375px) and (max-width:415px)': {
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+          }}
         >
           Live Listening App UI & Development Team
         </Typography>
