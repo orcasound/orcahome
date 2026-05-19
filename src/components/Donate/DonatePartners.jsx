@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import { pushToDataLayer } from '../../utils/gtm'
 

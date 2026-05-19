@@ -1,7 +1,7 @@
 import PauseCircleIcon from '@mui/icons-material/PauseCircle'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import { Box, Button, Grid, IconButton, Link, Typography } from '@mui/material'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import React from 'react'
 import useSound from 'use-sound'
 

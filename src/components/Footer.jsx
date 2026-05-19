@@ -4,7 +4,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, styled, Typography } from '@mui/material'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 
 import facebooklogo from '../../public/images/facebook.png'

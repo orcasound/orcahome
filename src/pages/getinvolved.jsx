@@ -4,7 +4,7 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { Box, Button, Container, Link, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { Link as ScrollElement } from 'react-scroll'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 

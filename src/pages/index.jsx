@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'

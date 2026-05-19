@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import ReactAudioPlayer from 'react-audio-player'
 import { Link as ScrollLink } from 'react-scroll'
 
