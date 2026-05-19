@@ -79,7 +79,7 @@ const iconContainer = (
 )
 
 const sendFeedbackLink = (
-  <Link href="/" passHref>
+  <Link href="/">
     <StyledTypography variant="h6" component="a">
       Send Feedback
     </StyledTypography>
@@ -99,7 +99,7 @@ const blogLink = (
 )
 
 const supportUsLink = (
-  <Link href="" passHref>
+  <Link href="">
     <StyledTypography variant="h6" component="a">
       Support Us
     </StyledTypography>
@@ -107,7 +107,7 @@ const supportUsLink = (
 )
 
 const learnMoreLink = (
-  <Link href="" passHref>
+  <Link href="">
     <StyledTypography variant="h6" component="a">
       Learn More
     </StyledTypography>
@@ -203,7 +203,7 @@ function Mobile() {
         <div>{sendFeedbackLink}</div>
         <div>{blogLink}</div>
         <div>
-          <Link href="/donate" passHref>
+          <Link href="/donate">
             <StyledTypography variant="h6" component="a">
               Support
             </StyledTypography>
@@ -236,7 +236,7 @@ function Desktop() {
               margin: '10px',
             }}
           >
-            <Link href="/" passHref>
+            <Link href="/">
               <Box component="a" sx={{ cursor: 'pointer' }}>
                 <Image
                   src={orcasoundlogo}
@@ -278,7 +278,7 @@ function Desktop() {
                   height: '30px',
                 }}
               >
-                <Link href={navLink.url} passHref>
+                <Link href={navLink.url}>
                   <StyledTypography
                     component="a"
                     onClick={() =>
@@ -338,7 +338,7 @@ function Desktop() {
                     {navLink.name}
                   </StyledTypography>
                 ) : (
-                  <Link href={navLink.url} passHref>
+                  <Link href={navLink.url}>
                     <StyledTypography
                       component="a"
                       onClick={() =>

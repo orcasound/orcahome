@@ -86,7 +86,7 @@ const Nav = () => {
                   borderRadius: '100px',
                 }}
               >
-                <Link href="/" passHref>
+                <Link href="/">
                   <Box
                     component="a"
                     sx={{
@@ -169,7 +169,7 @@ function Mobile() {
               <ListItemText primary={navLink.name} />
             </ListItem>
           ) : (
-            <Link key={navLink.name} href={navLink.url} passHref>
+            <Link key={navLink.name} href={navLink.url}>
               <ListItem
                 button
                 sx={{ borderBottom: '1px solid white' }}
@@ -272,7 +272,7 @@ function Desktop() {
                   {navLink.name}
                 </Button>
               ) : (
-                <Link href={navLink.url} passHref>
+                <Link href={navLink.url}>
                   <Button
                     component="a"
                     sx={{
@@ -331,7 +331,7 @@ function Desktop() {
         >
           Notify Me
         </Button>
-        <Link href="/donate" passHref>
+        <Link href="/donate">
           <Button
             variant="outlined"
             sx={{

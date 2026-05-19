@@ -47,7 +47,6 @@ export const NextLinkComposed = forwardRef<
       replace={replace}
       scroll={scroll}
       shallow={shallow}
-      passHref
       locale={locale}
     >
       <Anchor ref={ref} {...other} />
