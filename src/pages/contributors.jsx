@@ -4,7 +4,6 @@
  *  */
 
 import {
-  autocompleteClasses,
   Box,
   Breadcrumbs,
   Container,
