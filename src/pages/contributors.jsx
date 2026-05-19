@@ -23,6 +23,7 @@ import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
 import TopBanner from '../components/TopBanner'
 
 const contributors = () => {
+  // all contributor arrays
   // Founders array
   const contributors = [
     {
