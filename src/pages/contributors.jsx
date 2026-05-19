@@ -106,6 +106,65 @@ const contributors = () => {
     },
   ]
 
+  // google contributors
+  const googleContributors = [
+    {
+      name: 'Kunal Mehta',
+      country: '(India)',
+      roles: ['GSoC contributor (2020)', 'GSoC mentor (2021)'],
+    },
+    {
+      name: 'Diego Roderiguez',
+      country: '(Mexico)',
+      roles: ['GSoC contributor (2020)'],
+    },
+    {
+      name: 'Isabella Macchiavello',
+      country: '(Ecuador)',
+      roles: ['GSoC contributor (2021)'],
+    },
+    {
+      name: 'Dmitry Volodin',
+      country: '(Russia)',
+      roles: ['GSoC contributor (2021)'],
+    },
+    {
+      name: 'Dhananjay Purohit',
+      country: '(India)',
+      roles: ['GSoC contributor (2021)'],
+    },
+    {
+      name: 'Jose Giraldo',
+      country: '(Colombia, Spain)',
+      roles: ['GSoC contributor (2021)'],
+    },
+    {
+      name: 'Ambra Jin',
+      country: '(Italy, UK, Germany)',
+      roles: ['GSoC contributor (2022)'],
+    },
+    {
+      name: 'Devdoot Chatterjee',
+      country: '(India)',
+      roles: ['GSoC contributor (2022)'],
+    },
+    {
+      name: 'Benjamin Chew',
+      country: '(Singapore, USA)',
+      roles: ['GSoC contributor (2022)'],
+    },
+    {
+      name: 'Karan Mishra',
+      country: '(India)',
+      roles: ['GSoC contributor (2022)'],
+    },
+    {
+      name: 'Paul Nguyen Hong Duc',
+      country: '(France, Canada)',
+      roles: ['GSoC mentor (2022)'],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
