@@ -169,10 +169,7 @@ const CallCatalogGrid = () => {
             </Grid>
           ))}
         </Grid>
-        <Link
-          href="https://orcasound.net/data/product/SRKW/call-catalog/no-narration_flac+mp3+ogg+spectrograms/mp3/"
-          target="_blank"
-        >
+        <Link href="/catalog">
           <Button
             variant="contained"
             sx={{
