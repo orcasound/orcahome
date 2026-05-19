@@ -290,6 +290,58 @@ const contributors = () => {
     },
   ]
 
+  // individual contributors array
+  const individualContributors = [
+    {
+      name: 'Erin',
+      roles: ['User-centered design of 2019 UI v2 (2019)'],
+    },
+    {
+      name: 'Shawn Vita',
+      roles: ['Implementation of 2019 UI v2 (2019)'],
+    },
+    {
+      name: 'Samantha Berk',
+      roles: ['Administrative back end (2018-19)'],
+    },
+    {
+      name: 'Nóra Mészáros',
+      roles: ['Graphic design (2017-2020)'],
+    },
+    {
+      name: 'Erika Pelaez',
+      roles: ['Machine learning (2018)'],
+    },
+    {
+      name: 'Jennifer Rogers',
+      roles: ['Machine learning & spectrograms from FLAC files (2018+)'],
+    },
+    {
+      name: 'Ivan Storck',
+      roles: ['Orcamap code clean-up & contribution standards (2020-21)'],
+    },
+    {
+      name: 'Joyce Liao',
+      roles: ['Orcanode repo & Raspberry Pi testing (2020+)'],
+    },
+    {
+      name: 'Adrian MacDonald',
+      roles: ['Content strategy, analytics, conservation impact (2021+)'],
+    },
+    {
+      name: 'Maria Palamar',
+      roles: ['Conservation impact (2020+)'],
+    },
+    {
+      name: 'Glenn Block',
+      roles: [],
+    },
+    {
+      name: 'Amie Dabu',
+      roles: [],
+    },
+  ]
+
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -1238,111 +1290,67 @@ const contributors = () => {
         </Typography>
       </Box>
 
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          minWidth: '50em',
-          justifySelf: 'center',
-          height: '100%',
+          width: '55%',
         }}
       >
-        {/*contributor names */}
-        <Stack sx={{ width: '55%' }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Erin </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Shawn Vita</Typography>
-          </Box>
+        {individualContributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
+            sx={{
+              mb: 3,
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '100%',
+              },
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
+            }}
+          >
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Samantha Berk</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Nóra Mészáros </Typography>
-          </Box>
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    ml: 15,
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'small',
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Erika Pelaez </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Jennifer Rogers </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Ivan Storck </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Joyce Liao </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Adrian MacDonald </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Maria Palamar </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Glenn Block </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Amie Dabu </Typography>
-          </Box>
-        </Stack>
-        {/*contributor roles */}
-        <Stack sx={{ width: '45%', mt: -20 }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              User-centered design of 2019 UI v2 (2019)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Implementation of 2019 UI v2 (2019)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Administrative back end (2018-19)
-            </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Graphic design (2017-2020)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Machine learning (2018)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Machine learning & spectrograms from
-            </Typography>
-            <Typography variant="body1">FLAC files (2018+)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Orcamap code clean-up & contribution{' '}
-            </Typography>
-            <Typography variant="body1">standards (2020-21) </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Orcanode repo & Raspberry Pi testing{' '}
-            </Typography>
-            <Typography variant="body1">(2020+) </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Content strategy, analytics, conservation{' '}
-            </Typography>
-            <Typography variant="body1">impact (2021+) </Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">
-              Conservation impact (2020+){' '}
-            </Typography>
-          </Box>
-        </Stack>
-      </Box>
+                      ml: 0,
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
+      </Container>
 
       {/*final pictures above footer */}
       <Stack
