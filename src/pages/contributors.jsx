@@ -1354,12 +1354,19 @@ const contributors = () => {
 
       {/*final pictures above footer */}
       <Stack
-        direction="row"
+        direction={{
+          xs: 'column',
+          sm: 'row',
+        }}
         sx={{
           justifyContent: 'center',
           alignItems: 'center',
           m: 'auto',
           gap: 10,
+          '@media (min-width:375px) and (max-width:415px)': {
+            gap: 0,
+            m: 0,
+          },
         }}
       >
         <Box
@@ -1369,6 +1376,9 @@ const contributors = () => {
             height: '25em',
             display: 'flex',
             flexDirection: 'column',
+            '@media (min-width:375px) and (max-width:415px)': {
+              width: '90%',
+            },
           }}
         >
           <Image
@@ -1379,6 +1389,9 @@ const contributors = () => {
               objectFit: 'cover',
               width: '30%',
               borderRadius: '20px',
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '90%',
+              },
             }}
           />
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -1394,6 +1407,10 @@ const contributors = () => {
             height: '25em',
             display: 'flex',
             flexDirection: 'column',
+            '@media (min-width:375px) and (max-width:415px)': {
+              width: '90%',
+              mt: -10,
+            },
           }}
         >
           <Image
@@ -1404,6 +1421,9 @@ const contributors = () => {
               objectFit: 'cover',
               width: '30%',
               borderRadius: '20px',
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '90%',
+              },
             }}
           />
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
