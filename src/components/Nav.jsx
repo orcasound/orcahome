@@ -16,13 +16,13 @@ import {
 } from '@mui/material'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/logo-white.svg'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
+import Link from './Link'
 
 const navLinks = [
   {
@@ -88,7 +88,6 @@ const Nav = () => {
               >
                 <Link href="/">
                   <Box
-                    component="a"
                     sx={{
                       width: '60px',
                       height: '44px',
@@ -274,7 +273,6 @@ function Desktop() {
               ) : (
                 <Link href={navLink.url}>
                   <Button
-                    component="a"
                     sx={{
                       color: 'white',
                       display: 'block',

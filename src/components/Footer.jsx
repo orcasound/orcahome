@@ -5,7 +5,6 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, styled, Typography } from '@mui/material'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import facebooklogo from '../../public/images/facebook.png'
 import githublogo from '../../public/images/github_invert.png'
@@ -16,6 +15,7 @@ import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
+import Link from './Link'
 
 const currentYear = new Date().getFullYear()
 
@@ -80,9 +80,7 @@ const iconContainer = (
 
 const sendFeedbackLink = (
   <Link href="/">
-    <StyledTypography variant="h6" component="a">
-      Send Feedback
-    </StyledTypography>
+    <StyledTypography variant="h6">Send Feedback</StyledTypography>
   </Link>
 )
 
@@ -99,18 +97,14 @@ const blogLink = (
 )
 
 const supportUsLink = (
-  <Link href="">
-    <StyledTypography variant="h6" component="a">
-      Support Us
-    </StyledTypography>
+  <Link href="/">
+    <StyledTypography variant="h6">Support Us</StyledTypography>
   </Link>
 )
 
 const learnMoreLink = (
-  <Link href="">
-    <StyledTypography variant="h6" component="a">
-      Learn More
-    </StyledTypography>
+  <Link href="/">
+    <StyledTypography variant="h6">Learn More</StyledTypography>
   </Link>
 )
 
@@ -204,9 +198,7 @@ function Mobile() {
         <div>{blogLink}</div>
         <div>
           <Link href="/donate">
-            <StyledTypography variant="h6" component="a">
-              Support
-            </StyledTypography>
+            <StyledTypography variant="h6">Support</StyledTypography>
           </Link>
         </div>
         {iconContainer}
@@ -237,7 +229,7 @@ function Desktop() {
             }}
           >
             <Link href="/">
-              <Box component="a" sx={{ cursor: 'pointer' }}>
+              <Box sx={{ cursor: 'pointer' }}>
                 <Image
                   src={orcasoundlogo}
                   alt="Orcasound"
@@ -280,7 +272,6 @@ function Desktop() {
               >
                 <Link href={navLink.url}>
                   <StyledTypography
-                    component="a"
                     onClick={() =>
                       pushToDataLayer('footer_nav_click', {
                         link_text: navLink.name,
@@ -340,7 +331,6 @@ function Desktop() {
                 ) : (
                   <Link href={navLink.url}>
                     <StyledTypography
-                      component="a"
                       onClick={() =>
                         pushToDataLayer('footer_nav_click', {
                           link_text: navLink.name,

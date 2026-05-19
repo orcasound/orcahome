@@ -44,9 +44,9 @@ const BlogItem = ({
     <BlogItemContainer>
       <Image
         src={image}
-        alt={title}
-        width="300%"
-        height="240%"
+        alt={title || ''}
+        width={300}
+        height={240}
         style={{
           maxWidth: '100%',
           height: 'auto',

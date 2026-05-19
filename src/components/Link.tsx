@@ -1,70 +1,24 @@
 // Special component that combines nextjs and material-ui Link into one
-// From https://github.com/mui-org/material-ui/blob/master/examples/nextjs-with-typescript/src/Link.tsx
 
 import { styled } from '@mui/material'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
 import clsx from 'clsx'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import { useRouter } from 'next/router'
-import { forwardRef } from 'react'
 import * as React from 'react'
+import { forwardRef } from 'react'
 
-// Add support for the sx prop for consistency with the other branches.
 const Anchor = styled('a')({})
-
-interface NextLinkComposedProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<
-      NextLinkProps,
-      'href' | 'as' | 'onClick' | 'onMouseEnter' | 'onTouchStart'
-    > {
-  to: NextLinkProps['href']
-  linkAs?: NextLinkProps['as']
-  href?: NextLinkProps['href']
-}
-
-export const NextLinkComposed = forwardRef<
-  HTMLAnchorElement,
-  NextLinkComposedProps
->(function NextLinkComposed(props, ref) {
-  const {
-    to,
-    linkAs,
-    href,
-    replace,
-    scroll,
-    shallow,
-    prefetch,
-    locale,
-    ...other
-  } = props
-
-  return (
-    <NextLink
-      href={to}
-      prefetch={prefetch}
-      as={linkAs}
-      replace={replace}
-      scroll={scroll}
-      shallow={shallow}
-      locale={locale}
-    >
-      <Anchor ref={ref} {...other} />
-    </NextLink>
-  )
-})
 
 export type LinkProps = {
   activeClassName?: string
   as?: NextLinkProps['as']
   href: NextLinkProps['href']
-  linkAs?: NextLinkProps['as'] // Useful when the as prop is shallow by styled().
+  linkAs?: NextLinkProps['as']
   noLinkStyle?: boolean
-} & Omit<NextLinkComposedProps, 'to' | 'linkAs' | 'href'> &
+} & Omit<NextLinkProps, 'href'> &
   Omit<MuiLinkProps, 'href'>
 
-// A styled version of the Next.js Link component:
-// https://nextjs.org/docs/api-reference/next/link
 const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   props,
   ref
@@ -75,14 +29,18 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     className: classNameProps,
     href,
     noLinkStyle,
-    role, // Link don't have roles.
+    role,
+    children,
     ...other
-  } = props
+  } = props as any
 
   const router = useRouter()
-  const pathname = typeof href === 'string' ? href : href.pathname
+  const pathname =
+    typeof href === 'string' ? href : href && (href as any).pathname
+  const currentPath =
+    (router.asPath && String(router.asPath).split('?')[0]) || router.pathname
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === pathname && activeClassName,
+    [activeClassName]: currentPath === pathname,
   })
 
   const isExternal =
@@ -91,27 +49,91 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <Anchor className={className} href={href} ref={ref} {...other} />
+      return (
+        <Anchor className={className} href={href as any} ref={ref} {...other}>
+          {children}
+        </Anchor>
+      )
     }
 
-    return <MuiLink className={className} href={href} ref={ref} {...other} />
+    return (
+      <MuiLink className={className} href={href as any} ref={ref} {...other}>
+        {children}
+      </MuiLink>
+    )
   }
 
+  function hasAnchorDescendant(element?: React.ReactNode): boolean {
+    if (!element) return false
+    if (!React.isValidElement(element)) return false
+    const el = element as React.ReactElement
+    if (el.type === 'a') return true
+    if (el.props && el.props.component === 'a') return true
+    const kids = el.props && el.props.children
+    if (!kids) return false
+    if (Array.isArray(kids)) return kids.some((k) => hasAnchorDescendant(k))
+    return hasAnchorDescendant(kids)
+  }
+
+  const childIsAnchor =
+    React.isValidElement(children) &&
+    ((children as React.ReactElement).type === 'a' ||
+      ((children as React.ReactElement).props &&
+        (children as React.ReactElement).props.component === 'a'))
+  const childHasAnchorDescendant = hasAnchorDescendant(children)
+
+  // If child already renders an anchor (or contains one), don't render another <a>.
+  if (childIsAnchor) {
+    const child = children as React.ReactElement
+    const childClassName = clsx(child.props.className, className)
+    return (
+      <NextLink href={href} as={linkAs} legacyBehavior>
+        {React.cloneElement(child, {
+          className: childClassName,
+          ref,
+          href,
+          ...other,
+        })}
+      </NextLink>
+    )
+  }
+
+  if (childHasAnchorDescendant) {
+    // attach client navigation handler to root child to avoid nested anchors
+    if (React.isValidElement(children)) {
+      const child = children as React.ReactElement
+      const childClassName = clsx(child.props.className, className)
+      const handleClick = (e: React.MouseEvent) => {
+        if (child.props && typeof child.props.onClick === 'function')
+          child.props.onClick(e)
+        if (!e.defaultPrevented) router.push(href as any)
+      }
+      return React.cloneElement(child, {
+        className: childClassName,
+        ref,
+        onClick: handleClick,
+        ...other,
+      })
+    }
+  }
+
+  // Default: render MUI Link inside NextLink (legacyBehavior) so we control anchor element
   if (noLinkStyle) {
     return (
-      <NextLinkComposed className={className} ref={ref} to={href} {...other} />
+      <NextLink href={href} as={linkAs} legacyBehavior>
+        <Anchor className={className} ref={ref} {...other}>
+          {children}
+        </Anchor>
+      </NextLink>
     )
   }
 
   return (
-    <MuiLink
-      component={NextLinkComposed}
-      linkAs={linkAs}
-      className={className}
-      ref={ref}
-      to={href}
-      {...other}
-    />
+    <NextLink href={href} as={linkAs} legacyBehavior>
+      <MuiLink className={className} ref={ref} {...other}>
+        {children}
+      </MuiLink>
+    </NextLink>
   )
 })
 
