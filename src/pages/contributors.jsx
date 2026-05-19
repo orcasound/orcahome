@@ -1060,8 +1060,37 @@ const contributors = () => {
       </Box>
 
       <Breadcrumbs
-        sx={{ display: 'flex', justifyContent: 'center' }}
-        separator="•"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          '& .MuiBreadcrumbs-ol': {
+            flexDirection: {
+              xs: 'column',
+              sm: 'row',
+            },
+
+            alignItems: {
+              xs: 'center',
+              sm: 'flex-start',
+            },
+          },
+          textAlign: {
+            xs: 'center',
+            sm: 'center',
+          },
+        }}
+        separator={
+          <Typography
+            sx={{
+              display: {
+                xs: 'none', // hide on iphone
+                sm: 'block', // show on tablet/desktop
+              },
+            }}
+          >
+            ●
+          </Typography>
+        }
         aria-label="breadcrumb"
       >
         <Typography color="text.primary">Prakruti Gogia</Typography>
