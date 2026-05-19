@@ -4,6 +4,7 @@
  *  */
 
 import {
+  autocompleteClasses,
   Box,
   Breadcrumbs,
   Container,
@@ -479,7 +480,10 @@ const contributors = () => {
               in the community and often have administrative access to key parts
               of the Orcasound infrastructure.
             </Typography>
-            <Typography variant="body1" sx={{ width: '90%', mb: 5 }}>
+            <Typography
+              variant="body1"
+              sx={{ display: { xs: 'none', sm: 'block' }, width: '90%', mb: 5 }}
+            >
               Founders can raise funds under the auspices of Orcasound to
               support their own Orcasound efforts or the project in general.
             </Typography>
@@ -562,9 +566,13 @@ const contributors = () => {
           <Typography
             variant="body1"
             sx={{
+              textAlign: 'center',
+              display: {
+                xs: 'block',
+                sm: 'none',
+              },
               '@media (min-width:375px) and (max-width:415px)': {
                 fontSize: 'small',
-                textAlign: 'center',
               },
             }}
           >
@@ -603,104 +611,67 @@ const contributors = () => {
       </Box>
 
       {/* google contributors */}
-      <Box
+      <Container
+        maxWidth={false}
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          minWidth: '49em',
-          justifySelf: 'center',
+          width: '55%',
         }}
       >
-        {/*contributor names */}
-        <Stack sx={{ width: '75%' }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Kunal Mehta</Typography>
-            <Typography variant="caption">(India)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Diego Roderiguez</Typography>
-            <Typography variant="caption">(Mexico)</Typography>
-          </Box>
+        {googleContributors.map((person, index) => (
+          <Grid
+            container
+            item
+            xs={12}
+            key={index}
+            sx={{
+              mb: 3,
+              '@media (min-width:375px) and (max-width:415px)': {
+                width: '100%',
+              },
+              textAlign: {
+                xs: 'center',
+                sm: 'left',
+              },
+            }}
+          >
+            <Grid item xs={12} sm={5}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: '1.3rem',
+                    sm: '1rem',
+                  },
+                  fontWeight: 700,
+                }}
+              >
+                {person.name}
+              </Typography>
+            </Grid>
 
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Isabella Macchiavello</Typography>
-            <Typography variant="caption">(Equador)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Dmitry Volodin </Typography>
-            <Typography variant="caption">(Russia)</Typography>
-          </Box>
-
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Dhananjay Purohit </Typography>
-            <Typography variant="caption">(India)</Typography>
-          </Box>
-
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Jose Giraldo </Typography>
-            <Typography variant="caption">(Columbia, Spain)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Ambra Jin </Typography>
-            <Typography variant="caption">(Italy,UK, Germany)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Devdoot Chatterjee </Typography>
-            <Typography variant="caption">(India)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Benjamin Chew </Typography>
-            <Typography variant="caption">(Singapore, USA)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Karan Mishra</Typography>
-            <Typography variant="caption">(India)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">Paul Nguyen Hong Duc</Typography>
-            <Typography variant="caption">(France,Canada)</Typography>
-          </Box>
-        </Stack>
-        {/*contributor roles */}
-        <Stack sx={{ width: '30%' }}>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2020)</Typography>
-            <Typography variant="body1">GSoC mentor (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2020)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2021)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2022)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2022)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2022)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC contributor (2022)</Typography>
-          </Box>
-          <Box sx={{ height: '5em' }}>
-            <Typography variant="body1">GSoC mentor (2022)</Typography>
-          </Box>
-        </Stack>
-      </Box>
-
+            <Grid item xs={12} sm={7}>
+              {person.roles.map((role, idx) => (
+                <Typography
+                  key={idx}
+                  sx={{
+                    ml: 15,
+                    fontSize: {
+                      xs: '1rem',
+                      sm: '0.95rem',
+                    },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'x-small',
+                      textAlign: 'center',
+                      ml: 0,
+                    },
+                  }}
+                >
+                  {role}
+                </Typography>
+              ))}
+            </Grid>
+          </Grid>
+        ))}
+      </Container>
       {/* End of google contributors */}
 
       {/* Live Listening app & UI team header */}
