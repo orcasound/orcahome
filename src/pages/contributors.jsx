@@ -464,6 +464,10 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
+                    '@media (min-width:375px) and (max-width:415px)': {
+                      fontSize: 'x-small',
+                      textAlign: 'center',
+                    },
                   }}
                 >
                   {role}
@@ -496,6 +500,18 @@ const contributors = () => {
             Influencers
           </Typography>
           <Typography variant="body2">(Major Contributors)</Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              '@media (min-width:375px) and (max-width:415px)': {
+                fontSize: 'small',
+                textAlign: 'center',
+              },
+            }}
+          >
+            Founders can raise funds under the auspices of Orcasound to support
+            their own Orcasound efforts or the project in general.
+          </Typography>
         </Box>
       </Container>
 
@@ -513,7 +529,15 @@ const contributors = () => {
         <Typography
           variant="h4"
           gutterBottom
-          sx={{ display: 'flex', alignItems: 'center' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '@media (min-width:375px) and (max-width:415px)': {
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+          }}
         >
           Google Summer of Code (GSoc) Participants
         </Typography>
