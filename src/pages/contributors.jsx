@@ -379,11 +379,11 @@ const contributors = () => {
             variant="h3"
             sx={{
               /*iphone  formatting */
-              '@media (min-width:200px) and (max-width:500px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 fontSize: 'medium',
               },
               /*ipad */
-              '@media (min-width:768px) and (max-width:899px)': {
+              '@media (min-width:820px) and (max-width:1200px)': {
                 fontSize: 'x-large',
               },
             }}
@@ -398,6 +398,10 @@ const contributors = () => {
         maxWidth="sm"
         sx={{
           minHeight: '100vh',
+          pt: 5,
+          '@media (min-width:390px) and (max-width:500px)': {
+            pt: 0,
+          },
         }}
       >
         <Stack
@@ -405,13 +409,13 @@ const contributors = () => {
           alignItems="center"
           sx={{
             /*iphone  formatting */
-            '@media (min-width:200px) and (max-width:500px)': {
+            '@media (min-width:390px) and (max-width:500px)': {
               gap: 10,
 
               width: '100%',
             },
             /*ipad */
-            '@media (min-width:768px) and (max-width:899px)': {
+            '@media (min-width:820px) and (max-width:1200px)': {
               fontSize: 'x-large',
             },
           }}
@@ -431,11 +435,11 @@ const contributors = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:200px) and (max-width:500px)': {
-                  mt: 15,
+                '@media (min-width:390px) and (max-width:500px)': {
+                  mt: 7,
                 },
                 /*ipad */
-                '@media (min-width:768px) and (max-width:899px)': {
+                '@media (min-width:820px) and (max-width:1200px)': {
                   fontSize: 'x-large',
                 },
               }}
@@ -465,12 +469,13 @@ const contributors = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:200px) and (max-width:500px)': {
-                  mt: 15,
+                '@media (min-width:390px) and (max-width:500px)': {
+                  mt: 0,
                 },
                 /*ipad */
-                '@media (min-width:768px) and (max-width:899px)': {
+                '@media (min-width:820px) and (max-width:1200px)': {
                   fontSize: 'x-large',
+                  pt: 3,
                 },
               }}
             >
@@ -520,13 +525,10 @@ const contributors = () => {
               display: 'flex',
               flexDirection: 'column',
 
-              /*iphone  formatting */
-              '@media (min-width:200px) and (max-width:500px)': {
-                pt: 3,
-              },
               /*ipad */
-              '@media (min-width:768px) and (max-width:899px)': {
+              '@media (min-width:820px) and (max-width:1200px)': {
                 fontSize: 'x-large',
+                pt: 3,
               },
             }}
           >
@@ -561,13 +563,14 @@ const contributors = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:200px) and (max-width:500px)': {
-                  mt: -30,
-                  mb: -10,
+                '@media (min-width:390px) and (max-width:500px)': {
+                  mt: -20,
+                  mb: -5,
                 },
                 /*ipad */
-                '@media (min-width:768px) and (max-width:899px)': {
+                '@media (min-width:820px) and (max-width:1200px)': {
                   fontSize: 'x-large',
+                  mt: -20,
                 },
               }}
             >
@@ -613,13 +616,15 @@ const contributors = () => {
               boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
 
               /*iphone  formatting */
-              '@media (min-width:200px) and (max-width:500px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 maxWidth: '100%',
                 maxHeight: '45em',
+                pb: 3,
               },
               /*ipad */
-              '@media (min-width:768px) and (max-width:899px)': {
+              '@media (min-width:820px) and (max-width:1200px)': {
                 fontSize: 'x-large',
+                pb: 3,
               },
             }}
           >
@@ -628,11 +633,11 @@ const contributors = () => {
               gutterBottom
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:200px) and (max-width:500px)': {
+                '@media (min-width:390px) and (max-width:500px)': {
                   mt: 2,
                 },
                 /*ipad */
-                '@media (min-width:768px) and (max-width:899px)': {
+                '@media (min-width:820px) and (max-width:1200px)': {
                   fontSize: 'x-large',
                 },
               }}
@@ -747,7 +752,7 @@ const contributors = () => {
                 xs: 'block',
                 sm: 'none',
               },
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 fontSize: 'small',
               },
             }}
@@ -775,8 +780,13 @@ const contributors = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:375px) and (max-width:415px)': {
+            '@media (min-width:390px) and (max-width:500px)': {
               fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:820px) and (max-width:1200px)': {
+              fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -791,6 +801,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {googleContributors.map((person, index) => (
@@ -801,9 +814,10 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
+
               textAlign: {
                 xs: 'center',
                 sm: 'left',
@@ -834,7 +848,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:390px) and (max-width:500px)': {
                       fontSize: 'small',
                       textAlign: 'center',
                       ml: 0,
@@ -867,7 +881,7 @@ const contributors = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:375px) and (max-width:415px)': {
+            '@media (min-width:390px) and (max-width:500px)': {
               fontSize: 'medium',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -883,6 +897,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {liveContributors.map((person, index) => (
@@ -893,7 +910,7 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -926,7 +943,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:90px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -958,7 +975,7 @@ const contributors = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:375px) and (max-width:415px)': {
+            '@media (min-width:390px) and (max-width:500px)': {
               fontSize: 'medium',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -977,6 +994,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {arcatiaContributors.map((person, index) => (
@@ -987,7 +1007,7 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1020,7 +1040,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:390px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1052,7 +1072,7 @@ const contributors = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:375px) and (max-width:415px)': {
+            '@media (min-width:390px) and (max-width:500px)': {
               fontSize: 'medium',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -1068,6 +1088,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {projectManagementContributors.map((person, index) => (
@@ -1078,7 +1101,7 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1111,7 +1134,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:390px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1213,6 +1236,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {orcaContributors.map((person, index) => (
@@ -1223,7 +1249,7 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1256,7 +1282,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:390px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1294,6 +1320,9 @@ const contributors = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:820px) and (max-width:1200px)': {
+            width: '95%',
+          },
         }}
       >
         {individualContributors.map((person, index) => (
@@ -1304,7 +1333,7 @@ const contributors = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1337,7 +1366,7 @@ const contributors = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:375px) and (max-width:415px)': {
+                    '@media (min-width:390px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1363,21 +1392,30 @@ const contributors = () => {
           alignItems: 'center',
           m: 'auto',
           gap: 10,
-          '@media (min-width:375px) and (max-width:415px)': {
+          '@media (min-width:390px) and (max-width:500px)': {
             gap: 0,
             m: 0,
+          },
+          '@media (min-width:820px) and (max-width:1200px)': {
+            gap: 5,
           },
         }}
       >
         <Box
           sx={{
-            position: 'relative',
             width: '30%',
             height: '25em',
             display: 'flex',
             flexDirection: 'column',
-            '@media (min-width:375px) and (max-width:415px)': {
+            justifyContent: 'center',
+            '@media (min-width:390px) and (max-width:500px)': {
               width: '90%',
+            },
+            '@media (min-width:820px) and (max-width:1200px)': {
+              width: '50%',
+              ml: 3,
+              height: '20em',
+              mb: 3,
             },
           }}
         >
@@ -1387,9 +1425,10 @@ const contributors = () => {
             fill
             style={{
               objectFit: 'cover',
-              width: '30%',
+              width: '50%',
               borderRadius: '20px',
-              '@media (min-width:375px) and (max-width:415px)': {
+
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '90%',
               },
             }}
@@ -1402,14 +1441,20 @@ const contributors = () => {
 
         <Box
           sx={{
-            position: 'relative',
-            width: '30%',
-            height: '25em',
+            width: '35%',
+            height: '20em',
             display: 'flex',
             flexDirection: 'column',
-            '@media (min-width:375px) and (max-width:415px)': {
+
+            '@media (min-width:390px) and (max-width:500px)': {
               width: '90%',
               mt: -10,
+            },
+            '@media (min-width:820px) and (max-width:1200px)': {
+              width: '60%',
+              mt: -5,
+              height: '15em',
+              mr: 3,
             },
           }}
         >
@@ -1419,9 +1464,9 @@ const contributors = () => {
             fill
             style={{
               objectFit: 'cover',
-              width: '30%',
+              width: '50%',
               borderRadius: '20px',
-              '@media (min-width:375px) and (max-width:415px)': {
+              '@media (min-width:390px) and (max-width:500px)': {
                 width: '90%',
               },
             }}
