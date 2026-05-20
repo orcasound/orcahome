@@ -3,7 +3,12 @@ module.exports = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
-    domains: ['netlify.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'netlify.com',
+      },
+    ],
   },
   turbopack: {},
   webpack(config, options) {
