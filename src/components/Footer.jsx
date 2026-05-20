@@ -138,11 +138,7 @@ const navLinksRightCol = [
     url: '/about',
     icon: '',
   },
-  {
-    name: 'Contributors',
-    url: '/contributors',
-    icon: '',
-  },
+
   {
     name: 'Learn',
     url: '/learn',
