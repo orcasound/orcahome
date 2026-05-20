@@ -1,5 +1,5 @@
 /*
- * File : contributors.jsx
+ * File : hacker-hall-of-fame.jsx
  * Desc : Page for the Hacker Hall of Fame contributors page.
  *  */
 
@@ -21,7 +21,7 @@ import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.PNG'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
 import TopBanner from '../components/TopBanner'
 
-const contributors = () => {
+const HackerHallOfFame = () => {
   // all contributor arrays
   // Founders array
   const contributors = [
@@ -1480,4 +1480,4 @@ const contributors = () => {
   )
 }
 
-export default contributors
+export default HackerHallOfFame
