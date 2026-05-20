@@ -5,9 +5,6 @@ import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
 import { Link as ScrollLink } from 'react-scroll'
 
-import audioS01 from '../../public/audio/FO-S01.mp3'
-import audioS16 from '../../public/audio/FO-S16.mp3'
-import audioS19 from '../../public/audio/FO-S19.mp3'
 import LearnBanner from '../../public/images/learn.jpg'
 import callS01 from '../../public/images/learn/Call-S01.png'
 import callS16 from '../../public/images/learn/Call-S16.png'
@@ -18,6 +15,10 @@ import salishsea from '../../public/images/salishsea.png'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
+
+const audioS01 = '/audio/FO-S01.mp3'
+const audioS16 = '/audio/FO-S16.mp3'
+const audioS19 = '/audio/FO-S19.mp3'
 
 const NavLink = styled(ScrollLink)(() => ({
   display: 'block',

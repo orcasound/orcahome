@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  eslint: {
-    dirs: ['.'], // run eslint on everything
-  },
   images: {
     unoptimized: true,
     domains: ['netlify.com'],
