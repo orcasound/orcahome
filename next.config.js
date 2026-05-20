@@ -8,6 +8,7 @@ module.exports = {
     unoptimized: true,
     domains: ['netlify.com'],
   },
+  turbopack: {},
   webpack(config, options) {
     const { isServer } = options
     config.module.rules.push({
