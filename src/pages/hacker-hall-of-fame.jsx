@@ -352,13 +352,14 @@ const HackerHallOfFame = () => {
       {/* Banner and Banner Text */}
       <Box
         sx={{
-          whiteSpace: 'pre-wrap',
+          border: '10px solid blue',
+          textAlign: 'center',
         }}
       >
         <TopBanner
           bannerImg={HackerBanner}
-          pageTitle={`    Hacker\nHall of Fame`}
-          scrollToId={'contributors'}
+          pageTitle={`Hacker Hall of Fame`}
+          scrollToId={'scroll-link'}
         />
       </Box>
 
@@ -601,6 +602,7 @@ const HackerHallOfFame = () => {
 
           {/*Founders Box */}
           <Box
+            id="scroll-link"
             sx={{
               maxHeight: '30em',
               width: '110%',
