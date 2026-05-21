@@ -352,13 +352,13 @@ const HackerHallOfFame = () => {
       {/* Banner and Banner Text */}
       <Box
         sx={{
-          border: '10px solid blue',
-          textAlign: 'center',
+          whiteSpace: 'pre-wrap',
+          display: 'flex',
         }}
       >
         <TopBanner
           bannerImg={HackerBanner}
-          pageTitle={`Hacker Hall of Fame`}
+          pageTitle={`Hacker\n Hall of Fame`}
           scrollToId={'scroll-link'}
         />
       </Box>
@@ -380,7 +380,7 @@ const HackerHallOfFame = () => {
             variant="h3"
             sx={{
               /*iphone  formatting */
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 fontSize: 'medium',
               },
               /*ipad */
@@ -400,7 +400,7 @@ const HackerHallOfFame = () => {
         sx={{
           minHeight: '100vh',
           pt: 5,
-          '@media (min-width:390px) and (max-width:500px)': {
+          '@media (min-width:375px) and (max-width:500px)': {
             pt: 0,
           },
         }}
@@ -410,7 +410,7 @@ const HackerHallOfFame = () => {
           alignItems="center"
           sx={{
             /*iphone  formatting */
-            '@media (min-width:390px) and (max-width:500px)': {
+            '@media (min-width:375px) and (max-width:500px)': {
               gap: 10,
 
               width: '100%',
@@ -436,7 +436,7 @@ const HackerHallOfFame = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:390px) and (max-width:500px)': {
+                '@media (min-width:375px) and (max-width:500px)': {
                   mt: 7,
                 },
                 /*ipad */
@@ -470,7 +470,7 @@ const HackerHallOfFame = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:390px) and (max-width:500px)': {
+                '@media (min-width:375px) and (max-width:500px)': {
                   mt: 0,
                 },
                 /*ipad */
@@ -564,7 +564,7 @@ const HackerHallOfFame = () => {
               variant="body2"
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:390px) and (max-width:500px)': {
+                '@media (min-width:375px) and (max-width:500px)': {
                   mt: -20,
                   mb: -5,
                 },
@@ -618,7 +618,7 @@ const HackerHallOfFame = () => {
               boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
 
               /*iphone  formatting */
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 maxWidth: '100%',
                 maxHeight: '45em',
                 pb: 3,
@@ -635,7 +635,7 @@ const HackerHallOfFame = () => {
               gutterBottom
               sx={{
                 /*iphone  formatting */
-                '@media (min-width:390px) and (max-width:500px)': {
+                '@media (min-width:375px) and (max-width:500px)': {
                   mt: 2,
                 },
                 /*ipad */
@@ -754,7 +754,7 @@ const HackerHallOfFame = () => {
                 xs: 'block',
                 sm: 'none',
               },
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 fontSize: 'small',
               },
             }}
@@ -782,7 +782,7 @@ const HackerHallOfFame = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:390px) and (max-width:500px)': {
+            '@media (min-width:375px) and (max-width:500px)': {
               fontSize: 'medium',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -816,7 +816,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
 
@@ -850,7 +850,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:390px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
                       textAlign: 'center',
                       ml: 0,
@@ -883,7 +883,7 @@ const HackerHallOfFame = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:390px) and (max-width:500px)': {
+            '@media (min-width:375px) and (max-width:500px)': {
               fontSize: 'medium',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -912,7 +912,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -945,7 +945,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:90px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -977,8 +977,8 @@ const HackerHallOfFame = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:390px) and (max-width:500px)': {
-              fontSize: 'medium',
+            '@media (min-width:375px) and (max-width:500px)': {
+              fontSize: 'large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1009,7 +1009,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1042,7 +1042,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:390px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1074,8 +1074,8 @@ const HackerHallOfFame = () => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            '@media (min-width:390px) and (max-width:500px)': {
-              fontSize: 'medium',
+            '@media (min-width:375px) and (max-width:500px)': {
+              fontSize: 'large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1103,7 +1103,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1136,7 +1136,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:390px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1251,7 +1251,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1284,7 +1284,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:390px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1335,7 +1335,7 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
               textAlign: {
@@ -1368,7 +1368,7 @@ const HackerHallOfFame = () => {
                       xs: '1rem',
                       sm: '0.95rem',
                     },
-                    '@media (min-width:390px) and (max-width:500px)': {
+                    '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
 
                       ml: 0,
@@ -1394,7 +1394,7 @@ const HackerHallOfFame = () => {
           alignItems: 'center',
           m: 'auto',
           gap: 10,
-          '@media (min-width:390px) and (max-width:500px)': {
+          '@media (min-width:375px) and (max-width:500px)': {
             gap: 0,
             m: 0,
           },
@@ -1410,7 +1410,7 @@ const HackerHallOfFame = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            '@media (min-width:390px) and (max-width:500px)': {
+            '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
             },
             '@media (min-width:820px) and (max-width:1200px)': {
@@ -1425,12 +1425,12 @@ const HackerHallOfFame = () => {
             src={hackCollab}
             alt="Erika facilitating an early discussion of machine learning and the orca data repository"
             fill
-            style={{
+            sx={{
               objectFit: 'cover',
               width: '50%',
               borderRadius: '20px',
 
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '90%',
               },
             }}
@@ -1448,9 +1448,9 @@ const HackerHallOfFame = () => {
             display: 'flex',
             flexDirection: 'column',
 
-            '@media (min-width:390px) and (max-width:500px)': {
+            '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
-              mt: -10,
+              mt: -8,
             },
             '@media (min-width:820px) and (max-width:1200px)': {
               width: '60%',
@@ -1464,11 +1464,11 @@ const HackerHallOfFame = () => {
             src={hackVal}
             alt="Val working on the Orcanode software and hardware."
             fill
-            style={{
+            sx={{
               objectFit: 'cover',
               width: '50%',
               borderRadius: '20px',
-              '@media (min-width:390px) and (max-width:500px)': {
+              '@media (min-width:375px) and (max-width:500px)': {
                 width: '90%',
               },
             }}
