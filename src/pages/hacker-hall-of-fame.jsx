@@ -1335,6 +1335,7 @@ const HackerHallOfFame = () => {
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
               },
+
               textAlign: {
                 xs: 'center',
                 sm: 'left',
@@ -1366,6 +1367,11 @@ const HackerHallOfFame = () => {
                       fontSize: 'small',
 
                       ml: 0,
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      textAlign: 'center',
+
+                      width: '70%',
                     },
                   }}
                 >
@@ -1448,6 +1454,11 @@ const HackerHallOfFame = () => {
 
                       ml: 0,
                     },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      textAlign: 'center',
+
+                      width: '70%',
+                    },
                   }}
                 >
                   {role}
@@ -1493,7 +1504,7 @@ const HackerHallOfFame = () => {
               width: '40%',
               ml: 3,
               height: '21em',
-              gridGap: '0px',
+
               mb: 3,
             },
           }}
@@ -1529,7 +1540,7 @@ const HackerHallOfFame = () => {
             '@media (min-width:768px) and (max-width:1200px)': {
               width: '40%',
               mt: -5,
-              gridGap: '0px',
+
               mr: 3,
             },
           }}
