@@ -1743,7 +1743,7 @@ const HackerHallOfFame = () => {
           },
         }}
       >
-        {orcaContributors.map((person, index) => (
+        {individualContributors.map((person, index) => (
           <Grid
             container
             item
