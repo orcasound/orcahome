@@ -711,8 +711,22 @@ const HackerHallOfFame = () => {
             their own Orcasound efforts or the project in general.
           </Typography>
         </Box>
+      </Container>
+      {/*Founders list */}
+      <Container
+        maxWidth={false}
+        sx={{
+          width: '100%',
 
-        {/*Founders list */}
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
+          '@media (min-width:768px) and (max-width:1200px)': {
+            width: '100%',
+          },
+        }}
+      >
         {contributors.map((person, index) => (
           <Grid
             container
@@ -721,38 +735,84 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              display: 'flex',
+              flexDirection: 'row',
+
+              '@media (min-width:375px) and (max-width:500px)': {
+                width: '100%',
+                flexDirection: 'column',
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  width: '80%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+
+                    width: '100%',
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
-                    '@media (min-width:375px) and (max-width:415px)': {
-                      fontSize: 'x-small',
-                      textAlign: 'center',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      fontSize: 'small',
+                      mx: 'auto',
+                      ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
@@ -762,6 +822,7 @@ const HackerHallOfFame = () => {
             </Grid>
           </Grid>
         ))}
+
         {/*End of founder contributors list */}
 
         {/* Beginning of the influencers list */}
@@ -770,7 +831,7 @@ const HackerHallOfFame = () => {
         <Box
           sx={{
             height: '10em',
-            width: '100%',
+            width: '45%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -780,6 +841,13 @@ const HackerHallOfFame = () => {
             borderRadius: '20px',
             boxSizing: 'border-box',
             boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+            mx: 'auto',
+            '@media (min-width:375px) and (max-width:500px)': {
+              width: '100%',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              width: '100%',
+            },
           }}
         >
           <Typography variant="h4" gutterBottom>
@@ -796,6 +864,9 @@ const HackerHallOfFame = () => {
               },
               '@media (min-width:375px) and (max-width:500px)': {
                 fontSize: 'small',
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                display: 'none',
               },
             }}
           >
@@ -827,7 +898,7 @@ const HackerHallOfFame = () => {
               textAlign: 'center',
               fontWeight: 'bold',
             },
-            '@media (min-width:820px) and (max-width:1200px)': {
+            '@media (min-width:768px) and (max-width:1200px)': {
               fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
@@ -843,71 +914,118 @@ const HackerHallOfFame = () => {
         maxWidth={false}
         sx={{
           width: '55%',
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
         {googleContributors.map((person, index) => (
           <Grid
             container
-            item
-            xs={12}
             key={index}
             sx={{
               mb: 3,
-
-              '@media (min-width:375px) and (max-width:500px)': {
-                width: '100%',
-              },
 
               textAlign: {
                 xs: 'center',
                 sm: 'left',
               },
+
+              '@media (min-width:768px) and (max-width:1200px)': {
+                display: 'flex',
+                flexDirection: 'row',
+              },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                textAlign: 'left',
+                flexDirection: 'row',
+
+                width: '57%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  display: 'flex',
+                  flexDirection: 'row',
+                  fontSize: 'medium',
+                  gridGap: '0px',
+                  whiteSpace: 'nowrap',
+                  justifyContent: 'center',
+                  width: '100%',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  textAlign: 'left',
+                  width: '60%',
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
-                  fontWeight: '500',
+                  fontWeight: 500,
                   lineHeight: '140%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    mx: 'auto',
+                    m: 0,
+                    fontSize: 'medium',
+                  },
                 }}
               >
                 {person.name}
               </Typography>
+
               <Typography
                 sx={{
                   fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-
                   fontWeight: 500,
+                  lineHeight: '140%',
+                  m: 0,
+
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    fontSize: 'medium',
+                  },
                 }}
               >
                 {person.country}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 7 }}
+              sx={{
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  alignItems: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '40%',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      fontSize: 'small',
-                      textAlign: 'center',
-                      ml: 0,
+                    fontSize: {
+                      xs: 'small',
+                      sm: '20px',
                     },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
+                    fontWeight: 500,
+                    lineHeight: '140%',
+                    textAlign: {
+                      xs: 'center',
+                      sm: 'left',
+                    },
 
-                      width: '65%',
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      fontSize: '20px',
+                      fontWeight: 500,
+                      lineHeight: '140%',
+
+                      textAlign: 'left',
                     },
                   }}
                 >
@@ -942,6 +1060,11 @@ const HackerHallOfFame = () => {
               textAlign: 'center',
               fontWeight: 'bold',
             },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
           }}
         >
           Live Listening App UI & Development Team
@@ -952,9 +1075,14 @@ const HackerHallOfFame = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: '55%',
+          width: '80%',
+
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
@@ -966,45 +1094,81 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
+              display: 'flex',
+              flexDirection: 'row',
+
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
+                flexDirection: 'column',
               },
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
                     '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
-
+                      mx: 'auto',
                       ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
-
-                      width: '65%',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
@@ -1034,7 +1198,12 @@ const HackerHallOfFame = () => {
             display: 'flex',
             alignItems: 'center',
             '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'large',
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1051,9 +1220,14 @@ const HackerHallOfFame = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: '55%',
+          width: '80%',
+
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
@@ -1065,46 +1239,84 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
+              display: 'flex',
+              flexDirection: 'row',
 
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
+                flexDirection: 'column',
               },
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  width: '80%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+
+                    width: '100%',
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
                     '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
-
+                      mx: 'auto',
                       ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
-
-                      width: '70%',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
@@ -1134,7 +1346,12 @@ const HackerHallOfFame = () => {
             display: 'flex',
             alignItems: 'center',
             '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'large',
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1148,9 +1365,14 @@ const HackerHallOfFame = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: '55%',
+          width: '80%',
+
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
@@ -1162,45 +1384,84 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
+              display: 'flex',
+              flexDirection: 'row',
+
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
+                flexDirection: 'column',
               },
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  width: '80%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+
+                    width: '100%',
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
                     '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
-
+                      mx: 'auto',
                       ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
-
-                      width: '70%',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
@@ -1230,7 +1491,12 @@ const HackerHallOfFame = () => {
             display: 'flex',
             alignItems: 'center',
             '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'large',
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1302,7 +1568,12 @@ const HackerHallOfFame = () => {
             display: 'flex',
             alignItems: 'center',
             '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'large',
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
               textAlign: 'center',
               fontWeight: 'bold',
             },
@@ -1318,9 +1589,14 @@ const HackerHallOfFame = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: '55%',
+          width: '80%',
+
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
@@ -1332,46 +1608,84 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
+              display: 'flex',
+              flexDirection: 'row',
+
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
+                flexDirection: 'column',
               },
-
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  width: '80%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+
+                    width: '100%',
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
                     '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
-
+                      mx: 'auto',
                       ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
-
-                      width: '70%',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
@@ -1396,7 +1710,20 @@ const HackerHallOfFame = () => {
         <Typography
           variant="h6"
           gutterBottom
-          sx={{ display: 'flex', alignItems: 'center', fontWeight: 'bold' }}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            '@media (min-width:375px) and (max-width:500px)': {
+              fontSize: 'medium',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              fontSize: 'x-large',
+              textAlign: 'center',
+              fontWeight: 'bold',
+            },
+          }}
         >
           Individual Contributors
         </Typography>
@@ -1405,13 +1732,18 @@ const HackerHallOfFame = () => {
       <Container
         maxWidth={false}
         sx={{
-          width: '55%',
+          width: '80%',
+
+          '@media (min-width:375px) and (max-width:500px)': {
+            width: '100%',
+          },
+
           '@media (min-width:768px) and (max-width:1200px)': {
-            width: '95%',
+            width: '100%',
           },
         }}
       >
-        {individualContributors.map((person, index) => (
+        {orcaContributors.map((person, index) => (
           <Grid
             container
             item
@@ -1419,45 +1751,84 @@ const HackerHallOfFame = () => {
             key={index}
             sx={{
               mb: 3,
+              display: 'flex',
+              flexDirection: 'row',
+
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '100%',
+                flexDirection: 'column',
               },
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '100%',
+                textAlign: 'left',
               },
             }}
           >
-            <Grid item xs={12} sm={5}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '20%',
+
+                m: 'auto',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+                  textAlign: 'center',
+                },
+                '@media (min-width:768px) and (max-width:1200px)': {
+                  width: '30%',
+                  ml: 0,
+                },
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: '20px',
                   fontWeight: '500',
                   lineHeight: '140%',
+                  ml: 10,
+                  width: '80%',
+                  '@media (min-width:375px) and (max-width:500px)': {
+                    ml: 0,
+
+                    width: '100%',
+                  },
+                  '@media (min-width:768px) and (max-width:1200px)': {
+                    ml: 1,
+                  },
                 }}
               >
                 {person.name}
               </Typography>
             </Grid>
 
-            <Grid item xs={12} sm={7}>
+            <Grid
+              size={{ xs: 12, sm: 5 }}
+              sx={{
+                width: '60%',
+                '@media (min-width:375px) and (max-width:500px)': {
+                  width: '100%',
+
+                  textAlign: 'center',
+                },
+              }}
+            >
               {person.roles.map((role, idx) => (
                 <Typography
                   key={idx}
                   sx={{
-                    ml: 15,
+                    ml: 20,
                     fontSize: '20px',
                     fontWeight: '500',
                     lineHeight: '140%',
                     '@media (min-width:375px) and (max-width:500px)': {
                       fontSize: 'small',
-
+                      mx: 'auto',
                       ml: 0,
                     },
                     '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'center',
-
-                      width: '70%',
+                      textAlign: 'left',
+                      mx: 'auto',
+                      width: '100%',
                     },
                   }}
                 >
