@@ -41,6 +41,21 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Donate page data
+
+The canonical list of Orcasound network partners shown on the Donate page lives at [`src/data/donatePartners.json`](src/data/donatePartners.json). Each partner has four fields:
+
+- `icon`: relative path to the partner logo asset under `public/`
+- `name`: partner organization name as displayed on the page
+- `description`: short copy displayed under the name
+- `linkTo`: destination URL when the user clicks Learn more
+
+The display component at [`src/components/Donate/DonatePartners.jsx`](src/components/Donate/DonatePartners.jsx) imports this data and renders mobile and desktop card variants. To add, remove, reorder, or update a partner, edit the JSON file and open a PR. The component does not need to change.
+
+For any Donate page change, use the [Donate page change issue template](.github/ISSUE_TEMPLATE/donate-page-change.yml) when filing the issue.
+
+The Orcasound support flow (Open Collective plus GitHub Sponsors links shown in the Support modal) currently lives inline at [`src/components/Donate/DonateOrcasound.tsx`](src/components/Donate/DonateOrcasound.tsx) and is tracked for a similar data extraction in a follow-up issue.
+
 # Contributing
 
 ``
