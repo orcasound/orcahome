@@ -407,12 +407,12 @@ export const GetInvolved = () => {
             your expertise and innovations with us, and maybe even earn your way
             into the{' '}
             <Link
-              href="https://www.orcasound.net/hacker-hall-of-fame/"
+              href="/hacker-hall-of-fame"
               style={{ textDecoration: 'underline', color: '#1B2B7B' }}
               onClick={() =>
-                pushToDataLayer('external_link_click', {
+                pushToDataLayer('jump_link_click', {
                   link_text: 'Orcasound Hacker Hall of Fame',
-                  destination: 'https://www.orcasound.net/hacker-hall-of-fame/',
+                  page: 'get_involved',
                 })
               }
             >
