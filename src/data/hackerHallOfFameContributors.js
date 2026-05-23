@@ -16,7 +16,7 @@ export const contributors = [
   },
   {
     name: 'Skander Mzali',
-    roles: ['Orcasound site (2017-2020)', 'Admin UI (2019)'],
+    roles: ['Orcasound site (2017-2020, 2023-2025)', 'Admin UI (2019)'],
     link: 'https://github.com/skanderm',
   },
   {
@@ -50,14 +50,15 @@ export const contributors = [
   {
     name: 'Ty Crisafulli',
     roles: [
-      '2017 Kickstarter and design guidance (2017+)',
-      'GSoC mentor (2021)',
+      '2017 Kickstarter Campaign creation.',
+      '2017+ Product Manager and UX Designer.',
+      '2021 Google Summer of Code mentor.',
     ],
     link: 'https://www.linkedin.com/in/tylercris',
   },
   {
-    name: 'Christian Sarason',
-    roles: ['Orcamap repository (2018+)'],
+    name: 'Christian P. Sarason',
+    roles: ['Orcamap 2018+'],
     link: 'https://www.linkedin.com/in/christiansarason',
   },
   {
