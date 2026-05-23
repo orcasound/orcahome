@@ -12,18 +12,22 @@ export const contributors = [
   {
     name: 'Paul Cretu',
     roles: ['Orcasound site & player (2017+)', 'GSoC mentor (2021)'],
+    link: '',
   },
   {
     name: 'Skander Mzali',
     roles: ['Orcasound site (2017-2020)', 'Admin UI (2019)'],
+    link: '',
   },
   {
     name: 'Steve Hicks',
     roles: ['Orcanode repository (2018+)', 'GSoC mentor (2020+)'],
+    link: '',
   },
   {
     name: 'Brendan Thatcher',
     roles: ['User research & UX team lead (2020+)', 'GSoC mentor (2021)'],
+    link: '',
   },
   {
     name: 'Val Veirs',
@@ -31,14 +35,17 @@ export const contributors = [
       'Node engineering and machine learning (2017+)',
       'GSoC mentor (2020+)',
     ],
+    link: '',
   },
   {
     name: 'Scott Veirs',
     roles: ['Project management (2017+)', 'GSoC mentor (2020+)'],
+    link: '',
   },
   {
     name: 'Mike Castor',
     roles: ['UI v2 implementation (2019-2020)'],
+    link: '',
   },
   {
     name: 'Ty Crisafulli',
@@ -46,10 +53,12 @@ export const contributors = [
       '2017 Kickstarter and design guidance (2017+)',
       'GSoC mentor (2021)',
     ],
+    link: '',
   },
   {
     name: 'Christian Sarason',
     roles: ['Orcamap repository (2018+)'],
+    link: 'https://www.linkedin.com/in/christiansarason',
   },
   {
     name: 'Valentina Staneva',
@@ -58,6 +67,7 @@ export const contributors = [
       'GSoC mentor and administrative lead (2020+)',
       'UW MS Data Science mentor (2022-23)',
     ],
+    link: '',
   },
   {
     name: 'Prakruti Gogia',
@@ -65,6 +75,7 @@ export const contributors = [
       'OrcaHello project manager',
       'Pod.Cast creator (Microsoft hackathons, 2019-2021)',
     ],
+    link: '',
   },
   {
     name: 'Akash Mahajan',
@@ -72,22 +83,27 @@ export const contributors = [
       'Pod.Cast creator',
       'OrcaHello ML developer (Microsoft, 2019-2020)',
     ],
+    link: '',
   },
   {
     name: 'Praful Mathur',
     roles: ['Experiment.com funding (2021)', 'GSoC mentor (2022)'],
+    link: '',
   },
   {
     name: 'Michelle Yang',
     roles: ['Microsoft hackathon project manager (2020+)'],
+    link: '',
   },
   {
     name: 'Jesse Lopez',
     roles: ['GSoC mentor (2020-2021)'],
+    link: '',
   },
   {
     name: 'Liam Reese',
     roles: ['Graphic design (2017+)'],
+    link: 'https://www.linkedin.com/in/liam-reese',
   },
 ]
 

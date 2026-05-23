@@ -29,6 +29,7 @@ import {
   orcaContributors,
   projectManagementContributors,
 } from '../data/hackerHallOfFameContributors'
+import { pushToDataLayer } from '../utils/gtm'
 
 const HackerHallOfFame = () => {
   return (
@@ -470,7 +471,18 @@ const HackerHallOfFame = () => {
                   },
                 }}
               >
-                {person.name}
+                <Link
+                  href={person.link}
+                  style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                  onClick={() =>
+                    pushToDataLayer('external_link_click', {
+                      link_text: person.name,
+                      destination: person.link,
+                    })
+                  }
+                >
+                  {person.name}
+                </Link>
               </Typography>
             </Grid>
 
