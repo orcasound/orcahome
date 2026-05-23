@@ -667,6 +667,7 @@ const HackerHallOfFame = () => {
           >
             <Grid
               size={{ xs: 12, sm: 5 }}
+              spacing={0}
               sx={{
                 textAlign: 'left',
                 flexDirection: 'row',
@@ -687,20 +688,52 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: 500,
-                  lineHeight: '140%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    mx: 'auto',
-                    m: 0,
-                    fontSize: 'medium',
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      width: 'auto',
+                    },
+                  }}
+                >
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+
+                    width: '80%',
+
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                    sx={{ border: '2px solid red' }}
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
 
               <Typography
                 sx={{
@@ -711,6 +744,8 @@ const HackerHallOfFame = () => {
 
                   '@media (min-width:375px) and (max-width:500px)': {
                     fontSize: 'medium',
+                    pt: 0.4,
+                    textAlign: 'center',
                   },
                 }}
               >
@@ -848,22 +883,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -993,25 +1066,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1138,25 +1246,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1362,25 +1505,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1505,25 +1683,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
