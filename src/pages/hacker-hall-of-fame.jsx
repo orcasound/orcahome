@@ -1540,6 +1540,7 @@ const HackerHallOfFame = () => {
           alignItems: 'center',
           m: 'auto',
           gap: 10,
+
           '@media (min-width:375px) and (max-width:500px)': {
             gap: 0,
             m: 0,
@@ -1577,7 +1578,6 @@ const HackerHallOfFame = () => {
             style={{
               objectFit: 'cover',
               width: '50%',
-
               borderRadius: '20px',
             }}
           />
@@ -1593,16 +1593,16 @@ const HackerHallOfFame = () => {
             gridTemplateColumns: '100%',
 
             width: '30%',
-            height: '20em',
-
+            height: '19em',
+            mt: -2,
             '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
               mt: -8,
             },
             '@media (min-width:768px) and (max-width:1200px)': {
               width: '40%',
-              mt: -5,
-
+              height: '21em',
+              mt: -3,
               mr: 3,
             },
           }}
@@ -1612,9 +1612,8 @@ const HackerHallOfFame = () => {
             alt="Val working on the Orcanode software and hardware."
             fill
             style={{
-              objectFit: 'cover',
+              objectFit: 'contain',
               width: '50%',
-
               borderRadius: '20px',
             }}
           />
