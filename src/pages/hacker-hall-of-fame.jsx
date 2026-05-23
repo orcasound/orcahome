@@ -1866,6 +1866,7 @@ const HackerHallOfFame = () => {
             display: 'grid',
             gridTemplateColumns: '100%',
             width: '30%',
+
             height: '20em',
             '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
@@ -1901,6 +1902,7 @@ const HackerHallOfFame = () => {
           sx={{
             display: 'grid',
             gridTemplateColumns: '100%',
+
             width: '30%',
             height: '20em',
 
