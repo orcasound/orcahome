@@ -454,36 +454,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                <Link
-                  href={person.link}
-                  style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                  onClick={() =>
-                    pushToDataLayer('external_link_click', {
-                      link_text: person.name,
-                      destination: person.link,
-                    })
-                  }
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
                 >
+                  {' '}
                   {person.name}
-                </Link>
-              </Typography>
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
