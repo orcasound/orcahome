@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
-import { Link as ScrollLink } from 'react-scroll'
 
 import audioS01 from '../../public/audio/FO-S01.mp3'
 import audioS16 from '../../public/audio/FO-S16.mp3'
