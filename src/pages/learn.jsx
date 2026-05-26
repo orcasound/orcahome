@@ -16,6 +16,7 @@ import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import salishsea from '../../public/images/salishsea.png'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
+import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
 
@@ -65,46 +66,11 @@ export const learn = () => {
         pageDesc={`You'll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape.`}
         scrollToId={`learn`}
       />
-      <div id="learn" />
+      <Box id="learn" sx={{ mt: 6 }} />
 
-      {/* Content Container */}
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
-        {/* Jump Links Navigation */}
-        <Box component="nav" sx={{ my: 6 }}>
-          <Box
-            component="ul"
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              flexWrap: 'wrap',
-              gap: 1.5,
-              justifyContent: 'center',
-              listStyle: 'none',
-              padding: 0,
-              margin: 0,
-            }}
-          >
-            {navLinks.map((link) => (
-              <Box component="li" key={link.id}>
-                <NavLink
-                  to={link.id}
-                  smooth={true}
-                  spy={true}
-                  offset={-80}
-                  onClick={() =>
-                    pushToDataLayer('jump_link_click', {
-                      link_text: link.name,
-                      page: 'learn',
-                    })
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              </Box>
-            ))}
-          </Box>
-        </Box>
+      <StickyNav navLinks={navLinks} />
 
+      <Container maxWidth="lg">
         {/* Sounds of the Salish Sea Section */}
         <Box component="section" id="salish-sea" sx={{ my: 8 }}>
           <Typography variant="h3" component="h1" fontWeight="600" mb={3}>
@@ -149,7 +115,6 @@ export const learn = () => {
             />
           </Box> */}
         </Box>
-
         {/* 3 Common Calls Section */}
         <Box component="section" id="common-calls" sx={{ my: 8 }}>
           <Typography variant="h4" component="h2" fontWeight="600" mb={2}>
@@ -338,9 +303,7 @@ export const learn = () => {
           <CallCatalogGrid />
         </Container>
       </Box>
-
-      {/* Organization Logos */}
-      <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
+      <Container maxWidth="lg">
         {/* Exhibits Section */}
         <Box component="section" id="exhibits" sx={{ my: 8 }}>
           <Typography variant="h4" component="h2" fontWeight="600" mb={3}>
