@@ -20,22 +20,6 @@ import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
 
-const NavLink = styled(ScrollLink)(() => ({
-  display: 'block',
-  padding: '12px 24px',
-  backgroundColor: '#1e3a8a',
-  color: 'white',
-  borderRadius: '8px',
-  fontWeight: 500,
-  fontSize: '16px',
-  cursor: 'pointer',
-  transition: 'background-color 0.2s',
-  textDecoration: 'none',
-  '&:hover': {
-    backgroundColor: '#1d4ed8',
-  },
-}))
-
 const CallCard = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
   borderRadius: '8px',
