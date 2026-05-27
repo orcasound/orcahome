@@ -105,7 +105,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
       const handleClick = (e: React.MouseEvent) => {
         if (child.props && typeof child.props.onClick === 'function')
           child.props.onClick(e)
-        if (!e.defaultPrevented) router.push(href as any)
+        if (!e.defaultPrevented) router.push(href as string)
       }
       return React.cloneElement(child, {
         className: childClassName,
