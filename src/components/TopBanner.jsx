@@ -76,12 +76,6 @@ const TopBanner = ({
   scrollToId,
   imageFilter,
 }) => {
-  const [checked, setChecked] = useState(false)
-
-  useEffect(() => {
-    setChecked(true)
-  }, [])
-
   return (
     <TopScreen>
       <Box
@@ -107,11 +101,8 @@ const TopBanner = ({
           }}
         />
       </Box>
-      <Slide
-        in={checked}
-        direction="up"
-        {...(checked ? { timeout: 1000 } : {})}
-      >
+      {/* TODO: this doesn't seem to be handling the animation, it works without this tag, investigate */}
+      <Slide in={true} direction="up" timeout={1000}>
         <TitleScreen>
           <Typography
             variant="h1"
