@@ -129,10 +129,6 @@ export default function CatalogCallList({ activePod }) {
   }, [filteredCalls, page])
 
   useEffect(() => {
-    setPage(1)
-  }, [activePod])
-
-  useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause()
