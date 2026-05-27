@@ -29,7 +29,6 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     className: classNameProps,
     href,
     noLinkStyle,
-    role,
     children,
     ...other
   } = props
