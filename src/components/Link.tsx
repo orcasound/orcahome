@@ -48,7 +48,12 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   if (isExternal) {
     if (noLinkStyle) {
       return (
-        <Anchor className={className} href={href} ref={ref} {...other}>
+        <Anchor
+          className={className}
+          href={href}
+          ref={ref}
+          {...(other as React.HTMLAttributes<HTMLAnchorElement>)}
+        >
           {children}
         </Anchor>
       )
@@ -119,7 +124,11 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   if (noLinkStyle) {
     return (
       <NextLink href={href} as={linkAs} legacyBehavior>
-        <Anchor className={className} ref={ref} {...other}>
+        <Anchor
+          className={className}
+          ref={ref}
+          {...(other as React.HTMLAttributes<HTMLAnchorElement>)}
+        >
           {children}
         </Anchor>
       </NextLink>
