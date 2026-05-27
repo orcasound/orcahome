@@ -35,8 +35,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   } = props
 
   const router = useRouter()
-  const pathname =
-    typeof href === 'string' ? href : href && (href as any).pathname
+  const pathname = typeof href === 'string' ? href : href && href.pathname
   const currentPath =
     (router.asPath && String(router.asPath).split('?')[0]) || router.pathname
   const className = clsx(classNameProps, {
@@ -50,14 +49,14 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
   if (isExternal) {
     if (noLinkStyle) {
       return (
-        <Anchor className={className} href={href as any} ref={ref} {...other}>
+        <Anchor className={className} href={href} ref={ref} {...other}>
           {children}
         </Anchor>
       )
     }
 
     return (
-      <MuiLink className={className} href={href as any} ref={ref} {...other}>
+      <MuiLink className={className} href={href} ref={ref} {...other}>
         {children}
       </MuiLink>
     )
