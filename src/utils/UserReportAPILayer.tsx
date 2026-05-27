@@ -4,6 +4,16 @@ import { useEffect, useState } from 'react'
 import { LastDetection } from '../components/LastDetection'
 //Feel free to add additional GraphQL queries as needed
 
+interface DetectionEntry {
+  timestamp: string
+}
+
+interface DetectionsData {
+  detections: {
+    entries: DetectionEntry[]
+  }
+}
+
 export const UserReportAPILayer = (): JSX.Element => {
   const [date, setDate] = useState<string>('')
 
@@ -30,8 +40,12 @@ export const UserReportAPILayer = (): JSX.Element => {
         pageSize: 10,
       },
     }
-    request('https://live.orcasound.net/graphql', detectionQuery, variables)
-      .then((data: any): any => {
+    request<DetectionsData>(
+      'https://live.orcasound.net/graphql',
+      detectionQuery,
+      variables
+    )
+      .then((data): void => {
         //Reformatting of time data for LastDetection component
         //Array time data
         if (
