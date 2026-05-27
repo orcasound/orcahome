@@ -138,18 +138,6 @@ export default function CatalogCallList({ activePod }) {
     }
   }, [])
 
-  useEffect(() => {
-    const visibleCallIds = new Set(pagedCalls.map((call) => call.id))
-
-    if (currentlyPlaying && !visibleCallIds.has(currentlyPlaying)) {
-      handleStop()
-    }
-
-    if (expandedId && !visibleCallIds.has(expandedId)) {
-      setExpandedId(null)
-    }
-  }, [pagedCalls, currentlyPlaying, expandedId, handleStop])
-
   return (
     <Box>
       <Divider sx={{ borderColor: '#000' }} />
@@ -173,7 +161,11 @@ export default function CatalogCallList({ activePod }) {
           <Pagination
             count={pageCount}
             page={page}
-            onChange={(_, value) => setPage(value)}
+            onChange={(_, value) => {
+              setPage(value)
+              handleStop()
+              setExpandedId(null)
+            }}
             shape="rounded"
           />
         </Box>
