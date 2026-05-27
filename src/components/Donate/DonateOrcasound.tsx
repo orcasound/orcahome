@@ -24,7 +24,7 @@ interface DonateOrcasoundProps {
   donateVolunteersMessage?: string
 }
 
-const DonateContainer = styled(Box)(({ theme }) => ({
+const DonateContainer = styled(Box)(({}) => ({
   margin: '2vw 0',
   flex: 1,
   borderRadius: '15px',
@@ -35,7 +35,7 @@ const DonateContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
 }))
 
-const ImageContainer = styled(Box)(({ theme }) => ({
+const ImageContainer = styled(Box)(({}) => ({
   borderRadius: '1em',
   overflow: 'hidden',
   margin: '0 10px',
