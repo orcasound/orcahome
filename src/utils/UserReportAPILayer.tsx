@@ -60,14 +60,14 @@ export const UserReportAPILayer = (): JSX.Element => {
             .replace('Z', '')
             .replace('T', '-')
             .replace('/-/g', '/')
-          const splitChars: any = replaceChars.split('-')
+          const splitChars: string[] = replaceChars.split('-')
           setDate(splitChars[1] + '-' + splitChars[2] + '-' + splitChars[0])
         } else {
           // Handle case where no detection entries are available
           setDate('No detection data')
         }
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         console.error('Error fetching detections:', error)
         setDate('Error fetching data')
       })
