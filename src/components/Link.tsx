@@ -32,7 +32,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     role,
     children,
     ...other
-  } = props as any
+  } = props
 
   const router = useRouter()
   const pathname =
