@@ -17,8 +17,8 @@ import Image from 'next/image'
 
 import hackathon from '../../public/images/getinvolved/hackathon.png'
 import HackerBanner from '../../public/images/Hacker_HOF.webp'
-import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.PNG'
-import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
+import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.png'
+import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.png'
 import TopBanner from '../components/TopBanner'
 import {
   arcatiaContributors,
