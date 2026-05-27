@@ -106,7 +106,13 @@ const TopBanner = ({
         <TitleScreen>
           <Typography
             variant="h1"
-            sx={{ fontSize: '10vw', marginBottom: '2vw', fontWeight: '500' }}
+            sx={{
+              fontSize: '10vw',
+              marginBottom: '2vw',
+              fontWeight: '500',
+              textAlign: 'center',
+              width: '100vw',
+            }}
           >
             {pageTitle}
           </Typography>
