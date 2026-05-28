@@ -15,6 +15,7 @@ import React, { useState } from 'react'
 import orcaShipsImg from '../../../public/images/about/orca-ships.webp'
 import hackathonImg from '../../../public/images/getinvolved/hackathon.png'
 import srkw2Img from '../../../public/images/srkw2-10.jpg'
+import { pushToDataLayer } from '../../utils/gtm'
 
 const CONTENT_MAX_WIDTH = '1033px'
 
@@ -89,7 +90,8 @@ const SupportOrcasound = () => {
                 The only way you can donate to Orcasound is through our
                 partner-organizations. Help us and our{' '}
                 <Box
-                  component="span"
+                  component="a"
+                  href="#network-partners"
                   sx={{
                     color: '#1B2B7B',
                     textDecoration: 'underline',
@@ -123,7 +125,13 @@ const SupportOrcasound = () => {
             </Box>
             <Button
               variant="contained"
-              onClick={() => setModalOpen(true)}
+              onClick={() => {
+                setModalOpen(true)
+                pushToDataLayer('cta_click', {
+                  section: 'support_orcasound',
+                  variant: 'v2',
+                })
+              }}
               sx={{
                 backgroundColor: '#1B2B7B',
                 borderRadius: '30px',

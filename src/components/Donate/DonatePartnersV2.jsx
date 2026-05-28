@@ -1,6 +1,7 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 
 import partners from '../../data/donatePartnersV2.json'
+import { pushToDataLayer } from '../../utils/gtm'
 
 const PARTNERS_COPY_MAX_WIDTH = '1160px'
 const PARTNERS_GRID_MAX_WIDTH = '1245px'
@@ -9,7 +10,7 @@ const DonatePartnersV2 = () => {
   return (
     <>
       {/* Heading */}
-      <Box component="section">
+      <Box component="section" id="network-partners">
         <Container maxWidth="xl">
           <Box
             sx={{
@@ -48,7 +49,7 @@ const DonatePartnersV2 = () => {
               }}
             >
               Your way of contributing is through these organizations directly
-              to Orcasound is non-profit.
+              to Orcasound, a non-profit.
             </Typography>
             <Typography
               sx={{
@@ -60,8 +61,8 @@ const DonatePartnersV2 = () => {
                 color: '#000000',
               }}
             >
-              Going through these organization you can make a donation and
-              support marine life around you
+              Going through these organizations you can make a donation and
+              support marine life around you.
             </Typography>
           </Box>
         </Container>
@@ -92,9 +93,9 @@ const DonatePartnersV2 = () => {
               justifyContent: 'center',
             }}
           >
-            {partners.map((partner, index) => (
+            {partners.map((partner) => (
               <Box
-                key={index}
+                key={partner.name}
                 sx={{
                   width: '100%',
                   height: { xs: 'auto', lg: '406px' },
@@ -184,6 +185,12 @@ const DonatePartnersV2 = () => {
                   href={partner.linkTo}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() =>
+                    pushToDataLayer('partner_link_click', {
+                      partner_name: partner.name,
+                      variant: 'v2',
+                    })
+                  }
                   sx={{
                     backgroundColor: '#1B2B7B',
                     borderRadius: '9.13px',
