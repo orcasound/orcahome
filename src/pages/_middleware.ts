@@ -8,7 +8,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  const existingVariant = req.cookies[COOKIE_NAME]
+  const existingVariant = req.cookies.get(COOKIE_NAME)
   const variant = VARIANTS.includes(existingVariant as typeof VARIANTS[number])
     ? existingVariant
     : Math.random() < 0.5
@@ -21,10 +21,10 @@ export function middleware(req: NextRequest) {
   const response = NextResponse.rewrite(url)
 
   if (!existingVariant) {
-    response.headers.set(
-      'Set-Cookie',
-      `${COOKIE_NAME}=${variant}; Path=/; Max-Age=${60 * 60 * 24 * 30}`
-    )
+    response.cookies.set(COOKIE_NAME, variant as string, {
+      maxAge: 60 * 60 * 24 * 30,
+      path: '/',
+    })
   }
 
   return response
