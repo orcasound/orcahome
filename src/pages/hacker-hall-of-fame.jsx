@@ -20,328 +20,18 @@ import HackerBanner from '../../public/images/Hacker_HOF.webp'
 import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.PNG'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.PNG'
 import TopBanner from '../components/TopBanner'
+import {
+  arcatiaContributors,
+  contributors,
+  googleContributors,
+  individualContributors,
+  liveContributors,
+  orcaContributors,
+  projectManagementContributors,
+} from '../data/hackerHallOfFameContributors'
+import { pushToDataLayer } from '../utils/gtm'
 
 const HackerHallOfFame = () => {
-  // all contributor arrays
-  // Founders array
-  const contributors = [
-    {
-      name: 'Paul Cretu',
-      roles: ['Orcasound site & player (2017+)', 'GSoC mentor (2021)'],
-    },
-    {
-      name: 'Skander Mzali',
-      roles: ['Orcasound site (2017-2020)', 'Admin UI (2019)'],
-    },
-    {
-      name: 'Steve Hicks',
-      roles: ['Orcanode repository (2018+)', 'GSoC mentor (2020+)'],
-    },
-    {
-      name: 'Brendan Thatcher',
-      roles: ['User research & UX team lead (2020+)', 'GSoC mentor (2021)'],
-    },
-    {
-      name: 'Val Veirs',
-      roles: [
-        'Node engineering and machine learning (2017+)',
-        'GSoC mentor (2020+)',
-      ],
-    },
-    {
-      name: 'Scott Veirs',
-      roles: ['Project management (2017+)', 'GSoC mentor (2020+)'],
-    },
-    {
-      name: 'Mike Castor',
-      roles: ['UI v2 implementation (2019-2020)'],
-    },
-    {
-      name: 'Ty Crisafulli',
-      roles: [
-        '2017 Kickstarter and design guidance (2017+)',
-        'GSoC mentor (2021)',
-      ],
-    },
-    {
-      name: 'Christian Sarason',
-      roles: ['Orcamap repository (2018+)'],
-    },
-    {
-      name: 'Valentina Staneva',
-      roles: [
-        'Microsoft AI4Earth Innovation Grant lead (2019)',
-        'GSoC mentor and administrative lead (2020+)',
-        'UW MS Data Science mentor (2022-23)',
-      ],
-    },
-    {
-      name: 'Prakruti Gogia',
-      roles: [
-        'OrcaHello project manager',
-        'Pod.Cast creator (Microsoft hackathons, 2019-2021)',
-      ],
-    },
-    {
-      name: 'Akash Mahajan',
-      roles: [
-        'Pod.Cast creator',
-        'OrcaHello ML developer (Microsoft, 2019-2020)',
-      ],
-    },
-    {
-      name: 'Praful Mathur',
-      roles: ['Experiment.com funding (2021)', 'GSoC mentor (2022)'],
-    },
-    {
-      name: 'Michelle Yang',
-      roles: ['Microsoft hackathon project manager (2020+)'],
-    },
-    {
-      name: 'Jesse Lopez',
-      roles: ['GSoC mentor (2020-2021)'],
-    },
-    {
-      name: 'Liam Reese',
-      roles: ['Graphic design (2017+)'],
-    },
-  ]
-
-  // google contributors
-  const googleContributors = [
-    {
-      name: 'Kunal Mehta',
-      country: '(India)',
-      roles: ['GSoC contributor (2020)', 'GSoC mentor (2021)'],
-    },
-    {
-      name: 'Diego Roderiguez',
-      country: '(Mexico)',
-      roles: ['GSoC contributor (2020)'],
-    },
-    {
-      name: 'Isabella Macchiavello',
-      country: '(Ecuador)',
-      roles: ['GSoC contributor (2021)'],
-    },
-    {
-      name: 'Dmitry Volodin',
-      country: '(Russia)',
-      roles: ['GSoC contributor (2021)'],
-    },
-    {
-      name: 'Dhananjay Purohit',
-      country: '(India)',
-      roles: ['GSoC contributor (2021)'],
-    },
-    {
-      name: 'Jose Giraldo',
-      country: '(Colombia, Spain)',
-      roles: ['GSoC contributor (2021)'],
-    },
-    {
-      name: 'Ambra Jin',
-      country: '(Italy, UK, Germany)',
-      roles: ['GSoC contributor (2022)'],
-    },
-    {
-      name: 'Devdoot Chatterjee',
-      country: '(India)',
-      roles: ['GSoC contributor (2022)'],
-    },
-    {
-      name: 'Benjamin Chew',
-      country: '(Singapore, USA)',
-      roles: ['GSoC contributor (2022)'],
-    },
-    {
-      name: 'Karan Mishra',
-      country: '(India)',
-      roles: ['GSoC contributor (2022)'],
-    },
-    {
-      name: 'Paul Nguyen Hong Duc',
-      country: '(France, Canada)',
-      roles: ['GSoC mentor (2022)'],
-    },
-  ]
-
-  // Live Listening contributors
-  const liveContributors = [
-    {
-      name: 'Zarema Ross',
-      roles: ['UX/UI/design project manager (2021+)'],
-    },
-    {
-      name: 'Elena Bukhonok',
-      roles: ['UX/UI/design project manager (2020-21)'],
-    },
-    {
-      name: 'Sam St Michael',
-      roles: ['Design, branding, social media (2020+)'],
-    },
-    {
-      name: 'James Pedersen',
-      roles: ['Full stack developer (2020)'],
-    },
-    {
-      name: 'Michelle Bocklage',
-      roles: [],
-    },
-    {
-      name: 'Kristen Gillaspy',
-      roles: [],
-    },
-    {
-      name: 'Wei Li',
-      roles: [],
-    },
-    {
-      name: 'Catherine Zeng',
-      roles: [],
-    },
-    {
-      name: 'Carina Cheng',
-      roles: [],
-    },
-  ]
-
-  // arcatia contributors
-  const arcatiaContributors = [
-    {
-      name: 'Maria Palamar',
-      roles: ['Facilitation & user research (2020+)'],
-    },
-    {
-      name: 'Graise Lee Jenni',
-      roles: ['Facilitation & user research (2020+)'],
-    },
-    {
-      name: 'Ali Alaydrus',
-      roles: ['Development (2020; 2022-3)'],
-    },
-    {
-      name: 'Peter Ince',
-      roles: ['Development (2020-22)'],
-    },
-    {
-      name: 'Nick Bryne',
-      roles: ['Design & Project Management (2020-21)'],
-    },
-    {
-      name: 'Virgil Zetterlind',
-      roles: ['Data Exchange + Mobile App Customization (2019+)'],
-    },
-  ]
-
-  // project management contributors
-  const projectManagementContributors = [
-    {
-      name: 'Firuze Gokce',
-      roles: ['Project Manager, Fundraising (2022-23)'],
-    },
-    {
-      name: 'Heather Gordon',
-      roles: ['Project Manager (2021-2)'],
-    },
-    {
-      name: 'Sanjari Jain',
-      roles: ['Project Manager (2021)'],
-    },
-    {
-      name: 'Garima Chandra',
-      roles: ['Development Project Manager (2021)'],
-    },
-  ]
-
-  // orca hello contributors
-  const orcaContributors = [
-    {
-      name: 'Prakruti Gogia',
-      roles: ['Overall Lead'],
-    },
-    {
-      name: 'Mike Cowan',
-      roles: ['Moderation system, Front End'],
-    },
-    {
-      name: 'Claire Goetschel',
-      roles: ['Moderation system, Design'],
-    },
-    {
-      name: 'Akash Mahajan',
-      roles: ['Annotation System'],
-    },
-    {
-      name: 'Aayush Agrawal',
-      roles: ['Machine Learning Development'],
-    },
-    {
-      name: 'Chris Hanke',
-      roles: ['Public Relations'],
-    },
-    {
-      name: 'Adele Bai',
-      roles: ['Notification System'],
-    },
-    {
-      name: 'Michelle Yang',
-      roles: ['Azure Administration+'],
-    },
-  ]
-
-  // individual contributors array
-  const individualContributors = [
-    {
-      name: 'Erin',
-      roles: ['User-centered design of 2019 UI v2 (2019)'],
-    },
-    {
-      name: 'Shawn Vita',
-      roles: ['Implementation of 2019 UI v2 (2019)'],
-    },
-    {
-      name: 'Samantha Berk',
-      roles: ['Administrative back end (2018-19)'],
-    },
-    {
-      name: 'Nóra Mészáros',
-      roles: ['Graphic design (2017-2020)'],
-    },
-    {
-      name: 'Erika Pelaez',
-      roles: ['Machine learning (2018)'],
-    },
-    {
-      name: 'Jennifer Rogers',
-      roles: ['Machine learning & spectrograms from FLAC files (2018+)'],
-    },
-    {
-      name: 'Ivan Storck',
-      roles: ['Orcamap code clean-up & contribution standards (2020-21)'],
-    },
-    {
-      name: 'Joyce Liao',
-      roles: ['Orcanode repo & Raspberry Pi testing (2020+)'],
-    },
-    {
-      name: 'Adrian MacDonald',
-      roles: ['Content strategy, analytics, conservation impact (2021+)'],
-    },
-    {
-      name: 'Maria Palamar',
-      roles: ['Conservation impact (2020+)'],
-    },
-    {
-      name: 'Glenn Block',
-      roles: [],
-    },
-    {
-      name: 'Amie Dabu',
-      roles: [],
-    },
-  ]
-
   return (
     <>
       {/* title of the page Hacker Hall of Fame */}
@@ -764,25 +454,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -942,6 +667,7 @@ const HackerHallOfFame = () => {
           >
             <Grid
               size={{ xs: 12, sm: 5 }}
+              spacing={0}
               sx={{
                 textAlign: 'left',
                 flexDirection: 'row',
@@ -962,20 +688,52 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: 500,
-                  lineHeight: '140%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    mx: 'auto',
-                    m: 0,
-                    fontSize: 'medium',
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      width: 'auto',
+                    },
+                  }}
+                >
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+
+                    width: '80%',
+
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                    sx={{ border: '2px solid red' }}
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
 
               <Typography
                 sx={{
@@ -986,6 +744,8 @@ const HackerHallOfFame = () => {
 
                   '@media (min-width:375px) and (max-width:500px)': {
                     fontSize: 'medium',
+                    pt: 0.4,
+                    textAlign: 'center',
                   },
                 }}
               >
@@ -1123,22 +883,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1268,25 +1066,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1413,25 +1246,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1637,25 +1505,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1780,25 +1683,60 @@ const HackerHallOfFame = () => {
                 },
               }}
             >
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: '500',
-                  lineHeight: '140%',
-                  ml: 10,
-                  width: '80%',
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    ml: 0,
+              {person.link === '' ? (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
 
-                    width: '100%',
-                  },
-                  '@media (min-width:768px) and (max-width:1200px)': {
-                    ml: 1,
-                  },
-                }}
-              >
-                {person.name}
-              </Typography>
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  {person.name}
+                </Typography>
+              ) : (
+                <Typography
+                  sx={{
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    lineHeight: '140%',
+                    ml: 10,
+                    width: '80%',
+                    '@media (min-width:375px) and (max-width:500px)': {
+                      ml: 0,
+
+                      width: '100%',
+                    },
+                    '@media (min-width:768px) and (max-width:1200px)': {
+                      ml: 1,
+                    },
+                  }}
+                >
+                  {' '}
+                  <Link
+                    href={person.link}
+                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                    onClick={() =>
+                      pushToDataLayer('external_link_click', {
+                        link_text: person.name,
+                        destination: person.link,
+                      })
+                    }
+                  >
+                    {person.name}
+                  </Link>
+                </Typography>
+              )}
             </Grid>
 
             <Grid
@@ -1851,6 +1789,7 @@ const HackerHallOfFame = () => {
           alignItems: 'center',
           m: 'auto',
           gap: 10,
+
           '@media (min-width:375px) and (max-width:500px)': {
             gap: 0,
             m: 0,
@@ -1888,7 +1827,6 @@ const HackerHallOfFame = () => {
             style={{
               objectFit: 'cover',
               width: '50%',
-
               borderRadius: '20px',
             }}
           />
@@ -1904,16 +1842,16 @@ const HackerHallOfFame = () => {
             gridTemplateColumns: '100%',
 
             width: '30%',
-            height: '20em',
-
+            height: '19em',
+            mt: -2,
             '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
               mt: -8,
             },
             '@media (min-width:768px) and (max-width:1200px)': {
               width: '40%',
-              mt: -5,
-
+              height: '21em',
+              mt: -3,
               mr: 3,
             },
           }}
@@ -1923,9 +1861,8 @@ const HackerHallOfFame = () => {
             alt="Val working on the Orcanode software and hardware."
             fill
             style={{
-              objectFit: 'cover',
+              objectFit: 'contain',
               width: '50%',
-
               borderRadius: '20px',
             }}
           />
