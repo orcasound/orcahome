@@ -6,7 +6,7 @@ module.exports = {
   },
   images: {
     unoptimized: true,
-    domains: ['netlify.com'],
+    domains: ['netlify.com', 'www.netlify.com'],
   },
   webpack(config, options) {
     const { isServer } = options
