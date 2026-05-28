@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = 'donate-ab-test'
