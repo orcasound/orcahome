@@ -100,7 +100,7 @@ export default function Catalog() {
         </Box>
 
         {/* Call list */}
-        <CatalogCallList activePod={activePod} />
+        <CatalogCallList key={activePod} activePod={activePod} />
 
         {/* Image credit */}
         <Typography

@@ -101,28 +101,11 @@ export default function CatalogCallList({ activePod }) {
   }, [filteredCalls, page])
 
   useEffect(() => {
-    handleStop()
-    setPage(1)
-  }, [activePod, handleStop])
-
-  useEffect(() => {
     return () => {
       waveSurferRef.current?.stop()
       waveSurferRef.current = null
     }
   }, [])
-
-  useEffect(() => {
-    const visibleCallIds = new Set(pagedCalls.map((call) => call.id))
-
-    if (activeCallId && !visibleCallIds.has(activeCallId)) {
-      handleStop()
-    }
-
-    if (expandedId && !visibleCallIds.has(expandedId)) {
-      setExpandedId(null)
-    }
-  }, [pagedCalls, activeCallId, expandedId, handleStop])
 
   return (
     <Box>
@@ -174,6 +157,7 @@ export default function CatalogCallList({ activePod }) {
             onChange={(_, value) => {
               handleStop()
               setPage(value)
+              setExpandedId(null)
             }}
             shape="rounded"
           />
@@ -254,7 +238,11 @@ function CallRow({
                 alt={`Spectrogram for ${callLabel}`}
                 width={75}
                 height={75}
-                style={{ objectFit: 'cover' }}
+                style={{
+                  objectFit: 'cover',
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             ) : null}
           </Box>

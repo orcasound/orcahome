@@ -75,7 +75,6 @@ const DonatePartners = () => {
           and education efforts.
         </Typography>
       </TitleContainer>
-
       {/* Mobile */}
       <Box>
         {partners.map((partner, index) => (
@@ -99,6 +98,10 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
               <Typography sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
                 {partner.name}
@@ -133,7 +136,6 @@ const DonatePartners = () => {
           </MobilePartnerCard>
         ))}
       </Box>
-
       {/* Tablet & Laptop */}
       <Box>
         {partners.map((partner, index) => (
@@ -144,6 +146,10 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
             <Box

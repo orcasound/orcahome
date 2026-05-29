@@ -1,13 +1,16 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  eslint: {
-    dirs: ['.'], // run eslint on everything
-  },
   images: {
     unoptimized: true,
-    domains: ['netlify.com', 'www.netlify.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'netlify.com',
+      },
+    ],
   },
+  turbopack: {},
   webpack(config, options) {
     const { isServer } = options
     config.module.rules.push({

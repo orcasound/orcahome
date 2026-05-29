@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-server-import-in-page */
 import { NextRequest, NextResponse } from 'next/server'
 
 const COOKIE_NAME = 'donate-ab-test'
@@ -9,7 +8,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.next()
   }
 
-  const existingVariant = req.cookies.get(COOKIE_NAME)
+  const existingVariant = req.cookies.get(COOKIE_NAME)?.value
   const variant = VARIANTS.includes(existingVariant as typeof VARIANTS[number])
     ? existingVariant
     : Math.random() < 0.5

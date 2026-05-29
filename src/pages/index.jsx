@@ -37,8 +37,11 @@ export const index = () => {
         <Image
           src={orcas}
           alt="orca background image"
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
 
         <Box
@@ -146,7 +149,6 @@ export const index = () => {
           </ScrollElement>
         </Box>
       </Box>
-
       <Box
         id="what-is-orcasound"
         sx={{
@@ -433,6 +435,10 @@ export const index = () => {
             alt="Deploys by Netlify"
             width="114"
             height="51"
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </a>
       </Box>

@@ -70,7 +70,6 @@ export const GetInvolved = () => {
           especially for the Southern Resident Killer Whales that call the
           Salish Sea home. Check out the ways you can help below!`}
       />
-
       <Container maxWidth="lg">
         <Box component="nav" id="scroll-link" sx={{ my: 6 }}>
           <Box
@@ -181,23 +180,43 @@ export const GetInvolved = () => {
               <Image
                 alt="Val hacking node code."
                 src={valhacking}
-                style={{ width: '100%', height: 'auto' }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
               <Image
                 alt="Binaural hydrophone stand."
                 src={hydrophonestand}
-                style={{ width: '100%', height: 'auto' }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
             <Image
               alt="Lon does hydrophone wizardly!"
               src={lonhydrophone}
-              style={{ width: '100%', height: 'auto' }}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
             <Image
               alt="The live-streaming DIY solution."
               src={livediy}
-              style={{ width: '100%', height: 'auto' }}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxWidth: '100%',
+                height: 'auto',
+              }}
             />
           </Box>
           <Typography variant="body1">
@@ -240,7 +259,11 @@ export const GetInvolved = () => {
               <Image
                 alt="DemocracyLab Hackathon"
                 src={hackathon}
-                layout="responsive"
+                sizes="100vw"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
               />
             </Box>
             <Typography
@@ -325,7 +348,14 @@ export const GetInvolved = () => {
                     </Button>
                   </Box>
                   <TransformComponent>
-                    <Image src={roadmap} alt="roadmap" />
+                    <Image
+                      src={roadmap}
+                      alt="roadmap"
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
+                    />
                   </TransformComponent>
                 </>
               )}
@@ -589,8 +619,11 @@ export const GetInvolved = () => {
             <Image
               src={logo1}
               alt="The Whaletrail"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -614,8 +647,11 @@ export const GetInvolved = () => {
             <Image
               src={logo2}
               alt="Friends of Lime Kiln Society"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -639,8 +675,11 @@ export const GetInvolved = () => {
             <Image
               src={logo4}
               alt="Center for Whale Research"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -664,8 +703,11 @@ export const GetInvolved = () => {
             <Image
               src={logo6}
               alt="Deep Green Wilderness"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -689,8 +731,11 @@ export const GetInvolved = () => {
             <Image
               src={logo8}
               alt="Oceans Initiative"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -711,7 +756,15 @@ export const GetInvolved = () => {
               })
             }
           >
-            <Image src={logo9} alt="Pacmam" layout="fill" objectFit="contain" />
+            <Image
+              src={logo9}
+              alt="Pacmam"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
+            />
           </Box>
           <Box
             component="a"
@@ -734,8 +787,11 @@ export const GetInvolved = () => {
             <Image
               src={logo11}
               alt="Whale Scout"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -759,8 +815,11 @@ export const GetInvolved = () => {
             <Image
               src={logo12}
               alt="Orca Conservancy"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -784,8 +843,11 @@ export const GetInvolved = () => {
             <Image
               src={logo13}
               alt="Orca Network"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -809,8 +871,11 @@ export const GetInvolved = () => {
             <Image
               src={logo14}
               alt="Port Townsend Marine Science Center"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -834,8 +899,11 @@ export const GetInvolved = () => {
             <Image
               src={logo15}
               alt="Sound Action"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
           <Box
@@ -859,8 +927,11 @@ export const GetInvolved = () => {
             <Image
               src={logo16}
               alt="Vashon Nature Center"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
 
@@ -885,8 +956,11 @@ export const GetInvolved = () => {
             <Image
               src={logo18}
               alt="Orca Behavior Institute"
-              layout="fill"
-              objectFit="contain"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
             />
           </Box>
 
@@ -918,8 +992,11 @@ export const GetInvolved = () => {
               <Image
                 src={logo17}
                 alt="Project SeaWolf"
-                layout="fill"
-                objectFit="contain"
+                fill
+                sizes="100vw"
+                style={{
+                  objectFit: 'contain',
+                }}
               />
             </Box>
             <Typography

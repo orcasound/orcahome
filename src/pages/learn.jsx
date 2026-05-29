@@ -5,9 +5,6 @@ import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
 import { Link as ScrollLink } from 'react-scroll'
 
-import audioS01 from '../../public/audio/FO-S01.mp3'
-import audioS16 from '../../public/audio/FO-S16.mp3'
-import audioS19 from '../../public/audio/FO-S19.mp3'
 import LearnBanner from '../../public/images/learn.jpg'
 import callS01 from '../../public/images/learn/Call-S01.png'
 import callS16 from '../../public/images/learn/Call-S16.png'
@@ -18,6 +15,10 @@ import salishsea from '../../public/images/salishsea.png'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import TopBanner from '../components/TopBanner'
 import { pushToDataLayer } from '../utils/gtm'
+
+const audioS01 = '/audio/FO-S01.mp3'
+const audioS16 = '/audio/FO-S16.mp3'
+const audioS19 = '/audio/FO-S19.mp3'
 
 const NavLink = styled(ScrollLink)(() => ({
   display: 'block',
@@ -66,7 +67,6 @@ export const learn = () => {
         scrollToId={`learn`}
       />
       <div id="learn" />
-
       {/* Content Container */}
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
         {/* Jump Links Navigation */}
@@ -132,8 +132,11 @@ export const learn = () => {
                 alt="Sounds Of The Salish Sea"
                 width={800}
                 height={450}
-                layout="intrinsic"
                 quality={65}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
             </a>
           </Box>
@@ -180,6 +183,10 @@ export const learn = () => {
                 <Image
                   src={callS01}
                   alt="J Pod's call S01 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -216,6 +223,10 @@ export const learn = () => {
                 <Image
                   src={callS16}
                   alt="K Pod's call S16 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -251,6 +262,10 @@ export const learn = () => {
                 <Image
                   src={callS19}
                   alt="L Pod's call S19 - Frequency and Time"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </Box>
               <Typography variant="h6" fontWeight="600" mb={1}>
@@ -305,7 +320,6 @@ export const learn = () => {
           </Typography>
         </Box>
       </Container>
-
       {/* Call Catalog Section */}
       <Box
         component="section"
@@ -338,7 +352,6 @@ export const learn = () => {
           <CallCatalogGrid />
         </Container>
       </Box>
-
       {/* Organization Logos */}
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3, lg: 4 } }}>
         {/* Exhibits Section */}
@@ -350,7 +363,14 @@ export const learn = () => {
           {/* Seattle Aquarium */}
           <Box sx={{ mb: 4, textAlign: 'center' }}>
             <Box sx={{ mb: 2 }}>
-              <Image src={organization1} alt="Seattle Aquarium exhibit" />
+              <Image
+                src={organization1}
+                alt="Seattle Aquarium exhibit"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Typography variant="body1" fontSize="18px" color="text.secondary">
               For another tour of the sounds that are most commonly heard in the
@@ -362,7 +382,14 @@ export const learn = () => {
           {/* Marine Science Center */}
           <Box sx={{ mb: 4, textAlign: 'center' }}>
             <Box sx={{ mb: 2 }}>
-              <Image src={organization2} alt="Marine Science Center exhibit" />
+              <Image
+                src={organization2}
+                alt="Marine Science Center exhibit"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </Box>
             <Typography variant="body1" fontSize="18px" color="text.secondary">
               For a challenge beyond the three favorite calls of the SRKWs,
