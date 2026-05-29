@@ -29,7 +29,8 @@
     "react-dom": "^18.3.1",
     "react-scroll": "^1.8.4",
     "react-zoom-pan-pinch": "^3.7.0",
-    "use-sound": "^4.0.1"
+    "use-sound": "^4.0.1",
+    "wavesurfer.js": "^7.12.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

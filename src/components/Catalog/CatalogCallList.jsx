@@ -11,6 +11,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { pushToDataLayer } from '../../utils/gtm'
 import { CALLS } from './callsData'
 import { POD_KEY } from './constants'
+import WaveformPlayer from './WaveformPlayer'
 
 export { CALLS }
 
@@ -23,82 +24,53 @@ const PLAYER_ICON_SIZES = {
   downloadButton: { width: 24, height: 24, icon: 20 },
 }
 
-function clearAudioHandlers(audio) {
-  audio.ontimeupdate = null
-  audio.onended = null
-}
-
 export default function CatalogCallList({ activePod }) {
-  const [currentlyPlaying, setCurrentlyPlaying] = useState(null)
+  const [activeCallId, setActiveCallId] = useState(null)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [playbackTime, setPlaybackTime] = useState(0)
   const [isMuted, setIsMuted] = useState(false)
-  const audioRef = useRef(null)
+  const waveSurferRef = useRef(null)
   const [expandedId, setExpandedId] = useState(null)
   const [page, setPage] = useState(1)
 
-  const handlePlay = useCallback(
+  const handlePlayPause = useCallback(
     (call) => {
       if (!call.audio) return
 
-      if (audioRef.current) {
-        audioRef.current.pause()
-        clearAudioHandlers(audioRef.current)
-        audioRef.current.currentTime = 0
-      }
-
-      const audio = new Audio(call.audio)
-      audio.muted = isMuted
-      audioRef.current = audio
-      audio.ontimeupdate = () => {
-        if (audioRef.current === audio) setPlaybackTime(audio.currentTime)
-      }
-      audio.onended = () => {
-        if (audioRef.current !== audio) return
-        clearAudioHandlers(audio)
-        audioRef.current = null
-        setCurrentlyPlaying(null)
-        setPlaybackTime(0)
-      }
-
-      setPlaybackTime(0)
-      audio
-        .play()
-        .then(() => {
-          if (audioRef.current !== audio) return
-          setCurrentlyPlaying(call.id)
-          pushToDataLayer('audio_play', {
-            call_name: call.id,
-            section: 'call_catalog',
+      if (activeCallId === call.id) {
+        if (isPlaying) {
+          waveSurferRef.current?.pause()
+          setIsPlaying(false)
+        } else {
+          setIsPlaying(true)
+          waveSurferRef.current?.play().catch(() => {
+            setIsPlaying(false)
           })
-        })
-        .catch(() => {
-          if (audioRef.current !== audio) return
-          clearAudioHandlers(audio)
-          audioRef.current = null
-          setCurrentlyPlaying(null)
-          setPlaybackTime(0)
-        })
+        }
+        return
+      }
+
+      waveSurferRef.current?.stop()
+      waveSurferRef.current = null
+      setActiveCallId(call.id)
+      setIsPlaying(true)
+      setPlaybackTime(0)
     },
-    [isMuted]
+    [activeCallId, isPlaying]
   )
 
   const handleStop = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.pause()
-      clearAudioHandlers(audioRef.current)
-      audioRef.current.currentTime = 0
-      audioRef.current = null
-    }
-    setCurrentlyPlaying(null)
+    waveSurferRef.current?.stop()
+    waveSurferRef.current = null
+    setActiveCallId(null)
+    setIsPlaying(false)
     setPlaybackTime(0)
   }, [])
 
   const handleToggleMute = useCallback(() => {
     setIsMuted((currentMuted) => {
       const nextMuted = !currentMuted
-      if (audioRef.current) {
-        audioRef.current.muted = nextMuted
-      }
+      waveSurferRef.current?.setMuted(nextMuted)
       return nextMuted
     })
   }, [])
@@ -106,14 +78,14 @@ export default function CatalogCallList({ activePod }) {
   const handleToggle = useCallback(
     (callId) => {
       if (expandedId === callId) {
-        if (currentlyPlaying === callId) handleStop()
+        if (activeCallId === callId) handleStop()
         setExpandedId(null)
       } else {
-        if (currentlyPlaying !== null) handleStop()
+        if (activeCallId !== null) handleStop()
         setExpandedId(callId)
       }
     },
-    [expandedId, currentlyPlaying, handleStop]
+    [expandedId, activeCallId, handleStop]
   )
 
   const filteredCalls = useMemo(() => {
@@ -130,11 +102,8 @@ export default function CatalogCallList({ activePod }) {
 
   useEffect(() => {
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        clearAudioHandlers(audioRef.current)
-        audioRef.current = null
-      }
+      waveSurferRef.current?.stop()
+      waveSurferRef.current = null
     }
   }, [])
 
@@ -145,13 +114,37 @@ export default function CatalogCallList({ activePod }) {
         <CallRow
           key={call.id}
           call={call}
-          isPlaying={currentlyPlaying === call.id}
+          isActive={activeCallId === call.id}
+          isPlaying={activeCallId === call.id && isPlaying}
           expanded={expandedId === call.id}
-          playbackTime={currentlyPlaying === call.id ? playbackTime : 0}
+          playbackTime={activeCallId === call.id ? playbackTime : 0}
           isMuted={isMuted}
           onToggle={() => handleToggle(call.id)}
-          onPlay={() => handlePlay(call)}
+          onPlayPause={() => handlePlayPause(call)}
           onStop={handleStop}
+          onWaveSurferReady={(waveSurfer) => {
+            if (activeCallId === call.id) {
+              waveSurferRef.current = waveSurfer
+              waveSurfer?.setMuted(isMuted)
+            }
+          }}
+          onPlaybackStarted={() => {
+            if (activeCallId !== call.id) return
+            setIsPlaying(true)
+            pushToDataLayer('audio_play', {
+              call_name: call.id,
+              section: 'call_catalog',
+            })
+          }}
+          onPlaybackPaused={() => {
+            if (activeCallId === call.id) setIsPlaying(false)
+          }}
+          onPlaybackTimeChange={(time) => {
+            if (activeCallId === call.id) setPlaybackTime(time)
+          }}
+          onPlaybackError={() => {
+            if (activeCallId === call.id) handleStop()
+          }}
           onToggleMute={handleToggleMute}
           downloadPath={call.audio}
         />
@@ -162,8 +155,8 @@ export default function CatalogCallList({ activePod }) {
             count={pageCount}
             page={page}
             onChange={(_, value) => {
-              setPage(value)
               handleStop()
+              setPage(value)
               setExpandedId(null)
             }}
             shape="rounded"
@@ -176,13 +169,19 @@ export default function CatalogCallList({ activePod }) {
 
 function CallRow({
   call,
+  isActive,
   isPlaying,
   expanded,
   playbackTime,
   isMuted,
   onToggle,
-  onPlay,
+  onPlayPause,
   onStop,
+  onWaveSurferReady,
+  onPlaybackStarted,
+  onPlaybackPaused,
+  onPlaybackTimeChange,
+  onPlaybackError,
   onToggleMute,
   downloadPath,
 }) {
@@ -253,11 +252,7 @@ function CallRow({
             <IconButton
               onClick={(event) => {
                 event.stopPropagation()
-                if (isPlaying) {
-                  onStop()
-                } else {
-                  onPlay()
-                }
+                onPlayPause()
               }}
               aria-label={`${isPlaying ? 'Pause' : 'Play'} ${callLabel}`}
               sx={{
@@ -384,16 +379,18 @@ function CallRow({
               }}
             >
               <Box
-                component="img"
-                src={waveformSrc}
-                alt=""
-                aria-hidden="true"
-                sx={{
-                  display: 'block',
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                }}
+                component={isActive ? WaveformPlayer : StaticWaveform}
+                audioSrc={call.audio}
+                waveformSrc={waveformSrc}
+                isActive={isActive}
+                shouldPlay={isPlaying}
+                isMuted={isMuted}
+                onReady={onWaveSurferReady}
+                onPlaybackStarted={onPlaybackStarted}
+                onPlaybackPaused={onPlaybackPaused}
+                onPlaybackTimeChange={onPlaybackTimeChange}
+                onFinish={onStop}
+                onError={onPlaybackError}
               />
             </Box>
 
@@ -495,6 +492,23 @@ function CallRow({
       )}
       <Divider sx={{ borderColor: '#000' }} />
     </>
+  )
+}
+
+function StaticWaveform({ waveformSrc }) {
+  return (
+    <Box
+      component="img"
+      src={waveformSrc}
+      alt=""
+      aria-hidden="true"
+      sx={{
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+      }}
+    />
   )
 }
 

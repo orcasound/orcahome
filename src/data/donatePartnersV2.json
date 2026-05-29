@@ -1,0 +1,62 @@
+[
+  {
+    "icon": "/images/donatePartners/FOLKS-Orange.svg",
+    "name": "F.O.L.K.S.",
+    "description": "Friends of Lime Kiln Society, provides awe-inspiring experiences for all park visitors. Through volunteering and donations, participate in wonderful opportunities to create dynamic educational activities that stem from a diverse marine ecosystem.",
+    "linkTo": "https://folkssji.org/donate-today"
+  },
+  {
+    "icon": "/images/donatePartners/orca-behavior-institute-logo-white.svg",
+    "name": "Orca Behaviour Institute",
+    "description": "Become a member and help The Orca Behavior Institute (OBI) conduct non-invasive behavioral and acoustic research on the killer whales of the Salish Sea and beyond.",
+    "linkTo": "https://www.orcabehaviorinstitute.org/donate"
+  },
+  {
+    "icon": "/images/donatePartners/port townsend marine research center.svg",
+    "name": "Marine Science Center",
+    "description": "Help spread a message of ocean stewardship. Your donation, or membership to the Marine Science Center supports life-changing educational programs, nurtures marine animals, and drives vital scientific research.",
+    "linkTo": "https://ptmsc.org/donate/"
+  },
+  {
+    "icon": "/images/donatePartners/TheWhaleTrail-LogoSpyhop_RGB.svg",
+    "name": "The Whale Trail Donation",
+    "description": "Join the Whale Trail pod today! Your tax-deductible donation will make it easier for people to watch whales from shore, from California to British Columbia. Your help brings people together to learn about whales, when it matters.",
+    "linkTo": "https://thewhaletrail.org/connect/donate/"
+  },
+  {
+    "icon": "/images/getinvolved/CWR_logo.png",
+    "name": "Center for Whale Research",
+    "description": "Help CWR on their mission is to facilitate the recovery of this beloved population of Orcas through non-invasive scientific study, public awareness and education, and conservation action. Support their important work by becoming a member or donating.",
+    "linkTo": "https://www.whaleresearch.com/supportcwr"
+  },
+  {
+    "icon": "/images/getinvolved/deep-green-wilderness.svg",
+    "name": "Deep Green Wilderness",
+    "description": "Through their partners at the Ocean Foundation, help the Deep Green Wilderness community sustain marine wilderness.",
+    "linkTo": "https://www.deepgreenwilderness.com/donate"
+  },
+  {
+    "icon": "/images/donatePartners/Orca-Network-Logo.svg",
+    "name": "Orca Network",
+    "description": "Donate via PayPal, or shop the store to contribute to raising awareness of the whales of the Pacific Northwest, and the importance of providing them healthy and safe habitats.",
+    "linkTo": "https://www.orcanetwork.org/donate"
+  },
+  {
+    "icon": "/images/getinvolved/whale-scout.svg",
+    "name": "Whale Scout",
+    "description": "Join Whale Scout by Helpin' Out events where you can get your hands dirty helping salmon survive to become orca food. See a list of all their upcoming Helpin' Out Events. They provide all the tools and equipment! They just need your help to make a difference.",
+    "linkTo": "https://www.whalescout.org/"
+  },
+  {
+    "icon": "/images/getinvolved/Pacmam.svg",
+    "name": "Pac Mam",
+    "description": "Through innovative scientific research, engaging educational outreach, and hands-on learning opportunities. Help PacMam continue their groundbreaking research and education work in the Salish Sea! Each donation from you goes straight back into their impactful projects and programs.",
+    "linkTo": "https://www.pacmam.org/donate"
+  },
+  {
+    "icon": "/images/getinvolved/oceans-initiative.svg",
+    "name": "Oceans Initiative",
+    "description": "Oceans Initiative relies on your donations to do the ocean conservation work that they do. Through making a donation, or by symbolically adopting a dolphin, you provide funding to continue their non-invasive, long-term research and to further protect these marine mammals.",
+    "linkTo": "https://oceansinitiative.org/adopt-a-dolphin/"
+  }
+]

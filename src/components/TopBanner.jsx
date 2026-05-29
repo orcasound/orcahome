@@ -75,6 +75,7 @@ const TopBanner = ({
   pageDesc,
   scrollToId,
   imageFilter,
+  scrollButtonBottom = 0,
 }) => {
   return (
     <TopScreen>
@@ -118,6 +119,7 @@ const TopBanner = ({
           </Typography>
           <ScrollElement to={scrollToId} smooth={true} spy={true}>
             <ScrollDownButton
+              sx={{ bottom: scrollButtonBottom }}
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', {
                   page: pageTitle?.toLowerCase().replace(/ /g, '_'),
