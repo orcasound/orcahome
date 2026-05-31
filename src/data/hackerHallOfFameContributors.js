@@ -126,7 +126,7 @@ export const googleContributors = [
     name: 'Isabella Macchiavello',
     country: '(Ecuador)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/isabella-macchiavello-223338205/',
   },
   {
     name: 'Dmitry Volodin',
@@ -400,5 +400,10 @@ export const individualContributors = [
     name: 'Nick Mann',
     roles: ['UX Designer & Researcher (2023+)'],
     link: 'https://www.linkedin.com/in/manndesigner/',
+  },
+  {
+    name: 'Shivangi Agarwal',
+    roles: ['Product Manager (2023+)'],
+    link: 'https://www.linkedin.com/in/shivangi-agarwal-b4939119/ ',
   },
 ]
