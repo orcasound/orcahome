@@ -271,7 +271,7 @@ export const projectManagementContributors = [
   {
     name: 'Firuze Gokce',
     roles: ['Project Manager, Fundraising (2022-23)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/firuzegokce/',
   },
   {
     name: 'Heather Gordon',
