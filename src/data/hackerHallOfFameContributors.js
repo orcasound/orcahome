@@ -259,6 +259,11 @@ export const arcatiaContributors = [
     roles: ['Data Exchange + Mobile App Customization (2019+)'],
     link: '',
   },
+  {
+    name: 'Zoe Liu',
+    roles: ['Data Exchange + Mobile App Customization (2019+)'],
+    link: 'https://www.linkedin.com/in/liuzoe',
+  },
 ]
 
 // project management contributors
