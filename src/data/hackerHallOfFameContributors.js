@@ -162,7 +162,7 @@ export const googleContributors = [
     name: 'Benjamin Chew',
     country: '(Singapore, USA)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/benjamin-chew-74995886',
   },
   {
     name: 'Karan Mishra',
