@@ -257,7 +257,7 @@ export const arcatiaContributors = [
   {
     name: 'Virgil Zetterlind',
     roles: ['Data Exchange + Mobile App Customization (2019+)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/vzetterlind/',
   },
   {
     name: 'Zoe Liu',
