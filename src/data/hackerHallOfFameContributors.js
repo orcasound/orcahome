@@ -241,8 +241,8 @@ export const arcatiaContributors = [
   },
   {
     name: 'Ali Alaydrus',
-    roles: ['Development (2020; 2022-3)'],
-    link: '',
+    roles: ['Tech Lead for Acartia'],
+    link: 'https://www.linkedin.com/in/fadliealaydrus',
   },
   {
     name: 'Peter Ince',
