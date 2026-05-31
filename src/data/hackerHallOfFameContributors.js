@@ -222,8 +222,8 @@ export const liveContributors = [
   },
   {
     name: 'Carina Cheng',
-    roles: [],
-    link: '',
+    roles: ['UX Designer'],
+    link: 'https://www.linkedin.com/in/carina-cheng',
   },
 ]
 
