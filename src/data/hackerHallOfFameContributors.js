@@ -138,7 +138,7 @@ export const googleContributors = [
     name: 'Dhananjay Purohit',
     country: '(India)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://github.com/DhananjayPurohit',
   },
   {
     name: 'Jose Giraldo',
