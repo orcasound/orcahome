@@ -357,9 +357,9 @@ export const individualContributors = [
     link: '',
   },
   {
-    name: 'Jennifer Rogers',
+    name: 'Jennifer Brennan',
     roles: ['Machine learning & spectrograms from FLAC files (2018+)'],
-    link: '',
+    link: 'https://jenniferbrennan.github.io',
   },
   {
     name: 'Ivan Storck',
