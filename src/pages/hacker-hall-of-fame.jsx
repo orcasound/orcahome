@@ -1779,16 +1779,12 @@ const HackerHallOfFame = () => {
       </Container>
 
       {/*final pictures above footer */}
-      <Stack
-        direction={{
-          xs: 'column',
-          sm: 'row',
-        }}
+      <Box
         sx={{
+          display: 'flex',
+
           justifyContent: 'center',
-          alignItems: 'center',
-          m: 'auto',
-          gap: 10,
+          width: '100%',
 
           '@media (min-width:375px) and (max-width:500px)': {
             gap: 0,
@@ -1802,35 +1798,40 @@ const HackerHallOfFame = () => {
       >
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: '100%',
-            width: '30%',
-
-            height: '20em',
-            '@media (min-width:375px) and (max-width:500px)': {
-              width: '90%',
-              mb: 6,
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              width: '40%',
-              ml: 3,
-              height: '21em',
-
-              mb: 3,
-            },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Image
-            src={hackCollab}
+          <Box
+            component="img"
+            src="/images/hackerHallOfFame/Hacker_Collab.png"
             alt="Erika facilitating an early discussion of machine learning and the orca data repository"
-            fill
-            style={{
-              objectFit: 'cover',
-              width: '50%',
-              borderRadius: '20px',
+            sx={{
+              width: 500,
+              height: 300,
+              borderRadius: 2, // Adds rounded corners (8px)
+              boxShadow: 3, // Adds a clean MUI shadow
+              objectFit: 'cover', // Prevents image distortion
+
+              '@media (min-width:375px) and (max-width:500px)': {
+                width: '90%',
+                mb: 6,
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '40%',
+                ml: 3,
+                height: '21em',
+
+                mb: 3,
+              },
             }}
           />
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+
+          <Typography
+            variant="caption"
+            sx={{ color: 'text.secondary', width: '75%', mr: 9 }}
+          >
             Erika facilitating an early discussion of machine learning and the
             Orcadata repository.
           </Typography>
@@ -1838,39 +1839,44 @@ const HackerHallOfFame = () => {
 
         <Box
           sx={{
-            display: 'grid',
-            gridTemplateColumns: '100%',
-
-            width: '30%',
-            height: '19em',
-            mt: -2,
-            '@media (min-width:375px) and (max-width:500px)': {
-              width: '90%',
-              mt: -8,
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              width: '40%',
-              height: '21em',
-              mt: -3,
-              mr: 3,
-            },
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Image
-            src={hackVal}
+          <Box
+            component="img"
+            src="/images/hackerHallOfFame/Hacker_Val.png"
             alt="Val working on the Orcanode software and hardware."
-            fill
-            style={{
-              objectFit: 'contain',
-              width: '50%',
-              borderRadius: '20px',
+            sx={{
+              width: 500,
+              height: 300,
+              borderRadius: 2, // Adds rounded corners (8px)
+              boxShadow: 3, // Adds a clean MUI shadow
+              objectFit: 'cover', // Prevents image distortion
+              mr: 20,
+
+              '@media (min-width:375px) and (max-width:500px)': {
+                width: '90%',
+                mt: -8,
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '40%',
+                height: '21em',
+                mt: -3,
+                mr: 3,
+              },
             }}
           />
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+
+          <Typography
+            variant="caption"
+            sx={{ color: 'text.secondary', width: '75%', mr: 20 }}
+          >
             Val working on the Orcanode software and hardware.
           </Typography>
         </Box>
-      </Stack>
+      </Box>
     </>
   )
 }
