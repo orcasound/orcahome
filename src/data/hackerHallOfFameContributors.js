@@ -396,4 +396,9 @@ export const individualContributors = [
     roles: [],
     link: 'https://www.linkedin.com/in/amiedabu/',
   },
+  {
+    name: 'Nick Mann',
+    roles: ['UX Designer & Researcher (2023+)'],
+    link: 'https://www.linkedin.com/in/manndesigner/',
+  },
 ]
