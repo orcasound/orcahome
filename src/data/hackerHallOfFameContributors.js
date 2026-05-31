@@ -337,7 +337,7 @@ export const orcaContributors = [
 // individual contributors array
 export const individualContributors = [
   {
-    name: 'Erin',
+    name: 'Erin Pierce-Magdalik',
     roles: ['User-centered design of 2019 UI v2 (2019)'],
     link: '',
   },
