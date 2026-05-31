@@ -344,7 +344,7 @@ export const individualContributors = [
   {
     name: 'Shawn Vita',
     roles: ['Implementation of 2019 UI v2 (2019)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/shawn-v-3156b15/',
   },
   {
     name: 'Samantha Berk',
