@@ -281,7 +281,7 @@ export const projectManagementContributors = [
   {
     name: 'Garima Chandra',
     roles: ['Development Project Manager (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/garima1010/',
   },
 ]
 
