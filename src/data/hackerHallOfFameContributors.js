@@ -168,7 +168,7 @@ export const googleContributors = [
     name: 'Karan Mishra',
     country: '(India)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/karan2704',
   },
   {
     name: 'Paul Nguyen Hong Duc',
