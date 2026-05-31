@@ -245,6 +245,7 @@ const HackerHallOfFame = () => {
         {/*Third paragraph after first image */}
         <Box
           sx={{
+            mt: 25,
             maxHeight: '10em',
             width: '100%',
             display: 'flex',
@@ -1787,8 +1788,8 @@ const HackerHallOfFame = () => {
           width: '100%',
 
           '@media (min-width:375px) and (max-width:500px)': {
-            gap: 0,
-            m: 0,
+            flexDirection: 'column',
+            gap: 10,
           },
           '@media (min-width:768px) and (max-width:1200px)': {
             gap: 5,
@@ -1810,27 +1811,37 @@ const HackerHallOfFame = () => {
             sx={{
               width: 500,
               height: 300,
-              borderRadius: 2, // Adds rounded corners (8px)
-              boxShadow: 3, // Adds a clean MUI shadow
-              objectFit: 'cover', // Prevents image distortion
+              borderRadius: 2,
+              boxShadow: 3,
+              objectFit: 'cover',
 
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '90%',
-                mb: 6,
               },
               '@media (min-width:768px) and (max-width:1200px)': {
-                width: '40%',
-                ml: 3,
-                height: '21em',
+                width: 350,
 
-                mb: 3,
+                height: 200,
               },
             }}
           />
 
           <Typography
             variant="caption"
-            sx={{ color: 'text.secondary', width: '75%', mr: 9 }}
+            sx={{
+              color: 'text.secondary',
+              width: '75%',
+              mr: 9,
+              '@media (min-width:375px) and (max-width:500px)': {
+                width: '90%',
+                mr: 0,
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '90%',
+                ml: 8,
+                fontSize: 'xx-small',
+              },
+            }}
           >
             Erika facilitating an early discussion of machine learning and the
             Orcadata repository.
@@ -1851,27 +1862,42 @@ const HackerHallOfFame = () => {
             sx={{
               width: 500,
               height: 300,
-              borderRadius: 2, // Adds rounded corners (8px)
-              boxShadow: 3, // Adds a clean MUI shadow
-              objectFit: 'cover', // Prevents image distortion
+              borderRadius: 2,
+              boxShadow: 3,
+              objectFit: 'cover',
               mr: 20,
 
               '@media (min-width:375px) and (max-width:500px)': {
                 width: '90%',
                 mt: -8,
+                mr: 0,
               },
               '@media (min-width:768px) and (max-width:1200px)': {
-                width: '40%',
-                height: '21em',
-                mt: -3,
-                mr: 3,
+                width: 350,
+                mr: 1,
+                height: 200,
               },
             }}
           />
 
           <Typography
             variant="caption"
-            sx={{ color: 'text.secondary', width: '75%', mr: 20 }}
+            sx={{
+              color: 'text.secondary',
+              width: '75%',
+              mr: 20,
+              '@media (min-width:375px) and (max-width:500px)': {
+                width: '90%',
+
+                mr: 0,
+                mb: 10,
+              },
+              '@media (min-width:768px) and (max-width:1200px)': {
+                width: '90%',
+                mr: 5,
+                fontSize: 'xx-small',
+              },
+            }}
           >
             Val working on the Orcanode software and hardware.
           </Typography>
