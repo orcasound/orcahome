@@ -132,7 +132,7 @@ export const googleContributors = [
     name: 'Dmitry Volodin',
     country: '(Russia)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/molkree/',
   },
   {
     name: 'Dhananjay Purohit',
