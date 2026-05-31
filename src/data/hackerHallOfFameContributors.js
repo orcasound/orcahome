@@ -354,7 +354,7 @@ export const individualContributors = [
   {
     name: 'Nóra Mészáros',
     roles: ['Graphic design (2017-2020)'],
-    link: '',
+    link: 'https://hu.linkedin.com/in/n%C3%B3ra-m%C3%A9sz%C3%A1ros-b64309198',
   },
   {
     name: 'Erika Pelaez',
