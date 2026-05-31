@@ -183,7 +183,7 @@ export const liveContributors = [
   {
     name: 'Zarema Ross',
     roles: ['UX/UI/design project manager (2021+)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/zaremaross',
   },
   {
     name: 'Elena Bukhonok',
