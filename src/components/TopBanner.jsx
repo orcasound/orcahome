@@ -75,13 +75,8 @@ const TopBanner = ({
   pageDesc,
   scrollToId,
   imageFilter,
+  scrollButtonBottom = 0,
 }) => {
-  const [checked, setChecked] = useState(false)
-
-  useEffect(() => {
-    setChecked(true)
-  }, [])
-
   return (
     <TopScreen>
       <Box
@@ -98,26 +93,33 @@ const TopBanner = ({
         <Image
           alt={pageTitle ?? ''}
           src={bannerImg}
-          layout="fill"
-          objectFit="cover"
           quality={100}
           priority
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </Box>
-      <Slide
-        in={checked}
-        direction="up"
-        {...(checked ? { timeout: 1000 } : {})}
-      >
+      {/* TODO: this doesn't seem to be handling the animation, it works without this tag, investigate */}
+      <Slide in={true} direction="up" timeout={1000}>
         <TitleScreen>
           <Typography
             variant="h1"
-            sx={{ fontSize: '10vw', marginBottom: '2vw', fontWeight: '500' }}
+            sx={{
+              fontSize: '10vw',
+              marginBottom: '2vw',
+              fontWeight: '500',
+              textAlign: 'center',
+              width: '100vw',
+            }}
           >
             {pageTitle}
           </Typography>
           <ScrollElement to={scrollToId} smooth={true} spy={true}>
             <ScrollDownButton
+              sx={{ bottom: scrollButtonBottom }}
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', {
                   page: pageTitle?.toLowerCase().replace(/ /g, '_'),

@@ -5,7 +5,6 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, styled, Typography } from '@mui/material'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import facebooklogo from '../../public/images/facebook.png'
 import githublogo from '../../public/images/github_invert.png'
@@ -16,6 +15,7 @@ import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
+import Link from './Link'
 
 const currentYear = new Date().getFullYear()
 
@@ -79,10 +79,8 @@ const iconContainer = (
 )
 
 const sendFeedbackLink = (
-  <Link href="/" passHref>
-    <StyledTypography variant="h6" component="a">
-      Send Feedback
-    </StyledTypography>
+  <Link href="/">
+    <StyledTypography variant="h6">Send Feedback</StyledTypography>
   </Link>
 )
 
@@ -99,18 +97,14 @@ const blogLink = (
 )
 
 const supportUsLink = (
-  <Link href="" passHref>
-    <StyledTypography variant="h6" component="a">
-      Support Us
-    </StyledTypography>
+  <Link href="/">
+    <StyledTypography variant="h6">Support Us</StyledTypography>
   </Link>
 )
 
 const learnMoreLink = (
-  <Link href="" passHref>
-    <StyledTypography variant="h6" component="a">
-      Learn More
-    </StyledTypography>
+  <Link href="/">
+    <StyledTypography variant="h6">Learn More</StyledTypography>
   </Link>
 )
 
@@ -138,6 +132,7 @@ const navLinksRightCol = [
     url: '/about',
     icon: '',
   },
+
   {
     name: 'Learn',
     url: '/learn',
@@ -203,10 +198,8 @@ function Mobile() {
         <div>{sendFeedbackLink}</div>
         <div>{blogLink}</div>
         <div>
-          <Link href="/donate" passHref>
-            <StyledTypography variant="h6" component="a">
-              Support
-            </StyledTypography>
+          <Link href="/donate">
+            <StyledTypography variant="h6">Support</StyledTypography>
           </Link>
         </div>
         {iconContainer}
@@ -236,9 +229,16 @@ function Desktop() {
               margin: '10px',
             }}
           >
-            <Link href="/" passHref>
-              <Box component="a" sx={{ cursor: 'pointer' }}>
-                <Image src={orcasoundlogo} alt="Orcasound"></Image>
+            <Link href="/">
+              <Box sx={{ cursor: 'pointer' }}>
+                <Image
+                  src={orcasoundlogo}
+                  alt="Orcasound"
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                ></Image>
               </Box>
             </Link>
           </Box>
@@ -271,9 +271,8 @@ function Desktop() {
                   height: '30px',
                 }}
               >
-                <Link href={navLink.url} passHref>
+                <Link href={navLink.url}>
                   <StyledTypography
-                    component="a"
                     onClick={() =>
                       pushToDataLayer('footer_nav_click', {
                         link_text: navLink.name,
@@ -331,9 +330,8 @@ function Desktop() {
                     {navLink.name}
                   </StyledTypography>
                 ) : (
-                  <Link href={navLink.url} passHref>
+                  <Link href={navLink.url}>
                     <StyledTypography
-                      component="a"
                       onClick={() =>
                         pushToDataLayer('footer_nav_click', {
                           link_text: navLink.name,
@@ -379,7 +377,14 @@ function Desktop() {
                   pushToDataLayer('social_click', { platform: iconLink.name })
                 }
               >
-                <Image src={iconLink.icon} alt={iconLink.name}></Image>
+                <Image
+                  src={iconLink.icon}
+                  alt={iconLink.name}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                ></Image>
               </Box>
             ))}
           </Box>

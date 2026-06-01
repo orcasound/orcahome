@@ -16,13 +16,13 @@ import {
 } from '@mui/material'
 import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/logo-white.svg'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
+import Link from './Link'
 
 const navLinks = [
   {
@@ -40,6 +40,7 @@ const navLinks = [
     url: '/about',
     icon: '',
   },
+
   {
     name: 'Listen',
     url: 'https://live.orcasound.net/',
@@ -86,9 +87,8 @@ const Nav = () => {
                   borderRadius: '100px',
                 }}
               >
-                <Link href="/" passHref>
+                <Link href="/">
                   <Box
-                    component="a"
                     sx={{
                       width: '60px',
                       height: '44px',
@@ -104,6 +104,10 @@ const Nav = () => {
                       alt="Orcasound"
                       width={60}
                       height={44}
+                      style={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                      }}
                     />
                   </Box>
                 </Link>
@@ -165,7 +169,7 @@ function Mobile() {
               <ListItemText primary={navLink.name} />
             </ListItem>
           ) : (
-            <Link key={navLink.name} href={navLink.url} passHref>
+            <Link key={navLink.name} href={navLink.url}>
               <ListItem
                 button
                 sx={{ borderBottom: '1px solid white' }}
@@ -268,9 +272,8 @@ function Desktop() {
                   {navLink.name}
                 </Button>
               ) : (
-                <Link href={navLink.url} passHref>
+                <Link href={navLink.url}>
                   <Button
-                    component="a"
                     sx={{
                       color: 'white',
                       display: 'block',
@@ -327,7 +330,7 @@ function Desktop() {
         >
           Notify Me
         </Button>
-        <Link href="/donate" passHref>
+        <Link href="/donate">
           <Button
             variant="outlined"
             sx={{

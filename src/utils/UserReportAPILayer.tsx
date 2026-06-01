@@ -4,6 +4,16 @@ import { useEffect, useState } from 'react'
 import { LastDetection } from '../components/LastDetection'
 //Feel free to add additional GraphQL queries as needed
 
+interface DetectionEntry {
+  timestamp: string
+}
+
+interface DetectionsData {
+  detections: {
+    entries: DetectionEntry[]
+  }
+}
+
 export const UserReportAPILayer = (): JSX.Element => {
   const [date, setDate] = useState<string>('')
 
@@ -30,8 +40,12 @@ export const UserReportAPILayer = (): JSX.Element => {
         pageSize: 10,
       },
     }
-    request('https://live.orcasound.net/graphql', detectionQuery, variables)
-      .then((data: any): any => {
+    request<DetectionsData>(
+      'https://live.orcasound.net/graphql',
+      detectionQuery,
+      variables
+    )
+      .then((data): void => {
         //Reformatting of time data for LastDetection component
         //Array time data
         if (
@@ -46,14 +60,14 @@ export const UserReportAPILayer = (): JSX.Element => {
             .replace('Z', '')
             .replace('T', '-')
             .replace('/-/g', '/')
-          const splitChars: any = replaceChars.split('-')
+          const splitChars: string[] = replaceChars.split('-')
           setDate(splitChars[1] + '-' + splitChars[2] + '-' + splitChars[0])
         } else {
           // Handle case where no detection entries are available
           setDate('No detection data')
         }
       })
-      .catch((error: any) => {
+      .catch((error: unknown) => {
         console.error('Error fetching detections:', error)
         setDate('Error fetching data')
       })

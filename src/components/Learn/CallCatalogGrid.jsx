@@ -5,12 +5,6 @@ import Image from 'next/image'
 import React from 'react'
 import useSound from 'use-sound'
 
-import SO1 from '../../../public/audio/FO-S01.mp3'
-import SO2 from '../../../public/audio/FO-S02.mp3'
-import SO3 from '../../../public/audio/FO-S03.mp3'
-import SO4 from '../../../public/audio/FO-S04.mp3'
-import SO5 from '../../../public/audio/FO-S05.mp3'
-import SO6 from '../../../public/audio/FO-S06.mp3'
 import FOS01 from '../../../public/images/learn/FO-S01.png'
 import FOS02 from '../../../public/images/learn/FO-S02.png'
 import FOS03 from '../../../public/images/learn/FO-S03.png'
@@ -18,6 +12,13 @@ import FOS04 from '../../../public/images/learn/FO-S04.png'
 import FOS05 from '../../../public/images/learn/FO-S05.png'
 import FOS06 from '../../../public/images/learn/FO-S06.png'
 import { pushToDataLayer } from '../../utils/gtm'
+
+const SO1 = '/audio/FO-S01.mp3'
+const SO2 = '/audio/FO-S02.mp3'
+const SO3 = '/audio/FO-S03.mp3'
+const SO4 = '/audio/FO-S04.mp3'
+const SO5 = '/audio/FO-S05.mp3'
+const SO6 = '/audio/FO-S06.mp3'
 
 const CallCatalogGrid = () => {
   const [isPlaying, setIsPlaying] = React.useState(Array(6).fill(false))
@@ -123,7 +124,11 @@ const CallCatalogGrid = () => {
                 <Image
                   src={spectrogram[index]}
                   alt={`Orca Call ${index}`}
-                  style={{ width: '100%' }}
+                  style={{
+                    width: '100%',
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
                 <Box
                   sx={{

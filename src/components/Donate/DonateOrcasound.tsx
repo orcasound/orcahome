@@ -24,7 +24,7 @@ interface DonateOrcasoundProps {
   donateVolunteersMessage?: string
 }
 
-const DonateContainer = styled(Box)(({ theme }) => ({
+const DonateContainer = styled(Box)(({}) => ({
   margin: '2vw 0',
   flex: 1,
   borderRadius: '15px',
@@ -35,7 +35,7 @@ const DonateContainer = styled(Box)(({ theme }) => ({
   flexDirection: 'column',
 }))
 
-const ImageContainer = styled(Box)(({ theme }) => ({
+const ImageContainer = styled(Box)(({}) => ({
   borderRadius: '1em',
   overflow: 'hidden',
   margin: '0 10px',
@@ -123,8 +123,12 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               src={props.donateOrcasoundImage}
               alt="Support Orcasound"
               quality={100}
-              layout="responsive"
-              objectFit="contain"
+              sizes="100vw"
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
             />
           </ImageContainer>
           <Typography sx={{ margin: '10px' }}>
@@ -164,8 +168,12 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               src={props.donateVolunteersImage}
               alt="Support Volunteers"
               quality={100}
-              layout="responsive"
-              objectFit="contain"
+              sizes="100vw"
+              style={{
+                width: '100%',
+                height: 'auto',
+                objectFit: 'contain',
+              }}
             />
           </ImageContainer>
           <Typography sx={{ margin: '10px' }}>
@@ -203,7 +211,6 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           </Box>
         </DonateContainer>
       </Box>
-
       <Dialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
@@ -285,8 +292,11 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 <Image
                   src={props.donateOrcasoundImage}
                   alt="Support Orcasound"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </DonateOptionImage>
               <Box sx={{ flex: 1 }}>
@@ -322,8 +332,11 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 <Image
                   src={props.donateVolunteersImage}
                   alt="Support Volunteers"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="100vw"
+                  style={{
+                    objectFit: 'cover',
+                  }}
                 />
               </DonateOptionImage>
               <Box sx={{ flex: 1 }}>

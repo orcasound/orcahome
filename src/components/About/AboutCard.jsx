@@ -29,9 +29,13 @@ const AboutCard = ({ item, mobileActive, onClick }) => {
             height={500}
             alt={item.title}
             src={item.path}
-            layout="responsive"
             sx={{
               userSelect: 'none',
+            }}
+            sizes="100vw"
+            style={{
+              width: '100%',
+              height: 'auto',
             }}
           />
         </Box>
