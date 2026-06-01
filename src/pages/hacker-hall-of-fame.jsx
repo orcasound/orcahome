@@ -102,7 +102,6 @@ const HackerHallOfFame = () => {
         {/* first paragraph */}
         <Box
           sx={{
-            maxHeight: '10em',
             width: '100%',
             display: 'flex',
             alignItems: 'center',
@@ -135,12 +134,12 @@ const HackerHallOfFame = () => {
         {/*Second paragraph */}
         <Box
           sx={{
-            height: '10em',
             width: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'black',
+            mt: 6,
           }}
         >
           <Typography
@@ -148,17 +147,10 @@ const HackerHallOfFame = () => {
               fontSize: '20px',
               fontWeight: '500',
               lineHeight: '140%',
-              mt: 10,
-              /*iphone  formatting */
-              '@media (min-width:375px) and (max-width:500px)': {
-                mt: 60,
-              },
-
               /*ipad */
               '@media (min-width:768px) and (max-width:1200px)': {
                 fontSize: 'x-large',
                 width: '80%',
-                mt: 50,
               },
             }}
           >
@@ -204,36 +196,23 @@ const HackerHallOfFame = () => {
           sx={{
             position: 'relative',
             width: '100%',
-            height: '25em',
             display: 'flex',
             flexDirection: 'column',
 
-            mt: 10,
-
-            /*iphone  formatting */
-            '@media (min-width:375px) and (max-width:500px)': {
-              mt: 47,
-            },
-            /*ipad */
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              mt: 50,
-            },
+            my: 6,
           }}
         >
           <Image
             src={hackathon}
             alt="Orcasound at a democracy lab hackathon in Seattle"
+            width={573}
+            height={368}
             style={{
+              width: '100%',
+              height: 'auto',
+              maxHeight: '368px',
               objectFit: 'cover',
-              width: '795px',
-              height: '444px',
-              top: '1331px',
-              left: '320px',
-              angle: '0 deg',
-              opacity: 1,
               borderRadius: '20px',
-              mt: 20,
             }}
           />
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
@@ -245,7 +224,6 @@ const HackerHallOfFame = () => {
         {/*Third paragraph after first image */}
         <Box
           sx={{
-            maxHeight: '10em',
             width: '100%',
             display: 'flex',
             alignItems: 'center',
@@ -260,15 +238,10 @@ const HackerHallOfFame = () => {
               fontWeight: '500',
               lineHeight: '140%',
 
-              /*iphone  formatting */
-              '@media (min-width:375px) and (max-width:500px)': {
-                mt: 5,
-              },
               /*ipad */
               '@media (min-width:768px) and (max-width:1200px)': {
                 fontSize: 'x-large',
                 width: '80%',
-                mt: -20,
               },
             }}
           >
@@ -1805,8 +1778,6 @@ const HackerHallOfFame = () => {
             display: 'grid',
             gridTemplateColumns: '100%',
             width: '30%',
-
-            height: '20em',
             '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
               mb: 6,
@@ -1814,8 +1785,6 @@ const HackerHallOfFame = () => {
             '@media (min-width:768px) and (max-width:1200px)': {
               width: '40%',
               ml: 3,
-              height: '21em',
-
               mb: 3,
             },
           }}
@@ -1823,10 +1792,11 @@ const HackerHallOfFame = () => {
           <Image
             src={hackCollab}
             alt="Erika facilitating an early discussion of machine learning and the orca data repository"
-            fill
+            width={413}
+            height={271}
             style={{
-              objectFit: 'cover',
-              width: '50%',
+              width: '100%',
+              height: 'auto',
               borderRadius: '20px',
             }}
           />
@@ -1842,16 +1812,11 @@ const HackerHallOfFame = () => {
             gridTemplateColumns: '100%',
 
             width: '30%',
-            height: '19em',
-            mt: -2,
             '@media (min-width:375px) and (max-width:500px)': {
               width: '90%',
-              mt: -8,
             },
             '@media (min-width:768px) and (max-width:1200px)': {
               width: '40%',
-              height: '21em',
-              mt: -3,
               mr: 3,
             },
           }}
@@ -1859,10 +1824,11 @@ const HackerHallOfFame = () => {
           <Image
             src={hackVal}
             alt="Val working on the Orcanode software and hardware."
-            fill
+            width={413}
+            height={271}
             style={{
-              objectFit: 'contain',
-              width: '50%',
+              width: '100%',
+              height: 'auto',
               borderRadius: '20px',
             }}
           />
