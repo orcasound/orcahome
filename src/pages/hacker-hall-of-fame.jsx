@@ -676,36 +676,37 @@ const HackerHallOfFame = () => {
                   {person.name}
                 </Typography>
               ) : (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
+                <Box>
+                  <Typography
+                    sx={{
+                      fontSize: '20px',
+                      fontWeight: '500',
+                      lineHeight: '140%',
 
-                    width: '80%',
+                      width: '80%',
 
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
+                      '@media (min-width:375px) and (max-width:500px)': {
+                        ml: 0,
 
-                      width: '100%',
-                    },
-                  }}
-                >
-                  {' '}
-                  <Link
-                    href={person.link}
-                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                    onClick={() =>
-                      pushToDataLayer('external_link_click', {
-                        link_text: person.name,
-                        destination: person.link,
-                      })
-                    }
-                    sx={{ border: '2px solid red' }}
+                        width: '65%',
+                      },
+                    }}
                   >
-                    {person.name}
-                  </Link>
-                </Typography>
+                    {' '}
+                    <Link
+                      href={person.link}
+                      style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+                      onClick={() =>
+                        pushToDataLayer('external_link_click', {
+                          link_text: person.name,
+                          destination: person.link,
+                        })
+                      }
+                    >
+                      {person.name}
+                    </Link>
+                  </Typography>
+                </Box>
               )}
 
               <Typography

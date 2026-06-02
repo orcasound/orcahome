@@ -126,19 +126,19 @@ export const googleContributors = [
     name: 'Isabella Macchiavello',
     country: '(Ecuador)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/isabella-macchiavello-223338205/',
   },
   {
     name: 'Dmitry Volodin',
     country: '(Russia)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/molkree/',
   },
   {
     name: 'Dhananjay Purohit',
     country: '(India)',
     roles: ['GSoC contributor (2021)'],
-    link: '',
+    link: 'https://github.com/DhananjayPurohit',
   },
   {
     name: 'Jose Giraldo',
@@ -162,13 +162,13 @@ export const googleContributors = [
     name: 'Benjamin Chew',
     country: '(Singapore, USA)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/benjamin-chew-74995886',
   },
   {
     name: 'Karan Mishra',
     country: '(India)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/karan2704',
   },
   {
     name: 'Paul Nguyen Hong Duc',
@@ -183,7 +183,7 @@ export const liveContributors = [
   {
     name: 'Zarema Ross',
     roles: ['UX/UI/design project manager (2021+)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/zaremaross',
   },
   {
     name: 'Elena Bukhonok',
@@ -222,8 +222,8 @@ export const liveContributors = [
   },
   {
     name: 'Carina Cheng',
-    roles: [],
-    link: '',
+    roles: ['UX Designer'],
+    link: 'https://www.linkedin.com/in/carina-cheng',
   },
 ]
 
@@ -241,8 +241,8 @@ export const arcatiaContributors = [
   },
   {
     name: 'Ali Alaydrus',
-    roles: ['Development (2020; 2022-3)'],
-    link: '',
+    roles: ['Tech Lead for Acartia'],
+    link: 'https://www.linkedin.com/in/fadliealaydrus',
   },
   {
     name: 'Peter Ince',
@@ -257,7 +257,12 @@ export const arcatiaContributors = [
   {
     name: 'Virgil Zetterlind',
     roles: ['Data Exchange + Mobile App Customization (2019+)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/vzetterlind/',
+  },
+  {
+    name: 'Zoe Liu',
+    roles: ['Data Exchange + Mobile App Customization (2019+)'],
+    link: 'https://www.linkedin.com/in/liuzoe',
   },
 ]
 
@@ -266,7 +271,7 @@ export const projectManagementContributors = [
   {
     name: 'Firuze Gokce',
     roles: ['Project Manager, Fundraising (2022-23)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/firuzegokce/',
   },
   {
     name: 'Heather Gordon',
@@ -281,7 +286,7 @@ export const projectManagementContributors = [
   {
     name: 'Garima Chandra',
     roles: ['Development Project Manager (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/garima1010/',
   },
 ]
 
@@ -332,14 +337,14 @@ export const orcaContributors = [
 // individual contributors array
 export const individualContributors = [
   {
-    name: 'Erin',
+    name: 'Erin Pierce-Magdalik',
     roles: ['User-centered design of 2019 UI v2 (2019)'],
     link: '',
   },
   {
     name: 'Shawn Vita',
     roles: ['Implementation of 2019 UI v2 (2019)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/shawn-v-3156b15/',
   },
   {
     name: 'Samantha Berk',
@@ -349,7 +354,7 @@ export const individualContributors = [
   {
     name: 'Nóra Mészáros',
     roles: ['Graphic design (2017-2020)'],
-    link: '',
+    link: 'https://hu.linkedin.com/in/n%C3%B3ra-m%C3%A9sz%C3%A1ros-b64309198',
   },
   {
     name: 'Erika Pelaez',
@@ -357,9 +362,9 @@ export const individualContributors = [
     link: '',
   },
   {
-    name: 'Jennifer Rogers',
+    name: 'Jennifer Brennan',
     roles: ['Machine learning & spectrograms from FLAC files (2018+)'],
-    link: '',
+    link: 'https://jenniferbrennan.github.io',
   },
   {
     name: 'Ivan Storck',
@@ -390,5 +395,15 @@ export const individualContributors = [
     name: 'Amie Dabu',
     roles: [],
     link: 'https://www.linkedin.com/in/amiedabu/',
+  },
+  {
+    name: 'Nick Mann',
+    roles: ['UX Designer & Researcher (2023+)'],
+    link: 'https://www.linkedin.com/in/manndesigner/',
+  },
+  {
+    name: 'Shivangi Agarwal',
+    roles: ['Product Manager (2023+)'],
+    link: 'https://www.linkedin.com/in/shivangi-agarwal-b4939119/',
   },
 ]
