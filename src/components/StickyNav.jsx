@@ -33,13 +33,14 @@ const NavLink = styled(ScrollLink)(() => ({
   },
 }))
 
-const StickyNav = ({ navLinks, onLinkClick }) => {
+const StickyNav = ({ navLinks, onLinkClick, id }) => {
   const isMobile = useIsMobile()
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
     <Box
       component="nav"
+      id={id}
       sx={{
         position: 'sticky',
         top: 0,
