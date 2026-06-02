@@ -404,6 +404,6 @@ export const individualContributors = [
   {
     name: 'Shivangi Agarwal',
     roles: ['Product Manager (2023+)'],
-    link: 'https://www.linkedin.com/in/shivangi-agarwal-b4939119/ ',
+    link: 'https://www.linkedin.com/in/shivangi-agarwal-b4939119/',
   },
 ]
