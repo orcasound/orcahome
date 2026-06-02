@@ -920,13 +920,13 @@ export const GetInvolved = () => {
       </Head>
       <TopBanner
         bannerImg={topbanner}
-        scrollToId={`scroll-link`}
+        scrollToId={`getInvolved`}
         pageTitle={`Get Involved`}
         pageDesc={`There are many ways to help in the recovering of marine life,
           especially for the Southern Resident Killer Whales that call the
           Salish Sea home. Check out the ways you can help below!`}
       />
-
+      <Box id="getInvolved" sx={{ mt: 6 }} />
       <StickyNav
         navLinks={navLinks}
         onLinkClick={(link) => {
