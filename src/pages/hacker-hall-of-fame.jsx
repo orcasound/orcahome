@@ -12,14 +12,13 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
-import Head from 'next/head'
 import Image from 'next/image'
 
 import hackathon from '../../public/images/getinvolved/hackathon.png'
-import HackerBanner from '../../public/images/Hacker_HOF.webp'
 import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.png'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.png'
-import TopBanner from '../components/TopBanner'
+import HHOFBanner from '../components/HHOF/HHOFBanner'
+import IntroParagraph from '../components/HHOF/Intro'
 import {
   arcatiaContributors,
   contributors,
@@ -32,165 +31,86 @@ import {
 import { pushToDataLayer } from '../utils/gtm'
 
 const HackerHallOfFame = () => {
-  return (
-    <>
-      {/* title of the page Hacker Hall of Fame */}
-      <Head>
-        <title>Orcasound | Hacker Hall of Fame</title>
-      </Head>
-
-      {/* Banner and Banner Text */}
-      <Box
-        sx={{
-          whiteSpace: 'pre-wrap',
-          display: 'flex',
-        }}
-      >
-        <TopBanner
-          bannerImg={HackerBanner}
-          pageTitle={`Hacker\n Hall of Fame`}
-          scrollToId={'scroll-link'}
-        />
-      </Box>
-
-      {/* Container for Thank you Message for contributors */}
-      <Container maxWidth={false} disableGutters>
-        <Box
-          sx={{
-            height: '5em',
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#111184',
-            color: 'white',
-          }}
-        >
-          <Typography
-            variant="h3"
-            sx={{
-              /*iphone  formatting */
-              '@media (min-width:375px) and (max-width:500px)': {
-                fontSize: 'medium',
-              },
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-              },
-            }}
-          >
-            Thank you, Orcasound App Hackers!
-          </Typography>
-        </Box>
-      </Container>
-
-      {/* First Section for this page- top */}
-      <Container
-        maxWidth="sm"
-        sx={{
-          minHeight: '100vh',
-          pt: 5,
-          '@media (min-width:375px) and (max-width:500px)': {
-            pt: 15,
-          },
-          /*iphone  formatting */
-          '@media (min-width:768px) and (max-width:1200px)': {
-            mt: 10,
-          },
-        }}
-      >
-        {/* first paragraph */}
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'black',
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: '20px',
-              fontWeight: '500',
-              lineHeight: '140%',
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-                width: '80%',
-              },
-            }}
-          >
-            We would like to acknowledge the tremendous contributions of time,
+  const firstParagraph = `We would like to acknowledge the tremendous contributions of time,
             technology, and code that have been made to our open source project.
             Beginning in the fall of 2018, we began participating in hackathons
             in Seattle and at the University of Washington. In summer, 2019, we
             partnered with Microsoft through their amazing hackathon community.
             In 2020, Orcasound became a host organization for Google Summer of
-            Code (GSoC).
-          </Typography>
-        </Box>
+            Code (GSoC).`
 
-        {/*Second paragraph */}
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'black',
-            mt: 6,
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: '20px',
-              fontWeight: '500',
-              lineHeight: '140%',
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-                width: '80%',
-              },
-            }}
-          >
-            In combination with our{' '}
-            <Link
-              href="https://github.com/orcasound"
-              target="_blank"
-              rel="noopener"
-            >
-              Github repositories
-            </Link>
-            , these events have brought many talented programmers, designers,
-            engineers, researchers, and “geeks for good” to the project. They
-            have made it possible to rapidly develop and refine the{' '}
-            <Link
-              href="https://www.orcasound.net/portfolio/orcasound-app/"
-              target="_blank"
-              rel="noopener"
-            >
-              Orcasound app
-            </Link>{' '}
-            — a new way to{' '}
-            <Link
-              href="https://live.orcasound.net/"
-              target="_blank"
-              rel="noopener"
-            >
-              listen for whales
-            </Link>{' '}
-            — based on a{' '}
-            <Link
-              href="https://www.orcasound.net/2018/04/27/orcasounds-new-live-audio-solution-from-hydrophone-to-headphone-with-a-raspberry-pi-computer-and-hls-dash-streaming-software/"
-              target="_blank"
-              rel="noopener"
-            >
-              cutting-edge suite of inexpensive and open source hardware and
-              software for live streaming audio data.
-            </Link>
-          </Typography>
-        </Box>
+  const secondParagraph = (
+    <>
+      In combination with our{' '}
+      <Link href="https://github.com/orcasound" target="_blank" rel="noopener">
+        Github repositories{' '}
+      </Link>
+      , these events have brought many talented programmers, designers,
+      engineers, researchers, and “geeks for good” to the project. They have
+      made it possible to rapidly develop and refine the{' '}
+      <Link
+        href="https://www.orcasound.net/portfolio/orcasound-app/"
+        target="_blank"
+        rel="noopener"
+      >
+        Orcasound app
+      </Link>{' '}
+      — a new way to{' '}
+      <Link href="https://live.orcasound.net/" target="_blank" rel="noopener">
+        listen for whales
+      </Link>{' '}
+      — based on a{' '}
+      <Link
+        href="https://www.orcasound.net/2018/04/27/orcasounds-new-live-audio-solution-from-hydrophone-to-headphone-with-a-raspberry-pi-computer-and-hls-dash-streaming-software/"
+        target="_blank"
+        rel="noopener"
+      >
+        cutting-edge suite of inexpensive and open source hardware and software
+        for live streaming audio data.
+      </Link>
+    </>
+  )
+
+  const thirdParagraph = (
+    <>
+      So, let’s have a virtual round of applause for the following stand-out
+      members of the Orcasound open source community. If you’re inspired by
+      their contributions to our{' '}
+      <Link href="https://github.com/orcasound" target="_blank" rel="noopener">
+        Github repositories{' '}
+      </Link>
+      or{' '}
+      <Link
+        href="https://www.democracylab.org/projects/81"
+        target="_blank"
+        rel="noopener"
+      >
+        Democracy Lab hackathons
+      </Link>
+      , don’t hesitate to support the Founders and Influencers directly! Sing
+      their praises on social media and networks; join them in hacking for orca
+      conservation; reinforce their volunteerism financially.
+    </>
+  )
+
+  return (
+    <div className="hhof-container">
+      {/* Banner for the page */}
+      <HHOFBanner />
+
+      {/* First Section for this page- top */}
+      <Container maxWidth="md">
+        <Stack spacing={2}>
+          {/* first paragraph */}
+          <IntroParagraph text={firstParagraph} />
+
+          {/*Second paragraph */}
+          <IntroParagraph text={secondParagraph} />
+
+          {/*Third paragraph after first image */}
+          <IntroParagraph text={thirdParagraph} />
+        </Stack>
+
         {/*Hackathon image */}
         <Box
           sx={{
@@ -218,55 +138,6 @@ const HackerHallOfFame = () => {
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
             Orcasound at a democracy lab hackathon in Seattle (photo by Mark
             Frischmuth).
-          </Typography>
-        </Box>
-
-        {/*Third paragraph after first image */}
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'black',
-          }}
-        >
-          <Typography
-            variant="body2"
-            sx={{
-              fontSize: '20px',
-              fontWeight: '500',
-              lineHeight: '140%',
-
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-                width: '80%',
-              },
-            }}
-          >
-            So, let’s have a virtual round of applause for the following
-            stand-out members of the Orcasound open source community. If you’re
-            inspired by their contributions to our{' '}
-            <Link
-              href="https://github.com/orcasound"
-              target="_blank"
-              rel="noopener"
-            >
-              Github repositories{' '}
-            </Link>
-            or{' '}
-            <Link
-              href="https://www.democracylab.org/projects/81"
-              target="_blank"
-              rel="noopener"
-            >
-              Democracy Lab hackathons
-            </Link>
-            , don’t hesitate to support the Founders and Influencers directly!
-            Sing their praises on social media and networks; join them in
-            hacking for orca conservation; reinforce their volunteerism
-            financially.
           </Typography>
         </Box>
 
@@ -1838,7 +1709,7 @@ const HackerHallOfFame = () => {
           </Typography>
         </Box>
       </Stack>
-    </>
+    </div>
   )
 }
 
