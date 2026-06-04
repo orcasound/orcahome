@@ -17,6 +17,7 @@ import Image from 'next/image'
 import hackathon from '../../public/images/getinvolved/hackathon.png'
 import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.png'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.png'
+import HackathonImage from '../components/HHOF/HackathonImage'
 import HHOFBanner from '../components/HHOF/HHOFBanner'
 import IntroParagraph from '../components/HHOF/Intro'
 import {
@@ -107,39 +108,12 @@ const HackerHallOfFame = () => {
           {/*Second paragraph */}
           <IntroParagraph text={secondParagraph} />
 
+          {/*Hackathon image */}
+          <HackathonImage />
+
           {/*Third paragraph after first image */}
           <IntroParagraph text={thirdParagraph} />
         </Stack>
-
-        {/*Hackathon image */}
-        <Box
-          sx={{
-            position: 'relative',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-
-            my: 6,
-          }}
-        >
-          <Image
-            src={hackathon}
-            alt="Orcasound at a democracy lab hackathon in Seattle"
-            width={573}
-            height={368}
-            style={{
-              width: '100%',
-              height: 'auto',
-              maxHeight: '368px',
-              objectFit: 'cover',
-              borderRadius: '20px',
-            }}
-          />
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            Orcasound at a democracy lab hackathon in Seattle (photo by Mark
-            Frischmuth).
-          </Typography>
-        </Box>
 
         {/*Founders Box */}
         <Box

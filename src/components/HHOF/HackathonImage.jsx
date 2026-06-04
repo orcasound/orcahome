@@ -19,7 +19,7 @@ const HackathonImage = () => {
         height={368}
         style={{
           width: '100%',
-          height: 'auto',
+
           objectFit: 'cover',
           borderRadius: '20px',
         }}
