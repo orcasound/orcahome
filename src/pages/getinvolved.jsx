@@ -450,33 +450,35 @@ const DevelopersContent = () => (
 )
 const SupportContent = () => (
   <>
-    <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-      Help us and our{' '}
-      <Typography variant="soft" color="#1B2B7B">
-        Orcasound network members
+    <Box sx={{ px: '50px', textAlign: 'center', lineHeight: '28px' }}>
+      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
+        Help us and our{' '}
+        <Typography variant="soft" color="#1B2B7B">
+          Orcasound network members
+        </Typography>
+        {''} by making charitable contribution to our partners, many of whom are
+        501(c)3 organizations Check out the link below to help strengthen and
+        grow our network, while supporting our on-going conservation, research,
+        and educational efforts.
       </Typography>
-      {''} by making charitable contribution to our partners, many of whom are
-      501(c)3 organizations Check out the link below to help strengthen and grow
-      our network, while supporting our on-going conservation, research, and
-      educational efforts.
-    </Typography>
-    <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-      You can also directly support the many dedicated volunteers who help
-      Orcasound keep running and improve over time. Take a look at our Hacker
-      hall of fame and our Github repositories and consider sponsoring the work
-      of our most-dedicated contributors.
-    </Typography>
-    <ActionButton
-      link="/donate"
-      text="SUPPORT NOW"
-      onClick={() =>
-        pushToDataLayer('cta_click', {
-          cta_text: 'Donate Now',
-          section: 'donate',
-          page: 'get_involved',
-        })
-      }
-    />
+      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
+        You can also directly support the many dedicated volunteers who help
+        Orcasound keep running and improve over time. Take a look at our Hacker
+        hall of fame and our Github repositories and consider sponsoring the
+        work of our most-dedicated contributors.
+      </Typography>
+      <ActionButton
+        link="/donate"
+        text="SUPPORT NOW"
+        onClick={() =>
+          pushToDataLayer('cta_click', {
+            cta_text: 'Donate Now',
+            section: 'donate',
+            page: 'get_involved',
+          })
+        }
+      />
+    </Box>
     <Box
       sx={{
         display: 'flex',
