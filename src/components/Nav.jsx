@@ -78,38 +78,13 @@ const Nav = () => {
                 alignItems: 'center',
               }}
             >
-              <Box
-                sx={{
-                  width: { xs: '60px', sm: '69px' },
-                  height: { xs: '44px', sm: '66px' },
-                  margin: { xs: 0, sm: '10px' },
-                  position: 'relative',
-                  borderRadius: '100px',
-                }}
-              >
+              <Box display="flex" justifyContent="center">
                 <Link href="/">
-                  <Box
-                    sx={{
-                      width: '60px',
-                      height: '44px',
-                      top: { xs: 0, sm: '13px' },
-                      left: { xs: 0, sm: '50%' },
-                      transform: { xs: 'none', sm: 'translateX(-50%)' },
-                      borderRadius: '100px',
-                      position: 'absolute',
-                    }}
-                  >
-                    <Image
-                      src={orcasoundlogo}
-                      alt="Orcasound"
-                      width={60}
-                      height={44}
-                      style={{
-                        maxWidth: '100%',
-                        height: 'auto',
-                      }}
-                    />
-                  </Box>
+                  <Image
+                    style={{ width: '60px', height: 'auto' }}
+                    src={orcasoundlogo}
+                    alt="Orcasound"
+                  />
                 </Link>
               </Box>
             </Box>
