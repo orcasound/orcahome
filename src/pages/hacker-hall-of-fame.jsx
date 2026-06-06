@@ -307,7 +307,7 @@ const HackerHallOfFame = () => {
       {/* Live Listening List */}
       <ThemeProvider theme={theme}>
         <ContributorSection
-          title=" Live Listening App UI & Development Team"
+          title="Live Listening App UI & Development Team"
           people={liveContributors}
         ></ContributorSection>
       </ThemeProvider>
@@ -317,190 +317,18 @@ const HackerHallOfFame = () => {
 
       <ThemeProvider theme={theme}>
         <ContributorSection
-          title=" Arcatia.io Data Cooperative"
+          title="Arcatia.io Data Cooperative"
           people={arcatiaContributors}
         ></ContributorSection>
       </ThemeProvider>
 
-      {/*Project Management Team Header */}
-      <Box
-        sx={{
-          height: '10em',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography
-          variant="h4"
-          gutterBottom
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'medium',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-          }}
-        >
-          Project Management Team
-        </Typography>
-        <Typography variant="caption">(Initiated 2021)</Typography>
-      </Box>
-
-      <Container
-        maxWidth={false}
-        sx={{
-          width: '80%',
-
-          '@media (min-width:375px) and (max-width:500px)': {
-            width: '100%',
-          },
-
-          '@media (min-width:768px) and (max-width:1200px)': {
-            width: '100%',
-          },
-        }}
-      >
-        {projectManagementContributors.map((person, index) => (
-          <Grid
-            container
-            item
-            xs={12}
-            key={index}
-            sx={{
-              mb: 3,
-              display: 'flex',
-              flexDirection: 'row',
-
-              '@media (min-width:375px) and (max-width:500px)': {
-                width: '100%',
-                flexDirection: 'column',
-              },
-              '@media (min-width:768px) and (max-width:1200px)': {
-                width: '100%',
-                textAlign: 'left',
-              },
-            }}
-          >
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '20%',
-
-                m: 'auto',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-                  textAlign: 'center',
-                },
-                '@media (min-width:768px) and (max-width:1200px)': {
-                  width: '30%',
-                  ml: 0,
-                },
-              }}
-            >
-              {person.link === '' ? (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  {person.name}
-                </Typography>
-              ) : (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  <Link
-                    href={person.link}
-                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                    onClick={() =>
-                      pushToDataLayer('external_link_click', {
-                        link_text: person.name,
-                        destination: person.link,
-                      })
-                    }
-                  >
-                    {person.name}
-                  </Link>
-                </Typography>
-              )}
-            </Grid>
-
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '60%',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-
-                  textAlign: 'center',
-                },
-              }}
-            >
-              {person.roles.map((role, idx) => (
-                <Typography
-                  key={idx}
-                  sx={{
-                    ml: 20,
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      fontSize: 'small',
-                      mx: 'auto',
-                      ml: 0,
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'left',
-                      mx: 'auto',
-                      width: '100%',
-                    },
-                  }}
-                >
-                  {role}
-                </Typography>
-              ))}
-            </Grid>
-          </Grid>
-        ))}
-      </Container>
+      {/*Project Management Team Header and list*/}
+      <ThemeProvider theme={theme}>
+        <ContributorSection
+          title="Project Management Team"
+          people={projectManagementContributors}
+        ></ContributorSection>
+      </ThemeProvider>
 
       {/*Podcast header */}
       <Box
