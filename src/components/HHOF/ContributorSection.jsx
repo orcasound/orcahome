@@ -11,7 +11,7 @@ const ContributorSection = ({ title = ``, caption = '', people }) => {
   return (
     <div className="contributor-sec-container">
       <Container
-        maxWidth="lg"
+        maxWidth="x-lg"
         sx={(theme) => ({
           [theme.breakpoints.between('phone', 'sm')]: {
             display: 'flex',

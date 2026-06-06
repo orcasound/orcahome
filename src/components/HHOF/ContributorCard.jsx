@@ -3,7 +3,7 @@
  * File  : ContributorCard.jsx
  * Desc  : Component that renders all the contributors and their respective roles.
  *  */
-import { Box, Container, Grid, Link, styled,Typography } from '@mui/material'
+import { Box, Container, Grid, Link, styled, Typography } from '@mui/material'
 
 const ContributorCard = ({ contributors }) => {
   return (
@@ -21,15 +21,15 @@ const ContributorCard = ({ contributors }) => {
             container
             key={index}
             sx={(theme) => ({
-              width: '70%',
+              width: '60%',
               fontSize: '16px',
               fontWeight: '500',
               lineHeight: '140%',
               mx: 'auto',
+
               [theme.breakpoints.between('phone', 'sm')]: {
                 textAlign: 'center',
                 width: '100%',
-                mx: 'auto',
               },
 
               [theme.breakpoints.between('tablet', 'md')]: {
@@ -46,6 +46,7 @@ const ContributorCard = ({ contributors }) => {
                 textAlign: 'left',
                 flexDirection: 'row',
                 width: '50%',
+
                 [theme.breakpoints.between('phone', 'sm')]: {
                   gridGap: '0px',
                   whiteSpace: 'nowrap',
@@ -102,6 +103,7 @@ const ContributorCard = ({ contributors }) => {
                       fontWeight: '500',
                       lineHeight: '140%',
                       width: '80%',
+
                       [theme.breakpoints.between('phone', 'sm')]: {
                         width: '50%',
                         mx: 'auto',
@@ -169,6 +171,9 @@ const ContributorCard = ({ contributors }) => {
             <Grid
               size={{ xs: 12, sm: 7 }}
               sx={(theme) => ({
+                width: '50%',
+
+                justifyContent: 'left',
                 [theme.breakpoints.between('phone', 'sm')]: {
                   width: '100%',
                   alignItems: 'center',
@@ -187,8 +192,8 @@ const ContributorCard = ({ contributors }) => {
                     fontWeight: '500',
                     lineHeight: '140%',
 
+                    width: '100%',
                     [theme.breakpoints.between('phone', 'sm')]: {
-                      width: '100%',
                       alignItems: 'center',
                     },
 
