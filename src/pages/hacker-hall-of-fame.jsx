@@ -12,11 +12,13 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
+import { createTheme,ThemeProvider } from '@mui/material/styles'
 import Image from 'next/image'
 
 import hackathon from '../../public/images/getinvolved/hackathon.png'
 import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.png'
 import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.png'
+import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
 import HHOFBanner from '../components/HHOF/HHOFBanner'
 import IntroParagraph from '../components/HHOF/Intro'
@@ -32,6 +34,19 @@ import {
 import { pushToDataLayer } from '../utils/gtm'
 
 const HackerHallOfFame = () => {
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        phone: 375,
+        sm: 500,
+        tablet: 768,
+        md: 1000,
+        lg: 1200,
+        xl: 1536,
+      },
+    },
+  })
   const firstParagraph = `We would like to acknowledge the tremendous contributions of time,
             technology, and code that have been made to our open source project.
             Beginning in the fall of 2018, we began participating in hackathons
@@ -221,242 +236,28 @@ const HackerHallOfFame = () => {
         </Box>
       </Container>
       {/*Founders list */}
-      <Container
-        maxWidth={false}
-        sx={{
-          width: '100%',
+      <ThemeProvider theme={theme}>
+        <ContributorSection title="" people={contributors} />
+      </ThemeProvider>
+      {/*End of founder contributors list */}
 
-          '@media (min-width:375px) and (max-width:500px)': {
-            width: '100%',
-          },
+      {/* Beginning of the influencers list */}
 
-          '@media (min-width:768px) and (max-width:1200px)': {
-            width: '100%',
-          },
-        }}
-      >
-        {contributors.map((person, index) => (
-          <Grid
-            container
-            item
-            xs={12}
-            key={index}
-            sx={{
-              mb: 3,
-              display: 'flex',
-              flexDirection: 'row',
-
-              '@media (min-width:375px) and (max-width:500px)': {
-                width: '100%',
-                flexDirection: 'column',
-              },
-              '@media (min-width:768px) and (max-width:1200px)': {
-                width: '100%',
-                textAlign: 'left',
-              },
-            }}
-          >
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '20%',
-
-                m: 'auto',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-                  textAlign: 'center',
-                },
-                '@media (min-width:768px) and (max-width:1200px)': {
-                  width: '30%',
-                  ml: 0,
-                },
-              }}
-            >
-              {person.link === '' ? (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  {person.name}
-                </Typography>
-              ) : (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  <Link
-                    href={person.link}
-                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                    onClick={() =>
-                      pushToDataLayer('external_link_click', {
-                        link_text: person.name,
-                        destination: person.link,
-                      })
-                    }
-                  >
-                    {person.name}
-                  </Link>
-                </Typography>
-              )}
-            </Grid>
-
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '60%',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-
-                  textAlign: 'center',
-                },
-              }}
-            >
-              {person.roles.map((role, idx) => (
-                <Typography
-                  key={idx}
-                  sx={{
-                    ml: 20,
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      fontSize: 'small',
-                      mx: 'auto',
-                      ml: 0,
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'left',
-                      mx: 'auto',
-                      width: '100%',
-                    },
-                  }}
-                >
-                  {role}
-                </Typography>
-              ))}
-            </Grid>
-          </Grid>
-        ))}
-
-        {/*End of founder contributors list */}
-
-        {/* Beginning of the influencers list */}
-
-        {/* Influencer's box */}
-        <Box
-          sx={{
-            height: '10em',
-            width: '45%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            backgroundColor: 'navy',
-            borderRadius: '20px',
-            boxSizing: 'border-box',
-            boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
-            mx: 'auto',
-            '@media (min-width:375px) and (max-width:500px)': {
-              width: '100%',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              width: '100%',
-            },
-          }}
-        >
-          <Typography variant="h4" gutterBottom>
-            Influencers
-          </Typography>
-          <Typography variant="body2">(Major Contributors)</Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              textAlign: 'center',
-              display: {
-                xs: 'block',
-                sm: 'none',
-              },
-              '@media (min-width:375px) and (max-width:500px)': {
-                fontSize: 'small',
-              },
-              '@media (min-width:768px) and (max-width:1200px)': {
-                display: 'none',
-              },
-            }}
-          >
-            Founders can raise funds under the auspices of Orcasound to support
-            their own Orcasound efforts or the project in general.
-          </Typography>
-        </Box>
-      </Container>
-
-      {/* google participant header */}
+      {/* Influencer's box */}
       <Box
         sx={{
           height: '10em',
-          width: '100%',
+          width: '45%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-        }}
-      >
-        <Typography
-          variant="h4"
-          gutterBottom
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'medium',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-          }}
-        >
-          Google Summer of Code (GSoc) Participants
-        </Typography>
-      </Box>
-
-      {/* google contributors */}
-      <Container
-        maxWidth={false}
-        sx={{
-          width: '55%',
+          color: 'white',
+          backgroundColor: 'navy',
+          borderRadius: '20px',
+          boxSizing: 'border-box',
+          boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+          mx: 'auto',
           '@media (min-width:375px) and (max-width:500px)': {
             width: '100%',
           },
@@ -465,337 +266,51 @@ const HackerHallOfFame = () => {
           },
         }}
       >
-        {googleContributors.map((person, index) => (
-          <Grid
-            container
-            key={index}
-            sx={{
-              mb: 3,
+        <Typography variant="h4" gutterBottom>
+          Influencers
+        </Typography>
+        <Typography variant="body2">(Major Contributors)</Typography>
+        <Typography
+          variant="body1"
+          sx={{
+            textAlign: 'center',
+            display: {
+              xs: 'block',
+              sm: 'none',
+            },
+            '@media (min-width:375px) and (max-width:500px)': {
+              fontSize: 'small',
+            },
+            '@media (min-width:768px) and (max-width:1200px)': {
+              display: 'none',
+            },
+          }}
+        >
+          Founders can raise funds under the auspices of Orcasound to support
+          their own Orcasound efforts or the project in general.
+        </Typography>
+      </Box>
 
-              textAlign: {
-                xs: 'center',
-                sm: 'left',
-              },
+      {/* google participant header */}
+      {/* google contributors */}
 
-              '@media (min-width:768px) and (max-width:1200px)': {
-                display: 'flex',
-                flexDirection: 'row',
-              },
-            }}
-          >
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              spacing={0}
-              sx={{
-                textAlign: 'left',
-                flexDirection: 'row',
+      <ThemeProvider theme={theme}>
+        <ContributorSection
+          title="Google Summer of Code (GSoc) Participants"
+          people={googleContributors}
+        ></ContributorSection>
+      </ThemeProvider>
 
-                width: '57%',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  display: 'flex',
-                  flexDirection: 'row',
-                  fontSize: 'medium',
-                  gridGap: '0px',
-                  whiteSpace: 'nowrap',
-                  justifyContent: 'center',
-                  width: '100%',
-                },
-                '@media (min-width:768px) and (max-width:1200px)': {
-                  textAlign: 'left',
-                  width: '60%',
-                },
-              }}
-            >
-              {person.link === '' ? (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      width: 'auto',
-                    },
-                  }}
-                >
-                  {person.name}
-                </Typography>
-              ) : (
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: '20px',
-                      fontWeight: '500',
-                      lineHeight: '140%',
-
-                      width: '80%',
-
-                      '@media (min-width:375px) and (max-width:500px)': {
-                        ml: 0,
-
-                        width: '65%',
-                      },
-                    }}
-                  >
-                    {' '}
-                    <Link
-                      href={person.link}
-                      style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                      onClick={() =>
-                        pushToDataLayer('external_link_click', {
-                          link_text: person.name,
-                          destination: person.link,
-                        })
-                      }
-                    >
-                      {person.name}
-                    </Link>
-                  </Typography>
-                </Box>
-              )}
-
-              <Typography
-                sx={{
-                  fontSize: '20px',
-                  fontWeight: 500,
-                  lineHeight: '140%',
-                  m: 0,
-
-                  '@media (min-width:375px) and (max-width:500px)': {
-                    fontSize: 'medium',
-                    pt: 0.4,
-                    textAlign: 'center',
-                  },
-                }}
-              >
-                {person.country}
-              </Typography>
-            </Grid>
-
-            <Grid
-              size={{ xs: 12, sm: 7 }}
-              sx={{
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-                  alignItems: 'center',
-                },
-                '@media (min-width:768px) and (max-width:1200px)': {
-                  width: '40%',
-                },
-              }}
-            >
-              {person.roles.map((role, idx) => (
-                <Typography
-                  key={idx}
-                  sx={{
-                    fontSize: {
-                      xs: 'small',
-                      sm: '20px',
-                    },
-                    fontWeight: 500,
-                    lineHeight: '140%',
-                    textAlign: {
-                      xs: 'center',
-                      sm: 'left',
-                    },
-
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      fontSize: '20px',
-                      fontWeight: 500,
-                      lineHeight: '140%',
-
-                      textAlign: 'left',
-                    },
-                  }}
-                >
-                  {role}
-                </Typography>
-              ))}
-            </Grid>
-          </Grid>
-        ))}
-      </Container>
       {/* End of google contributors */}
 
       {/* Live Listening app & UI team header */}
-      <Box
-        sx={{
-          height: '10em',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography
-          variant="h4"
-          gutterBottom
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'medium',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-          }}
-        >
-          Live Listening App UI & Development Team
-        </Typography>
-      </Box>
-
-      {/*Live Listening contributors */}
-      <Container
-        maxWidth={false}
-        sx={{
-          width: '80%',
-
-          '@media (min-width:375px) and (max-width:500px)': {
-            width: '100%',
-          },
-
-          '@media (min-width:768px) and (max-width:1200px)': {
-            width: '100%',
-          },
-        }}
-      >
-        {liveContributors.map((person, index) => (
-          <Grid
-            container
-            item
-            xs={12}
-            key={index}
-            sx={{
-              mb: 3,
-              display: 'flex',
-              flexDirection: 'row',
-
-              '@media (min-width:375px) and (max-width:500px)': {
-                width: '100%',
-                flexDirection: 'column',
-              },
-              '@media (min-width:768px) and (max-width:1200px)': {
-                width: '100%',
-                textAlign: 'left',
-              },
-            }}
-          >
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '20%',
-
-                m: 'auto',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-                  textAlign: 'center',
-                },
-                '@media (min-width:768px) and (max-width:1200px)': {
-                  width: '30%',
-                  ml: 0,
-                },
-              }}
-            >
-              {person.link === '' ? (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  {person.name}
-                </Typography>
-              ) : (
-                <Typography
-                  sx={{
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    ml: 10,
-                    width: '80%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      ml: 0,
-
-                      width: '100%',
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      ml: 1,
-                    },
-                  }}
-                >
-                  {' '}
-                  <Link
-                    href={person.link}
-                    style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-                    onClick={() =>
-                      pushToDataLayer('external_link_click', {
-                        link_text: person.name,
-                        destination: person.link,
-                      })
-                    }
-                  >
-                    {person.name}
-                  </Link>
-                </Typography>
-              )}
-            </Grid>
-
-            <Grid
-              size={{ xs: 12, sm: 5 }}
-              sx={{
-                width: '60%',
-                '@media (min-width:375px) and (max-width:500px)': {
-                  width: '100%',
-
-                  textAlign: 'center',
-                },
-              }}
-            >
-              {person.roles.map((role, idx) => (
-                <Typography
-                  key={idx}
-                  sx={{
-                    ml: 20,
-                    fontSize: '20px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-                    '@media (min-width:375px) and (max-width:500px)': {
-                      fontSize: 'small',
-                      mx: 'auto',
-                      ml: 0,
-                    },
-                    '@media (min-width:768px) and (max-width:1200px)': {
-                      textAlign: 'left',
-                      mx: 'auto',
-                      width: '100%',
-                    },
-                  }}
-                >
-                  {role}
-                </Typography>
-              ))}
-            </Grid>
-          </Grid>
-        ))}
-      </Container>
+      {/* Live Listening List */}
+      <ThemeProvider theme={theme}>
+        <ContributorSection
+          title=" Live Listening App UI & Development Team"
+          people={liveContributors}
+        ></ContributorSection>
+      </ThemeProvider>
 
       {/*Arcatia.io Data Cooperative header */}
       <Box
