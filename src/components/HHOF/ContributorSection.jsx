@@ -7,7 +7,7 @@ import { Box, Container, Grid, Stack, Typography } from '@mui/material'
 
 import Contributorcard from './ContributorCard'
 
-const ContributorSection = ({ title = ``, people }) => {
+const ContributorSection = ({ title = ``, caption = '', people }) => {
   return (
     <div className="contributor-sec-container">
       <Container
@@ -55,6 +55,7 @@ const ContributorSection = ({ title = ``, people }) => {
             >
               {title}
             </Typography>
+            <Typography variant="caption">{caption}</Typography>
           </Box>
         )}
 
