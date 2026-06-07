@@ -73,7 +73,7 @@ const SalishSeaContent = () => (
       State (USA) and British Columbia (Canada)
     </Typography>
 
-    <Box sx={{ textAlign: 'center', my: 4 }}>
+    <Box sx={{ textAlign: 'center', mt: 4 }}>
       <a
         href="https://orcasound.net/ed/booth/local.html?learn"
         target="_blank"
@@ -345,7 +345,8 @@ export const learn = () => {
             id={section.id}
             component="section"
             sx={{
-              py: 8,
+              my: 8,
+              py: section.fullWidthBg ? 8 : 0,
               bgcolor: section.fullWidthBg || 'transparent',
               color: section.textColor || 'inherit',
             }}
