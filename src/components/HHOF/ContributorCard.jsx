@@ -5,6 +5,8 @@
  *  */
 import { Box, Container, Grid, Link, styled, Typography } from '@mui/material'
 
+import { pushToDataLayer } from '../../utils/gtm'
+
 const ContributorCard = ({ contributors }) => {
   return (
     <div className="contributor-card-container">
@@ -21,22 +23,21 @@ const ContributorCard = ({ contributors }) => {
             container
             key={index}
             sx={(theme) => ({
-              width: '60%',
-              fontSize: '16px',
-              fontWeight: '500',
-              lineHeight: '140%',
+              width: {
+                phone: '100%',
+                tablet: '100%',
+                lg: '60%',
+              },
               mx: 'auto',
 
               [theme.breakpoints.between('phone', 'sm')]: {
                 textAlign: 'center',
-                width: '100%',
               },
 
-              [theme.breakpoints.between('tablet', 'md')]: {
+              [theme.breakpoints.between('tablet', 'lg')]: {
                 display: 'flex',
                 flexDirection: 'row',
                 textAlign: 'left',
-                width: '100%',
               },
             })}
           >
@@ -45,18 +46,21 @@ const ContributorCard = ({ contributors }) => {
               sx={(theme) => ({
                 textAlign: 'left',
                 flexDirection: 'row',
-                width: '50%',
+
+                width: {
+                  phone: '100%',
+                  tablet: '50%',
+                  lg: '50%',
+                },
 
                 [theme.breakpoints.between('phone', 'sm')]: {
                   gridGap: '0px',
                   whiteSpace: 'nowrap',
                   justifyContent: 'center',
-                  width: '100%',
                 },
 
                 [theme.breakpoints.between('tablet', 'lg')]: {
                   textAlign: 'left',
-                  width: '60%',
                 },
               })}
             >
@@ -77,19 +81,20 @@ const ContributorCard = ({ contributors }) => {
                 })}
               >
                 {/* 1. (Always renders) */}
-                {person.link?.trim() ? (
+                {person.link === '' ? (
                   <Typography
+                    variant="fontStyling"
                     sx={(theme) => ({
                       textAlign: 'left',
                       flexDirection: 'row',
-                      fontSize: '16px',
-                      fontWeight: '500',
-                      lineHeight: '140%',
-                      width: '57%',
 
+                      width: {
+                        phone: '50%',
+                        lg: '80%',
+                      },
                       [theme.breakpoints.between('phone', 'sm')]: {
                         textAlign: !person.country?.trim() ? 'center' : 'right',
-                        width: '50%',
+
                         mx: 'auto',
                       },
                     })}
@@ -98,14 +103,13 @@ const ContributorCard = ({ contributors }) => {
                   </Typography>
                 ) : (
                   <Typography
+                    variant="fontStyling"
                     sx={(theme) => ({
-                      fontSize: '16px',
-                      fontWeight: '500',
-                      lineHeight: '140%',
-                      width: '80%',
-
+                      width: {
+                        phone: '50%',
+                        lg: '80%',
+                      },
                       [theme.breakpoints.between('phone', 'sm')]: {
-                        width: '50%',
                         mx: 'auto',
                         display: 'flex',
                         flexDirection: 'row',
@@ -117,14 +121,14 @@ const ContributorCard = ({ contributors }) => {
                   >
                     {' '}
                     <Link
-                      href={person.link || '#'}
+                      href={person.link}
                       sx={(theme) => ({
                         fontSize: '16px',
                         fontWeight: '500',
                         lineHeight: '140%',
                         width: '80%',
                         textDecoration: 'underline',
-                        color: '#1B2B7B',
+                        backgroundColor: (theme) => theme.palette.primary,
                         [theme.breakpoints.between('phone', 'sm')]: {
                           textAlign: !person.country?.trim()
                             ? 'center'
@@ -147,18 +151,14 @@ const ContributorCard = ({ contributors }) => {
                 {/* 2. Country renders ONLY if it exists and is not empty */}
                 {person.country?.trim() && (
                   <Typography
+                    variant="fontStyling"
                     sx={(theme) => ({
-                      fontSize: '16px',
-                      fontWeight: '500',
-                      lineHeight: '140%',
-
-                      [theme.breakpoints.between('phone', 'sm')]: {
-                        width: '50%',
-                        alignItems: 'center',
+                      width: {
+                        phone: '50%',
+                        lg: '40%',
                       },
-
-                      [theme.breakpoints.between('tablet', 'md')]: {
-                        width: '40%',
+                      [theme.breakpoints.between('phone', 'sm')]: {
+                        alignItems: 'center',
                       },
                     })}
                   >
@@ -171,33 +171,31 @@ const ContributorCard = ({ contributors }) => {
             <Grid
               size={{ xs: 12, sm: 7 }}
               sx={(theme) => ({
-                width: '50%',
-
-                justifyContent: 'left',
-                [theme.breakpoints.between('phone', 'sm')]: {
-                  width: '100%',
-                  alignItems: 'center',
+                width: {
+                  phone: '100%',
+                  tablet: '40%',
+                  lg: '50%',
                 },
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'left',
 
-                [theme.breakpoints.between('tablet', 'md')]: {
-                  width: '40%',
+                [theme.breakpoints.between('phone', 'sm')]: {
+                  alignItems: 'center',
                 },
               })}
             >
               {person.roles.map((role, idx) => (
                 <Typography
+                  variant="fontStyling"
                   key={idx}
                   sx={(theme) => ({
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    lineHeight: '140%',
-
                     width: '100%',
                     [theme.breakpoints.between('phone', 'sm')]: {
                       alignItems: 'center',
                     },
 
-                    [theme.breakpoints.between('tablet', 'md')]: {
+                    [theme.breakpoints.between('tablet', 'lg')]: {
                       textAlign: 'left',
                     },
                   })}

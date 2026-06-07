@@ -30,7 +30,6 @@ import {
   orcaContributors,
   projectManagementContributors,
 } from '../data/hackerHallOfFameContributors'
-import { pushToDataLayer } from '../utils/gtm'
 
 const HackerHallOfFame = () => {
   const theme = createTheme({
@@ -43,6 +42,19 @@ const HackerHallOfFame = () => {
         md: 1000,
         lg: 1200,
         xl: 1536,
+      },
+    },
+    palette: {
+      primary: {
+        main: '#111184', // Dark Navy Blue
+        contrastText: '#ffffff',
+      },
+    },
+    typography: {
+      fontStyling: {
+        fontSize: '16px',
+        fontWeight: '500',
+        lineHeight: '140%',
       },
     },
   })
@@ -111,7 +123,9 @@ const HackerHallOfFame = () => {
   return (
     <div className="hhof-container">
       {/* Banner for the page */}
-      <HHOFBanner />
+      <ThemeProvider theme={theme}>
+        <HHOFBanner />
+      </ThemeProvider>
 
       {/* First Section for this page- top */}
       <Container maxWidth="md">
@@ -135,22 +149,22 @@ const HackerHallOfFame = () => {
           <Box
             id="scroll-link"
             sx={(theme) => ({
-              maxHeight: '30em',
-              width: '100%',
+              minHeight: '20em',
+              widthWidth: '100%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
               color: 'white',
               gap: 1,
-              backgroundColor: '#111184',
+              backgroundColor: (theme) => theme.palette.primary.main,
               borderRadius: '20px',
               boxSizing: 'border-box',
               boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
 
               [theme.breakpoints.between('phone', 'sm')]: {
-                maxWidth: '100%',
-                maxHeight: '45em',
+                width: '100%',
+                height: '80%',
               },
               [theme.breakpoints.between('tablet', 'lg')]: {
                 fontSize: 'x-large',
@@ -169,14 +183,13 @@ const HackerHallOfFame = () => {
             >
               Founders
             </Typography>
-            <Typography variant="body2">(Long-Term Contributors)</Typography>
+            <Typography variant="fontStyling">
+              (Long-Term Contributors)
+            </Typography>
             <Typography
               sx={(theme) => ({
                 width: '90%',
-                marginTop: '1em',
-                fontSize: '20px',
-                fontWeight: '500',
-                lineHeight: '140%',
+
                 [theme.breakpoints.between('tablet', 'lg')]: {
                   fontSize: 'x-large',
                 },
@@ -198,14 +211,13 @@ const HackerHallOfFame = () => {
               of the Orcasound infrastructure.
             </Typography>
             <Typography
+              variant="fontStyling"
               sx={(theme) => ({
                 display: {
                   xs: 'none',
                   sm: 'block',
                 },
-                fontSize: '20px',
-                fontWeight: '500',
-                lineHeight: '140%',
+
                 width: '90%',
                 height: '5em',
                 [theme.breakpoints.between('phone', 'sm')]: {
@@ -237,24 +249,23 @@ const HackerHallOfFame = () => {
       <ThemeProvider theme={theme}>
         <Box
           sx={(theme) => ({
-            height: '10em',
-            width: '45%',
+            minHeight: '10em',
+
+            width: {
+              phone: '95%',
+              tablet: '95%',
+              lg: '45%',
+            },
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
-            backgroundColor: 'navy',
+            backgroundColor: (theme) => theme.palette.primary.main,
             borderRadius: '20px',
             boxSizing: 'border-box',
             boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
             mx: 'auto',
-            [theme.breakpoints.between('phone', 'sm')]: {
-              width: '95%',
-            },
-            [theme.breakpoints.between('tablet', 'lg')]: {
-              width: '100%',
-            },
           })}
         >
           <Typography variant="h4" gutterBottom>
@@ -327,8 +338,8 @@ const HackerHallOfFame = () => {
       <ThemeProvider theme={theme}>
         <Box
           sx={{
-            height: '10em',
-            width: '100%',
+            minHeight: '10em',
+            minWidth: '100%',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

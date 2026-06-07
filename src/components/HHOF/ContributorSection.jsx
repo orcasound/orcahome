@@ -30,7 +30,7 @@ const ContributorSection = ({ title = ``, caption = '', people }) => {
         ) : (
           <Box
             sx={{
-              height: '10em',
+              minHeight: '10em',
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
