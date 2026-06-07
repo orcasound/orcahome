@@ -36,7 +36,7 @@ const HOFBanner = () => {
       <Container maxWidth={false} disableGutters>
         <Box
           sx={{
-            height: '5em',
+            minHeight: '5em',
             width: 1,
             display: 'flex',
             justifyContent: 'center',
@@ -48,12 +48,12 @@ const HOFBanner = () => {
           <Typography
             variant="h3"
             sx={(theme) => ({
-              [theme.breakpoints.between('xs', 'sm')]: {
+              [theme.breakpoints.between('phone', 'sm')]: {
                 fontSize: 'medium',
               },
 
-              [theme.breakpoints.between('md', 'lg')]: {
-                fontSize: 'x-large',
+              [theme.breakpoints.between('tablet', 'lg')]: {
+                fontSize: 'large',
               },
             })}
           >
