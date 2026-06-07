@@ -130,109 +130,99 @@ const HackerHallOfFame = () => {
         </Stack>
 
         {/*Founders Box */}
-        <Box
-          id="scroll-link"
-          sx={{
-            maxHeight: '30em',
-            width: '110%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            gap: 1,
-            backgroundColor: '#111184',
-            borderRadius: '20px',
-            boxSizing: 'border-box',
-            boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
-            mt: 5,
-            mb: 5,
 
-            /*iphone  formatting */
-            '@media (min-width:375px) and (max-width:500px)': {
-              maxWidth: '100%',
-              maxHeight: '45em',
-              pb: 3,
-              mt: 20,
-            },
-            /*ipad */
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              height: '80%',
+        <ThemeProvider theme={theme}>
+          <Box
+            id="scroll-link"
+            sx={(theme) => ({
+              maxHeight: '30em',
               width: '100%',
-              pb: 3,
-              mt: 10,
-            },
-          }}
-        >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{
-              /*iphone  formatting */
-              '@media (min-width:375px) and (max-width:500px)': {
-                mt: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              gap: 1,
+              backgroundColor: '#111184',
+              borderRadius: '20px',
+              boxSizing: 'border-box',
+              boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+
+              [theme.breakpoints.between('phone', 'sm')]: {
+                maxWidth: '100%',
+                maxHeight: '45em',
               },
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
+              [theme.breakpoints.between('tablet', 'lg')]: {
                 fontSize: 'x-large',
-                pt: 3,
+                height: '80%',
+                width: '100%',
               },
-            }}
+            })}
           >
-            Founders
-          </Typography>
-          <Typography variant="body2">(Long-Term Contributors)</Typography>
-          <Typography
-            sx={{
-              width: '90%',
-              marginTop: '1em',
-              fontSize: '20px',
-              fontWeight: '500',
-              lineHeight: '140%',
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-              },
-            }}
-          >
-            Like{' '}
-            <Link
-              sx={{ color: 'white', textDecoration: 'underline' }}
-              href="https://www.orcasound.net/join/"
-              target="_blank"
-              rel="noopener"
+            <Typography
+              variant="h4"
+              sx={(theme) => ({
+                [theme.breakpoints.between('tablet', 'lg')]: {
+                  fontSize: 'x-large',
+                },
+              })}
             >
-              Orcasound organizational members
-            </Link>
-            (who have their own amazing volunteers!), founders can raise funds
-            under the auspices of Orcasound to support their own Orcasound
-            efforts or the project in general. The also have shown leadership in
-            the community and often have administrative access to key parts of
-            the Orcasound infrastructure.
-          </Typography>
-          <Typography
-            sx={{
-              display: {
-                xs: 'none',
-                sm: 'block',
-              },
-              fontSize: '20px',
-              fontWeight: '500',
-              lineHeight: '140%',
-              /*ipad */
-              '@media (min-width:768px) and (max-width:1200px)': {
-                fontSize: 'x-large',
-                display: 'block',
-              },
-              width: '90%',
-              mb: 5,
-            }}
-          >
-            Founders can raise funds under the auspices of Orcasound to support
-            their own Orcasound efforts or the project in general.
-          </Typography>
-        </Box>
+              Founders
+            </Typography>
+            <Typography variant="body2">(Long-Term Contributors)</Typography>
+            <Typography
+              sx={(theme) => ({
+                width: '90%',
+                marginTop: '1em',
+                fontSize: '20px',
+                fontWeight: '500',
+                lineHeight: '140%',
+                [theme.breakpoints.between('tablet', 'lg')]: {
+                  fontSize: 'x-large',
+                },
+              })}
+            >
+              Like{' '}
+              <Link
+                sx={{ color: 'white', textDecoration: 'underline' }}
+                href="https://www.orcasound.net/join/"
+                target="_blank"
+                rel="noopener"
+              >
+                Orcasound organizational members
+              </Link>
+              (who have their own amazing volunteers!), founders can raise funds
+              under the auspices of Orcasound to support their own Orcasound
+              efforts or the project in general. The also have shown leadership
+              in the community and often have administrative access to key parts
+              of the Orcasound infrastructure.
+            </Typography>
+            <Typography
+              sx={(theme) => ({
+                display: {
+                  xs: 'none',
+                  sm: 'block',
+                },
+                fontSize: '20px',
+                fontWeight: '500',
+                lineHeight: '140%',
+                width: '90%',
+                height: '5em',
+                [theme.breakpoints.between('phone', 'sm')]: {
+                  width: '100vw',
+                  flexDirection: 'column',
+                },
+                [theme.breakpoints.between('tablet', 'lg')]: {
+                  fontSize: 'x-large',
+                  display: 'block',
+                },
+              })}
+            >
+              Founders can raise funds under the auspices of Orcasound to
+              support their own Orcasound efforts or the project in general.
+            </Typography>
+          </Box>
+        </ThemeProvider>
       </Container>
       {/*Founders list */}
       <ThemeProvider theme={theme}>
@@ -243,52 +233,55 @@ const HackerHallOfFame = () => {
       {/* Beginning of the influencers list */}
 
       {/* Influencer's box */}
-      <Box
-        sx={{
-          height: '10em',
-          width: '45%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          backgroundColor: 'navy',
-          borderRadius: '20px',
-          boxSizing: 'border-box',
-          boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
-          mx: 'auto',
-          '@media (min-width:375px) and (max-width:500px)': {
-            width: '100%',
-          },
-          '@media (min-width:768px) and (max-width:1200px)': {
-            width: '100%',
-          },
-        }}
-      >
-        <Typography variant="h4" gutterBottom>
-          Influencers
-        </Typography>
-        <Typography variant="body2">(Major Contributors)</Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            textAlign: 'center',
-            display: {
-              xs: 'block',
-              sm: 'none',
+
+      <ThemeProvider theme={theme}>
+        <Box
+          sx={(theme) => ({
+            height: '10em',
+            width: '45%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            backgroundColor: 'navy',
+            borderRadius: '20px',
+            boxSizing: 'border-box',
+            boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
+            mx: 'auto',
+            [theme.breakpoints.between('phone', 'sm')]: {
+              width: '95%',
             },
-            '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'small',
+            [theme.breakpoints.between('tablet', 'lg')]: {
+              width: '100%',
             },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              display: 'none',
-            },
-          }}
+          })}
         >
-          Founders can raise funds under the auspices of Orcasound to support
-          their own Orcasound efforts or the project in general.
-        </Typography>
-      </Box>
+          <Typography variant="h4" gutterBottom>
+            Influencers
+          </Typography>
+          <Typography variant="body2">(Major Contributors)</Typography>
+          <Typography
+            variant="body1"
+            sx={(theme) => ({
+              textAlign: 'center',
+              display: {
+                xs: 'block',
+                sm: 'none',
+              },
+              [theme.breakpoints.between('phone', 'sm')]: {
+                fontSize: 'small',
+              },
+              [theme.breakpoints.between('tablet', 'lg')]: {
+                display: 'none',
+              },
+            })}
+          >
+            Founders can raise funds under the auspices of Orcasound to support
+            their own Orcasound efforts or the project in general.
+          </Typography>
+        </Box>
+      </ThemeProvider>
 
       {/* google participant header */}
       {/* google contributors */}
@@ -331,81 +324,97 @@ const HackerHallOfFame = () => {
 
       {/*Podcast header */}
 
-      <Box
-        sx={{
-          height: '10em',
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Typography
-          variant="h4"
-          gutterBottom
+      <ThemeProvider theme={theme}>
+        <Box
           sx={{
+            height: '10em',
+            width: '100%',
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
-            '@media (min-width:375px) and (max-width:500px)': {
-              fontSize: 'medium',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              fontSize: 'x-large',
-              textAlign: 'center',
-              fontWeight: 'bold',
-            },
+            justifyContent: 'center',
           }}
         >
-          PodCast
-        </Typography>
-        <Typography variant="caption">(ML-Assisted Annotation Tool)</Typography>
-      </Box>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={(theme) => ({
+              display: 'flex',
+              alignItems: 'center',
 
-      <Breadcrumbs
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: '20px',
-          fontWeight: '500',
-          lineHeight: '140%',
-          '& .MuiBreadcrumbs-ol': {
-            '@media (min-width:375px) and (max-width:500px)': {
+              [theme.breakpoints.between('phone', 'sm')]: {
+                fontSize: 'medium',
+                textAlign: 'center',
+                fontWeight: 'bold',
+              },
+              [theme.breakpoints.between('tablet', 'lg')]: {
+                fontSize: 'x-large',
+                textAlign: 'center',
+                fontWeight: 'bold',
+              },
+            })}
+          >
+            PodCast
+          </Typography>
+          <Typography variant="caption">
+            (ML-Assisted Annotation Tool)
+          </Typography>
+        </Box>
+      </ThemeProvider>
+
+      <ThemeProvider theme={theme}>
+        <Breadcrumbs
+          sx={(theme) => ({
+            display: 'flex',
+            justifyContent: 'center',
+            fontSize: '20px',
+            fontWeight: '500',
+            lineHeight: '140%',
+
+            textAlign: {
+              xs: 'center',
+              sm: 'center',
+            },
+
+            '& .MuiBreadcrumbs-ol': {
+              [theme.breakpoints.between('phone', 'sm')]: {
+                flexDirection: 'column',
+              },
+              [theme.breakpoints.between('tablet', 'lg')]: {
+                flexDirection: 'row',
+              },
+
+              alignItems: {
+                xs: 'center',
+                sm: 'flex-start',
+              },
+            },
+
+            [theme.breakpoints.between('phone', 'sm')]: {
               flexDirection: 'column',
             },
-            '@media (min-width:768px) and (max-width1200px)': {
+            [theme.breakpoints.between('tablet', 'lg')]: {
               flexDirection: 'row',
             },
-
-            alignItems: {
-              xs: 'center',
-              sm: 'flex-start',
-            },
-          },
-          textAlign: {
-            xs: 'center',
-            sm: 'center',
-          },
-        }}
-        separator={
-          <Typography
-            sx={{
-              '@media (min-width:375px) and (max-width:500px)': {
-                display: 'none',
-              },
-            }}
-          >
-            ●
-          </Typography>
-        }
-        aria-label="breadcrumb"
-      >
-        <Typography color="text.primary">Prakruti Gogia</Typography>
-        <Typography color="text.primary">Akash Mahajan</Typography>
-        <Typography color="text.primary">Nithya Govindarajan</Typography>
-      </Breadcrumbs>
+          })}
+          separator={
+            <Typography
+              sx={(theme) => ({
+                [theme.breakpoints.between('phone', 'sm')]: {
+                  display: 'none',
+                },
+              })}
+            >
+              ●
+            </Typography>
+          }
+          aria-label="breadcrumb"
+        >
+          <Typography color="text.primary">Prakruti Gogia</Typography>
+          <Typography color="text.primary">Akash Mahajan</Typography>
+          <Typography color="text.primary">Nithya Govindarajan</Typography>
+        </Breadcrumbs>
+      </ThemeProvider>
 
       {/*OrcaHello header */}
       <ThemeProvider theme={theme}>
@@ -428,91 +437,6 @@ const HackerHallOfFame = () => {
       <ThemeProvider theme={theme}>
         <LowerImages></LowerImages>
       </ThemeProvider>
-      {/* <Stack
-        direction={{
-          xs: 'column',
-          sm: 'row',
-        }}
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          m: 'auto',
-          gap: 10,
-
-          '@media (min-width:375px) and (max-width:500px)': {
-            gap: 0,
-            m: 0,
-          },
-          '@media (min-width:768px) and (max-width:1200px)': {
-            gap: 5,
-            flexDirection: 'row',
-          },
-        }}
-      >
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: '100%',
-            width: '30%',
-            '@media (min-width:375px) and (max-width:500px)': {
-              width: '90%',
-              mb: 6,
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              width: '40%',
-              ml: 3,
-              mb: 3,
-            },
-          }}
-        >
-          <Image
-            src={hackCollab}
-            alt="Erika facilitating an early discussion of machine learning and the orca data repository"
-            width={413}
-            height={271}
-            style={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: '20px',
-            }}
-          />
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            Erika facilitating an early discussion of machine learning and the
-            Orcadata repository.
-          </Typography>
-        </Box>
-
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: '100%',
-
-            width: '30%',
-            '@media (min-width:375px) and (max-width:500px)': {
-              width: '90%',
-            },
-            '@media (min-width:768px) and (max-width:1200px)': {
-              width: '40%',
-              mr: 3,
-            },
-          }}
-        >
-          <Image
-            src={hackVal}
-            alt="Val working on the Orcanode software and hardware."
-            width={413}
-            height={271}
-            style={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: '20px',
-            }}
-          />
-          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            Val working on the Orcanode software and hardware.
-          </Typography>
-        </Box>
-      </Stack> */}
     </div>
   )
 }
