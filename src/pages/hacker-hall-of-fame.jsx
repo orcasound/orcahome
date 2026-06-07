@@ -150,7 +150,7 @@ const HackerHallOfFame = () => {
             id="scroll-link"
             sx={(theme) => ({
               minHeight: '20em',
-              widthWidth: '100%',
+              minWidth: '100%',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
