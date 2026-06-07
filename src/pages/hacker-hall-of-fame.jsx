@@ -16,12 +16,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Image from 'next/image'
 
 import hackathon from '../../public/images/getinvolved/hackathon.png'
-import hackCollab from '../../public/images/hackerHallOfFame/Hacker_Collab.png'
-import hackVal from '../../public/images/hackerHallOfFame/Hacker_Val.png'
 import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
 import HHOFBanner from '../components/HHOF/HHOFBanner'
 import IntroParagraph from '../components/HHOF/Intro'
+import LowerImages from '../components/HHOF/LowerImages'
 import {
   arcatiaContributors,
   contributors,
@@ -426,7 +425,10 @@ const HackerHallOfFame = () => {
       </ThemeProvider>
 
       {/*final pictures above footer */}
-      <Stack
+      <ThemeProvider theme={theme}>
+        <LowerImages></LowerImages>
+      </ThemeProvider>
+      {/* <Stack
         direction={{
           xs: 'column',
           sm: 'row',
@@ -510,7 +512,7 @@ const HackerHallOfFame = () => {
             Val working on the Orcanode software and hardware.
           </Typography>
         </Box>
-      </Stack>
+      </Stack> */}
     </div>
   )
 }
