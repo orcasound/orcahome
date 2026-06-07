@@ -94,7 +94,7 @@ const ContributorCard = ({ contributors }) => {
                       },
                       [theme.breakpoints.between('phone', 'sm')]: {
                         textAlign: !person.country?.trim() ? 'center' : 'right',
-
+                        fontSize: 'small',
                         mx: 'auto',
                       },
                     })}
@@ -112,6 +112,7 @@ const ContributorCard = ({ contributors }) => {
                       [theme.breakpoints.between('phone', 'sm')]: {
                         mx: 'auto',
                         display: 'flex',
+                        fontSize: 'small',
                         flexDirection: 'row',
                         justifyContent: !person.country?.trim()
                           ? 'center'
@@ -134,6 +135,7 @@ const ContributorCard = ({ contributors }) => {
                             ? 'center'
                             : 'right',
                           width: '100%',
+                          fontSize: 'small',
                         },
                       })}
                       onClick={() =>
