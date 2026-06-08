@@ -80,11 +80,8 @@ export const contributors = [
   },
   {
     name: 'Akash Mahajan',
-    roles: [
-      'Pod.Cast creator',
-      'OrcaHello ML developer (Microsoft, 2019-2020)',
-    ],
-    link: '',
+    roles: ['OrcaHello, Founding project lead (2019-2023)', 'Pod.Cast creator'],
+    link: 'https://akashmjn.me',
   },
   {
     name: 'Praful Mathur',
@@ -405,5 +402,10 @@ export const individualContributors = [
     name: 'Shivangi Agarwal',
     roles: ['Product Manager (2023+)'],
     link: 'https://www.linkedin.com/in/shivangi-agarwal-b4939119/',
+  },
+  {
+    name: 'Christian Johnson',
+    roles: ['UX Designer (2023+)'],
+    link: 'https://christianjohnson.dev',
   },
 ]
