@@ -3,7 +3,7 @@
  * File  : ContributorCard.jsx
  * Desc  : Component that renders all the contributors and their respective roles.
  *  */
-import { Box, Container, Grid, Link, styled, Typography } from '@mui/material'
+import { Box, Grid, Link, Typography } from '@mui/material'
 
 import { pushToDataLayer } from '../../utils/gtm'
 

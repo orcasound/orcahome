@@ -5,7 +5,7 @@
  *
  */
 
-import { Box, Container, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import Image from 'next/image'
 
 import hackathon from '../../../public/images/getinvolved/hackathon.png'

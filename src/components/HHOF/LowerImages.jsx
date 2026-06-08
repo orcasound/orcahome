@@ -4,15 +4,7 @@
  * Desc  : Component that renders the lower images above the footer.
  *  */
 
-import {
-  Box,
-  Container,
-  Grid,
-  Link,
-  Stack,
-  styled,
-  Typography,
-} from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import Image from 'next/image'
 
 import hackCollab from '../../../public/images/hackerHallOfFame/Hacker_Collab.png'

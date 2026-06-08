@@ -7,15 +7,12 @@ import {
   Box,
   Breadcrumbs,
   Container,
-  Grid,
   Link,
   Stack,
   Typography,
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Image from 'next/image'
 
-import hackathon from '../../public/images/getinvolved/hackathon.png'
 import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
 import HHOFBanner from '../components/HHOF/HHOFBanner'

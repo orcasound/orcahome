@@ -5,7 +5,7 @@
  * @param : text: paragraph that will be styled and rendered.
  *  */
 
-import { Box, Link, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const IntroParagraph = ({ text }) => {
   return (

@@ -3,7 +3,7 @@
  * File  : ContributorSection.jsx
  * Desc  : This component will render a contributor section of the hhof page
  * */
-import { Box, Container, Grid, Stack, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
 import Contributorcard from './ContributorCard'
 
