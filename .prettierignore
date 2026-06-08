@@ -4,3 +4,6 @@ node_modules
 yarn.lock
 package-lock.json
 public
+
+# Standalone UX status report (authored by the Product team, served via GitHub Pages; keep as-is)
+docs/ux-status.html

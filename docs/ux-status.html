@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orcahome UX Issues: Who Is On What</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f4f6fa; color: #1b1b1f; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.45; }
+.wrap { padding: 22px 18px 60px; max-width: 1080px; margin: 0 auto; }
+header.rep { background: #1F3864; color: #fff; border-radius: 12px; padding: 18px 20px; }
+header.rep h1 { font-size: 21px; margin: 0 0 4px; }
+header.rep p { margin: 0; font-size: 12.5px; color: #cdd7ea; }
+.refreshed { font-size: 12px; color: #cdd7ea; margin-top: 8px; }
+.refreshed b { color: #fff; }
+.btn { display: inline-block; margin-top: 10px; background: #2E75B6; color: #fff; border: 0; border-radius: 7px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.btn:hover { background: #255f95; }
+.cards { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 18px; }
+.card { flex: 1 1 150px; border: 1px solid #e2e2e8; border-radius: 10px; padding: 12px 14px; background: #fff; }
+.card .n { font-size: 27px; font-weight: 700; line-height: 1; }
+.card .l { font-size: 12px; color: #555; margin-top: 5px; }
+.card.alert { background: #fff4f4; border-color: #f3c9c9; }
+.card.alert .n { color: #b3261e; }
+h2 { font-size: 15px; margin: 24px 0 8px; border-bottom: 2px solid #2E75B6; padding-bottom: 5px; color: #1F3864; }
+.panel { background: #fff; border: 1px solid #e2e2e8; border-radius: 10px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #ececf0; vertical-align: top; }
+th { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #666; background: #f6f6f9; }
+td.num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.b-needs { background: #fde8e8; color: #b3261e; }
+.b-blocked { background: #fef3cd; color: #8a6d00; }
+.b-stale { background: #eee9fb; color: #5b3fb0; }
+.b-flight { background: #e3f4ea; color: #1f7a44; }
+.owner { font-weight: 600; }
+.owner.none { color: #b3261e; }
+.muted { color: #777; }
+.note { font-size: 12px; color: #555; background: #fff; border: 1px solid #e2e2e8; border-radius: 10px; padding: 12px 14px; margin: 14px 0 0; }
+.err { background: #fff4f4; border: 1px solid #f3c9c9; color: #b3261e; padding: 14px; border-radius: 10px; }
+.peoplegrid { display: flex; flex-wrap: wrap; gap: 10px; }
+.person { flex: 1 1 240px; border: 1px solid #e2e2e8; border-radius: 10px; padding: 10px 12px; background: #fff; }
+.person h3 { margin: 0 0 6px; font-size: 13px; }
+.person ul { margin: 0; padding-left: 18px; }
+.person li { margin: 2px 0; }
+#status { font-size: 12px; color: #555; margin: 12px 2px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="rep">
+    <h1>Orcahome UX Issues: Who Is On What</h1>
+    <p>Live status of open UX design issues on Orcahome, the Orcasound Product Team's proof-of-concept site at orcasound.tech. Ownership is read from each issue's assignees on GitHub, with the product service account removed, so each row shows the real owner. Pick an unclaimed issue, read its brief, and request it in the UX Team channel (Issue Requests topic); Brendan reviews and assigns.</p>
+    <div class="refreshed" id="refreshed"></div>
+    <button class="btn" onclick="loadReport()">Refresh now</button>
+  </header>
+  <div id="status">Loading live data from GitHub...</div>
+  <div id="content"></div>
+</div>
+<script>
+const API = "https://api.github.com/repos/orcasound/orcahome/issues";
+const AUTO = "BT-Orcasound-Product";
+
+function daysSince(iso){ if(!iso) return null; return Math.floor((Date.now()-new Date(iso).getTime())/86400000); }
+function isUX(i){ const t=(i.title||"").trim().toLowerCase(); return t.startsWith("ux:")||t.startsWith("ux design:"); }
+function realOwners(i){ return (Array.isArray(i.assignees)?i.assignees:[]).map(x=>x&&x.login).filter(l=>l&&l!==AUTO); }
+function labelNames(i){ return (Array.isArray(i.labels)?i.labels:[]).map(l=>(typeof l==="string"?l:(l&&l.name))||"").map(s=>s.toLowerCase()); }
+function statusOf(i){
+  const owners=realOwners(i), labels=labelNames(i), body=(i.body||"").toLowerCase();
+  if(labels.includes("status: blocked")||body.includes("status: blocked")||body.includes("blocked on")) return "Blocked";
+  if(owners.length===0) return "Needs owner";
+  const d=daysSince(i.updated_at);
+  if(d!==null&&d>=14) return "Stale";
+  return "In-flight";
+}
+const ORDER={"Needs owner":0,"Blocked":1,"Stale":2,"In-flight":3};
+const BADGE={"Needs owner":"b-needs","Blocked":"b-blocked","Stale":"b-stale","In-flight":"b-flight"};
+function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+async function fetchOpenIssues(){
+  let page=1, all=[];
+  while(page<=12){
+    const res=await fetch(API+"?state=open&per_page=100&page="+page,{headers:{"Accept":"application/vnd.github+json"}});
+    if(!res.ok) throw new Error("GitHub API returned "+res.status+(res.status===403?" (rate limit, try again in a minute)":""));
+    const batch=await res.json();
+    if(!Array.isArray(batch)||batch.length===0) break;
+    all=all.concat(batch.filter(x=>!x.pull_request));
+    if(batch.length<100) break;
+    page++;
+  }
+  return all;
+}
+
+function render(issues){
+  const ux=issues.filter(isUX).map(i=>({num:i.number,title:i.title||"",url:i.html_url,owners:realOwners(i),status:statusOf(i),days:daysSince(i.updated_at)}));
+  ux.sort((a,b)=>(ORDER[a.status]-ORDER[b.status])||(a.num-b.num));
+  const counts={"Needs owner":0,"Blocked":0,"Stale":0,"In-flight":0};
+  ux.forEach(x=>counts[x.status]++);
+  let html='<div class="cards">';
+  html+='<div class="card alert"><div class="n">'+counts["Needs owner"]+'</div><div class="l">Needs owner (open to claim)</div></div>';
+  html+='<div class="card"><div class="n">'+counts["In-flight"]+'</div><div class="l">In-flight</div></div>';
+  html+='<div class="card"><div class="n">'+counts["Blocked"]+'</div><div class="l">Blocked</div></div>';
+  html+='<div class="card"><div class="n">'+counts["Stale"]+'</div><div class="l">Stale (14+ days quiet)</div></div>';
+  html+='<div class="card"><div class="n">'+ux.length+'</div><div class="l">Total open UX issues</div></div>';
+  html+='</div>';
+  html+='<h2>All open UX issues</h2><div class="panel"><table><thead><tr><th>Issue</th><th>Title</th><th>Owner</th><th>Status</th><th>Last activity</th></tr></thead><tbody>';
+  ux.forEach(x=>{
+    const oc=x.owners.length?'<span class="owner">'+x.owners.map(esc).join(", ")+'</span>':'<span class="owner none">open to claim</span>';
+    const act=x.days===null?'<span class="muted">unknown</span>':(x.days+(x.days===1?" day ago":" days ago"));
+    html+='<tr><td class="num"><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a></td><td>'+esc(x.title)+'</td><td>'+oc+'</td><td><span class="badge '+BADGE[x.status]+'">'+x.status+'</span></td><td class="num">'+act+'</td></tr>';
+  });
+  html+='</tbody></table></div>';
+  const byOwner={};
+  ux.forEach(x=>{ if(x.owners.length===0){(byOwner["(open to claim)"]=byOwner["(open to claim)"]||[]).push(x);} else x.owners.forEach(o=>{(byOwner[o]=byOwner[o]||[]).push(x);}); });
+  const names=Object.keys(byOwner).sort((a,b)=>{ if(a==="(open to claim)")return -1; if(b==="(open to claim)")return 1; return a.localeCompare(b); });
+  html+='<h2>By person</h2><div class="peoplegrid">';
+  names.forEach(n=>{ html+='<div class="person"><h3>'+esc(n)+' <span class="muted">('+byOwner[n].length+')</span></h3><ul>'; byOwner[n].forEach(x=>{ html+='<li><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a> '+esc(x.title)+'</li>'; }); html+='</ul></div>'; });
+  html+='</div>';
+  html+='<div class="note">A UX issue is one whose title starts with "UX:" or "UX Design:". <b>Needs owner</b> means no one beyond the product service account is assigned, so it is open to claim. <b>Blocked</b> reads from a blocked label or a "Blocked on" note in the body. <b>Stale</b> means a real owner but no activity in 14 or more days. To claim an issue: open it, read the linked design brief, then request it in the UX Team channel (Issue Requests topic). Brendan reviews and assigns you; do not self-assign on GitHub.</div>';
+  document.getElementById("content").innerHTML=html;
+}
+
+async function loadReport(){
+  const s=document.getElementById("status");
+  s.textContent="Loading live data from GitHub...";
+  document.getElementById("content").innerHTML="";
+  try{
+    const issues=await fetchOpenIssues();
+    document.getElementById("refreshed").innerHTML="Last refreshed <b>"+new Date().toLocaleString()+"</b>. Reload the page or use Refresh to update.";
+    s.textContent="Live: "+issues.length+" open issues pulled from GitHub.";
+    render(issues);
+  }catch(e){
+    s.textContent="";
+    document.getElementById("content").innerHTML='<div class="err">Could not load live data from GitHub. '+esc(String(e&&e.message?e.message:e))+'<br><br>This report reads the public GitHub API for orcasound/orcahome. If it keeps failing, the repo may be private or the API may be rate limited; open the issues directly at https://github.com/orcasound/orcahome/issues</div>';
+  }
+}
+loadReport();
+</script>
+</body>
+</html>
