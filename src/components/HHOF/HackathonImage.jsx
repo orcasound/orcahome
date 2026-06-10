@@ -5,30 +5,43 @@
  *
  */
 
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Image from 'next/image'
 
 import hackathon from '../../../public/images/getinvolved/hackathon.png'
 
 const HackathonImage = () => {
   return (
-    <div className="hackathon-image-container">
+    <Box
+      className="hackathon-image-container"
+      sx={{
+        width: '100%',
+        '& img': {
+          display: 'block',
+          width: '100%',
+          height: {
+            xs: 'auto',
+            sm: '368px',
+          },
+          objectFit: 'cover',
+          borderRadius: '20px',
+        },
+      }}
+    >
       <Image
         src={hackathon}
         alt="Orcasound at a democracy lab hackathon in Seattle"
+        width={573}
         height={368}
-        style={{
-          width: '100%',
-
-          objectFit: 'cover',
-          borderRadius: '20px',
-        }}
       />
-      <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+      <Typography
+        variant="caption"
+        sx={{ color: 'text.secondary', display: 'block' }}
+      >
         Orcasound at a democracy lab hackathon in Seattle (photo by Mark
         Frischmuth).
       </Typography>
-    </div>
+    </Box>
   )
 }
 

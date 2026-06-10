@@ -18,14 +18,15 @@ const LowerImages = () => {
         disableGutters
         sx={(theme) => ({
           width: '70%',
+          mb: 4, // breathing room between the photos and the footer
 
-          [theme.breakpoints.between('phone', 'sm')]: {
-            width: '100vw',
+          [theme.breakpoints.down('sm')]: {
+            width: '100%',
             flexDirection: 'column',
           },
-          [theme.breakpoints.between('tablet', 'lg')]: {
+          [theme.breakpoints.between('sm', 'lg')]: {
             m: 'auto',
-            width: '97vw',
+            width: '97%',
           },
         })}
       >
@@ -34,17 +35,22 @@ const LowerImages = () => {
             width: '100%',
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            gap: 10,
+            justifyContent: 'center',
+            // Align the two photos by their TOP edge. Each child Box holds an
+            // image + caption; the captions differ in length (2 lines vs 1),
+            // so centering the whole boxes (alignItems: 'center') leaves the
+            // images vertically offset. Align to the top so the images line up.
+            alignItems: 'flex-start',
+            gap: 4,
 
-            [theme.breakpoints.between('phone', 'sm')]: {
-              width: '100vw',
+            [theme.breakpoints.down('sm')]: {
+              width: '100%',
               flexDirection: 'column',
+              alignItems: 'center', // stacked on mobile: keep them centered
             },
-            [theme.breakpoints.between('tablet', 'lg')]: {
+            [theme.breakpoints.between('sm', 'lg')]: {
               gap: 7,
-              width: '100vw',
+              width: '100%',
             },
           })}
         >
@@ -57,10 +63,10 @@ const LowerImages = () => {
               alignItems: 'left',
               textAlign: 'left',
 
-              [theme.breakpoints.between('phone', 'sm')]: {
+              [theme.breakpoints.down('sm')]: {
                 width: '90%',
               },
-              [theme.breakpoints.between('tablet', 'lg')]: {
+              [theme.breakpoints.between('sm', 'lg')]: {
                 width: '45%',
               },
             })}
@@ -70,7 +76,7 @@ const LowerImages = () => {
               alt="Erika facilitating an early discussion of machine learning and the orca data repository"
               style={{
                 width: '100%',
-                height: '20em',
+                height: 'auto',
                 borderRadius: '20px',
               }}
             />
@@ -79,10 +85,10 @@ const LowerImages = () => {
               sx={(theme) => ({
                 color: 'text.secondary',
                 width: '80%',
-                [theme.breakpoints.between('phone', 'sm')]: {
+                [theme.breakpoints.down('sm')]: {
                   width: '100%',
                 },
-                [theme.breakpoints.between('tablet', 'lg')]: {
+                [theme.breakpoints.between('sm', 'lg')]: {
                   width: '100%',
                 },
               })}
@@ -97,13 +103,12 @@ const LowerImages = () => {
               display: 'grid',
               gridTemplateColumns: '100%',
 
-              width: '50%',
-              mb: 2.5, // This is to push up the bottom to align hack val with the hacker collab image
+              width: '45%',
 
-              [theme.breakpoints.between('phone', 'sm')]: {
+              [theme.breakpoints.down('sm')]: {
                 width: '90%',
               },
-              [theme.breakpoints.between('tablet', 'lg')]: {
+              [theme.breakpoints.between('sm', 'lg')]: {
                 width: '45%',
               },
             })}
@@ -113,7 +118,7 @@ const LowerImages = () => {
               alt="Val working on the Orcanode software and hardware."
               style={{
                 width: '100%',
-                height: '20em',
+                height: 'auto',
                 borderRadius: '20px',
               }}
             />

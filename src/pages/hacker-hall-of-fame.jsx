@@ -16,8 +16,14 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
 import HHOFBanner from '../components/HHOF/HHOFBanner'
+import {
+  foundersHeader,
+  influencersHeader,
+  podcastHeader,
+} from '../components/HHOF/hhofSectionHeaders'
 import IntroParagraph from '../components/HHOF/Intro'
 import LowerImages from '../components/HHOF/LowerImages'
+import SectionHeader from '../components/HHOF/SectionHeader'
 import {
   arcatiaContributors,
   contributors,
@@ -27,22 +33,14 @@ import {
   orcaContributors,
   projectManagementContributors,
 } from '../data/hackerHallOfFameContributors'
+import appTheme from '../styles/theme'
 
 const HackerHallOfFame = () => {
-  const theme = createTheme({
-    breakpoints: {
-      values: {
-        xs: 0,
-        phone: 375,
-        sm: 500,
-        tablet: 768,
-        md: 1000,
-        lg: 1200,
-        xl: 1536,
-      },
-    },
+  // Inherit the global theme (breakpoints, fonts, palette); only add the
+  // HHOF-specific navy color and the fontStyling typography variant.
+  const theme = createTheme(appTheme, {
     palette: {
-      primary: {
+      hhofNavy: {
         main: '#111184', // Dark Navy Blue
         contrastText: '#ffffff',
       },
@@ -117,260 +115,65 @@ const HackerHallOfFame = () => {
     </>
   )
 
+  // Influencer-tier sub-sections rendered between the Influencers and PodCast
+  // headers. listWidth/variant use ContributorSection defaults.
+  const influencerSubSections = [
+    {
+      title: 'Google Summer of Code (GSoc) Participants',
+      people: googleContributors,
+    },
+    {
+      title: 'Live Listening App UI & Development Team',
+      people: liveContributors,
+    },
+    { title: 'Arcatia.io Data Cooperative', people: arcatiaContributors },
+    { title: 'Project Management Team', people: projectManagementContributors },
+  ]
+
   return (
     <div className="hhof-container">
-      {/* Banner for the page */}
       <ThemeProvider theme={theme}>
+        {/* Banner for the page */}
         <HHOFBanner />
-      </ThemeProvider>
 
-      {/* First Section for this page- top */}
-      <Container maxWidth="md">
-        <Stack spacing={2}>
-          {/* first paragraph */}
-          <IntroParagraph text={firstParagraph} />
+        {/* First Section for this page- top */}
+        <Container maxWidth="sm" sx={{ mt: 3 }}>
+          <Stack spacing={2}>
+            {/* first paragraph */}
+            <IntroParagraph text={firstParagraph} />
 
-          {/*Second paragraph */}
-          <IntroParagraph text={secondParagraph} />
+            {/*Second paragraph */}
+            <IntroParagraph text={secondParagraph} />
 
-          {/*Hackathon image */}
-          <HackathonImage />
+            {/*Hackathon image */}
+            <Box sx={{ pt: 2.5, mb: -1 }}>
+              <HackathonImage />
+            </Box>
 
-          {/*Third paragraph after first image */}
-          <IntroParagraph text={thirdParagraph} />
-        </Stack>
+            {/*Third paragraph after first image */}
+            <IntroParagraph text={thirdParagraph} />
+          </Stack>
 
-        {/*Founders Box */}
-
-        <ThemeProvider theme={theme}>
-          <Box
-            id="scroll-link"
-            sx={(theme) => ({
-              minHeight: '20em',
-              minWidth: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              gap: 1,
-              backgroundColor: (theme) => theme.palette.primary.main,
-              borderRadius: '20px',
-              boxSizing: 'border-box',
-              boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
-
-              [theme.breakpoints.between('phone', 'sm')]: {
-                width: '100%',
-                height: '80%',
-              },
-              [theme.breakpoints.between('tablet', 'lg')]: {
-                fontSize: 'x-large',
-                height: '80%',
-                width: '100%',
-              },
-            })}
-          >
-            <Typography
-              variant="h4"
-              sx={(theme) => ({
-                [theme.breakpoints.between('tablet', 'lg')]: {
-                  fontSize: 'x-large',
-                },
-              })}
-            >
-              Founders
-            </Typography>
-            <Typography variant="fontStyling">
-              (Long-Term Contributors)
-            </Typography>
-            <Typography
-              sx={(theme) => ({
-                width: '90%',
-
-                [theme.breakpoints.between('tablet', 'lg')]: {
-                  fontSize: 'x-large',
-                },
-              })}
-            >
-              Like{' '}
-              <Link
-                sx={{ color: 'white', textDecoration: 'underline' }}
-                href="https://www.orcasound.net/join/"
-                target="_blank"
-                rel="noopener"
-              >
-                Orcasound organizational members
-              </Link>
-              (who have their own amazing volunteers!), founders can raise funds
-              under the auspices of Orcasound to support their own Orcasound
-              efforts or the project in general. The also have shown leadership
-              in the community and often have administrative access to key parts
-              of the Orcasound infrastructure.
-            </Typography>
-            <Typography
-              variant="fontStyling"
-              sx={(theme) => ({
-                display: {
-                  xs: 'none',
-                  sm: 'block',
-                },
-
-                width: '90%',
-                height: '5em',
-                [theme.breakpoints.between('phone', 'sm')]: {
-                  width: '100vw',
-                  flexDirection: 'column',
-                },
-                [theme.breakpoints.between('tablet', 'lg')]: {
-                  fontSize: 'x-large',
-                  display: 'block',
-                },
-              })}
-            >
-              Founders can raise funds under the auspices of Orcasound to
-              support their own Orcasound efforts or the project in general.
-            </Typography>
-          </Box>
-        </ThemeProvider>
-      </Container>
-      {/*Founders list */}
-      <ThemeProvider theme={theme}>
+          {/*Founders Box */}
+          <SectionHeader {...foundersHeader} />
+        </Container>
+        {/*Founders list */}
         <ContributorSection title="" people={contributors} />
-      </ThemeProvider>
-      {/*End of founder contributors list */}
+        {/*End of founder contributors list */}
 
-      {/* Beginning of the influencers list */}
+        {/* Beginning of the influencers list */}
 
-      {/* Influencer's box */}
+        {/* Influencer's box */}
+        <SectionHeader {...influencersHeader} />
 
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={(theme) => ({
-            minHeight: '10em',
+        {/* Influencer-tier sub-sections (each themed team) */}
+        {influencerSubSections.map((section) => (
+          <ContributorSection key={section.title} {...section} />
+        ))}
 
-            width: {
-              phone: '95%',
-              tablet: '95%',
-              lg: '45%',
-            },
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            backgroundColor: (theme) => theme.palette.primary.main,
-            borderRadius: '20px',
-            boxSizing: 'border-box',
-            boxShadow: '10px 10px 5px 2px rgba(0,0,0,0.23)',
-            mx: 'auto',
-          })}
-        >
-          <Typography variant="h4" gutterBottom>
-            Influencers
-          </Typography>
-          <Typography variant="body2">(Major Contributors)</Typography>
-          <Typography
-            variant="body1"
-            sx={(theme) => ({
-              textAlign: 'center',
-              display: {
-                xs: 'block',
-                sm: 'none',
-              },
-              [theme.breakpoints.between('phone', 'sm')]: {
-                fontSize: 'small',
-              },
-              [theme.breakpoints.between('tablet', 'lg')]: {
-                display: 'none',
-              },
-            })}
-          >
-            Founders can raise funds under the auspices of Orcasound to support
-            their own Orcasound efforts or the project in general.
-          </Typography>
-        </Box>
-      </ThemeProvider>
+        {/*Podcast header */}
+        <SectionHeader {...podcastHeader} />
 
-      {/* google participant header */}
-      {/* google contributors */}
-
-      <ThemeProvider theme={theme}>
-        <ContributorSection
-          title="Google Summer of Code (GSoc) Participants"
-          people={googleContributors}
-        ></ContributorSection>
-      </ThemeProvider>
-
-      {/* End of google contributors */}
-
-      {/* Live Listening app & UI team header */}
-      {/* Live Listening List */}
-      <ThemeProvider theme={theme}>
-        <ContributorSection
-          title="Live Listening App UI & Development Team"
-          people={liveContributors}
-        ></ContributorSection>
-      </ThemeProvider>
-
-      {/*Arcatia.io Data Cooperative header */}
-      {/*Arcatia.io Data Cooperative contributors */}
-
-      <ThemeProvider theme={theme}>
-        <ContributorSection
-          title="Arcatia.io Data Cooperative"
-          people={arcatiaContributors}
-        ></ContributorSection>
-      </ThemeProvider>
-
-      {/*Project Management Team Header and list*/}
-      <ThemeProvider theme={theme}>
-        <ContributorSection
-          title="Project Management Team"
-          people={projectManagementContributors}
-        ></ContributorSection>
-      </ThemeProvider>
-
-      {/*Podcast header */}
-
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            minHeight: '10em',
-            minWidth: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={(theme) => ({
-              display: 'flex',
-              alignItems: 'center',
-
-              [theme.breakpoints.between('phone', 'sm')]: {
-                fontSize: 'medium',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              },
-              [theme.breakpoints.between('tablet', 'lg')]: {
-                fontSize: 'x-large',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              },
-            })}
-          >
-            PodCast
-          </Typography>
-          <Typography variant="caption">
-            (ML-Assisted Annotation Tool)
-          </Typography>
-        </Box>
-      </ThemeProvider>
-
-      <ThemeProvider theme={theme}>
         <Breadcrumbs
           sx={(theme) => ({
             display: 'flex',
@@ -385,10 +188,10 @@ const HackerHallOfFame = () => {
             },
 
             '& .MuiBreadcrumbs-ol': {
-              [theme.breakpoints.between('phone', 'sm')]: {
+              [theme.breakpoints.down('sm')]: {
                 flexDirection: 'column',
               },
-              [theme.breakpoints.between('tablet', 'lg')]: {
+              [theme.breakpoints.between('sm', 'lg')]: {
                 flexDirection: 'row',
               },
 
@@ -398,17 +201,17 @@ const HackerHallOfFame = () => {
               },
             },
 
-            [theme.breakpoints.between('phone', 'sm')]: {
+            [theme.breakpoints.down('sm')]: {
               flexDirection: 'column',
             },
-            [theme.breakpoints.between('tablet', 'lg')]: {
+            [theme.breakpoints.between('sm', 'lg')]: {
               flexDirection: 'row',
             },
           })}
           separator={
             <Typography
               sx={(theme) => ({
-                [theme.breakpoints.between('phone', 'sm')]: {
+                [theme.breakpoints.down('sm')]: {
                   display: 'none',
                 },
               })}
@@ -422,27 +225,24 @@ const HackerHallOfFame = () => {
           <Typography color="text.primary">Akash Mahajan</Typography>
           <Typography color="text.primary">Nithya Govindarajan</Typography>
         </Breadcrumbs>
-      </ThemeProvider>
 
-      {/*OrcaHello header */}
-      <ThemeProvider theme={theme}>
+        {/*OrcaHello header */}
         <ContributorSection
           title="OrcaHello"
           caption=" (Real-Time Inference System Leads)"
           people={orcaContributors}
-        ></ContributorSection>
-      </ThemeProvider>
+        />
 
-      {/*Individual contributors small header */}
-      <ThemeProvider theme={theme}>
+        {/*Individual contributors small header */}
         <ContributorSection
           title="Individual Contributors"
           people={individualContributors}
-        ></ContributorSection>
-      </ThemeProvider>
+          compactTitle
+          listVariant="individual"
+          titleVariant="h6"
+        />
 
-      {/*final pictures above footer */}
-      <ThemeProvider theme={theme}>
+        {/*final pictures above footer */}
         <LowerImages></LowerImages>
       </ThemeProvider>
     </div>
