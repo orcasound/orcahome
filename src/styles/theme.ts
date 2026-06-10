@@ -9,6 +9,18 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     accent1: PaletteOptions['primary']
   }
+
+  interface Theme {
+    layout: {
+      hhofContributorRailShift: number
+    }
+  }
+
+  interface ThemeOptions {
+    layout?: {
+      hhofContributorRailShift?: number
+    }
+  }
 }
 
 // Create a theme instance.
@@ -29,6 +41,9 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
+  },
+  layout: {
+    hhofContributorRailShift: 90,
   },
   components: {
     MuiAppBar: {

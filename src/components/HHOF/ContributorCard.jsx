@@ -13,29 +13,25 @@ const contributorText = {
   lineHeight: '140%',
 }
 
-const ContributorName = ({ person, sx }) => {
-  const textSx = (theme) => ({
-    ...contributorText,
-    ml: 10,
-    width: '80%',
-    [theme.breakpoints.down('sm')]: {
-      ml: 0,
-      width: '100%',
-      fontSize: 'small',
-      textAlign: 'center',
-    },
-    [theme.breakpoints.between('sm', 'lg')]: {
-      ml: 1,
-    },
-    ...(typeof sx === 'function' ? sx(theme) : sx),
-  })
+const mobileSmall = (theme) => ({
+  [theme.breakpoints.down('sm')]: { fontSize: 'small' },
+})
+
+const contributorGrid = {
+  columns: 'minmax(220px, 0.38fr) minmax(360px, 0.62fr)',
+  tabletColumns: 'minmax(190px, 0.38fr) minmax(300px, 0.62fr)',
+  columnGap: { sm: 4, md: 6 },
+}
+
+const ContributorName = ({ person }) => {
+  const sx = (theme) => ({ ...contributorText, ...mobileSmall(theme) })
 
   if (person.link === '') {
-    return <Typography sx={textSx}>{person.name}</Typography>
+    return <Typography sx={sx}>{person.name}</Typography>
   }
 
   return (
-    <Typography sx={textSx}>
+    <Typography sx={sx}>
       <Link
         href={person.link}
         sx={{ color: 'primary.main', textDecoration: 'underline' }}
@@ -52,73 +48,39 @@ const ContributorName = ({ person, sx }) => {
   )
 }
 
-// One row for every contributor in every section. The name column optionally
-// renders a country line beneath the name (only GSoC contributors have one),
-// so all sections share the same column layout and the names line up.
-const ContributorRow = ({ person, relaxedNameWidth = false }) => (
+// One row per contributor: a name column (with an optional country line — only
+// GSoC contributors have one) and a roles column. CSS grid gives every row the
+// same text rails without hard-coded left margins.
+const ContributorRow = ({ person }) => (
   <Box
     sx={(theme) => ({
-      display: 'flex',
-      flexDirection: 'row',
+      display: 'grid',
+      gridTemplateColumns: contributorGrid.columns,
+      columnGap: contributorGrid.columnGap,
+      alignItems: 'start',
       width: '100%',
+      textAlign: 'left',
       [theme.breakpoints.down('sm')]: {
-        flexDirection: 'column',
+        gridTemplateColumns: '1fr',
+        justifyItems: 'center',
         textAlign: 'center',
+        rowGap: 0,
       },
-      [theme.breakpoints.between('sm', 'lg')]: {
-        textAlign: 'left',
+      [theme.breakpoints.between('sm', 'md')]: {
+        gridTemplateColumns: contributorGrid.tabletColumns,
       },
     })}
   >
     <Box
       sx={(theme) => ({
-        width: '20%',
-        m: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        [theme.breakpoints.down('sm')]: {
-          width: '100%',
-          textAlign: 'center',
-        },
-        [theme.breakpoints.between('sm', 'lg')]: {
-          width: '30%',
-          ml: 0,
-        },
+        minWidth: 0,
+        [theme.breakpoints.down('sm')]: { width: '100%' },
       })}
     >
-      <ContributorName
-        person={person}
-        sx={
-          relaxedNameWidth
-            ? (theme) => ({
-                width: 'max-content',
-                maxWidth: '260px',
-                // Restore the base mobile centering this block would otherwise
-                // overwrite (ml:0 / textAlign:center), so names don't shift right.
-                [theme.breakpoints.down('sm')]: {
-                  width: '100%',
-                  maxWidth: '100%',
-                  ml: 0,
-                  textAlign: 'center',
-                },
-              })
-            : undefined
-        }
-      />
+      <ContributorName person={person} />
       {person.country && (
         <Typography
-          sx={(theme) => ({
-            ...contributorText,
-            ml: 10,
-            [theme.breakpoints.down('sm')]: {
-              ml: 0,
-              textAlign: 'center',
-              fontSize: 'small',
-            },
-            [theme.breakpoints.between('sm', 'lg')]: {
-              ml: 1,
-            },
-          })}
+          sx={(theme) => ({ ...contributorText, ...mobileSmall(theme) })}
         >
           {person.country}
         </Typography>
@@ -127,30 +89,14 @@ const ContributorRow = ({ person, relaxedNameWidth = false }) => (
 
     <Box
       sx={(theme) => ({
-        width: '60%',
-        [theme.breakpoints.down('sm')]: {
-          width: '100%',
-          textAlign: 'center',
-        },
+        minWidth: 0,
+        [theme.breakpoints.down('sm')]: { width: '100%' },
       })}
     >
       {person.roles.map((role) => (
         <Typography
           key={`${person.name}-${role}`}
-          sx={(theme) => ({
-            ...contributorText,
-            ml: 20,
-            [theme.breakpoints.down('sm')]: {
-              fontSize: 'small',
-              mx: 'auto',
-              ml: 0,
-            },
-            [theme.breakpoints.between('sm', 'lg')]: {
-              textAlign: 'left',
-              mx: 'auto',
-              width: '100%',
-            },
-          })}
+          sx={(theme) => ({ ...contributorText, ...mobileSmall(theme) })}
         >
           {role}
         </Typography>
@@ -159,7 +105,7 @@ const ContributorRow = ({ person, relaxedNameWidth = false }) => (
   </Box>
 )
 
-const ContributorCard = ({ contributors, variant = 'standard' }) => {
+const ContributorCard = ({ contributors }) => {
   return (
     <Box
       className="contributor-card-container"
@@ -167,15 +113,14 @@ const ContributorCard = ({ contributors, variant = 'standard' }) => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        rowGap: 3,
-        m: 'auto',
+        rowGap: '35px',
+        mx: 'auto',
       }}
     >
       {contributors.map((person) => (
         <ContributorRow
           key={`${person.name}-${person.country || 'no-country'}`}
           person={person}
-          relaxedNameWidth={variant === 'individual'}
         />
       ))}
     </Box>

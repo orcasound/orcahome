@@ -35,6 +35,11 @@ import {
 } from '../data/hackerHallOfFameContributors'
 import appTheme from '../styles/theme'
 
+const contributorRail = {
+  listWidth: '80%',
+  listMaxWidth: 800,
+}
+
 const HackerHallOfFame = () => {
   // Inherit the global theme (breakpoints, fonts, palette); only add the
   // HHOF-specific navy color and the fontStyling typography variant.
@@ -116,7 +121,8 @@ const HackerHallOfFame = () => {
   )
 
   // Influencer-tier sub-sections rendered between the Influencers and PodCast
-  // headers. listWidth/variant use ContributorSection defaults.
+  // headers. They share the same contributor rail as the other lists so the
+  // name and role columns keep a consistent visual anchor.
   const influencerSubSections = [
     {
       title: 'Google Summer of Code (GSoc) Participants',
@@ -158,7 +164,11 @@ const HackerHallOfFame = () => {
           <SectionHeader {...foundersHeader} />
         </Container>
         {/*Founders list */}
-        <ContributorSection title="" people={contributors} />
+        <ContributorSection
+          title=""
+          people={contributors}
+          {...contributorRail}
+        />
         {/*End of founder contributors list */}
 
         {/* Beginning of the influencers list */}
@@ -168,7 +178,11 @@ const HackerHallOfFame = () => {
 
         {/* Influencer-tier sub-sections (each themed team) */}
         {influencerSubSections.map((section) => (
-          <ContributorSection key={section.title} {...section} />
+          <ContributorSection
+            key={section.title}
+            {...section}
+            {...contributorRail}
+          />
         ))}
 
         {/*Podcast header */}
@@ -231,6 +245,7 @@ const HackerHallOfFame = () => {
           title="OrcaHello"
           caption=" (Real-Time Inference System Leads)"
           people={orcaContributors}
+          {...contributorRail}
         />
 
         {/*Individual contributors small header */}
@@ -238,8 +253,8 @@ const HackerHallOfFame = () => {
           title="Individual Contributors"
           people={individualContributors}
           compactTitle
-          listVariant="individual"
           titleVariant="h6"
+          {...contributorRail}
         />
 
         {/*final pictures above footer */}

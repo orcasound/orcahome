@@ -12,7 +12,7 @@ const ContributorSection = ({
   caption = '',
   people,
   listWidth = '80%',
-  listVariant = 'standard',
+  listMaxWidth = 840,
   titleVariant = 'h4',
   compactTitle = false,
 }) => {
@@ -77,16 +77,25 @@ const ContributorSection = ({
         <Box
           sx={(theme) => ({
             width: listWidth,
+            maxWidth: listMaxWidth,
             mx: 'auto',
+            transform: 'none',
             [theme.breakpoints.down('sm')]: {
               width: '100%',
+              maxWidth: '100%',
+              transform: 'none',
             },
             [theme.breakpoints.between('sm', 'lg')]: {
               width: '100%',
+              maxWidth: listMaxWidth,
+              transform: 'none',
+            },
+            [theme.breakpoints.up('lg')]: {
+              transform: `translateX(${theme.layout.hhofContributorRailShift}px)`,
             },
           })}
         >
-          <ContributorCard contributors={people} variant={listVariant} />
+          <ContributorCard contributors={people} />
         </Box>
       </Container>
     </div>
