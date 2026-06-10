@@ -35,24 +35,24 @@ const HOFBanner = () => {
       {/* Container for Thank you Message for contributors */}
       <Container maxWidth={false} disableGutters>
         <Box
-          sx={{
+          sx={(theme) => ({
             minHeight: '5em',
             width: 1,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            bgcolor: '#111184',
+            bgcolor: theme.palette.primary.main,
             color: 'white',
-          }}
+          })}
         >
           <Typography
             variant="h3"
             sx={(theme) => ({
-              [theme.breakpoints.between('phone', 'sm')]: {
+              [theme.breakpoints.down('sm')]: {
                 fontSize: 'medium',
               },
 
-              [theme.breakpoints.between('tablet', 'lg')]: {
+              [theme.breakpoints.between('sm', 'lg')]: {
                 fontSize: 'large',
               },
             })}

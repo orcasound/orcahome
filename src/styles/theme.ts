@@ -1,5 +1,6 @@
 import { red } from '@mui/material/colors'
 import { createTheme } from '@mui/material/styles'
+import type { CSSProperties } from 'react'
 
 //Augmentation allows for custom color additions to theme (TypeScript specific)
 declare module '@mui/material/styles' {
@@ -8,6 +9,32 @@ declare module '@mui/material/styles' {
   }
   interface PaletteOptions {
     accent1: PaletteOptions['primary']
+  }
+
+  interface Theme {
+    layout: {
+      hhofContributorRailShift: number
+    }
+  }
+
+  interface ThemeOptions {
+    layout?: {
+      hhofContributorRailShift?: number
+    }
+  }
+
+  interface TypographyVariants {
+    fontStyling: CSSProperties
+  }
+
+  interface TypographyVariantsOptions {
+    fontStyling?: CSSProperties
+  }
+}
+
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides {
+    fontStyling: true
   }
 }
 
@@ -29,6 +56,14 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
+    fontStyling: {
+      fontSize: '16px',
+      fontWeight: '500',
+      lineHeight: '140%',
+    },
+  },
+  layout: {
+    hhofContributorRailShift: 90,
   },
   components: {
     MuiAppBar: {

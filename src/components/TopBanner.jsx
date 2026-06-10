@@ -93,8 +93,7 @@ const TopBanner = ({
         <Image
           alt={pageTitle ?? ''}
           src={bannerImg}
-          quality={100}
-          priority
+          loading="eager"
           fill
           sizes="100vw"
           style={{

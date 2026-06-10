@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const COOKIE_NAME = 'donate-ab-test'
 const VARIANTS = ['v1', 'v2'] as const
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   if (req.nextUrl.pathname !== '/donate') {
     return NextResponse.next()
   }
