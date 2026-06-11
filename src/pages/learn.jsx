@@ -84,7 +84,6 @@ const SalishSeaContent = () => (
           alt="Sounds Of The Salish Sea"
           width={800}
           height={450}
-          quality={65}
           style={{
             maxWidth: '100%',
             height: 'auto',
