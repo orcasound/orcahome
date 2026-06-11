@@ -119,6 +119,10 @@ const CallCatalogGrid = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: '100%',
+                  // Give the image a definite width so its reserved
+                  // aspect-ratio height applies before it lazy-loads (#313);
+                  // the parent's alignItems:center would otherwise collapse it.
+                  width: '100%',
                 }}
               >
                 <Image
@@ -128,6 +132,10 @@ const CallCatalogGrid = () => {
                     width: '100%',
                     maxWidth: '100%',
                     height: 'auto',
+                    // Reserve the image's height (from its intrinsic size)
+                    // before it lazy-loads, so this section doesn't grow
+                    // mid-scroll and under-shoot jump-link landings (#313).
+                    aspectRatio: `${spectrogram[index].width} / ${spectrogram[index].height}`,
                   }}
                 />
                 <Box
