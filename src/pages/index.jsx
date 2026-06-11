@@ -24,7 +24,6 @@ export const index = () => {
           name="keywords"
           content="orcasound allows your to listen to live southern killer resident whales live through our hydrophones"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Box
         sx={{

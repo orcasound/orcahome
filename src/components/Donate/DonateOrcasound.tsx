@@ -122,7 +122,6 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             <Image
               src={props.donateOrcasoundImage}
               alt="Support Orcasound"
-              quality={100}
               sizes="100vw"
               style={{
                 width: '100%',
@@ -167,7 +166,6 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             <Image
               src={props.donateVolunteersImage}
               alt="Support Volunteers"
-              quality={100}
               sizes="100vw"
               style={{
                 width: '100%',
