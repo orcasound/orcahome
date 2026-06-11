@@ -147,7 +147,7 @@ function Mobile() {
             <Link key={navLink.name} href={navLink.url}>
               <ListItem
                 button
-                sx={{ borderBottom: '1px solid white' }}
+                sx={{ borderBottom: '1px solid white', color: 'white' }}
                 onClick={() =>
                   pushToDataLayer('nav_click', {
                     link_text: navLink.name,
