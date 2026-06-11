@@ -8,6 +8,10 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Developed initially as a Google Summer of Code project in 2021 by [Isabella Macchiavello](https://www.linkedin.com/in/isabella-macchiavello-223338205/), the [code is deployed via Netlify](https://orcahome.netlify.app/).
 
+## Cross-browser testing
+
+This project is tested with BrowserStack. BrowserStack supports Orcasound through its Open Source Program, providing free cross-browser and real-device testing including Safari on macOS and iOS.
+
 ## Getting Started
 
 First, run the development server:
