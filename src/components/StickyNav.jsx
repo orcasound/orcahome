@@ -1,3 +1,4 @@
+import CloseIcon from '@mui/icons-material/Close'
 import MenuIcon from '@mui/icons-material/Menu'
 import {
   Box,
@@ -65,6 +66,7 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
             </Typography>
             <IconButton
               onClick={() => setDrawerOpen(true)}
+              aria-label="Open section navigation"
               sx={{ color: '#1e3a8a' }}
             >
               <MenuIcon />
@@ -73,14 +75,33 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
               anchor="right"
               open={drawerOpen}
               onClose={() => setDrawerOpen(false)}
+              // Sit above the site AppBar (zIndex: drawer + 1 in Nav.jsx) so
+              // the drawer header and its close button aren't covered by it.
+              sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
             >
               <Box sx={{ width: 280, p: 3 }} role="presentation">
-                <Typography
-                  variant="h6"
-                  sx={{ mb: 3, fontWeight: 700, color: '#1e3a8a' }}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    mb: 3,
+                  }}
                 >
-                  Sections
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: 700, color: '#1e3a8a' }}
+                  >
+                    Sections
+                  </Typography>
+                  <IconButton
+                    onClick={() => setDrawerOpen(false)}
+                    aria-label="Close section navigation"
+                    sx={{ color: '#1e3a8a', mr: -1 }}
+                  >
+                    <CloseIcon />
+                  </IconButton>
+                </Box>
                 <List component="ul" sx={{ p: 0, m: 0, listStyle: 'none' }}>
                   {navLinks.map((link) => (
                     <ListItem key={link.id} sx={{ mb: 2, p: 0 }}>
