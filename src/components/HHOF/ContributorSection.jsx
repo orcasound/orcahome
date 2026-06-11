@@ -3,23 +3,37 @@
  * File  : ContributorSection.jsx
  * Desc  : This component will render a contributor section of the hhof page
  * */
-import { Box, Container, Grid, Stack, Typography } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 
-import Contributorcard from './ContributorCard'
+import ContributorCard from './ContributorCard'
 
-const ContributorSection = ({ title = ``, caption = '', people }) => {
+const ContributorSection = ({
+  title = ``,
+  caption = '',
+  people,
+  listWidth = '80%',
+  listMaxWidth = 840,
+  titleVariant = 'h4',
+  compactTitle = false,
+}) => {
   return (
     <div className="contributor-sec-container">
       <Container
-        maxWidth="x-lg"
+        maxWidth={false}
         sx={(theme) => ({
-          [theme.breakpoints.between('phone', 'sm')]: {
+          // Unified vertical spacing for every section. Each list sits between
+          // navy header boxes; this gives a consistent gap on both sides
+          // (box -> list -> box). Margins collapse, so adjacent sections share
+          // one gap rather than stacking.
+          my: 6,
+
+          [theme.breakpoints.down('sm')]: {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           },
 
-          [theme.breakpoints.between('tablet', 'lg')]: {
+          [theme.breakpoints.between('sm', 'lg')]: {
             fontSize: 'x-large',
             fontWeight: 'bold',
           },
@@ -30,7 +44,8 @@ const ContributorSection = ({ title = ``, caption = '', people }) => {
         ) : (
           <Box
             sx={{
-              minHeight: '10em',
+              minHeight: compactTitle ? 0 : '10em',
+              mt: compactTitle ? 3 : 0,
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -39,15 +54,15 @@ const ContributorSection = ({ title = ``, caption = '', people }) => {
             }}
           >
             <Typography
-              variant="h4"
+              variant={titleVariant}
               gutterBottom
               sx={(theme) => ({
-                [theme.breakpoints.between('phone', 'sm')]: {
+                [theme.breakpoints.down('sm')]: {
                   fontSize: 'medium',
                   fontWeight: 'bold',
                 },
 
-                [theme.breakpoints.between('tablet', 'lg')]: {
+                [theme.breakpoints.between('sm', 'lg')]: {
                   fontSize: 'x-large',
                   fontWeight: 'bold',
                 },
@@ -59,7 +74,29 @@ const ContributorSection = ({ title = ``, caption = '', people }) => {
           </Box>
         )}
 
-        <Contributorcard contributors={people} />
+        <Box
+          sx={(theme) => ({
+            width: listWidth,
+            maxWidth: listMaxWidth,
+            mx: 'auto',
+            transform: 'none',
+            [theme.breakpoints.down('sm')]: {
+              width: '100%',
+              maxWidth: '100%',
+              transform: 'none',
+            },
+            [theme.breakpoints.between('sm', 'lg')]: {
+              width: '100%',
+              maxWidth: listMaxWidth,
+              transform: 'none',
+            },
+            [theme.breakpoints.up('lg')]: {
+              transform: `translateX(${theme.layout.hhofContributorRailShift}px)`,
+            },
+          })}
+        >
+          <ContributorCard contributors={people} />
+        </Box>
       </Container>
     </div>
   )
