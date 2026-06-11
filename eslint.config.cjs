@@ -48,6 +48,9 @@ module.exports = [
 
       // General
       'prefer-const': 'warn',
+      // Catch unused vars/imports in JS/JSX. args:'none' ignores unused
+      // callback params (e.g. `(theme) =>`) to avoid churn on signatures.
+      'no-unused-vars': ['warn', { args: 'none' }],
     },
   },
 
@@ -67,6 +70,9 @@ module.exports = [
       },
     },
     rules: {
+      // Use the TS-aware version on TS files; turn off the base rule here to
+      // avoid double-reporting and false positives on type-only usage.
+      'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_' },

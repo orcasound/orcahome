@@ -2,7 +2,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { Box, IconButton, Slide, Typography } from '@mui/material'
 import { styled } from '@mui/material'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
 import { pushToDataLayer } from '../utils/gtm'

@@ -45,11 +45,9 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-simple-import-sort": "^13.0.0",
-    "file-loader": "^6.2.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.2",
     "prettier": "2.5.1",
-    "typescript": "^5.3.3",
-    "url-loader": "^4.1.1"
+    "typescript": "^5.3.3"
   }
 }
