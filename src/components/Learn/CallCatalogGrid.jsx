@@ -5,6 +5,10 @@ import Image from 'next/image'
 import React from 'react'
 import useSound from 'use-sound'
 
+// Spectrograms are imported as Next static images (not '/images/...' strings)
+// so we get their intrinsic width/height. The #313 fix relies on these to
+// reserve each image's height via aspect-ratio before it lazy-loads — don't
+// convert these to plain path strings or that fix silently breaks.
 import FOS01 from '../../../public/images/learn/FO-S01.png'
 import FOS02 from '../../../public/images/learn/FO-S02.png'
 import FOS03 from '../../../public/images/learn/FO-S03.png'
