@@ -5,5 +5,8 @@ yarn.lock
 package-lock.json
 public
 
+# Sanity Studio subproject (#317) — formatted by its own tooling
+studio
+
 # Standalone UX status report (authored by the Product team, served via GitHub Pages; keep as-is)
 docs/ux-status.html
