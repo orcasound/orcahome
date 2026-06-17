@@ -5,6 +5,10 @@ import Image from 'next/image'
 import React from 'react'
 import useSound from 'use-sound'
 
+// Spectrograms are imported as Next static images (not '/images/...' strings)
+// so we get their intrinsic width/height. The #313 fix relies on these to
+// reserve each image's height via aspect-ratio before it lazy-loads — don't
+// convert these to plain path strings or that fix silently breaks.
 import FOS01 from '../../../public/images/learn/FO-S01.png'
 import FOS02 from '../../../public/images/learn/FO-S02.png'
 import FOS03 from '../../../public/images/learn/FO-S03.png'
@@ -119,6 +123,10 @@ const CallCatalogGrid = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   height: '100%',
+                  // Give the image a definite width so its reserved
+                  // aspect-ratio height applies before it lazy-loads (#313);
+                  // the parent's alignItems:center would otherwise collapse it.
+                  width: '100%',
                 }}
               >
                 <Image
@@ -128,6 +136,10 @@ const CallCatalogGrid = () => {
                     width: '100%',
                     maxWidth: '100%',
                     height: 'auto',
+                    // Reserve the image's height (from its intrinsic size)
+                    // before it lazy-loads, so this section doesn't grow
+                    // mid-scroll and under-shoot jump-link landings (#313).
+                    aspectRatio: `${spectrogram[index].width} / ${spectrogram[index].height}`,
                   }}
                 />
                 <Box
