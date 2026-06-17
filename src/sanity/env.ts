@@ -1,26 +1,15 @@
 /**
  * Sanity environment config (Phase 1 — #317).
  *
- * Values are pulled from env vars so we never hard-code the project across
- * environments. See `.env.example` for the keys you need locally.
+ * Values come from env vars (see `.env.example`). These are read at module load
+ * but intentionally do NOT throw when missing — otherwise the production build
+ * fails on any environment without the vars set (e.g. a fresh Netlify deploy).
+ * Validation happens lazily in `client.ts` when a Sanity request is actually
+ * made.
  */
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || ''
 
-function required(value: string | undefined, name: string): string {
-  if (!value) {
-    throw new Error(`Missing environment variable: ${name}`)
-  }
-  return value
-}
-
-export const projectId = required(
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  'NEXT_PUBLIC_SANITY_PROJECT_ID'
-)
-
-export const dataset = required(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
-  'NEXT_PUBLIC_SANITY_DATASET'
-)
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || ''
 
 // Use a fixed API date so query behaviour is stable over time.
 export const apiVersion =
