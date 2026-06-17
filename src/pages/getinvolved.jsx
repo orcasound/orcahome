@@ -2,10 +2,8 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { Box, Button, Container, Link, Typography } from '@mui/material'
-import { styled } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
-import { Link as ScrollElement } from 'react-scroll'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
 import logo4 from '../../public/images/getinvolved/CWR_logo.png'
@@ -237,7 +235,7 @@ const DevelopersContent = () => (
           Current Roadmap
         </Typography>
         <TransformWrapper initialScale={1}>
-          {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+          {({ zoomIn, zoomOut, resetTransform }) => (
             <>
               <Box
                 sx={{
