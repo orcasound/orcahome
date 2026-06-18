@@ -9,12 +9,47 @@ import AboutBanner from '../../public/images/about.webp'
 import AboutCard from '../components/About/AboutCard'
 import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
+import { getClient } from '../sanity/client'
+import { ABOUT_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 
-export default function About() {
+// Current hard-coded copy, used as a fallback whenever Sanity has no value
+// for a field (or Sanity is unreachable). This keeps the page rendering its
+// existing content until it's filled in the Studio.
+const DEFAULTS = {
+  heroTitle: 'About',
+  heroDescription: `Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`,
+  intro: `Orcasound is a cooperative effort of many dedicated individuals and great organizations. Here are our recent projects — created by volunteers, stewards, citizen scientists, hackers, and generous funders — all working together for the orcas.`,
+  projectsHeading: 'Our Projects',
+  participationHeading: 'We Welcome Your Participation!',
+  participationParagraphs: [
+    `You can join us anytime as a volunteer to our open-source software & hardware projects.`,
+    `If you'd like to host a hydrophone, do research, or incorporate Orcasound into the educational or outreach efforts of your organization, please reach out!`,
+  ],
+  ctaLabel: 'GET INVOLVED',
+  ctaHref: '/getinvolved',
+}
+
+export default function About({ about }) {
   const mobileActive = useIsMobile()
   const [seeMore, setSeeMore] = useState(!mobileActive)
+
+  // Per-field fallback: use the Sanity value when present, otherwise the
+  // existing hard-coded copy.
+  const content = {
+    heroTitle: about?.heroTitle || DEFAULTS.heroTitle,
+    heroDescription: about?.heroDescription || DEFAULTS.heroDescription,
+    intro: about?.intro || DEFAULTS.intro,
+    projectsHeading: about?.projectsHeading || DEFAULTS.projectsHeading,
+    participationHeading:
+      about?.participationHeading || DEFAULTS.participationHeading,
+    participationParagraphs: about?.participationParagraphs?.length
+      ? about.participationParagraphs
+      : DEFAULTS.participationParagraphs,
+    ctaLabel: about?.ctaLabel || DEFAULTS.ctaLabel,
+    ctaHref: about?.ctaHref || DEFAULTS.ctaHref,
+  }
 
   return (
     <>
@@ -23,18 +58,15 @@ export default function About() {
       </Head>
       <TopBanner
         bannerImg={AboutBanner}
-        pageTitle={`About`}
-        pageDesc={`Orcasound is a software & hardware Web app to listen to whales, save orcas and advance bioacoustics (AI technology).`}
+        pageTitle={content.heroTitle}
+        pageDesc={content.heroDescription}
         scrollToId={`about`}
       />
 
       <Box m={3} id="about">
         <Container>
           <Typography mt={9} align="justify" variant="body1">
-            {`Orcasound is a cooperative effort of many dedicated individuals and
-            great organizations. Here are our recent projects — created by
-            volunteers, stewards, citizen scientists, hackers, and generous
-            funders — all working together for the orcas.`}
+            {content.intro}
           </Typography>
 
           <Typography
@@ -46,7 +78,7 @@ export default function About() {
               fontWeight: '600',
             }}
           >
-            Our Projects
+            {content.projectsHeading}
           </Typography>
 
           <Box>
@@ -58,7 +90,7 @@ export default function About() {
               {Items.map((item, index) => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={index}>
-                    {/* There are two conditions 
+                    {/* There are two conditions
                     1) for mobile
                       a) showing default only two projects  -> (mobileActive && index < 2)
                       b) if user wants to see more Projects -> (seeMore)
@@ -95,31 +127,22 @@ export default function About() {
                 fontWeight: '600',
               }}
             >
-              We Welcome Your Participation!
+              {content.participationHeading}
             </Typography>
 
             <Box my={3}>
-              <Typography
-                mx={1}
-                mt={3}
-                align="left"
-                variant="body1"
-                gutterBottom
-              >
-                {`You can join us anytime as a volunteer to our open-source
-                software & hardware projects.`}
-              </Typography>
-              <Typography
-                mx={1}
-                mt={3}
-                align="left"
-                variant="body1"
-                gutterBottom
-              >
-                {`If you'd like to host a hydrophone, do research, or incorporate
-                Orcasound into the educational or outreach efforts of your
-                organization, please reach out!`}
-              </Typography>
+              {content.participationParagraphs.map((paragraph, index) => (
+                <Typography
+                  key={index}
+                  mx={1}
+                  mt={3}
+                  align="left"
+                  variant="body1"
+                  gutterBottom
+                >
+                  {paragraph}
+                </Typography>
+              ))}
             </Box>
 
             <Box
@@ -142,16 +165,16 @@ export default function About() {
                     color: 'white',
                   },
                 }}
-                href="/getinvolved"
+                href={content.ctaHref}
                 onClick={() =>
                   pushToDataLayer('cta_click', {
-                    cta_text: 'Get Involved',
+                    cta_text: content.ctaLabel,
                     section: 'body',
                     page: 'about',
                   })
                 }
               >
-                GET INVOLVED
+                {content.ctaLabel}
               </Button>
             </Box>
           </Box>
@@ -178,4 +201,17 @@ function Mobile({ setSeeMore, seeMore }) {
       {seeMore ? 'Show less...' : 'See more...'}
     </Typography>
   )
+}
+
+// Fetch the About content from Sanity at build time (revalidated for ISR).
+// If Sanity is unreachable or unconfigured, fall back to null and the
+// component renders its built-in DEFAULTS.
+export async function getStaticProps() {
+  let about = null
+  try {
+    about = await getClient(false).fetch(ABOUT_PAGE_QUERY)
+  } catch {
+    about = null
+  }
+  return { props: { about }, revalidate: 60 }
 }
