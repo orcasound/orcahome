@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Orcahome UX Issues: Who Is On What</title>
+<title>Orcahome UX: Onboard, Browse, Request</title>
 <style>
 :root { color-scheme: light; }
 * { box-sizing: border-box; }
@@ -16,6 +16,16 @@ header.rep p { margin: 0; font-size: 12.5px; color: #cdd7ea; }
 .refreshed b { color: #fff; }
 .btn { display: inline-block; margin-top: 10px; background: #2E75B6; color: #fff; border: 0; border-radius: 7px; padding: 7px 14px; font-size: 13px; font-weight: 600; cursor: pointer; }
 .btn:hover { background: #255f95; }
+.btn.sm { margin-top: 0; padding: 4px 11px; font-size: 12px; }
+.btn.ghost { background: #eaf0f8; color: #1F3864; }
+.btn.ghost:hover { background: #dce6f4; }
+.onboard { background: #fff; border: 1px solid #e2e2e8; border-radius: 12px; padding: 16px 18px; margin: 18px 0 4px; }
+.onboard h2 { border: 0; margin: 0 0 10px; padding: 0; font-size: 16px; color: #1F3864; }
+.steps { display: flex; flex-wrap: wrap; gap: 12px; }
+.step { flex: 1 1 220px; border: 1px solid #e9e9ef; border-radius: 10px; padding: 11px 13px; background: #fafbfd; }
+.step .k { display: inline-block; min-width: 20px; height: 20px; line-height: 20px; text-align: center; background: #2E75B6; color: #fff; border-radius: 50%; font-size: 12px; font-weight: 700; margin-right: 6px; }
+.step h3 { display: inline; font-size: 13px; margin: 0; }
+.step p { margin: 7px 0 0; font-size: 12.5px; color: #444; }
 .cards { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 18px; }
 .card { flex: 1 1 150px; border: 1px solid #e2e2e8; border-radius: 10px; padding: 12px 14px; background: #fff; }
 .card .n { font-size: 27px; font-weight: 700; line-height: 1; }
@@ -36,9 +46,12 @@ a:hover { text-decoration: underline; }
 .b-blocked { background: #fef3cd; color: #8a6d00; }
 .b-stale { background: #eee9fb; color: #5b3fb0; }
 .b-flight { background: #e3f4ea; color: #1f7a44; }
+.b-approved { background: #d8f0e0; color: #155f37; }
+.b-lead { background: #e6edf7; color: #1F3864; }
 .owner { font-weight: 600; }
 .owner.none { color: #b3261e; }
 .muted { color: #777; }
+.briefcoming { color: #8a6d00; font-size: 12px; }
 .note { font-size: 12px; color: #555; background: #fff; border: 1px solid #e2e2e8; border-radius: 10px; padding: 12px 14px; margin: 14px 0 0; }
 .err { background: #fff4f4; border: 1px solid #f3c9c9; color: #b3261e; padding: 14px; border-radius: 10px; }
 .peoplegrid { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -47,38 +60,234 @@ a:hover { text-decoration: underline; }
 .person ul { margin: 0; padding-left: 18px; }
 .person li { margin: 2px 0; }
 #status { font-size: 12px; color: #555; margin: 12px 2px; }
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(20,28,48,.55); z-index: 50; padding: 20px; overflow: auto; }
+.modal-bg.open { display: flex; align-items: flex-start; justify-content: center; }
+.modal { background: #fff; border-radius: 12px; max-width: 460px; width: 100%; margin: 40px auto; padding: 18px 20px 20px; box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+.modal h3 { margin: 0 0 4px; font-size: 16px; color: #1F3864; }
+.modal .sub { margin: 0 0 14px; font-size: 12.5px; color: #555; }
+.field { margin-bottom: 11px; }
+.field label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 4px; color: #333; }
+.field input, .field textarea { width: 100%; padding: 8px 10px; border: 1px solid #ccd2dd; border-radius: 7px; font-size: 13px; font-family: inherit; }
+.field input:focus, .field textarea:focus { outline: none; border-color: #2E75B6; }
+.field .req { color: #b3261e; }
+.ferr { color: #b3261e; font-size: 11.5px; margin-top: 3px; display: none; }
+.field.bad input { border-color: #b3261e; }
+.field.bad .ferr { display: block; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
+.modal-close { float: right; cursor: pointer; border: 0; background: none; font-size: 20px; line-height: 1; color: #888; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="rep">
-    <h1>Orcahome UX Issues: Who Is On What</h1>
-    <p>Live status of open UX design issues on Orcahome, the Orcasound Product Team's proof-of-concept site at orcasound.tech. Ownership is read from each issue's assignees on GitHub, with the product service account removed, so each row shows the real owner. Pick an unclaimed issue, read its brief, and request it in the UX Team channel (Issue Requests topic); Brendan reviews and assigns.</p>
+    <h1>Orcahome UX: Onboard, Browse, Request</h1>
+    <p>One place to get set up, browse open UX work on Orcahome (the Orcasound Product Team's proof-of-concept site at orcasound.tech), read each brief, and request a project. Owners and titles are read live from GitHub; status reflects a manual audit by the Product Manager. Requests email the Product Manager; assignment stays the Product Manager's call (no self-assign).</p>
     <div class="refreshed" id="refreshed"></div>
     <button class="btn" onclick="loadReport()">Refresh now</button>
   </header>
+
+  <div class="onboard">
+    <h2>Get set up</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="k">1</span><h3>Join Zulip</h3>
+        <p>Our team chat. <a href="https://orcasound.zulipchat.com/join/sc4l6jpkog7b333m3fese7nn/" target="_blank" rel="noopener">Join the Orcasound Zulip</a>, then say hi in the UX Team channel.</p>
+      </div>
+      <div class="step">
+        <span class="k">2</span><h3>Get on GitHub</h3>
+        <p><a href="https://github.com/signup" target="_blank" rel="noopener">Create a GitHub account</a> if you need one, then explore the <a href="https://github.com/orcasound" target="_blank" rel="noopener">Orcasound org</a>. You will be added to the orcahome repo once you claim a project.</p>
+      </div>
+      <div class="step">
+        <span class="k">3</span><h3>See the Design System</h3>
+        <p>Our working <a href="https://www.figma.com/design/YunjBU0bjoDbHcYLNScAQ2/Design-System" target="_blank" rel="noopener">Design System (Figma)</a> is the visual reference. It is evolving as the Design System Lead comes on board.</p>
+      </div>
+      <div class="step">
+        <span class="k">4</span><h3>Pick, read, request</h3>
+        <p>Browse the open issues below, open the brief that fits you, then use the Request button. The Product Manager reviews and assigns.</p>
+      </div>
+    </div>
+  </div>
+
   <div id="status">Loading live data from GitHub...</div>
   <div id="content"></div>
 </div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" onclick="closeRequest()" aria-label="Close">&times;</button>
+    <h3 id="modalTitle">Request a project</h3>
+    <p class="sub" id="modalSub"></p>
+    <div class="field" id="f-name"><label>Name <span class="req">*</span></label><input id="r-name" type="text" autocomplete="name"><div class="ferr">Please enter your name.</div></div>
+    <div class="field" id="f-email"><label>Email <span class="req">*</span></label><input id="r-email" type="email" autocomplete="email"><div class="ferr">Please enter a valid email address.</div></div>
+    <div class="field" id="f-zulip"><label>Zulip handle <span class="req">*</span></label><input id="r-zulip" type="text" placeholder="e.g. Jane Designer"><div class="ferr">Please enter your Zulip handle.</div></div>
+    <div class="field" id="f-github"><label>GitHub handle <span class="req">*</span></label><input id="r-github" type="text" placeholder="e.g. janedesigner"><div class="ferr">Please enter your GitHub handle.</div></div>
+    <div class="field"><label>Note (optional)</label><textarea id="r-note" rows="3" placeholder="Anything you want me to know"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn ghost sm" onclick="closeRequest()">Cancel</button>
+      <button class="btn sm" onclick="submitRequest()">Send request</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const API = "https://api.github.com/repos/orcasound/orcahome/issues";
 const AUTO = "BT-Orcasound-Product";
+const REQUEST_EMAIL = "product@orcasound.tech";
+
+// Canonical issue-to-brief map, sourced from orcahome_briefs_tracker.json (matched by issue number).
+const BRIEFS = {
+  227: "https://drive.google.com/file/d/1Rr-P2g6ZQUo3Rfud6ZgLpoQoZEbtB6IM/view",
+  246: "https://drive.google.com/file/d/1UCPPVWYw7M-XlaDwVGI6tIsbuNTNwyMD/view",
+  250: "https://docs.google.com/document/d/1RrQXQ3fzaIMe_n0jTVR-nRC_TFzJIH35MFFZB529brg/edit",
+  253: "https://docs.google.com/document/d/1Zka6EyExhOsHvvJ8qfj-QafjSjeeEf74yI7wONUDCGs/edit",
+  258: "https://drive.google.com/file/d/10ETC0Gva0l7RxV_Sax_1sAyEGYmoquaY/view",
+  276: "https://drive.google.com/file/d/1c67hBEhvLZPghwXZduA_k6sow57Pe4wc/view",
+  279: "https://drive.google.com/file/d/1d9bug9woUudAmGp9rg48nwnPhwf4mM6t/view",
+  280: "https://drive.google.com/file/d/1cktsYmFF8kklzUFEqo13l_oeDAALIAPB/view",
+  281: "https://drive.google.com/file/d/1Yb8pClUb4YoTtjXp_U2VYJUXr8SPhv6o/view",
+  282: "https://drive.google.com/file/d/12lOFrqTrpUwlF53LWFWwvGn3BH-rWtTb/view",
+  288: "https://drive.google.com/file/d/142uMDR9971LIEdn3gL8YNPVjMSyn15bx/view",
+  311: "https://docs.google.com/document/d/1FN6YT2iPUJTqYvZ3nc3IcS1kJr9cU3WHqhaPebaE0dY/edit",
+  312: "https://docs.google.com/document/d/1klH7gRgLosTDaf-rdSIAN4NQTOdNsclH-y4Sj1gjKlI/edit"
+};
+
+// Design system issues owned by the Lead UX Designer: listed inline with full metadata, but not open to claim.
+const LEAD_ONLY = [250, 253];
+
+// GitHub handle to display name.
+const NAMES = {
+  "rqtdesign": "Ryan Tran",
+  "saraloup": "Sara Loup",
+  "adebisitreasure": "Treasure Adebisi",
+  "flemingardenmiko": "Arden Miko Fleming",
+  "ingaraic": "Inga Raič",
+  "anamfayyazmalik": "Anam Malik",
+  "ayushirana699-uxr": "Ayushi Rana",
+  "nidhirajan": "Nidhi Deepu Rajan",
+  "ninavizz": "Nina Alter",
+  "sarahidemoto": "Sarah I"
+};
+function nameFor(login){ return NAMES[login] || login; }
+
+// Owner override where the GitHub assignee cannot reflect the real owner yet (for example not yet a repo collaborator).
+const OWNER_OVERRIDE = { 250: ["Nina Alter"], 253: ["Nina Alter"] };
+
+// Audited current status as of 2026-06-17. Overrides the computed live status.
+const STATUS_OVERRIDE = {
+  227: "Needs owner",
+  246: "In-flight",
+  250: "Assigned (starts next week)",
+  253: "Assigned (starts next week)",
+  258: "In-flight",
+  276: "Design approved",
+  279: "In-flight",
+  280: "Needs owner",
+  281: "In-flight",
+  282: "Needs owner",
+  288: "In-flight",
+  311: "In-flight",
+  312: "In-flight"
+};
+
+const ORDER = {"Needs owner":0,"Blocked":1,"Stale":2,"In-flight":3,"Design approved":4,"Assigned (starts next week)":5};
+const BADGE = {"Needs owner":"b-needs","Blocked":"b-blocked","Stale":"b-stale","In-flight":"b-flight","Design approved":"b-approved","Assigned (starts next week)":"b-lead"};
 
 function daysSince(iso){ if(!iso) return null; return Math.floor((Date.now()-new Date(iso).getTime())/86400000); }
-function isUX(i){ const t=(i.title||"").trim().toLowerCase(); return t.startsWith("ux:")||t.startsWith("ux design:"); }
+function isUX(i){ const t=(i.title||"").trim().toLowerCase(); return t.startsWith("ux:")||t.startsWith("ux design:")||t.startsWith("uxr:"); }
 function realOwners(i){ return (Array.isArray(i.assignees)?i.assignees:[]).map(x=>x&&x.login).filter(l=>l&&l!==AUTO); }
+function ownersFor(i){ if(OWNER_OVERRIDE[i.number]) return OWNER_OVERRIDE[i.number].slice(); return realOwners(i).map(nameFor); }
 function labelNames(i){ return (Array.isArray(i.labels)?i.labels:[]).map(l=>(typeof l==="string"?l:(l&&l.name))||"").map(s=>s.toLowerCase()); }
-function statusOf(i){
-  const owners=realOwners(i), labels=labelNames(i), body=(i.body||"").toLowerCase();
+function computedStatus(i, ownerCount){
+  const labels=labelNames(i), body=(i.body||"").toLowerCase();
   if(labels.includes("status: blocked")||body.includes("status: blocked")||body.includes("blocked on")) return "Blocked";
-  if(owners.length===0) return "Needs owner";
+  if(ownerCount===0) return "Needs owner";
   const d=daysSince(i.updated_at);
   if(d!==null&&d>=14) return "Stale";
   return "In-flight";
 }
-const ORDER={"Needs owner":0,"Blocked":1,"Stale":2,"In-flight":3};
-const BADGE={"Needs owner":"b-needs","Blocked":"b-blocked","Stale":"b-stale","In-flight":"b-flight"};
+function statusOf(i, ownerCount){ return STATUS_OVERRIDE[i.number] || computedStatus(i, ownerCount); }
 function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function briefFor(num){ return BRIEFS[num] || null; }
+
+function render(issues){
+  const ux=issues.filter(isUX).map(i=>{
+    const owners=ownersFor(i);
+    return {
+      num:i.number, title:i.title||"", url:i.html_url,
+      owners:owners, status:statusOf(i, owners.length),
+      brief:briefFor(i.number), lead:LEAD_ONLY.indexOf(i.number)!==-1
+    };
+  });
+  ux.forEach(x=>{ x.requestable = (x.status==="Needs owner" && !!x.brief && !x.lead); });
+  ux.sort((a,b)=>{
+    if(a.requestable!==b.requestable) return a.requestable?-1:1;
+    const oa=(a.status in ORDER)?ORDER[a.status]:9, ob=(b.status in ORDER)?ORDER[b.status]:9;
+    return (oa-ob)||(a.num-b.num);
+  });
+  const openToClaim=ux.filter(x=>x.requestable).length;
+  const inProgress=ux.filter(x=>x.owners.length>0).length;
+
+  let html='<div class="cards">';
+  html+='<div class="card alert"><div class="n">'+openToClaim+'</div><div class="l">Open to claim (brief ready)</div></div>';
+  html+='<div class="card"><div class="n">'+inProgress+'</div><div class="l">Owned / in progress</div></div>';
+  html+='<div class="card"><div class="n">'+ux.length+'</div><div class="l">Total open UX issues</div></div>';
+  html+='</div>';
+
+  html+='<h2>Open UX issues</h2><div class="panel"><table><thead><tr><th>Issue</th><th>Title</th><th>Owner</th><th>Status</th><th>Brief</th><th>Request</th></tr></thead><tbody>';
+  ux.forEach(x=>{
+    const oc=x.owners.length?'<span class="owner">'+x.owners.map(esc).join(", ")+'</span>':'<span class="owner none">open to claim</span>';
+    let briefCell;
+    if(x.brief) briefCell='<a href="'+x.brief+'" target="_blank" rel="noopener">Read brief</a>';
+    else briefCell='<span class="briefcoming">brief coming</span>';
+    let reqCell;
+    if(x.lead) reqCell='<span class="muted">Lead only</span>';
+    else if(x.requestable) reqCell='<button class="btn ghost sm" onclick="openRequest('+x.num+',&quot;'+esc(x.title).replace(/&quot;/g,"")+'&quot;)">Request</button>';
+    else if(x.owners.length) reqCell='<span class="muted">taken</span>';
+    else reqCell='<span class="muted">brief coming</span>';
+    const badge=BADGE[x.status]||"b-flight";
+    html+='<tr><td class="num"><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a></td><td>'+esc(x.title)+'</td><td>'+oc+'</td><td><span class="badge '+badge+'">'+esc(x.status)+'</span></td><td>'+briefCell+'</td><td>'+reqCell+'</td></tr>';
+  });
+  html+='</tbody></table></div>';
+
+  const byOwner={};
+  ux.forEach(x=>{ if(x.owners.length===0){(byOwner["(open to claim)"]=byOwner["(open to claim)"]||[]).push(x);} else x.owners.forEach(o=>{(byOwner[o]=byOwner[o]||[]).push(x);}); });
+  const names=Object.keys(byOwner).sort((a,b)=>{ if(a==="(open to claim)")return -1; if(b==="(open to claim)")return 1; return a.localeCompare(b); });
+  html+='<h2>By person</h2><div class="peoplegrid">';
+  names.forEach(n=>{ html+='<div class="person"><h3>'+esc(n)+' <span class="muted">('+byOwner[n].length+')</span></h3><ul>'; byOwner[n].forEach(x=>{ html+='<li><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a> '+esc(x.title)+'</li>'; }); html+='</ul></div>'; });
+  html+='</div>';
+
+  html+='<div class="note">A UX issue is one whose title starts with "UX:", "UX Design:", or "UXR:". Owner names are read from GitHub assignees (the product service account is removed); status reflects a manual audit as of 2026-06-17, not just GitHub activity. <b>Open to claim</b> means unowned with a brief ready, so you can request it. <b>Lead only</b> marks the design system issues owned by the Lead UX Designer. Issues with no brief yet show <b>brief coming</b>. No self-assign on GitHub; request here and the Product Manager assigns.</div>';
+  document.getElementById("content").innerHTML=html;
+}
+
+let reqIssue=null, reqTitle="";
+function openRequest(num,title){ reqIssue=num; reqTitle=title||""; document.getElementById("modalSub").textContent="Issue #"+num+(reqTitle?": "+reqTitle:""); ["name","email","zulip","github"].forEach(k=>document.getElementById("f-"+k).classList.remove("bad")); document.getElementById("modalBg").classList.add("open"); document.getElementById("r-name").focus(); }
+function closeRequest(){ document.getElementById("modalBg").classList.remove("open"); }
+function submitRequest(){
+  const name=document.getElementById("r-name").value.trim();
+  const email=document.getElementById("r-email").value.trim();
+  const zulip=document.getElementById("r-zulip").value.trim();
+  const github=document.getElementById("r-github").value.trim();
+  const note=document.getElementById("r-note").value.trim();
+  let ok=true;
+  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  function mark(id,bad){ document.getElementById(id).classList[bad?"add":"remove"]("bad"); if(bad) ok=false; }
+  mark("f-name",!name); mark("f-email",!emailOk); mark("f-zulip",!zulip); mark("f-github",!github);
+  if(!ok) return;
+  const subject="UX project request: #"+reqIssue+(reqTitle?" "+reqTitle:"");
+  const lines=[
+    "UX project request from the Orcahome onboarding dashboard.","",
+    "Issue: #"+reqIssue+(reqTitle?" "+reqTitle:""),
+    "Issue link: https://github.com/orcasound/orcahome/issues/"+reqIssue,"",
+    "Name: "+name,"Email: "+email,"Zulip handle: "+zulip,"GitHub handle: "+github,
+    "Note: "+(note||"(none)")
+  ];
+  const href="mailto:"+REQUEST_EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(lines.join("\n"));
+  window.location.href=href;
+  closeRequest();
+}
+document.getElementById("modalBg").addEventListener("click",function(e){ if(e.target===this) closeRequest(); });
+document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeRequest(); });
 
 async function fetchOpenIssues(){
   let page=1, all=[];
@@ -94,47 +303,18 @@ async function fetchOpenIssues(){
   return all;
 }
 
-function render(issues){
-  const ux=issues.filter(isUX).map(i=>({num:i.number,title:i.title||"",url:i.html_url,owners:realOwners(i),status:statusOf(i),days:daysSince(i.updated_at)}));
-  ux.sort((a,b)=>(ORDER[a.status]-ORDER[b.status])||(a.num-b.num));
-  const counts={"Needs owner":0,"Blocked":0,"Stale":0,"In-flight":0};
-  ux.forEach(x=>counts[x.status]++);
-  let html='<div class="cards">';
-  html+='<div class="card alert"><div class="n">'+counts["Needs owner"]+'</div><div class="l">Needs owner (open to claim)</div></div>';
-  html+='<div class="card"><div class="n">'+counts["In-flight"]+'</div><div class="l">In-flight</div></div>';
-  html+='<div class="card"><div class="n">'+counts["Blocked"]+'</div><div class="l">Blocked</div></div>';
-  html+='<div class="card"><div class="n">'+counts["Stale"]+'</div><div class="l">Stale (14+ days quiet)</div></div>';
-  html+='<div class="card"><div class="n">'+ux.length+'</div><div class="l">Total open UX issues</div></div>';
-  html+='</div>';
-  html+='<h2>All open UX issues</h2><div class="panel"><table><thead><tr><th>Issue</th><th>Title</th><th>Owner</th><th>Status</th><th>Last activity</th></tr></thead><tbody>';
-  ux.forEach(x=>{
-    const oc=x.owners.length?'<span class="owner">'+x.owners.map(esc).join(", ")+'</span>':'<span class="owner none">open to claim</span>';
-    const act=x.days===null?'<span class="muted">unknown</span>':(x.days+(x.days===1?" day ago":" days ago"));
-    html+='<tr><td class="num"><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a></td><td>'+esc(x.title)+'</td><td>'+oc+'</td><td><span class="badge '+BADGE[x.status]+'">'+x.status+'</span></td><td class="num">'+act+'</td></tr>';
-  });
-  html+='</tbody></table></div>';
-  const byOwner={};
-  ux.forEach(x=>{ if(x.owners.length===0){(byOwner["(open to claim)"]=byOwner["(open to claim)"]||[]).push(x);} else x.owners.forEach(o=>{(byOwner[o]=byOwner[o]||[]).push(x);}); });
-  const names=Object.keys(byOwner).sort((a,b)=>{ if(a==="(open to claim)")return -1; if(b==="(open to claim)")return 1; return a.localeCompare(b); });
-  html+='<h2>By person</h2><div class="peoplegrid">';
-  names.forEach(n=>{ html+='<div class="person"><h3>'+esc(n)+' <span class="muted">('+byOwner[n].length+')</span></h3><ul>'; byOwner[n].forEach(x=>{ html+='<li><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a> '+esc(x.title)+'</li>'; }); html+='</ul></div>'; });
-  html+='</div>';
-  html+='<div class="note">A UX issue is one whose title starts with "UX:" or "UX Design:". <b>Needs owner</b> means no one beyond the product service account is assigned, so it is open to claim. <b>Blocked</b> reads from a blocked label or a "Blocked on" note in the body. <b>Stale</b> means a real owner but no activity in 14 or more days. To claim an issue: open it, read the linked design brief, then request it in the UX Team channel (Issue Requests topic). Brendan reviews and assigns you; do not self-assign on GitHub.</div>';
-  document.getElementById("content").innerHTML=html;
-}
-
 async function loadReport(){
   const s=document.getElementById("status");
   s.textContent="Loading live data from GitHub...";
   document.getElementById("content").innerHTML="";
   try{
     const issues=await fetchOpenIssues();
-    document.getElementById("refreshed").innerHTML="Last refreshed <b>"+new Date().toLocaleString()+"</b>. Reload the page or use Refresh to update.";
+    document.getElementById("refreshed").innerHTML="Owners and titles live from GitHub. Status audited 2026-06-17. Last loaded <b>"+new Date().toLocaleString()+"</b>.";
     s.textContent="Live: "+issues.length+" open issues pulled from GitHub.";
     render(issues);
   }catch(e){
     s.textContent="";
-    document.getElementById("content").innerHTML='<div class="err">Could not load live data from GitHub. '+esc(String(e&&e.message?e.message:e))+'<br><br>This report reads the public GitHub API for orcasound/orcahome. If it keeps failing, the repo may be private or the API may be rate limited; open the issues directly at https://github.com/orcasound/orcahome/issues</div>';
+    document.getElementById("content").innerHTML='<div class="err">Could not load live data from GitHub. '+esc(String(e&&e.message?e.message:e))+'<br><br>This page reads the public GitHub API for orcasound/orcahome. If it keeps failing, the repo may be private or the API may be rate limited; open the issues directly at https://github.com/orcasound/orcahome/issues</div>';
   }
 }
 loadReport();
