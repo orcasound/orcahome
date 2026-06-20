@@ -432,10 +432,18 @@ export const individualContributors = [
   },
 ]
 
+// supporters array
 export const supporterContributors = [
   {
     name: 'Matt Beaudoin',
     roles: ['Front End Developer who landed Next.js v15 upgrade.'],
     link: 'https://beaudoin.dev',
+  },
+  {
+    name: 'Rachel Deloughry',
+    roles: [
+      'UX contributor at Orcasite Listening App kickoff and heuristic evaluation.',
+    ],
+    link: 'https://www.linkedin.com/in/rachel-delou',
   },
 ]
