@@ -514,4 +514,9 @@ export const supporterContributors = [
     roles: ['Shipnoise team member from June 2025 through end of year.'],
     link: 'https://www.linkedin.com/in/snehalmurkute',
   },
+  {
+    name: 'Erin Brown-Heredia',
+    roles: ['UX contributor on heuristic evaluation for Orcasite.'],
+    link: 'https://erindanaephotos.com',
+  },
 ]
