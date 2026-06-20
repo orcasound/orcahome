@@ -483,6 +483,11 @@ export const individualContributors = [
     roles: ['Shipnoise development contributor.'],
     link: 'https://github.com/mahtabsabet',
   },
+  {
+    name: 'Peter Abrahamsen',
+    roles: ['SalishSea.io developer.'],
+    link: 'https://www.inaturalist.org/people/rainhead',
+  },
 ]
 
 // supporters array
