@@ -99,7 +99,7 @@ const DonatePartners = () => {
                 src={partner.icon}
                 alt={partner.name}
                 style={{
-                  maxWidth: '100%',
+                  width: 'auto',
                   height: 'auto',
                 }}
               />
@@ -147,7 +147,7 @@ const DonatePartners = () => {
                 src={partner.icon}
                 alt={partner.name}
                 style={{
-                  maxWidth: '100%',
+                  width: 'auto',
                   height: 'auto',
                 }}
               />
