@@ -103,6 +103,11 @@ export const contributors = [
     roles: ['Graphic design (2017+)'],
     link: 'https://www.linkedin.com/in/liam-reese',
   },
+  {
+    name: 'Dave Thaler',
+    roles: ['Project lead and GitHub maintainer (2024+).'],
+    link: 'https://www.linkedin.com/in/dave-thaler-83939721b/',
+  },
 ]
 
 // google contributors
