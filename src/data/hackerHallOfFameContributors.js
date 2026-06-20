@@ -430,6 +430,13 @@ export const individualContributors = [
     ],
     link: 'https://www.linkedin.com/in/sonam12',
   },
+  {
+    name: 'Kristin B. Powers',
+    roles: [
+      'Jointly led original Shipnoise UX research with Rick Hines in early 2021.',
+    ],
+    link: 'https://www.kristinbpowers.com',
+  },
 ]
 
 // supporters array
@@ -445,5 +452,10 @@ export const supporterContributors = [
       'UX contributor at Orcasite Listening App kickoff and heuristic evaluation.',
     ],
     link: 'https://www.linkedin.com/in/rachel-delou',
+  },
+  {
+    name: 'Anurag Peshne',
+    roles: ['Microsoft hackathon participant (2019 to 2021+).'],
+    link: '',
   },
 ]
