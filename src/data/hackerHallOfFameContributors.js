@@ -147,7 +147,7 @@ export const googleContributors = [
     name: 'Ambra Jin',
     country: '(Italy, UK, Germany)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/ambra-jin-a54436152',
   },
   {
     name: 'Devdoot Chatterjee',
