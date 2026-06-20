@@ -116,7 +116,7 @@ export const googleContributors = [
     name: 'Kunal Mehta',
     country: '(India)',
     roles: ['GSoC contributor (2020)', 'GSoC mentor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/kunal-mehta-687a9716a/',
   },
   {
     name: 'Diego Roderiguez',
@@ -249,12 +249,12 @@ export const arcatiaContributors = [
   {
     name: 'Peter Ince',
     roles: ['Development (2020-22)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/peterince/',
   },
   {
-    name: 'Nick Bryne',
+    name: 'Nick Byrne',
     roles: ['Design & Project Management (2020-21)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/nbyrne/',
   },
   {
     name: 'Virgil Zetterlind',
@@ -317,7 +317,7 @@ export const orcaContributors = [
   {
     name: 'Claire Goetschel',
     roles: ['Moderation system, Design'],
-    link: '',
+    link: 'https://www.linkedin.com/in/clairegoetschel/',
   },
   {
     name: 'Akash Mahajan',
@@ -337,7 +337,7 @@ export const orcaContributors = [
   {
     name: 'Adele Bai',
     roles: ['Notification System'],
-    link: '',
+    link: 'https://www.linkedin.com/in/adele-bai-4767b110b/',
   },
   {
     name: 'Michelle Yang',
