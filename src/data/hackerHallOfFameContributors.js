@@ -529,4 +529,11 @@ export const supporterContributors = [
     roles: ['UX contributor on heuristic evaluation for Orcasite.'],
     link: 'https://erindanaephotos.com',
   },
+  {
+    name: 'Stephen Aranda',
+    roles: [
+      'Front End Developer who took on the Hacker Hall of Fame page rebuild.',
+    ],
+    link: 'https://www.linkedin.com/in/stephen-aranda-9b9974205',
+  },
 ]
