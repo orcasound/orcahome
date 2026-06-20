@@ -478,6 +478,11 @@ export const individualContributors = [
     roles: ['UX Designer and Researcher on the Shipnoise prelaunch team.'],
     link: 'https://www.hyntran.com',
   },
+  {
+    name: 'Mahtab Sabet',
+    roles: ['Shipnoise development contributor.'],
+    link: 'https://github.com/mahtabsabet',
+  },
 ]
 
 // supporters array
