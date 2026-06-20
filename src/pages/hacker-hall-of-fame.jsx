@@ -31,6 +31,7 @@ import {
   liveContributors,
   orcaContributors,
   projectManagementContributors,
+  supporterContributors,
 } from '../data/hackerHallOfFameContributors'
 
 const contributorRail = {
@@ -230,6 +231,13 @@ const HackerHallOfFame = () => {
         people={individualContributors}
         compactTitle
         titleVariant="h6"
+        {...contributorRail}
+      />
+
+      {/*Supporter Header */}
+      <ContributorSection
+        title="Supporters (key one-time contributions)"
+        people={supporterContributors}
         {...contributorRail}
       />
 
