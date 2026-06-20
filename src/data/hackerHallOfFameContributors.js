@@ -261,6 +261,16 @@ export const arcatiaContributors = [
     roles: ['Data Exchange + Mobile App Customization (2019+)'],
     link: 'https://www.linkedin.com/in/liuzoe',
   },
+  {
+    name: 'Bhavesh Misra',
+    roles: ['Acartia project lead organizer (2023).'],
+    link: 'https://www.linkedin.com/in/bhavesh-misra/',
+  },
+  {
+    name: 'Stephania Dolgopolova',
+    roles: ['Acartia stand-up roster member through 2023.'],
+    link: 'https://www.linkedin.com/in/stephaniad/',
+  },
 ]
 
 // project management contributors
