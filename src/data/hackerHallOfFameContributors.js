@@ -437,6 +437,13 @@ export const individualContributors = [
     ],
     link: 'https://www.kristinbpowers.com',
   },
+  {
+    name: 'Benji Friedman',
+    roles: [
+      'Full Stack Developer on Orcahome with significant institutional knowledge.',
+    ],
+    link: '',
+  },
 ]
 
 // supporters array
