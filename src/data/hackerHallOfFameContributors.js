@@ -488,6 +488,11 @@ export const individualContributors = [
     roles: ['SalishSea.io developer.'],
     link: 'https://www.inaturalist.org/people/rainhead',
   },
+  {
+    name: 'Maryam Rezaierad',
+    roles: ['Lead UX Designer on Shipnoise from late 2025 through launch.'],
+    link: 'https://www.linkedin.com/in/maryam-rezaierad-405042149/',
+  },
 ]
 
 // supporters array
