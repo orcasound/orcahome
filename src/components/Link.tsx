@@ -26,13 +26,16 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 ) {
   const {
     activeClassName = 'active',
-    as: linkAs,
+    as: asProp,
     className: classNameProps,
     href,
+    linkAs,
     noLinkStyle,
     children,
     ...other
   } = props
+
+  const nextAs = linkAs || asProp
 
   const router = useRouter()
   const pathname = typeof href === 'string' ? href : href && href.pathname
@@ -74,7 +77,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     return (
       <NextLink
         href={href}
-        as={linkAs}
+        as={nextAs}
         className={className}
         ref={ref}
         style={{ textDecoration: 'none', color: 'inherit' }}
@@ -95,7 +98,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     <MuiLink
       component={NextLink}
       href={href}
-      as={linkAs}
+      as={nextAs}
       className={className}
       ref={ref}
       {...other}
