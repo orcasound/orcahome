@@ -179,7 +179,7 @@ export const googleContributors = [
 export const liveContributors = [
   {
     name: 'Zarema Ross',
-    roles: ['UX/UI/design project manager (2021+)'],
+    roles: ['UX Project Team Lead (2021+)'],
     link: 'https://www.linkedin.com/in/zaremaross',
   },
   {
