@@ -418,4 +418,9 @@ export const individualContributors = [
     roles: ['Maintainer for the Port Townsend Hydrophone Node'],
     link: '',
   },
+  {
+    name: 'Andrew Bergstrom',
+    roles: ['Full stack development on Orcamap React build.'],
+    link: 'https://www.linkedin.com/in/andrew-bergstrom/',
+  },
 ]
