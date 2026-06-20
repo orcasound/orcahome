@@ -465,4 +465,9 @@ export const supporterContributors = [
     roles: ['Microsoft hackathon participant (2019 to 2021+).'],
     link: '',
   },
+  {
+    name: 'Vaibhav Mehrotra',
+    roles: ['UW MSDS 2024 capstone member.'],
+    link: 'https://www.linkedin.com/in/thevaibhavmehrotra/',
+  },
 ]
