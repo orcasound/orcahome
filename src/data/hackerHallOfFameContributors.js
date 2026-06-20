@@ -461,6 +461,13 @@ export const individualContributors = [
     ],
     link: 'https://www.linkedin.com/in/erinmee',
   },
+  {
+    name: 'Rhiza Mendoza',
+    roles: [
+      'UX designer on the Learning Interface (Orcahome predecessor) and call catalog redesign.',
+    ],
+    link: 'https://rhiza-portfolio.vercel.app',
+  },
 ]
 
 // supporters array
