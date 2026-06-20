@@ -454,6 +454,13 @@ export const individualContributors = [
     ],
     link: '',
   },
+  {
+    name: 'Erin Mee ',
+    roles: [
+      'Ambient sound analysis pipeline development and CI workflow contributor.',
+    ],
+    link: 'https://www.linkedin.com/in/erinmee',
+  },
 ]
 
 // supporters array
