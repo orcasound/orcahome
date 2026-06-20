@@ -424,3 +424,11 @@ export const individualContributors = [
     link: 'https://www.linkedin.com/in/andrew-bergstrom/',
   },
 ]
+
+export const supporterContributors = [
+  {
+    name: 'Matt Beaudoin',
+    roles: ['Front End Developer who landed Next.js v15 upgrade.'],
+    link: 'https://beaudoin.dev',
+  },
+]
