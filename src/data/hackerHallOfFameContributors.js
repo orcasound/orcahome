@@ -423,6 +423,13 @@ export const individualContributors = [
     roles: ['Full stack development on Orcamap React build.'],
     link: 'https://www.linkedin.com/in/andrew-bergstrom/',
   },
+  {
+    name: 'Sonam Chauhan',
+    roles: [
+      'UI Designer on the Notifications team and contributor to Orcasite.',
+    ],
+    link: 'https://www.linkedin.com/in/sonam12',
+  },
 ]
 
 export const supporterContributors = [
