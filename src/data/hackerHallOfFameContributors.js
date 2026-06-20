@@ -473,6 +473,11 @@ export const individualContributors = [
     ],
     link: 'https://rhiza-portfolio.vercel.app',
   },
+  {
+    name: 'Huynh (Nhi) Tran',
+    roles: ['UX Designer and Researcher on the Shipnoise prelaunch team.'],
+    link: 'https://www.hyntran.com',
+  },
 ]
 
 // supporters array
@@ -498,5 +503,10 @@ export const supporterContributors = [
     name: 'Vaibhav Mehrotra',
     roles: ['UW MSDS 2024 capstone member.'],
     link: 'https://www.linkedin.com/in/thevaibhavmehrotra/',
+  },
+  {
+    name: 'Snehal Murkute',
+    roles: ['Shipnoise team member from June 2025 through end of year.'],
+    link: 'https://www.linkedin.com/in/snehalmurkute',
   },
 ]
