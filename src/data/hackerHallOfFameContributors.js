@@ -413,4 +413,9 @@ export const individualContributors = [
     roles: ['UX Project Team Lead (Shipnoise)', 'UX Designer (2021+)'],
     link: '',
   },
+  {
+    name: 'Eric McRae',
+    roles: ['Maintainer for the Port Townsend Hydrophone Node'],
+    link: '',
+  },
 ]
