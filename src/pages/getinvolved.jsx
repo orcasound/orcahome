@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
-import { Box, Button, Container, Link, Stack,Typography } from '@mui/material'
+import { Box, Button, Container, Link, Stack, Typography } from '@mui/material'
 import Head from 'next/head'
 import Image from 'next/image'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
@@ -394,6 +394,12 @@ const DevelopersContent = () => (
         align="left"
         fontWeight="600"
         mb="40px"
+        sx={(theme) => ({
+          [theme.breakpoints.down('sm')]: {
+            mx: 'auto',
+            fontSize: 'x-large',
+          },
+        })}
       >
         Memorandum Of Agreement
       </Typography>
