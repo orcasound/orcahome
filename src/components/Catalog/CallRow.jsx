@@ -93,8 +93,6 @@ export default function CallRow({
                 height={75}
                 style={{
                   objectFit: 'cover',
-                  maxWidth: '100%',
-                  height: 'auto',
                 }}
               />
             ) : null}
