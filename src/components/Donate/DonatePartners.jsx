@@ -98,10 +98,6 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                }}
               />
               <Typography sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
                 {partner.name}
@@ -146,10 +142,6 @@ const DonatePartners = () => {
                 height={100}
                 src={partner.icon}
                 alt={partner.name}
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                }}
               />
             </Box>
             <Box
