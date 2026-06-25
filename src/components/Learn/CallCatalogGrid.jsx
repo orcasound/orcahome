@@ -1,3 +1,4 @@
+import InfoIcon from '@mui/icons-material/Info'
 import PauseCircleIcon from '@mui/icons-material/PauseCircle'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import { Box, Button, Grid, IconButton, Link, Typography } from '@mui/material'
@@ -16,6 +17,7 @@ import FOS04 from '../../../public/images/learn/FO-S04.png'
 import FOS05 from '../../../public/images/learn/FO-S05.png'
 import FOS06 from '../../../public/images/learn/FO-S06.png'
 import { pushToDataLayer } from '../../utils/gtm'
+import { TOOLTIPS } from '../Catalog/constants'
 
 const SO1 = '/audio/FO-S01.mp3'
 const SO2 = '/audio/FO-S02.mp3'
@@ -96,6 +98,24 @@ const CallCatalogGrid = () => {
           textAlign: 'center',
         }}
       >
+        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              backgroundColor: 'action.hover',
+              padding: '8px 16px',
+              borderRadius: '8px',
+            }}
+          >
+            <InfoIcon color="primary" fontSize="small" />
+            {TOOLTIPS.SPECTROGRAM}
+          </Typography>
+        </Box>
+
         <Grid
           container
           spacing={{ xs: 2, md: 8 }}
@@ -131,6 +151,7 @@ const CallCatalogGrid = () => {
               >
                 <Image
                   src={spectrogram[index]}
+                  title={TOOLTIPS.SPECTROGRAM}
                   alt={`Orca Call ${index}`}
                   style={{
                     width: '100%',

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 
-export default function SpectrogramPanel({ src, alt, maxWidth }) {
+export default function SpectrogramPanel({ src, alt, title, maxWidth }) {
   return (
     <Box
       aria-hidden={src ? undefined : 'true'}
@@ -16,6 +16,7 @@ export default function SpectrogramPanel({ src, alt, maxWidth }) {
           component="img"
           src={src}
           alt={alt}
+          title={title}
           sx={{ width: '100%', height: 'auto', display: 'block' }}
         />
       )}
