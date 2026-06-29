@@ -8,6 +8,10 @@ module.exports = {
         protocol: 'https',
         hostname: 'netlify.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
     ],
   },
 }

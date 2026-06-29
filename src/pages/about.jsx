@@ -40,6 +40,7 @@ export default function About({ about }) {
   const content = {
     heroTitle: about?.heroTitle || DEFAULTS.heroTitle,
     heroDescription: about?.heroDescription || DEFAULTS.heroDescription,
+    heroImage: about?.heroImageUrl || AboutBanner,
     intro: about?.intro || DEFAULTS.intro,
     projectsHeading: about?.projectsHeading || DEFAULTS.projectsHeading,
     participationHeading:
@@ -51,13 +52,25 @@ export default function About({ about }) {
     ctaHref: about?.ctaHref || DEFAULTS.ctaHref,
   }
 
+  // Projects: use the Sanity list when present, otherwise the existing
+  // db.json. Normalize each entry to { title, path, url } so AboutCard
+  // stays unchanged. A project image falls back to the banner so a
+  // half-filled entry can't break rendering.
+  const projects = about?.projects?.length
+    ? about.projects.map((project) => ({
+        title: project.title,
+        path: project.imageUrl || AboutBanner,
+        url: project.url,
+      }))
+    : Items
+
   return (
     <>
       <Head>
         <title>About us - Orcasound</title>
       </Head>
       <TopBanner
-        bannerImg={AboutBanner}
+        bannerImg={content.heroImage}
         pageTitle={content.heroTitle}
         pageDesc={content.heroDescription}
         scrollToId={`about`}
@@ -87,7 +100,7 @@ export default function About({ about }) {
               justifyContent="center"
               spacing={mobileActive ? 0 : 5}
             >
-              {Items.map((item, index) => {
+              {projects.map((item, index) => {
                 return (
                   <Grid item xs={12} sm={6} md={3} key={index}>
                     {/* There are two conditions
