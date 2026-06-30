@@ -84,6 +84,7 @@ const Nav = () => {
                     style={{ width: '60px', height: 'auto' }}
                     src={orcasoundlogo}
                     alt="Orcasound"
+                    priority
                   />
                 </Link>
               </Box>
