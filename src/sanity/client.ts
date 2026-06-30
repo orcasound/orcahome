@@ -16,7 +16,9 @@ function baseClient(): SanityClient {
     )
   }
   if (!cached) {
-    cached = createClient({ projectId, dataset, apiVersion, useCdn: true })
+    // useCdn:false — pages fetch via getStaticProps/ISR which already caches,
+    // so skip the CDN layer to avoid stale content after an edit.
+    cached = createClient({ projectId, dataset, apiVersion, useCdn: false })
   }
   return cached
 }
