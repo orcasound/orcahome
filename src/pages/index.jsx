@@ -37,6 +37,7 @@ export const index = () => {
           src={orcas}
           alt="orca background image"
           fill
+          priority
           sizes="100vw"
           style={{
             objectFit: 'cover',
