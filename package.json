@@ -22,6 +22,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.3.1",
+    "@sanity/client": "^7.22.1",
     "graphql-request": "5.2.0",
     "next": "^16.2.6",
     "react": "^18.3.1",

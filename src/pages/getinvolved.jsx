@@ -59,6 +59,43 @@ const SECTION_COMPONENTS = {
   donate: () => <SupportContent />,
 }
 
+const VOLUNTEER_IMAGE_SIZES = '(max-width: 600px) 100vw, 33vw'
+
+// Next 12's next/image wrapped each image in a span that the grid could
+// stretch to an equal column height. Next 16 renders a bare <img>, which
+// dropped that behavior (#296). Re-create it: on desktop fill an
+// equal-height grid cell (objectFit: cover); on mobile fall back to the
+// image's natural size.
+const VolunteerImage = ({ alt, src, desktopSx }) => (
+  <>
+    <Box
+      sx={{
+        display: { xs: 'none', sm: 'block' },
+        position: 'relative',
+        width: '100%',
+        overflow: 'hidden',
+        ...desktopSx,
+      }}
+    >
+      <Image
+        alt={alt}
+        src={src}
+        fill
+        sizes={VOLUNTEER_IMAGE_SIZES}
+        style={{ objectFit: 'cover' }}
+      />
+    </Box>
+    <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+      <Image
+        alt={alt}
+        src={src}
+        sizes="100vw"
+        style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
+      />
+    </Box>
+  </>
+)
+
 const VolunteerContent = () => (
   <>
     <Box
@@ -108,8 +145,9 @@ const VolunteerContent = () => (
     <Box
       sx={(theme) => ({
         display: 'grid',
-        gridTemplateColumns: 'auto auto auto',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
         gridGap: '20px',
+        alignItems: 'stretch',
         [theme.breakpoints.down('sm')]: {
           gridTemplateColumns: '100%',
         },
@@ -123,46 +161,26 @@ const VolunteerContent = () => (
           gridGap: '20px',
         }}
       >
-        <Image
+        <VolunteerImage
           alt="Val hacking node code."
           src={valhacking}
-          style={{
-            width: '100%',
-            height: 'auto',
-            maxWidth: '100%',
-            height: 'auto',
-          }}
+          desktopSx={{ aspectRatio: '379 / 310' }}
         />
-        <Image
+        <VolunteerImage
           alt="Binaural hydrophone stand."
           src={hydrophonestand}
-          style={{
-            width: '100%',
-            height: 'auto',
-            maxWidth: '100%',
-            height: 'auto',
-          }}
+          desktopSx={{ aspectRatio: '375 / 297' }}
         />
       </Box>
-      <Image
+      <VolunteerImage
         alt="Lon does hydrophone wizardly!"
         src={lonhydrophone}
-        style={{
-          width: '100%',
-          height: 'auto',
-          maxWidth: '100%',
-          height: 'auto',
-        }}
+        desktopSx={{ height: '100%' }}
       />
-      <Image
+      <VolunteerImage
         alt="The live-streaming DIY solution."
         src={livediy}
-        style={{
-          width: '100%',
-          height: 'auto',
-          maxWidth: '100%',
-          height: 'auto',
-        }}
+        desktopSx={{ height: '100%' }}
       />
     </Box>
     <Typography variant="body1">

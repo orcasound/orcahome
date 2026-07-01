@@ -23,19 +23,21 @@ const AboutCard = ({ item, mobileActive, onClick }) => {
       mx={{ xs: 1, sm: 0 }}
     >
       <Paper square elevation={3}>
-        <Box>
+        <Box
+          sx={{
+            position: 'relative',
+            width: '100%',
+            aspectRatio: '700 / 500',
+          }}
+        >
           <Image
-            width={700}
-            height={500}
+            fill
             alt={item.title}
             src={item.path}
-            sx={{
-              userSelect: 'none',
-            }}
-            sizes="100vw"
+            sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
             style={{
-              width: '100%',
-              height: 'auto',
+              objectFit: 'cover',
+              userSelect: 'none',
             }}
           />
         </Box>

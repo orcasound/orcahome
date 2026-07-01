@@ -19,6 +19,9 @@ import Link from './Link'
 
 const currentYear = new Date().getFullYear()
 
+const feedbackFormUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLScsBwU_ZX0W2GUrxJ5JKb3PfR-NmloHxm7zetkyOBC5RM2ajA/viewform'
+
 const StyledTypography = styled(Typography)({
   color: 'white',
   marginRight: '32px',
@@ -79,9 +82,15 @@ const iconContainer = (
 )
 
 const sendFeedbackLink = (
-  <Link href="/">
-    <StyledTypography variant="h6">Send Feedback</StyledTypography>
-  </Link>
+  <StyledTypography
+    variant="h6"
+    component="a"
+    href={feedbackFormUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Send Feedback
+  </StyledTypography>
 )
 
 const blogLink = (
@@ -97,15 +106,15 @@ const blogLink = (
 )
 
 const supportUsLink = (
-  <Link href="/">
-    <StyledTypography variant="h6">Support Us</StyledTypography>
-  </Link>
+  <StyledTypography variant="h6" sx={{ '&:hover': { cursor: 'default' } }}>
+    Support Us
+  </StyledTypography>
 )
 
 const learnMoreLink = (
-  <Link href="/">
-    <StyledTypography variant="h6">Learn More</StyledTypography>
-  </Link>
+  <StyledTypography variant="h6" sx={{ '&:hover': { cursor: 'default' } }}>
+    Learn More
+  </StyledTypography>
 )
 
 const navLinksLeftCol = [
@@ -116,8 +125,9 @@ const navLinksLeftCol = [
   },
   {
     name: 'Send Feedback',
-    url: '/',
+    url: feedbackFormUrl,
     icon: '',
+    external: true,
   },
   {
     name: 'Support',
@@ -271,8 +281,12 @@ function Desktop() {
                   height: '30px',
                 }}
               >
-                <Link href={navLink.url}>
+                {navLink.external ? (
                   <StyledTypography
+                    component="a"
+                    href={navLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() =>
                       pushToDataLayer('footer_nav_click', {
                         link_text: navLink.name,
@@ -281,7 +295,19 @@ function Desktop() {
                   >
                     {navLink.name}
                   </StyledTypography>
-                </Link>
+                ) : (
+                  <Link href={navLink.url}>
+                    <StyledTypography
+                      onClick={() =>
+                        pushToDataLayer('footer_nav_click', {
+                          link_text: navLink.name,
+                        })
+                      }
+                    >
+                      {navLink.name}
+                    </StyledTypography>
+                  </Link>
+                )}
               </Box>
             ))}
           </Box>
