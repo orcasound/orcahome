@@ -1,11 +1,8 @@
 # Editing the About page (Sanity CMS guide)
 
-This guide is for **content editors** (no coding needed). The About page on
-orcasound.tech pulls its text and images from **Sanity**, a content management
-system (CMS). You edit everything in the Sanity Studio — a website — and your
-changes appear on the live site automatically.
-
-> **You do not touch any code.** Everything here happens in the Studio.
+This guide walks you through editing the About page on orcasound.tech using
+Sanity Studio. You'll learn how to update text, swap images, and manage project
+cards — all without touching any code.
 
 ---
 
@@ -13,7 +10,7 @@ changes appear on the live site automatically.
 
 1. Go to **https://orcahome.sanity.studio**
 2. Sign in with the Google account that was given access (ask an admin if you
-   can't get in).
+   can't get in — ping @Vicky on Zulip).
 
 ## 2. Open the About Page
 
@@ -113,4 +110,4 @@ developer to deploy anything.
 
 ---
 
-_Questions or something looks broken? Ping the dev channel._
+_Questions or something looks broken? ping @Vicky on Zulip._
