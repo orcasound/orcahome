@@ -20,6 +20,9 @@ export const aboutPage = defineType({
       name: 'heroTitle',
       title: 'Hero title',
       type: 'string',
+      description:
+        '📖 New to editing this page? Read the step-by-step guide: ' +
+        'https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit',
       validation: (rule) => rule.required(),
     }),
     defineField({
