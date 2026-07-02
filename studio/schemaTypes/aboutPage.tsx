@@ -20,9 +20,19 @@ export const aboutPage = defineType({
       name: 'heroTitle',
       title: 'Hero title',
       type: 'string',
-      description:
-        '📖 New to editing this page? Read the step-by-step guide: ' +
-        'https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit',
+      description: (
+        <>
+          📖 New to editing this page?{' '}
+          <a
+            href="https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the step-by-step guide
+          </a>
+          .
+        </>
+      ),
       validation: (rule) => rule.required(),
     }),
     defineField({
