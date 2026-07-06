@@ -493,6 +493,13 @@ export const individualContributors = [
     roles: ['Lead UX Designer on Shipnoise from late 2025 through launch.'],
     link: 'https://www.linkedin.com/in/maryam-rezaierad-405042149/',
   },
+  {
+    name: 'Tyler Stevenson',
+    roles: [
+      'Multi-source whale-sighting dataset compiler and AIS data engineer.',
+    ],
+    link: 'https://www.linkedin.com/in/stevetyl/',
+  },
 ]
 
 // supporters array
