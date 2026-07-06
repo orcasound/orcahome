@@ -39,6 +39,7 @@ export const index = () => {
           fill
           priority
           sizes="100vw"
+          loading="eager"
           style={{
             objectFit: 'cover',
           }}
@@ -429,17 +430,15 @@ export const index = () => {
         </Grid>
 
         {/* Netlify badge for open source plan https://www.netlify.com/legal/open-source-policy */}
-        <a href="https://www.netlify.com">
-          <Image
-            src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"
-            alt="Deploys by Netlify"
-            width="114"
-            height="51"
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
+        <a href="https://netlify.com">
+          <Box sx={{ display: 'inline-block', width: 114, height: 51 }}>
+            <Image
+              src="https://netlify.com/img/global/badges/netlify-color-accent.svg"
+              alt="Deploys by Netlify"
+              width={114}
+              height={51}
+            />
+          </Box>
         </a>
       </Box>
     </>
