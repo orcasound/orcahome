@@ -103,6 +103,11 @@ export const contributors = [
     roles: ['Graphic design (2017+)'],
     link: 'https://www.linkedin.com/in/liam-reese',
   },
+  {
+    name: 'Dave Thaler',
+    roles: ['Project lead and GitHub maintainer (2024+).'],
+    link: 'https://www.linkedin.com/in/dave-thaler-83939721b/',
+  },
 ]
 
 // google contributors
@@ -111,7 +116,7 @@ export const googleContributors = [
     name: 'Kunal Mehta',
     country: '(India)',
     roles: ['GSoC contributor (2020)', 'GSoC mentor (2021)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/kunal-mehta-687a9716a/',
   },
   {
     name: 'Diego Roderiguez',
@@ -147,7 +152,7 @@ export const googleContributors = [
     name: 'Ambra Jin',
     country: '(Italy, UK, Germany)',
     roles: ['GSoC contributor (2022)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/ambra-jin-a54436152',
   },
   {
     name: 'Devdoot Chatterjee',
@@ -179,7 +184,7 @@ export const googleContributors = [
 export const liveContributors = [
   {
     name: 'Zarema Ross',
-    roles: ['UX/UI/design project manager (2021+)'],
+    roles: ['UX Project Team Lead (2021+)'],
     link: 'https://www.linkedin.com/in/zaremaross',
   },
   {
@@ -244,12 +249,12 @@ export const arcatiaContributors = [
   {
     name: 'Peter Ince',
     roles: ['Development (2020-22)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/peterince/',
   },
   {
-    name: 'Nick Bryne',
+    name: 'Nick Byrne',
     roles: ['Design & Project Management (2020-21)'],
-    link: '',
+    link: 'https://www.linkedin.com/in/nbyrne/',
   },
   {
     name: 'Virgil Zetterlind',
@@ -260,6 +265,16 @@ export const arcatiaContributors = [
     name: 'Zoe Liu',
     roles: ['Data Exchange + Mobile App Customization (2019+)'],
     link: 'https://www.linkedin.com/in/liuzoe',
+  },
+  {
+    name: 'Bhavesh Misra',
+    roles: ['Acartia project lead organizer (2023).'],
+    link: 'https://www.linkedin.com/in/bhavesh-misra/',
+  },
+  {
+    name: 'Stephania Dolgopolova',
+    roles: ['Acartia stand-up roster member through 2023.'],
+    link: 'https://www.linkedin.com/in/stephaniad/',
   },
 ]
 
@@ -302,7 +317,7 @@ export const orcaContributors = [
   {
     name: 'Claire Goetschel',
     roles: ['Moderation system, Design'],
-    link: '',
+    link: 'https://www.linkedin.com/in/clairegoetschel/',
   },
   {
     name: 'Akash Mahajan',
@@ -322,7 +337,7 @@ export const orcaContributors = [
   {
     name: 'Adele Bai',
     roles: ['Notification System'],
-    link: '',
+    link: 'https://www.linkedin.com/in/adele-bai-4767b110b/',
   },
   {
     name: 'Michelle Yang',
@@ -407,5 +422,118 @@ export const individualContributors = [
     name: 'Christian Johnson',
     roles: ['UX Designer (2023+)'],
     link: 'https://christianjohnson.dev',
+  },
+  {
+    name: 'Rick Hines',
+    roles: ['UX Project Team Lead (Shipnoise)', 'UX Designer (2021+)'],
+    link: '',
+  },
+  {
+    name: 'Eric McRae',
+    roles: ['Maintainer for the Port Townsend Hydrophone Node'],
+    link: '',
+  },
+  {
+    name: 'Andrew Bergstrom',
+    roles: ['Full stack development on Orcamap React build.'],
+    link: 'https://www.linkedin.com/in/andrew-bergstrom/',
+  },
+  {
+    name: 'Sonam Chauhan',
+    roles: [
+      'UI Designer on the Notifications team and contributor to Orcasite.',
+    ],
+    link: 'https://www.linkedin.com/in/sonam12',
+  },
+  {
+    name: 'Kristin B. Powers',
+    roles: [
+      'Jointly led original Shipnoise UX research with Rick Hines in early 2021.',
+    ],
+    link: 'https://www.kristinbpowers.com',
+  },
+  {
+    name: 'Benji Friedman',
+    roles: [
+      'Full Stack Developer on Orcahome with significant institutional knowledge.',
+    ],
+    link: '',
+  },
+  {
+    name: 'Erin Mee ',
+    roles: [
+      'Ambient sound analysis pipeline development and CI workflow contributor.',
+    ],
+    link: 'https://www.linkedin.com/in/erinmee',
+  },
+  {
+    name: 'Rhiza Mendoza',
+    roles: [
+      'UX designer on the Learning Interface (Orcahome predecessor) and call catalog redesign.',
+    ],
+    link: 'https://rhiza-portfolio.vercel.app',
+  },
+  {
+    name: 'Huynh (Nhi) Tran',
+    roles: ['UX Designer and Researcher on the Shipnoise prelaunch team.'],
+    link: 'https://www.hyntran.com',
+  },
+  {
+    name: 'Mahtab Sabet',
+    roles: ['Shipnoise development contributor.'],
+    link: 'https://github.com/mahtabsabet',
+  },
+  {
+    name: 'Peter Abrahamsen',
+    roles: ['SalishSea.io developer.'],
+    link: 'https://www.inaturalist.org/people/rainhead',
+  },
+  {
+    name: 'Maryam Rezaierad',
+    roles: ['Lead UX Designer on Shipnoise from late 2025 through launch.'],
+    link: 'https://www.linkedin.com/in/maryam-rezaierad-405042149/',
+  },
+]
+
+// supporters array
+export const supporterContributors = [
+  {
+    name: 'Matt Beaudoin',
+    roles: ['Front End Developer who landed Next.js v15 upgrade.'],
+    link: 'https://beaudoin.dev',
+  },
+  {
+    name: 'Rachel Deloughry',
+    roles: [
+      'UX contributor at Orcasite Listening App kickoff and heuristic evaluation.',
+    ],
+    link: 'https://www.linkedin.com/in/rachel-delou',
+  },
+  {
+    name: 'Anurag Peshne',
+    roles: ['Microsoft hackathon participant (2019 to 2021+).'],
+    link: '',
+  },
+  {
+    name: 'Vaibhav Mehrotra',
+    roles: ['UW MSDS 2024 capstone member.'],
+    link: 'https://www.linkedin.com/in/thevaibhavmehrotra/',
+  },
+  {
+    name: 'Snehal Murkute',
+    roles: ['Shipnoise team member from June 2025 through end of year.'],
+    link: 'https://www.linkedin.com/in/snehalmurkute',
+  },
+  {
+    name: 'Erin Brown-Heredia',
+    roles: ['UX contributor on heuristic evaluation for Orcasite.'],
+    link: 'https://erindanaephotos.com',
+  },
+  {
+    name: 'Stephen Aranda',
+    roles: [
+      'Front End Developer who took on the Hacker Hall of Fame page rebuild.',
+    ],
+    link: 'https://www.linkedin.com/in/stephen-aranda-9b9974205',
   },
 ]
