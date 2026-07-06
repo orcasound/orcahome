@@ -47,6 +47,7 @@ a:hover { text-decoration: underline; }
 .b-stale { background: #eee9fb; color: #5b3fb0; }
 .b-flight { background: #e3f4ea; color: #1f7a44; }
 .b-approved { background: #d8f0e0; color: #155f37; }
+.b-submitted { background: #e0e7ff; color: #3730a3; }
 .b-lead { background: #e6edf7; color: #1F3864; }
 .owner { font-weight: 600; }
 .owner.none { color: #b3261e; }
@@ -148,7 +149,8 @@ const BRIEFS = {
   282: "https://drive.google.com/file/d/12lOFrqTrpUwlF53LWFWwvGn3BH-rWtTb/view",
   288: "https://drive.google.com/file/d/142uMDR9971LIEdn3gL8YNPVjMSyn15bx/view",
   311: "https://docs.google.com/document/d/1FN6YT2iPUJTqYvZ3nc3IcS1kJr9cU3WHqhaPebaE0dY/edit",
-  312: "https://docs.google.com/document/d/1klH7gRgLosTDaf-rdSIAN4NQTOdNsclH-y4Sj1gjKlI/edit"
+  312: "https://docs.google.com/document/d/1klH7gRgLosTDaf-rdSIAN4NQTOdNsclH-y4Sj1gjKlI/edit",
+  347: "https://drive.google.com/file/d/17zQui-SW-OjtEHqWurbGm4EDVl4tG7Mv/view"
 };
 
 // Design system issues owned by the Lead UX Designer: listed inline with full metadata, but not open to claim.
@@ -156,41 +158,43 @@ const LEAD_ONLY = [250, 253];
 
 // GitHub handle to display name.
 const NAMES = {
-  "rqtdesign": "Ryan Tran",
-  "saraloup": "Sara Loup",
-  "adebisitreasure": "Treasure Adebisi",
-  "flemingardenmiko": "Arden Miko Fleming",
-  "ingaraic": "Inga Raič",
-  "anamfayyazmalik": "Anam Malik",
-  "ayushirana699-uxr": "Ayushi Rana",
-  "nidhirajan": "Nidhi Deepu Rajan",
-  "ninavizz": "Nina Alter",
-  "sarahidemoto": "Sarah I"
+  "rqtdesign": "Ryan",
+  "saraloup": "Sara L",
+  "adebisitreasure": "Treasure",
+  "flemingardenmiko": "Arden",
+  "ingaraic": "Inga",
+  "anamfayyazmalik": "Anam",
+  "ayushirana699-uxr": "Ayushi",
+  "nidhirajan": "Nidhi",
+  "ninavizz": "Nina",
+  "sarahidemoto": "Sarah I",
+  "rhiza1": "Rhiza",
+  "sophiachung1": "Sophia"
 };
 function nameFor(login){ return NAMES[login] || login; }
 
 // Owner override where the GitHub assignee cannot reflect the real owner yet (for example not yet a repo collaborator).
-const OWNER_OVERRIDE = { 250: ["Nina Alter"], 253: ["Nina Alter"] };
+const OWNER_OVERRIDE = { 250: ["Nina"], 253: ["Nina"] };
 
-// Audited current status as of 2026-06-17. Overrides the computed live status.
+// Audited current status as of 2026-07-01. Overrides the computed live status.
 const STATUS_OVERRIDE = {
-  227: "Needs owner",
-  246: "In-flight",
-  250: "Assigned (starts next week)",
-  253: "Assigned (starts next week)",
+  227: "In-flight",
+  246: "Submitted",
+  250: "Assigned",
+  253: "Assigned",
   258: "In-flight",
   276: "Design approved",
   279: "In-flight",
-  280: "Needs owner",
+  280: "In-flight",
   281: "In-flight",
-  282: "Needs owner",
+  282: "In-flight",
   288: "In-flight",
   311: "In-flight",
   312: "In-flight"
 };
 
-const ORDER = {"Needs owner":0,"Blocked":1,"Stale":2,"In-flight":3,"Design approved":4,"Assigned (starts next week)":5};
-const BADGE = {"Needs owner":"b-needs","Blocked":"b-blocked","Stale":"b-stale","In-flight":"b-flight","Design approved":"b-approved","Assigned (starts next week)":"b-lead"};
+const ORDER = {"Needs owner":0,"Blocked":1,"Stale":2,"In-flight":3,"Design approved":4,"Submitted":5,"Assigned":6};
+const BADGE = {"Needs owner":"b-needs","Blocked":"b-blocked","Stale":"b-stale","In-flight":"b-flight","Design approved":"b-approved","Submitted":"b-submitted","Assigned":"b-lead"};
 
 function daysSince(iso){ if(!iso) return null; return Math.floor((Date.now()-new Date(iso).getTime())/86400000); }
 function isUX(i){ const t=(i.title||"").trim().toLowerCase(); return t.startsWith("ux:")||t.startsWith("ux design:")||t.startsWith("uxr:"); }
@@ -256,7 +260,7 @@ function render(issues){
   names.forEach(n=>{ html+='<div class="person"><h3>'+esc(n)+' <span class="muted">('+byOwner[n].length+')</span></h3><ul>'; byOwner[n].forEach(x=>{ html+='<li><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a> '+esc(x.title)+'</li>'; }); html+='</ul></div>'; });
   html+='</div>';
 
-  html+='<div class="note">A UX issue is one whose title starts with "UX:", "UX Design:", or "UXR:". Owner names are read from GitHub assignees (the product service account is removed); status reflects a manual audit as of 2026-06-17, not just GitHub activity. <b>Open to claim</b> means unowned with a brief ready, so you can request it. <b>Lead only</b> marks the design system issues owned by the Lead UX Designer. Issues with no brief yet show <b>brief coming</b>. No self-assign on GitHub; request here and the Product Manager assigns.</div>';
+  html+='<div class="note">A UX issue is one whose title starts with "UX:", "UX Design:", or "UXR:". Owner names are read from GitHub assignees (the product service account is removed); status reflects a manual audit as of 2026-07-01, not just GitHub activity. <b>Open to claim</b> means unowned with a brief ready, so you can request it. <b>Lead only</b> marks the design system issues owned by the Lead UX Designer. Issues with no brief yet show <b>brief coming</b>. No self-assign on GitHub; request here and the Product Manager assigns.</div>';
   document.getElementById("content").innerHTML=html;
 }
 
@@ -309,7 +313,7 @@ async function loadReport(){
   document.getElementById("content").innerHTML="";
   try{
     const issues=await fetchOpenIssues();
-    document.getElementById("refreshed").innerHTML="Owners and titles live from GitHub. Status audited 2026-06-17. Last loaded <b>"+new Date().toLocaleString()+"</b>.";
+    document.getElementById("refreshed").innerHTML="Owners and titles live from GitHub. Status audited 2026-07-01. Last loaded <b>"+new Date().toLocaleString()+"</b>.";
     s.textContent="Live: "+issues.length+" open issues pulled from GitHub.";
     render(issues);
   }catch(e){
