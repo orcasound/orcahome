@@ -412,6 +412,12 @@ const DevelopersContent = () => (
         align="left"
         fontWeight="600"
         mb="40px"
+        sx={(theme) => ({
+          [theme.breakpoints.down('sm')]: {
+            mx: 'auto',
+            fontSize: 'x-large',
+          },
+        })}
       >
         Memorandum Of Agreement
       </Typography>

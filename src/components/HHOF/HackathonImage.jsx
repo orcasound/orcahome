@@ -33,6 +33,10 @@ const HackathonImage = () => {
         alt="Orcasound at a democracy lab hackathon in Seattle"
         width={573}
         height={368}
+        style={{
+          width: 'auto',
+          height: 'auto',
+        }}
       />
       <Typography
         variant="caption"
