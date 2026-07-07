@@ -553,4 +553,11 @@ export const supporterContributors = [
     roles: ['UX team member on the Orcahome kickoff (2025).'],
     link: 'https://www.linkedin.com/in/nadiachoi',
   },
+  {
+    name: 'Kimali Piyasena',
+    roles: [
+      'UUX Researcher on competitive audit and user testing for Orcasite Listening App.',
+    ],
+    link: 'https://www.linkedin.com/in/kimali-p-633a5b132/',
+  },
 ]
