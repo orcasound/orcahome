@@ -1,9 +1,6 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -14,6 +11,36 @@ import { Link as ScrollElement } from 'react-scroll'
 import orcas from '../../public/images/homepage.png'
 import Link from '../components/Link'
 import { pushToDataLayer } from '../utils/gtm'
+
+const LIVE_ORCASOUND_LISTEN_URL = 'https://live.orcasound.net/listen'
+const ORCASOUND_HYDROPHONE_MAP_EMBED_URL =
+  'https://www.google.com/maps/d/embed?mid=10UzMA9tn5vXEBHCzksuE9dEggzBrW-0q'
+
+// Interactive Google My Map of current hydrophone locations, embedded in a
+// fixed-size window. Users pan/zoom natively inside it (like Google Maps); the
+// outer box size never changes, so page layout stays stable.
+const HydrophoneLocationsMapImage = () => (
+  <Box
+    sx={{
+      position: 'relative',
+      height: { xs: 420, sm: 520 },
+      overflow: 'hidden',
+    }}
+  >
+    <Box
+      component="iframe"
+      src={ORCASOUND_HYDROPHONE_MAP_EMBED_URL}
+      title="Current Orcasound hydrophone locations map"
+      loading="lazy"
+      sx={{
+        display: 'block',
+        width: '100%',
+        height: '100%',
+        border: 0,
+      }}
+    />
+  </Box>
+)
 
 export const index = () => {
   return (
@@ -188,7 +215,7 @@ export const index = () => {
             microphones), your ears to an ocean of sound.`}
             <br></br>
             <br></br>
-            {`Orcasound help us explore and conserve marine life around the globe,
+            {`Orcasound helps us explore and conserve marine life around the globe,
             starting with studying and saving the southern resident killer
             whales of the Pacific Northwest. At Orcasound you can listen for
             whales or learn more about marine bioacoustics.`}
@@ -209,36 +236,18 @@ export const index = () => {
               fontWeight={'600'}
               mr={{ xs: 10 }}
             >
-              Hydrophone Location
+              Hydrophone Locations
             </Typography>
             <Typography variant="body" fontSize="20px" fontWeight={'600'}>
               <br></br>
-              {`Orcasound is a cooperative hydrophne network and an
-                open-source software & hardware project.`}
+              {`Orcasound streams live underwater audio from hydrophones around
+                the Salish Sea. Choose a listening location and check which
+                feeds are online in the live app.`}
             </Typography>
           </Box>
 
           <Grid item xs={12} sm={6} sx={{ fontFamily: 'Montserrat' }}>
-            <Card style={{ border: 'none', boxShadow: 'none' }}>
-              <CardMedia
-                component="img"
-                height={'width'}
-                image="https://i2.wp.com/www.orcasound.net/wp2017/wp-content/uploads/2020/10/Screen-Shot-2020-10-20-at-1.40.28-PM.png?resize=770%2C725&ssl=1"
-              />
-              <CardContent sx={{ fontSize: '20px' }}>
-                <Typography
-                  gutterBottom
-                  component="p"
-                  textAlign="center"
-                  fontFamily="Montserrat"
-                  fontSize="18px"
-                  fontWeight={'400'}
-                  fontStyle={'normal'}
-                >
-                  Current Orcasound hydrophone locations
-                </Typography>
-              </CardContent>
-            </Card>
+            <HydrophoneLocationsMapImage />
           </Grid>
 
           <Box
@@ -254,18 +263,18 @@ export const index = () => {
               mb={{ xs: 3 }}
               mt={{ xs: -5 }}
             >
-              {`We Welcome your participation. If you'd like to host a
-                  hydrophone, do research or incorporate Orcasound into the
-                  educational or research efforts of your organization , you
-                  can join us as a member of the network.`}
+              {`Listen live, learn what each hydrophone hears, and report
+                  interesting sounds when you notice them.`}
             </Typography>
             <Button
               component={Link}
-              href="/learn"
+              href={LIVE_ORCASOUND_LISTEN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               variant="contained"
               onClick={() =>
                 pushToDataLayer('cta_click', {
-                  cta_text: 'Learn',
+                  cta_text: 'Listen Live',
                   section: 'body',
                   page: 'home',
                 })
@@ -289,7 +298,7 @@ export const index = () => {
               }}
             >
               {' '}
-              LEARN
+              LISTEN LIVE
             </Button>
             <Button
               component={Link}
@@ -337,7 +346,7 @@ export const index = () => {
               fontSize="44px"
               fontWeight={'600'}
             >
-              Hydrophone Location
+              Hydrophone Locations
             </Typography>
             <Typography
               variant="body"
@@ -346,8 +355,9 @@ export const index = () => {
               fontWeight={'600'}
             >
               <br></br>
-              {`Orcasound is a cooperative hydrophne network and an
-                  open-source software & hardware project.`}
+              {`Orcasound streams live underwater audio from hydrophones around
+                  the Salish Sea. Choose a listening location and check which
+                  feeds are online in the live app.`}
               <br></br>
               <br></br>
             </Typography>
@@ -357,18 +367,18 @@ export const index = () => {
               fontWeight={'600'}
               mb={5}
             >
-              {`We welcome your participation. If you'd like to host a
-                  hydrophone, do research or incorporate Orcasound into the
-                  educational or research efforts of your organization , you
-                  can join us as a member of the network.`}
+              {`Listen live, learn what each hydrophone hears, and report
+                  interesting sounds when you notice them.`}
             </Typography>
             <Button
               component={Link}
-              href="/learn"
+              href={LIVE_ORCASOUND_LISTEN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               variant="contained"
               onClick={() =>
                 pushToDataLayer('cta_click', {
-                  cta_text: 'Learn',
+                  cta_text: 'Listen Live',
                   section: 'body',
                   page: 'home',
                 })
@@ -392,7 +402,7 @@ export const index = () => {
               }}
             >
               {' '}
-              LEARN
+              LISTEN LIVE
             </Button>
             <Button
               component={Link}
