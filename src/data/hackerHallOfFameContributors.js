@@ -500,6 +500,11 @@ export const individualContributors = [
     ],
     link: 'https://www.linkedin.com/in/stevetyl/',
   },
+  {
+    name: 'David Puckett',
+    roles: ['Open source mapping architecture advisor (2021).'],
+    link: 'https://brightrain.com',
+  },
 ]
 
 // supporters array
@@ -542,5 +547,10 @@ export const supporterContributors = [
       'Front End Developer who took on the Hacker Hall of Fame page rebuild.',
     ],
     link: 'https://www.linkedin.com/in/stephen-aranda-9b9974205',
+  },
+  {
+    name: 'Nadia Choi',
+    roles: ['UX team member on the Orcahome kickoff (2025).'],
+    link: 'https://www.linkedin.com/in/nadiachoi',
   },
 ]
