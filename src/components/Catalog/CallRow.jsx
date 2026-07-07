@@ -8,6 +8,7 @@ import { Box, Divider, IconButton, Typography } from '@mui/material'
 import Image from 'next/image'
 
 import { pushToDataLayer } from '../../utils/gtm'
+import { TOOLTIPS } from './constants'
 import { formatDuration, formatPlaybackTime } from './formatTime'
 import SpectrogramPanel from './SpectrogramPanel'
 import StaticWaveform from './StaticWaveform'
@@ -89,12 +90,11 @@ export default function CallRow({
               <Image
                 src={thumbnailSrc}
                 alt={`Spectrogram for ${callLabel}`}
+                title={TOOLTIPS.SPECTROGRAM}
                 width={75}
                 height={75}
                 style={{
                   objectFit: 'cover',
-                  maxWidth: '100%',
-                  height: 'auto',
                 }}
               />
             ) : null}
@@ -333,11 +333,13 @@ export default function CallRow({
             <SpectrogramPanel
               src={call.colorSpec}
               alt={`Color spectrogram for ${callLabel}`}
+              title={TOOLTIPS.SPECTROGRAM}
               maxWidth={432}
             />
             <SpectrogramPanel
               src={call.bwSpec}
               alt={`Ford catalog spectrogram for ${callLabel}`}
+              title={TOOLTIPS.SPECTROGRAM}
               maxWidth={434}
             />
           </Box>

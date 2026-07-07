@@ -7,7 +7,9 @@ const tsPlugin = require('@typescript-eslint/eslint-plugin')
 
 module.exports = [
   {
-    ignores: ['**/.next/**', '**/node_modules/**'],
+    // `studio/` is the self-contained Sanity Studio subproject (#317) — it has
+    // its own tooling config, so orcahome's lint should not reach into it.
+    ignores: ['**/.next/**', '**/node_modules/**', 'studio/**'],
   },
 
   // JS/JSX/TS/TSX base config

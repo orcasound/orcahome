@@ -3,6 +3,11 @@ module.exports = {
   reactStrictMode: true,
   images: {
     unoptimized: true,
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
   },
 }

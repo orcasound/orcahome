@@ -1,8 +1,10 @@
-import { Typography } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info'
+import { Box, Typography } from '@mui/material'
 import { useState } from 'react'
 
 import { CALLS } from './callsData'
 import CatalogCallList from './CatalogCallList'
+import { TOOLTIPS } from './constants'
 import PodFilter from './PodFilter'
 
 export default function CallCatalogSection() {
@@ -46,6 +48,24 @@ export default function CallCatalogSection() {
 
       {/* Pod filter tabs */}
       <PodFilter activePod={activePod} onSelect={setActivePod} />
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 1,
+            backgroundColor: 'action.hover',
+            padding: '8px 16px',
+            borderRadius: '8px',
+          }}
+        >
+          <InfoIcon color="primary" fontSize="small" />
+          {TOOLTIPS.SPECTROGRAM}
+        </Typography>
+      </Box>
 
       {/* Call list */}
       <CatalogCallList key={activePod} activePod={activePod} />

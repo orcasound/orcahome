@@ -1,4 +1,5 @@
-// Special component that combines nextjs and material-ui Link into one
+// Custom Link that combines Next.js client-side navigation with MUI styling.
+// Uses modern Next.js Link (no legacyBehavior) — resolves #286.
 
 import { styled } from '@mui/material'
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
@@ -25,13 +26,16 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 ) {
   const {
     activeClassName = 'active',
-    as: linkAs,
+    as: asProp,
     className: classNameProps,
     href,
+    linkAs,
     noLinkStyle,
     children,
     ...other
   } = props
+
+  const nextAs = linkAs || asProp
 
   const router = useRouter()
   const pathname = typeof href === 'string' ? href : href && href.pathname
@@ -66,81 +70,41 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
     )
   }
 
-  function hasAnchorDescendant(element?: React.ReactNode): boolean {
-    if (!element) return false
-    if (!React.isValidElement(element)) return false
-    const el = element as React.ReactElement
-    if (el.type === 'a') return true
-    if (el.props && el.props.component === 'a') return true
-    const kids = el.props && el.props.children
-    if (!kids) return false
-    if (Array.isArray(kids)) return kids.some((k) => hasAnchorDescendant(k))
-    return hasAnchorDescendant(kids)
-  }
+  // Internal link: use NextLink for client-side navigation.
+  // Modern NextLink renders its own <a>, so we style it directly.
 
-  const childIsAnchor =
-    React.isValidElement(children) &&
-    ((children as React.ReactElement).type === 'a' ||
-      ((children as React.ReactElement).props &&
-        (children as React.ReactElement).props.component === 'a'))
-  const childHasAnchorDescendant = hasAnchorDescendant(children)
-
-  // If child already renders an anchor (or contains one), don't render another <a>.
-  if (childIsAnchor) {
-    const child = children as React.ReactElement
-    const childClassName = clsx(child.props.className, className)
-    return (
-      <NextLink href={href} as={linkAs} legacyBehavior>
-        {React.cloneElement(child, {
-          className: childClassName,
-          ref,
-          href,
-          ...other,
-        })}
-      </NextLink>
-    )
-  }
-
-  if (childHasAnchorDescendant) {
-    // attach client navigation handler to root child to avoid nested anchors
-    if (React.isValidElement(children)) {
-      const child = children as React.ReactElement
-      const childClassName = clsx(child.props.className, className)
-      const handleClick = (e: React.MouseEvent) => {
-        if (child.props && typeof child.props.onClick === 'function')
-          child.props.onClick(e)
-        if (!e.defaultPrevented) router.push(href as string)
-      }
-      return React.cloneElement(child, {
-        className: childClassName,
-        ref,
-        onClick: handleClick,
-        ...other,
-      })
-    }
-  }
-
-  // Default: render MUI Link inside NextLink (legacyBehavior) so we control anchor element
   if (noLinkStyle) {
     return (
-      <NextLink href={href} as={linkAs} legacyBehavior>
-        <Anchor
-          className={className}
-          ref={ref}
-          {...(other as React.HTMLAttributes<HTMLAnchorElement>)}
-        >
-          {children}
-        </Anchor>
+      <NextLink
+        href={href}
+        as={nextAs}
+        className={className}
+        ref={ref}
+        style={{ textDecoration: 'none', color: 'inherit' }}
+        {...(other as Omit<
+          React.AnchorHTMLAttributes<HTMLAnchorElement>,
+          'href'
+        >)}
+      >
+        {children}
       </NextLink>
     )
   }
 
+  // Default: render MUI Link with NextLink as the underlying component.
+  // This gives us MUI's styling (underline, color, typography) plus
+  // Next.js client-side navigation — no nested <a> elements.
   return (
-    <NextLink href={href} as={linkAs} legacyBehavior>
-      <MuiLink className={className} ref={ref} {...other}>
-        {children}
-      </MuiLink>
-    </NextLink>
+    <MuiLink
+      component={NextLink}
+      href={href}
+      as={nextAs}
+      className={className}
+      ref={ref}
+      {...other}
+    >
+      {children}
+    </MuiLink>
   )
 })
 

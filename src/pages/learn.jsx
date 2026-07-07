@@ -1,3 +1,4 @@
+import InfoIcon from '@mui/icons-material/Info'
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Head from 'next/head'
@@ -11,6 +12,7 @@ import callS19 from '../../public/images/learn/Call-S19.png'
 import organization1 from '../../public/images/partner1.png'
 import organization2 from '../../public/images/partner2.png'
 import salishsea from '../../public/images/salishsea.png'
+import { TOOLTIPS } from '../components/Catalog/constants'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
@@ -87,6 +89,7 @@ const SalishSeaContent = () => (
           style={{
             maxWidth: '100%',
             height: 'auto',
+            width: 'auto',
           }}
         />
       </a>
@@ -101,6 +104,24 @@ const CommonCallsContent = () => (
       can tell with great certainty that you are hearing a particular pod!
     </Typography>
 
+    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 1,
+          backgroundColor: 'action.hover',
+          padding: '8px 16px',
+          borderRadius: '8px',
+        }}
+      >
+        <InfoIcon color="primary" fontSize="small" />
+        {TOOLTIPS.SPECTROGRAM}
+      </Typography>
+    </Box>
+
     <Box
       sx={{
         display: 'grid',
@@ -114,6 +135,7 @@ const CommonCallsContent = () => (
           <Image
             src={callS01}
             alt="J Pod's call S01 - Frequency and Time"
+            title={TOOLTIPS.SPECTROGRAM}
             style={{
               maxWidth: '100%',
               height: 'auto',
@@ -124,6 +146,7 @@ const CommonCallsContent = () => (
           J Pod&apos;s Favorite Call: S01
         </Typography>
         <ReactAudioPlayer
+          title="Audio player for J Pod's call S01"
           src={audioS01}
           autoPlay={false}
           controls
@@ -153,6 +176,7 @@ const CommonCallsContent = () => (
           <Image
             src={callS16}
             alt="K Pod's call S16 - Frequency and Time"
+            title={TOOLTIPS.SPECTROGRAM}
             style={{
               maxWidth: '100%',
               height: 'auto',
@@ -163,6 +187,7 @@ const CommonCallsContent = () => (
           K Pod&apos;s Favorite Call: S16
         </Typography>
         <ReactAudioPlayer
+          title="Audio player for K Pod's call S16"
           src={audioS16}
           autoPlay={false}
           controls
@@ -192,6 +217,7 @@ const CommonCallsContent = () => (
           <Image
             src={callS19}
             alt="L Pod's call S19 - Frequency and Time"
+            title={TOOLTIPS.SPECTROGRAM}
             style={{
               maxWidth: '100%',
               height: 'auto',
@@ -202,6 +228,7 @@ const CommonCallsContent = () => (
           L Pod&apos;s Favorite Call: S19
         </Typography>
         <ReactAudioPlayer
+          title="Audio player for L Pod's call S19"
           src={audioS19}
           autoPlay={false}
           controls
