@@ -21,7 +21,11 @@ const ActionButton = ({ link, text, onClick }) => {
             bgcolor: 'accents.accent1',
           },
           [theme.breakpoints.down('sm')]: {
-            width: '300px',
+            display: 'block',
+            width: '100%',
+            maxWidth: '300px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           },
         })}
         size="small"
