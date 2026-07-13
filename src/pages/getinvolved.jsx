@@ -408,7 +408,7 @@ const DevelopersContent = () => (
     >
       <Typography
         variant="subtitle1"
-        fontSize="44px"
+        fontSize={{ xs: '28px', sm: '36px', md: '44px' }}
         align="left"
         fontWeight="600"
         mb="40px"

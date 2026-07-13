@@ -3,7 +3,7 @@
  *
  * Values come from env vars (see `.env.example`). These are read at module load
  * but intentionally do NOT throw when missing — otherwise the production build
- * fails on any environment without the vars set (e.g. a fresh Netlify deploy).
+ * fails on any environment without the vars set (e.g. a fresh Vercel deploy).
  * Validation happens lazily in `client.ts` when a Sanity request is actually
  * made.
  */
