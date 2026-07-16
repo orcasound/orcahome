@@ -2,6 +2,7 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import { Box, Button, Container, Link, Typography } from '@mui/material'
+import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
@@ -30,8 +31,61 @@ import logo11 from '../../public/images/getinvolved/ws_logo.png'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
+import { getClient } from '../sanity/client'
+import { GET_INVOLVED_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
 import ActionButton from './../components/ActionButton'
+
+// Current hard-coded copy, used as a per-field fallback whenever Sanity has no
+// value for a field (or Sanity is unreachable). This keeps the page rendering
+// its existing content until it's filled in the Studio.
+const DEFAULTS = {
+  heroTitle: 'Get Involved',
+  heroDescription: `There are many ways to help in the recovering of marine life,
+          especially for the Southern Resident Killer Whales that call the
+          Salish Sea home. Check out the ways you can help below!`,
+  citizenScientistHeading: 'Citizen Scientist',
+  citizenScientistText: `First and foremost, you can volunteer as a citizen scientist.
+              Not only can you listen for whales to marvel at the symphony of sounds they make,
+              but also you can listen *for* whales — helping to monitor their habitat
+              and notifying the network when you hear them or a noise that could endanger them.`,
+  inPersonHeading: 'In Person',
+  inPersonText: `You can also volunteer in-person with any of the current Orcasound network members,
+              or with a new organization in your neighborhood that you convince to become a new member.
+              Volunteer opportunities can include helping deploy or fix hydrophones, teaching groups how to “listen for whales,”
+              or helping create a new educational or outreach project.`,
+  volunteerClosingText: `Volunteers are currently helping Orcasound take huge strides forward.
+          Orca Network volunteers recently deployed a new hydrophone node at Bush Point
+          and built an amazing ocean listening exhibit in Langley out of an antique telephone booth.
+          At the Port Townsend Marine Science Center, volunteers are refurbishing hydrophones
+          and installing new computer equipment to bring their node back online.
+          At educational nodes, volunteers teach the public about acoustic ecology
+          and ocean noise pollution using Orcasound recordings, live audio, and other data products.`,
+  developersIntro: `A growing team of volunteer developers and talented consultants are building and improving Orcasound.
+          Some are developing the open-source software that captures and conveys ocean sounds.
+          Others are pioneering the DIY, low-cost hydrophone and computer hardware
+          that allows humans to listen to marine soundscapes in more and more places.`,
+  webAppHeading: 'Orcasound Web App',
+  hackathonCaption: 'DemocracyLab Hackathon',
+  crownJewelText: `Our crowning jewel is the Orcasound web app — a suite of new cloud- and browser-based ways
+          for citizen scientists and artificial intelligence to listen for whales in real-time.
+          As of April, 2020, this is the Orcasound tech stack:`,
+  roadmapHeading: 'Current Roadmap',
+  roadmapCaption: `From hydrophone to headphone, this is how we intend to deliver an
+          ocean of sound! 2020 Roadmap: components above the gray dashed line
+          launched November 1, 2018; green features are being beta-tested since
+          November 2019; red features are in development or requested. Click to
+          view expanded image.`,
+  moaHeading: 'Memorandum Of Agreement',
+  supportCtaLabel: 'SUPPORT NOW',
+  supportCtaHref: '/donate',
+}
+
+// Resolve a Sanity image (remote CDN url + asset dimensions) or fall back to a
+// bundled static import. next/image needs width/height for a remote URL; a
+// static import carries its own intrinsic dimensions, so we omit them there.
+const resolveImage = (url, width, height, fallback) =>
+  url ? { src: url, width, height } : { src: fallback }
 
 const GETINVOLVED_SECTIONS = [
   {
@@ -52,21 +106,58 @@ const GETINVOLVED_SECTIONS = [
   },
 ]
 
-// 1. Define the mapping
+// 1. Define the mapping. Wrapped in arrows so the object can reference the
+// component consts that are declared further down the module.
 const SECTION_COMPONENTS = {
-  volunteer: () => <VolunteerContent />,
-  forDevelopers: () => <DevelopersContent />,
-  donate: () => <SupportContent />,
+  volunteer: (props) => <VolunteerContent {...props} />,
+  forDevelopers: (props) => <DevelopersContent {...props} />,
+  donate: (props) => <SupportContent {...props} />,
 }
 
 const VOLUNTEER_IMAGE_SIZES = '(max-width: 600px) 100vw, 33vw'
+
+const portableTextComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
+        {children}
+      </Typography>
+    ),
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+
+      return (
+        <Link
+          href={href}
+          sx={{ textDecoration: 'underline', color: '#1B2B7B' }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'get_involved',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
+}
 
 // Next 12's next/image wrapped each image in a span that the grid could
 // stretch to an equal column height. Next 16 renders a bare <img>, which
 // dropped that behavior (#296). Re-create it: on desktop fill an
 // equal-height grid cell (objectFit: cover); on mobile fall back to the
-// image's natural size.
-const VolunteerImage = ({ alt, src, desktopSx }) => (
+// image's natural size. `width`/`height` are only set for remote (Sanity)
+// images — a static import supplies its own intrinsic size.
+const VolunteerImage = ({ alt, src, width, height, desktopSx }) => (
   <>
     <Box
       sx={{
@@ -89,6 +180,8 @@ const VolunteerImage = ({ alt, src, desktopSx }) => (
       <Image
         alt={alt}
         src={src}
+        width={width}
+        height={height}
         sizes="100vw"
         style={{ display: 'block', maxWidth: '100%', height: 'auto' }}
       />
@@ -96,112 +189,102 @@ const VolunteerImage = ({ alt, src, desktopSx }) => (
   </>
 )
 
-const VolunteerContent = () => (
-  <>
-    <Box
-      sx={(theme) => ({
-        display: 'flex',
-        [theme.breakpoints.down('sm')]: {
-          flexDirection: 'column',
-        },
-        marginTop: '30px',
-      })}
-    >
+const VolunteerContent = ({ content }) => {
+  // Map the up-to-4 Sanity photos onto the 4 fixed layout slots, each falling
+  // back to its bundled photo (and original alt text) when not supplied.
+  const photos = content.volunteerImages || []
+  const pickPhoto = (index, fallback, fallbackAlt) => {
+    const photo = photos[index]
+    return photo?.url
+      ? {
+          src: photo.url,
+          width: photo.width,
+          height: photo.height,
+          alt: photo.alt || fallbackAlt,
+        }
+      : { src: fallback, alt: fallbackAlt }
+  }
+  const photo0 = pickPhoto(0, valhacking, 'Val hacking node code.')
+  const photo1 = pickPhoto(1, hydrophonestand, 'Binaural hydrophone stand.')
+  const photo2 = pickPhoto(2, lonhydrophone, 'Lon does hydrophone wizardly!')
+  const photo3 = pickPhoto(3, livediy, 'The live-streaming DIY solution.')
+
+  return (
+    <>
       <Box
         sx={(theme) => ({
+          display: 'flex',
           [theme.breakpoints.down('sm')]: {
-            marginBottom: '20px',
+            flexDirection: 'column',
           },
+          marginTop: '30px',
         })}
       >
-        <Typography variant="h5" sx={{ marginBottom: '10px' }}>
-          Citizen Scientist
-        </Typography>
-        <Typography variant="body1">
-          {`First and foremost, you can volunteer as a citizen scientist. 
-              Not only can you listen for whales to marvel at the symphony of sounds they make, 
-              but also you can listen *for* whales — helping to monitor their habitat 
-              and notifying the network when you hear them or a noise that could endanger them.`}
-        </Typography>
+        <Box
+          sx={(theme) => ({
+            [theme.breakpoints.down('sm')]: {
+              marginBottom: '20px',
+            },
+          })}
+        >
+          <Typography variant="h5" sx={{ marginBottom: '10px' }}>
+            {content.citizenScientistHeading}
+          </Typography>
+          <Typography variant="body1">
+            {content.citizenScientistText}
+          </Typography>
+        </Box>
+        <Box
+          sx={(theme) => ({
+            [theme.breakpoints.up('sm')]: {
+              paddingLeft: '2vw',
+            },
+          })}
+        >
+          <Typography variant="h5" sx={{ marginBottom: '10px' }}>
+            {content.inPersonHeading}
+          </Typography>
+          <Typography variant="body1">{content.inPersonText}</Typography>
+        </Box>
       </Box>
       <Box
         sx={(theme) => ({
-          [theme.breakpoints.up('sm')]: {
-            paddingLeft: '2vw',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gridGap: '20px',
+          alignItems: 'stretch',
+          [theme.breakpoints.down('sm')]: {
+            gridTemplateColumns: '100%',
           },
+          margin: '50px 0 30px',
         })}
       >
-        <Typography variant="h5" sx={{ marginBottom: '10px' }}>
-          In Person
-        </Typography>
-        <Typography variant="body1">
-          {`You can also volunteer in-person with any of the current Orcasound network members, 
-              or with a new organization in your neighborhood that you convince to become a new member. 
-              Volunteer opportunities can include helping deploy or fix hydrophones, teaching groups how to “listen for whales,” 
-              or helping create a new educational or outreach project.`}
-        </Typography>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '100%',
+            gridGap: '20px',
+          }}
+        >
+          <VolunteerImage
+            {...photo0}
+            desktopSx={{ aspectRatio: '379 / 310' }}
+          />
+          <VolunteerImage
+            {...photo1}
+            desktopSx={{ aspectRatio: '375 / 297' }}
+          />
+        </Box>
+        <VolunteerImage {...photo2} desktopSx={{ height: '100%' }} />
+        <VolunteerImage {...photo3} desktopSx={{ height: '100%' }} />
       </Box>
-    </Box>
-    <Box
-      sx={(theme) => ({
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-        gridGap: '20px',
-        alignItems: 'stretch',
-        [theme.breakpoints.down('sm')]: {
-          gridTemplateColumns: '100%',
-        },
-        margin: '50px 0 30px',
-      })}
-    >
-      <Box
-        sx={{
-          display: 'grid',
-          gridTemplateColumns: '100%',
-          gridGap: '20px',
-        }}
-      >
-        <VolunteerImage
-          alt="Val hacking node code."
-          src={valhacking}
-          desktopSx={{ aspectRatio: '379 / 310' }}
-        />
-        <VolunteerImage
-          alt="Binaural hydrophone stand."
-          src={hydrophonestand}
-          desktopSx={{ aspectRatio: '375 / 297' }}
-        />
-      </Box>
-      <VolunteerImage
-        alt="Lon does hydrophone wizardly!"
-        src={lonhydrophone}
-        desktopSx={{ height: '100%' }}
-      />
-      <VolunteerImage
-        alt="The live-streaming DIY solution."
-        src={livediy}
-        desktopSx={{ height: '100%' }}
-      />
-    </Box>
-    <Typography variant="body1">
-      {`Volunteers are currently helping Orcasound take huge strides forward. 
-          Orca Network volunteers recently deployed a new hydrophone node at Bush Point 
-          and built an amazing ocean listening exhibit in Langley out of an antique telephone booth. 
-          At the Port Townsend Marine Science Center, volunteers are refurbishing hydrophones 
-          and installing new computer equipment to bring their node back online. 
-          At educational nodes, volunteers teach the public about acoustic ecology 
-          and ocean noise pollution using Orcasound recordings, live audio, and other data products.`}
-    </Typography>
-  </>
-)
-const DevelopersContent = () => (
+      <Typography variant="body1">{content.volunteerClosingText}</Typography>
+    </>
+  )
+}
+const DevelopersContent = ({ content }) => (
   <>
-    <Typography variant="body1">
-      {`A growing team of volunteer developers and talented consultants are building and improving Orcasound. 
-          Some are developing the open-source software that captures and conveys ocean sounds. 
-          Others are pioneering the DIY, low-cost hydrophone and computer hardware 
-          that allows humans to listen to marine soundscapes in more and more places.`}
-    </Typography>
+    <Typography variant="body1">{content.developersIntro}</Typography>
     <Box>
       <Typography
         variant="h6"
@@ -210,12 +293,12 @@ const DevelopersContent = () => (
           textAlign: 'center',
         }}
       >
-        Orcasound Web App
+        {content.webAppHeading}
       </Typography>
       <Box sx={{ maxWidth: '600px', margin: 'auto' }}>
         <Image
           alt="DemocracyLab Hackathon"
-          src={hackathon}
+          {...content.hackathon}
           sizes="100vw"
           style={{
             width: '100%',
@@ -230,15 +313,13 @@ const DevelopersContent = () => (
           textAlign: 'center',
         }}
       >
-        DemocracyLab Hackathon
+        {content.hackathonCaption}
       </Typography>
     </Box>
     <Typography variant="body1" sx={{ margin: '50px 0 0px' }}>
-      {`Our crowning jewel is the Orcasound web app — a suite of new cloud- and browser-based ways 
-          for citizen scientists and artificial intelligence to listen for whales in real-time. 
-          As of April, 2020, this is the Orcasound tech stack:`}
+      {content.crownJewelText}
     </Typography>
-    <TechStackList />
+    <TechStackList items={content.techStack} />
     <Box maxWidth="md" mx="auto">
       <Box px={{ xs: '50px', md: '20px' }}>
         <Typography
@@ -250,7 +331,7 @@ const DevelopersContent = () => (
           textAlign="center"
           lineHeight="30px"
         >
-          Current Roadmap
+          {content.roadmapHeading}
         </Typography>
         <TransformWrapper initialScale={1}>
           {({ zoomIn, zoomOut, resetTransform }) => (
@@ -304,7 +385,7 @@ const DevelopersContent = () => (
               </Box>
               <TransformComponent>
                 <Image
-                  src={roadmap}
+                  {...content.roadmap}
                   alt="roadmap"
                   style={{
                     maxWidth: '100%',
@@ -323,11 +404,7 @@ const DevelopersContent = () => (
           mt="40px"
           lineHeight="19.5px"
         >
-          From hydrophone to headphone, this is how we intend to deliver an
-          ocean of sound! 2020 Roadmap: components above the gray dashed line
-          launched November 1, 2018; green features are being beta-tested since
-          November 2019; red features are in development or requested. Click to
-          view expanded image.
+          {content.roadmapCaption}
         </Typography>
       </Box>
     </Box>
@@ -340,64 +417,77 @@ const DevelopersContent = () => (
         lineHeight: '28px',
       }}
     >
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        If you’re based in the Pacific Northwest, you can work with Orcasound
-        in-person at a hackathon (see the{' '}
-        <Link
-          href="https://www.democracylab.org/projects/81"
-          style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-          onClick={() =>
-            pushToDataLayer('external_link_click', {
-              link_text: 'Orcasound project at DemocracyLab',
-              destination: 'https://www.democracylab.org/projects/81',
-            })
-          }
+      {content.democracyLabParagraph ? (
+        <PortableText
+          value={content.democracyLabParagraph}
+          components={portableTextComponents}
+        />
+      ) : (
+        <Typography
+          variant="p"
+          fontSize="20px"
+          paragraph={true}
+          align="justify"
         >
-          Orcasound project at DemocracyLab
-        </Link>
-        ). No matter where you are, you can find out how to volunteer with us by
-        going to our{' '}
-        <Link
-          href="https://github.com/orcasound"
-          style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-          onClick={() =>
-            pushToDataLayer('external_link_click', {
-              link_text: 'GitHub repositories',
-              destination: 'https://github.com/orcasound',
-            })
-          }
-        >
-          GitHub page
-        </Link>{' '}
-        and subscribe to the{' '}
-        <Link
-          href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
-          style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-          onClick={() =>
-            pushToDataLayer('external_link_click', {
-              link_text: 'Orcasound dev email distribution list',
-              destination:
-                'http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net',
-            })
-          }
-        >
-          Orcasound dev email distribution list
-        </Link>{' '}
-        to find a place to contribute your talents. We hope you will share your
-        expertise and innovations with us, and maybe even earn your way into the{' '}
-        <Link
-          href="/hacker-hall-of-fame"
-          style={{ textDecoration: 'underline', color: '#1B2B7B' }}
-          onClick={() =>
-            pushToDataLayer('jump_link_click', {
-              link_text: 'Orcasound Hacker Hall of Fame',
-              page: 'get_involved',
-            })
-          }
-        >
-          Orcasound Hacker Hall of Fame!
-        </Link>
-      </Typography>
+          If you’re based in the Pacific Northwest, you can work with Orcasound
+          in-person at a hackathon (see the{' '}
+          <Link
+            href="https://www.democracylab.org/projects/81"
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+            onClick={() =>
+              pushToDataLayer('external_link_click', {
+                link_text: 'Orcasound project at DemocracyLab',
+                destination: 'https://www.democracylab.org/projects/81',
+              })
+            }
+          >
+            Orcasound project at DemocracyLab
+          </Link>
+          ). No matter where you are, you can find out how to volunteer with us
+          by going to our{' '}
+          <Link
+            href="https://github.com/orcasound"
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+            onClick={() =>
+              pushToDataLayer('external_link_click', {
+                link_text: 'GitHub repositories',
+                destination: 'https://github.com/orcasound',
+              })
+            }
+          >
+            GitHub page
+          </Link>{' '}
+          and subscribe to the{' '}
+          <Link
+            href="http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net"
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+            onClick={() =>
+              pushToDataLayer('external_link_click', {
+                link_text: 'Orcasound dev email distribution list',
+                destination:
+                  'http://lists.orcasound.net/listinfo.cgi/dev-orcasound.net',
+              })
+            }
+          >
+            Orcasound dev email distribution list
+          </Link>{' '}
+          to find a place to contribute your talents. We hope you will share
+          your expertise and innovations with us, and maybe even earn your way
+          into the{' '}
+          <Link
+            href="/hacker-hall-of-fame"
+            style={{ textDecoration: 'underline', color: '#1B2B7B' }}
+            onClick={() =>
+              pushToDataLayer('jump_link_click', {
+                link_text: 'Orcasound Hacker Hall of Fame',
+                page: 'get_involved',
+              })
+            }
+          >
+            Orcasound Hacker Hall of Fame!
+          </Link>
+        </Typography>
+      )}
     </Box>
     <Box
       sx={{
@@ -419,79 +509,178 @@ const DevelopersContent = () => (
           },
         })}
       >
-        Memorandum Of Agreement
+        {content.moaHeading}
       </Typography>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        The real-time audio streams, citizen science projects, educational
-        materials, and outreach projects of Orcasound are brought to you by the
-        current network members, listed below, who have e-signed the{' '}
-        <Link
-          color="#1B2B7B"
-          href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
-          onClick={() =>
-            pushToDataLayer('external_link_click', {
-              link_text: '2016-2020 Memorandum of Agreements (MOA)',
-              destination:
-                'https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing',
-            })
-          }
-        >
-          2021-2025 Memorandum of Agreement (MOA)
-        </Link>
-        . Any organization or individual is welcome to join the network (for
-        free!), either as the host of a hydrophone node, a researcher or citizen
-        scientist, an educator/activist, or a general volunteer.
-      </Typography>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        If you&apos;re an individual wanting to volunteer, collaborate, or
-        donate, check out the many ways you can support Orcasound. Everyone can
-        listen for whales, and learn the diverse sounds of the Salish Sea.
-      </Typography>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        If you&apos;re an organization wanting to join the network as the host
-        of a new hydrophone node, an educational/outreach node, or both — just
-        read the history, mission, and vision of the network, e-sign the MOA,
-        and then email{' '}
-        <Link
-          href="mailto:info@orcasound.net"
-          style={{ textDecoration: 'none', color: '#1B2B7B' }}
-          onClick={() =>
-            pushToDataLayer('external_link_click', {
-              link_text: 'info@orcasound.net',
-              destination: 'mailto:info@orcasound.net',
-            })
-          }
-        >
-          info@orcasound.net
-        </Link>{' '}
-        to begin collaborating. There are no membership fees — just benefits,
-        roles, and responsibilities.
-      </Typography>
+      {content.moaBody ? (
+        <PortableText
+          value={content.moaBody}
+          components={portableTextComponents}
+        />
+      ) : (
+        <>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            The real-time audio streams, citizen science projects, educational
+            materials, and outreach projects of Orcasound are brought to you by
+            the current network members, listed below, who have e-signed the{' '}
+            <Link
+              color="#1B2B7B"
+              href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: '2016-2020 Memorandum of Agreements (MOA)',
+                  destination:
+                    'https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing',
+                })
+              }
+            >
+              2021-2025 Memorandum of Agreement (MOA)
+            </Link>
+            . Any organization or individual is welcome to join the network (for
+            free!), either as the host of a hydrophone node, a researcher or
+            citizen scientist, an educator/activist, or a general volunteer.
+          </Typography>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            If you&apos;re an individual wanting to volunteer, collaborate, or
+            donate, check out the many ways you can support Orcasound. Everyone
+            can listen for whales, and learn the diverse sounds of the Salish
+            Sea.
+          </Typography>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            If you&apos;re an organization wanting to join the network as the
+            host of a new hydrophone node, an educational/outreach node, or both
+            — just read the history, mission, and vision of the network, e-sign
+            the MOA, and then email{' '}
+            <Link
+              href="mailto:info@orcasound.net"
+              style={{ textDecoration: 'none', color: '#1B2B7B' }}
+              onClick={() =>
+                pushToDataLayer('external_link_click', {
+                  link_text: 'info@orcasound.net',
+                  destination: 'mailto:info@orcasound.net',
+                })
+              }
+            >
+              info@orcasound.net
+            </Link>{' '}
+            to begin collaborating. There are no membership fees — just
+            benefits, roles, and responsibilities.
+          </Typography>
+        </>
+      )}
     </Box>
   </>
 )
-const SupportContent = () => (
+
+// Uniform partner-logo grid for the Sanity-driven path. The bundled fallback
+// grid below (with its bespoke Project SeaWolf label and per-logo alt text) is
+// used verbatim whenever Sanity has no partners.
+const SanityPartners = ({ partners }) => (
+  <Box
+    sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      margin: '50px',
+    }}
+  >
+    {partners.map((partner, index) => (
+      <Box
+        key={index}
+        component="a"
+        href={partner.url}
+        sx={{
+          margin: '15px',
+          width: '200px',
+          height: '180px',
+          display: 'block',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+        onClick={() =>
+          pushToDataLayer('partner_click', {
+            partner_name: partner.name,
+            page: 'get_involved',
+          })
+        }
+      >
+        <Image
+          src={partner.logoUrl}
+          alt={partner.name}
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: 'contain',
+          }}
+        />
+      </Box>
+    ))}
+  </Box>
+)
+
+const SupportContent = ({ content }) => (
   <>
     <Box sx={{ px: '50px', textAlign: 'center', lineHeight: '28px' }}>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        Help us and our{' '}
-        <Typography variant="soft" color="#1B2B7B">
-          Orcasound network members
-        </Typography>
-        {''} by making charitable contribution to our partners, many of whom are
-        501(c)3 organizations Check out the link below to help strengthen and
-        grow our network, while supporting our on-going conservation, research,
-        and educational efforts.
-      </Typography>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        You can also directly support the many dedicated volunteers who help
-        Orcasound keep running and improve over time. Take a look at our Hacker
-        hall of fame and our Github repositories and consider sponsoring the
-        work of our most-dedicated contributors.
-      </Typography>
+      {content.supportParagraphs ? (
+        content.supportParagraphs.map((paragraph, index) => (
+          <Typography
+            key={index}
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            {paragraph}
+          </Typography>
+        ))
+      ) : (
+        <>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            Help us and our{' '}
+            <Typography variant="soft" color="#1B2B7B">
+              Orcasound network members
+            </Typography>
+            {''} by making charitable contribution to our partners, many of whom
+            are 501(c)3 organizations Check out the link below to help
+            strengthen and grow our network, while supporting our on-going
+            conservation, research, and educational efforts.
+          </Typography>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            You can also directly support the many dedicated volunteers who help
+            Orcasound keep running and improve over time. Take a look at our
+            Hacker hall of fame and our Github repositories and consider
+            sponsoring the work of our most-dedicated contributors.
+          </Typography>
+        </>
+      )}
       <ActionButton
-        link="/donate"
-        text="SUPPORT NOW"
+        link={content.supportCtaHref}
+        text={content.supportCtaLabel}
         onClick={() =>
           pushToDataLayer('cta_click', {
             cta_text: 'Donate Now',
@@ -501,409 +690,39 @@ const SupportContent = () => (
         }
       />
     </Box>
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        margin: '50px',
-      }}
-    >
+    {content.partners ? (
+      <SanityPartners partners={content.partners} />
+    ) : (
       <Box
-        component="a"
-        href="https://thewhaletrail.org/connect/donate/"
         sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'The Whale Trail',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo1}
-          alt="The Whaletrail"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://folkssji.org/donate/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'F.O.L.K.S',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo2}
-          alt="Friends of Lime Kiln Society"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://www.whaleresearch.com/supportcwr"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Center for Whale Research',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo4}
-          alt="Center for Whale Research"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://www.deepgreenwilderness.com/donate"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Deep Green Wilderness',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo6}
-          alt="Deep Green Wilderness"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://oceansinitiative.org/get-involved/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Oceans Initiative',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo8}
-          alt="Oceans Initiative"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://pacmam.org/wp/donate/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'PacMAN',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo9}
-          alt="Pacmam"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://www.whalescout.org/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Whale Scout',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo11}
-          alt="Whale Scout"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://www.orcaconservancy.org/donate"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Orca Conservancy',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo12}
-          alt="Orca Conservancy"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://www.orcanetwork.org/donate"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Orca Network',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo13}
-          alt="Orca Network"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://ptmsc.org/donate/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Port Townsend Marine Science Center',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo14}
-          alt="Port Townsend Marine Science Center"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://crm.bloomerang.co/HostedDonation?ApiKey=pub_d0480152-d37a-11ea-b90d-0a908e1cc508&WidgetId=808960"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Sound Action',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo15}
-          alt="Sound Action"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-      <Box
-        component="a"
-        href="https://vashonnaturecenter.org/donate/"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Vashon Nature Center',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo16}
-          alt="Vashon Nature Center"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-
-      <Box
-        component="a"
-        href="https://www.orcabehaviorinstitute.org/donate"
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Orca Behavior Institute',
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={logo18}
-          alt="Orca Behavior Institute"
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
-          }}
-        />
-      </Box>
-
-      <Box
-        component="a"
-        href="https://www.projectseawolf.org/How_to_Help.html"
-        sx={{
-          margin: '15px',
           display: 'flex',
-          flexDirection: 'column',
+          flexWrap: 'wrap',
+          justifyContent: 'space-around',
           alignItems: 'center',
-          textDecoration: 'none',
+          margin: '50px',
         }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: 'Project SeaWolf',
-            page: 'get_involved',
-          })
-        }
       >
         <Box
+          component="a"
+          href="https://thewhaletrail.org/connect/donate/"
           sx={{
+            margin: '15px',
             width: '200px',
-            height: '150px',
+            height: '180px',
+            display: 'block',
             position: 'relative',
             overflow: 'hidden',
           }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'The Whale Trail',
+              page: 'get_involved',
+            })
+          }
         >
           <Image
-            src={logo17}
-            alt="Project SeaWolf"
+            src={logo1}
+            alt="The Whaletrail"
             fill
             sizes="100vw"
             style={{
@@ -911,26 +730,450 @@ const SupportContent = () => (
             }}
           />
         </Box>
-        <Typography
-          variant="p"
-          fontSize="20px"
-          paragraph={true}
-          align="center"
-          color="#1B2B7B"
+        <Box
+          component="a"
+          href="https://folkssji.org/donate/"
           sx={{
-            textDecoration: 'underline',
-            fontWeight: '600',
-            mt: '10px',
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
           }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'F.O.L.K.S',
+              page: 'get_involved',
+            })
+          }
         >
-          Project SeaWolf
-        </Typography>
+          <Image
+            src={logo2}
+            alt="Friends of Lime Kiln Society"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.whaleresearch.com/supportcwr"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Center for Whale Research',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo4}
+            alt="Center for Whale Research"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.deepgreenwilderness.com/donate"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Deep Green Wilderness',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo6}
+            alt="Deep Green Wilderness"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://oceansinitiative.org/get-involved/"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Oceans Initiative',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo8}
+            alt="Oceans Initiative"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://pacmam.org/wp/donate/"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'PacMAN',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo9}
+            alt="Pacmam"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.whalescout.org/"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Whale Scout',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo11}
+            alt="Whale Scout"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.orcaconservancy.org/donate"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Orca Conservancy',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo12}
+            alt="Orca Conservancy"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://www.orcanetwork.org/donate"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Orca Network',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo13}
+            alt="Orca Network"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://ptmsc.org/donate/"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Port Townsend Marine Science Center',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo14}
+            alt="Port Townsend Marine Science Center"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://crm.bloomerang.co/HostedDonation?ApiKey=pub_d0480152-d37a-11ea-b90d-0a908e1cc508&WidgetId=808960"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Sound Action',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo15}
+            alt="Sound Action"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+        <Box
+          component="a"
+          href="https://vashonnaturecenter.org/donate/"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Vashon Nature Center',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo16}
+            alt="Vashon Nature Center"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+
+        <Box
+          component="a"
+          href="https://www.orcabehaviorinstitute.org/donate"
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Orca Behavior Institute',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Image
+            src={logo18}
+            alt="Orca Behavior Institute"
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+
+        <Box
+          component="a"
+          href="https://www.projectseawolf.org/How_to_Help.html"
+          sx={{
+            margin: '15px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            textDecoration: 'none',
+          }}
+          onClick={() =>
+            pushToDataLayer('partner_click', {
+              partner_name: 'Project SeaWolf',
+              page: 'get_involved',
+            })
+          }
+        >
+          <Box
+            sx={{
+              width: '200px',
+              height: '150px',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            <Image
+              src={logo17}
+              alt="Project SeaWolf"
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'contain',
+              }}
+            />
+          </Box>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="center"
+            color="#1B2B7B"
+            sx={{
+              textDecoration: 'underline',
+              fontWeight: '600',
+              mt: '10px',
+            }}
+          >
+            Project SeaWolf
+          </Typography>
+        </Box>
       </Box>
-    </Box>
+    )}
   </>
 )
 
-export const GetInvolved = () => {
+export const GetInvolved = ({ getInvolved }) => {
+  const source = getInvolved
+  // Per-field fallback: use the Sanity value when present, otherwise the
+  // existing hard-coded copy. Blocks with bespoke inline markup (support
+  // paragraphs, partner grid, tech stack) fall back to their original JSX
+  // inside the section components when the field is null/empty.
+  const content = {
+    heroTitle: source?.heroTitle || DEFAULTS.heroTitle,
+    heroDescription: source?.heroDescription || DEFAULTS.heroDescription,
+    heroImageUrl: source?.heroImageUrl || null,
+    citizenScientistHeading:
+      source?.citizenScientistHeading || DEFAULTS.citizenScientistHeading,
+    citizenScientistText:
+      source?.citizenScientistText || DEFAULTS.citizenScientistText,
+    inPersonHeading: source?.inPersonHeading || DEFAULTS.inPersonHeading,
+    inPersonText: source?.inPersonText || DEFAULTS.inPersonText,
+    volunteerImages: source?.volunteerImages || [],
+    volunteerClosingText:
+      source?.volunteerClosingText || DEFAULTS.volunteerClosingText,
+    developersIntro: source?.developersIntro || DEFAULTS.developersIntro,
+    webAppHeading: source?.webAppHeading || DEFAULTS.webAppHeading,
+    hackathon: resolveImage(
+      source?.hackathonImageUrl,
+      source?.hackathonImageWidth,
+      source?.hackathonImageHeight,
+      hackathon
+    ),
+    hackathonCaption: source?.hackathonCaption || DEFAULTS.hackathonCaption,
+    crownJewelText: source?.crownJewelText || DEFAULTS.crownJewelText,
+    techStack: source?.techStack?.length ? source.techStack : null,
+    roadmapHeading: source?.roadmapHeading || DEFAULTS.roadmapHeading,
+    roadmap: resolveImage(
+      source?.roadmapImageUrl,
+      source?.roadmapImageWidth,
+      source?.roadmapImageHeight,
+      roadmap
+    ),
+    roadmapCaption: source?.roadmapCaption || DEFAULTS.roadmapCaption,
+    democracyLabParagraph: source?.democracyLabParagraph?.length
+      ? source.democracyLabParagraph
+      : null,
+    moaHeading: source?.moaHeading || DEFAULTS.moaHeading,
+    moaBody: source?.moaBody?.length ? source.moaBody : null,
+    supportParagraphs: source?.supportParagraphs?.length
+      ? source.supportParagraphs
+      : null,
+    supportCtaLabel: source?.supportCtaLabel || DEFAULTS.supportCtaLabel,
+    supportCtaHref: source?.supportCtaHref || DEFAULTS.supportCtaHref,
+    partners: source?.partners?.length ? source.partners : null,
+  }
+
   const navLinks = GETINVOLVED_SECTIONS.map((section) => ({
     name: section.name,
     id: section.id,
@@ -943,12 +1186,10 @@ export const GetInvolved = () => {
         <title>Orcasound</title>
       </Head>
       <TopBanner
-        bannerImg={topbanner}
+        bannerImg={content.heroImageUrl || topbanner}
         scrollToId={`getInvolved`}
-        pageTitle={`Get Involved`}
-        pageDesc={`There are many ways to help in the recovering of marine life,
-          especially for the Southern Resident Killer Whales that call the
-          Salish Sea home. Check out the ways you can help below!`}
+        pageTitle={content.heroTitle}
+        pageDesc={content.heroDescription}
       />
       <Box id="getInvolved" sx={{ mt: 6 }} />
       <StickyNav
@@ -980,13 +1221,26 @@ export const GetInvolved = () => {
               >
                 {section.name}
               </Typography>
-              {ContentComponent ? <ContentComponent /> : null}
+              {ContentComponent ? <ContentComponent content={content} /> : null}
             </Box>
           )
         })}
       </Container>
     </div>
   )
+}
+
+// Fetch the Get Involved content from Sanity at build time (revalidated for
+// ISR). If Sanity is unreachable or unconfigured, fall back to null and the
+// component renders its built-in DEFAULTS / original JSX.
+export async function getStaticProps() {
+  let getInvolved = null
+  try {
+    getInvolved = await getClient(false).fetch(GET_INVOLVED_PAGE_QUERY)
+  } catch {
+    getInvolved = null
+  }
+  return { props: { getInvolved }, revalidate: 60 }
 }
 
 export default GetInvolved

@@ -1,4 +1,4 @@
 import {aboutPage} from './aboutPage'
-import {page} from './page'
+import {getInvolvedPage} from './getInvolvedPage'
 
-export const schemaTypes = [page, aboutPage]
+export const schemaTypes = [aboutPage, getInvolvedPage]
