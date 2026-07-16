@@ -24,13 +24,13 @@ export const hackerHallOfFamePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit"
+            href="https://docs.google.com/document/d/1MGVt_TrfX4phK4t8OAIQG_15QjuKJ28KtecAHSRVmlA/edit"
             target="_blank"
             rel="noreferrer"
           >
-            Read the About guide
-          </a>{' '}
-          — the same Studio basics apply.
+            Read the step-by-step guide
+          </a>
+          .
         </>
       ),
       type: 'text',
