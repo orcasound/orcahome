@@ -599,37 +599,91 @@ const SanityPartners = ({ partners }) => (
       margin: '50px',
     }}
   >
-    {partners.map((partner, index) => (
-      <Box
-        key={index}
-        component="a"
-        href={partner.url}
-        sx={{
-          margin: '15px',
-          width: '200px',
-          height: '180px',
-          display: 'block',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-        onClick={() =>
-          pushToDataLayer('partner_click', {
-            partner_name: partner.name,
-            page: 'get_involved',
-          })
-        }
-      >
-        <Image
-          src={partner.logoUrl}
-          alt={partner.name}
-          fill
-          sizes="100vw"
-          style={{
-            objectFit: 'contain',
+    {partners.map((partner, index) => {
+      const onClick = () =>
+        pushToDataLayer('partner_click', {
+          partner_name: partner.name,
+          page: 'get_involved',
+        })
+
+      // A partner whose logo doesn't say its name (e.g. Project SeaWolf, whose
+      // "logo" is a photo) gets an optional caption rendered underneath.
+      if (partner.caption) {
+        return (
+          <Box
+            key={index}
+            component="a"
+            href={partner.url}
+            sx={{
+              margin: '15px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textDecoration: 'none',
+            }}
+            onClick={onClick}
+          >
+            <Box
+              sx={{
+                width: '200px',
+                height: '150px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={partner.logoUrl}
+                alt={partner.name}
+                fill
+                sizes="100vw"
+                style={{ objectFit: 'contain' }}
+              />
+            </Box>
+            <Typography
+              variant="p"
+              fontSize="20px"
+              paragraph={true}
+              align="center"
+              color="#1B2B7B"
+              sx={{
+                textDecoration: 'underline',
+                fontWeight: '600',
+                mt: '10px',
+              }}
+            >
+              {partner.caption}
+            </Typography>
+          </Box>
+        )
+      }
+
+      return (
+        <Box
+          key={index}
+          component="a"
+          href={partner.url}
+          sx={{
+            margin: '15px',
+            width: '200px',
+            height: '180px',
+            display: 'block',
+            position: 'relative',
+            overflow: 'hidden',
           }}
-        />
-      </Box>
-    ))}
+          onClick={onClick}
+        >
+          <Image
+            src={partner.logoUrl}
+            alt={partner.name}
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+      )
+    })}
   </Box>
 )
 

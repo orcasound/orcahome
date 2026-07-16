@@ -281,6 +281,13 @@ export const getInvolvedPage = defineType({
               title: 'Donate / info link',
               type: 'url',
             }),
+            defineField({
+              name: 'caption',
+              title: 'Caption (optional)',
+              description:
+                'Shown under the logo. Only needed when the logo image does not include the org name (e.g. a photo).',
+              type: 'string',
+            }),
           ],
           preview: {select: {title: 'name', media: 'logo'}},
         }),

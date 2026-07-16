@@ -85,7 +85,8 @@ export const GET_INVOLVED_PAGE_QUERY = `*[_type == "getInvolvedPage"][0]{
   partners[]{
     name,
     "logoUrl": logo.asset->url,
-    url
+    url,
+    caption
   }
 }`
 
@@ -105,6 +106,7 @@ export interface GetInvolvedPartner {
   name?: string
   logoUrl?: string
   url?: string
+  caption?: string
 }
 
 export interface GetInvolvedPageContent {
