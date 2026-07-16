@@ -178,3 +178,66 @@ export interface HomePageContent {
   getInvolvedLabel?: string
   getInvolvedHref?: string
 }
+
+/**
+ * Learn page (Phase 2). Text + images + the 3 Common Calls cards (spectrogram
+ * image, audio clip, text) + exhibits. Non-`fill` images resolve their asset
+ * dimensions so `next/image` gets a width/height for the remote CDN URL.
+ */
+export const LEARN_PAGE_QUERY = `*[_type == "learnPage"][0]{
+  heroTitle,
+  heroDescription,
+  "heroImageUrl": heroImage.asset->url,
+  salishSeaIntro,
+  "salishSeaImageUrl": salishSeaImage.asset->url,
+  "salishSeaImageWidth": salishSeaImage.asset->metadata.dimensions.width,
+  "salishSeaImageHeight": salishSeaImage.asset->metadata.dimensions.height,
+  salishSeaLink,
+  commonCallsIntro,
+  calls[]{
+    title,
+    "spectrogramUrl": spectrogram.asset->url,
+    "spectrogramWidth": spectrogram.asset->metadata.dimensions.width,
+    "spectrogramHeight": spectrogram.asset->metadata.dimensions.height,
+    "audioUrl": audio.asset->url,
+    description
+  },
+  callCatalogIntro,
+  exhibits[]{
+    "imageUrl": image.asset->url,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    text
+  }
+}`
+
+export interface LearnCall {
+  title?: string
+  spectrogramUrl?: string
+  spectrogramWidth?: number
+  spectrogramHeight?: number
+  audioUrl?: string
+  description?: string
+}
+
+export interface LearnExhibit {
+  imageUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+  text?: string
+}
+
+export interface LearnPageContent {
+  heroTitle?: string
+  heroDescription?: string
+  heroImageUrl?: string
+  salishSeaIntro?: string
+  salishSeaImageUrl?: string
+  salishSeaImageWidth?: number
+  salishSeaImageHeight?: number
+  salishSeaLink?: string
+  commonCallsIntro?: string
+  calls?: LearnCall[]
+  callCatalogIntro?: string
+  exhibits?: LearnExhibit[]
+}
