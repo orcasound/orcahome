@@ -16,7 +16,66 @@ import { TOOLTIPS } from '../components/Catalog/constants'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
+import { getClient } from '../sanity/client'
+import { LEARN_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
+
+const audioS01 = '/audio/FO-S01.mp3'
+const audioS16 = '/audio/FO-S16.mp3'
+const audioS19 = '/audio/FO-S19.mp3'
+
+// Current hard-coded copy, used as a per-field fallback whenever Sanity has no
+// value for a field (or Sanity is unreachable).
+const DEFAULTS = {
+  heroTitle: 'Learn',
+  heroDescription: `You'll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape.`,
+  salishSeaIntro: `Explore common sounds of the Salish Sea by selecting the animals and other objects in this panoramic soundscape of the inland waters of Washington State (USA) and British Columbia (Canada)`,
+  salishSeaLink: 'https://orcasound.net/ed/booth/local.html?learn',
+  commonCallsIntro: `Conveniently, a few calls are used almost exclusively by each Southern Resident Killer Whale pod. This means that by memorizing just 3 calls, you can tell with great certainty that you are hearing a particular pod!`,
+  callCatalogIntro: `Now that you've familiarized yourself with the 3 most common calls, dive in to the call catalog to learn the vocalizations you will hear when listening to the livestreaming hydrophones during orca events.`,
+}
+
+// Built-in call cards, used verbatim when Sanity has no `calls`.
+const DEFAULT_CALLS = [
+  {
+    callName: 'S01',
+    title: "J Pod's Favorite Call: S01",
+    alt: "J Pod's call S01 - Frequency and Time",
+    spectrogram: { src: callS01 },
+    audioSrc: audioS01,
+    description: `J pod is the most local of the pods, commonly visiting Seattle about once a month throughout the year, and is famous for J2/Granny who may have been the oldest female orca living to be about 100 years old.`,
+  },
+  {
+    callName: 'S16',
+    title: "K Pod's Favorite Call: S16",
+    alt: "K Pod's call S16 - Frequency and Time",
+    spectrogram: { src: callS16 },
+    audioSrc: audioS16,
+    description: `K pod is the smallest pod with less than ~20 members since an annual census began in the 1970s, but they have the cutest call which most listeners think sounds like a kitten mewing.`,
+  },
+  {
+    callName: 'S19',
+    title: "L Pod's Favorite Call: S19",
+    alt: "L Pod's call S19 - Frequency and Time",
+    spectrogram: { src: callS19 },
+    audioSrc: audioS19,
+    description: `L pod travels the furthest each year, often foraging as far south as San Francisco in wintertime, and is the largest pod with more than 30 members now (and almost 60 in 1993).`,
+  },
+]
+
+// Built-in exhibits, used verbatim when Sanity has no `exhibits`.
+const DEFAULT_EXHIBITS = [
+  {
+    image: { src: organization1 },
+    alt: 'Seattle Aquarium exhibit',
+    text: `For another tour of the sounds that are most commonly heard in the Salish Sea, visit the listening station at the Seattle Aquarium in Washington State.`,
+  },
+  {
+    image: { src: organization2 },
+    alt: 'Marine Science Center exhibit',
+    text: `For a challenge beyond the three favorite calls of the SRKWs, learn a bunch more of the calls made by the Southern Resident Killer Whales (developed by educators at NOAA, the Port Townsend Marine Science Center, and Killer Whale Tales) at the Marine Science Center in Port Townsend in Washington State.`,
+  },
+]
 
 const LEARN_SECTIONS = [
   {
@@ -43,17 +102,14 @@ const LEARN_SECTIONS = [
   },
 ]
 
-// 1. Define the mapping
+// 1. Define the mapping. Wrapped in arrows so the object can reference the
+// component consts declared further down, and to thread `content` through.
 const SECTION_COMPONENTS = {
-  salishSea: () => <SalishSeaContent />,
-  commonCalls: () => <CommonCallsContent />,
-  callCatalog: () => <CallCatalogContent />,
-  exhibits: () => <ExhibitsContent />,
+  salishSea: (props) => <SalishSeaContent {...props} />,
+  commonCalls: (props) => <CommonCallsContent {...props} />,
+  callCatalog: (props) => <CallCatalogContent {...props} />,
+  exhibits: (props) => <ExhibitsContent {...props} />,
 }
-
-const audioS01 = '/audio/FO-S01.mp3'
-const audioS16 = '/audio/FO-S16.mp3'
-const audioS19 = '/audio/FO-S19.mp3'
 
 const CallCard = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
@@ -66,26 +122,20 @@ const CallCard = styled(Box)(({ theme }) => ({
   },
 }))
 
-const SalishSeaContent = () => (
+const SalishSeaContent = ({ content }) => (
   <>
     {/* Sounds of the Salish Sea Section */}
     <Typography variant="body1" fontSize="18px" mb={4} color="text.secondary">
-      Explore common sounds of the Salish Sea by selecting the animals and other
-      objects in this panoramic soundscape of the inland waters of Washington
-      State (USA) and British Columbia (Canada)
+      {content.salishSeaIntro}
     </Typography>
 
     <Box sx={{ textAlign: 'center', mt: 4 }}>
-      <a
-        href="https://orcasound.net/ed/booth/local.html?learn"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={content.salishSeaLink} target="_blank" rel="noopener noreferrer">
         <Image
-          src={salishsea}
+          src={content.salishSeaImage.src}
+          width={content.salishSeaImage.width}
+          height={content.salishSeaImage.height}
           alt="Sounds Of The Salish Sea"
-          width={800}
-          height={450}
           style={{
             maxWidth: '100%',
             height: 'auto',
@@ -96,12 +146,10 @@ const SalishSeaContent = () => (
     </Box>
   </>
 )
-const CommonCallsContent = () => (
+const CommonCallsContent = ({ content }) => (
   <>
     <Typography variant="body1" fontSize="18px" mb={4} color="text.secondary">
-      Conveniently, a few calls are used almost exclusively by each Southern
-      Resident Killer Whale pod. This means that by memorizing just 3 calls, you
-      can tell with great certainty that you are hearing a particular pod!
+      {content.commonCallsIntro}
     </Typography>
 
     <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
@@ -129,128 +177,51 @@ const CommonCallsContent = () => (
         gap: 3,
       }}
     >
-      {/* J Pod Call */}
-      <CallCard>
-        <Box mb={2}>
-          <Image
-            src={callS01}
-            alt="J Pod's call S01 - Frequency and Time"
-            title={TOOLTIPS.SPECTROGRAM}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Box>
-        <Typography variant="h6" fontWeight="600" mb={1}>
-          J Pod&apos;s Favorite Call: S01
-        </Typography>
-        <ReactAudioPlayer
-          title="Audio player for J Pod's call S01"
-          src={audioS01}
-          autoPlay={false}
-          controls
-          style={{ width: '100%' }}
-          onPlay={() =>
-            pushToDataLayer('audio_play', {
-              call_name: 'S01',
-              section: '3_common_calls',
-            })
-          }
-        />
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          mt={2}
-          textAlign="left"
-        >
-          J pod is the most local of the pods, commonly visiting Seattle about
-          once a month throughout the year, and is famous for J2/Granny who may
-          have been the oldest female orca living to be about 100 years old.
-        </Typography>
-      </CallCard>
-
-      {/* K Pod Call */}
-      <CallCard>
-        <Box mb={2}>
-          <Image
-            src={callS16}
-            alt="K Pod's call S16 - Frequency and Time"
-            title={TOOLTIPS.SPECTROGRAM}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Box>
-        <Typography variant="h6" fontWeight="600" mb={1}>
-          K Pod&apos;s Favorite Call: S16
-        </Typography>
-        <ReactAudioPlayer
-          title="Audio player for K Pod's call S16"
-          src={audioS16}
-          autoPlay={false}
-          controls
-          style={{ width: '100%' }}
-          onPlay={() =>
-            pushToDataLayer('audio_play', {
-              call_name: 'S16',
-              section: '3_common_calls',
-            })
-          }
-        />
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          mt={2}
-          textAlign="left"
-        >
-          K pod is the smallest pod with less than ~20 members since an annual
-          census began in the 1970s, but they have the cutest call which most
-          listeners think sounds like a kitten mewing.
-        </Typography>
-      </CallCard>
-
-      {/* L Pod Call */}
-      <CallCard>
-        <Box mb={2}>
-          <Image
-            src={callS19}
-            alt="L Pod's call S19 - Frequency and Time"
-            title={TOOLTIPS.SPECTROGRAM}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Box>
-        <Typography variant="h6" fontWeight="600" mb={1}>
-          L Pod&apos;s Favorite Call: S19
-        </Typography>
-        <ReactAudioPlayer
-          title="Audio player for L Pod's call S19"
-          src={audioS19}
-          autoPlay={false}
-          controls
-          style={{ width: '100%' }}
-          onPlay={() =>
-            pushToDataLayer('audio_play', {
-              call_name: 'S19',
-              section: '3_common_calls',
-            })
-          }
-        />
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          mt={2}
-          textAlign="left"
-        >
-          L pod travels the furthest each year, often foraging as far south as
-          San Francisco in wintertime, and is the largest pod with more than 30
-          members now (and almost 60 in 1993).
-        </Typography>
-      </CallCard>
+      {content.calls.map((call, index) => (
+        <CallCard key={index}>
+          {call.spectrogram?.src && (
+            <Box mb={2}>
+              <Image
+                src={call.spectrogram.src}
+                width={call.spectrogram.width}
+                height={call.spectrogram.height}
+                alt={call.alt || call.title}
+                title={TOOLTIPS.SPECTROGRAM}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            </Box>
+          )}
+          <Typography variant="h6" fontWeight="600" mb={1}>
+            {call.title}
+          </Typography>
+          {call.audioSrc && (
+            <ReactAudioPlayer
+              title={`Audio player for ${call.title}`}
+              src={call.audioSrc}
+              autoPlay={false}
+              controls
+              style={{ width: '100%' }}
+              onPlay={() =>
+                pushToDataLayer('audio_play', {
+                  call_name: call.callName,
+                  section: '3_common_calls',
+                })
+              }
+            />
+          )}
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            mt={2}
+            textAlign="left"
+          >
+            {call.description}
+          </Typography>
+        </CallCard>
+      ))}
     </Box>
 
     <Typography
@@ -277,62 +248,91 @@ const CommonCallsContent = () => (
     </Typography>
   </>
 )
-const CallCatalogContent = () => (
+const CallCatalogContent = ({ content }) => (
   <>
     <Typography variant="body1" fontSize="20px" mb={4}>
-      Now that you&apos;ve familiarized yourself with the 3 most common calls,
-      dive in to the call catalog to learn the vocalizations you will hear when
-      listening to the livestreaming hydrophones during orca events.
+      {content.callCatalogIntro}
     </Typography>
 
     <CallCatalogGrid />
   </>
 )
-const ExhibitsContent = () => (
+const ExhibitsContent = ({ content }) => (
   <>
-    {/* Seattle Aquarium */}
-    <Box sx={{ mb: 4, textAlign: 'center' }}>
-      <Box sx={{ mb: 2 }}>
-        <Image
-          src={organization1}
-          alt="Seattle Aquarium exhibit"
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-          }}
-        />
+    {content.exhibits.map((exhibit, index) => (
+      <Box key={index} sx={{ mb: 4, textAlign: 'center' }}>
+        <Box sx={{ mb: 2 }}>
+          <Image
+            src={exhibit.image.src}
+            width={exhibit.image.width}
+            height={exhibit.image.height}
+            alt={exhibit.alt || 'Exhibit'}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
+          />
+        </Box>
+        <Typography variant="body1" fontSize="18px" color="text.secondary">
+          {exhibit.text}
+        </Typography>
       </Box>
-      <Typography variant="body1" fontSize="18px" color="text.secondary">
-        For another tour of the sounds that are most commonly heard in the
-        Salish Sea, visit the listening station at the Seattle Aquarium in
-        Washington State.
-      </Typography>
-    </Box>
-
-    {/* Marine Science Center */}
-    <Box sx={{ mb: 4, textAlign: 'center' }}>
-      <Box sx={{ mb: 2 }}>
-        <Image
-          src={organization2}
-          alt="Marine Science Center exhibit"
-          style={{
-            maxWidth: '100%',
-            height: 'auto',
-          }}
-        />
-      </Box>
-      <Typography variant="body1" fontSize="18px" color="text.secondary">
-        For a challenge beyond the three favorite calls of the SRKWs, learn a
-        bunch more of the calls made by the Southern Resident Killer Whales
-        (developed by educators at NOAA, the Port Townsend Marine Science
-        Center, and Killer Whale Tales) at the Marine Science Center in Port
-        Townsend in Washington State.
-      </Typography>
-    </Box>
+    ))}
   </>
 )
 
-export const learn = () => {
+// Resolve a Sanity image (remote CDN url + asset dimensions) or fall back to a
+// bundled static import (which carries its own intrinsic dimensions).
+const resolveImage = (url, width, height, fallback) =>
+  url ? { src: url, width, height } : { src: fallback }
+
+export const learn = ({ learnPage }) => {
+  const source = learnPage
+  // Per-field fallback: Sanity value when present, otherwise the hard-coded copy.
+  const content = {
+    heroTitle: source?.heroTitle || DEFAULTS.heroTitle,
+    heroDescription: source?.heroDescription || DEFAULTS.heroDescription,
+    heroImage: source?.heroImageUrl || LearnBanner,
+    salishSeaIntro: source?.salishSeaIntro || DEFAULTS.salishSeaIntro,
+    salishSeaImage: source?.salishSeaImageUrl
+      ? {
+          src: source.salishSeaImageUrl,
+          width: source.salishSeaImageWidth,
+          height: source.salishSeaImageHeight,
+        }
+      : { src: salishsea, width: 800, height: 450 },
+    salishSeaLink: source?.salishSeaLink || DEFAULTS.salishSeaLink,
+    commonCallsIntro: source?.commonCallsIntro || DEFAULTS.commonCallsIntro,
+    calls: source?.calls?.length
+      ? source.calls.map((call) => ({
+          callName: call.title,
+          title: call.title,
+          alt: call.title,
+          description: call.description,
+          spectrogram: resolveImage(
+            call.spectrogramUrl,
+            call.spectrogramWidth,
+            call.spectrogramHeight,
+            null
+          ),
+          audioSrc: call.audioUrl || null,
+        }))
+      : DEFAULT_CALLS,
+    callCatalogIntro: source?.callCatalogIntro || DEFAULTS.callCatalogIntro,
+    exhibits: source?.exhibits?.length
+      ? source.exhibits.map((exhibit) => ({
+          image: resolveImage(
+            exhibit.imageUrl,
+            exhibit.imageWidth,
+            exhibit.imageHeight,
+            null
+          ),
+          alt: 'Exhibit',
+          text: exhibit.text,
+        }))
+      : DEFAULT_EXHIBITS,
+  }
+
   const navLinks = LEARN_SECTIONS.map((section) => ({
     name: section.name,
     id: section.id,
@@ -345,9 +345,9 @@ export const learn = () => {
         <title>Orcasound | Learn</title>
       </Head>
       <TopBanner
-        bannerImg={LearnBanner}
-        pageTitle={`Learn`}
-        pageDesc={`You'll hear a lot of different sounds on the hydrophones. Select the jump links below or scroll down to learn about the marine acoustic landscape.`}
+        bannerImg={content.heroImage}
+        pageTitle={content.heroTitle}
+        pageDesc={content.heroDescription}
         scrollToId={`learn`}
       />
       <Box id="learn" sx={{ mt: 6 }} />
@@ -387,7 +387,7 @@ export const learn = () => {
               <Typography variant="h3" component="h1" fontWeight="600" mb={3}>
                 {section.name}
               </Typography>
-              {ContentComponent ? <ContentComponent /> : null}
+              {ContentComponent ? <ContentComponent content={content} /> : null}
             </Box>
           </Box>
         )
@@ -397,3 +397,16 @@ export const learn = () => {
 }
 
 export default learn
+
+// Fetch the Learn content from Sanity at build time (revalidated for ISR). If
+// Sanity is unreachable or unconfigured, fall back to null and the component
+// renders its built-in DEFAULTS.
+export async function getStaticProps() {
+  let learnPage = null
+  try {
+    learnPage = await getClient(false).fetch(LEARN_PAGE_QUERY)
+  } catch {
+    learnPage = null
+  }
+  return { props: { learnPage }, revalidate: 60 }
+}
