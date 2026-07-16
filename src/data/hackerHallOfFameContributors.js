@@ -493,6 +493,32 @@ export const individualContributors = [
     roles: ['Lead UX Designer on Shipnoise from late 2025 through launch.'],
     link: 'https://www.linkedin.com/in/maryam-rezaierad-405042149/',
   },
+  {
+    name: 'Tyler Stevenson',
+    roles: [
+      'Multi-source whale-sighting dataset compiler and AIS data engineer.',
+    ],
+    link: 'https://www.linkedin.com/in/stevetyl/',
+  },
+  {
+    name: 'David Puckett',
+    roles: ['Open source mapping architecture advisor (2021).'],
+    link: 'https://brightrain.com',
+  },
+  {
+    name: 'Kimali Piyasena',
+    roles: [
+      'UUX Researcher on competitive audit and user testing for Orcasite Listening App.',
+    ],
+    link: 'https://www.linkedin.com/in/kimali-p-633a5b132/',
+  },
+  {
+    name: 'Juliet Stevenson',
+    roles: [
+      'UX Researcher who led usability testing for the V3 Listening App Mobile iterations (2021 to 2022).',
+    ],
+    link: '',
+  },
 ]
 
 // supporters array
@@ -535,5 +561,10 @@ export const supporterContributors = [
       'Front End Developer who took on the Hacker Hall of Fame page rebuild.',
     ],
     link: 'https://www.linkedin.com/in/stephen-aranda-9b9974205',
+  },
+  {
+    name: 'Nadia Choi',
+    roles: ['UX team member on the Orcahome kickoff (2025).'],
+    link: 'https://www.linkedin.com/in/nadiachoi',
   },
 ]
