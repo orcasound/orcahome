@@ -24,6 +24,19 @@ export const learnPage = defineType({
       name: 'heroTitle',
       title: 'Hero title',
       type: 'string',
+      description: (
+        <>
+          📖 New to editing this page?{' '}
+          <a
+            href="https://docs.google.com/document/d/1N_e1M6bmFrDHmyEfWXn7rzyM1hXGH9Qz7ZpXws_WkLM/edit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the step-by-step guide
+          </a>
+          .
+        </>
+      ),
       validation: (rule) => rule.required(),
     }),
     defineField({
