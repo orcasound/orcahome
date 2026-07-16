@@ -59,3 +59,41 @@ export interface AboutPageContent {
   ctaLabel?: string
   ctaHref?: string
 }
+
+/**
+ * Home page (Phase 2). Text + hero image + the CTA buttons + the hydrophone
+ * map ID. The hero image is rendered with `fill`, so only the URL is needed
+ * (no dimensions). `mapEmbedId` is the Google My Maps `mid`; the page builds
+ * the full embed URL in code.
+ */
+export const HOME_PAGE_QUERY = `*[_type == "homePage"][0]{
+  "heroImageUrl": heroImage.asset->url,
+  heroCtaLabel,
+  heroCtaHref,
+  whatIsHeading,
+  whatIsParagraphs,
+  hydrophoneHeading,
+  hydrophoneIntro,
+  hydrophoneReportText,
+  mapEmbedId,
+  listenLiveLabel,
+  listenLiveHref,
+  getInvolvedLabel,
+  getInvolvedHref
+}`
+
+export interface HomePageContent {
+  heroImageUrl?: string
+  heroCtaLabel?: string
+  heroCtaHref?: string
+  whatIsHeading?: string
+  whatIsParagraphs?: string[]
+  hydrophoneHeading?: string
+  hydrophoneIntro?: string
+  hydrophoneReportText?: string
+  mapEmbedId?: string
+  listenLiveLabel?: string
+  listenLiveHref?: string
+  getInvolvedLabel?: string
+  getInvolvedHref?: string
+}
