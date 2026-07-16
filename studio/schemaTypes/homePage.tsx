@@ -25,6 +25,19 @@ export const homePage = defineType({
       title: 'Hero background image',
       type: 'image',
       options: {hotspot: true},
+      description: (
+        <>
+          📖 New to editing this page?{' '}
+          <a
+            href="https://docs.google.com/document/d/1tERlrFaHef7tG0mWLI6iaHl-jnPdBUp2I1ltyCc3FA0/edit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the step-by-step guide
+          </a>
+          .
+        </>
+      ),
     }),
     defineField({
       name: 'heroCtaLabel',
