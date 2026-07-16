@@ -29,6 +29,19 @@ export const getInvolvedPage = defineType({
       name: 'heroTitle',
       title: 'Hero title',
       type: 'string',
+      description: (
+        <>
+          📖 New to editing this page?{' '}
+          <a
+            href="https://docs.google.com/document/d/1iCw3vYiF-s4LBeoMWh-figv7PBq3N_vB3qb05hTA9qg/edit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the step-by-step guide
+          </a>
+          .
+        </>
+      ),
       validation: (rule) => rule.required(),
     }),
     defineField({
