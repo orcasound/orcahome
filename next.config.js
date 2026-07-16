@@ -6,10 +6,6 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'netlify.com',
-      },
-      {
-        protocol: 'https',
         hostname: 'cdn.sanity.io',
       },
     ],
