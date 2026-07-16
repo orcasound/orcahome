@@ -251,24 +251,25 @@ export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
   introParagraph,
   foundersTitle,
   foundersSubtitle,
-  founders[]{name, roles, link},
+  founders[]{name, country, roles, link},
   influencersTitle,
   influencersSubtitle,
-  influencerGroups[]{title, contributors[]{name, roles, link}},
+  influencerGroups[]{title, contributors[]{name, country, roles, link}},
   podcastTitle,
   podcastSubtitle,
   podcastNames,
   orcaHelloTitle,
   orcaHelloCaption,
-  orcaHelloContributors[]{name, roles, link},
+  orcaHelloContributors[]{name, country, roles, link},
   individualTitle,
-  individualContributors[]{name, roles, link},
+  individualContributors[]{name, country, roles, link},
   supportersTitle,
-  supporters[]{name, roles, link}
+  supporters[]{name, country, roles, link}
 }`
 
 export interface Contributor {
   name?: string
+  country?: string
   roles?: string[]
   link?: string
 }

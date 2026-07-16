@@ -1,8 +1,9 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 /**
- * A single Hacker Hall of Fame contributor: a name, one or more roles, and an
- * optional profile link. Reused by every contributor list on the HHOF page.
+ * A single Hacker Hall of Fame contributor: a name, an optional country line
+ * (only GSoC contributors have one), one or more roles, and an optional profile
+ * link. Reused by every contributor list on the HHOF page.
  */
 export const contributor = defineType({
   name: 'contributor',
@@ -14,6 +15,12 @@ export const contributor = defineType({
       title: 'Name',
       type: 'string',
       validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'country',
+      title: 'Country (optional)',
+      description: 'Shown under the name — used for GSoC contributors, e.g. "(India)".',
+      type: 'string',
     }),
     defineField({
       name: 'roles',
