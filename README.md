@@ -5,6 +5,10 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Developed initially as a Google Summer of Code project in 2021 by [Isabella Macchiavello](https://www.linkedin.com/in/isabella-macchiavello-223338205/), the code is deployed via Vercel.
 
+## New contributors
+
+New here? Start with the [Orcahome dev dashboard](https://orcasound.github.io/orcahome/dev-status.html). It walks you through setup (Zulip, GitHub, running locally), shows the open dev issues and who is on what, and lists the next team sync so you can join and get oriented before picking up an issue. Dev work is assigned by the dev lead on Zulip, not self-claimed, so say hi there first.
+
 ## Cross-browser testing
 
 This project is tested with BrowserStack. BrowserStack supports Orcasound through its Open Source Program, providing free cross-browser and real-device testing including Safari on macOS and iOS.

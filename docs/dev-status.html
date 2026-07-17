@@ -56,6 +56,12 @@ a:hover { text-decoration: underline; }
 .person ul { margin: 0; padding-left: 18px; }
 .person li { margin: 2px 0; }
 #status { font-size: 12px; color: #555; margin: 12px 2px; }
+.meeting { background:#fff; border:1px solid #e2e2e8; border-left:5px solid #2f8f54; border-radius:12px; padding:14px 18px; margin:18px 0 4px; }
+.meeting h2 { border:0; margin:0 0 6px; padding:0; font-size:16px; color:#14532d; }
+.meeting .when { font-size:14px; font-weight:600; }
+.meeting .desc { font-size:12.5px; color:#555; margin:6px 0 10px; }
+.meeting .join { display:inline-block; background:#2f8f54; color:#fff; border-radius:7px; padding:6px 13px; font-size:13px; font-weight:600; }
+.meeting .join:hover { background:#277345; text-decoration:none; }
 </style>
 </head>
 <body>
@@ -66,6 +72,8 @@ a:hover { text-decoration: underline; }
     <div class="refreshed" id="refreshed"></div>
     <button class="btn" onclick="loadReport()">Refresh now</button>
   </header>
+
+  <div class="meeting" id="meeting"></div>
 
   <div class="onboard">
     <h2>Get set up</h2>
@@ -96,6 +104,26 @@ a:hover { text-decoration: underline; }
 <script>
 const API = "https://api.github.com/repos/orcasound/orcahome/issues";
 const AUTO = "BT-Orcasound-Product";
+
+const UPCOMING_MEETING = {
+  show: true,
+  title: "Orcahome Sprint 3 Wrap Up",
+  when: "Monday, June 22, 2026, 10:00 to 11:00 AM Pacific",
+  joinUrl: "https://us06web.zoom.us/j/89864233616?pwd=c1HSgJF9c7TOX9frEtflpRt3gMki69.1",
+  joinLabel: "Join the Zoom meeting",
+  note: "New here? Drop into the next team sync to meet everyone and get oriented before taking on an issue. Zoom passcode 440858."
+};
+function renderMeeting(){
+  const el=document.getElementById("meeting");
+  if(!el) return;
+  const m=UPCOMING_MEETING;
+  if(!m||!m.show){ el.style.display="none"; return; }
+  let h='<h2>Upcoming meeting</h2>';
+  h+='<div class="when">'+esc(m.title)+' &middot; '+esc(m.when)+'</div>';
+  if(m.note) h+='<div class="desc">'+esc(m.note)+'</div>';
+  if(m.joinUrl) h+='<a class="join" href="'+esc(m.joinUrl)+'" target="_blank" rel="noopener">'+esc(m.joinLabel||"Join the meeting")+'</a>';
+  el.innerHTML=h;
+}
 
 // GitHub handle to display name (Orcahome dev team).
 const NAMES = {
@@ -240,6 +268,7 @@ async function loadReport(){
     document.getElementById("content").innerHTML='<div class="err">Could not load live data from GitHub. '+esc(String(e&&e.message?e.message:e))+'<br><br>This page reads the public GitHub API for orcasound/orcahome. If it keeps failing, the repo may be private or the API may be rate limited; open the issues directly at https://github.com/orcasound/orcahome/issues</div>';
   }
 }
+renderMeeting();
 loadReport();
 </script>
 </body>
