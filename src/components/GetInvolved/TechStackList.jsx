@@ -35,32 +35,40 @@ const TechListItem = ({ text, subItem, children }) => {
   )
 }
 
-const TechStackList = () => {
+// Built-in list, used verbatim whenever Sanity supplies no `items`.
+const DEFAULT_TECH_STACK = [
+  {
+    text: 'Orcanode: Linux-based ADC with live-streaming',
+    subItems: [
+      'Bush Point & Port Townsend: ffmpeg+s3fs in a bash script',
+      'Orcasound Lab: testing new Python script using ffmpeg+boto+/-redis',
+    ],
+  },
+  {
+    text: 'Orcasite: front- and back-end of the Orcasound app',
+    subItems: [
+      'backend is an Elixir app using the Phoenix framework.',
+      'the Phoenix app serves a React app',
+      'Public site — live.orcasound.net',
+    ],
+  },
+]
+
+const TechStackList = ({ items }) => {
+  const stack = items?.length ? items : DEFAULT_TECH_STACK
   return (
     <List aria-labelledby="nested-list-subheader">
-      <TechListItem text="Orcanode: Linux-based ADC with live-streaming">
-        <List>
-          <TechListItem
-            subItem
-            text="Bush Point & Port Townsend: ffmpeg+s3fs in a bash script"
-          />
-          <TechListItem
-            subItem
-            text="Orcasound Lab: testing new Python script using ffmpeg+boto+/-redis"
-          />
-        </List>
-      </TechListItem>
-
-      <TechListItem text="Orcasite: front- and back-end of the Orcasound app">
-        <List>
-          <TechListItem
-            subItem
-            text="backend is an Elixir app using the Phoenix framework."
-          />
-          <TechListItem subItem text="the Phoenix app serves a React app" />
-          <TechListItem subItem text="Public site — live.orcasound.net" />
-        </List>
-      </TechListItem>
+      {stack.map((item, index) => (
+        <TechListItem key={index} text={item.text}>
+          {item.subItems?.length ? (
+            <List>
+              {item.subItems.map((subItem, subIndex) => (
+                <TechListItem key={subIndex} subItem text={subItem} />
+              ))}
+            </List>
+          ) : null}
+        </TechListItem>
+      ))}
     </List>
   )
 }
