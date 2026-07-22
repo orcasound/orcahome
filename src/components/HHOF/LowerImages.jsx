@@ -17,17 +17,10 @@ const LowerImages = () => {
         maxWidth={false}
         disableGutters
         sx={(theme) => ({
-          width: '70%',
-          mb: 4, // breathing room between the photos and the footer
-
-          [theme.breakpoints.down('sm')]: {
-            width: '100%',
-            flexDirection: 'column',
-          },
-          [theme.breakpoints.between('sm', 'lg')]: {
-            m: 'auto',
-            width: '97%',
-          },
+          width: 'calc(100% - 32px)',
+          maxWidth: 1000,
+          mx: 'auto',
+          mb: 4,
         })}
       >
         <Box
@@ -64,7 +57,7 @@ const LowerImages = () => {
               textAlign: 'left',
 
               [theme.breakpoints.down('sm')]: {
-                width: '90%',
+                width: '100%',
               },
               [theme.breakpoints.between('sm', 'lg')]: {
                 width: '45%',
@@ -84,13 +77,7 @@ const LowerImages = () => {
               variant="caption"
               sx={(theme) => ({
                 color: 'text.secondary',
-                width: '80%',
-                [theme.breakpoints.down('sm')]: {
-                  width: '100%',
-                },
-                [theme.breakpoints.between('sm', 'lg')]: {
-                  width: '100%',
-                },
+                width: '100%',
               })}
             >
               Erika facilitating an early discussion of machine learning and the
@@ -106,7 +93,7 @@ const LowerImages = () => {
               width: '45%',
 
               [theme.breakpoints.down('sm')]: {
-                width: '90%',
+                width: '100%',
               },
               [theme.breakpoints.between('sm', 'lg')]: {
                 width: '45%',

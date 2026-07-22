@@ -16,8 +16,12 @@ const HackathonImage = () => {
       className="hackathon-image-container"
       sx={{
         width: '100%',
+        maxWidth: 573,
+        mx: 'auto',
+        textAlign: 'center',
         '& img': {
           display: 'block',
+          mx: 'auto',
           width: '100%',
           height: {
             xs: 'auto',
@@ -34,7 +38,7 @@ const HackathonImage = () => {
         width={573}
         height={368}
         style={{
-          width: 'auto',
+          width: '100%',
           height: 'auto',
         }}
       />
