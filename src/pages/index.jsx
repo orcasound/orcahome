@@ -56,6 +56,7 @@ const HydrophoneLocationsMapImage = ({ mapEmbedId }) => (
       position: 'relative',
       height: { xs: 420, sm: 520 },
       overflow: 'hidden',
+      mb: { xs: 3, sm: 4 },
     }}
   >
     <Box
