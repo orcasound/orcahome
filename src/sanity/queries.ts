@@ -298,3 +298,26 @@ export interface HHOFPageContent {
   supportersTitle?: string
   supporters?: Contributor[]
 }
+
+/**
+ * Call Catalog page (Phase 2 — page copy only). The 46-call SRKW dataset stays
+ * in `callsData.js`; only the hero, section title/description, and image credit
+ * are editable here.
+ */
+export const CATALOG_PAGE_QUERY = `*[_type == "catalogPage"][0]{
+  heroTitle,
+  heroDescription,
+  "heroImageUrl": heroImage.asset->url,
+  sectionTitle,
+  sectionDescription,
+  imageCredit
+}`
+
+export interface CatalogPageContent {
+  heroTitle?: string
+  heroDescription?: string
+  heroImageUrl?: string
+  sectionTitle?: string
+  sectionDescription?: string
+  imageCredit?: string
+}
