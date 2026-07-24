@@ -5,7 +5,7 @@
 
 # Orcahome
 
-Orcahome is the [Orcasound](https://www.orcasound.net/) Product Team's proof-of-concept web app (deployed at [orcasound.tech](https://orcasound.tech)), used to prototype and showcase features for the wider Orcasound ecosystem. It is a [Next.js](https://nextjs.org/) app, developed initially as a Google Summer of Code project in 2021 by [Isabella Macchiavello](https://www.linkedin.com/in/isabella-macchiavello-223338205/), and is deployed via Vercel.
+Orcahome is the [Orcasound](https://www.orcasound.net/) Product Team's proof-of-concept web app (deployed at [orcasound.tech](https://orcasound.tech)), used to prototype and showcase features for the wider Orcasound ecosystem. It is a [Next.js](https://nextjs.org/) app, developed initially as a Google Summer of Code project in 2021 by [Isabella Macchiavello](https://linkedin.com/in/isabella-macchiavello-223338205/), and is deployed via Vercel.
 
 ## Quick links
 
