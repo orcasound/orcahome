@@ -21,6 +21,7 @@ export default defineConfig({
           {id: 'getInvolvedPage', title: 'Get Involved Page'},
           {id: 'homePage', title: 'Home Page'},
           {id: 'learnPage', title: 'Learn Page'},
+          {id: 'hackerHallOfFamePage', title: 'Hacker Hall of Fame Page'},
         ]
         const singletonIds = singletons.map((s) => s.id)
         return S.list()
@@ -51,7 +52,8 @@ export default defineConfig({
           template.schemaType !== 'aboutPage' &&
           template.schemaType !== 'getInvolvedPage' &&
           template.schemaType !== 'homePage' &&
-          template.schemaType !== 'learnPage',
+          template.schemaType !== 'learnPage' &&
+          template.schemaType !== 'hackerHallOfFamePage',
       ),
   },
 })

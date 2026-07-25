@@ -241,3 +241,60 @@ export interface LearnPageContent {
   callCatalogIntro?: string
   exhibits?: LearnExhibit[]
 }
+
+/**
+ * Hacker Hall of Fame page (Phase 2). Editable copy + the contributor lists.
+ * Layout, styling, decorative images, and the link-heavy intro paragraphs stay
+ * in the React component (per-field fallback to the hard-coded content).
+ */
+export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
+  introParagraph,
+  foundersTitle,
+  foundersSubtitle,
+  founders[]{name, country, roles, link},
+  influencersTitle,
+  influencersSubtitle,
+  influencerGroups[]{title, contributors[]{name, country, roles, link}},
+  podcastTitle,
+  podcastSubtitle,
+  podcastNames,
+  orcaHelloTitle,
+  orcaHelloCaption,
+  orcaHelloContributors[]{name, country, roles, link},
+  individualTitle,
+  individualContributors[]{name, country, roles, link},
+  supportersTitle,
+  supporters[]{name, country, roles, link}
+}`
+
+export interface Contributor {
+  name?: string
+  country?: string
+  roles?: string[]
+  link?: string
+}
+
+export interface InfluencerGroup {
+  title?: string
+  contributors?: Contributor[]
+}
+
+export interface HHOFPageContent {
+  introParagraph?: string
+  foundersTitle?: string
+  foundersSubtitle?: string
+  founders?: Contributor[]
+  influencersTitle?: string
+  influencersSubtitle?: string
+  influencerGroups?: InfluencerGroup[]
+  podcastTitle?: string
+  podcastSubtitle?: string
+  podcastNames?: string[]
+  orcaHelloTitle?: string
+  orcaHelloCaption?: string
+  orcaHelloContributors?: Contributor[]
+  individualTitle?: string
+  individualContributors?: Contributor[]
+  supportersTitle?: string
+  supporters?: Contributor[]
+}
