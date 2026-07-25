@@ -140,3 +140,161 @@ export interface GetInvolvedPageContent {
   supportCtaHref?: string
   partners?: GetInvolvedPartner[]
 }
+
+/**
+ * Home page (Phase 2). Text + hero image + the CTA buttons + the hydrophone
+ * map ID. The hero image is rendered with `fill`, so only the URL is needed
+ * (no dimensions). `mapEmbedId` is the Google My Maps `mid`; the page builds
+ * the full embed URL in code.
+ */
+export const HOME_PAGE_QUERY = `*[_type == "homePage"][0]{
+  "heroImageUrl": heroImage.asset->url,
+  heroCtaLabel,
+  heroCtaHref,
+  whatIsHeading,
+  whatIsParagraphs,
+  hydrophoneHeading,
+  hydrophoneIntro,
+  hydrophoneReportText,
+  mapEmbedId,
+  listenLiveLabel,
+  listenLiveHref,
+  getInvolvedLabel,
+  getInvolvedHref
+}`
+
+export interface HomePageContent {
+  heroImageUrl?: string
+  heroCtaLabel?: string
+  heroCtaHref?: string
+  whatIsHeading?: string
+  whatIsParagraphs?: string[]
+  hydrophoneHeading?: string
+  hydrophoneIntro?: string
+  hydrophoneReportText?: string
+  mapEmbedId?: string
+  listenLiveLabel?: string
+  listenLiveHref?: string
+  getInvolvedLabel?: string
+  getInvolvedHref?: string
+}
+
+/**
+ * Learn page (Phase 2). Text + images + the 3 Common Calls cards (spectrogram
+ * image, audio clip, text) + exhibits. Non-`fill` images resolve their asset
+ * dimensions so `next/image` gets a width/height for the remote CDN URL.
+ */
+export const LEARN_PAGE_QUERY = `*[_type == "learnPage"][0]{
+  heroTitle,
+  heroDescription,
+  "heroImageUrl": heroImage.asset->url,
+  salishSeaIntro,
+  "salishSeaImageUrl": salishSeaImage.asset->url,
+  "salishSeaImageWidth": salishSeaImage.asset->metadata.dimensions.width,
+  "salishSeaImageHeight": salishSeaImage.asset->metadata.dimensions.height,
+  salishSeaLink,
+  commonCallsIntro,
+  calls[]{
+    title,
+    "spectrogramUrl": spectrogram.asset->url,
+    "spectrogramWidth": spectrogram.asset->metadata.dimensions.width,
+    "spectrogramHeight": spectrogram.asset->metadata.dimensions.height,
+    "audioUrl": audio.asset->url,
+    description
+  },
+  callCatalogIntro,
+  exhibits[]{
+    "imageUrl": image.asset->url,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    text
+  }
+}`
+
+export interface LearnCall {
+  title?: string
+  spectrogramUrl?: string
+  spectrogramWidth?: number
+  spectrogramHeight?: number
+  audioUrl?: string
+  description?: string
+}
+
+export interface LearnExhibit {
+  imageUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+  text?: string
+}
+
+export interface LearnPageContent {
+  heroTitle?: string
+  heroDescription?: string
+  heroImageUrl?: string
+  salishSeaIntro?: string
+  salishSeaImageUrl?: string
+  salishSeaImageWidth?: number
+  salishSeaImageHeight?: number
+  salishSeaLink?: string
+  commonCallsIntro?: string
+  calls?: LearnCall[]
+  callCatalogIntro?: string
+  exhibits?: LearnExhibit[]
+}
+
+/**
+ * Hacker Hall of Fame page (Phase 2). Editable copy + the contributor lists.
+ * Layout, styling, decorative images, and the link-heavy intro paragraphs stay
+ * in the React component (per-field fallback to the hard-coded content).
+ */
+export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
+  introParagraph,
+  foundersTitle,
+  foundersSubtitle,
+  founders[]{name, country, roles, link},
+  influencersTitle,
+  influencersSubtitle,
+  influencerGroups[]{title, contributors[]{name, country, roles, link}},
+  podcastTitle,
+  podcastSubtitle,
+  podcastNames,
+  orcaHelloTitle,
+  orcaHelloCaption,
+  orcaHelloContributors[]{name, country, roles, link},
+  individualTitle,
+  individualContributors[]{name, country, roles, link},
+  supportersTitle,
+  supporters[]{name, country, roles, link}
+}`
+
+export interface Contributor {
+  name?: string
+  country?: string
+  roles?: string[]
+  link?: string
+}
+
+export interface InfluencerGroup {
+  title?: string
+  contributors?: Contributor[]
+}
+
+export interface HHOFPageContent {
+  introParagraph?: string
+  foundersTitle?: string
+  foundersSubtitle?: string
+  founders?: Contributor[]
+  influencersTitle?: string
+  influencersSubtitle?: string
+  influencerGroups?: InfluencerGroup[]
+  podcastTitle?: string
+  podcastSubtitle?: string
+  podcastNames?: string[]
+  orcaHelloTitle?: string
+  orcaHelloCaption?: string
+  orcaHelloContributors?: Contributor[]
+  individualTitle?: string
+  individualContributors?: Contributor[]
+  supportersTitle?: string
+  supporters?: Contributor[]
+}

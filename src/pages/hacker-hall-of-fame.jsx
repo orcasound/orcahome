@@ -33,13 +33,15 @@ import {
   projectManagementContributors,
   supporterContributors,
 } from '../data/hackerHallOfFameContributors'
+import { getClient } from '../sanity/client'
+import { HHOF_PAGE_QUERY } from '../sanity/queries'
 
 const contributorRail = {
   listWidth: '80%',
   listMaxWidth: 800,
 }
 
-const HackerHallOfFame = () => {
+const HackerHallOfFame = ({ hhof }) => {
   const firstParagraph = `We would like to acknowledge the tremendous contributions of time,
             technology, and code that have been made to our open source project.
             Beginning in the fall of 2018, we began participating in hackathons
@@ -118,6 +120,45 @@ const HackerHallOfFame = () => {
     { title: 'Project Management Team', people: projectManagementContributors },
   ]
 
+  // Per-field fallback: Sanity value when present, otherwise the hard-coded
+  // copy / contributor arrays above. Layout, styling, the decorative images,
+  // and the link-heavy paragraphs (second/third + the Founders description)
+  // stay in code.
+  const content = {
+    introParagraph: hhof?.introParagraph || firstParagraph,
+    foundersTitle: hhof?.foundersTitle || 'Founders',
+    foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
+    founders: hhof?.founders?.length ? hhof.founders : contributors,
+    influencersTitle: hhof?.influencersTitle || 'Influencers',
+    influencersSubtitle: hhof?.influencersSubtitle || '(Major Contributors)',
+    influencerGroups: hhof?.influencerGroups?.length
+      ? hhof.influencerGroups.map((group) => ({
+          title: group.title,
+          people: group.contributors || [],
+        }))
+      : influencerSubSections,
+    podcastTitle: hhof?.podcastTitle || 'PodCast',
+    podcastSubtitle: hhof?.podcastSubtitle || '(ML-Assisted Annotation Tool)',
+    podcastNames: hhof?.podcastNames?.length
+      ? hhof.podcastNames
+      : ['Prakruti Gogia', 'Akash Mahajan', 'Nithya Govindarajan'],
+    orcaHelloTitle: hhof?.orcaHelloTitle || 'OrcaHello',
+    orcaHelloCaption:
+      hhof?.orcaHelloCaption || ' (Real-Time Inference System Leads)',
+    orcaHelloContributors: hhof?.orcaHelloContributors?.length
+      ? hhof.orcaHelloContributors
+      : orcaContributors,
+    individualTitle: hhof?.individualTitle || 'Individual Contributors',
+    individualContributors: hhof?.individualContributors?.length
+      ? hhof.individualContributors
+      : individualContributors,
+    supportersTitle:
+      hhof?.supportersTitle || 'Supporters (key one-time contributions)',
+    supporters: hhof?.supporters?.length
+      ? hhof.supporters
+      : supporterContributors,
+  }
+
   return (
     <div className="hhof-container">
       {/* Banner for the page */}
@@ -127,7 +168,7 @@ const HackerHallOfFame = () => {
       <Container maxWidth="sm" sx={{ mt: 3 }}>
         <Stack spacing={2}>
           {/* first paragraph */}
-          <IntroParagraph text={firstParagraph} />
+          <IntroParagraph text={content.introParagraph} />
 
           {/*Second paragraph */}
           <IntroParagraph text={secondParagraph} />
@@ -142,19 +183,31 @@ const HackerHallOfFame = () => {
         </Stack>
 
         {/*Founders Box */}
-        <SectionHeader {...foundersHeader} />
+        <SectionHeader
+          {...foundersHeader}
+          title={content.foundersTitle}
+          subtitle={content.foundersSubtitle}
+        />
       </Container>
       {/*Founders list */}
-      <ContributorSection title="" people={contributors} {...contributorRail} />
+      <ContributorSection
+        title=""
+        people={content.founders}
+        {...contributorRail}
+      />
       {/*End of founder contributors list */}
 
       {/* Beginning of the influencers list */}
 
       {/* Influencer's box */}
-      <SectionHeader {...influencersHeader} />
+      <SectionHeader
+        {...influencersHeader}
+        title={content.influencersTitle}
+        subtitle={content.influencersSubtitle}
+      />
 
       {/* Influencer-tier sub-sections (each themed team) */}
-      {influencerSubSections.map((section) => (
+      {content.influencerGroups.map((section) => (
         <ContributorSection
           key={section.title}
           {...section}
@@ -163,7 +216,11 @@ const HackerHallOfFame = () => {
       ))}
 
       {/*Podcast header */}
-      <SectionHeader {...podcastHeader} />
+      <SectionHeader
+        {...podcastHeader}
+        title={content.podcastTitle}
+        subtitle={content.podcastSubtitle}
+      />
 
       <Breadcrumbs
         sx={(theme) => ({
@@ -212,23 +269,25 @@ const HackerHallOfFame = () => {
         }
         aria-label="breadcrumb"
       >
-        <Typography color="text.primary">Prakruti Gogia</Typography>
-        <Typography color="text.primary">Akash Mahajan</Typography>
-        <Typography color="text.primary">Nithya Govindarajan</Typography>
+        {content.podcastNames.map((name) => (
+          <Typography key={name} color="text.primary">
+            {name}
+          </Typography>
+        ))}
       </Breadcrumbs>
 
       {/*OrcaHello header */}
       <ContributorSection
-        title="OrcaHello"
-        caption=" (Real-Time Inference System Leads)"
-        people={orcaContributors}
+        title={content.orcaHelloTitle}
+        caption={content.orcaHelloCaption}
+        people={content.orcaHelloContributors}
         {...contributorRail}
       />
 
       {/*Individual contributors small header */}
       <ContributorSection
-        title="Individual Contributors"
-        people={individualContributors}
+        title={content.individualTitle}
+        people={content.individualContributors}
         compactTitle
         titleVariant="h6"
         {...contributorRail}
@@ -236,8 +295,8 @@ const HackerHallOfFame = () => {
 
       {/*Supporter Header */}
       <ContributorSection
-        title="Supporters (key one-time contributions)"
-        people={supporterContributors}
+        title={content.supportersTitle}
+        people={content.supporters}
         {...contributorRail}
       />
 
@@ -248,3 +307,16 @@ const HackerHallOfFame = () => {
 }
 
 export default HackerHallOfFame
+
+// Fetch the HHOF content from Sanity at build time (revalidated for ISR). If
+// Sanity is unreachable or unconfigured, fall back to null and the component
+// renders its built-in copy + contributor arrays.
+export async function getStaticProps() {
+  let hhof = null
+  try {
+    hhof = await getClient(false).fetch(HHOF_PAGE_QUERY)
+  } catch {
+    hhof = null
+  }
+  return { props: { hhof }, revalidate: 60 }
+}

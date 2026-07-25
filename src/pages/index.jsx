@@ -6,30 +6,62 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Head from 'next/head'
 import Image from 'next/image'
+import { Fragment } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
 import orcas from '../../public/images/homepage.png'
 import Link from '../components/Link'
+import { getClient } from '../sanity/client'
+import { HOME_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
 
-const LIVE_ORCASOUND_LISTEN_URL = 'https://live.orcasound.net/listen'
-const ORCASOUND_HYDROPHONE_MAP_EMBED_URL =
-  'https://www.google.com/maps/d/embed?mid=10UzMA9tn5vXEBHCzksuE9dEggzBrW-0q'
+// Current hard-coded copy, used as a per-field fallback whenever Sanity has no
+// value for a field (or Sanity is unreachable).
+const DEFAULTS = {
+  heroCtaLabel: 'LISTEN TO ORCAS LIVE!',
+  heroCtaHref: 'https://live.orcasound.net/',
+  whatIsHeading: 'What is Orcasound',
+  whatIsParagraphs: [
+    `Orcasound connects your headphones to live hydrophones (underwater
+            microphones), your ears to an ocean of sound.`,
+    `Orcasound helps us explore and conserve marine life around the globe,
+            starting with studying and saving the southern resident killer
+            whales of the Pacific Northwest. At Orcasound you can listen for
+            whales or learn more about marine bioacoustics.`,
+  ],
+  hydrophoneHeading: 'Hydrophone Locations',
+  hydrophoneIntro: `Orcasound streams live underwater audio from hydrophones around
+                the Salish Sea. Choose a listening location and check which
+                feeds are online in the live app.`,
+  hydrophoneReportText: `Listen live, learn what each hydrophone hears, and report
+                  interesting sounds when you notice them.`,
+  mapEmbedId: '10UzMA9tn5vXEBHCzksuE9dEggzBrW-0q',
+  listenLiveLabel: 'LISTEN LIVE',
+  listenLiveHref: 'https://live.orcasound.net/listen',
+  getInvolvedLabel: 'GET INVOLVED',
+  getInvolvedHref: '/getinvolved',
+}
+
+// Build the Google My Maps embed URL from just the map ID, so the iframe host
+// is always google.com/maps (an editor supplies only the `mid`).
+const buildMapEmbedUrl = (mapEmbedId) =>
+  `https://www.google.com/maps/d/embed?mid=${mapEmbedId}`
 
 // Interactive Google My Map of current hydrophone locations, embedded in a
 // fixed-size window. Users pan/zoom natively inside it (like Google Maps); the
 // outer box size never changes, so page layout stays stable.
-const HydrophoneLocationsMapImage = () => (
+const HydrophoneLocationsMapImage = ({ mapEmbedId }) => (
   <Box
     sx={{
       position: 'relative',
       height: { xs: 420, sm: 520 },
       overflow: 'hidden',
+      mb: { xs: 3, sm: 4 },
     }}
   >
     <Box
       component="iframe"
-      src={ORCASOUND_HYDROPHONE_MAP_EMBED_URL}
+      src={buildMapEmbedUrl(mapEmbedId)}
       title="Current Orcasound hydrophone locations map"
       loading="lazy"
       sx={{
@@ -42,7 +74,28 @@ const HydrophoneLocationsMapImage = () => (
   </Box>
 )
 
-export const index = () => {
+export const index = ({ home }) => {
+  // Per-field fallback: use the Sanity value when present, otherwise the
+  // existing hard-coded copy.
+  const content = {
+    heroImage: home?.heroImageUrl || orcas,
+    heroCtaLabel: home?.heroCtaLabel || DEFAULTS.heroCtaLabel,
+    heroCtaHref: home?.heroCtaHref || DEFAULTS.heroCtaHref,
+    whatIsHeading: home?.whatIsHeading || DEFAULTS.whatIsHeading,
+    whatIsParagraphs: home?.whatIsParagraphs?.length
+      ? home.whatIsParagraphs
+      : DEFAULTS.whatIsParagraphs,
+    hydrophoneHeading: home?.hydrophoneHeading || DEFAULTS.hydrophoneHeading,
+    hydrophoneIntro: home?.hydrophoneIntro || DEFAULTS.hydrophoneIntro,
+    hydrophoneReportText:
+      home?.hydrophoneReportText || DEFAULTS.hydrophoneReportText,
+    mapEmbedId: home?.mapEmbedId || DEFAULTS.mapEmbedId,
+    listenLiveLabel: home?.listenLiveLabel || DEFAULTS.listenLiveLabel,
+    listenLiveHref: home?.listenLiveHref || DEFAULTS.listenLiveHref,
+    getInvolvedLabel: home?.getInvolvedLabel || DEFAULTS.getInvolvedLabel,
+    getInvolvedHref: home?.getInvolvedHref || DEFAULTS.getInvolvedHref,
+  }
+
   return (
     <>
       <Head>
@@ -61,7 +114,7 @@ export const index = () => {
         }}
       >
         <Image
-          src={orcas}
+          src={content.heroImage}
           alt="orca background image"
           fill
           priority
@@ -86,7 +139,7 @@ export const index = () => {
         >
           <Box
             component="a"
-            href="https://live.orcasound.net/"
+            href={content.heroCtaHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Listen to orcas live on Orcasound"
@@ -137,7 +190,7 @@ export const index = () => {
                 },
               }}
             >
-              LISTEN TO ORCAS LIVE!
+              {content.heroCtaLabel}
             </Typography>
           </Box>
 
@@ -201,7 +254,7 @@ export const index = () => {
             mr={{ xs: 10 }}
             mt={{ xs: 3 }}
           >
-            What is Orcasound
+            {content.whatIsHeading}
             <br></br>
           </Typography>
           <Typography
@@ -211,14 +264,17 @@ export const index = () => {
             fontWeight={'600'}
             lineHeight="140%"
           >
-            {`Orcasound connects your headphones to live hydrophones (underwater
-            microphones), your ears to an ocean of sound.`}
-            <br></br>
-            <br></br>
-            {`Orcasound helps us explore and conserve marine life around the globe,
-            starting with studying and saving the southern resident killer
-            whales of the Pacific Northwest. At Orcasound you can listen for
-            whales or learn more about marine bioacoustics.`}
+            {content.whatIsParagraphs.map((paragraph, paragraphIndex) => (
+              <Fragment key={paragraphIndex}>
+                {paragraphIndex > 0 && (
+                  <>
+                    <br></br>
+                    <br></br>
+                  </>
+                )}
+                {paragraph}
+              </Fragment>
+            ))}
           </Typography>
         </Box>
 
@@ -236,18 +292,16 @@ export const index = () => {
               fontWeight={'600'}
               mr={{ xs: 10 }}
             >
-              Hydrophone Locations
+              {content.hydrophoneHeading}
             </Typography>
             <Typography variant="body" fontSize="20px" fontWeight={'600'}>
               <br></br>
-              {`Orcasound streams live underwater audio from hydrophones around
-                the Salish Sea. Choose a listening location and check which
-                feeds are online in the live app.`}
+              {content.hydrophoneIntro}
             </Typography>
           </Box>
 
           <Grid item xs={12} sm={6} sx={{ fontFamily: 'Montserrat' }}>
-            <HydrophoneLocationsMapImage />
+            <HydrophoneLocationsMapImage mapEmbedId={content.mapEmbedId} />
           </Grid>
 
           <Box
@@ -263,12 +317,11 @@ export const index = () => {
               mb={{ xs: 3 }}
               mt={{ xs: -5 }}
             >
-              {`Listen live, learn what each hydrophone hears, and report
-                  interesting sounds when you notice them.`}
+              {content.hydrophoneReportText}
             </Typography>
             <Button
               component={Link}
-              href={LIVE_ORCASOUND_LISTEN_URL}
+              href={content.listenLiveHref}
               target="_blank"
               rel="noopener noreferrer"
               variant="contained"
@@ -298,11 +351,11 @@ export const index = () => {
               }}
             >
               {' '}
-              LISTEN LIVE
+              {content.listenLiveLabel}
             </Button>
             <Button
               component={Link}
-              href="/getinvolved"
+              href={content.getInvolvedHref}
               variant="contained"
               onClick={() =>
                 pushToDataLayer('cta_click', {
@@ -330,7 +383,7 @@ export const index = () => {
               }}
             >
               {' '}
-              GET INVOLVED
+              {content.getInvolvedLabel}
             </Button>
           </Box>
 
@@ -346,7 +399,7 @@ export const index = () => {
               fontSize="44px"
               fontWeight={'600'}
             >
-              Hydrophone Locations
+              {content.hydrophoneHeading}
             </Typography>
             <Typography
               variant="body"
@@ -355,9 +408,7 @@ export const index = () => {
               fontWeight={'600'}
             >
               <br></br>
-              {`Orcasound streams live underwater audio from hydrophones around
-                  the Salish Sea. Choose a listening location and check which
-                  feeds are online in the live app.`}
+              {content.hydrophoneIntro}
               <br></br>
               <br></br>
             </Typography>
@@ -367,12 +418,11 @@ export const index = () => {
               fontWeight={'600'}
               mb={5}
             >
-              {`Listen live, learn what each hydrophone hears, and report
-                  interesting sounds when you notice them.`}
+              {content.hydrophoneReportText}
             </Typography>
             <Button
               component={Link}
-              href={LIVE_ORCASOUND_LISTEN_URL}
+              href={content.listenLiveHref}
               target="_blank"
               rel="noopener noreferrer"
               variant="contained"
@@ -402,11 +452,11 @@ export const index = () => {
               }}
             >
               {' '}
-              LISTEN LIVE
+              {content.listenLiveLabel}
             </Button>
             <Button
               component={Link}
-              href="/getinvolved"
+              href={content.getInvolvedHref}
               variant="contained"
               onClick={() =>
                 pushToDataLayer('cta_click', {
@@ -434,7 +484,7 @@ export const index = () => {
               }}
             >
               {' '}
-              GET INVOLVED
+              {content.getInvolvedLabel}
             </Button>
           </Box>
         </Grid>
@@ -444,3 +494,16 @@ export const index = () => {
 }
 
 export default index
+
+// Fetch the Home content from Sanity at build time (revalidated for ISR). If
+// Sanity is unreachable or unconfigured, fall back to null and the component
+// renders its built-in DEFAULTS.
+export async function getStaticProps() {
+  let home = null
+  try {
+    home = await getClient(false).fetch(HOME_PAGE_QUERY)
+  } catch {
+    home = null
+  }
+  return { props: { home }, revalidate: 60 }
+}

@@ -26,7 +26,7 @@ const contributorGrid = {
 const ContributorName = ({ person }) => {
   const sx = (theme) => ({ ...contributorText, ...mobileSmall(theme) })
 
-  if (person.link === '') {
+  if (!person.link) {
     return <Typography sx={sx}>{person.name}</Typography>
   }
 
