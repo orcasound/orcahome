@@ -37,7 +37,7 @@ import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
 
 const contributorRail = {
-  listWidth: '80%',
+  listWidth: '100%',
   listMaxWidth: 800,
 }
 
@@ -165,7 +165,11 @@ const HackerHallOfFame = ({ hhof }) => {
       <HHOFBanner />
 
       {/* First Section for this page- top */}
-      <Container maxWidth="sm" sx={{ mt: 3 }}>
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{ width: 'calc(100% - 32px)', maxWidth: 800, mx: 'auto', mt: 3 }}
+      >
         <Stack spacing={2}>
           {/* first paragraph */}
           <IntroParagraph text={content.introParagraph} />
@@ -211,6 +215,7 @@ const HackerHallOfFame = ({ hhof }) => {
         <ContributorSection
           key={section.title}
           {...section}
+          titleVariant="h5"
           {...contributorRail}
         />
       ))}
@@ -297,6 +302,7 @@ const HackerHallOfFame = ({ hhof }) => {
       <ContributorSection
         title={content.supportersTitle}
         people={content.supporters}
+        titleVariant="h5"
         {...contributorRail}
       />
 
