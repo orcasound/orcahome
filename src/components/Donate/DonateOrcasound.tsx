@@ -15,14 +15,52 @@ import { useState } from 'react'
 import theme from '../../styles/theme'
 import { pushToDataLayer } from '../../utils/gtm'
 
+interface DonationOption {
+  title?: string
+  description?: string
+  href?: string
+  usesCardImage?: 'orcasound' | 'volunteers'
+}
+
 interface DonateOrcasoundProps {
   donateOrcasoundImage: string
+  donateOrcasoundImageWidth?: number
+  donateOrcasoundImageHeight?: number
   donateOrcasoundTitle: string
   donateOrcasoundMessage?: string
   donateVolunteersImage: string
+  donateVolunteersImageWidth?: number
+  donateVolunteersImageHeight?: number
   donateVolunteersTitle: string
   donateVolunteersMessage?: string
+  volunteersButtonHref?: string
+  dialogTitle?: string
+  dialogSubtitle?: string
+  dialogHeading?: string
+  donationOptions?: DonationOption[]
 }
+
+// Built-in dialog copy + options, used as a fallback when Sanity has none.
+const DEFAULT_VOLUNTEERS_BUTTON_HREF =
+  'https://www.orcasound.net/hacker-hall-of-fame/'
+const DEFAULT_DIALOG_TITLE = 'Two Ways to Make A Difference'
+const DEFAULT_DIALOG_SUBTITLE = 'Select your preferred method'
+const DEFAULT_DIALOG_HEADING = 'Ways to Support'
+const DEFAULT_DONATION_OPTIONS: DonationOption[] = [
+  {
+    title: 'Support through Open Collective',
+    description: 'Open Collective offers transparent financial contributions.',
+    href: 'https://opencollective.com/orcasound',
+    usesCardImage: 'orcasound',
+  },
+  {
+    title: 'Support through GitHub',
+    description:
+      'GitHub sponsorship is geared toward supporting our technology resources.',
+    href: 'https://github.com/sponsors/orcasound',
+    usesCardImage: 'volunteers',
+  },
+]
 
 const DonateContainer = styled(Box)(({}) => ({
   margin: '2vw 0',
@@ -83,6 +121,20 @@ const DonateOptionImage = styled(Box)(({ theme }) => ({
 const DonateOrcasound = (props: DonateOrcasoundProps) => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
+  const volunteersButtonHref =
+    props.volunteersButtonHref || DEFAULT_VOLUNTEERS_BUTTON_HREF
+  const dialogTitle = props.dialogTitle || DEFAULT_DIALOG_TITLE
+  const dialogSubtitle = props.dialogSubtitle || DEFAULT_DIALOG_SUBTITLE
+  const dialogHeading = props.dialogHeading || DEFAULT_DIALOG_HEADING
+  const donationOptions =
+    props.donationOptions && props.donationOptions.length > 0
+      ? props.donationOptions
+      : DEFAULT_DONATION_OPTIONS
+  const cardImageFor = (which?: 'orcasound' | 'volunteers') =>
+    which === 'volunteers'
+      ? props.donateVolunteersImage
+      : props.donateOrcasoundImage
+
   const handleDonateClick = () => {
     pushToDataLayer('cta_click', {
       cta_text: 'Support',
@@ -121,6 +173,8 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           <ImageContainer>
             <Image
               src={props.donateOrcasoundImage}
+              width={props.donateOrcasoundImageWidth}
+              height={props.donateOrcasoundImageHeight}
               alt="Support Orcasound"
               sizes="100vw"
               style={{
@@ -165,6 +219,8 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           <ImageContainer>
             <Image
               src={props.donateVolunteersImage}
+              width={props.donateVolunteersImageWidth}
+              height={props.donateVolunteersImageHeight}
               alt="Support Volunteers"
               sizes="100vw"
               style={{
@@ -187,7 +243,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           >
             <Button
               variant="contained"
-              href="https://www.orcasound.net/hacker-hall-of-fame/"
+              href={volunteersButtonHref}
               target="_blank"
               rel="noopener noreferrer"
               sx={{
@@ -237,7 +293,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             letterSpacing="-0.02em"
             color="#000"
           >
-            Two Ways to Make A Difference
+            {dialogTitle}
           </Typography>
           <Typography
             fontFamily="Montserrat"
@@ -248,7 +304,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             color="#8C8C8C"
             mt={1}
           >
-            Select your preferred method
+            {dialogSubtitle}
           </Typography>
           <IconButton
             aria-label="Close donate dialog"
@@ -277,90 +333,52 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             color="#000"
             mb={2}
           >
-            Ways to Support
+            {dialogHeading}
           </Typography>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <DonateOption
-              href="https://opencollective.com/orcasound"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <DonateOptionImage>
-                <Image
-                  src={props.donateOrcasoundImage}
-                  alt="Support Orcasound"
-                  fill
-                  sizes="100vw"
-                  style={{
-                    objectFit: 'cover',
-                  }}
-                />
-              </DonateOptionImage>
-              <Box sx={{ flex: 1 }}>
-                <Typography
-                  fontFamily="Montserrat"
-                  fontWeight={500}
-                  fontSize="18px"
-                  lineHeight="125%"
-                  color="#111"
-                  mb={1}
-                >
-                  Support through Open Collective
-                </Typography>
-                <Typography
-                  fontFamily="Montserrat"
-                  fontWeight={500}
-                  fontSize="18px"
-                  lineHeight="125%"
-                  color="#8C8C8C"
-                >
-                  Open Collective offers transparent financial contributions.
-                </Typography>
-              </Box>
-              <ChevronRightIcon sx={{ color: '#64748B', flexShrink: 0 }} />
-            </DonateOption>
-
-            <DonateOption
-              href="https://github.com/sponsors/orcasound"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <DonateOptionImage>
-                <Image
-                  src={props.donateVolunteersImage}
-                  alt="Support Volunteers"
-                  fill
-                  sizes="100vw"
-                  style={{
-                    objectFit: 'cover',
-                  }}
-                />
-              </DonateOptionImage>
-              <Box sx={{ flex: 1 }}>
-                <Typography
-                  fontFamily="Montserrat"
-                  fontWeight={500}
-                  fontSize="18px"
-                  lineHeight="125%"
-                  color="#111"
-                  mb={1}
-                >
-                  Support through GitHub
-                </Typography>
-                <Typography
-                  fontFamily="Montserrat"
-                  fontWeight={500}
-                  fontSize="18px"
-                  lineHeight="125%"
-                  color="#8C8C8C"
-                >
-                  GitHub sponsorship is geared toward supporting our technology
-                  resources.
-                </Typography>
-              </Box>
-              <ChevronRightIcon sx={{ color: '#64748B', flexShrink: 0 }} />
-            </DonateOption>
+            {donationOptions.map((option, index) => (
+              <DonateOption
+                key={index}
+                href={option.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <DonateOptionImage>
+                  <Image
+                    src={cardImageFor(option.usesCardImage)}
+                    alt={option.title || ''}
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: 'cover',
+                    }}
+                  />
+                </DonateOptionImage>
+                <Box sx={{ flex: 1 }}>
+                  <Typography
+                    fontFamily="Montserrat"
+                    fontWeight={500}
+                    fontSize="18px"
+                    lineHeight="125%"
+                    color="#111"
+                    mb={1}
+                  >
+                    {option.title}
+                  </Typography>
+                  <Typography
+                    fontFamily="Montserrat"
+                    fontWeight={500}
+                    fontSize="18px"
+                    lineHeight="125%"
+                    color="#8C8C8C"
+                  >
+                    {option.description}
+                  </Typography>
+                </Box>
+                <ChevronRightIcon sx={{ color: '#64748B', flexShrink: 0 }} />
+              </DonateOption>
+            ))}
           </Box>
         </DialogContent>
       </Dialog>

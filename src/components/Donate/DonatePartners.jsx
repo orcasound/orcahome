@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 
-import partners from '../../data/donatePartners.json'
+import defaultPartners from '../../data/donatePartners.json'
 import { pushToDataLayer } from '../../utils/gtm'
 
 const TitleContainer = styled(Box)(({ theme }) => ({
@@ -56,7 +56,23 @@ const StyledLink = styled('a')({
   },
 })
 
-const DonatePartners = () => {
+const DEFAULT_PARTNERS_TITLE = 'Support our 501(c)3 Partners'
+const DEFAULT_PARTNERS_DESCRIPTION =
+  'Contribute to our partners to support on-going conservation, research, and education efforts.'
+
+const DonatePartners = ({ title, description, partners: sanityPartners }) => {
+  // Use the Sanity partner list when present, otherwise the bundled JSON.
+  // Normalize each entry to { icon, name, description, linkTo } so the card
+  // markup below stays unchanged.
+  const partners = sanityPartners?.length
+    ? sanityPartners.map((partner) => ({
+        icon: partner.iconUrl,
+        name: partner.name,
+        description: partner.description,
+        linkTo: partner.linkTo,
+      }))
+    : defaultPartners
+
   return (
     <>
       <TitleContainer>
@@ -68,11 +84,10 @@ const DonatePartners = () => {
             mb: { xs: '0.5rem', md: 0 },
           }}
         >
-          Support our 501(c)3 Partners
+          {title || DEFAULT_PARTNERS_TITLE}
         </Typography>
         <Typography sx={{ fontSize: { xs: '15px', md: '19px' } }}>
-          Contribute to our partners to support on-going conservation, research,
-          and education efforts.
+          {description || DEFAULT_PARTNERS_DESCRIPTION}
         </Typography>
       </TitleContainer>
       {/* Mobile */}
