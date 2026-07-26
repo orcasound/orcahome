@@ -24,7 +24,7 @@ export const donatePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1XzpOD2k6Gt3H6wFABuLe8gRYXk6sZ-b8xqdz598PAuo/edit"
+            href="https://docs.google.com/document/d/1XLQVhHI1nI8AfpfJ9E8-wf8TRVfurArTM3Fcc1Ki32w/edit"
             target="_blank"
             rel="noreferrer"
           >
