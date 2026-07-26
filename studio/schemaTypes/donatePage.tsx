@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 /**
  * Donate / Support page (Phase 2 — V1 only).
@@ -84,6 +84,87 @@ export const donatePage = defineType({
       title: 'Support Volunteers · image',
       type: 'image',
       options: {hotspot: true},
+    }),
+    defineField({
+      name: 'volunteersButtonHref',
+      title: 'Support Volunteers · button link',
+      type: 'url',
+    }),
+
+    // —— "Ways to Support" dialog ——
+    defineField({
+      name: 'dialogTitle',
+      title: 'Dialog · title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'dialogSubtitle',
+      title: 'Dialog · subtitle',
+      type: 'string',
+    }),
+    defineField({
+      name: 'dialogHeading',
+      title: 'Dialog · "Ways to Support" heading',
+      type: 'string',
+    }),
+    defineField({
+      name: 'donationOptions',
+      title: 'Dialog · donation options',
+      description: 'The clickable support methods (e.g. Open Collective, GitHub).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              rows: 2,
+            }),
+            defineField({
+              name: 'href',
+              title: 'Link URL',
+              type: 'url',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'usesCardImage',
+              title: 'Thumbnail',
+              description:
+                'Which card image to show as the thumbnail for this option.',
+              type: 'string',
+              options: {
+                list: [
+                  {title: 'Support Orcasound image', value: 'orcasound'},
+                  {title: 'Support Volunteers image', value: 'volunteers'},
+                ],
+                layout: 'radio',
+              },
+            }),
+          ],
+          preview: {select: {title: 'title', subtitle: 'href'}},
+        }),
+      ],
+    }),
+
+    // —— Partners section heading (the cards themselves stay in JSON) ——
+    defineField({
+      name: 'partnersTitle',
+      title: 'Partners section · title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'partnersDescription',
+      title: 'Partners section · description',
+      type: 'text',
+      rows: 2,
     }),
   ],
   preview: {

@@ -341,8 +341,22 @@ export const DONATE_PAGE_QUERY = `*[_type == "donatePage"][0]{
   volunteersMessage,
   "volunteersImageUrl": volunteersImage.asset->url,
   "volunteersImageWidth": volunteersImage.asset->metadata.dimensions.width,
-  "volunteersImageHeight": volunteersImage.asset->metadata.dimensions.height
+  "volunteersImageHeight": volunteersImage.asset->metadata.dimensions.height,
+  volunteersButtonHref,
+  dialogTitle,
+  dialogSubtitle,
+  dialogHeading,
+  donationOptions[]{ title, description, href, usesCardImage },
+  partnersTitle,
+  partnersDescription
 }`
+
+export interface DonationOption {
+  title?: string
+  description?: string
+  href?: string
+  usesCardImage?: 'orcasound' | 'volunteers'
+}
 
 export interface DonatePageContent {
   heroTitle?: string
@@ -358,4 +372,11 @@ export interface DonatePageContent {
   volunteersImageUrl?: string
   volunteersImageWidth?: number
   volunteersImageHeight?: number
+  volunteersButtonHref?: string
+  dialogTitle?: string
+  dialogSubtitle?: string
+  dialogHeading?: string
+  donationOptions?: DonationOption[]
+  partnersTitle?: string
+  partnersDescription?: string
 }

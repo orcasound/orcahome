@@ -56,7 +56,11 @@ const StyledLink = styled('a')({
   },
 })
 
-const DonatePartners = () => {
+const DEFAULT_PARTNERS_TITLE = 'Support our 501(c)3 Partners'
+const DEFAULT_PARTNERS_DESCRIPTION =
+  'Contribute to our partners to support on-going conservation, research, and education efforts.'
+
+const DonatePartners = ({ title, description }) => {
   return (
     <>
       <TitleContainer>
@@ -68,11 +72,10 @@ const DonatePartners = () => {
             mb: { xs: '0.5rem', md: 0 },
           }}
         >
-          Support our 501(c)3 Partners
+          {title || DEFAULT_PARTNERS_TITLE}
         </Typography>
         <Typography sx={{ fontSize: { xs: '15px', md: '19px' } }}>
-          Contribute to our partners to support on-going conservation, research,
-          and education efforts.
+          {description || DEFAULT_PARTNERS_DESCRIPTION}
         </Typography>
       </TitleContainer>
       {/* Mobile */}

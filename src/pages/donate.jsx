@@ -48,6 +48,13 @@ export const Donate = ({ donate }) => {
     volunteersImageHeight: donate?.volunteersImageUrl
       ? donate.volunteersImageHeight
       : undefined,
+    volunteersButtonHref: donate?.volunteersButtonHref,
+    dialogTitle: donate?.dialogTitle,
+    dialogSubtitle: donate?.dialogSubtitle,
+    dialogHeading: donate?.dialogHeading,
+    donationOptions: donate?.donationOptions,
+    partnersTitle: donate?.partnersTitle,
+    partnersDescription: donate?.partnersDescription,
   }
 
   return (
@@ -84,9 +91,17 @@ export const Donate = ({ donate }) => {
             donateVolunteersImageHeight={content.volunteersImageHeight}
             donateVolunteersTitle={content.volunteersTitle}
             donateVolunteersMessage={content.volunteersMessage}
+            volunteersButtonHref={content.volunteersButtonHref}
+            dialogTitle={content.dialogTitle}
+            dialogSubtitle={content.dialogSubtitle}
+            dialogHeading={content.dialogHeading}
+            donationOptions={content.donationOptions}
           />
           <br />
-          <DonatePartners />
+          <DonatePartners
+            title={content.partnersTitle}
+            description={content.partnersDescription}
+          />
         </Box>
       </Container>
     </>
