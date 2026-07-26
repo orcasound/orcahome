@@ -1,8 +1,8 @@
 # Editing the Donate / Support page (Sanity CMS guide)
 
-This guide walks you through editing the Support page copy on orcasound.tech
-using Sanity Studio — the hero and the two support cards — all without touching
-any code.
+This guide walks you through editing the Support page on orcasound.tech using
+Sanity Studio — the hero, the two support cards, the "Ways to Support" pop-up,
+and the partner cards — all without touching any code.
 
 > **What is NOT edited here:** page layout, styling, and analytics stay in code.
 > Everything else on the page — the hero, the two support cards, the "Ways to
@@ -36,9 +36,9 @@ any code.
 | **Support Volunteers · title / message / image** | The right support card                                  |
 | **Support Volunteers · button link**             | Where the right card's Support button goes              |
 | **Dialog · title / subtitle / heading**          | The "Ways to Support" pop-up headings                   |
-| **Dialog · donation options**                    | The clickable support methods in the pop-up (see §6)    |
+| **Dialog · donation options**                    | The clickable support methods in the pop-up (see §5)    |
 | **Partners section · title / description**       | The heading above the partner cards                     |
-| **Partner cards**                                | The 501(c)3 partner cards — logo, name, text, link (§7) |
+| **Partner cards**                                | The 501(c)3 partner cards — logo, name, text, link (§6) |
 
 ### Editing text
 
@@ -139,7 +139,7 @@ You do **not** need a developer to deploy anything.
 | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | "I edited it but the site still shows the old version" | Either you didn't **Publish**, or the ~1 minute refresh window hasn't passed. Check for an "Unpublished changes" indicator, publish, wait a minute, hard-refresh. |
 | "A field looks empty in the Studio"                    | If a field is left blank, the site falls back to its built-in default text/image. Fill the field in the Studio to override it.                                    |
-| "I want to change a partner logo"                      | Partner logos aren't in Sanity yet — those still live in the code's data file. Ask a developer.                                                                   |
+| "A partner card / donation option is gone"             | If the list is left empty, the site falls back to its built-in items. Fill the list in the Studio to override it.                                                 |
 | "I can't sign in"                                      | Ask an admin to grant your Google account access to the Sanity project.                                                                                           |
 
 ---
