@@ -154,7 +154,7 @@ export const donatePage = defineType({
       ],
     }),
 
-    // —— Partners section heading (the cards themselves stay in JSON) ——
+    // —— Partners section ——
     defineField({
       name: 'partnersTitle',
       title: 'Partners section · title',
@@ -165,6 +165,42 @@ export const donatePage = defineType({
       title: 'Partners section · description',
       type: 'text',
       rows: 2,
+    }),
+    defineField({
+      name: 'partners',
+      title: 'Partner cards',
+      description: 'The 501(c)3 partner cards (logo, name, description, link).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Name',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'logo',
+              title: 'Logo',
+              type: 'image',
+            }),
+            defineField({
+              name: 'description',
+              title: 'Description',
+              type: 'text',
+              rows: 3,
+            }),
+            defineField({
+              name: 'linkTo',
+              title: 'Donate / info link',
+              type: 'url',
+            }),
+          ],
+          preview: {select: {title: 'name', media: 'logo'}},
+        }),
+      ],
     }),
   ],
   preview: {

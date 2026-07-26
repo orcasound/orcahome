@@ -55,6 +55,7 @@ export const Donate = ({ donate }) => {
     donationOptions: donate?.donationOptions,
     partnersTitle: donate?.partnersTitle,
     partnersDescription: donate?.partnersDescription,
+    partners: donate?.partners,
   }
 
   return (
@@ -101,6 +102,7 @@ export const Donate = ({ donate }) => {
           <DonatePartners
             title={content.partnersTitle}
             description={content.partnersDescription}
+            partners={content.partners}
           />
         </Box>
       </Container>

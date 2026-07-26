@@ -348,7 +348,13 @@ export const DONATE_PAGE_QUERY = `*[_type == "donatePage"][0]{
   dialogHeading,
   donationOptions[]{ title, description, href, usesCardImage },
   partnersTitle,
-  partnersDescription
+  partnersDescription,
+  partners[]{
+    name,
+    "iconUrl": logo.asset->url,
+    description,
+    linkTo
+  }
 }`
 
 export interface DonationOption {
@@ -379,4 +385,12 @@ export interface DonatePageContent {
   donationOptions?: DonationOption[]
   partnersTitle?: string
   partnersDescription?: string
+  partners?: DonatePartner[]
+}
+
+export interface DonatePartner {
+  name?: string
+  iconUrl?: string
+  description?: string
+  linkTo?: string
 }
