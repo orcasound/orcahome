@@ -17,9 +17,13 @@ import { pushToDataLayer } from '../../utils/gtm'
 
 interface DonateOrcasoundProps {
   donateOrcasoundImage: string
+  donateOrcasoundImageWidth?: number
+  donateOrcasoundImageHeight?: number
   donateOrcasoundTitle: string
   donateOrcasoundMessage?: string
   donateVolunteersImage: string
+  donateVolunteersImageWidth?: number
+  donateVolunteersImageHeight?: number
   donateVolunteersTitle: string
   donateVolunteersMessage?: string
 }
@@ -121,6 +125,8 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           <ImageContainer>
             <Image
               src={props.donateOrcasoundImage}
+              width={props.donateOrcasoundImageWidth}
+              height={props.donateOrcasoundImageHeight}
               alt="Support Orcasound"
               sizes="100vw"
               style={{
@@ -165,6 +171,8 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
           <ImageContainer>
             <Image
               src={props.donateVolunteersImage}
+              width={props.donateVolunteersImageWidth}
+              height={props.donateVolunteersImageHeight}
               alt="Support Volunteers"
               sizes="100vw"
               style={{

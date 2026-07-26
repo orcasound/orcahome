@@ -321,3 +321,41 @@ export interface CatalogPageContent {
   sectionDescription?: string
   imageCredit?: string
 }
+
+/**
+ * Donate / Support page (Phase 2 — V1 only). Hero + the two support cards. The
+ * card images are rendered non-`fill` in the card and `fill` in the dialog, so
+ * we resolve their asset dimensions for `next/image`. Partner cards stay in
+ * `donatePartners.json`.
+ */
+export const DONATE_PAGE_QUERY = `*[_type == "donatePage"][0]{
+  heroTitle,
+  heroDescription,
+  "heroImageUrl": heroImage.asset->url,
+  orcasoundTitle,
+  orcasoundMessage,
+  "orcasoundImageUrl": orcasoundImage.asset->url,
+  "orcasoundImageWidth": orcasoundImage.asset->metadata.dimensions.width,
+  "orcasoundImageHeight": orcasoundImage.asset->metadata.dimensions.height,
+  volunteersTitle,
+  volunteersMessage,
+  "volunteersImageUrl": volunteersImage.asset->url,
+  "volunteersImageWidth": volunteersImage.asset->metadata.dimensions.width,
+  "volunteersImageHeight": volunteersImage.asset->metadata.dimensions.height
+}`
+
+export interface DonatePageContent {
+  heroTitle?: string
+  heroDescription?: string
+  heroImageUrl?: string
+  orcasoundTitle?: string
+  orcasoundMessage?: string
+  orcasoundImageUrl?: string
+  orcasoundImageWidth?: number
+  orcasoundImageHeight?: number
+  volunteersTitle?: string
+  volunteersMessage?: string
+  volunteersImageUrl?: string
+  volunteersImageWidth?: number
+  volunteersImageHeight?: number
+}
