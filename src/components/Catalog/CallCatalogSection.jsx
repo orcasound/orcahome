@@ -7,8 +7,22 @@ import CatalogCallList from './CatalogCallList'
 import { TOOLTIPS } from './constants'
 import PodFilter from './PodFilter'
 
-export default function CallCatalogSection() {
+// Hard-coded copy, used as a fallback whenever Sanity has no value. The
+// {count} token in the description is replaced with the live dataset size.
+const DEFAULT_SECTION_TITLE = 'Southern Resident Killer Whales Call Catalog'
+const DEFAULT_SECTION_DESCRIPTION =
+  'Orcasound maintains an online catalog of the SRKW calls (built by Val Veirs and his students at Colorado College, based on the Osborne-Ford tape, March 1981, and the call classification of Ford, 1987). You can browse {count} Ford call entries and variants recorded throughout the habitat of J, K, and L pod, with available audio, generated waveform images, color spectrograms, and Ford catalog spectrograms.'
+
+export default function CallCatalogSection({
+  sectionTitle,
+  sectionDescription,
+}) {
   const [activePod, setActivePod] = useState('All Calls')
+
+  const title = sectionTitle || DEFAULT_SECTION_TITLE
+  const description = (
+    sectionDescription || DEFAULT_SECTION_DESCRIPTION
+  ).replace('{count}', CALLS.length)
 
   return (
     <>
@@ -23,7 +37,7 @@ export default function CallCatalogSection() {
           mb: 3,
         }}
       >
-        Southern Resident Killer Whales Call Catalog
+        {title}
       </Typography>
 
       {/* Description */}
@@ -38,12 +52,7 @@ export default function CallCatalogSection() {
           mb: 5,
         }}
       >
-        Orcasound maintains an online catalog of the SRKW calls (built by Val
-        Veirs and his students at Colorado College, based on the Osborne-Ford
-        tape, March 1981, and the call classification of Ford, 1987). You can
-        browse {CALLS.length} Ford call entries and variants recorded throughout
-        the habitat of J, K, and L pod, with available audio, generated waveform
-        images, color spectrograms, and Ford catalog spectrograms.
+        {description}
       </Typography>
 
       {/* Pod filter tabs */}
