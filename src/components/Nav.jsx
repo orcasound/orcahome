@@ -21,7 +21,6 @@ import React, { useState } from 'react'
 
 import orcasoundlogo from '../../public/images/logo-white.svg'
 import { pushToDataLayer } from '../utils/gtm'
-import useIsMobile from '../utils/useIsMobile'
 import Link from './Link'
 
 const navLinks = [
@@ -63,8 +62,12 @@ const navLinks = [
 
 const Nav = () => {
   const theme = useTheme()
-  const isMobile = useIsMobile()
 
+  // Mobile vs desktop is switched with CSS breakpoints (not a JS/media-query
+  // hook) so the server and the first client render are identical. A JS switch
+  // renders the mobile nav on the server (media queries can't be evaluated
+  // there) and then swaps to desktop on hydration, which makes the logo visibly
+  // jump. Rendering both and toggling `display` avoids that layout shift.
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
@@ -89,13 +92,22 @@ const Nav = () => {
                 </Link>
               </Box>
             </Box>
-            {isMobile ? (
-              <Box sx={{ marginLeft: 'auto' }}>
-                <Mobile />
-              </Box>
-            ) : (
+            {/* Desktop nav (lg and up) */}
+            <Box
+              sx={{
+                display: { xs: 'none', lg: 'flex' },
+                flexGrow: 0.6,
+                alignItems: 'center',
+              }}
+            >
               <Desktop />
-            )}
+            </Box>
+            {/* Mobile nav (below lg) */}
+            <Box
+              sx={{ display: { xs: 'flex', lg: 'none' }, marginLeft: 'auto' }}
+            >
+              <Mobile />
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
