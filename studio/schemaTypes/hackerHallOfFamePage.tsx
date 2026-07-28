@@ -16,10 +16,10 @@ export const hackerHallOfFamePage = defineType({
   title: 'Hacker Hall of Fame Page',
   type: 'document',
   fields: [
-    // —— Intro copy ——
+    // —— Hero / banner ——
     defineField({
-      name: 'introParagraph',
-      title: 'Intro paragraph',
+      name: 'heroTitle',
+      title: 'Hero title',
       description: (
         <>
           📖 New to editing this page?{' '}
@@ -33,6 +33,35 @@ export const hackerHallOfFamePage = defineType({
           .
         </>
       ),
+      type: 'string',
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero / banner image',
+      type: 'image',
+      options: {hotspot: true},
+    }),
+    defineField({
+      name: 'thankYouMessage',
+      title: 'Thank-you banner message',
+      type: 'string',
+    }),
+    defineField({
+      name: 'hackathonImage',
+      title: 'Hackathon photo',
+      type: 'image',
+      options: {hotspot: true},
+    }),
+    defineField({
+      name: 'hackathonCaption',
+      title: 'Hackathon photo caption',
+      type: 'string',
+    }),
+
+    // —— Intro copy ——
+    defineField({
+      name: 'introParagraph',
+      title: 'Intro paragraph',
       type: 'text',
       rows: 5,
     }),
@@ -154,6 +183,31 @@ export const hackerHallOfFamePage = defineType({
       title: 'Supporters · list',
       type: 'array',
       of: [defineArrayMember({type: 'contributor'})],
+    }),
+
+    // —— Lower photos (above footer) ——
+    defineField({
+      name: 'lowerImages',
+      title: 'Lower photos (above footer)',
+      description: 'The two photos above the footer, each with a caption.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Photo',
+              type: 'image',
+              options: {hotspot: true},
+              validation: (rule) => rule.required(),
+            }),
+            defineField({name: 'caption', title: 'Caption', type: 'text', rows: 2}),
+          ],
+          preview: {select: {title: 'caption', media: 'image'}},
+        }),
+      ],
+      validation: (rule) => rule.max(2),
     }),
   ],
   preview: {

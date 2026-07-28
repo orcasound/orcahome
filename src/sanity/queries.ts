@@ -248,6 +248,13 @@ export interface LearnPageContent {
  * in the React component (per-field fallback to the hard-coded content).
  */
 export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
+  heroTitle,
+  "heroImageUrl": heroImage.asset->url,
+  thankYouMessage,
+  "hackathonImageUrl": hackathonImage.asset->url,
+  "hackathonImageWidth": hackathonImage.asset->metadata.dimensions.width,
+  "hackathonImageHeight": hackathonImage.asset->metadata.dimensions.height,
+  hackathonCaption,
   introParagraph,
   foundersTitle,
   foundersSubtitle,
@@ -264,7 +271,13 @@ export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
   individualTitle,
   individualContributors[]{name, country, roles, link},
   supportersTitle,
-  supporters[]{name, country, roles, link}
+  supporters[]{name, country, roles, link},
+  lowerImages[]{
+    "url": image.asset->url,
+    "width": image.asset->metadata.dimensions.width,
+    "height": image.asset->metadata.dimensions.height,
+    caption
+  }
 }`
 
 export interface Contributor {
@@ -279,7 +292,21 @@ export interface InfluencerGroup {
   contributors?: Contributor[]
 }
 
+export interface HHOFLowerImage {
+  url?: string
+  width?: number
+  height?: number
+  caption?: string
+}
+
 export interface HHOFPageContent {
+  heroTitle?: string
+  heroImageUrl?: string
+  thankYouMessage?: string
+  hackathonImageUrl?: string
+  hackathonImageWidth?: number
+  hackathonImageHeight?: number
+  hackathonCaption?: string
   introParagraph?: string
   foundersTitle?: string
   foundersSubtitle?: string
@@ -297,6 +324,7 @@ export interface HHOFPageContent {
   individualContributors?: Contributor[]
   supportersTitle?: string
   supporters?: Contributor[]
+  lowerImages?: HHOFLowerImage[]
 }
 
 /**

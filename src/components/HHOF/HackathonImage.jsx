@@ -10,7 +10,10 @@ import Image from 'next/image'
 
 import hackathon from '../../../public/images/getinvolved/hackathon.png'
 
-const HackathonImage = () => {
+const DEFAULT_CAPTION =
+  'Orcasound at a democracy lab hackathon in Seattle (photo by Mark Frischmuth).'
+
+const HackathonImage = ({ imageUrl, imageWidth, imageHeight, caption }) => {
   return (
     <Box
       className="hackathon-image-container"
@@ -33,10 +36,10 @@ const HackathonImage = () => {
       }}
     >
       <Image
-        src={hackathon}
+        src={imageUrl || hackathon}
         alt="Orcasound at a democracy lab hackathon in Seattle"
-        width={573}
-        height={368}
+        width={imageUrl ? imageWidth : 573}
+        height={imageUrl ? imageHeight : 368}
         style={{
           width: '100%',
           height: 'auto',
@@ -46,8 +49,7 @@ const HackathonImage = () => {
         variant="caption"
         sx={{ color: 'text.secondary', display: 'block' }}
       >
-        Orcasound at a democracy lab hackathon in Seattle (photo by Mark
-        Frischmuth).
+        {caption || DEFAULT_CAPTION}
       </Typography>
     </Box>
   )

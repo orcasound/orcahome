@@ -125,6 +125,15 @@ const HackerHallOfFame = ({ hhof }) => {
   // and the link-heavy paragraphs (second/third + the Founders description)
   // stay in code.
   const content = {
+    heroTitle: hhof?.heroTitle || 'Hacker\n Hall of Fame',
+    heroImageUrl: hhof?.heroImageUrl || null,
+    thankYouMessage:
+      hhof?.thankYouMessage || 'Thank you, Orcasound App Hackers!',
+    hackathonImageUrl: hhof?.hackathonImageUrl || null,
+    hackathonImageWidth: hhof?.hackathonImageWidth,
+    hackathonImageHeight: hhof?.hackathonImageHeight,
+    hackathonCaption: hhof?.hackathonCaption || null,
+    lowerImages: hhof?.lowerImages?.length ? hhof.lowerImages : null,
     introParagraph: hhof?.introParagraph || firstParagraph,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
@@ -162,7 +171,11 @@ const HackerHallOfFame = ({ hhof }) => {
   return (
     <div className="hhof-container">
       {/* Banner for the page */}
-      <HHOFBanner />
+      <HHOFBanner
+        heroTitle={content.heroTitle}
+        heroImageUrl={content.heroImageUrl}
+        thankYouMessage={content.thankYouMessage}
+      />
 
       {/* First Section for this page- top */}
       <Container
@@ -179,7 +192,12 @@ const HackerHallOfFame = ({ hhof }) => {
 
           {/*Hackathon image */}
           <Box sx={{ pt: 2.5, mb: -1 }}>
-            <HackathonImage />
+            <HackathonImage
+              imageUrl={content.hackathonImageUrl}
+              imageWidth={content.hackathonImageWidth}
+              imageHeight={content.hackathonImageHeight}
+              caption={content.hackathonCaption}
+            />
           </Box>
 
           {/*Third paragraph after first image */}
@@ -307,7 +325,7 @@ const HackerHallOfFame = ({ hhof }) => {
       />
 
       {/*final pictures above footer */}
-      <LowerImages></LowerImages>
+      <LowerImages images={content.lowerImages} />
     </div>
   )
 }

@@ -9,7 +9,40 @@ import Image from 'next/image'
 
 import hackCollab from '../../../public/images/hackerHallOfFame/Hacker_Collab.png'
 import hackVal from '../../../public/images/hackerHallOfFame/Hacker_Val.png'
-const LowerImages = () => {
+
+const DEFAULT_LOWER_IMAGES = [
+  {
+    src: hackCollab,
+    alt: 'Erika facilitating an early discussion of machine learning and the orca data repository',
+    caption:
+      'Erika facilitating an early discussion of machine learning and the Orcadata repository.',
+  },
+  {
+    src: hackVal,
+    alt: 'Val working on the Orcanode software and hardware.',
+    caption: 'Val working on the Orcanode software and hardware.',
+  },
+]
+
+const LowerImages = ({ images }) => {
+  // Use the Sanity photos when present (remote URL + dimensions), otherwise the
+  // bundled photos (which carry their own intrinsic dimensions).
+  const pick = (index) => {
+    const sanity = images?.[index]
+    if (sanity?.url) {
+      return {
+        src: sanity.url,
+        width: sanity.width,
+        height: sanity.height,
+        alt: sanity.caption || DEFAULT_LOWER_IMAGES[index].alt,
+        caption: sanity.caption || DEFAULT_LOWER_IMAGES[index].caption,
+      }
+    }
+    return DEFAULT_LOWER_IMAGES[index]
+  }
+  const photo0 = pick(0)
+  const photo1 = pick(1)
+
   return (
     <div className="lower-images-container">
       {/*final pictures above footer */}
@@ -65,8 +98,10 @@ const LowerImages = () => {
             })}
           >
             <Image
-              src={hackCollab}
-              alt="Erika facilitating an early discussion of machine learning and the orca data repository"
+              src={photo0.src}
+              width={photo0.width}
+              height={photo0.height}
+              alt={photo0.alt}
               style={{
                 width: '100%',
                 height: 'auto',
@@ -80,8 +115,7 @@ const LowerImages = () => {
                 width: '100%',
               })}
             >
-              Erika facilitating an early discussion of machine learning and the
-              Orcadata repository.
+              {photo0.caption}
             </Typography>
           </Box>
 
@@ -101,8 +135,10 @@ const LowerImages = () => {
             })}
           >
             <Image
-              src={hackVal}
-              alt="Val working on the Orcanode software and hardware."
+              src={photo1.src}
+              width={photo1.width}
+              height={photo1.height}
+              alt={photo1.alt}
               style={{
                 width: '100%',
                 height: 'auto',
@@ -110,7 +146,7 @@ const LowerImages = () => {
               }}
             />
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-              Val working on the Orcanode software and hardware.
+              {photo1.caption}
             </Typography>
           </Box>
         </Box>
