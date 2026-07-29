@@ -37,8 +37,8 @@ import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
 
 const contributorRail = {
-  listWidth: '80%',
-  listMaxWidth: 800,
+  listWidth: '100%',
+  listMaxWidth: 640,
 }
 
 const HackerHallOfFame = ({ hhof }) => {
@@ -125,6 +125,15 @@ const HackerHallOfFame = ({ hhof }) => {
   // and the link-heavy paragraphs (second/third + the Founders description)
   // stay in code.
   const content = {
+    heroTitle: hhof?.heroTitle || 'Hacker\n Hall of Fame',
+    heroImageUrl: hhof?.heroImageUrl || null,
+    thankYouMessage:
+      hhof?.thankYouMessage || 'Thank you, Orcasound App Hackers!',
+    hackathonImageUrl: hhof?.hackathonImageUrl || null,
+    hackathonImageWidth: hhof?.hackathonImageWidth,
+    hackathonImageHeight: hhof?.hackathonImageHeight,
+    hackathonCaption: hhof?.hackathonCaption || null,
+    lowerImages: hhof?.lowerImages?.length ? hhof.lowerImages : null,
     introParagraph: hhof?.introParagraph || firstParagraph,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
@@ -162,10 +171,18 @@ const HackerHallOfFame = ({ hhof }) => {
   return (
     <div className="hhof-container">
       {/* Banner for the page */}
-      <HHOFBanner />
+      <HHOFBanner
+        heroTitle={content.heroTitle}
+        heroImageUrl={content.heroImageUrl}
+        thankYouMessage={content.thankYouMessage}
+      />
 
       {/* First Section for this page- top */}
-      <Container maxWidth="sm" sx={{ mt: 3 }}>
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{ width: 'calc(100% - 32px)', maxWidth: 800, mx: 'auto', mt: 3 }}
+      >
         <Stack spacing={2}>
           {/* first paragraph */}
           <IntroParagraph text={content.introParagraph} />
@@ -175,7 +192,12 @@ const HackerHallOfFame = ({ hhof }) => {
 
           {/*Hackathon image */}
           <Box sx={{ pt: 2.5, mb: -1 }}>
-            <HackathonImage />
+            <HackathonImage
+              imageUrl={content.hackathonImageUrl}
+              imageWidth={content.hackathonImageWidth}
+              imageHeight={content.hackathonImageHeight}
+              caption={content.hackathonCaption}
+            />
           </Box>
 
           {/*Third paragraph after first image */}
@@ -211,6 +233,7 @@ const HackerHallOfFame = ({ hhof }) => {
         <ContributorSection
           key={section.title}
           {...section}
+          titleVariant="h5"
           {...contributorRail}
         />
       ))}
@@ -297,11 +320,12 @@ const HackerHallOfFame = ({ hhof }) => {
       <ContributorSection
         title={content.supportersTitle}
         people={content.supporters}
+        titleVariant="h5"
         {...contributorRail}
       />
 
       {/*final pictures above footer */}
-      <LowerImages></LowerImages>
+      <LowerImages images={content.lowerImages} />
     </div>
   )
 }

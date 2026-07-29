@@ -20,12 +20,12 @@ const ContributorSection = ({
     <div className="contributor-sec-container">
       <Container
         maxWidth={false}
+        disableGutters
         sx={(theme) => ({
-          // Unified vertical spacing for every section. Each list sits between
-          // navy header boxes; this gives a consistent gap on both sides
-          // (box -> list -> box). Margins collapse, so adjacent sections share
-          // one gap rather than stacking.
-          my: 6,
+          width: 'calc(100% - 32px)',
+          maxWidth: listMaxWidth,
+          mx: 'auto',
+          my: { xs: 5, sm: 6 },
 
           [theme.breakpoints.down('sm')]: {
             display: 'flex',
@@ -44,8 +44,8 @@ const ContributorSection = ({
         ) : (
           <Box
             sx={{
-              minHeight: compactTitle ? 0 : '10em',
-              mt: compactTitle ? 3 : 0,
+              mt: compactTitle ? 2 : 0,
+              mb: 3,
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
@@ -79,19 +79,13 @@ const ContributorSection = ({
             width: listWidth,
             maxWidth: listMaxWidth,
             mx: 'auto',
-            transform: 'none',
             [theme.breakpoints.down('sm')]: {
               width: '100%',
               maxWidth: '100%',
-              transform: 'none',
             },
             [theme.breakpoints.between('sm', 'lg')]: {
               width: '100%',
               maxWidth: listMaxWidth,
-              transform: 'none',
-            },
-            [theme.breakpoints.up('lg')]: {
-              transform: `translateX(${theme.layout.hhofContributorRailShift}px)`,
             },
           })}
         >
