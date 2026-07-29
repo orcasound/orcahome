@@ -83,6 +83,41 @@ const introComponents = {
   },
 }
 
+// Serializer for the Founders navy-box description. It renders inside the box's
+// existing <Typography sx=...> (via SectionHeader), so `block` outputs a bare
+// fragment (no extra Typography) and only the white link + analytics differ.
+const sectionHeaderComponents = {
+  block: {
+    normal: ({ children }) => <>{children}</>,
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+      return (
+        <Link
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener'}
+          sx={{ color: 'white', textDecoration: 'underline' }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'hacker_hall_of_fame',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
+}
+
 const HackerHallOfFame = ({ hhof }) => {
   const firstParagraph = `We would like to acknowledge the tremendous contributions of time,
             technology, and code that have been made to our open source project.
@@ -185,6 +220,23 @@ const HackerHallOfFame = ({ hhof }) => {
       : null,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
+    // Replace only the first Founders description's content source: use Sanity
+    // (rendered via Portable Text) when present, else the hard-coded JSX. The
+    // styling and the second (summary) description stay in the config.
+    foundersDescriptions: [
+      {
+        ...foundersHeader.descriptions[0],
+        node: hhof?.foundersDescription?.length ? (
+          <PortableText
+            value={hhof.foundersDescription}
+            components={sectionHeaderComponents}
+          />
+        ) : (
+          foundersHeader.descriptions[0].node
+        ),
+      },
+      ...foundersHeader.descriptions.slice(1),
+    ],
     founders: hhof?.founders?.length ? hhof.founders : contributors,
     influencersTitle: hhof?.influencersTitle || 'Influencers',
     influencersSubtitle: hhof?.influencersSubtitle || '(Major Contributors)',
@@ -271,6 +323,7 @@ const HackerHallOfFame = ({ hhof }) => {
           {...foundersHeader}
           title={content.foundersTitle}
           subtitle={content.foundersSubtitle}
+          descriptions={content.foundersDescriptions}
         />
       </Container>
       {/*Founders list */}

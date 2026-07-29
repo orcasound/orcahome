@@ -262,6 +262,7 @@ export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
   introThirdParagraph,
   foundersTitle,
   foundersSubtitle,
+  foundersDescription,
   founders[]{name, country, roles, link},
   influencersTitle,
   influencersSubtitle,
@@ -316,6 +317,7 @@ export interface HHOFPageContent {
   introThirdParagraph?: Array<Record<string, unknown>>
   foundersTitle?: string
   foundersSubtitle?: string
+  foundersDescription?: Array<Record<string, unknown>>
   founders?: Contributor[]
   influencersTitle?: string
   influencersSubtitle?: string
