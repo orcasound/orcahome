@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
+import { PortableText } from '@portabletext/react'
 
 import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
@@ -35,10 +36,51 @@ import {
 } from '../data/hackerHallOfFameContributors'
 import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
+import { pushToDataLayer } from '../utils/gtm'
 
 const contributorRail = {
   listWidth: '100%',
   listMaxWidth: 640,
+}
+
+// Serializer for the intro paragraphs when they come from Sanity as rich text.
+// Matches the plain intro-paragraph styling and keeps link colour + analytics.
+const introComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography
+        sx={{ fontSize: '20px', fontWeight: '500', lineHeight: '140%' }}
+      >
+        {children}
+      </Typography>
+    ),
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+      return (
+        <Link
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener'}
+          sx={{ textDecoration: 'underline' }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'hacker_hall_of_fame',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
 }
 
 const HackerHallOfFame = ({ hhof }) => {
@@ -135,6 +177,12 @@ const HackerHallOfFame = ({ hhof }) => {
     hackathonCaption: hhof?.hackathonCaption || null,
     lowerImages: hhof?.lowerImages?.length ? hhof.lowerImages : null,
     introParagraph: hhof?.introParagraph || firstParagraph,
+    introSecondParagraph: hhof?.introSecondParagraph?.length
+      ? hhof.introSecondParagraph
+      : null,
+    introThirdParagraph: hhof?.introThirdParagraph?.length
+      ? hhof.introThirdParagraph
+      : null,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
     founders: hhof?.founders?.length ? hhof.founders : contributors,
@@ -188,7 +236,14 @@ const HackerHallOfFame = ({ hhof }) => {
           <IntroParagraph text={content.introParagraph} />
 
           {/*Second paragraph */}
-          <IntroParagraph text={secondParagraph} />
+          {content.introSecondParagraph ? (
+            <PortableText
+              value={content.introSecondParagraph}
+              components={introComponents}
+            />
+          ) : (
+            <IntroParagraph text={secondParagraph} />
+          )}
 
           {/*Hackathon image */}
           <Box sx={{ pt: 2.5, mb: -1 }}>
@@ -201,7 +256,14 @@ const HackerHallOfFame = ({ hhof }) => {
           </Box>
 
           {/*Third paragraph after first image */}
-          <IntroParagraph text={thirdParagraph} />
+          {content.introThirdParagraph ? (
+            <PortableText
+              value={content.introThirdParagraph}
+              components={introComponents}
+            />
+          ) : (
+            <IntroParagraph text={thirdParagraph} />
+          )}
         </Stack>
 
         {/*Founders Box */}
