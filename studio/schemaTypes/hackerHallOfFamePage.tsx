@@ -24,7 +24,7 @@ export const hackerHallOfFamePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1MGVt_TrfX4phK4t8OAIQG_15QjuKJ28KtecAHSRVmlA/edit"
+            href="https://docs.google.com/document/d/1dBQYL_Xf2XYLTDZYOU3_bJZNAyEyvUKMdOq-LuhI3yw/edit"
             target="_blank"
             rel="noreferrer"
           >

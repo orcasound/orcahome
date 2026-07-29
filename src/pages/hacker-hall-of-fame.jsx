@@ -38,7 +38,7 @@ import { HHOF_PAGE_QUERY } from '../sanity/queries'
 
 const contributorRail = {
   listWidth: '100%',
-  listMaxWidth: 800,
+  listMaxWidth: 640,
 }
 
 const HackerHallOfFame = ({ hhof }) => {
