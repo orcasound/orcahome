@@ -202,6 +202,7 @@ export const LEARN_PAGE_QUERY = `*[_type == "learnPage"][0]{
     "audioUrl": audio.asset->url,
     description
   },
+  commonCallsClosing,
   callCatalogIntro,
   exhibits[]{
     "imageUrl": image.asset->url,
@@ -238,6 +239,7 @@ export interface LearnPageContent {
   salishSeaLink?: string
   commonCallsIntro?: string
   calls?: LearnCall[]
+  commonCallsClosing?: Array<Record<string, unknown>>
   callCatalogIntro?: string
   exhibits?: LearnExhibit[]
 }
@@ -256,10 +258,15 @@ export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
   "hackathonImageHeight": hackathonImage.asset->metadata.dimensions.height,
   hackathonCaption,
   introParagraph,
+  introSecondParagraph,
+  introThirdParagraph,
   foundersTitle,
   foundersSubtitle,
+  foundersDescription,
+  foundersSummary,
   founders[]{name, country, roles, link},
   influencersTitle,
+  influencersSummary,
   influencersSubtitle,
   influencerGroups[]{title, contributors[]{name, country, roles, link}},
   podcastTitle,
@@ -308,10 +315,15 @@ export interface HHOFPageContent {
   hackathonImageHeight?: number
   hackathonCaption?: string
   introParagraph?: string
+  introSecondParagraph?: Array<Record<string, unknown>>
+  introThirdParagraph?: Array<Record<string, unknown>>
   foundersTitle?: string
   foundersSubtitle?: string
+  foundersDescription?: Array<Record<string, unknown>>
+  foundersSummary?: string
   founders?: Contributor[]
   influencersTitle?: string
+  influencersSummary?: string
   influencersSubtitle?: string
   influencerGroups?: InfluencerGroup[]
   podcastTitle?: string

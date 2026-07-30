@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material'
+import { PortableText } from '@portabletext/react'
 
 import ContributorSection from '../components/HHOF/ContributorSection'
 import HackathonImage from '../components/HHOF/HackathonImage'
@@ -35,10 +36,86 @@ import {
 } from '../data/hackerHallOfFameContributors'
 import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
+import { pushToDataLayer } from '../utils/gtm'
 
 const contributorRail = {
   listWidth: '100%',
   listMaxWidth: 640,
+}
+
+// Serializer for the intro paragraphs when they come from Sanity as rich text.
+// Matches the plain intro-paragraph styling and keeps link colour + analytics.
+const introComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography
+        sx={{ fontSize: '20px', fontWeight: '500', lineHeight: '140%' }}
+      >
+        {children}
+      </Typography>
+    ),
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+      return (
+        <Link
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener'}
+          sx={{ textDecoration: 'underline' }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'hacker_hall_of_fame',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
+}
+
+// Serializer for the Founders navy-box description. It renders inside the box's
+// existing <Typography sx=...> (via SectionHeader), so `block` outputs a bare
+// fragment (no extra Typography) and only the white link + analytics differ.
+const sectionHeaderComponents = {
+  block: {
+    normal: ({ children }) => <>{children}</>,
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+      return (
+        <Link
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener'}
+          sx={{ color: 'white', textDecoration: 'underline' }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'hacker_hall_of_fame',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
 }
 
 const HackerHallOfFame = ({ hhof }) => {
@@ -135,11 +212,43 @@ const HackerHallOfFame = ({ hhof }) => {
     hackathonCaption: hhof?.hackathonCaption || null,
     lowerImages: hhof?.lowerImages?.length ? hhof.lowerImages : null,
     introParagraph: hhof?.introParagraph || firstParagraph,
+    introSecondParagraph: hhof?.introSecondParagraph?.length
+      ? hhof.introSecondParagraph
+      : null,
+    introThirdParagraph: hhof?.introThirdParagraph?.length
+      ? hhof.introThirdParagraph
+      : null,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
+    // Swap only the content source of each Founders description, keeping the
+    // config's styling: [0] is rich text (Portable Text), [1] is the plain
+    // summary line. Falls back to the hard-coded node when Sanity is empty.
+    foundersDescriptions: foundersHeader.descriptions.map((d, i) => {
+      if (i === 0) {
+        return {
+          ...d,
+          node: hhof?.foundersDescription?.length ? (
+            <PortableText
+              value={hhof.foundersDescription}
+              components={sectionHeaderComponents}
+            />
+          ) : (
+            d.node
+          ),
+        }
+      }
+      if (i === 1) {
+        return { ...d, node: hhof?.foundersSummary || d.node }
+      }
+      return d
+    }),
     founders: hhof?.founders?.length ? hhof.founders : contributors,
     influencersTitle: hhof?.influencersTitle || 'Influencers',
     influencersSubtitle: hhof?.influencersSubtitle || '(Major Contributors)',
+    // Influencers box has one (mobile-only) plain summary description.
+    influencerDescriptions: influencersHeader.descriptions.map((d, i) =>
+      i === 0 ? { ...d, node: hhof?.influencersSummary || d.node } : d
+    ),
     influencerGroups: hhof?.influencerGroups?.length
       ? hhof.influencerGroups.map((group) => ({
           title: group.title,
@@ -188,7 +297,14 @@ const HackerHallOfFame = ({ hhof }) => {
           <IntroParagraph text={content.introParagraph} />
 
           {/*Second paragraph */}
-          <IntroParagraph text={secondParagraph} />
+          {content.introSecondParagraph ? (
+            <PortableText
+              value={content.introSecondParagraph}
+              components={introComponents}
+            />
+          ) : (
+            <IntroParagraph text={secondParagraph} />
+          )}
 
           {/*Hackathon image */}
           <Box sx={{ pt: 2.5, mb: -1 }}>
@@ -201,7 +317,14 @@ const HackerHallOfFame = ({ hhof }) => {
           </Box>
 
           {/*Third paragraph after first image */}
-          <IntroParagraph text={thirdParagraph} />
+          {content.introThirdParagraph ? (
+            <PortableText
+              value={content.introThirdParagraph}
+              components={introComponents}
+            />
+          ) : (
+            <IntroParagraph text={thirdParagraph} />
+          )}
         </Stack>
 
         {/*Founders Box */}
@@ -209,6 +332,7 @@ const HackerHallOfFame = ({ hhof }) => {
           {...foundersHeader}
           title={content.foundersTitle}
           subtitle={content.foundersSubtitle}
+          descriptions={content.foundersDescriptions}
         />
       </Container>
       {/*Founders list */}
@@ -226,6 +350,7 @@ const HackerHallOfFame = ({ hhof }) => {
         {...influencersHeader}
         title={content.influencersTitle}
         subtitle={content.influencersSubtitle}
+        descriptions={content.influencerDescriptions}
       />
 
       {/* Influencer-tier sub-sections (each themed team) */}

@@ -65,6 +65,68 @@ export const hackerHallOfFamePage = defineType({
       type: 'text',
       rows: 5,
     }),
+    defineField({
+      name: 'introSecondParagraph',
+      title: 'Intro · second paragraph',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'introThirdParagraph',
+      title: 'Intro · third paragraph',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
 
     // —— Founders ——
     defineField({
@@ -78,6 +140,43 @@ export const hackerHallOfFamePage = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'foundersDescription',
+      title: 'Founders · description',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'foundersSummary',
+      title: 'Founders · summary line',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
       name: 'founders',
       title: 'Founders · contributors',
       type: 'array',
@@ -89,6 +188,12 @@ export const hackerHallOfFamePage = defineType({
       name: 'influencersTitle',
       title: 'Influencers · title',
       type: 'string',
+    }),
+    defineField({
+      name: 'influencersSummary',
+      title: 'Influencers · summary line (mobile)',
+      type: 'text',
+      rows: 2,
     }),
     defineField({
       name: 'influencersSubtitle',
