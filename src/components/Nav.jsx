@@ -84,7 +84,7 @@ const Nav = () => {
               <Box display="flex" justifyContent="center">
                 <Link href="/">
                   <Image
-                    style={{ width: '60px', height: 'auto' }}
+                    style={{ width: '40px', height: 'auto', display: 'block' }}
                     src={orcasoundlogo}
                     alt="Orcasound"
                     priority
