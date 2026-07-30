@@ -171,6 +171,12 @@ export const hackerHallOfFamePage = defineType({
       ],
     }),
     defineField({
+      name: 'foundersSummary',
+      title: 'Founders · summary line',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
       name: 'founders',
       title: 'Founders · contributors',
       type: 'array',
@@ -182,6 +188,12 @@ export const hackerHallOfFamePage = defineType({
       name: 'influencersTitle',
       title: 'Influencers · title',
       type: 'string',
+    }),
+    defineField({
+      name: 'influencersSummary',
+      title: 'Influencers · summary line (mobile)',
+      type: 'text',
+      rows: 2,
     }),
     defineField({
       name: 'influencersSubtitle',

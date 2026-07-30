@@ -220,26 +220,35 @@ const HackerHallOfFame = ({ hhof }) => {
       : null,
     foundersTitle: hhof?.foundersTitle || 'Founders',
     foundersSubtitle: hhof?.foundersSubtitle || '(Long-Term Contributors)',
-    // Replace only the first Founders description's content source: use Sanity
-    // (rendered via Portable Text) when present, else the hard-coded JSX. The
-    // styling and the second (summary) description stay in the config.
-    foundersDescriptions: [
-      {
-        ...foundersHeader.descriptions[0],
-        node: hhof?.foundersDescription?.length ? (
-          <PortableText
-            value={hhof.foundersDescription}
-            components={sectionHeaderComponents}
-          />
-        ) : (
-          foundersHeader.descriptions[0].node
-        ),
-      },
-      ...foundersHeader.descriptions.slice(1),
-    ],
+    // Swap only the content source of each Founders description, keeping the
+    // config's styling: [0] is rich text (Portable Text), [1] is the plain
+    // summary line. Falls back to the hard-coded node when Sanity is empty.
+    foundersDescriptions: foundersHeader.descriptions.map((d, i) => {
+      if (i === 0) {
+        return {
+          ...d,
+          node: hhof?.foundersDescription?.length ? (
+            <PortableText
+              value={hhof.foundersDescription}
+              components={sectionHeaderComponents}
+            />
+          ) : (
+            d.node
+          ),
+        }
+      }
+      if (i === 1) {
+        return { ...d, node: hhof?.foundersSummary || d.node }
+      }
+      return d
+    }),
     founders: hhof?.founders?.length ? hhof.founders : contributors,
     influencersTitle: hhof?.influencersTitle || 'Influencers',
     influencersSubtitle: hhof?.influencersSubtitle || '(Major Contributors)',
+    // Influencers box has one (mobile-only) plain summary description.
+    influencerDescriptions: influencersHeader.descriptions.map((d, i) =>
+      i === 0 ? { ...d, node: hhof?.influencersSummary || d.node } : d
+    ),
     influencerGroups: hhof?.influencerGroups?.length
       ? hhof.influencerGroups.map((group) => ({
           title: group.title,
@@ -341,6 +350,7 @@ const HackerHallOfFame = ({ hhof }) => {
         {...influencersHeader}
         title={content.influencersTitle}
         subtitle={content.influencersSubtitle}
+        descriptions={content.influencerDescriptions}
       />
 
       {/* Influencer-tier sub-sections (each themed team) */}
