@@ -13,6 +13,7 @@ import linkedinlogo from '../../public/images/linkedin.png'
 import orcasoundlogo from '../../public/images/logo-white.svg'
 import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
+import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsMobile from '../utils/useIsMobile'
 import Link from './Link'
@@ -58,7 +59,7 @@ const iconContainer = (
       <LinkedInIcon fontSize="large" />
     </IconLink>
     <IconLink
-      href="https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg"
+      href={ORCASOUND_YOUTUBE_URL}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -180,7 +181,7 @@ const iconLinks = [
   },
   {
     name: 'Youtube',
-    url: 'https://www.youtube.com/channel/UC7b3tOVQg8_fzaZBj4NoAEg',
+    url: ORCASOUND_YOUTUBE_URL,
     icon: youtubelogo,
   },
   {
