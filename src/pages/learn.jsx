@@ -17,6 +17,7 @@ import { TOOLTIPS } from '../components/Catalog/constants'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
+import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { getClient } from '../sanity/client'
 import { LEARN_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
@@ -288,7 +289,7 @@ const CommonCallsContent = ({ content }) => (
       >
         To learn about different pods, please visit the{' '}
         <a
-          href="https://www.youtube.com/@OrcasoundHydrophones"
+          href={ORCASOUND_YOUTUBE_URL}
           target="_blank"
           rel="noopener noreferrer"
           style={{
