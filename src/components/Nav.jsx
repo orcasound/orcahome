@@ -182,9 +182,27 @@ function Mobile() {
           href="https://www.orcasound.net/subscribe/"
           target="_blank"
           rel="noopener noreferrer"
+          sx={{ borderBottom: '1px solid white' }}
         >
           <ListItemText primary="Notify Me" />
         </ListItem>
+        {/* Support/donate — desktop has this as a button; mirror it here so
+            mobile/tablet users can still reach /donate from the menu. */}
+        <Link href="/donate">
+          <ListItem
+            button
+            sx={{ color: 'white' }}
+            onClick={() =>
+              pushToDataLayer('nav_click', {
+                link_text: 'Support',
+                page_location:
+                  typeof window !== 'undefined' ? window.location.pathname : '',
+              })
+            }
+          >
+            <ListItemText primary="Support" />
+          </ListItem>
+        </Link>
       </List>
     </Box>
   )
