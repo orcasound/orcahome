@@ -320,99 +320,96 @@ const DevelopersContent = ({ content }) => (
       {content.crownJewelText}
     </Typography>
     <TechStackList items={content.techStack} />
-    <Box maxWidth="md" mx="auto">
-      <Box px={{ xs: '50px', md: '20px' }}>
-        <Typography
-          variant="p"
-          fontSize="30px"
-          align="justify"
-          paragraph={true}
-          my="40px"
-          textAlign="center"
-          lineHeight="30px"
-        >
-          {content.roadmapHeading}
-        </Typography>
-        <TransformWrapper initialScale={1}>
-          {({ zoomIn, zoomOut, resetTransform }) => (
-            <>
-              <Box
-                sx={{
-                  my: '20px',
-                  textAlign: 'center',
+    <Box>
+      <Typography
+        variant="p"
+        fontSize="30px"
+        align="justify"
+        paragraph={true}
+        my="40px"
+        textAlign="center"
+        lineHeight="30px"
+      >
+        {content.roadmapHeading}
+      </Typography>
+      <TransformWrapper initialScale={1}>
+        {({ zoomIn, zoomOut, resetTransform }) => (
+          <>
+            <Box
+              sx={{
+                my: '20px',
+                textAlign: 'center',
+              }}
+            >
+              <Button
+                variant="outlined"
+                startIcon={<AddIcon />}
+                sx={{ m: 1 }}
+                onClick={() => {
+                  zoomIn()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'zoom_in',
+                  })
                 }}
               >
-                <Button
-                  variant="outlined"
-                  startIcon={<AddIcon />}
-                  sx={{ m: 1 }}
-                  onClick={() => {
-                    zoomIn()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'zoom_in',
-                    })
-                  }}
-                >
-                  Zoom in
-                </Button>
-                <Button
-                  variant="outlined"
-                  startIcon={<RemoveIcon />}
-                  sx={{ m: 1 }}
-                  onClick={() => {
-                    zoomOut()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'zoom_out',
-                    })
-                  }}
-                >
-                  {' '}
-                  Zoom out
-                </Button>
-                <Button
-                  variant="outlined"
-                  sx={{ m: 1 }}
-                  startIcon={<RestartAltIcon />}
-                  onClick={() => {
-                    resetTransform()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'reset',
-                    })
-                  }}
-                >
-                  Reset
-                </Button>
-              </Box>
-              <TransformComponent>
-                <Image
-                  {...content.roadmap}
-                  alt="roadmap"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                  }}
-                />
-              </TransformComponent>
-            </>
-          )}
-        </TransformWrapper>
-        <Typography
-          variant="p"
-          fontSize="16px"
-          align="justify"
-          paragraph={true}
-          mt="40px"
-          lineHeight="19.5px"
-        >
-          {content.roadmapCaption}
-        </Typography>
-      </Box>
+                Zoom in
+              </Button>
+              <Button
+                variant="outlined"
+                startIcon={<RemoveIcon />}
+                sx={{ m: 1 }}
+                onClick={() => {
+                  zoomOut()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'zoom_out',
+                  })
+                }}
+              >
+                {' '}
+                Zoom out
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{ m: 1 }}
+                startIcon={<RestartAltIcon />}
+                onClick={() => {
+                  resetTransform()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'reset',
+                  })
+                }}
+              >
+                Reset
+              </Button>
+            </Box>
+            <TransformComponent>
+              <Image
+                {...content.roadmap}
+                alt="roadmap"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            </TransformComponent>
+          </>
+        )}
+      </TransformWrapper>
     </Box>
+    <Typography
+      variant="p"
+      fontSize="16px"
+      align="justify"
+      paragraph={true}
+      mt="40px"
+      lineHeight="19.5px"
+    >
+      {content.roadmapCaption}
+    </Typography>
 
     <Box
       sx={{
         my: '70px',
-        px: '50px',
         textAlign: 'center',
         lineHeight: '28px',
       }}
@@ -492,7 +489,6 @@ const DevelopersContent = ({ content }) => (
     <Box
       sx={{
         my: '150px',
-        px: '50px',
         lineHeight: '28px',
       }}
     >
@@ -689,7 +685,7 @@ const SanityPartners = ({ partners }) => (
 
 const SupportContent = ({ content }) => (
   <>
-    <Box sx={{ px: '50px', textAlign: 'center', lineHeight: '28px' }}>
+    <Box sx={{ textAlign: 'center', lineHeight: '28px' }}>
       {content.supportParagraphs ? (
         content.supportParagraphs.map((paragraph, index) => (
           <Typography
