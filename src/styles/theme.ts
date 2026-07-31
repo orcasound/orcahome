@@ -63,7 +63,7 @@ const theme = createTheme({
     },
   },
   layout: {
-    hhofContributorRailShift: 90,
+    hhofContributorRailShift: 0,
   },
   components: {
     MuiAppBar: {

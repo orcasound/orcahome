@@ -10,7 +10,7 @@ import Head from 'next/head'
 import HackerBanner from '../../../public/images/Hacker_HOF.webp'
 import TopBanner from '../../components/TopBanner'
 
-const HOFBanner = () => {
+const HOFBanner = ({ heroTitle, heroImageUrl, thankYouMessage }) => {
   return (
     <div className="hof-banner-container">
       {/* title of the page Hacker Hall of Fame */}
@@ -26,8 +26,8 @@ const HOFBanner = () => {
         }}
       >
         <TopBanner
-          bannerImg={HackerBanner}
-          pageTitle={`Hacker\n Hall of Fame`}
+          bannerImg={heroImageUrl || HackerBanner}
+          pageTitle={heroTitle || `Hacker\n Hall of Fame`}
           scrollToId={'scroll-link'}
         />
       </Box>
@@ -57,7 +57,7 @@ const HOFBanner = () => {
               },
             })}
           >
-            Thank you, Orcasound App Hackers!
+            {thankYouMessage || 'Thank you, Orcasound App Hackers!'}
           </Typography>
         </Box>
       </Container>

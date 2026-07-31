@@ -202,6 +202,7 @@ export const LEARN_PAGE_QUERY = `*[_type == "learnPage"][0]{
     "audioUrl": audio.asset->url,
     description
   },
+  commonCallsClosing,
   callCatalogIntro,
   exhibits[]{
     "imageUrl": image.asset->url,
@@ -238,6 +239,7 @@ export interface LearnPageContent {
   salishSeaLink?: string
   commonCallsIntro?: string
   calls?: LearnCall[]
+  commonCallsClosing?: Array<Record<string, unknown>>
   callCatalogIntro?: string
   exhibits?: LearnExhibit[]
 }
@@ -248,11 +250,23 @@ export interface LearnPageContent {
  * in the React component (per-field fallback to the hard-coded content).
  */
 export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
+  heroTitle,
+  "heroImageUrl": heroImage.asset->url,
+  thankYouMessage,
+  "hackathonImageUrl": hackathonImage.asset->url,
+  "hackathonImageWidth": hackathonImage.asset->metadata.dimensions.width,
+  "hackathonImageHeight": hackathonImage.asset->metadata.dimensions.height,
+  hackathonCaption,
   introParagraph,
+  introSecondParagraph,
+  introThirdParagraph,
   foundersTitle,
   foundersSubtitle,
+  foundersDescription,
+  foundersSummary,
   founders[]{name, country, roles, link},
   influencersTitle,
+  influencersSummary,
   influencersSubtitle,
   influencerGroups[]{title, contributors[]{name, country, roles, link}},
   podcastTitle,
@@ -264,7 +278,13 @@ export const HHOF_PAGE_QUERY = `*[_type == "hackerHallOfFamePage"][0]{
   individualTitle,
   individualContributors[]{name, country, roles, link},
   supportersTitle,
-  supporters[]{name, country, roles, link}
+  supporters[]{name, country, roles, link},
+  lowerImages[]{
+    "url": image.asset->url,
+    "width": image.asset->metadata.dimensions.width,
+    "height": image.asset->metadata.dimensions.height,
+    caption
+  }
 }`
 
 export interface Contributor {
@@ -279,12 +299,31 @@ export interface InfluencerGroup {
   contributors?: Contributor[]
 }
 
+export interface HHOFLowerImage {
+  url?: string
+  width?: number
+  height?: number
+  caption?: string
+}
+
 export interface HHOFPageContent {
+  heroTitle?: string
+  heroImageUrl?: string
+  thankYouMessage?: string
+  hackathonImageUrl?: string
+  hackathonImageWidth?: number
+  hackathonImageHeight?: number
+  hackathonCaption?: string
   introParagraph?: string
+  introSecondParagraph?: Array<Record<string, unknown>>
+  introThirdParagraph?: Array<Record<string, unknown>>
   foundersTitle?: string
   foundersSubtitle?: string
+  foundersDescription?: Array<Record<string, unknown>>
+  foundersSummary?: string
   founders?: Contributor[]
   influencersTitle?: string
+  influencersSummary?: string
   influencersSubtitle?: string
   influencerGroups?: InfluencerGroup[]
   podcastTitle?: string
@@ -297,6 +336,7 @@ export interface HHOFPageContent {
   individualContributors?: Contributor[]
   supportersTitle?: string
   supporters?: Contributor[]
+  lowerImages?: HHOFLowerImage[]
 }
 
 /**
