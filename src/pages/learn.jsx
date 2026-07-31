@@ -1,6 +1,7 @@
 import InfoIcon from '@mui/icons-material/Info'
-import { Box, Typography } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 import ReactAudioPlayer from 'react-audio-player'
@@ -16,6 +17,7 @@ import { TOOLTIPS } from '../components/Catalog/constants'
 import CallCatalogGrid from '../components/Learn/CallCatalogGrid'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
+import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { getClient } from '../sanity/client'
 import { LEARN_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
@@ -23,6 +25,54 @@ import { pushToDataLayer } from '../utils/gtm'
 const audioS01 = '/audio/FO-S01.mp3'
 const audioS16 = '/audio/FO-S16.mp3'
 const audioS19 = '/audio/FO-S19.mp3'
+
+// Serializer for the "3 Common Calls" closing sentence when it comes from
+// Sanity as rich text — keeps the centered styling, link colour, and analytics.
+const closingComponents = {
+  block: {
+    normal: ({ children }) => (
+      <Typography
+        variant="body1"
+        fontSize="18px"
+        mt={4}
+        color="text.secondary"
+        textAlign="center"
+      >
+        {children}
+      </Typography>
+    ),
+  },
+  marks: {
+    link: ({ children, value }) => {
+      const href = value?.href || '#'
+      const isInternal = href.startsWith('/')
+      return (
+        <Link
+          href={href}
+          target={isInternal ? undefined : '_blank'}
+          rel={isInternal ? undefined : 'noopener noreferrer'}
+          sx={{
+            color: '#1e3a8a',
+            textDecoration: 'underline',
+            fontWeight: 600,
+          }}
+          onClick={(event) =>
+            pushToDataLayer(
+              isInternal ? 'jump_link_click' : 'external_link_click',
+              {
+                link_text: event.currentTarget.textContent,
+                destination: href,
+                page: 'learn',
+              }
+            )
+          }
+        >
+          {children}
+        </Link>
+      )
+    },
+  },
+}
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
 // value for a field (or Sanity is unreachable).
@@ -224,28 +274,35 @@ const CommonCallsContent = ({ content }) => (
       ))}
     </Box>
 
-    <Typography
-      variant="body1"
-      fontSize="18px"
-      mt={4}
-      color="text.secondary"
-      textAlign="center"
-    >
-      To learn about different pods, please visit the{' '}
-      <a
-        href="https://www.youtube.com/@OrcasoundHydrophones"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          color: '#1e3a8a',
-          textDecoration: 'underline',
-          fontWeight: 600,
-        }}
+    {content.commonCallsClosing ? (
+      <PortableText
+        value={content.commonCallsClosing}
+        components={closingComponents}
+      />
+    ) : (
+      <Typography
+        variant="body1"
+        fontSize="18px"
+        mt={4}
+        color="text.secondary"
+        textAlign="center"
       >
-        Orcasound YouTube channel
-      </a>
-      .
-    </Typography>
+        To learn about different pods, please visit the{' '}
+        <a
+          href={ORCASOUND_YOUTUBE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: '#1e3a8a',
+            textDecoration: 'underline',
+            fontWeight: 600,
+          }}
+        >
+          Orcasound YouTube channel
+        </a>
+        .
+      </Typography>
+    )}
   </>
 )
 const CallCatalogContent = ({ content }) => (
@@ -303,6 +360,9 @@ export const learn = ({ learnPage }) => {
       : { src: salishsea, width: 800, height: 450 },
     salishSeaLink: source?.salishSeaLink || DEFAULTS.salishSeaLink,
     commonCallsIntro: source?.commonCallsIntro || DEFAULTS.commonCallsIntro,
+    commonCallsClosing: source?.commonCallsClosing?.length
+      ? source.commonCallsClosing
+      : null,
     calls: source?.calls?.length
       ? source.calls.map((call) => ({
           callName: call.title,

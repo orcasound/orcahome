@@ -26,6 +26,10 @@ their profile links) — all without touching any code.
 
 | Field                                          | What it controls                                                                            |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Hero title**                                 | The big title on the top banner ("Hacker Hall of Fame")                                     |
+| **Hero / banner image**                        | The top banner photo                                                                        |
+| **Thank-you banner message**                   | The navy bar under the banner ("Thank you, Orcasound App Hackers!")                         |
+| **Hackathon photo + caption**                  | The photo in the intro section and its caption                                              |
 | **Intro paragraph**                            | The first paragraph at the top of the page                                                  |
 | **Founders · title / subtitle / contributors** | The Founders header and its list of people                                                  |
 | **Influencers · title / subtitle**             | The Influencers header                                                                      |
@@ -34,9 +38,18 @@ their profile links) — all without touching any code.
 | **OrcaHello · title / caption / contributors** | The OrcaHello section                                                                       |
 | **Individual Contributors · title / list**     | The individual contributors section                                                         |
 | **Supporters · title / list**                  | The supporters section                                                                      |
+| **Lower photos (above footer)**                | The two photos above the footer, each with a caption                                        |
 
 > The two lower intro paragraphs (with links) and the Founders description are
 > fixed and not edited here.
+
+### Changing an image
+
+For any image field (banner, hackathon photo, lower photos): click the field,
+click **remove** on the current image, then drag a new one in (or click to
+upload). Leave it blank to keep the built-in photo.
+
+![An image field with the upload/select menu open](images/hhof-guide/06-image-field.png)
 
 ### Editing text
 

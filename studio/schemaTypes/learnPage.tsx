@@ -114,6 +114,37 @@ export const learnPage = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'commonCallsClosing',
+      title: '3 Common Calls · closing sentence',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
 
     // —— Call Catalog ——
     defineField({

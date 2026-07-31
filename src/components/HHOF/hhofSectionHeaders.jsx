@@ -11,19 +11,14 @@ export const foundersHeader = {
   id: 'scroll-link',
   navy: true,
   boxSx: (theme) => ({
-    minHeight: '20em',
-    minWidth: '100%',
     gap: 1,
     mt: 4.5,
     width: '100%',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '100%',
       width: '100%',
-      height: '80%',
     },
     [theme.breakpoints.between('sm', 'lg')]: {
       fontSize: 'x-large',
-      height: '80%',
       width: '100%',
     },
   }),
@@ -57,7 +52,7 @@ export const foundersHeader = {
             rel="noopener"
           >
             Orcasound organizational members
-          </Link>
+          </Link>{' '}
           (who have their own amazing volunteers!), founders can raise funds
           under the auspices of Orcasound to support their own Orcasound efforts
           or the project in general. The also have shown leadership in the
@@ -95,11 +90,8 @@ export const foundersHeader = {
 export const influencersHeader = {
   navy: true,
   boxSx: {
-    minHeight: '10em',
-    width: {
-      xs: '95%',
-      lg: '45%',
-    },
+    width: 'calc(100% - 32px)',
+    maxWidth: 800,
     mx: 'auto',
   },
   title: 'Influencers',
