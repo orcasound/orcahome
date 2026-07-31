@@ -124,16 +124,16 @@ const VolunteerContent = () => (
               and notifying the network when you hear them or a noise that could endanger them.`}
         </Typography>
         <ActionButton
-        link="/research-opt-in-form"
-        text="Become a Citizen Scientist"
-        onClick={() =>
-          pushToDataLayer('cta_click', {
-            cta_text: 'Join Now',
-            section: 'research-opt-in-form',
-            page: 'get_involved',
-          })
-        }
-      />
+          link="/research-opt-in-form"
+          text="Become a Citizen Scientist"
+          onClick={() =>
+            pushToDataLayer('cta_click', {
+              cta_text: 'Join Now',
+              section: 'research-opt-in-form',
+              page: 'get_involved',
+            })
+          }
+        />
       </Box>
       <Box
         sx={(theme) => ({
