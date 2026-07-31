@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import { useRouter } from 'next/router'
-import Head from 'next/head'
 import {
   Alert,
   Box,
@@ -12,12 +9,9 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import AddIcon from '@mui/icons-material/Add'
-import RemoveIcon from '@mui/icons-material/Remove'
-import RestartAltIcon from '@mui/icons-material/RestartAlt'
-
-import Image from 'next/image'
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const initialForm = {
   email: '',
@@ -77,7 +71,6 @@ export default function JoinPage() {
       }
 
       router.push('/research-opt-in-form-conf')
-      
     } catch {
       setError('Something went wrong. Please try again.')
     }
@@ -89,10 +82,7 @@ export default function JoinPage() {
     <>
       <Head>
         <title>Join the Orcasound Research Panel</title>
-        <meta
-          name="description"
-          content="Join the Orcasound research panel."
-        />
+        <meta name="description" content="Join the Orcasound research panel." />
       </Head>
 
       <Container maxWidth="sm" sx={{ py: 8 }}>
@@ -180,7 +170,9 @@ export default function JoinPage() {
             <MenuItem value="">Prefer not to say</MenuItem>
             <MenuItem value="new">New to conservation</MenuItem>
             <MenuItem value="interested">Interested in conservation</MenuItem>
-            <MenuItem value="volunteer">Volunteer or occasional participant</MenuItem>
+            <MenuItem value="volunteer">
+              Volunteer or occasional participant
+            </MenuItem>
             <MenuItem value="active">Actively involved</MenuItem>
             <MenuItem value="professional">Professional work</MenuItem>
           </TextField>
@@ -199,13 +191,15 @@ export default function JoinPage() {
               North San Juan Channel
             </MenuItem>
             <MenuItem value="Orcasound_Lab">Orcasound Lab</MenuItem>
-            <MenuItem value="Andrews_Bay">
-              Andrews Bay
-            </MenuItem>
+            <MenuItem value="Andrews_Bay">Andrews Bay</MenuItem>
             <MenuItem value="Port Townsend">Port Townsend</MenuItem>
             <MenuItem value="Bush_Point">Bush Point</MenuItem>
-            <MenuItem value="Beach_Camp_at_Sunset_Bay">Beach Camp at Sunset Bay</MenuItem>
-            <MenuItem value="MaST_Center_Aquarium">MaST Center Aquarium</MenuItem>
+            <MenuItem value="Beach_Camp_at_Sunset_Bay">
+              Beach Camp at Sunset Bay
+            </MenuItem>
+            <MenuItem value="MaST_Center_Aquarium">
+              MaST Center Aquarium
+            </MenuItem>
           </TextField>
 
           <TextField

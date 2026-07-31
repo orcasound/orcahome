@@ -37,7 +37,9 @@ export default async function handler(req, res) {
   }
 
   if (!process.env.RESEND_API_KEY) {
-    return res.status(500).json({ message: 'Server is missing Resend configuration.' })
+    return res
+      .status(500)
+      .json({ message: 'Server is missing Resend configuration.' })
   }
 
   const {
@@ -62,11 +64,15 @@ export default async function handler(req, res) {
   const normalizedEmail = cleanString(email).toLowerCase()
 
   if (!isValidEmail(normalizedEmail)) {
-    return res.status(400).json({ message: 'Please enter a valid email address.' })
+    return res
+      .status(400)
+      .json({ message: 'Please enter a valid email address.' })
   }
 
   if (consent !== true) {
-    return res.status(400).json({ message: 'Consent is required to join the research panel.' })
+    return res
+      .status(400)
+      .json({ message: 'Consent is required to join the research panel.' })
   }
 
   const contactPayload = {
@@ -93,7 +99,9 @@ export default async function handler(req, res) {
     })
 
     if (createResult.response.ok) {
-      return res.status(200).json({ message: 'Thanks for joining the Orcasound research panel.' })
+      return res
+        .status(200)
+        .json({ message: 'Thanks for joining the Orcasound research panel.' })
     }
 
     const errorMessage = JSON.stringify(createResult.data || {}).toLowerCase()
@@ -107,13 +115,18 @@ export default async function handler(req, res) {
       const updatePayload = { ...contactPayload }
       delete updatePayload.email
 
-      const updateResult = await resendRequest(`/${encodeURIComponent(normalizedEmail)}`, {
-        method: 'PATCH',
-        body: JSON.stringify(updatePayload),
-      })
+      const updateResult = await resendRequest(
+        `/${encodeURIComponent(normalizedEmail)}`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(updatePayload),
+        }
+      )
 
       if (updateResult.response.ok) {
-        return res.status(200).json({ message: 'Thanks — your research panel details were updated.' })
+        return res.status(200).json({
+          message: 'Thanks — your research panel details were updated.',
+        })
       }
 
       return res.status(updateResult.response.status).json({
@@ -124,7 +137,9 @@ export default async function handler(req, res) {
     return res.status(createResult.response.status).json({
       message: 'We could not save your signup right now.',
     })
-  } catch (error) {
-    return res.status(500).json({ message: 'Something went wrong. Please try again.' })
+  } catch {
+    return res
+      .status(500)
+      .json({ message: 'Something went wrong. Please try again.' })
   }
 }

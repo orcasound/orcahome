@@ -1,5 +1,5 @@
-import Head from 'next/head'
 import { Box, Button, Container, Typography } from '@mui/material'
+import Head from 'next/head'
 
 export default function ResearchOptInConfirmation() {
   return (
