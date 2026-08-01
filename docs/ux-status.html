@@ -135,7 +135,9 @@ const API = "https://api.github.com/repos/orcasound/orcahome/issues";
 const AUTO = "BT-Orcasound-Product";
 const REQUEST_EMAIL = "product@orcasound.tech";
 
-// Canonical issue-to-brief map, sourced from orcahome_briefs_tracker.json (matched by issue number).
+// Seed / fallback issue-to-brief map (from orcahome_briefs_tracker.json).
+// The live brief link is read from each issue body first (see briefFromBody below);
+// this map is only a fallback, so new UX issues need no edit here.
 const BRIEFS = {
   227: "https://drive.google.com/file/d/1Rr-P2g6ZQUo3Rfud6ZgLpoQoZEbtB6IM/view",
   246: "https://drive.google.com/file/d/1UCPPVWYw7M-XlaDwVGI6tIsbuNTNwyMD/view",
@@ -215,7 +217,21 @@ function computedStatus(i, ownerCount){
 }
 function statusOf(i, ownerCount){ return STATUS_OVERRIDE[i.number] || computedStatus(i, ownerCount); }
 function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-function briefFor(num){ return BRIEFS[num] || null; }
+function briefFromBody(body){
+  if(!body) return null;
+  var m = body.match(/<!--\s*brief:\s*(https?:\/\/[^\s>]+?)\s*-->/i);
+  if(m) return m[1];
+  var lc = body.toLowerCase(), idx = lc.indexOf("design brief");
+  if(idx!==-1){
+    var u = body.slice(idx, idx+400).match(/https:\/\/(?:drive|docs)\.google\.com\/[^\s)"'<]+/);
+    if(u) return u[0];
+  }
+  return null;
+}
+// New UX issues become requestable with no commit: put the brief link in the issue body,
+// ideally as an invisible marker  <!-- brief: https://... -->  , or a Drive/Docs link in a
+// "Design brief" section. The seed BRIEFS map above is only a fallback.
+function briefFor(issue){ return briefFromBody(issue.body) || BRIEFS[issue.number] || null; }
 
 function render(issues){
   const ux=issues.filter(isUX).map(i=>{
@@ -223,7 +239,7 @@ function render(issues){
     return {
       num:i.number, title:i.title||"", url:i.html_url,
       owners:owners, status:statusOf(i, owners.length),
-      brief:briefFor(i.number), lead:LEAD_ONLY.indexOf(i.number)!==-1
+      brief:briefFor(i), lead:LEAD_ONLY.indexOf(i.number)!==-1
     };
   });
   ux.forEach(x=>{ x.requestable = (x.status==="Needs owner" && !!x.brief && !x.lead); });
