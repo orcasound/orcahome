@@ -249,104 +249,97 @@ const DevelopersContent = () => (
           for citizen scientists and artificial intelligence to listen for whales in real-time. 
           As of April, 2020, this is the Orcasound tech stack:`}
     </Typography>
-    <TechStackList />
-    <Box maxWidth="md" mx="auto">
-      <Box px={{ xs: '50px', md: '20px' }}>
-        <Typography
-          variant="p"
-          fontSize="30px"
-          align="justify"
-          paragraph={true}
-          my="40px"
-          textAlign="center"
-          lineHeight="30px"
-        >
-          Current Roadmap
-        </Typography>
-        <TransformWrapper initialScale={1}>
-          {({ zoomIn, zoomOut, resetTransform }) => (
-            <>
-              <Box
-                sx={{
-                  my: '20px',
-                  textAlign: 'center',
+    <TechStackList items={content.techStack} />
+    <Box>
+      <Typography
+        variant="p"
+        fontSize="30px"
+        align="justify"
+        paragraph={true}
+        my="40px"
+        textAlign="center"
+        lineHeight="30px"
+      >
+        {content.roadmapHeading}
+      </Typography>
+      <TransformWrapper initialScale={1}>
+        {({ zoomIn, zoomOut, resetTransform }) => (
+          <>
+            <Box
+              sx={{
+                my: '20px',
+                textAlign: 'center',
+              }}
+            >
+              <Button
+                variant="outlined"
+                startIcon={<AddIcon />}
+                sx={{ m: 1 }}
+                onClick={() => {
+                  zoomIn()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'zoom_in',
+                  })
                 }}
               >
-                <Button
-                  variant="outlined"
-                  startIcon={<AddIcon />}
-                  sx={{ m: 1 }}
-                  onClick={() => {
-                    zoomIn()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'zoom_in',
-                    })
-                  }}
-                >
-                  Zoom in
-                </Button>
-                <Button
-                  variant="outlined"
-                  startIcon={<RemoveIcon />}
-                  sx={{ m: 1 }}
-                  onClick={() => {
-                    zoomOut()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'zoom_out',
-                    })
-                  }}
-                >
-                  {' '}
-                  Zoom out
-                </Button>
-                <Button
-                  variant="outlined"
-                  sx={{ m: 1 }}
-                  startIcon={<RestartAltIcon />}
-                  onClick={() => {
-                    resetTransform()
-                    pushToDataLayer('roadmap_interaction', {
-                      action: 'reset',
-                    })
-                  }}
-                >
-                  Reset
-                </Button>
-              </Box>
-              <TransformComponent>
-                <Image
-                  src={roadmap}
-                  alt="roadmap"
-                  style={{
-                    maxWidth: '100%',
-                    height: 'auto',
-                  }}
-                />
-              </TransformComponent>
-            </>
-          )}
-        </TransformWrapper>
-        <Typography
-          variant="p"
-          fontSize="16px"
-          align="justify"
-          paragraph={true}
-          mt="40px"
-          lineHeight="19.5px"
-        >
-          From hydrophone to headphone, this is how we intend to deliver an
-          ocean of sound! 2020 Roadmap: components above the gray dashed line
-          launched November 1, 2018; green features are being beta-tested since
-          November 2019; red features are in development or requested. Click to
-          view expanded image.
-        </Typography>
-      </Box>
+                Zoom in
+              </Button>
+              <Button
+                variant="outlined"
+                startIcon={<RemoveIcon />}
+                sx={{ m: 1 }}
+                onClick={() => {
+                  zoomOut()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'zoom_out',
+                  })
+                }}
+              >
+                {' '}
+                Zoom out
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{ m: 1 }}
+                startIcon={<RestartAltIcon />}
+                onClick={() => {
+                  resetTransform()
+                  pushToDataLayer('roadmap_interaction', {
+                    action: 'reset',
+                  })
+                }}
+              >
+                Reset
+              </Button>
+            </Box>
+            <TransformComponent>
+              <Image
+                {...content.roadmap}
+                alt="roadmap"
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
+            </TransformComponent>
+          </>
+        )}
+      </TransformWrapper>
     </Box>
+    <Typography
+      variant="p"
+      fontSize="16px"
+      align="justify"
+      paragraph={true}
+      mt="40px"
+      lineHeight="19.5px"
+    >
+      {content.roadmapCaption}
+    </Typography>
 
     <Box
       sx={{
         my: '70px',
-        px: '50px',
         textAlign: 'center',
         lineHeight: '28px',
       }}
@@ -413,7 +406,6 @@ const DevelopersContent = () => (
     <Box
       sx={{
         my: '150px',
-        px: '50px',
         lineHeight: '28px',
       }}
     >
@@ -477,23 +469,49 @@ const DevelopersContent = () => (
 )
 const SupportContent = () => (
   <>
-    <Box sx={{ px: '50px', textAlign: 'center', lineHeight: '28px' }}>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        Help us and our{' '}
-        <Typography variant="soft" color="#1B2B7B">
-          Orcasound network members
-        </Typography>
-        {''} by making charitable contribution to our partners, many of whom are
-        501(c)3 organizations Check out the link below to help strengthen and
-        grow our network, while supporting our on-going conservation, research,
-        and educational efforts.
-      </Typography>
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
-        You can also directly support the many dedicated volunteers who help
-        Orcasound keep running and improve over time. Take a look at our Hacker
-        hall of fame and our Github repositories and consider sponsoring the
-        work of our most-dedicated contributors.
-      </Typography>
+    <Box sx={{ textAlign: 'center', lineHeight: '28px' }}>
+      {content.supportParagraphs ? (
+        content.supportParagraphs.map((paragraph, index) => (
+          <Typography
+            key={index}
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            {paragraph}
+          </Typography>
+        ))
+      ) : (
+        <>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            Help us and our{' '}
+            <Typography variant="soft" color="#1B2B7B">
+              Orcasound network members
+            </Typography>
+            {''} by making charitable contribution to our partners, many of whom
+            are 501(c)3 organizations Check out the link below to help
+            strengthen and grow our network, while supporting our on-going
+            conservation, research, and educational efforts.
+          </Typography>
+          <Typography
+            variant="p"
+            fontSize="20px"
+            paragraph={true}
+            align="justify"
+          >
+            You can also directly support the many dedicated volunteers who help
+            Orcasound keep running and improve over time. Take a look at our
+            Hacker hall of fame and our Github repositories and consider
+            sponsoring the work of our most-dedicated contributors.
+          </Typography>
+        </>
+      )}
       <ActionButton
         link="/donate"
         text="SUPPORT NOW"

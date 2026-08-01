@@ -16,15 +16,15 @@ export const hackerHallOfFamePage = defineType({
   title: 'Hacker Hall of Fame Page',
   type: 'document',
   fields: [
-    // —— Intro copy ——
+    // —— Hero / banner ——
     defineField({
-      name: 'introParagraph',
-      title: 'Intro paragraph',
+      name: 'heroTitle',
+      title: 'Hero title',
       description: (
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1MGVt_TrfX4phK4t8OAIQG_15QjuKJ28KtecAHSRVmlA/edit"
+            href="https://docs.google.com/document/d/1dBQYL_Xf2XYLTDZYOU3_bJZNAyEyvUKMdOq-LuhI3yw/edit"
             target="_blank"
             rel="noreferrer"
           >
@@ -33,8 +33,99 @@ export const hackerHallOfFamePage = defineType({
           .
         </>
       ),
+      type: 'string',
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero / banner image',
+      type: 'image',
+      options: {hotspot: true},
+    }),
+    defineField({
+      name: 'thankYouMessage',
+      title: 'Thank-you banner message',
+      type: 'string',
+    }),
+    defineField({
+      name: 'hackathonImage',
+      title: 'Hackathon photo',
+      type: 'image',
+      options: {hotspot: true},
+    }),
+    defineField({
+      name: 'hackathonCaption',
+      title: 'Hackathon photo caption',
+      type: 'string',
+    }),
+
+    // —— Intro copy ——
+    defineField({
+      name: 'introParagraph',
+      title: 'Intro paragraph',
       type: 'text',
       rows: 5,
+    }),
+    defineField({
+      name: 'introSecondParagraph',
+      title: 'Intro · second paragraph',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'introThirdParagraph',
+      title: 'Intro · third paragraph',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
     }),
 
     // —— Founders ——
@@ -49,6 +140,43 @@ export const hackerHallOfFamePage = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'foundersDescription',
+      title: 'Founders · description',
+      description: 'Select text and add a link with the link toolbar button.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [{title: 'Normal', value: 'normal'}],
+          lists: [],
+          marks: {
+            decorators: [],
+            annotations: [
+              {
+                name: 'link',
+                title: 'Link',
+                type: 'object',
+                fields: [
+                  defineField({
+                    name: 'href',
+                    title: 'URL',
+                    type: 'string',
+                    validation: (rule) => rule.required(),
+                  }),
+                ],
+              },
+            ],
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'foundersSummary',
+      title: 'Founders · summary line',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
       name: 'founders',
       title: 'Founders · contributors',
       type: 'array',
@@ -60,6 +188,12 @@ export const hackerHallOfFamePage = defineType({
       name: 'influencersTitle',
       title: 'Influencers · title',
       type: 'string',
+    }),
+    defineField({
+      name: 'influencersSummary',
+      title: 'Influencers · summary line (mobile)',
+      type: 'text',
+      rows: 2,
     }),
     defineField({
       name: 'influencersSubtitle',
@@ -154,6 +288,31 @@ export const hackerHallOfFamePage = defineType({
       title: 'Supporters · list',
       type: 'array',
       of: [defineArrayMember({type: 'contributor'})],
+    }),
+
+    // —— Lower photos (above footer) ——
+    defineField({
+      name: 'lowerImages',
+      title: 'Lower photos (above footer)',
+      description: 'The two photos above the footer, each with a caption.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Photo',
+              type: 'image',
+              options: {hotspot: true},
+              validation: (rule) => rule.required(),
+            }),
+            defineField({name: 'caption', title: 'Caption', type: 'text', rows: 2}),
+          ],
+          preview: {select: {title: 'caption', media: 'image'}},
+        }),
+      ],
+      validation: (rule) => rule.max(2),
     }),
   ],
   preview: {
