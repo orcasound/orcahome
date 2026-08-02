@@ -6,6 +6,11 @@ export default function ResearchOptInConfirmation() {
     <>
       <Head>
         <title>Thanks for joining the Orcasound research panel</title>
+
+        <meta
+          name="description"
+          content="Your Orcasound research panel signup was received."
+        />
       </Head>
 
       <Container maxWidth="sm" sx={{ py: 10 }}>

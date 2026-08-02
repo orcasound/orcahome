@@ -1,5 +1,8 @@
 const RESEND_CONTACTS_URL = 'https://api.resend.com/contacts'
 
+const SEGMENT_ID = 'e110074e-b6ae-4b53-ada5-24061899f851'
+const TOPIC_ID = 'c56b9bbc-3e5b-4d40-bd36-cd5f24f4ca31'
+
 function isValidEmail(email) {
   return typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 }
@@ -19,12 +22,13 @@ async function resendRequest(path, options) {
   })
 
   const text = await response.text()
+
   let data = null
 
   try {
     data = text ? JSON.parse(text) : null
   } catch {
-    data = { message: text }
+    data = text ? { message: text } : null
   }
 
   return { response, data }
@@ -32,14 +36,19 @@ async function resendRequest(path, options) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST')
-    return res.status(405).json({ message: 'Method not allowed' })
+    res.setHeader('Allow', ['POST'])
+
+    return res.status(405).json({
+      message: 'Method not allowed.',
+    })
   }
 
   if (!process.env.RESEND_API_KEY) {
-    return res
-      .status(500)
-      .json({ message: 'Server is missing Resend configuration.' })
+    console.error('RESEND_API_KEY is not configured.')
+
+    return res.status(500).json({
+      message: 'Server is missing Resend configuration.',
+    })
   }
 
   const {
@@ -51,95 +60,126 @@ export default async function handler(req, res) {
     conservation,
     locality,
     generation,
-    accessibilityNeeds,
-    anythingElse,
+    priorExposure,
+    subscriber,
     website,
   } = req.body || {}
 
-  // Honeypot spam field. Real users should never fill this.
-  if (website) {
-    return res.status(200).json({ message: 'Thanks for joining.' })
+  // Honeypot field. Bots may fill this, but real users should not.
+  if (cleanString(website)) {
+    return res.status(200).json({
+      message: 'Thanks for joining.',
+    })
   }
 
   const normalizedEmail = cleanString(email).toLowerCase()
 
   if (!isValidEmail(normalizedEmail)) {
-    return res
-      .status(400)
-      .json({ message: 'Please enter a valid email address.' })
+    return res.status(400).json({
+      message: 'Please enter a valid email address.',
+    })
   }
 
   if (consent !== true) {
-    return res
-      .status(400)
-      .json({ message: 'Consent is required to join the research panel.' })
+    return res.status(400).json({
+      message: 'Consent is required to join the research panel.',
+    })
+  }
+
+  const properties = {
+    role: cleanString(role),
+    conservation: cleanString(conservation),
+    locality: cleanString(locality),
+    what_generation_do_you_belong_to: cleanString(generation),
+    prior_exposure: cleanString(priorExposure),
+    subscriber: cleanString(subscriber) || 'research_panel',
+    source: 'orcasound_web',
   }
 
   const contactPayload = {
     email: normalizedEmail,
-    firstName: cleanString(firstName),
-    lastName: cleanString(lastName),
+    first_name: cleanString(firstName),
+    last_name: cleanString(lastName),
     unsubscribed: false,
-    properties: {
-      role: cleanString(role),
-      conservation: cleanString(conservation),
-      locality: cleanString(locality),
-      what_generation_do_you_belong_to: cleanString(generation),
-      source: 'orcasound_web',
-      accessibility_needs: cleanString(accessibilityNeeds),
-      anything_else: cleanString(anythingElse),
-    },
+    segments: [
+      {
+        id: SEGMENT_ID,
+      },
+    ],
+    topics: [
+      {
+        id: TOPIC_ID,
+        subscription: 'opt_in',
+      },
+    ],
+    properties,
   }
 
   try {
-    // First try to create the contact.
     const createResult = await resendRequest('', {
       method: 'POST',
       body: JSON.stringify(contactPayload),
     })
 
     if (createResult.response.ok) {
-      return res
-        .status(200)
-        .json({ message: 'Thanks for joining the Orcasound research panel.' })
+      return res.status(200).json({
+        message: 'Thanks for joining the Orcasound research panel.',
+      })
     }
 
-    const errorMessage = JSON.stringify(createResult.data || {}).toLowerCase()
+    const resendError = JSON.stringify(createResult.data || {}).toLowerCase()
 
-    // If Resend says the contact already exists, update by email.
-    if (
+    const contactAlreadyExists =
       createResult.response.status === 409 ||
-      errorMessage.includes('already') ||
-      errorMessage.includes('exist')
-    ) {
-      const updatePayload = { ...contactPayload }
-      delete updatePayload.email
+      resendError.includes('already exists') ||
+      resendError.includes('contact already')
 
-      const updateResult = await resendRequest(
-        `/${encodeURIComponent(normalizedEmail)}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify(updatePayload),
-        }
-      )
+    if (!contactAlreadyExists) {
+      console.error('Resend contact creation failed.', {
+        status: createResult.response.status,
+        data: createResult.data,
+      })
 
-      if (updateResult.response.ok) {
-        return res.status(200).json({
-          message: 'Thanks — your research panel details were updated.',
-        })
+      return res.status(502).json({
+        message: 'We could not save your signup right now.',
+      })
+    }
+
+    // Resend allows updating a contact using its email in the URL.
+    const updatePayload = {
+      first_name: cleanString(firstName),
+      last_name: cleanString(lastName),
+      unsubscribed: false,
+      properties,
+    }
+
+    const updateResult = await resendRequest(
+      `/${encodeURIComponent(normalizedEmail)}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(updatePayload),
       }
+    )
 
-      return res.status(updateResult.response.status).json({
+    if (!updateResult.response.ok) {
+      console.error('Resend contact update failed.', {
+        status: updateResult.response.status,
+        data: updateResult.data,
+      })
+
+      return res.status(502).json({
         message: 'We could not update your panel signup right now.',
       })
     }
 
-    return res.status(createResult.response.status).json({
-      message: 'We could not save your signup right now.',
+    return res.status(200).json({
+      message: 'Thanks — your research panel details were updated.',
     })
-  } catch {
-    return res
-      .status(500)
-      .json({ message: 'Something went wrong. Please try again.' })
+  } catch (error) {
+    console.error('Research panel submission failed.', error)
+
+    return res.status(500).json({
+      message: 'Something went wrong. Please try again.',
+    })
   }
 }

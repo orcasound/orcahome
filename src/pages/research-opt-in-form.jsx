@@ -21,18 +21,18 @@ const initialForm = {
   conservation: '',
   locality: '',
   generation: '',
-  accessibilityNeeds: '',
-  anythingElse: '',
+  priorExposure: '',
+  subscriber: '',
   consent: false,
   website: '',
 }
 
-export default function JoinPage() {
+export default function ResearchOptInForm() {
   const router = useRouter()
+
   const [form, setForm] = useState(initialForm)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
 
   const updateField = (field) => (event) => {
     const value =
@@ -46,36 +46,39 @@ export default function JoinPage() {
     }))
   }
 
-  const didSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
     setLoading(true)
     setError('')
-    setMessage('')
 
     try {
-      const res = await fetch('/api/research-panel', {
+      const response = await fetch('/api/research-panel', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        method: 'POST',
         body: JSON.stringify(form),
       })
 
-      const body = await res.json()
+      const body = await response.json().catch(() => null)
 
-      if (!res.ok) {
-        setError(body.message || 'Something went wrong. Please try again.')
-        setLoading(false)
-        return
+      if (!response.ok) {
+        throw new Error(
+          body?.message || 'Something went wrong. Please try again.'
+        )
       }
 
-      router.push('/research-opt-in-form-conf')
-    } catch {
-      setError('Something went wrong. Please try again.')
-    }
+      await router.push('/research-opt-in-form-conf')
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.'
+      )
 
-    setLoading(false)
+      setLoading(false)
+    }
   }
 
   return (
@@ -95,19 +98,13 @@ export default function JoinPage() {
           details to join the research panel.
         </Typography>
 
-        {message && (
-          <Alert severity="success" sx={{ mb: 3 }}>
-            {message}
-          </Alert>
-        )}
-
         {error && (
           <Alert severity="error" sx={{ mb: 3 }}>
             {error}
           </Alert>
         )}
 
-        <Box component="form" onSubmit={didSubmit} noValidate>
+        <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             label="Email"
             name="email"
@@ -192,7 +189,7 @@ export default function JoinPage() {
             </MenuItem>
             <MenuItem value="Orcasound_Lab">Orcasound Lab</MenuItem>
             <MenuItem value="Andrews_Bay">Andrews Bay</MenuItem>
-            <MenuItem value="Port Townsend">Port Townsend</MenuItem>
+            <MenuItem value="Port_Townsend">Port Townsend</MenuItem>
             <MenuItem value="Bush_Point">Bush Point</MenuItem>
             <MenuItem value="Beach_Camp_at_Sunset_Bay">
               Beach Camp at Sunset Bay
@@ -200,6 +197,7 @@ export default function JoinPage() {
             <MenuItem value="MaST_Center_Aquarium">
               MaST Center Aquarium
             </MenuItem>
+            <MenuItem value="other">Other</MenuItem>
           </TextField>
 
           <TextField
@@ -221,28 +219,41 @@ export default function JoinPage() {
           </TextField>
 
           <TextField
-            label="Accessibility needs"
-            name="accessibilityNeeds"
-            value={form.accessibilityNeeds}
-            onChange={updateField('accessibilityNeeds')}
+            select
+            label="How did you first hear about Orcasound?"
+            name="priorExposure"
+            value={form.priorExposure}
+            onChange={updateField('priorExposure')}
             fullWidth
             margin="normal"
-            multiline
-            minRows={3}
-          />
+          >
+            <MenuItem value="">Prefer not to say</MenuItem>
+            <MenuItem value="orcasound_website">Orcasound website</MenuItem>
+            <MenuItem value="social_media">Social media</MenuItem>
+            <MenuItem value="friend_or_colleague">Friend or colleague</MenuItem>
+            <MenuItem value="school_or_university">
+              School or university
+            </MenuItem>
+            <MenuItem value="community_event">Community event</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </TextField>
 
           <TextField
-            label="Anything else?"
-            name="anythingElse"
-            value={form.anythingElse}
-            onChange={updateField('anythingElse')}
+            select
+            label="Email preference"
+            name="subscriber"
+            value={form.subscriber}
+            onChange={updateField('subscriber')}
             fullWidth
             margin="normal"
-            multiline
-            minRows={3}
-          />
+          >
+            <MenuItem value="">Research invitations only</MenuItem>
+            <MenuItem value="research_panel">Research invitations</MenuItem>
+            <MenuItem value="research_and_product">
+              Research and Orcasound product updates
+            </MenuItem>
+          </TextField>
 
-          {/* Honeypot spam field. Humans should not see or fill this. */}
           <Box
             sx={{
               position: 'absolute',
@@ -279,7 +290,7 @@ export default function JoinPage() {
           <Button
             type="submit"
             variant="contained"
-            disabled={loading}
+            disabled={loading || !form.consent}
             sx={{ mt: 3, display: 'block' }}
           >
             {loading ? 'Submitting...' : 'Join the research panel'}
