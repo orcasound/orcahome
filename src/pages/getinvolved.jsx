@@ -233,6 +233,17 @@ const VolunteerContent = ({ content }) => {
           <Typography variant="body1">
             {content.citizenScientistText}
           </Typography>
+          <ActionButton
+            link="/research-opt-in-form"
+            text="Become a Citizen Scientist"
+            onClick={() =>
+              pushToDataLayer('cta_click', {
+                cta_text: 'Join Now',
+                section: 'research-opt-in-form',
+                page: 'get_involved',
+              })
+            }
+          />
         </Box>
         <Box
           sx={(theme) => ({
@@ -382,7 +393,7 @@ const DevelopersContent = ({ content }) => (
                 Reset
               </Button>
             </Box>
-            <TransformComponent>
+            <TransformComponent wrapperStyle={{ margin: '0 auto' }}>
               <Image
                 {...content.roadmap}
                 alt="roadmap"
