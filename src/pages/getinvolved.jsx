@@ -393,7 +393,7 @@ const DevelopersContent = ({ content }) => (
                 Reset
               </Button>
             </Box>
-            <TransformComponent>
+            <TransformComponent wrapperStyle={{ margin: '0 auto' }}>
               <Image
                 {...content.roadmap}
                 alt="roadmap"
