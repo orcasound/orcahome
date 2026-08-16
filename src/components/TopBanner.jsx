@@ -30,6 +30,12 @@ const TitleScreen = styled(Box)(({ theme }) => ({
     maxHeight: '68vh',
     paddingBottom: '200px',
   },
+  '@media (max-height: 500px)': {
+    minHeight: '100%',
+    maxHeight: '100%',
+    justifyContent: 'center',
+    paddingBottom: '0',
+  },
 }))
 
 const ScrollDownButton = styled(IconButton)(({ theme }) => ({
@@ -65,6 +71,14 @@ const PageDesc = styled(Box)(({ theme }) => ({
     margin: '0',
     width: '100%',
     maxWidth: '100vw',
+  },
+  '@media (max-height: 500px)': {
+    position: 'relative',
+    bottom: 'auto',
+    left: 'auto',
+    margin: '20px auto 0',
+    width: '80%',
+    maxWidth: '450px',
   },
 }))
 
