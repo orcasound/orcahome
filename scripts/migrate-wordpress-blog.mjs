@@ -22,10 +22,22 @@
  * Requires dev dependencies: @sanity/block-tools, @sanity/schema, jsdom.
  */
 
+import crypto from 'node:crypto'
+
 import { htmlToBlocks } from '@sanity/block-tools'
 import { createClient } from '@sanity/client'
 import { Schema } from '@sanity/schema'
 import { JSDOM } from 'jsdom'
+
+// Deterministic, valid Sanity document id. Slugs can exceed Sanity's 128-char
+// id limit, so long ones are truncated + suffixed with a short stable hash.
+// The slug field itself (the URL) is kept intact.
+const docId = (slug) => {
+  const id = `blogPost-${slug}`
+  if (id.length <= 120) return id
+  const hash = crypto.createHash('sha1').update(slug).digest('hex').slice(0, 8)
+  return `blogPost-${slug.slice(0, 100)}-${hash}`
+}
 
 const WP_API = 'https://www.orcasound.net/wp-json/wp/v2/posts'
 const PROJECT_ID = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'tncpl9l7'
@@ -104,7 +116,8 @@ async function uploadImage(url) {
     return null
   }
   try {
-    const res = await fetch(url)
+    // Time out slow/hanging image URLs so one bad image can't stall the run.
+    const res = await fetch(url, { signal: AbortSignal.timeout(20000) })
     if (!res.ok) throw new Error(`${res.status}`)
     const buffer = Buffer.from(await res.arrayBuffer())
     const filename = decodeURIComponent(
@@ -170,7 +183,7 @@ async function migratePost(post) {
   )
 
   const document = {
-    _id: `blogPost-${slug}`,
+    _id: docId(slug),
     _type: 'blogPost',
     title,
     slug: { _type: 'slug', current: slug },
@@ -212,12 +225,30 @@ async function main() {
   const limit = Number(process.env.LIMIT) || 0
   const posts = limit > 0 ? all.slice(0, limit) : all
   console.log(
-    `Fetched ${all.length} posts from WordPress${limit > 0 ? `, migrating first ${posts.length} (LIMIT=${limit})` : ''}.\n`
+    `Fetched ${all.length} posts from WordPress${
+      limit > 0 ? `, migrating first ${posts.length} (LIMIT=${limit})` : ''
+    }.\n`
   )
+
+  // Skip posts already migrated (safe to re-run / resume) unless FORCE=1.
+  let existing = new Set()
+  if (!DRY_RUN && !process.env.FORCE) {
+    try {
+      const ids = await client.fetch(`*[_type == "blogPost"].slug.current`)
+      existing = new Set(ids || [])
+    } catch {
+      existing = new Set()
+    }
+  }
 
   let ok = 0
   let failed = 0
+  let skipped = 0
   for (const post of posts) {
+    if (existing.has(post.slug)) {
+      skipped += 1
+      continue
+    }
     try {
       await migratePost(post)
       ok += 1
@@ -228,7 +259,7 @@ async function main() {
   }
 
   console.log(
-    `\nDone. ${ok} migrated, ${failed} failed, ${posts.length} total.`
+    `\nDone. ${ok} migrated, ${skipped} skipped (already present), ${failed} failed, ${posts.length} total.`
   )
 }
 
