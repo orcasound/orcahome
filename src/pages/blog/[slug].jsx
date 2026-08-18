@@ -10,11 +10,8 @@ import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import TopBanner from '../../components/TopBanner'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
-
-const POST_BODY_ID = 'post-body'
 
 const formatDate = (value) => {
   if (!value) return ''
@@ -128,29 +125,27 @@ export default function BlogPost({ post }) {
         {post.excerpt && <meta name="description" content={post.excerpt} />}
       </Head>
 
-      {post.featuredImageUrl ? (
-        <TopBanner
-          bannerImg={post.featuredImageUrl}
-          pageTitle={post.title}
-          pageDesc={dateLabel}
-          scrollToId={POST_BODY_ID}
-        />
-      ) : (
-        <Container maxWidth="md" sx={{ pt: { xs: 6, md: 8 } }}>
-          <Typography variant="h3" component="h1" gutterBottom>
-            {post.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {dateLabel}
-          </Typography>
-        </Container>
-      )}
-
       <Container
+        component="article"
         maxWidth="md"
-        id={POST_BODY_ID}
-        sx={{ py: { xs: 6, md: 8 }, scrollMarginTop: '80px' }}
+        sx={{ py: { xs: 5, md: 8 } }}
       >
+        <MuiLink
+          href="/blog"
+          variant="body2"
+          sx={{ display: 'inline-block', mb: 3 }}
+        >
+          &larr; Back to all posts
+        </MuiLink>
+
+        <Typography variant="h3" component="h1" gutterBottom>
+          {post.title}
+        </Typography>
+
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+          {dateLabel}
+        </Typography>
+
         {Array.isArray(post.tags) && post.tags.length > 0 && (
           <Stack
             direction="row"
@@ -165,13 +160,29 @@ export default function BlogPost({ post }) {
           </Stack>
         )}
 
+        {post.featuredImageUrl && (
+          <Box
+            sx={{
+              mb: 5,
+              borderRadius: 2,
+              overflow: 'hidden',
+              lineHeight: 0,
+            }}
+          >
+            <Image
+              src={post.featuredImageUrl}
+              alt={post.featuredImageAlt || post.title || ''}
+              width={1600}
+              height={900}
+              style={{ width: '100%', height: 'auto' }}
+              priority
+            />
+          </Box>
+        )}
+
         {Array.isArray(post.body) && (
           <PortableText value={post.body} components={portableComponents} />
         )}
-
-        <Box sx={{ mt: 6 }}>
-          <MuiLink href="/blog">&larr; Back to all posts</MuiLink>
-        </Box>
       </Container>
     </>
   )

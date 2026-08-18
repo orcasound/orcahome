@@ -208,8 +208,12 @@ async function main() {
       DRY_RUN ? '[DRY RUN] ' : ''
     }Migrating WordPress blog -> Sanity (${PROJECT_ID}/${DATASET})`
   )
-  const posts = await fetchAllPosts()
-  console.log(`Fetched ${posts.length} posts from WordPress.\n`)
+  const all = await fetchAllPosts()
+  const limit = Number(process.env.LIMIT) || 0
+  const posts = limit > 0 ? all.slice(0, limit) : all
+  console.log(
+    `Fetched ${all.length} posts from WordPress${limit > 0 ? `, migrating first ${posts.length} (LIMIT=${limit})` : ''}.\n`
+  )
 
   let ok = 0
   let failed = 0
