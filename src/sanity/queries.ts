@@ -482,3 +482,18 @@ export interface BlogPost extends BlogPostListItem {
   // @portabletext/react rather than reading the shape directly.
   body?: unknown[]
 }
+
+/** Blog pagination (issue #397). Posts per page + a count and a sliced page query. */
+export const BLOG_POSTS_PER_PAGE = 9
+
+export const BLOG_POSTS_COUNT_QUERY = `count(*[_type == "blogPost" && defined(slug.current)])`
+
+export const BLOG_POSTS_PAGE_QUERY = `*[_type == "blogPost" && defined(slug.current)]|order(publishedAt desc)[$start...$end]{
+  title,
+  "slug": slug.current,
+  publishedAt,
+  excerpt,
+  "featuredImageUrl": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  tags
+}`
