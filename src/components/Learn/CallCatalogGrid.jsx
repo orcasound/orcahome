@@ -119,7 +119,7 @@ const CallCatalogGrid = () => {
         <Grid
           container
           spacing={{ xs: 2, md: 8 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
+          columns={12}
           px={{ xs: '5px', md: '30px' }}
         >
           {playArray.map((play, index) => (

@@ -97,14 +97,15 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
             <Box
               sx={{
                 display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'flex-start',
+                flexDirection: 'column',
+                justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
                 '& img': {
                   width: '4rem',
                   height: '4rem',
-                  marginRight: '1rem',
+                  marginRight: '0',
+                  marginBottom: '0.5rem',
                 },
               }}
             >
