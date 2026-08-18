@@ -1,4 +1,5 @@
 import {aboutPage} from './aboutPage'
+import {blogPost} from './blogPost'
 import {catalogPage} from './catalogPage'
 import {contributor} from './contributor'
 import {donatePage} from './donatePage'
@@ -16,4 +17,5 @@ export const schemaTypes = [
   hackerHallOfFamePage,
   catalogPage,
   donatePage,
+  blogPost,
 ]

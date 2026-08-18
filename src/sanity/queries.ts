@@ -434,3 +434,51 @@ export interface DonatePartner {
   description?: string
   linkTo?: string
 }
+
+/**
+ * Blog (issue #397). List query for the /blog landing page and a single-post
+ * query for /blog/[slug]. Image assets resolve to plain CDN URLs via
+ * `asset->url`, matching the other Sanity pages. Body images are resolved
+ * inline so the Portable Text renderer can show them.
+ */
+export const BLOG_POSTS_QUERY = `*[_type == "blogPost" && defined(slug.current)]|order(publishedAt desc){
+  title,
+  "slug": slug.current,
+  publishedAt,
+  excerpt,
+  "featuredImageUrl": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  tags
+}`
+
+export const BLOG_SLUGS_QUERY = `*[_type == "blogPost" && defined(slug.current)].slug.current`
+
+export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  publishedAt,
+  excerpt,
+  "featuredImageUrl": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  tags,
+  body[]{
+    ...,
+    _type == "image" => { "url": asset->url, alt }
+  }
+}`
+
+export interface BlogPostListItem {
+  title?: string
+  slug?: string
+  publishedAt?: string
+  excerpt?: string
+  featuredImageUrl?: string
+  featuredImageAlt?: string
+  tags?: string[]
+}
+
+export interface BlogPost extends BlogPostListItem {
+  // Portable Text blocks; typed loosely since the page renders them via
+  // @portabletext/react rather than reading the shape directly.
+  body?: unknown[]
+}
