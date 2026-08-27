@@ -5,6 +5,7 @@ import {
   Checkbox,
   Container,
   FormControlLabel,
+  Link as MuiLink,
   MenuItem,
   TextField,
   Typography,
@@ -284,7 +285,21 @@ export default function ResearchOptInForm() {
                 required
               />
             }
-            label="I agree to join the Orcasound research panel and receive occasional research invitations. I understand I can unsubscribe at any time."
+            label={
+              <>
+                I agree to join the Orcasound research panel and receive
+                occasional research invitations. I understand I can unsubscribe
+                at any time. I have read the{' '}
+                <MuiLink
+                  href="/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Privacy &amp; Consent Policy
+                </MuiLink>
+                .
+              </>
+            }
           />
 
           <Button
