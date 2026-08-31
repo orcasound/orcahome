@@ -51,7 +51,7 @@ export default function Catalog({ catalog }) {
           sx={{
             fontFamily: 'Mukta',
             fontWeight: 400,
-            fontSize: '15px',
+            fontSize: '16px',
             textAlign: 'left',
             mt: 6,
             color: '#000',

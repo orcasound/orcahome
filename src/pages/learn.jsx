@@ -204,7 +204,7 @@ const CommonCallsContent = ({ content }) => (
 
     <Box sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
       <Typography
-        variant="body2"
+        variant="body1"
         color="text.secondary"
         sx={{
           display: 'inline-flex',
@@ -263,7 +263,7 @@ const CommonCallsContent = ({ content }) => (
             />
           )}
           <Typography
-            variant="body2"
+            variant="body1"
             color="text.secondary"
             mt={2}
             textAlign="left"

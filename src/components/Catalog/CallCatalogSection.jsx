@@ -60,7 +60,7 @@ export default function CallCatalogSection({
 
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
         <Typography
-          variant="body2"
+          variant="body1"
           color="text.secondary"
           sx={{
             display: 'inline-flex',

@@ -54,12 +54,13 @@ const AboutCard = ({ item, mobileActive, onClick }) => {
         >
           <Typography
             gutterBottom
-            variant="h7"
+            variant="h6"
             component="div"
             align="center"
             sx={{
               fontFamily: 'Montserrat',
               fontWeight: '500',
+
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
