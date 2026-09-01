@@ -80,7 +80,16 @@ const Nav = () => {
                 alignItems: 'center',
               }}
             >
-              <Box display="flex" justifyContent="center">
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  '@media (max-width: 1200px)': {
+                    position: 'absolute',
+                    left: '15px',
+                  },
+                }}
+              >
                 <Link href="/">
                   <Image
                     style={{ width: '40px', height: 'auto', display: 'block' }}

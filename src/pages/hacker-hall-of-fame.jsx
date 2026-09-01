@@ -418,7 +418,7 @@ const HackerHallOfFame = ({ hhof }) => {
         aria-label="breadcrumb"
       >
         {content.podcastNames.map((name) => (
-          <Typography key={name} color="text.primary">
+          <Typography key={name} color="text.primary" fontSize="16px">
             {name}
           </Typography>
         ))}

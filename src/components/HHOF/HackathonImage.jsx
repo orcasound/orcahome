@@ -47,7 +47,7 @@ const HackathonImage = ({ imageUrl, imageWidth, imageHeight, caption }) => {
       />
       <Typography
         variant="caption"
-        sx={{ color: 'text.secondary', display: 'block' }}
+        sx={{ color: 'text.secondary', display: 'block', fontSize: '16px' }}
       >
         {caption || DEFAULT_CAPTION}
       </Typography>

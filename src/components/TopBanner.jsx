@@ -51,8 +51,11 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   '&:hover': {
     transform: 'translateY(5px)',
   },
-  [theme.breakpoints.down('sm')]: {
-    display: 'none',
+  //[theme.breakpoints.down('sm')]: {
+  //display: 'none',
+  //},
+  '@media (max-width: 800px)': {
+    position: 'relative',
   },
 }))
 

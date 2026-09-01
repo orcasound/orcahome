@@ -212,7 +212,7 @@ export default function CallRow({
               sx={{
                 fontFamily: 'Montserrat',
                 fontWeight: 400,
-                fontSize: { xs: '14px', md: '18px' },
+                fontSize: { xs: '16px', md: '18px' },
                 lineHeight: 1,
                 width: { xs: 'auto', md: 96 },
                 textAlign: { xs: 'left', md: 'right' },
