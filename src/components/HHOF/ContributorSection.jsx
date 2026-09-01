@@ -70,7 +70,7 @@ const ContributorSection = ({
             >
               {title}
             </Typography>
-            <Typography variant="caption">{caption}</Typography>
+            <Typography variant="body1">{caption}</Typography>
           </Box>
         )}
 
