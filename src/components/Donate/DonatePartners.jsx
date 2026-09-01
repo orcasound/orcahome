@@ -86,7 +86,7 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
         >
           {title || DEFAULT_PARTNERS_TITLE}
         </Typography>
-        <Typography sx={{ fontSize: { xs: '15px', md: '19px' } }}>
+        <Typography sx={{ fontSize: { xs: '16px', md: '19px' } }}>
           {description || DEFAULT_PARTNERS_DESCRIPTION}
         </Typography>
       </TitleContainer>
@@ -119,17 +119,17 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
                   height: 'auto',
                 }}
               />
-              <Typography sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}>
+              <Typography sx={{ fontWeight: 'bold', fontSize: '1rem' }}>
                 {partner.name}
               </Typography>
             </Box>
             <Box>
-              <Typography sx={{ fontSize: '0.7rem', padding: '0.8rem 1rem' }}>
+              <Typography sx={{ fontSize: '1rem', padding: '0.8rem 1rem' }}>
                 {partner.description}
               </Typography>
               <Box
                 sx={{
-                  fontSize: '0.7rem',
+                  fontSize: '1rem',
                   display: 'flex',
                   justifyContent: 'flex-end',
                 }}
@@ -186,7 +186,7 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
               </Box>
               <Box
                 sx={{
-                  fontSize: { md: '1rem', lg: '0.8rem' },
+                  fontSize: { md: '1rem', lg: '1rem' },
                   display: 'flex',
                   justifyContent: { md: 'flex-end' },
                   alignItems: { lg: 'flex-end' },

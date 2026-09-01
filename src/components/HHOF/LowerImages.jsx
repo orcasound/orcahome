@@ -113,6 +113,7 @@ const LowerImages = ({ images }) => {
               sx={(theme) => ({
                 color: 'text.secondary',
                 width: '100%',
+                fontSize: '16px',
               })}
             >
               {photo0.caption}
@@ -145,7 +146,10 @@ const LowerImages = ({ images }) => {
                 borderRadius: '20px',
               }}
             />
-            <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            <Typography
+              variant="caption"
+              sx={{ color: 'text.secondary', fontSize: '16px' }}
+            >
               {photo1.caption}
             </Typography>
           </Box>

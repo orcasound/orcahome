@@ -184,7 +184,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               }}
             />
           </ImageContainer>
-          <Typography sx={{ margin: '10px' }}>
+          <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
             {props.donateOrcasoundMessage}
           </Typography>
           <Box
@@ -201,6 +201,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 backgroundColor: '#1B2B7B',
                 borderRadius: '20px',
                 margin: '10px',
+                fontSize: '16px',
               }}
               onClick={handleDonateClick}
             >
@@ -230,7 +231,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               }}
             />
           </ImageContainer>
-          <Typography sx={{ margin: '10px' }}>
+          <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
             {props.donateVolunteersMessage}
           </Typography>
           <Box
@@ -251,6 +252,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
                 borderRadius: '20px',
                 margin: '10px',
                 width: 'fit-content',
+                fontSize: '16px',
               }}
               onClick={() =>
                 pushToDataLayer('cta_click', {

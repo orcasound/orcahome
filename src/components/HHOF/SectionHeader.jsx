@@ -25,9 +25,7 @@ const SectionHeader = ({
       <Typography variant="h4" gutterBottom={titleGutterBottom} sx={titleSx}>
         {title}
       </Typography>
-      {subtitle && (
-        <Typography variant={subtitleVariant}>{subtitle}</Typography>
-      )}
+      {subtitle && <Typography variant="h6">{subtitle}</Typography>}
       {descriptions.map((d) => (
         <Typography key={d.key} variant={d.variant} sx={d.sx}>
           {d.node}

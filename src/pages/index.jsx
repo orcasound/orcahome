@@ -204,10 +204,7 @@ export const index = ({ home }) => {
                 position: 'absolute',
                 bottom: '30px',
                 padding: '0',
-                display: {
-                  xs: 'none',
-                  sm: 'flex',
-                },
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -215,6 +212,10 @@ export const index = ({ home }) => {
                 transition: 'all 0.5s ease-in-out',
                 '&:hover': {
                   transform: 'translateY(5px)',
+                },
+                '@media (max-width: 800px)': {
+                  position: 'relative',
+                  bottom: '0.25px',
                 },
               }}
             >
