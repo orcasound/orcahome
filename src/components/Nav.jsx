@@ -48,9 +48,8 @@ const navLinks = [
   },
   {
     name: 'Blog',
-    url: 'https://www.orcasound.net/blog/',
+    url: '/blog',
     icon: '',
-    external: true,
   },
   {
     name: 'Send Feedback',

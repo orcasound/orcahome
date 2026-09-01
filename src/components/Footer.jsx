@@ -95,15 +95,9 @@ const sendFeedbackLink = (
 )
 
 const blogLink = (
-  <StyledTypography
-    variant="h6"
-    component="a"
-    href="https://www.orcasound.net/blog/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Blog
-  </StyledTypography>
+  <Link href="/blog">
+    <StyledTypography variant="h6">Blog</StyledTypography>
+  </Link>
 )
 
 const supportUsLink = (
@@ -157,9 +151,8 @@ const navLinksRightCol = [
   },
   {
     name: 'Blog',
-    url: 'https://www.orcasound.net/blog/',
+    url: '/blog',
     icon: '',
-    external: true,
   },
 ]
 
