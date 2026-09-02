@@ -100,6 +100,8 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
+![The Publish button and document status at the bottom of a post](images/blog-guide/06-publish.png)
+
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site won't show it (or keeps showing the old version).
 > Always click **Publish** when you're done.
