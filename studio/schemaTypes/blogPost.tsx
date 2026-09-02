@@ -15,6 +15,19 @@ export const blogPost = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: (
+        <>
+          📖 New to editing the blog?{' '}
+          <a
+            href="https://docs.google.com/document/d/1ESex1obpVYf7skclCcjbJx8g0W4ruv6TG77c7yXCONU/edit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Read the step-by-step guide
+          </a>
+          .
+        </>
+      ),
       validation: (rule) => rule.required(),
     }),
     defineField({
