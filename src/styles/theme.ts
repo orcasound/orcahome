@@ -73,6 +73,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          overflowWrap: 'break-word',
+          wordBreak: 'break-word',
+        },
+      },
+    },
   },
   breakpoints: {
     values: {
