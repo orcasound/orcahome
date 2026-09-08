@@ -14,7 +14,8 @@ below.
 
 1. Go to **https://orcahome.sanity.studio**
 2. Sign in with the Google account that was given access. If you can't get in,
-   ask an admin to grant your account access — ping @Vicky on Zulip.
+   ask to have your account added to the Sanity project. Brendan Thatcher owns
+   the project; ping @Vicky or @Brendan on Zulip.
 
 ---
 
