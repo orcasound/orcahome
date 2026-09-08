@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {EditingGuidePane} from './components/EditingGuidePane'
 import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
@@ -29,6 +30,16 @@ export default defineConfig({
         return S.list()
           .title('Content')
           .items([
+            // "Start here" help entry, pinned at the top of the list.
+            S.listItem()
+              .id('editingGuide')
+              .title('📖 Start here')
+              .child(
+                S.component(EditingGuidePane)
+                  .id('editingGuide')
+                  .title('Editing guide'),
+              ),
+            S.divider(),
             ...singletons.map((s) =>
               S.listItem()
                 .id(s.id)

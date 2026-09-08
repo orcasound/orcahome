@@ -1,5 +1,9 @@
 # Updating the website with Sanity (overview)
 
+> **Editors:** this Markdown file is a repository reference. The authoritative,
+> up-to-date guides for editors are the **Google Doc versions** in the shared
+> Drive folder. If the two ever differ, the Google Docs win.
+
 The content on orcasound.tech is managed in **Sanity**, a content management
 system (CMS). You edit everything in the **Sanity Studio** (a website) and your
 changes go live automatically — you do not touch code, and you do not need a
