@@ -7,7 +7,7 @@ import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
  * (the Google Doc) in a new tab.
  */
 const GUIDE_URL =
-  'https://docs.google.com/document/d/1ESex1obpVYf7skclCcjbJx8g0W4ruv6TG77c7yXCONU/edit'
+  'https://docs.google.com/document/d/1ZxAjwaND-DnZtk8u-bW4Da30Mb-SFYPUmVXiRUidIvQ/edit'
 
 export function EditingGuidePane() {
   return (
