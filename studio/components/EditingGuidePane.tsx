@@ -3,11 +3,12 @@ import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
 /**
  * A small help pane shown from the "📖 Start here" item at the top of the
  * Studio content list. Sidebar list items can't be plain external links, so
- * this renders a one-line intro plus a link that opens the editor-facing guide
- * (the Google Doc) in a new tab.
+ * this renders a one-line intro plus a link that opens the overview guide in a
+ * new tab. Single source of truth: the guide lives in the repo as
+ * docs/sanity-guide.md.
  */
 const GUIDE_URL =
-  'https://docs.google.com/document/d/1ZxAjwaND-DnZtk8u-bW4Da30Mb-SFYPUmVXiRUidIvQ/edit'
+  'https://github.com/orcasound/orcahome/blob/main/docs/sanity-guide.md'
 
 export function EditingGuidePane() {
   return (
