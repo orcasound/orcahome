@@ -87,6 +87,10 @@ cp .env.example .env.local
 
 `.env.local` is gitignored. The app is designed to build without these set — Sanity is created lazily, and a friendly error only surfaces if a preview route is hit while unconfigured. See [`.env.example`](.env.example) for the full list and where to get a read token.
 
+### Editing content in Sanity
+
+Content (page copy, images, blog posts) is managed in Sanity — no code needed. See [`docs/sanity-guide.md`](docs/sanity-guide.md) for the overview and per-page guides. (For non-technical editors, the authoritative guides are the Google Doc versions in the shared Drive folder.)
+
 ## Available scripts
 
 | Script                 | Description                              |
