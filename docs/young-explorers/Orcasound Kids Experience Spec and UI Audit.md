@@ -1,4 +1,4 @@
-# Orcasound Kids Experience: Product Specification and Beta UI Audit
+# Orcasound Young Explorers: Product Specification and Beta UI Audit
 
 Prepared for the 2026 hackathon, Day 1
 
@@ -8,9 +8,11 @@ Create a dedicated, optional **Young Explorers** experience that turns Orcasound
 
 > **Hear it. Understand it. Protect it.**
 
-The first release should be a five-minute **Orca Sound Detective** activity for upper-elementary and middle-school students. It should use real, curator-approved Orcasound recordings and existing spectrograms, introduce J, K, and L pods, explain the difference between calls, whistles, and echolocation clicks, and end with one realistic "Orca Ally" action.
+The first release should be a five-minute **Orca Sound Detective** activity for upper-elementary and middle-school students. It should use real, curator-approved Orcasound recordings and existing spectrograms, introduce J, K, and L pods, teach careful interpretation of Southern Resident discrete calls, and end with one realistic "Orca Ally" action.
 
-This is a better fit than making the entire site look childlike. Scientists, volunteers, donors, educators, and casual listeners still need the primary site. A separate `/kids` or `/explore` route can use the same design system and content while providing:
+**Learning objective:** After completing the activity, students can use an audio recording and/or spectrogram to make one evidence-based observation about a Southern Resident call, explain one limit of that evidence, and choose one relevant conservation action.
+
+This is a better fit than making the entire site look childlike. Scientists, volunteers, donors, educators, and casual listeners still need the primary site. A separate `/young-explorers` or `/explore` route can use the same design system and content while providing:
 
 - larger targets and shorter text;
 - guided audio missions;
@@ -48,6 +50,7 @@ The UI should therefore:
 - A hydrophone can hear an orca when it is acoustically close enough. A louder recording can be consistent with a closer whale, but **volume alone is not a reliable distance measurement**. Orientation, depth, vocalization type, water conditions, background noise, and hydrophone sensitivity also affect loudness.
 - Sightings and photographs are contributed by authorized researchers and members of the public through reporting workflows. The product must show their source and status rather than presenting every report as a verified Orcasound detection.
 - Orcasound's distinctive evidence is sound. The experience should teach children to listen critically rather than becoming another photo gallery.
+- Southern Resident Killer Whales are the fish-eating population organized into J, K, and L pods. Bigg's (transient) killer whales also use the Salish Sea, primarily hunt marine mammals, and are often quieter while hunting. The prototype's S-call examples and pod lessons are explicitly about Southern Residents; they must not be generalized to all killer whales.
 
 ### Pods and vocalizations
 
@@ -59,6 +62,11 @@ The UI should therefore:
   - **Whistles:** social sounds that are less common than discrete calls in Southern Resident Killer Whales.
   - Orcasound's click catalog also describes click-speed categories and a "sweep."
 - Southern Resident Killer Whales specialize in fish, especially Chinook salmon. Vessel noise can interfere with both communication and echolocation.
+- Orcasound's existing learning ladder contains 46 characterized Southern Resident discrete-call types, S01-S46, with audio and spectrogram assets. The prototype begins with S01-S05 and uses S01, S16, and S19 for the pod activity; later levels can progress through more of the reviewed catalog without inventing a separate taxonomy.
+
+### Equal audio and visual evidence paths
+
+Audio is the project's distinctive evidence, but hearing must not be required for success. Each challenge should present the reviewed recording and its matching spectrogram together, with a useful text description of visible contours, repetition, timing, and intensity. Prompts should accept observations made by listening, visual inspection, or both. This makes spectrogram reasoning a first-class investigation path for deaf and hard-of-hearing learners rather than a fallback.
 
 ### Pod identification versus individual identification
 
@@ -73,15 +81,15 @@ This distinction can itself become a useful activity: students first match a cal
 
 Every event card or map marker should show one of these plain-language labels:
 
-| Label | Meaning |
-|---|---|
-| **Live underwater audio** | Sound currently streaming from a named hydrophone |
-| **AI candidate** | OrcaHello detected a possible whale sound; not yet expert-confirmed |
-| **Expert confirmed** | A trained moderator reviewed the acoustic evidence |
-| **Researcher sighting** | A sighting or photo supplied by an identified research organization |
-| **Community report** | A public report that may still need verification |
+| Label                           | Meaning                                                                         |
+| ------------------------------- | ------------------------------------------------------------------------------- |
+| **Live underwater audio**       | Sound currently streaming from a named hydrophone                               |
+| **AI candidate**                | OrcaHello detected a possible whale sound; not yet expert-confirmed             |
+| **Expert confirmed**            | A trained moderator reviewed the acoustic evidence                              |
+| **Researcher sighting**         | A sighting or photo supplied by an identified research organization             |
+| **Community report**            | A public report that may still need verification                                |
 | **Photo-identified individual** | A qualified source matched the dorsal fin and saddle patch to a cataloged whale |
-| **Historical recording** | A dated, curated clip used for learning |
+| **Historical recording**        | A dated, curated clip used for learning                                         |
 
 Do not merge these evidence types into a generic "orca detected" status.
 
@@ -116,26 +124,32 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
 ### Five-minute flow
 
 1. **Welcome**
+
    - "Put on headphones at a comfortable volume."
    - Choose Ocean Explorer or Junior Bioacoustician.
    - Explain that the clips are real and may contain boat, water, fish, and animal sounds.
 
 2. **Meet the listening network**
+
    - Show the eight hydrophones as friendly "ocean ears."
    - Select a node to hear one short, curated clip.
    - Say "heard near this hydrophone," not "the whale was exactly here."
 
 3. **Sound challenge**
+
    - Play a 5-10 second clip.
-   - Ask: "What do you hear?" with choices such as orca call, clicking, boat, rain/waves, or "not sure."
+   - Ask students to describe the call's audible and/or visible pattern, always including "not sure."
+   - Scope the prototype to reviewed S01-S05 discrete-call assets; do not imply that the activity includes click, buzz, or non-orca examples that have not been curated.
    - Always include "not sure"; uncertainty is part of science.
 
 4. **Reveal**
-   - Animate or highlight the matching region in a spectrogram, with a reduced-motion alternative.
+
+   - Show the matching real spectrogram and describe its useful visual features; any optional animation must have a reduced-motion alternative.
    - Give a one-sentence explanation and a "How do we know?" disclosure.
    - Show whether the clip was expert-confirmed or is an educational example.
 
 5. **Meet a pod**
+
    - Introduce J, K, or L pod with a call, range map, family-safe story, and one current conservation challenge.
    - Avoid claiming the sound identifies an individual whale.
    - Optionally introduce a cataloged individual from that pod, while clearly saying the individual was identified from verified photographs rather than from this sound.
@@ -146,12 +160,11 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
 
 ### MVP content
 
-- Six existing call clips and spectrograms from the Learn page
-- At least one click/buzz example from the Orcasound click catalog
-- Two non-orca controls such as boat noise and waves
+- Five existing Southern Resident call clips and matching S01-S05 spectrograms from the repository
 - Three pod cards: J, K, and L
 - Three conservation cards: quiet water, salmon habitat, clean water
 - One explanation of OrcaHello: "AI suggests; trained people confirm"
+- Future reviewed-content tier: curated click/buzz examples and non-orca controls such as vessel noise or waves, added only after subject-matter review and with matching visual descriptions
 
 ### Acceptance criteria
 
@@ -160,7 +173,7 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
 - Every clip has a transcript/description and a spectrogram or other visual equivalent.
 - The user can pause all sound immediately.
 - Only one clip plays at a time.
-- The activity preserves progress locally, if at all; no cross-device identity or behavioral profile.
+- The prototype keeps progress only in the current page session. A production experience may use privacy-preserving browser-local progress, but must provide a visible reset and account for shared devices.
 - Correctness is reviewed by an Orcasound acoustic subject-matter expert.
 - Content meets WCAG 2.2 AA and works at 320 CSS pixels wide.
 - Motion respects `prefers-reduced-motion`.
@@ -215,6 +228,8 @@ Let students compare:
 
 This can align with existing Orcahome issue #393 for animated/dynamic spectrograms.
 
+The S01-S46 catalog should form the core progression: begin with a few visually distinct, well-explained calls, then add comparison and uncertainty challenges as students advance. Clicks, buzzes, vessel noise, and other controls belong in a separately reviewed content tier.
+
 ### E. Orca Ally Missions
 
 Use short, place-based missions instead of guilt:
@@ -235,28 +250,34 @@ Avoid points tied to donations or social posting.
 - printable sound-observation sheet
 - small-group roles: listener, evidence recorder, and conservation planner
 - stable clip set that does not depend on whales being present live
-- Next Generation Science Standards mapping as a later educator-reviewed deliverable
+- Next Generation Science Standards mapping as an educator-reviewed classroom-adoption requirement, not an unverified marketing claim
+- a silent-room path in which every task can be completed from spectrograms and text descriptions
 
 ### G. Orca Ally Schools program
 
 Schools can become active awareness partners rather than passive content consumers. Offer a free, teacher-led program with five participation levels:
 
 1. **Sound of the Week**
+
    - A teacher-safe page provides one short, curated recording, a spectrogram, three discussion questions, and one conservation fact.
    - Students vote on what they hear before the expert answer is revealed.
    - Morning announcements or the school science newsletter can share the fact without exposing student information.
 
 2. **Classroom Listening Team**
+
    - Small groups take rotating roles: Audio Listener, Spectrogram Reader, Evidence Checker, Pod Researcher, and Orca Ally Reporter.
    - Students record observations on a printable or local-only worksheet.
+   - The Evidence Checker role explicitly mirrors the simplified evidence review practiced by Orcasound's volunteer moderators, while making clear that student work never confirms a live detection.
    - No submission is needed to complete the activity. If aggregate feedback is later collected, the teacher submits it without student names or accounts.
 
 3. **Adopt-to-Learn partnership**
+
    - A class can choose a verified individual profile and learn its pod, family relationships, life history, and conservation challenges.
    - Orcasound supplies the sound-learning activities; The Whale Museum's official adoption program remains the pathway for a formal adoption.
    - The class receives an Orca Ally classroom certificate and can maintain a wall-sized Pod Passport.
 
 4. **Student awareness project**
+
    - Students create an evidence-based poster, short audio story, school exhibit, science-fair project, podcast segment, or "quiet ocean" campaign.
    - Every artifact includes at least one approved source and distinguishes fact, observation, and inference.
    - The default is a school-local display, which creates awareness without adding Orcasound moderation work. Publishing student names, voices, photos, or precise locations requires the school's normal guardian-consent process.
@@ -268,12 +289,12 @@ Schools can become active awareness partners rather than passive content consume
 
 #### Four-week lightweight school challenge
 
-| Week | Theme | Student activity | Awareness output |
-|---|---|---|---|
-| 1 | Hear | Learn hydrophones and classify a mystery sound | "What is an ocean ear?" school announcement |
-| 2 | Know | Meet J, K, and L pods; try photo-ID matching | Pod Passport display |
-| 3 | Protect | Explore vessel noise, salmon, habitat, and clean water | One class conservation pledge |
-| 4 | Share | Build and present a sourced story or exhibit | Family night, science fair, or virtual showcase |
+| Week | Theme   | Student activity                                       | Awareness output                                |
+| ---- | ------- | ------------------------------------------------------ | ----------------------------------------------- |
+| 1    | Hear    | Learn hydrophones and classify a mystery sound         | "What is an ocean ear?" school announcement     |
+| 2    | Know    | Meet J, K, and L pods; try photo-ID matching           | Pod Passport display                            |
+| 3    | Protect | Explore vessel noise, salmon, habitat, and clean water | One class conservation pledge                   |
+| 4    | Share   | Build and present a sourced story or exhibit           | Family night, science fair, or virtual showcase |
 
 #### School participation safeguards
 
@@ -289,16 +310,23 @@ Schools can become active awareness partners rather than passive content consume
 
 #### What the UI should do automatically
 
-| Need | UI behavior | Volunteer work |
-|---|---|---|
-| Choose an activity | Filter by grade band, duration, and topic | None |
-| Run a lesson | Step-by-step presentation mode with optional read-aloud | Teacher facilitates |
-| Explain an answer | Reveal expert-reviewed explanation and source | One-time content review |
-| Track progress | Browser-local checklist or session state | None |
-| Create recognition | Generate printable Pod Passport or Orca Ally certificate locally | None |
-| Handle a quiet live stream | Offer a curated historical "mystery sound" | Maintain a small clip library |
-| Answer common questions | Searchable, age-appropriate FAQ | Occasional content updates |
-| Gather feedback | Optional anonymous teacher form with aggregate questions | Periodic review, not per-student support |
+| Need                       | UI behavior                                                      | Volunteer work                           |
+| -------------------------- | ---------------------------------------------------------------- | ---------------------------------------- |
+| Choose an activity         | Filter by grade band, duration, and topic                        | None                                     |
+| Run a lesson               | Step-by-step presentation mode with optional read-aloud          | Teacher facilitates                      |
+| Explain an answer          | Reveal expert-reviewed explanation and source                    | One-time content review                  |
+| Track progress             | Browser-local checklist or session state                         | None                                     |
+| Create recognition         | Generate printable Pod Passport or Orca Ally certificate locally | None                                     |
+| Handle a quiet live stream | Offer a curated historical "mystery sound"                       | Maintain a small clip library            |
+| Answer common questions    | Searchable, age-appropriate FAQ                                  | Occasional content updates               |
+| Gather feedback            | Optional anonymous teacher form with aggregate questions         | Periodic review, not per-student support |
+
+#### Shared-device and kiosk constraints
+
+- Provide a clear **Start over** control and avoid presenting browser state as a durable student profile.
+- Default to a visually complete path for museums, libraries, and noisy classrooms where headphones may be unavailable.
+- Reset idle sessions before the next visitor and never expose a previous student's typed certificate name.
+- Keep downloaded or printed recognition optional so a shared kiosk does not imply saved individual progress.
 
 #### Sustainable implementation tiers
 
@@ -326,22 +354,22 @@ If a conversational assistant is added, it should:
 
 ## 6. Conservation goals translated into features
 
-| Initiative goal | Student-facing feature | Operational guardrail |
-|---|---|---|
-| Build awareness | Pod Passport, real call stories, short facts | Use accurate and hopeful language |
+| Initiative goal           | Student-facing feature                                            | Operational guardrail                                                                           |
+| ------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Build awareness           | Pod Passport, real call stories, short facts                      | Use accurate and hopeful language                                                               |
 | Help vessels avoid whales | Explain how confirmed acoustic alerts can support safer decisions | Safety messaging uses approved, confirmed operational data, not a child's guess or raw loudness |
-| Support orca well-being | Orca Ally missions on noise, salmon, habitat, and clean water | Avoid claims that a single action "saves" a whale |
+| Support orca well-being   | Orca Ally missions on noise, salmon, habitat, and clean water     | Avoid claims that a single action "saves" a whale                                               |
 
 ## 7. Benchmarks worth adapting
 
-| Site | Pattern to adapt | Why it fits Orcasound |
-|---|---|---|
-| [NOAA for Kids](https://oceanservice.noaa.gov/kids/) | Games, puzzles, printable activities, official science | Trusted conservation learning and classroom reuse |
-| [NASA Kids Earth](https://science.nasa.gov/kids/earth/) | Mission framing, short explainers, visual topic navigation | Turns complex science into achievable exploration |
-| [National Geographic Kids Ocean Portal](https://kids.nationalgeographic.com/pages/topic/ocean-portal) | Strong animal stories, quizzes, visual cards | Emotional connection and curiosity |
-| [Monterey Bay Aquarium Learning at Home](https://www.montereybayaquarium.org/for-educators/learning-at-home) | Live animal media plus educator activities | Model for pairing a live experience with reliable fallback activities |
-| [Smithsonian Ocean Portal](https://ocean.si.edu/ocean-life) | Layered articles, exhibits, and scientist stories | Supports both elementary and middle-school depth |
-| [The Whale Museum Adopt an Orca](https://whalemuseum.org/collections/adopt-an-orca) | Named-whale stories, pod/family relationships, stewardship | Creates a durable personal connection to local whales |
+| Site                                                                                                         | Pattern to adapt                                           | Why it fits Orcasound                                                 |
+| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| [NOAA for Kids](https://oceanservice.noaa.gov/kids/)                                                         | Games, puzzles, printable activities, official science     | Trusted conservation learning and classroom reuse                     |
+| [NASA Kids Earth](https://science.nasa.gov/kids/earth/)                                                      | Mission framing, short explainers, visual topic navigation | Turns complex science into achievable exploration                     |
+| [National Geographic Kids Ocean Portal](https://kids.nationalgeographic.com/pages/topic/ocean-portal)        | Strong animal stories, quizzes, visual cards               | Emotional connection and curiosity                                    |
+| [Monterey Bay Aquarium Learning at Home](https://www.montereybayaquarium.org/for-educators/learning-at-home) | Live animal media plus educator activities                 | Model for pairing a live experience with reliable fallback activities |
+| [Smithsonian Ocean Portal](https://ocean.si.edu/ocean-life)                                                  | Layered articles, exhibits, and scientist stories          | Supports both elementary and middle-school depth                      |
+| [The Whale Museum Adopt an Orca](https://whalemuseum.org/collections/adopt-an-orca)                          | Named-whale stories, pod/family relationships, stewardship | Creates a durable personal connection to local whales                 |
 
 The recommended combination is **NASA-style missions + aquarium-style live presence + Whale Museum-style stories + NOAA-level science trust**, centered on Orcasound's unique real audio.
 
@@ -489,11 +517,11 @@ All text wraps within the viewport with at least 16 CSS pixels of horizontal pad
 
 **Goal**
 
-Create a five-minute guided activity that helps grades 3-8 identify common underwater sounds, meet J/K/L pods, understand acoustic evidence, and choose one conservation action.
+Create a five-minute guided activity that helps grades 3-8 investigate reviewed Southern Resident calls with audio and spectrogram evidence, meet J/K/L pods, understand uncertainty, and choose one conservation action.
 
 **Implementation fit**
 
-- New route: `/kids` or `/explore`
+- New route: `/young-explorers` or `/explore`
 - Reuse audio and spectrogram assets from `src/pages/learn.jsx` and `src/components/Learn/CallCatalogGrid.jsx`
 - Reuse MUI and Orcasound design tokens
 - Content can begin as reviewed static data and move to Sanity after validation
@@ -502,7 +530,7 @@ Create a five-minute guided activity that helps grades 3-8 identify common under
 **Acceptance criteria**
 
 - Two self-selected reading-depth modes
-- Six or more curated audio challenges
+- Five or more curated Southern Resident call challenges with matching spectrograms
 - J, K, and L pod learning cards
 - Evidence/source label on each clip
 - One conservation action at completion
@@ -515,8 +543,8 @@ Create a five-minute guided activity that helps grades 3-8 identify common under
 
 ### Must finish today
 
-1. Clickable `/kids` prototype or Figma flow with Welcome, Sound Challenge, Reveal, Meet a Pod, and Orca Ally screens.
-2. Three reviewed clips: one call, one click/buzz, and one non-orca sound.
+1. Clickable `/young-explorers` prototype with Welcome, Sound Challenge, Reveal, Meet a Pod, and Orca Ally sections.
+2. Five reviewed S01-S05 Southern Resident call clips with their real spectrograms and equivalent visual investigation prompts.
 3. One J/K/L pod selector.
 4. Evidence labels and a plain-language "AI suggests; people confirm" explanation.
 5. Mobile and keyboard usability.
@@ -533,14 +561,14 @@ Create a five-minute guided activity that helps grades 3-8 identify common under
 
 ### Suggested team demo
 
-Start with a mystery clip, let the audience vote, reveal its spectrogram and evidence status, introduce the pod or sound type, then end with a concrete conservation action. This demonstrates the product idea in under three minutes.
+Start with a mystery call, let the audience vote from its recording, spectrogram, or both, reveal its evidence status, introduce a Southern Resident pod, then end with a concrete conservation action. This demonstrates the product idea in under three minutes.
 
 ## 12. Success measures
 
 For a first moderated test with 5-8 students and 2-3 educators:
 
 - 80% can explain what a hydrophone is after the activity.
-- 80% can name at least two sound types.
+- 80% can name at least two audible or visible features of a call pattern.
 - 70% can explain that AI candidates need human review.
 - 80% can name one realistic orca-conservation action.
 - At least 4 of 5 students choose to play a second sound.
