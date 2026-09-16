@@ -25,10 +25,10 @@ The standalone prototype:
 - serves local three-second classroom editions of S01-S05, S16, and S19 from
   `audio/`; shorter source calls use neutral padding rather than repeating or
   fabricating whale sounds, while S03 uses a three-second excerpt;
-- turns representative J, K, and L pod calls into three hidden-identity
-  mysteries; students hear a call, select J/K/L, and submit their answer before
-  the pod name is revealed;
-- adds a tick to a Pod Passport badge only after a correct submitted answer;
+- turns S03, S16, and S19 into a repertoire-mapping activity; students hear a
+  call and submit one documented pod match, with K or L accepted for shared call
+  S16, L for S19, and J for S03;
+- adds a tick to a Call Passport badge only after a valid submitted match;
 - uses Orcahome observation photographs to teach that pods are family groups,
   not visually different orca types, and that a photo alone does not prove pod
   membership;

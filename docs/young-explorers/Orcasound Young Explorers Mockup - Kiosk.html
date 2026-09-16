@@ -557,13 +557,8 @@
         font-weight: 800;
         text-align: center;
       }
-      .mission-shell.explorer-mode .quiz-briefing,
-      .mission-shell.explorer-mode .spectrogram {
+      .mission-shell.explorer-mode .quiz-briefing {
         display: none;
-      }
-      .mission-shell.explorer-mode .audio-lab {
-        grid-template-columns: 1fr;
-        max-width: 720px;
       }
       .mission-shell.explorer-mode .player-card {
         min-height: 0;
@@ -2645,17 +2640,18 @@
               >
               <h2
                 id="pods-title"
-                data-explorer-text="Can you match each orca call?"
-                data-scientist-text="Can you identify the mystery pods?"
+                data-explorer-text="Which pods could use these calls?"
+                data-scientist-text="Can you map the mystery calls?"
               >
-                Can you match each orca call?
+                Which pods could use these calls?
               </h2>
             </div>
             <p
-              data-explorer-text="Press play, read the short clue, and choose J, K, or L Pod."
-              data-scientist-text="Study each observation photo, hear the three-second call, and decide whether the mystery family is J, K, or L Pod."
+              data-explorer-text="Press play, read the clue, and choose a pod that could use the call. Some calls are shared."
+              data-scientist-text="Hear each three-second call and map it to a documented pod repertoire. More than one pod may use a call."
             >
-              Press play, read the short clue, and choose J, K, or L Pod.
+              Press play, read the clue, and choose a pod that could use the
+              call. Some calls are shared.
             </p>
           </div>
 
@@ -2681,9 +2677,9 @@
             </svg>
             <strong
               class="pod-scene-copy"
-              data-explorer-text="Three orca families. Three special calls."
-              data-scientist-text="Three pods. Many voices. One Salish Sea."
-              >Three orca families. Three special calls.</strong
+              data-explorer-text="Three orca families. Some calls are shared."
+              data-scientist-text="Three pods. Shared repertoires. One Salish Sea."
+              >Three orca families. Some calls are shared.</strong
             >
             <span class="scene-bubble one"></span>
             <span class="scene-bubble two"></span>
@@ -2699,9 +2695,10 @@
                 >How to play</strong
               ><br />
               <span
-                data-explorer-text="1. Play the sound. 2. Read the clue. 3. Pick a pod."
-                data-scientist-text="The pod name stays hidden until you submit the correct answer. Photos help identify individuals; the call and field note provide the strongest pod clues."
-                >1. Play the sound. 2. Read the clue. 3. Pick a pod.</span
+                data-explorer-text="1. Play the sound. 2. Read the clue. 3. Pick a pod that could use it."
+                data-scientist-text="Choose one pod whose documented repertoire includes the call. The answer explains when a call is shared."
+                >1. Play the sound. 2. Read the clue. 3. Pick a pod that could
+                use it.</span
               >
             </div>
             <span
@@ -2713,17 +2710,21 @@
           </div>
 
           <div class="mystery-pod-grid">
-            <article class="mystery-pod-card" data-mystery-pod="K Pod">
+            <article
+              class="mystery-pod-card"
+              data-call-id="S16"
+              data-valid-pods="K Pod|L Pod"
+            >
               <div class="mystery-pod-image">
                 <img
                   src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/srkw2-3.jpg"
                   alt="Orca swimming at the surface with its tail and dorsal fin visible"
                 />
-                <span class="mystery-number">Mystery pod 1</span>
+                <span class="mystery-number">Mystery call 1</span>
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod is it?</h3>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -2741,11 +2742,11 @@
                   class="mystery-pod-audio"
                   controls
                   preload="metadata"
-                  aria-label="Mystery pod 1 three-second call"
+                  aria-label="Mystery call 1, S16, three-second recording"
                 >
                   <source src="audio/FO-S16-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery pod 1 choices">
+                <div class="mystery-guess" aria-label="Mystery call 1 choices">
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -2774,17 +2775,21 @@
               </div>
             </article>
 
-            <article class="mystery-pod-card" data-mystery-pod="L Pod">
+            <article
+              class="mystery-pod-card"
+              data-call-id="S19"
+              data-valid-pods="L Pod"
+            >
               <div class="mystery-pod-image">
                 <img
                   src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/orca-spyhop.JPG"
                   alt="Orca spyhopping above calm water with mountains in the distance"
                 />
-                <span class="mystery-number">Mystery pod 2</span>
+                <span class="mystery-number">Mystery call 2</span>
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod is it?</h3>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -2801,11 +2806,11 @@
                   class="mystery-pod-audio"
                   controls
                   preload="metadata"
-                  aria-label="Mystery pod 2 three-second call"
+                  aria-label="Mystery call 2, S19, three-second recording"
                 >
                   <source src="audio/FO-S19-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery pod 2 choices">
+                <div class="mystery-guess" aria-label="Mystery call 2 choices">
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -2834,17 +2839,21 @@
               </div>
             </article>
 
-            <article class="mystery-pod-card" data-mystery-pod="J Pod">
+            <article
+              class="mystery-pod-card"
+              data-call-id="S03"
+              data-valid-pods="J Pod"
+            >
               <div class="mystery-pod-image">
                 <img
                   src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/orca-from-above.png"
                   alt="Orca seen from above, showing its black-and-white body pattern"
                 />
-                <span class="mystery-number">Mystery pod 3</span>
+                <span class="mystery-number">Mystery call 3</span>
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod is it?</h3>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -2862,11 +2871,11 @@
                   class="mystery-pod-audio"
                   controls
                   preload="metadata"
-                  aria-label="Mystery pod 3 three-second call"
+                  aria-label="Mystery call 3, S03, three-second recording"
                 >
-                  <source src="audio/FO-S01-3s.wav" type="audio/wav" />
+                  <source src="audio/FO-S03-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery pod 3 choices">
+                <div class="mystery-guess" aria-label="Mystery call 3 choices">
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -2904,36 +2913,36 @@
               <span class="section-kicker" style="color: var(--aqua)"
                 >Your collection</span
               >
-              <h3 id="passport-title">Pod Passport</h3>
+              <h3 id="passport-title">Call Passport</h3>
               <p
-                data-explorer-text="Get one badge each time you match a call to the right pod."
-                data-scientist-text="A badge receives its tick only after a correct submitted answer. Progress lasts only for this page session."
+                data-explorer-text="Get one badge each time you match a call to a pod that uses it."
+                data-scientist-text="A call badge receives its tick only after a valid repertoire match. Progress lasts only for this page session."
               >
-                Get one badge each time you match a call to the right pod.
+                Get one badge each time you match a call to a pod that uses it.
               </p>
             </div>
-            <div class="stamp-row" aria-label="Pod badges earned">
+            <div class="stamp-row" aria-label="Call badges earned">
               <span
                 class="passport-stamp"
-                data-stamp="J Pod"
-                aria-label="J Pod badge not earned"
-                >J</span
+                data-stamp="S16"
+                aria-label="S16 call badge not earned"
+                >S16</span
               >
               <span
                 class="passport-stamp"
-                data-stamp="K Pod"
-                aria-label="K Pod badge not earned"
-                >K</span
+                data-stamp="S19"
+                aria-label="S19 call badge not earned"
+                >S19</span
               >
               <span
                 class="passport-stamp"
-                data-stamp="L Pod"
-                aria-label="L Pod badge not earned"
-                >L</span
+                data-stamp="S03"
+                aria-label="S03 call badge not earned"
+                >S03</span
               >
             </div>
             <span id="passport-progress" class="passport-progress" role="status"
-              >0 of 3 mystery pods identified</span
+              >0 of 3 calls mapped</span
             >
           </aside>
 
@@ -3329,7 +3338,7 @@
               </h3>
               <p
                 data-explorer-text="Listen to more sounds from J, K, and L Pod. Do any calls sound alike?"
-                data-scientist-text="Hear Orcasound’s examples of the S01, S16, and S19 calls and compare their patterns."
+                data-scientist-text="Hear Orcasound’s examples of the S03, S16, and S19 calls and compare their documented pod repertoires."
               >
                 Listen to more sounds from J, K, and L Pod. Do any calls sound
                 alike?
@@ -3552,8 +3561,8 @@
       <div class="kiosk-dialog-body">
         <h2 id="kiosk-reset-title">Start a new adventure?</h2>
         <p>
-          This will clear the quiz, pod badges, selected action, and certificate
-          name from this kiosk.
+          This will clear the quiz, call badges, selected action, and
+          certificate name from this kiosk.
         </p>
         <div class="kiosk-dialog-actions">
           <button id="kiosk-reset-cancel" class="btn btn-outline" type="button">
@@ -3849,77 +3858,19 @@
 
         const getQuestions = () => questionSets[state.mode]
 
-        const podData = {
-          'J Pod': {
-            call: 'S01',
-            audioUrl: 'audio/FO-S01-3s.wav',
-            story:
-              'J Pod is often heard in the Salish Sea throughout the year. Listen for S01, one of the representative calls featured by Orcasound.',
-            facts: [
-              ['Listen', 'Notice the short tonal pattern.'],
-              ['Remember', 'A call can support pod identification.'],
-              ['Protect', 'Quiet water helps whales communicate.'],
-            ],
-            challenge: {
-              question: 'What can the S01 call help experts do?',
-              choices: [
-                ['pod', 'Support a pod identification'],
-                ['individual', 'Name the individual caller'],
-                ['distance', 'Measure the exact distance'],
-                ['photo', 'Create a photograph'],
-              ],
-              correct: 'pod',
-              explanation:
-                'A familiar call can support a pod identification when experts combine it with other context. It does not name one whale.',
-            },
+        const callData = {
+          S16: {
+            repertoires: 'K and L Pod repertoires',
+            explanation:
+              'S16 is documented in both K and L Pod repertoires, so either answer is a valid match.',
           },
-          'K Pod': {
-            call: 'S16',
-            audioUrl: 'audio/FO-S16-3s.wav',
-            story:
-              'K Pod is the smallest Southern Resident pod. Many listeners describe its representative S16 call as sounding a little like a kitten.',
-            facts: [
-              ['Listen', 'Does S16 remind you of a mewing sound?'],
-              ['Remember', 'K Pod has its own familiar call repertoire.'],
-              ['Protect', 'Healthy Chinook salmon support the whole pod.'],
-            ],
-            challenge: {
-              question:
-                'What does the familiar S16 call remind many listeners of?',
-              choices: [
-                ['kitten', 'A kitten mewing'],
-                ['engine', 'A steady engine'],
-                ['rain', 'Rain on the water'],
-                ['bell', 'A single bell'],
-              ],
-              correct: 'kitten',
-              explanation:
-                'Many listeners describe S16 as kitten-like. Descriptions help us remember a pattern, but experts still compare the acoustic evidence.',
-            },
+          S19: {
+            repertoires: 'the L Pod repertoire',
+            explanation: 'S19 is documented in the L Pod repertoire.',
           },
-          'L Pod': {
-            call: 'S19',
-            audioUrl: 'audio/FO-S19-3s.wav',
-            story:
-              'L Pod is the largest Southern Resident pod and travels widely. Compare its representative S19 call with the calls from J and K pods.',
-            facts: [
-              ['Listen', 'Compare its pitch and pattern with S01 and S16.'],
-              ['Remember', 'Some call types can be shared across pods.'],
-              ['Protect', 'Clean, connected habitat matters across its range.'],
-            ],
-            challenge: {
-              question:
-                'Why should experts use more than one call to identify a pod?',
-              choices: [
-                ['shared', 'Some call types are shared'],
-                ['silent', 'L Pod never makes sound'],
-                ['color', 'Each pod has a different color'],
-                ['map', 'One call gives an exact map location'],
-              ],
-              correct: 'shared',
-              explanation:
-                'Some call types can be shared, so experts consider repeated calls, recording quality, and other context.',
-            },
+          S03: {
+            repertoires: 'the J Pod repertoire',
+            explanation: 'S03 is documented in the J Pod repertoire.',
           },
         }
 
@@ -4335,9 +4286,6 @@
 
         renderQuestion()
 
-        const mysteryAudios = [
-          ...document.querySelectorAll('.mystery-pod-audio'),
-        ]
         const updatePassport = () => {
           document.querySelectorAll('.passport-stamp').forEach((stamp) => {
             const earned = state.podStamps.has(stamp.dataset.stamp)
@@ -4349,20 +4297,19 @@
           })
           document.getElementById('passport-progress').textContent =
             state.podStamps.size === 3
-              ? state.mode === 'explorer'
-                ? 'You matched all 3 pods!'
-                : 'All 3 mystery pods identified—passport complete!'
-              : state.mode === 'explorer'
-                ? `${state.podStamps.size} of 3 pod calls matched`
-                : `${state.podStamps.size} of 3 mystery pods identified`
+              ? 'All 3 calls mapped—Call Passport complete!'
+              : `${state.podStamps.size} of 3 calls mapped`
           document.getElementById('certificate-pod').textContent =
-            state.podStamps.size === 3 ? 'J, K, and L Pods' : 'a mystery pod'
+            state.podStamps.size === 3
+              ? 'S03, S16, and S19 calls'
+              : 'orca call repertoires'
           updateAdventureProgress()
         }
 
         document.querySelectorAll('.mystery-pod-card').forEach((card) => {
-          const correctPod = card.dataset.mysteryPod
-          const pod = podData[correctPod]
+          const callId = card.dataset.callId
+          const validPods = card.dataset.validPods.split('|')
+          const call = callData[callId]
           const podAudio = card.querySelector('.mystery-pod-audio')
           const choices = [...card.querySelectorAll('.mystery-guess button')]
           const submit = card.querySelector('.submit-pod-guess')
@@ -4370,21 +4317,17 @@
           let selectedGuess = ''
 
           podAudio.addEventListener('play', () => {
-            audio.pause()
-            mysteryAudios.forEach((otherAudio) => {
-              if (otherAudio !== podAudio) otherAudio.pause()
-            })
-            if (state.podStamps.has(correctPod)) {
+            if (state.podStamps.has(callId)) {
               choices.forEach((choice) => {
                 choice.disabled = true
               })
               submit.disabled = true
-              submit.textContent = `${correctPod} badge earned ✓`
+              submit.textContent = `${callId} badge earned ✓`
               feedback.hidden = false
               feedback.textContent =
                 state.mode === 'explorer'
-                  ? `You already matched this call to ${correctPod}.`
-                  : `${correctPod} is already confirmed for this recording.`
+                  ? `You already mapped the ${callId} call.`
+                  : `${callId} is already mapped to ${call.repertoires}.`
               return
             }
             choices.forEach((choice) => {
@@ -4418,20 +4361,20 @@
 
           submit.addEventListener('click', () => {
             if (!selectedGuess) return
-            if (state.podStamps.has(correctPod)) {
+            if (state.podStamps.has(callId)) {
               choices.forEach((choice) => {
                 choice.disabled = true
               })
               submit.disabled = true
-              submit.textContent = `${correctPod} badge earned ✓`
+              submit.textContent = `${callId} badge earned ✓`
               feedback.hidden = false
               feedback.textContent =
                 state.mode === 'explorer'
-                  ? `You already matched this call to ${correctPod}.`
-                  : `${correctPod} is already confirmed for this recording.`
+                  ? `You already mapped the ${callId} call.`
+                  : `${callId} is already mapped to ${call.repertoires}.`
               return
             }
-            if (selectedGuess !== correctPod) {
+            if (!validPods.includes(selectedGuess)) {
               feedback.textContent =
                 state.mode === 'explorer'
                   ? 'Good try! Listen again, read the clue, and pick another pod.'
@@ -4445,8 +4388,8 @@
               return
             }
 
-            state.podStamps.add(correctPod)
-            state.pod = correctPod
+            state.podStamps.add(callId)
+            state.pod = selectedGuess
             card.classList.remove('needs-retry')
             card.classList.add('solved')
             card.querySelector('.mystery-state').textContent = 'Correct ✓'
@@ -4454,23 +4397,23 @@
               '.mystery-title'
             ).textContent =
               state.mode === 'explorer'
-                ? `You found ${correctPod}!`
-                : `You identified ${correctPod}!`
+                ? `${selectedGuess} is a match!`
+                : `${callId} mapped to ${selectedGuess}`
             feedback.textContent =
               state.mode === 'explorer'
-                ? `Correct! This is a ${correctPod} call.`
-                : `Correct! This is ${correctPod}'s ${pod.call} example. ${pod.facts[1][1]}`
+                ? `Correct! ${call.explanation}`
+                : `Valid repertoire match. ${call.explanation}`
             choices.forEach((choice) => {
               choice.disabled = true
             })
             submit.disabled = true
-            submit.textContent = `${correctPod} badge earned ✓`
+            submit.textContent = `${callId} badge earned ✓`
             updateModeCopy()
             updatePassport()
             showToast(
               state.podStamps.size === 3
-                ? 'Pod Passport complete! You identified J, K, and L.'
-                : `${correctPod} badge earned!`
+                ? 'Call Passport complete! You mapped all three calls.'
+                : `${callId} badge earned!`
             )
           })
         })
@@ -4515,13 +4458,9 @@
                 )
               if (state.podStamps.size !== 3)
                 remaining.push(
-                  state.mode === 'explorer'
-                    ? `match ${3 - state.podStamps.size} more pod call${
-                        state.podStamps.size === 2 ? '' : 's'
-                      }`
-                    : `identify ${3 - state.podStamps.size} more mystery pod${
-                        state.podStamps.size === 2 ? '' : 's'
-                      }`
+                  `map ${3 - state.podStamps.size} more call${
+                    state.podStamps.size === 2 ? '' : 's'
+                  }`
                 )
               if (!state.actionSelected)
                 remaining.push(
@@ -4561,8 +4500,13 @@
             showToast('Certificate updated locally.')
           })
 
-        audio.addEventListener('play', () => {
-          mysteryAudios.forEach((mysteryAudio) => mysteryAudio.pause())
+        const mediaElements = [...document.querySelectorAll('audio, video')]
+        mediaElements.forEach((media) => {
+          media.addEventListener('play', () => {
+            mediaElements.forEach((otherMedia) => {
+              if (otherMedia !== media) otherMedia.pause()
+            })
+          })
         })
         updateAdventureProgress()
       })()

@@ -62,7 +62,7 @@ The UI should therefore:
   - **Whistles:** social sounds that are less common than discrete calls in Southern Resident Killer Whales.
   - Orcasound's click catalog also describes click-speed categories and a "sweep."
 - Southern Resident Killer Whales specialize in fish, especially Chinook salmon. Vessel noise can interfere with both communication and echolocation.
-- Orcasound's existing learning ladder contains 46 characterized Southern Resident discrete-call types, S01-S46, with audio and spectrogram assets. The prototype begins with S01-S05 and uses S01, S16, and S19 for the pod activity; later levels can progress through more of the reviewed catalog without inventing a separate taxonomy.
+- Orcasound's existing learning ladder contains 46 characterized Southern Resident discrete-call types, S01-S46, with audio and spectrogram assets. The prototype begins with S01-S05 and uses S03, S16, and S19 for repertoire mapping. S03 is documented for J Pod, S16 for K and L Pods, and S19 for L Pod; later levels can progress through more of the reviewed catalog without inventing a separate taxonomy.
 
 ### Equal audio and visual evidence paths
 
@@ -137,7 +137,7 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
 
 3. **Sound challenge**
 
-   - Play a 5-10 second clip.
+   - Play a deliberately short three-second classroom edition. If the source is shorter, add neutral silence rather than looping or fabricating whale sound.
    - Ask students to describe the call's audible and/or visible pattern, always including "not sure."
    - Scope the prototype to reviewed S01-S05 discrete-call assets; do not imply that the activity includes click, buzz, or non-orca examples that have not been curated.
    - Always include "not sure"; uncertainty is part of science.
@@ -148,11 +148,12 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
    - Give a one-sentence explanation and a "How do we know?" disclosure.
    - Show whether the clip was expert-confirmed or is an educational example.
 
-5. **Meet a pod**
+5. **Map a call repertoire**
 
-   - Introduce J, K, or L pod with a call, range map, family-safe story, and one current conservation challenge.
+   - Ask students to choose a documented pod repertoire that includes the call, while making shared calls explicit.
+   - Use S03 for J Pod, S16 for K or L Pod, and S19 for L Pod in the prototype.
    - Avoid claiming the sound identifies an individual whale.
-   - Optionally introduce a cataloged individual from that pod, while clearly saying the individual was identified from verified photographs rather than from this sound.
+   - Optionally introduce a cataloged individual, while clearly saying the individual was identified from verified photographs rather than from this sound.
 
 6. **Become an Orca Ally**
    - Choose one action: learn Be Whale Wise rules with an adult, reduce underwater noise, protect salmon habitat, keep litter out of waterways, or teach someone one new fact.
@@ -161,7 +162,7 @@ As a student, I want to hear real underwater sounds, make a guess, and learn wha
 ### MVP content
 
 - Five existing Southern Resident call clips and matching S01-S05 spectrograms from the repository
-- Three pod cards: J, K, and L
+- Three call-repertoire cards: S03 (J), S16 (K/L), and S19 (L)
 - Three conservation cards: quiet water, salmon habitat, clean water
 - One explanation of OrcaHello: "AI suggests; trained people confirm"
 - Future reviewed-content tier: curated click/buzz examples and non-orca controls such as vessel noise or waves, added only after subject-matter review and with matching visual descriptions
@@ -545,7 +546,7 @@ Create a five-minute guided activity that helps grades 3-8 investigate reviewed 
 
 1. Clickable `/young-explorers` prototype with Welcome, Sound Challenge, Reveal, Meet a Pod, and Orca Ally sections.
 2. Five reviewed S01-S05 Southern Resident call clips with their real spectrograms and equivalent visual investigation prompts.
-3. One J/K/L pod selector.
+3. One three-call repertoire-mapping activity that accepts every documented pod match and explains shared calls.
 4. Evidence labels and a plain-language "AI suggests; people confirm" explanation.
 5. Mobile and keyboard usability.
 
