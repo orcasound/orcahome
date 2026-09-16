@@ -724,6 +724,81 @@
         font-size: 1.25rem;
         letter-spacing: 0.25em;
       }
+      @media (min-width: 900px) {
+        .mission-shell.scientist-mode .mission-main {
+          min-height: 0;
+          padding: 24px 30px 28px;
+        }
+        .mission-shell.scientist-mode .challenge-meter {
+          margin-bottom: 8px;
+        }
+        .mission-shell.scientist-mode .mission-main h3 {
+          margin: 5px 0 6px;
+          font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+        }
+        .mission-shell.scientist-mode .mission-main > p {
+          margin: 0 0 10px;
+        }
+        .mission-shell.scientist-mode .audio-lab {
+          gap: 16px;
+          margin: 14px 0;
+        }
+        .mission-shell.scientist-mode .player-card {
+          padding: 14px 16px;
+        }
+        .mission-shell.scientist-mode .player-card audio {
+          margin-top: 10px;
+        }
+        .mission-shell.scientist-mode .headphone-note {
+          line-height: 1.35;
+        }
+        .mission-shell.scientist-mode .spectrogram {
+          height: 215px;
+          min-height: 0;
+        }
+        .mission-shell.scientist-mode .spectrogram img {
+          flex: 1 1 auto;
+          min-height: 0;
+          object-position: left center;
+        }
+        .mission-shell.scientist-mode .spectrogram figcaption {
+          padding: 6px 12px;
+        }
+        .mission-shell.scientist-mode .answers {
+          gap: 8px;
+          margin: 8px 0;
+        }
+        .mission-shell.scientist-mode .answer {
+          min-height: 46px;
+          padding: 8px 12px;
+        }
+        .mission-shell.scientist-mode .reveal {
+          margin-top: 8px;
+          padding: 10px 14px;
+          font-size: 0.9rem;
+        }
+        .mission-shell.scientist-mode .reveal.show:not(.complete) {
+          display: block;
+        }
+        .mission-shell.scientist-mode .reveal.show:not(.complete) h4 {
+          display: inline;
+          font-size: 1.05rem;
+        }
+        .mission-shell.scientist-mode .reveal.show:not(.complete) h4::after,
+        .mission-shell.scientist-mode
+          .reveal.show:not(.complete)
+          #reveal-copy::after {
+          content: ' ';
+        }
+        .mission-shell.scientist-mode .reveal p {
+          display: inline;
+          margin: 0;
+          line-height: 1.35;
+        }
+        .mission-shell.scientist-mode .next-question-row {
+          margin-top: 6px;
+        }
+      }
 
       .pods-section {
         position: relative;
@@ -1305,6 +1380,34 @@
         color: var(--aqua);
         text-align: center;
         font-weight: 800;
+      }
+      @media (min-width: 951px) {
+        .mystery-passport.passport-card {
+          grid-template-columns: minmax(0, 1fr) 250px minmax(180px, auto);
+          gap: 22px;
+          margin-top: 16px;
+          padding: 18px 28px;
+        }
+        .mystery-passport.passport-card h3 {
+          margin: 4px 0;
+          font-size: 2rem;
+        }
+        .mystery-passport.passport-card p {
+          margin: 6px 0 0;
+          line-height: 1.4;
+        }
+        .mystery-passport .stamp-row {
+          gap: 8px;
+        }
+        .mystery-passport .passport-stamp.earned::after {
+          width: 20px;
+          height: 20px;
+          font-size: 0.78rem;
+        }
+        .mystery-passport .passport-progress {
+          margin-top: 0;
+          line-height: 1.3;
+        }
       }
 
       .protect-section {
@@ -2207,6 +2310,29 @@
 
           <div class="mission-shell explorer-mode">
             <div class="mission-main">
+              <aside
+                class="quiz-briefing"
+                aria-labelledby="quiz-briefing-title"
+              >
+                <h4 id="quiz-briefing-title">Before you begin</h4>
+                <ul>
+                  <li>
+                    <strong>Explore your way:</strong> Listen to the recording,
+                    study the sound picture, or use both.
+                  </li>
+                  <li>
+                    <strong>About the clip:</strong> It is a historical
+                    Orcasound recording from the Salish Sea that was reviewed by
+                    an expert.
+                  </li>
+                  <li>
+                    <strong>What you will study:</strong> Southern Resident
+                    calls. This activity does not teach Bigg’s killer whale
+                    calls.
+                  </li>
+                </ul>
+              </aside>
+
               <div class="challenge-meter" aria-label="Question difficulty">
                 <span id="challenge-label">Warm-up</span>
                 <span class="challenge-dots" aria-hidden="true">
@@ -2230,29 +2356,6 @@
                 <span>2. Pick one answer</span>
                 <span>3. Learn why</span>
               </div>
-
-              <aside
-                class="quiz-briefing"
-                aria-labelledby="quiz-briefing-title"
-              >
-                <h4 id="quiz-briefing-title">Before you begin</h4>
-                <ul>
-                  <li>
-                    <strong>Explore your way:</strong> Listen to the recording,
-                    study the sound picture, or use both.
-                  </li>
-                  <li>
-                    <strong>About the clip:</strong> It is a historical
-                    Orcasound recording from the Salish Sea that was reviewed by
-                    an expert.
-                  </li>
-                  <li>
-                    <strong>What you will study:</strong> Southern Resident
-                    calls. This activity does not teach Bigg’s killer whale
-                    calls.
-                  </li>
-                </ul>
-              </aside>
 
               <div id="audio-lab" class="audio-lab">
                 <div class="player-card">
@@ -3919,6 +4022,19 @@
             mysteryAudios.forEach((otherAudio) => {
               if (otherAudio !== podAudio) otherAudio.pause()
             })
+            if (state.podStamps.has(correctPod)) {
+              choices.forEach((choice) => {
+                choice.disabled = true
+              })
+              submit.disabled = true
+              submit.textContent = `${correctPod} badge earned ✓`
+              feedback.hidden = false
+              feedback.textContent =
+                state.mode === 'explorer'
+                  ? `You already matched this call to ${correctPod}.`
+                  : `${correctPod} is already confirmed for this recording.`
+              return
+            }
             choices.forEach((choice) => {
               choice.disabled = false
             })
@@ -3949,7 +4065,20 @@
           })
 
           submit.addEventListener('click', () => {
-            if (!selectedGuess || state.podStamps.has(correctPod)) return
+            if (!selectedGuess) return
+            if (state.podStamps.has(correctPod)) {
+              choices.forEach((choice) => {
+                choice.disabled = true
+              })
+              submit.disabled = true
+              submit.textContent = `${correctPod} badge earned ✓`
+              feedback.hidden = false
+              feedback.textContent =
+                state.mode === 'explorer'
+                  ? `You already matched this call to ${correctPod}.`
+                  : `${correctPod} is already confirmed for this recording.`
+              return
+            }
             if (selectedGuess !== correctPod) {
               feedback.textContent =
                 state.mode === 'explorer'
