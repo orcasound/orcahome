@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#071f36" />
-    <title>Orcasound Young Explorers - Interactive Mockup</title>
+    <title>Orcasound Young Explorers - Guided Option B</title>
     <style>
       :root {
         --ink: #071f36;
@@ -1931,6 +1931,212 @@
           transition-duration: 0.01ms !important;
         }
       }
+      body.option-b .hero,
+      body.option-b .adventure-tracker,
+      body.option-b #choose-mode,
+      body.option-b .learn-section,
+      body.option-b .teacher-strip,
+      body.option-b footer {
+        display: none;
+      }
+      body.option-b main {
+        min-height: calc(100vh - 82px);
+      }
+      body.option-b-welcome .hero {
+        display: grid;
+        min-height: calc(100vh - 74px);
+      }
+      body.option-b-welcome .guided-progress,
+      body.option-b-welcome main {
+        display: none;
+      }
+      .welcome-steps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 22px 0 0;
+      }
+      .welcome-steps span {
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+      .guided-progress {
+        position: sticky;
+        z-index: 20;
+        top: 74px;
+        padding: 14px 22px;
+        border-bottom: 1px solid #cce8ea;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+      }
+      .guided-progress-inner {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .guided-step {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-height: 54px;
+        padding: 9px 12px;
+        border: 2px solid #b9dde0;
+        border-radius: 16px;
+        color: var(--ink);
+        background: var(--white);
+        font: inherit;
+        font-weight: 800;
+        text-align: left;
+        cursor: pointer;
+      }
+      .guided-step-number {
+        display: grid;
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--ocean);
+      }
+      .guided-step[aria-current='step'] {
+        border-color: var(--coral);
+        background: #fff4ef;
+        box-shadow: 0 0 0 3px rgba(255, 130, 110, 0.18);
+      }
+      .guided-step.done .guided-step-number {
+        color: var(--ink);
+        background: var(--aqua);
+      }
+      .guided-step:disabled {
+        color: #71808d;
+        background: #eef3f4;
+        cursor: not-allowed;
+        opacity: 0.72;
+      }
+      .guided-stage[hidden] {
+        display: none !important;
+      }
+      body.guided-certificate #protect-stage .section-head,
+      body.guided-certificate #protect-stage .ally-ocean-scene,
+      body.guided-certificate #protect-stage .action-grid {
+        display: none;
+      }
+      body.option-b:not(.guided-certificate) #protect-stage .finish-card {
+        display: none;
+      }
+      body.guided-certificate #protect-stage {
+        min-height: calc(100vh - 160px);
+        padding-top: 80px;
+      }
+      .guided-controls {
+        position: sticky;
+        z-index: 15;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px max(20px, calc((100vw - 1120px) / 2));
+        border-top: 1px solid #cce8ea;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 -8px 25px rgba(5, 56, 78, 0.09);
+      }
+      .guided-next-message {
+        align-self: center;
+        margin: 0;
+        color: var(--ink-soft);
+        font-weight: 700;
+        text-align: center;
+      }
+      .word-help-button {
+        border: 2px solid var(--aqua);
+        color: var(--white);
+        background: transparent;
+      }
+      .glossary-intro {
+        margin-top: 0;
+        color: var(--ink-soft);
+      }
+      .glossary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .glossary-term {
+        padding: 16px;
+        border: 2px solid #cce8ea;
+        border-radius: 16px;
+        color: var(--ink);
+        background: #f6fcfc;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+      .glossary-term strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ocean-dark);
+        font-size: 1.05rem;
+      }
+      .glossary-term span {
+        display: none;
+        color: var(--ink-soft);
+      }
+      .glossary-term[aria-expanded='true'] {
+        border-color: var(--aqua);
+        background: var(--aqua-light);
+      }
+      .glossary-term[aria-expanded='true'] span {
+        display: block;
+      }
+      @media (max-width: 760px) {
+        body.option-b .site-header {
+          display: flex;
+          padding: 10px 14px;
+        }
+        body.option-b .header-actions {
+          display: flex;
+        }
+        body.option-b .header-actions .quiet-note {
+          display: none;
+        }
+        body.option-b .brand-label {
+          font-size: 0.88rem;
+        }
+        body.option-b .word-help-button {
+          padding: 8px 12px;
+        }
+        .guided-progress {
+          top: 68px;
+          padding: 10px;
+          overflow-x: auto;
+        }
+        .guided-progress-inner {
+          grid-template-columns: repeat(4, minmax(135px, 1fr));
+          width: max-content;
+          min-width: 100%;
+        }
+        .guided-step {
+          min-height: 48px;
+          font-size: 0.86rem;
+        }
+        .guided-controls {
+          padding: 12px;
+        }
+        .guided-next-message {
+          display: none;
+        }
+        .glossary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       @media print {
         @page {
           size: letter portrait;
@@ -1977,11 +2183,16 @@
       }
     </style>
   </head>
-  <body>
+  <body class="option-b option-b-welcome">
     <a class="skip-link" href="#main">Skip to the adventure</a>
 
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Orcasound Young Explorers home">
+      <a
+        id="option-b-home"
+        class="brand"
+        href="#top"
+        aria-label="Return to the Orcasound Young Explorers title page"
+      >
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 60 60" role="img">
             <path
@@ -1998,31 +2209,64 @@
       </a>
       <div class="header-actions">
         <span class="quiet-note"
-          ><span aria-hidden="true">🔒</span> No sign-in. Progress lasts for
-          this page session.</span
+          ><span aria-hidden="true">✨</span> Option B · Guided adventure</span
         >
-        <a class="btn btn-primary btn-small" href="#mission">Start mission</a>
+        <button
+          id="open-glossary"
+          class="btn btn-small word-help-button"
+          type="button"
+        >
+          Word Help
+        </button>
       </div>
     </header>
 
+    <nav class="guided-progress" aria-label="Guided adventure steps">
+      <div class="guided-progress-inner">
+        <button class="guided-step" type="button" data-guided-step="1">
+          <span class="guided-step-number">1</span>
+          <span>Listen</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="2" disabled>
+          <span class="guided-step-number">2</span>
+          <span>Match Pods</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="3" disabled>
+          <span class="guided-step-number">3</span>
+          <span>Help Orcas</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="4" disabled>
+          <span class="guided-step-number">4</span>
+          <span>Certificate</span>
+        </button>
+      </div>
+    </nav>
+
     <div id="top" class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">A five-minute sound adventure</span>
-        <h1>Can you hear who is <span>underwater?</span></h1>
+        <span class="eyebrow">Orcasound Young Explorers · Option B</span>
+        <h1>Ready for an <span>orca adventure?</span></h1>
         <p>
-          Listen to real sounds from the Salish Sea, meet J, K, and L pods, and
-          discover how people use ocean sound to help protect Southern Resident
-          Killer Whales.
+          Listen to real orca calls, match three orca families, choose a way to
+          help, and earn your Orca Ally certificate.
         </p>
+        <div class="welcome-steps" aria-label="Four adventure steps">
+          <span>1. Listen</span>
+          <span>2. Match Pods</span>
+          <span>3. Help Orcas</span>
+          <span>4. Certificate</span>
+        </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#choose-mode"
-            ><span aria-hidden="true">▶</span> Begin your mission</a
+          <button
+            id="start-guided-adventure"
+            class="btn btn-primary"
+            type="button"
           >
-          <a
-            class="btn btn-outline"
-            href="Orcasound Teacher Activity Guide.pdf"
-            target="_blank"
-            >Teacher guide (PDF)</a
+            <span aria-hidden="true">▶</span> Start the adventure
+          </button>
+          <button id="welcome-word-help" class="btn btn-outline" type="button">
+            What do these words mean?
+          </button>
           >
         </div>
       </div>
@@ -2190,7 +2434,8 @@
 
       <section
         id="mission"
-        class="section mission-section"
+        class="section mission-section guided-stage"
+        data-guided-stage="1"
         aria-labelledby="mission-title"
       >
         <div class="section-inner">
@@ -2335,7 +2580,13 @@
         </div>
       </section>
 
-      <section class="section pods-section" aria-labelledby="pods-title">
+      <section
+        id="pods-stage"
+        class="section pods-section guided-stage"
+        data-guided-stage="2"
+        aria-labelledby="pods-title"
+        hidden
+      >
         <div class="section-inner">
           <div class="section-head">
             <div>
@@ -2655,7 +2906,13 @@
         </div>
       </section>
 
-      <section class="section protect-section" aria-labelledby="protect-title">
+      <section
+        id="protect-stage"
+        class="section protect-section guided-stage"
+        data-guided-stage="3"
+        aria-labelledby="protect-title"
+        hidden
+      >
         <div class="section-inner">
           <div class="section-head">
             <div>
@@ -3149,6 +3406,18 @@
           </div>
         </div>
       </section>
+
+      <div class="guided-controls" aria-label="Guided adventure controls">
+        <button id="guided-back" class="btn btn-outline" type="button" disabled>
+          Back
+        </button>
+        <p id="guided-next-message" class="guided-next-message" role="status">
+          Finish this listening game to unlock Match Pods.
+        </p>
+        <button id="guided-next" class="btn btn-primary" type="button" disabled>
+          Next: Match Pods
+        </button>
+      </div>
     </main>
 
     <footer>
@@ -3246,6 +3515,65 @@
       </div>
     </dialog>
 
+    <dialog id="glossary-dialog" aria-labelledby="glossary-title">
+      <div class="dialog-head">
+        <h2 id="glossary-title">Word Help</h2>
+        <button
+          class="glossary-close"
+          type="button"
+          aria-label="Close Word Help"
+        >
+          ×
+        </button>
+      </div>
+      <div class="dialog-body">
+        <p class="glossary-intro">Tap a word to see a short meaning.</p>
+        <div class="glossary-grid">
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Hydrophone</strong>
+            <span>A microphone that listens underwater.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Pod</strong>
+            <span>An orca family that lives and travels together.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Salish Sea</strong>
+            <span>
+              Coastal waters shared by Washington State and British Columbia.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Southern Residents</strong>
+            <span>
+              The J, K, and L orca families that rely heavily on Chinook salmon.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Dorsal fin</strong>
+            <span>The tall fin on an orca's back.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Saddle patch</strong>
+            <span>The light-colored patch behind an orca's dorsal fin.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Echolocation</strong>
+            <span>
+              Clicks and echoes that help an orca learn what is nearby.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Chinook salmon</strong>
+            <span>
+              A large salmon that is an important food for Southern Resident
+              orcas.
+            </span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
@@ -3261,6 +3589,7 @@
           podStamps: new Set(),
           action: 'help keep the ocean quieter and learn Be Whale Wise rules',
           actionSelected: false,
+          guidedStep: 1,
         }
 
         const questionSets = {
@@ -3597,6 +3926,121 @@
           })
         }
 
+        const guidedBack = document.getElementById('guided-back')
+        const guidedNext = document.getElementById('guided-next')
+        const guidedNextMessage = document.getElementById(
+          'guided-next-message'
+        )
+        const guidedSteps = [
+          ...document.querySelectorAll('.guided-step'),
+        ]
+        const guidedStages = [
+          ...document.querySelectorAll('.guided-stage'),
+        ]
+
+        const guidedCompletion = () => ({
+          1: state.quizComplete,
+          2: state.podStamps.size === 3,
+          3: state.actionSelected,
+          4: true,
+        })
+
+        const guidedUnlocked = () => ({
+          1: true,
+          2: state.quizComplete,
+          3: state.quizComplete && state.podStamps.size === 3,
+          4:
+            state.quizComplete &&
+            state.podStamps.size === 3 &&
+            state.actionSelected,
+        })
+
+        const guidedLabels = {
+          1: {
+            next: 'Next: Match Pods',
+            waiting: 'Finish this listening game to unlock Match Pods.',
+            ready: 'Great listening! Match Pods is ready.',
+          },
+          2: {
+            next: 'Next: Help Orcas',
+            waiting: 'Match all three pod calls to unlock Help Orcas.',
+            ready: 'All pods matched! Help Orcas is ready.',
+          },
+          3: {
+            next: 'Next: Certificate',
+            waiting: 'Choose one way to help to unlock your certificate.',
+            ready: 'You chose a way to help! Your certificate is ready.',
+          },
+          4: {
+            next: '',
+            waiting: 'Your Orca Ally certificate is ready.',
+            ready: 'Your Orca Ally certificate is ready.',
+          },
+        }
+
+        const updateGuidedJourney = () => {
+          const completed = guidedCompletion()
+          const unlocked = guidedUnlocked()
+          guidedSteps.forEach((button) => {
+            const step = Number(button.dataset.guidedStep)
+            button.disabled = !unlocked[step]
+            button.classList.toggle('done', step < 4 && completed[step])
+            if (step === state.guidedStep) {
+              button.setAttribute('aria-current', 'step')
+            } else {
+              button.removeAttribute('aria-current')
+            }
+            button.querySelector('.guided-step-number').textContent =
+              step < state.guidedStep && completed[step] ? '✓' : String(step)
+          })
+          guidedBack.disabled = state.guidedStep === 1
+          guidedNext.hidden = state.guidedStep === 4
+          guidedNext.disabled = !completed[state.guidedStep]
+          guidedNext.textContent = guidedLabels[state.guidedStep].next
+          guidedNextMessage.textContent = completed[state.guidedStep]
+            ? guidedLabels[state.guidedStep].ready
+            : guidedLabels[state.guidedStep].waiting
+        }
+
+        const showGuidedStep = (step, moveFocus = true) => {
+          if (!guidedUnlocked()[step]) return
+          state.guidedStep = step
+          document.body.classList.toggle('guided-certificate', step === 4)
+          guidedStages.forEach((section) => {
+            const visible =
+              step === 4
+                ? section.id === 'protect-stage'
+                : Number(section.dataset.guidedStage) === step
+            section.hidden = !visible
+          })
+          updateGuidedJourney()
+          if (moveFocus) {
+            const heading =
+              step === 1
+                ? document.getElementById('mission-title')
+                : step === 2
+                ? document.getElementById('pods-title')
+                : step === 3
+                ? document.getElementById('protect-title')
+                : document.getElementById('finish-title')
+            heading.setAttribute('tabindex', '-1')
+            heading.focus({ preventScroll: true })
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+        }
+
+        guidedSteps.forEach((button) => {
+          button.addEventListener('click', () => {
+            showGuidedStep(Number(button.dataset.guidedStep))
+          })
+        })
+        guidedBack.addEventListener('click', () => {
+          showGuidedStep(Math.max(1, state.guidedStep - 1))
+        })
+        guidedNext.addEventListener('click', () => {
+          showGuidedStep(Math.min(4, state.guidedStep + 1))
+        })
+
         const updateModeCopy = () => {
           const copyKey =
             state.mode === 'explorer' ? 'explorerText' : 'scientistText'
@@ -3662,6 +4106,7 @@
               : `Complete ${3 - total} more adventure goal${
                   total === 2 ? '' : 's'
                 } to unlock`
+          updateGuidedJourney()
         }
 
         document.querySelectorAll('.mode-card').forEach((button) => {
@@ -4071,6 +4516,44 @@
           if (event.target === dialog) dialog.close()
         })
 
+        const glossaryDialog = document.getElementById('glossary-dialog')
+        const openGlossary = () => glossaryDialog.showModal()
+        document
+          .getElementById('open-glossary')
+          .addEventListener('click', openGlossary)
+        document
+          .getElementById('welcome-word-help')
+          .addEventListener('click', openGlossary)
+        document
+          .querySelector('.glossary-close')
+          .addEventListener('click', () => glossaryDialog.close())
+        glossaryDialog.addEventListener('click', (event) => {
+          if (event.target === glossaryDialog) glossaryDialog.close()
+        })
+        document.querySelectorAll('.glossary-term').forEach((term) => {
+          term.addEventListener('click', () => {
+            const expanded = term.getAttribute('aria-expanded') === 'true'
+            term.setAttribute('aria-expanded', String(!expanded))
+          })
+        })
+
+        document
+          .getElementById('start-guided-adventure')
+          .addEventListener('click', () => {
+            document.body.classList.remove('option-b-welcome')
+            showGuidedStep(state.guidedStep)
+          })
+        document
+          .getElementById('option-b-home')
+          .addEventListener('click', (event) => {
+            event.preventDefault()
+            document.body.classList.add('option-b-welcome')
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            document
+              .getElementById('start-guided-adventure')
+              .focus({ preventScroll: true })
+          })
+
         document
           .getElementById('update-certificate')
           .addEventListener('click', () => {
@@ -4083,6 +4566,7 @@
         audio.addEventListener('play', () => {
           mysteryAudios.forEach((mysteryAudio) => mysteryAudio.pause())
         })
+        showGuidedStep(1, false)
         updateAdventureProgress()
       })()
     </script>

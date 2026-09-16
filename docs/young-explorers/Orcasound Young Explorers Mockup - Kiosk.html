@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#071f36" />
-    <title>Orcasound Young Explorers - Interactive Mockup</title>
+    <title>Orcasound Young Explorers - Option A Kiosk</title>
     <style>
       :root {
         --ink: #071f36;
@@ -1931,6 +1931,127 @@
           transition-duration: 0.01ms !important;
         }
       }
+      body.kiosk-mode {
+        overscroll-behavior: none;
+        touch-action: manipulation;
+      }
+      body.kiosk-mode .btn,
+      body.kiosk-mode button,
+      body.kiosk-mode .answer,
+      body.kiosk-mode .mystery-guess button {
+        min-height: 56px;
+      }
+      body.kiosk-mode audio,
+      body.kiosk-mode video {
+        min-height: 56px;
+      }
+      body.kiosk-mode .learn-section,
+      body.kiosk-mode .teacher-strip,
+      body.kiosk-mode footer,
+      body.kiosk-mode .hero-actions .btn-outline {
+        display: none;
+      }
+      .kiosk-controls {
+        display: flex;
+        gap: 10px;
+      }
+      .kiosk-control {
+        min-width: 112px;
+        border-color: rgba(255, 255, 255, 0.62);
+        color: var(--white);
+        background: transparent;
+      }
+      .kiosk-start-screen {
+        position: fixed;
+        z-index: 200;
+        inset: 0;
+        display: grid;
+        overflow: auto;
+        place-items: center;
+        padding: 28px;
+        color: var(--white);
+        background: radial-gradient(
+            circle at 75% 15%,
+            rgba(89, 216, 206, 0.25),
+            transparent 30%
+          ),
+          linear-gradient(145deg, #071f36, #075e78);
+      }
+      .kiosk-start-screen[hidden] {
+        display: none;
+      }
+      .kiosk-welcome {
+        width: min(900px, 100%);
+        text-align: center;
+      }
+      .kiosk-welcome-art {
+        width: min(520px, 80vw);
+        margin: 0 auto 12px;
+        filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.25));
+      }
+      .kiosk-welcome h1 {
+        max-width: none;
+        margin: 6px 0 12px;
+        font-size: clamp(2.6rem, 7vw, 5.4rem);
+      }
+      .kiosk-welcome p {
+        max-width: 720px;
+        margin: 0 auto 26px;
+        color: #e2fbf8;
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+      }
+      .kiosk-start-button {
+        min-width: min(360px, 90vw);
+        min-height: 72px !important;
+        font-size: 1.25rem;
+      }
+      .kiosk-note {
+        display: block;
+        margin-top: 18px;
+        color: #c6efeb;
+        font-size: 0.92rem;
+      }
+      .kiosk-dialog {
+        width: min(520px, calc(100% - 32px));
+        padding: 0;
+        overflow: hidden;
+        border: 0;
+        border-radius: 24px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      }
+      .kiosk-dialog::backdrop {
+        background: rgba(7, 31, 54, 0.78);
+      }
+      .kiosk-dialog-body {
+        padding: 30px;
+        text-align: center;
+      }
+      .kiosk-dialog-body h2 {
+        margin-top: 0;
+        font-size: 2rem;
+      }
+      .kiosk-dialog-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      @media (max-width: 680px) {
+        body.kiosk-mode .site-header {
+          display: flex;
+          padding: 10px 12px;
+        }
+        body.kiosk-mode .brand-label,
+        body.kiosk-mode .quiet-note {
+          display: none;
+        }
+        .kiosk-control {
+          min-width: 0;
+          padding: 8px 11px;
+          font-size: 0.82rem;
+        }
+      }
       @media print {
         @page {
           size: letter portrait;
@@ -1977,7 +2098,7 @@
       }
     </style>
   </head>
-  <body>
+  <body class="kiosk-mode">
     <a class="skip-link" href="#main">Skip to the adventure</a>
 
     <header class="site-header">
@@ -1997,18 +2118,92 @@
         >
       </a>
       <div class="header-actions">
-        <span class="quiet-note"
-          ><span aria-hidden="true">🔒</span> No sign-in. Progress lasts for
-          this page session.</span
-        >
-        <a class="btn btn-primary btn-small" href="#mission">Start mission</a>
+        <span class="quiet-note">Option A · Kiosk mode</span>
+        <div class="kiosk-controls">
+          <button
+            id="kiosk-fullscreen"
+            class="btn btn-small kiosk-control"
+            type="button"
+          >
+            Full screen
+          </button>
+          <button
+            id="kiosk-reset"
+            class="btn btn-small kiosk-control"
+            type="button"
+          >
+            Start over
+          </button>
+        </div>
       </div>
     </header>
+
+    <section
+      id="kiosk-start-screen"
+      class="kiosk-start-screen"
+      aria-labelledby="kiosk-welcome-title"
+    >
+      <div class="kiosk-welcome">
+        <svg
+          class="kiosk-welcome-art"
+          viewBox="0 0 700 360"
+          role="img"
+          aria-label="Illustration of an orca swimming through underwater sound waves"
+        >
+          <path
+            fill="rgba(255,255,255,.13)"
+            d="M45 236c91-99 207-146 347-140 102 4 178 43 229 113-69-28-134-26-193 8-107 61-239 68-383 19Z"
+          />
+          <path
+            fill="#071f36"
+            stroke="#59d8ce"
+            stroke-width="5"
+            d="M93 214c97-97 219-128 367-93 50 12 93 33 130 64-43 2-77 22-101 60-68 84-185 98-351 44-30 24-67 31-111 21 28-17 50-39 66-67-8-9-8-19 0-29Z"
+          />
+          <path
+            fill="#fff"
+            d="M208 218c83-51 180-56 290-15-44 7-79 31-104 72-73 40-147 27-222-38l36-19Z"
+          />
+          <path
+            fill="#fff"
+            d="M466 151c35 3 62 13 82 30-29 2-52 15-69 39-15-19-19-42-13-69Z"
+          />
+          <path
+            fill="#071f36"
+            d="M310 134c14-66 50-111 108-135 4 57-13 105-51 145l-57-10Z"
+          />
+          <circle cx="535" cy="172" r="5" fill="#fff" />
+          <path
+            fill="none"
+            stroke="#59d8ce"
+            stroke-width="8"
+            stroke-linecap="round"
+            d="M575 140c42 24 66 57 72 98M600 112c61 34 94 82 100 143"
+          />
+        </svg>
+        <span class="eyebrow">Orcasound Young Explorers</span>
+        <h1 id="kiosk-welcome-title">Ready to listen for orcas?</h1>
+        <p>
+          Hear real calls, meet J, K, and L pods, and choose a way to help
+          protect their ocean home.
+        </p>
+        <button
+          id="kiosk-begin"
+          class="btn btn-primary kiosk-start-button"
+          type="button"
+        >
+          Tap to begin
+        </button>
+        <small class="kiosk-note"
+          >No sign-in · No information is saved · Headphones recommended</small
+        >
+      </div>
+    </section>
 
     <div id="top" class="hero">
       <div class="hero-copy">
         <span class="eyebrow">A five-minute sound adventure</span>
-        <h1>Can you hear who is <span>underwater?</span></h1>
+        <h1 tabindex="-1">Can you hear who is <span>underwater?</span></h1>
         <p>
           Listen to real sounds from the Salish Sea, meet J, K, and L pods, and
           discover how people use ocean sound to help protect Southern Resident
@@ -3246,6 +3441,51 @@
       </div>
     </dialog>
 
+    <dialog
+      id="kiosk-reset-dialog"
+      class="kiosk-dialog"
+      aria-labelledby="kiosk-reset-title"
+    >
+      <div class="kiosk-dialog-body">
+        <h2 id="kiosk-reset-title">Start a new adventure?</h2>
+        <p>
+          This will clear the quiz, pod badges, selected action, and certificate
+          name from this kiosk.
+        </p>
+        <div class="kiosk-dialog-actions">
+          <button id="kiosk-reset-cancel" class="btn btn-outline" type="button">
+            Keep exploring
+          </button>
+          <button
+            id="kiosk-reset-confirm"
+            class="btn btn-primary"
+            type="button"
+          >
+            Yes, start over
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      id="kiosk-idle-dialog"
+      class="kiosk-dialog"
+      aria-labelledby="kiosk-idle-title"
+    >
+      <div class="kiosk-dialog-body">
+        <h2 id="kiosk-idle-title">Are you still exploring?</h2>
+        <p>
+          This kiosk will start a fresh adventure in
+          <strong><span id="kiosk-countdown">30</span> seconds</strong>.
+        </p>
+        <div class="kiosk-dialog-actions">
+          <button id="kiosk-continue" class="btn btn-secondary" type="button">
+            Yes, keep exploring
+          </button>
+        </div>
+      </div>
+    </dialog>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
@@ -3590,6 +3830,118 @@
             2600
           )
         }
+
+        const kioskStartScreen = document.getElementById('kiosk-start-screen')
+        const kioskResetDialog = document.getElementById('kiosk-reset-dialog')
+        const kioskIdleDialog = document.getElementById('kiosk-idle-dialog')
+        const kioskCountdown = document.getElementById('kiosk-countdown')
+        const kioskFullscreen = document.getElementById('kiosk-fullscreen')
+        const kioskIdle = {
+          active: false,
+          warningTimer: 0,
+          resetTimer: 0,
+          countdownTimer: 0,
+        }
+
+        const clearKioskTimers = () => {
+          window.clearTimeout(kioskIdle.warningTimer)
+          window.clearTimeout(kioskIdle.resetTimer)
+          window.clearInterval(kioskIdle.countdownTimer)
+        }
+
+        const resetKioskSession = () => window.location.reload()
+
+        const showKioskIdleWarning = () => {
+          if (!kioskIdle.active || kioskIdleDialog.open) return
+          let seconds = 30
+          kioskCountdown.textContent = String(seconds)
+          kioskIdleDialog.showModal()
+          kioskIdle.countdownTimer = window.setInterval(() => {
+            seconds -= 1
+            kioskCountdown.textContent = String(Math.max(0, seconds))
+          }, 1000)
+          kioskIdle.resetTimer = window.setTimeout(resetKioskSession, 30000)
+        }
+
+        const restartKioskIdleTimer = () => {
+          if (!kioskIdle.active || kioskIdleDialog.open) return
+          clearKioskTimers()
+          kioskIdle.warningTimer = window.setTimeout(
+            showKioskIdleWarning,
+            270000
+          )
+        }
+
+        document
+          .getElementById('kiosk-begin')
+          .addEventListener('click', () => {
+            kioskStartScreen.hidden = true
+            kioskIdle.active = true
+            restartKioskIdleTimer()
+            window.scrollTo({ top: 0 })
+            document.querySelector('.hero h1').focus({ preventScroll: true })
+          })
+
+        document.getElementById('kiosk-reset').addEventListener('click', () => {
+          kioskResetDialog.showModal()
+        })
+        document
+          .getElementById('kiosk-reset-cancel')
+          .addEventListener('click', () => {
+            kioskResetDialog.close()
+            restartKioskIdleTimer()
+          })
+        document
+          .getElementById('kiosk-reset-confirm')
+          .addEventListener('click', resetKioskSession)
+
+        document
+          .getElementById('kiosk-continue')
+          .addEventListener('click', () => {
+            kioskIdleDialog.close()
+            restartKioskIdleTimer()
+          })
+
+        kioskFullscreen.addEventListener('click', async () => {
+          try {
+            if (document.fullscreenElement) {
+              await document.exitFullscreen()
+            } else {
+              await document.documentElement.requestFullscreen()
+            }
+          } catch {
+            showToast('Full screen is not available on this device.')
+          }
+        })
+        document.addEventListener('fullscreenchange', () => {
+          kioskFullscreen.textContent = document.fullscreenElement
+            ? 'Exit full screen'
+            : 'Full screen'
+        })
+
+        document.addEventListener(
+          'click',
+          (event) => {
+            const link = event.target.closest('a')
+            if (
+              link &&
+              (link.target === '_blank' || /^https?:/i.test(link.href))
+            ) {
+              event.preventDefault()
+              showToast(
+                'Outside websites are turned off in kiosk mode. Ask a teacher for help.'
+              )
+            }
+          },
+          true
+        )
+
+        ;['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+          document.addEventListener(eventName, restartKioskIdleTimer, {
+            passive: true,
+          })
+        })
+        document.addEventListener('play', restartKioskIdleTimer, true)
 
         const selectOne = (selector, selected) => {
           document.querySelectorAll(selector).forEach((item) => {

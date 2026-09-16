@@ -15,14 +15,29 @@ be implemented as a dedicated application route such as `/young-explorers` or
 
 The standalone prototype:
 
-- offers Ocean Explorer (grades 3-5) and Junior Bioacoustician (grades 6-8)
-  question sets;
+- offers three short, listen-first Ocean Explorer activities for grades 3-5
+  and five detailed Junior Bioacoustician evidence questions for grades 6-8;
+- uses shorter instructions and simpler vocabulary throughout the Ocean
+  Explorer pod game, conservation cards, progress panel, and next-step links,
+  while retaining detailed science wording in Junior Bioacoustician mode;
 - uses reviewed Southern Resident discrete-call recordings and matching S01-S05
   spectrograms;
-- introduces representative J, K, and L pod calls;
+- serves local three-second classroom editions of S01-S05, S16, and S19 from
+  `audio/`; shorter source calls use neutral padding rather than repeating or
+  fabricating whale sounds, while S03 uses a three-second excerpt;
+- turns representative J, K, and L pod calls into three hidden-identity
+  mysteries; students hear a call, select J/K/L, and submit their answer before
+  the pod name is revealed;
+- adds a tick to a Pod Passport badge only after a correct submitted answer;
+- uses Orcahome observation photographs to teach that pods are family groups,
+  not visually different orca types, and that a photo alone does not prove pod
+  membership;
 - lets students investigate with audio, visual spectrogram evidence, or both;
 - explains evidence limits and the role of Orcasound volunteer moderators;
-- includes three conservation actions and a locally generated certificate;
+- includes three conservation actions and short simulations about underwater
+  noise, the salmon journey through the food web, and clean water; the
+  videos include captions and clearly labeled simulation audio, and the
+  clean-water story uses a locally generated female voice-over;
 - requires no student account, upload, analytics, or personal-data collection.
 
 Bigg's killer whales, echolocation clicks, buzzes, and non-orca control sounds
@@ -40,10 +55,22 @@ clear prior visitor data.
 ## Files
 
 - `Orcasound Young Explorers Mockup.html` - interactive standalone prototype
+- `Orcasound Young Explorers Mockup - Kiosk.html` - touch-friendly Option A
+  variant with a tap-to-begin screen, fullscreen and confirmed start-over
+  controls, blocked external navigation, and an automatic reset warning after
+  four and a half minutes without activity
+- `Orcasound Young Explorers Mockup - Option B.html` - guided elementary
+  alternative with an illustrated title page; it shows Listen, Match Pods, Help
+  Orcas, and Certificate one at a time and includes tap-friendly Word Help
 - `Orcasound Kids Experience Spec and UI Audit.md` - product specification,
   science guardrails, and beta UI audit
 - `Orcasound Teacher Activity Guide.html` - printable teacher packet source
 - `Orcasound Teacher Activity Guide.pdf` - eight-page printable packet
+- `audio/` - seven three-second WAV clips derived from the corresponding
+  Orcasound call recordings
+- `videos/` - three MP4 conservation simulations, poster images, and caption
+  files
 
 Open the mockup HTML in a browser. Keep the teacher HTML and PDF in the same
-folder so its relative teacher-resource links continue to work.
+folder, and keep the `audio` and `videos` subfolders beside the mockup, so its
+relative resource links continue to work.
