@@ -720,78 +720,108 @@
         letter-spacing: 0.25em;
       }
       @media (min-width: 900px) {
-        .mission-shell.scientist-mode .mission-main {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main {
           min-height: 0;
           padding: 24px 30px 28px;
         }
-        .mission-shell.scientist-mode .challenge-meter {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .challenge-meter {
           margin-bottom: 8px;
         }
-        .mission-shell.scientist-mode .mission-main h3 {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main h3 {
           margin: 5px 0 6px;
           font-size: clamp(1.75rem, 2.5vw, 2.25rem);
         }
-        .mission-shell.scientist-mode .mission-main > p {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main > p {
           margin: 0 0 10px;
         }
-        .mission-shell.scientist-mode .audio-lab {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .audio-lab {
           gap: 16px;
           margin: 14px 0;
         }
-        .mission-shell.scientist-mode .player-card {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .player-card {
           padding: 14px 16px;
         }
-        .mission-shell.scientist-mode .player-card audio {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .player-card audio {
           margin-top: 10px;
         }
-        .mission-shell.scientist-mode .headphone-note {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .headphone-note {
           line-height: 1.35;
         }
-        .mission-shell.scientist-mode .spectrogram {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .spectrogram {
           height: 215px;
           min-height: 0;
         }
-        .mission-shell.scientist-mode .spectrogram img {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .spectrogram img {
           flex: 1 1 auto;
           min-height: 0;
           object-position: left center;
         }
-        .mission-shell.scientist-mode .spectrogram figcaption {
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .spectrogram
+          figcaption {
           padding: 6px 12px;
         }
-        .mission-shell.scientist-mode .answers {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .answers {
           gap: 8px;
           margin: 8px 0;
         }
-        .mission-shell.scientist-mode .answer {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .answer {
           min-height: 46px;
           padding: 8px 12px;
         }
-        .mission-shell.scientist-mode .reveal {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .reveal {
           margin-top: 8px;
           padding: 10px 14px;
           font-size: 0.9rem;
         }
-        .mission-shell.scientist-mode .reveal.show:not(.complete) {
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete) {
           display: block;
         }
-        .mission-shell.scientist-mode .reveal.show:not(.complete) h4 {
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete)
+          h4 {
           display: inline;
           font-size: 1.05rem;
         }
-        .mission-shell.scientist-mode .reveal.show:not(.complete) h4::after,
-        .mission-shell.scientist-mode
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete)
+          h4::after,
+        .mission-shell:is(.scientist-mode, .explorer-mode)
           .reveal.show:not(.complete)
           #reveal-copy::after {
           content: ' ';
         }
-        .mission-shell.scientist-mode .reveal p {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .reveal p {
           display: inline;
           margin: 0;
           line-height: 1.35;
         }
-        .mission-shell.scientist-mode .next-question-row {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .next-question-row {
           margin-top: 6px;
+        }
+        .mission-shell.explorer-mode .explorer-guide {
+          gap: 8px;
+          margin: 6px 0 8px;
+        }
+        .mission-shell.explorer-mode .explorer-guide span {
+          padding: 7px 10px;
+        }
+        .mission-shell.explorer-mode .mission-main {
+          padding: 8px 20px;
+        }
+        .mission-shell.explorer-mode .audio-lab {
+          margin: 8px 0;
+        }
+        .mission-shell.explorer-mode .spectrogram {
+          height: 200px;
+        }
+        .mission-shell.explorer-mode .answers {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          margin: 6px 0;
+        }
+        .mission-shell.explorer-mode .answer {
+          min-height: 44px;
         }
       }
 
@@ -2165,7 +2195,11 @@
     </div>
 
     <main id="main">
-      <div class="adventure-tracker" aria-label="Adventure progress">
+      <div
+        class="adventure-tracker"
+        role="group"
+        aria-label="Adventure progress"
+      >
         <div class="tracker-shell">
           <div class="tracker-step active" data-tracker="quiz">
             <span class="tracker-icon" aria-hidden="true">1</span>
@@ -2380,7 +2414,8 @@
                 <figure class="spectrogram">
                   <img
                     id="spectrogram-image"
-                    src="https://www.orcasound.tech/images/callcatalog/FO-S01.png"
+                    data-app-image="callcatalog/FO-S01.png"
+                    src="/images/callcatalog/FO-S01.png"
                     alt="Spectrogram of Southern Resident call S01 showing its frequency pattern over time"
                   />
                   <figcaption id="spectrogram-caption">
@@ -2522,7 +2557,8 @@
             >
               <div class="mystery-pod-image">
                 <img
-                  src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/srkw2-3.jpg"
+                  data-app-image="srkw2-3.jpg"
+                  src="/images/srkw2-3.jpg"
                   alt="Orca swimming at the surface with its tail and dorsal fin visible"
                 />
                 <span class="mystery-number">Mystery call 1</span>
@@ -2587,7 +2623,8 @@
             >
               <div class="mystery-pod-image">
                 <img
-                  src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/orca-spyhop.JPG"
+                  data-app-image="orca-spyhop.JPG"
+                  src="/images/orca-spyhop.JPG"
                   alt="Orca spyhopping above calm water with mountains in the distance"
                 />
                 <span class="mystery-number">Mystery call 2</span>
@@ -2651,7 +2688,8 @@
             >
               <div class="mystery-pod-image">
                 <img
-                  src="https://raw.githubusercontent.com/orcasound/orcahome/main/public/images/orca-from-above.png"
+                  data-app-image="orca-from-above.png"
+                  src="/images/orca-from-above.png"
                   alt="Orca seen from above, showing its black-and-white body pattern"
                 />
                 <span class="mystery-number">Mystery call 3</span>
@@ -3362,6 +3400,15 @@
 
     <script>
       ;(() => {
+        const imageAssetPath = (relativePath) =>
+          window.location.protocol === 'file:'
+            ? `../../public/images/${relativePath}`
+            : `/images/${relativePath}`
+
+        document.querySelectorAll('[data-app-image]').forEach((image) => {
+          image.src = imageAssetPath(image.dataset.appImage)
+        })
+
         const state = {
           mode: 'explorer',
           answer: '',
@@ -3386,8 +3433,7 @@
               audio: true,
               audioUrl: 'audio/FO-S01-3s.wav',
               clipLabel: 'Mystery clip #01 · Orca call S01',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S01.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
               choices: [
@@ -3412,8 +3458,7 @@
               audio: true,
               audioUrl: 'audio/FO-S02-3s.wav',
               clipLabel: 'Mystery clip #02 · Orca call S02',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S02.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
               choices: [
@@ -3438,8 +3483,7 @@
               audio: true,
               audioUrl: 'audio/FO-S04-3s.wav',
               clipLabel: 'Mystery clip #03 · Orca call S04',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S04.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
               choices: [
@@ -3466,8 +3510,7 @@
               audio: true,
               audioUrl: 'audio/FO-S01-3s.wav',
               clipLabel: 'Research clip A · Orca call S01',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S01.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
               choices: [
@@ -3493,8 +3536,7 @@
               audio: true,
               audioUrl: 'audio/FO-S02-3s.wav',
               clipLabel: 'Research clip B · Orca call S02',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S02.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
               choices: [
@@ -3521,8 +3563,7 @@
               audio: true,
               audioUrl: 'audio/FO-S03-3s.wav',
               clipLabel: 'Research clip C · Orca call S03',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S03.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S03.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S03 showing a call pattern with visible frequency changes',
               choices: [
@@ -3553,8 +3594,7 @@
               audio: true,
               audioUrl: 'audio/FO-S04-3s.wav',
               clipLabel: 'Research clip D · Orca call S04',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S04.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
               spectrogramAlt:
                 'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
               choices: [
@@ -3588,8 +3628,7 @@
               audio: true,
               audioUrl: 'audio/FO-S05-3s.wav',
               clipLabel: 'Research clip E · Orca call S05',
-              spectrogramUrl:
-                'https://www.orcasound.tech/images/callcatalog/FO-S05.png',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S05.png'),
               spectrogramAlt:
                 "Spectrogram of Southern Resident call S05 showing the call's frequency pattern across the clip",
               choices: [
@@ -3780,7 +3819,7 @@
               : question.clipLabel
           clipNote.textContent =
             state.mode === 'explorer'
-              ? 'Turn the volume down first. Press play, listen, and pick one answer.'
+              ? 'Turn the volume down first. Press play, listen, and pick one answer. Evidence: expert-reviewed historical Orcasound recording from the Salish Sea.'
               : 'Three-second classroom clip from a real Orcasound recording. Short calls use neutral padding and are never repeated. Nothing will autoplay.'
           spectrogramImage.src = question.spectrogramUrl
           spectrogramImage.alt = question.spectrogramAlt

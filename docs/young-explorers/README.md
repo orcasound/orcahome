@@ -33,6 +33,9 @@ The standalone prototype:
   not visually different orca types, and that a photo alone does not prove pod
   membership;
 - lets students investigate with audio, visual spectrogram evidence, or both;
+- loads spectrograms and observation photographs from the app's repository-local
+  `/images` route backed by `public/images`, so the visual activities do not
+  depend on beta or raw GitHub URLs;
 - explains evidence limits and the role of Orcasound volunteer moderators;
 - includes three conservation actions and short simulations about underwater
   noise, the salmon journey through the food web, and clean water; the
