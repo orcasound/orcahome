@@ -2573,9 +2573,9 @@
                     >Clue:</strong
                   >
                   <span
-                    data-explorer-text="K Pod is the smallest family. Its call can sound a little like a kitten."
+                    data-explorer-text="This pod is the smallest family. Its call can sound a little like a kitten."
                     data-scientist-text="This is the smallest Southern Resident pod. Many listeners say its familiar call sounds a little like a kitten."
-                    >K Pod is the smallest family. Its call can sound a little
+                    >This pod is the smallest family. Its call can sound a little
                     like a kitten.</span
                   >
                 </p>
@@ -2639,9 +2639,9 @@
                     >Clue:</strong
                   >
                   <span
-                    data-explorer-text="L Pod is the biggest family. Its members travel far."
+                    data-explorer-text="This pod is the biggest family. Its members travel far."
                     data-scientist-text="This is the largest Southern Resident pod, and its family members are wide-ranging travelers."
-                    >L Pod is the biggest family. Its members travel far.</span
+                    >This pod is the biggest family. Its members travel far.</span
                   >
                 </p>
                 <audio
@@ -2704,9 +2704,9 @@
                     >Clue:</strong
                   >
                   <span
-                    data-explorer-text="J Pod is often heard in the Salish Sea. Listen for its short, song-like call."
+                    data-explorer-text="This pod is often heard in the Salish Sea. Listen for its short, song-like call."
                     data-scientist-text="This family is often heard in the Salish Sea throughout the year. Listen for a short tonal pattern."
-                    >J Pod is often heard in the Salish Sea. Listen for its
+                    >This pod is often heard in the Salish Sea. Listen for its
                     short, song-like call.</span
                   >
                 </p>
@@ -3908,6 +3908,7 @@
           if (state.answer === question.correct) state.score += 1
           answers.querySelectorAll('.answer').forEach((button) => {
             button.classList.remove('selected')
+            button.setAttribute('aria-pressed', 'false')
             button.disabled = true
             if (button.dataset.answer === question.correct)
               button.classList.add('correct')
@@ -4163,7 +4164,7 @@
               return
             }
             document.getElementById('certificate-pod').textContent =
-              'J, K, and L Pods'
+              'S03, S16, and S19 calls'
             document.getElementById(
               'certificate-action'
             ).textContent = `My ally action: ${state.action}.`
