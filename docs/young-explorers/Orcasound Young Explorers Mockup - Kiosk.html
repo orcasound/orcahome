@@ -38,7 +38,7 @@
         overflow-x: hidden;
         color: var(--ink);
         background: var(--foam);
-        font-family: 'Segoe UI', Arial, sans-serif;
+        font-family: "Segoe UI", Arial, sans-serif;
         line-height: 1.55;
       }
       button,
@@ -175,7 +175,7 @@
           linear-gradient(150deg, #071f36 4%, #075e78 62%, #128e9d 100%);
       }
       .hero::after {
-        content: '';
+        content: "";
         position: absolute;
         z-index: -1;
         left: -10%;
@@ -285,7 +285,7 @@
       }
       .sound-ring::before,
       .sound-ring::after {
-        content: '';
+        content: "";
         position: absolute;
         border: 2px solid rgba(255, 255, 255, 0.27);
         border-radius: 50%;
@@ -323,13 +323,13 @@
         padding: 18px 22px;
         color: var(--ink-soft);
       }
-      .tracker-step[data-tracker='quiz'] {
+      .tracker-step[data-tracker="quiz"] {
         background: linear-gradient(135deg, #edfffb, #d7f8f3);
       }
-      .tracker-step[data-tracker='pods'] {
+      .tracker-step[data-tracker="pods"] {
         background: linear-gradient(135deg, #f5f1ff, #e5ddff);
       }
-      .tracker-step[data-tracker='action'] {
+      .tracker-step[data-tracker="action"] {
         background: linear-gradient(135deg, #fffaf0, #fff0c9);
       }
       .tracker-step + .tracker-step {
@@ -446,8 +446,8 @@
       .mode-card {
         min-height: 230px;
       }
-      .mode-card[aria-pressed='true'],
-      .pod-card[aria-pressed='true'],
+      .mode-card[aria-pressed="true"],
+      .pod-card[aria-pressed="true"],
       .action-card.selected {
         border-color: var(--ocean);
         box-shadow: 0 0 0 5px rgba(89, 216, 206, 0.26), var(--shadow);
@@ -487,7 +487,7 @@
         background: var(--ocean);
         font-weight: 900;
       }
-      [aria-pressed='true'] .mode-check {
+      [aria-pressed="true"] .mode-check {
         display: grid;
       }
 
@@ -790,7 +790,7 @@
         .mission-shell:is(.scientist-mode, .explorer-mode)
           .reveal.show:not(.complete)
           #reveal-copy::after {
-          content: ' ';
+          content: " ";
         }
         .mission-shell:is(.scientist-mode, .explorer-mode) .reveal p {
           display: inline;
@@ -830,7 +830,7 @@
         background: #f1edff;
       }
       .pods-section::before {
-        content: '';
+        content: "";
         position: absolute;
         top: -34px;
         left: -5%;
@@ -857,7 +857,7 @@
           #dcd4ff;
       }
       .pod-ocean-scene::after {
-        content: '';
+        content: "";
         position: absolute;
         left: -5%;
         right: -5%;
@@ -954,7 +954,7 @@
         transition: transform 0.35s ease;
       }
       .pod-card:hover .pod-card-image img,
-      .pod-card[aria-pressed='true'] .pod-card-image img {
+      .pod-card[aria-pressed="true"] .pod-card-image img {
         transform: scale(1.05);
       }
       .pod-photo-label {
@@ -989,7 +989,7 @@
         color: rgba(255, 255, 255, 0.86);
       }
       .pod-card::after {
-        content: 'Tap to explore →';
+        content: "Tap to explore →";
         position: absolute;
         right: 22px;
         bottom: 18px;
@@ -1126,7 +1126,7 @@
         border-color: #6957b8;
         background: #f1edff;
       }
-      .mystery-guess button[aria-pressed='true'] {
+      .mystery-guess button[aria-pressed="true"] {
         color: var(--white);
         border-color: #6957b8;
         background: #6957b8;
@@ -1180,7 +1180,7 @@
         overflow: hidden;
       }
       .pod-spotlight::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 220px;
         height: 220px;
@@ -1383,7 +1383,7 @@
         transform: rotate(-7deg);
       }
       .passport-stamp.earned::after {
-        content: '✓';
+        content: "✓";
         position: absolute;
         right: 9%;
         top: 4%;
@@ -1452,7 +1452,7 @@
           #dff4ff;
       }
       .ally-ocean-scene::after {
-        content: '';
+        content: "";
         position: absolute;
         left: -5%;
         right: -5%;
@@ -1774,7 +1774,7 @@
         text-align: center;
       }
       .certificate::before {
-        content: 'ORCASOUND';
+        content: "ORCASOUND";
         color: var(--ocean);
         font-size: 0.8rem;
         font-weight: 900;
@@ -2770,8 +2770,8 @@
                   <span
                     data-explorer-text="This pod is the smallest family. Its call can sound a little like a kitten."
                     data-scientist-text="This is the smallest Southern Resident pod. Many listeners say its familiar call sounds a little like a kitten."
-                    >This pod is the smallest family. Its call can sound a little
-                    like a kitten.</span
+                    >This pod is the smallest family. Its call can sound a
+                    little like a kitten.</span
                   >
                 </p>
                 <audio
@@ -2836,7 +2836,8 @@
                   <span
                     data-explorer-text="This pod is the biggest family. Its members travel far."
                     data-scientist-text="This is the largest Southern Resident pod, and its family members are wide-ranging travelers."
-                    >This pod is the biggest family. Its members travel far.</span
+                    >This pod is the biggest family. Its members travel
+                    far.</span
                   >
                 </p>
                 <audio
@@ -3639,917 +3640,914 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <script>
-      ;(() => {
+      (() => {
         const imageAssetPath = (relativePath) =>
-          window.location.protocol === 'file:'
+          window.location.protocol === "file:"
             ? `../../public/images/${relativePath}`
-            : `/images/${relativePath}`
+            : `/images/${relativePath}`;
 
-        document.querySelectorAll('[data-app-image]').forEach((image) => {
-          image.src = imageAssetPath(image.dataset.appImage)
-        })
+        document.querySelectorAll("[data-app-image]").forEach((image) => {
+          image.src = imageAssetPath(image.dataset.appImage);
+        });
 
         const state = {
-          mode: 'explorer',
-          answer: '',
+          mode: "explorer",
+          answer: "",
           quizIndex: 0,
           score: 0,
           answered: false,
           quizComplete: false,
-          pod: 'J Pod',
+          pod: "J Pod",
           podStamps: new Set(),
-          action: 'help keep the ocean quieter and learn Be Whale Wise rules',
+          action: "help keep the ocean quieter and learn Be Whale Wise rules",
           actionSelected: false,
-        }
+        };
 
         const questionSets = {
           explorer: [
             {
-              label: 'Listening game',
-              title: 'What does this sound like?',
+              label: "Listening game",
+              title: "What does this sound like?",
               instruction:
-                'Press play. Listen to the short sound. Then pick one answer.',
-              prompt: 'What did you hear?',
+                "Press play. Listen to the short sound. Then pick one answer.",
+              prompt: "What did you hear?",
               audio: true,
-              audioUrl: 'audio/FO-S01-3s.wav',
-              clipLabel: 'Mystery clip #01 · Orca call S01',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
+              audioUrl: "audio/FO-S01-3s.wav",
+              clipLabel: "Mystery clip #01 · Orca call S01",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S01.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
+                "Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time",
               choices: [
-                ['call', 'An orca call with a pattern'],
-                ['steady', 'One long sound that stays the same'],
-                ['unsure', 'I am not sure yet'],
+                ["call", "An orca call with a pattern"],
+                ["steady", "One long sound that stays the same"],
+                ["unsure", "I am not sure yet"],
               ],
-              correct: 'call',
-              answerTitle: 'You heard an orca call.',
+              correct: "call",
+              answerTitle: "You heard an orca call.",
               explanation:
-                'Orcas make calls to communicate with their families. This call has a short pattern you can hear.',
+                "Orcas make calls to communicate with their families. This call has a short pattern you can hear.",
               advanced:
-                'J, K, and L pods have recognizable call repertoires, but some calls are shared. This sound alone does not identify an individual whale.',
-              hint: 'Listen for a sound that changes like a tiny song.',
+                "J, K, and L pods have recognizable call repertoires, but some calls are shared. This sound alone does not identify an individual whale.",
+              hint: "Listen for a sound that changes like a tiny song.",
             },
             {
-              label: 'Ocean listening tool',
-              title: 'What recorded this sound?',
+              label: "Ocean listening tool",
+              title: "What recorded this sound?",
               instruction:
-                'Orcasound listens from eight places around Puget Sound and the Salish Sea.',
-              prompt: 'Which tool listens underwater?',
+                "Orcasound listens from eight places around Puget Sound and the Salish Sea.",
+              prompt: "Which tool listens underwater?",
               audio: true,
-              audioUrl: 'audio/FO-S02-3s.wav',
-              clipLabel: 'Mystery clip #02 · Orca call S02',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
+              audioUrl: "audio/FO-S02-3s.wav",
+              clipLabel: "Mystery clip #02 · Orca call S02",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S02.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
+                "Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time",
               choices: [
-                ['microphone', 'An underwater microphone'],
-                ['camera', 'A camera in the sky'],
-                ['unsure', 'I am not sure yet'],
+                ["microphone", "An underwater microphone"],
+                ["camera", "A camera in the sky"],
+                ["unsure", "I am not sure yet"],
               ],
-              correct: 'microphone',
-              answerTitle: 'A hydrophone listens underwater.',
+              correct: "microphone",
+              answerTitle: "A hydrophone listens underwater.",
               explanation:
-                'A hydrophone is an underwater microphone. It can record orcas, boats, waves, and rain.',
+                "A hydrophone is an underwater microphone. It can record orcas, boats, waves, and rain.",
               advanced:
-                'A hydrophone records acoustic evidence from its location. It does not attach to a whale or automatically provide an exact animal position.',
-              hint: 'A microphone listens to sound. This special one works in water.',
+                "A hydrophone records acoustic evidence from its location. It does not attach to a whale or automatically provide an exact animal position.",
+              hint: "A microphone listens to sound. This special one works in water.",
             },
             {
-              label: 'Orca photo clues',
-              title: 'How can we tell orcas apart?',
+              label: "Orca photo clues",
+              title: "How can we tell orcas apart?",
               instruction:
-                'Researchers look carefully at clear photographs of each orca.',
-              prompt: 'Which clue helps identify one orca?',
+                "Researchers look carefully at clear photographs of each orca.",
+              prompt: "Which clue helps identify one orca?",
               audio: true,
-              audioUrl: 'audio/FO-S04-3s.wav',
-              clipLabel: 'Mystery clip #03 · Orca call S04',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
+              audioUrl: "audio/FO-S04-3s.wav",
+              clipLabel: "Mystery clip #03 · Orca call S04",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S04.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
+                "Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time",
               choices: [
-                ['fin', 'A clear photo of its fin and saddle patch'],
-                ['volume', 'How loud one call sounds'],
-                ['unsure', 'I am not sure yet'],
+                ["fin", "A clear photo of its fin and saddle patch"],
+                ["volume", "How loud one call sounds"],
+                ["unsure", "I am not sure yet"],
               ],
-              correct: 'fin',
-              answerTitle: 'Each orca has special photo clues.',
+              correct: "fin",
+              answerTitle: "Each orca has special photo clues.",
               explanation:
-                'Researchers compare the fin shape, small marks, and the light saddle patch behind the fin.',
+                "Researchers compare the fin shape, small marks, and the light saddle patch behind the fin.",
               advanced:
-                'The photo needs a suitable angle and enough detail, and a qualified source should confirm the match before the UI names an individual.',
-              hint: 'Look at the fin and the light patch just behind it.',
+                "The photo needs a suitable angle and enough detail, and a qualified source should confirm the match before the UI names an individual.",
+              hint: "Look at the fin and the light patch just behind it.",
             },
           ],
           scientist: [
             {
-              label: 'Acoustic observation',
-              title: 'Classify the mystery sound',
+              label: "Acoustic observation",
+              title: "Classify the mystery sound",
               instruction:
                 "Listen at a comfortable volume and focus on the sound's shape, timing, and repetition.",
-              prompt: 'Which acoustic category best describes this clip?',
+              prompt: "Which acoustic category best describes this clip?",
               audio: true,
-              audioUrl: 'audio/FO-S01-3s.wav',
-              clipLabel: 'Research clip A · Orca call S01',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
+              audioUrl: "audio/FO-S01-3s.wav",
+              clipLabel: "Research clip A · Orca call S01",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S01.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
+                "Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time",
               choices: [
-                ['discrete', 'A discrete, tonal call'],
-                ['flat', 'One continuous flat tone'],
-                ['single', 'One isolated sound'],
-                ['rumble', 'An unchanging low rumble'],
+                ["discrete", "A discrete, tonal call"],
+                ["flat", "One continuous flat tone"],
+                ["single", "One isolated sound"],
+                ["rumble", "An unchanging low rumble"],
               ],
-              correct: 'discrete',
-              answerTitle: 'This is a discrete call.',
+              correct: "discrete",
+              answerTitle: "This is a discrete call.",
               explanation:
-                'The short, patterned tonal structure is characteristic of a discrete call used in communication.',
+                "The short, patterned tonal structure is characteristic of a discrete call used in communication.",
               advanced:
-                'Calls, whistles, and echolocation clicks have different structures and functions. Classification should use the recording and spectrogram together.',
-              hint: 'Listen for a short tonal pattern rather than many separate clicks.',
+                "Calls, whistles, and echolocation clicks have different structures and functions. Classification should use the recording and spectrogram together.",
+              hint: "Listen for a short tonal pattern rather than many separate clicks.",
             },
             {
-              label: 'Read the data',
-              title: 'What does a spectrogram add?',
+              label: "Read the data",
+              title: "What does a spectrogram add?",
               instruction:
-                'A spectrogram turns sound into a visual display across time.',
-              prompt: 'What information does a spectrogram primarily show?',
+                "A spectrogram turns sound into a visual display across time.",
+              prompt: "What information does a spectrogram primarily show?",
               audio: true,
-              audioUrl: 'audio/FO-S02-3s.wav',
-              clipLabel: 'Research clip B · Orca call S02',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
+              audioUrl: "audio/FO-S02-3s.wav",
+              clipLabel: "Research clip B · Orca call S02",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S02.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
+                "Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time",
               choices: [
-                ['frequency', 'How frequency and intensity change over time'],
-                ['distance', "The whale's exact distance from the sensor"],
-                ['identity', 'The confirmed identity of the caller'],
-                ['photo', "The whale's saddle-patch photograph"],
+                ["frequency", "How frequency and intensity change over time"],
+                ["distance", "The whale's exact distance from the sensor"],
+                ["identity", "The confirmed identity of the caller"],
+                ["photo", "The whale's saddle-patch photograph"],
               ],
-              correct: 'frequency',
-              answerTitle: 'A spectrogram is a picture of sound.',
+              correct: "frequency",
+              answerTitle: "A spectrogram is a picture of sound.",
               explanation:
-                'It displays time on one axis, frequency on another, and usually represents intensity through color or brightness.',
+                "It displays time on one axis, frequency on another, and usually represents intensity through color or brightness.",
               advanced:
-                'A spectrogram helps reveal tonal contours, harmonics, click timing, and noise, but interpretation still requires context and expertise.',
-              hint: 'Think about pitch, timing, and brightness—not geographic position.',
+                "A spectrogram helps reveal tonal contours, harmonics, click timing, and noise, but interpretation still requires context and expertise.",
+              hint: "Think about pitch, timing, and brightness—not geographic position.",
             },
             {
-              label: 'Reason under uncertainty',
-              title: 'Can one call prove which pod is present?',
+              label: "Reason under uncertainty",
+              title: "Can one call prove which pod is present?",
               instruction:
-                'J, K, and L pods have recognizable repertoires, but some call types are shared.',
+                "J, K, and L pods have recognizable repertoires, but some call types are shared.",
               prompt:
-                'What is the strongest scientifically responsible conclusion?',
+                "What is the strongest scientifically responsible conclusion?",
               audio: true,
-              audioUrl: 'audio/FO-S03-3s.wav',
-              clipLabel: 'Research clip C · Orca call S03',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S03.png'),
+              audioUrl: "audio/FO-S03-3s.wav",
+              clipLabel: "Research clip C · Orca call S03",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S03.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S03 showing a call pattern with visible frequency changes',
+                "Spectrogram of Southern Resident call S03 showing a call pattern with visible frequency changes",
               choices: [
-                ['proof', 'One call always proves a specific pod'],
+                ["proof", "One call always proves a specific pod"],
                 [
-                  'support',
-                  'The call can support pod identification when combined with context',
+                  "support",
+                  "The call can support pod identification when combined with context",
                 ],
-                ['individual', 'The call identifies the individual whale'],
-                ['location', 'The call gives an exact latitude and longitude'],
+                ["individual", "The call identifies the individual whale"],
+                ["location", "The call gives an exact latitude and longitude"],
               ],
-              correct: 'support',
+              correct: "support",
               answerTitle:
-                'A call can support—but not always prove—a pod identification.',
+                "A call can support—but not always prove—a pod identification.",
               explanation:
-                'Experts consider the repertoire, recording quality, repeated calls, other acoustic evidence, and available sighting context.',
+                "Experts consider the repertoire, recording quality, repeated calls, other acoustic evidence, and available sighting context.",
               advanced:
-                'Evidence should be expressed with an appropriate confidence level. Shared call types and noisy recordings limit certainty.',
-              hint: 'Look for the answer that combines evidence instead of claiming certainty from one clue.',
+                "Evidence should be expressed with an appropriate confidence level. Shared call types and noisy recordings limit certainty.",
+              hint: "Look for the answer that combines evidence instead of claiming certainty from one clue.",
             },
             {
-              label: 'Localization limits',
-              title: 'Why is amplitude alone insufficient?',
+              label: "Localization limits",
+              title: "Why is amplitude alone insufficient?",
               instruction:
-                'The same sound source can be recorded at different volumes for several reasons.',
+                "The same sound source can be recorded at different volumes for several reasons.",
               prompt:
-                'Which approach would provide stronger location evidence than loudness from one hydrophone?',
+                "Which approach would provide stronger location evidence than loudness from one hydrophone?",
               audio: true,
-              audioUrl: 'audio/FO-S04-3s.wav',
-              clipLabel: 'Research clip D · Orca call S04',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
+              audioUrl: "audio/FO-S04-3s.wav",
+              clipLabel: "Research clip D · Orca call S04",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S04.png"),
               spectrogramAlt:
-                'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
+                "Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time",
               choices: [
-                ['single', 'Use one uncalibrated amplitude reading'],
+                ["single", "Use one uncalibrated amplitude reading"],
                 [
-                  'array',
-                  'Compare synchronized signals from multiple known sensors',
+                  "array",
+                  "Compare synchronized signals from multiple known sensors",
                 ],
-                ['guess', 'Ask listeners which direction feels correct'],
+                ["guess", "Ask listeners which direction feels correct"],
                 [
-                  'photo',
-                  'Assume the latest community photo is at the hydrophone',
+                  "photo",
+                  "Assume the latest community photo is at the hydrophone",
                 ],
               ],
-              correct: 'array',
+              correct: "array",
               answerTitle:
-                'Multiple synchronized sensors provide stronger localization evidence.',
+                "Multiple synchronized sensors provide stronger localization evidence.",
               explanation:
-                'Arrival-time differences across known hydrophone positions can support localization when the sensors and analysis are suitable.',
+                "Arrival-time differences across known hydrophone positions can support localization when the sensors and analysis are suitable.",
               advanced:
-                'Orientation, propagation loss, depth, bathymetry, ambient noise, source level, and sensor response can all change received amplitude.',
-              hint: 'Triangulation-like reasoning needs observations from more than one known place.',
+                "Orientation, propagation loss, depth, bathymetry, ambient noise, source level, and sensor response can all change received amplitude.",
+              hint: "Triangulation-like reasoning needs observations from more than one known place.",
             },
             {
-              label: 'AI evidence pipeline',
-              title: 'Design a responsible detection workflow',
+              label: "AI evidence pipeline",
+              title: "Design a responsible detection workflow",
               instruction:
-                'OrcaHello can flag candidates from live hydrophone audio. Some candidates will be false positives.',
+                "OrcaHello can flag candidates from live hydrophone audio. Some candidates will be false positives.",
               prompt:
-                'Which workflow best protects scientific quality and operational safety?',
+                "Which workflow best protects scientific quality and operational safety?",
               audio: true,
-              audioUrl: 'audio/FO-S05-3s.wav',
-              clipLabel: 'Research clip E · Orca call S05',
-              spectrogramUrl: imageAssetPath('callcatalog/FO-S05.png'),
+              audioUrl: "audio/FO-S05-3s.wav",
+              clipLabel: "Research clip E · Orca call S05",
+              spectrogramUrl: imageAssetPath("callcatalog/FO-S05.png"),
               spectrogramAlt:
                 "Spectrogram of Southern Resident call S05 showing the call's frequency pattern across the clip",
               choices: [
                 [
-                  'automatic',
-                  'AI candidate → exact public location → vessel alert',
+                  "automatic",
+                  "AI candidate → exact public location → vessel alert",
                 ],
                 [
-                  'review',
-                  'AI candidate → expert review → confirmed status → approved use',
+                  "review",
+                  "AI candidate → expert review → confirmed status → approved use",
                 ],
-                ['student', 'Student vote → confirmed status → public alert'],
-                ['hide', 'Discard every uncertain candidate without review'],
+                ["student", "Student vote → confirmed status → public alert"],
+                ["hide", "Discard every uncertain candidate without review"],
               ],
-              correct: 'review',
+              correct: "review",
               answerTitle:
-                'Separate detection, review, confirmation, and approved use.',
+                "Separate detection, review, confirmation, and approved use.",
               explanation:
-                'The UI should visibly distinguish an AI candidate from an expert-confirmed detection and restrict safety-shaped outputs to approved workflows.',
+                "The UI should visibly distinguish an AI candidate from an expert-confirmed detection and restrict safety-shaped outputs to approved workflows.",
               advanced:
                 "A useful system preserves provenance, model version, timestamps, review status, and uncertainty instead of collapsing every stage into 'orca detected.'",
-              hint: 'Choose the pipeline that preserves evidence status and human oversight.',
+              hint: "Choose the pipeline that preserves evidence status and human oversight.",
             },
           ],
-        }
+        };
 
-        const getQuestions = () => questionSets[state.mode]
+        const getQuestions = () => questionSets[state.mode];
 
         const callData = {
           S16: {
-            repertoires: 'K and L Pod repertoires',
+            repertoires: "K and L Pod repertoires",
             explanation:
-              'S16 is documented in both K and L Pod repertoires, so either answer is a valid match.',
+              "S16 is documented in both K and L Pod repertoires, so either answer is a valid match.",
           },
           S19: {
-            repertoires: 'the L Pod repertoire',
-            explanation: 'S19 is documented in the L Pod repertoire.',
+            repertoires: "the L Pod repertoire",
+            explanation: "S19 is documented in the L Pod repertoire.",
           },
           S03: {
-            repertoires: 'the J Pod repertoire',
-            explanation: 'S03 is documented in the J Pod repertoire.',
+            repertoires: "the J Pod repertoire",
+            explanation: "S03 is documented in the J Pod repertoire.",
           },
-        }
+        };
 
-        const toast = document.getElementById('toast')
+        const toast = document.getElementById("toast");
         const showToast = (message) => {
-          toast.textContent = message
-          toast.classList.add('show')
-          window.clearTimeout(showToast.timer)
+          toast.textContent = message;
+          toast.classList.add("show");
+          window.clearTimeout(showToast.timer);
           showToast.timer = window.setTimeout(
-            () => toast.classList.remove('show'),
+            () => toast.classList.remove("show"),
             2600
-          )
-        }
+          );
+        };
 
-        const kioskStartScreen = document.getElementById('kiosk-start-screen')
-        const kioskResetDialog = document.getElementById('kiosk-reset-dialog')
-        const kioskIdleDialog = document.getElementById('kiosk-idle-dialog')
-        const kioskCountdown = document.getElementById('kiosk-countdown')
-        const kioskFullscreen = document.getElementById('kiosk-fullscreen')
+        const kioskStartScreen = document.getElementById("kiosk-start-screen");
+        const kioskResetDialog = document.getElementById("kiosk-reset-dialog");
+        const kioskIdleDialog = document.getElementById("kiosk-idle-dialog");
+        const kioskCountdown = document.getElementById("kiosk-countdown");
+        const kioskFullscreen = document.getElementById("kiosk-fullscreen");
         const kioskIdle = {
           active: false,
           warningTimer: 0,
           resetTimer: 0,
           countdownTimer: 0,
-        }
+        };
 
         const clearKioskTimers = () => {
-          window.clearTimeout(kioskIdle.warningTimer)
-          window.clearTimeout(kioskIdle.resetTimer)
-          window.clearInterval(kioskIdle.countdownTimer)
-        }
+          window.clearTimeout(kioskIdle.warningTimer);
+          window.clearTimeout(kioskIdle.resetTimer);
+          window.clearInterval(kioskIdle.countdownTimer);
+        };
 
-        const resetKioskSession = () => window.location.reload()
+        const resetKioskSession = () => window.location.reload();
 
         const showKioskIdleWarning = () => {
-          if (!kioskIdle.active || kioskIdleDialog.open) return
-          let seconds = 30
-          kioskCountdown.textContent = String(seconds)
-          kioskIdleDialog.showModal()
+          if (!kioskIdle.active || kioskIdleDialog.open) return;
+          let seconds = 30;
+          kioskCountdown.textContent = String(seconds);
+          kioskIdleDialog.showModal();
           kioskIdle.countdownTimer = window.setInterval(() => {
-            seconds -= 1
-            kioskCountdown.textContent = String(Math.max(0, seconds))
-          }, 1000)
-          kioskIdle.resetTimer = window.setTimeout(resetKioskSession, 30000)
-        }
+            seconds -= 1;
+            kioskCountdown.textContent = String(Math.max(0, seconds));
+          }, 1000);
+          kioskIdle.resetTimer = window.setTimeout(resetKioskSession, 30000);
+        };
 
         const restartKioskIdleTimer = () => {
-          if (!kioskIdle.active || kioskIdleDialog.open) return
-          clearKioskTimers()
+          if (!kioskIdle.active || kioskIdleDialog.open) return;
+          clearKioskTimers();
           kioskIdle.warningTimer = window.setTimeout(
             showKioskIdleWarning,
             270000
-          )
-        }
+          );
+        };
+
+        document.getElementById("kiosk-begin").addEventListener("click", () => {
+          kioskStartScreen.hidden = true;
+          kioskIdle.active = true;
+          restartKioskIdleTimer();
+          window.scrollTo({ top: 0 });
+          document.querySelector(".hero h1").focus({ preventScroll: true });
+        });
+
+        document.getElementById("kiosk-reset").addEventListener("click", () => {
+          kioskResetDialog.showModal();
+        });
+        document
+          .getElementById("kiosk-reset-cancel")
+          .addEventListener("click", () => {
+            kioskResetDialog.close();
+            restartKioskIdleTimer();
+          });
+        document
+          .getElementById("kiosk-reset-confirm")
+          .addEventListener("click", resetKioskSession);
 
         document
-          .getElementById('kiosk-begin')
-          .addEventListener('click', () => {
-            kioskStartScreen.hidden = true
-            kioskIdle.active = true
-            restartKioskIdleTimer()
-            window.scrollTo({ top: 0 })
-            document.querySelector('.hero h1').focus({ preventScroll: true })
-          })
+          .getElementById("kiosk-continue")
+          .addEventListener("click", () => {
+            kioskIdleDialog.close();
+            restartKioskIdleTimer();
+          });
 
-        document.getElementById('kiosk-reset').addEventListener('click', () => {
-          kioskResetDialog.showModal()
-        })
-        document
-          .getElementById('kiosk-reset-cancel')
-          .addEventListener('click', () => {
-            kioskResetDialog.close()
-            restartKioskIdleTimer()
-          })
-        document
-          .getElementById('kiosk-reset-confirm')
-          .addEventListener('click', resetKioskSession)
-
-        document
-          .getElementById('kiosk-continue')
-          .addEventListener('click', () => {
-            kioskIdleDialog.close()
-            restartKioskIdleTimer()
-          })
-
-        kioskFullscreen.addEventListener('click', async () => {
+        kioskFullscreen.addEventListener("click", async () => {
           try {
             if (document.fullscreenElement) {
-              await document.exitFullscreen()
+              await document.exitFullscreen();
             } else {
-              await document.documentElement.requestFullscreen()
+              await document.documentElement.requestFullscreen();
             }
           } catch {
-            showToast('Full screen is not available on this device.')
+            showToast("Full screen is not available on this device.");
           }
-        })
-        document.addEventListener('fullscreenchange', () => {
+        });
+        document.addEventListener("fullscreenchange", () => {
           kioskFullscreen.textContent = document.fullscreenElement
-            ? 'Exit full screen'
-            : 'Full screen'
-        })
+            ? "Exit full screen"
+            : "Full screen";
+        });
 
         document.addEventListener(
-          'click',
+          "click",
           (event) => {
-            const link = event.target.closest('a')
+            const link = event.target.closest("a");
             if (
               link &&
-              (link.target === '_blank' || /^https?:/i.test(link.href))
+              (link.target === "_blank" || /^https?:/i.test(link.href))
             ) {
-              event.preventDefault()
+              event.preventDefault();
               showToast(
-                'Outside websites are turned off in kiosk mode. Ask a teacher for help.'
-              )
+                "Outside websites are turned off in kiosk mode. Ask a teacher for help."
+              );
             }
           },
           true
-        )
-
-        ;['pointerdown', 'keydown', 'touchstart'].forEach((eventName) => {
+        );
+        ["pointerdown", "keydown", "touchstart"].forEach((eventName) => {
           document.addEventListener(eventName, restartKioskIdleTimer, {
             passive: true,
-          })
-        })
-        document.addEventListener('play', restartKioskIdleTimer, true)
+          });
+        });
+        document.addEventListener("play", restartKioskIdleTimer, true);
 
         const selectOne = (selector, selected) => {
           document.querySelectorAll(selector).forEach((item) => {
-            item.setAttribute('aria-pressed', String(item === selected))
-          })
-        }
+            item.setAttribute("aria-pressed", String(item === selected));
+          });
+        };
 
         const updateModeCopy = () => {
           const copyKey =
-            state.mode === 'explorer' ? 'explorerText' : 'scientistText'
+            state.mode === "explorer" ? "explorerText" : "scientistText";
           document
-            .querySelectorAll('[data-explorer-text][data-scientist-text]')
+            .querySelectorAll("[data-explorer-text][data-scientist-text]")
             .forEach((item) => {
-              item.textContent = item.dataset[copyKey]
-            })
-        }
+              item.textContent = item.dataset[copyKey];
+            });
+        };
 
         const updateAdventureProgress = () => {
           const completed = {
             quiz: state.quizComplete,
             pods: state.podStamps.size === 3,
             action: state.actionSelected,
-          }
+          };
           const next = !completed.quiz
-            ? 'quiz'
+            ? "quiz"
             : !completed.pods
-            ? 'pods'
-            : 'action'
-          document.querySelectorAll('.tracker-step').forEach((step) => {
-            const key = step.dataset.tracker
-            step.classList.toggle('done', completed[key])
-            step.classList.toggle('active', !completed[key] && key === next)
-            step.querySelector('.tracker-icon').textContent = completed[key]
-              ? '✓'
-              : String(['quiz', 'pods', 'action'].indexOf(key) + 1)
-          })
-          document.querySelectorAll('.finish-badge').forEach((badge) => {
-            badge.classList.toggle('done', completed[badge.dataset.finish])
-          })
-          const total = Object.values(completed).filter(Boolean).length
-          document.getElementById('finish-title').textContent =
+            ? "pods"
+            : "action";
+          document.querySelectorAll(".tracker-step").forEach((step) => {
+            const key = step.dataset.tracker;
+            step.classList.toggle("done", completed[key]);
+            step.classList.toggle("active", !completed[key] && key === next);
+            step.querySelector(".tracker-icon").textContent = completed[key]
+              ? "✓"
+              : String(["quiz", "pods", "action"].indexOf(key) + 1);
+          });
+          document.querySelectorAll(".finish-badge").forEach((badge) => {
+            badge.classList.toggle("done", completed[badge.dataset.finish]);
+          });
+          const total = Object.values(completed).filter(Boolean).length;
+          document.getElementById("finish-title").textContent =
             total === 3
-              ? state.mode === 'explorer'
-                ? 'You finished your Orca Ally adventure!'
-                : 'Orca Ally adventure complete!'
-              : state.mode === 'explorer'
-                ? `${total} of 3 activities finished`
-                : `${total} of 3 adventure goals complete`
-          document.getElementById('finish-copy').textContent =
+              ? state.mode === "explorer"
+                ? "You finished your Orca Ally adventure!"
+                : "Orca Ally adventure complete!"
+              : state.mode === "explorer"
+              ? `${total} of 3 activities finished`
+              : `${total} of 3 adventure goals complete`;
+          document.getElementById("finish-copy").textContent =
             total === 3
-              ? state.mode === 'explorer'
-                ? 'Great job! You listened, matched the pods, and chose a way to help. Your certificate is ready!'
-                : 'You practiced a simplified version of Orcasound volunteer moderation, met the pods, and chose a way to help. Your local certificate is ready!'
-              : state.mode === 'explorer'
-                ? 'Finish the listening game, match all three pods, and choose one way to help.'
-                : 'Finish the quiz, hear all three pods, and choose an action. Progress lasts only for this page session.'
+              ? state.mode === "explorer"
+                ? "Great job! You listened, matched the pods, and chose a way to help. Your certificate is ready!"
+                : "You practiced a simplified version of Orcasound volunteer moderation, met the pods, and chose a way to help. Your local certificate is ready!"
+              : state.mode === "explorer"
+              ? "Finish the listening game, match all three pods, and choose one way to help."
+              : "Finish the quiz, hear all three pods, and choose an action. Progress lasts only for this page session.";
           const certificateButton =
-            document.getElementById('certificate-button')
+            document.getElementById("certificate-button");
           certificateButton.setAttribute(
-            'aria-label',
+            "aria-label",
             total === 3
-              ? 'Create my certificate'
-              : `Certificate locked. Select to learn which ${3 - total} adventure goal${
-                  total === 2 ? '' : 's'
-                } remain.`
-          )
+              ? "Create my certificate"
+              : `Certificate locked. Select to learn which ${
+                  3 - total
+                } adventure goal${total === 2 ? "" : "s"} remain.`
+          );
           certificateButton.title =
             total === 3
-              ? 'Create your certificate'
+              ? "Create your certificate"
               : `Complete ${3 - total} more adventure goal${
-                  total === 2 ? '' : 's'
-                } to unlock`
-        }
+                  total === 2 ? "" : "s"
+                } to unlock`;
+        };
 
-        document.querySelectorAll('.mode-card').forEach((button) => {
-          button.addEventListener('click', () => {
-            state.mode = button.dataset.mode
-            state.quizIndex = 0
-            state.score = 0
-            state.answer = ''
-            state.answered = false
-            state.quizComplete = false
-            selectOne('.mode-card', button)
-            const missionShell = document.querySelector('.mission-shell')
+        document.querySelectorAll(".mode-card").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.mode = button.dataset.mode;
+            state.quizIndex = 0;
+            state.score = 0;
+            state.answer = "";
+            state.answered = false;
+            state.quizComplete = false;
+            selectOne(".mode-card", button);
+            const missionShell = document.querySelector(".mission-shell");
             missionShell.classList.toggle(
-              'explorer-mode',
-              state.mode === 'explorer'
-            )
+              "explorer-mode",
+              state.mode === "explorer"
+            );
             missionShell.classList.toggle(
-              'scientist-mode',
-              state.mode === 'scientist'
-            )
-            document.querySelectorAll('.advanced-copy').forEach((item) => {
-              item.hidden = state.mode !== 'scientist'
-            })
-            updateModeCopy()
-            renderQuestion()
-            updatePassport()
+              "scientist-mode",
+              state.mode === "scientist"
+            );
+            document.querySelectorAll(".advanced-copy").forEach((item) => {
+              item.hidden = state.mode !== "scientist";
+            });
+            updateModeCopy();
+            renderQuestion();
+            updatePassport();
             showToast(
-              state.mode === 'scientist'
-                ? 'Junior Bioacoustician challenge selected: advanced questions begin now.'
-                : 'Ocean Explorer challenge selected: start with the clues and build your knowledge.'
-            )
-          })
-        })
+              state.mode === "scientist"
+                ? "Junior Bioacoustician challenge selected: advanced questions begin now."
+                : "Ocean Explorer challenge selected: start with the clues and build your knowledge."
+            );
+          });
+        });
 
-        const answers = document.getElementById('answers')
-        const revealButton = document.getElementById('reveal-button')
+        const answers = document.getElementById("answers");
+        const revealButton = document.getElementById("reveal-button");
         const nextQuestionButton = document.getElementById(
-          'next-question-button'
-        )
-        const reveal = document.getElementById('reveal')
-        const audioLab = document.getElementById('audio-lab')
-        const audio = document.getElementById('mystery-audio')
-        const audioSource = document.getElementById('mystery-audio-source')
-        const clipLabel = document.getElementById('clip-label')
-        const clipNote = document.getElementById('clip-note')
-        const spectrogramImage = document.getElementById('spectrogram-image')
+          "next-question-button"
+        );
+        const reveal = document.getElementById("reveal");
+        const audioLab = document.getElementById("audio-lab");
+        const audio = document.getElementById("mystery-audio");
+        const audioSource = document.getElementById("mystery-audio-source");
+        const clipLabel = document.getElementById("clip-label");
+        const clipNote = document.getElementById("clip-note");
+        const spectrogramImage = document.getElementById("spectrogram-image");
         const spectrogramCaption = document.getElementById(
-          'spectrogram-caption'
-        )
-        const questionTitle = document.getElementById('question-title')
+          "spectrogram-caption"
+        );
+        const questionTitle = document.getElementById("question-title");
 
         const renderQuestion = (moveFocus = false) => {
-          const questions = getQuestions()
-          const question = questions[state.quizIndex]
-          state.answer = ''
-          state.answered = false
-          audio.pause()
-          audioSource.src = question.audioUrl
+          const questions = getQuestions();
+          const question = questions[state.quizIndex];
+          state.answer = "";
+          state.answered = false;
+          audio.pause();
+          audioSource.src = question.audioUrl;
           clipLabel.textContent =
-            state.mode === 'explorer'
-              ? 'Listen to this short Orcasound clip'
-              : question.clipLabel
+            state.mode === "explorer"
+              ? "Listen to this short Orcasound clip"
+              : question.clipLabel;
           clipNote.textContent =
-            state.mode === 'explorer'
-              ? 'Turn the volume down first. Press play, listen, and pick one answer. Evidence: expert-reviewed historical Orcasound recording from the Salish Sea.'
-              : 'Three-second classroom clip from a real Orcasound recording. Short calls use neutral padding and are never repeated. Nothing will autoplay.'
-          spectrogramImage.src = question.spectrogramUrl
-          spectrogramImage.alt = question.spectrogramAlt
+            state.mode === "explorer"
+              ? "Turn the volume down first. Press play, listen, and pick one answer. Evidence: expert-reviewed historical Orcasound recording from the Salish Sea."
+              : "Three-second classroom clip from a real Orcasound recording. Short calls use neutral padding and are never repeated. Nothing will autoplay.";
+          spectrogramImage.src = question.spectrogramUrl;
+          spectrogramImage.alt = question.spectrogramAlt;
           spectrogramCaption.textContent = `Visual evidence · ${question.clipLabel
-            .split('·')
+            .split("·")
             .at(-1)
-            .trim()} spectrogram`
-          audio.load()
-          document.getElementById('question-count').textContent = `${
-            state.mode === 'scientist'
-              ? 'Junior Bioacoustician · Advanced'
-              : 'Ocean Explorer'
+            .trim()} spectrogram`;
+          audio.load();
+          document.getElementById("question-count").textContent = `${
+            state.mode === "scientist"
+              ? "Junior Bioacoustician · Advanced"
+              : "Ocean Explorer"
           } · Question ${state.quizIndex + 1} of ${questions.length} · ${
             question.label
-          }`
+          }`;
           const challengeLabels =
-            state.mode === 'explorer'
-              ? ['Let’s begin', 'Great listening', 'Last one']
+            state.mode === "explorer"
+              ? ["Let’s begin", "Great listening", "Last one"]
               : [
-                  'Warm-up',
-                  'Explore',
-                  'Think deeper',
-                  'Evidence challenge',
-                  'Final challenge',
-                ]
-          document.getElementById('challenge-label').textContent =
-            challengeLabels[state.quizIndex]
-          const challengeDots = document.querySelector('.challenge-dots')
+                  "Warm-up",
+                  "Explore",
+                  "Think deeper",
+                  "Evidence challenge",
+                  "Final challenge",
+                ];
+          document.getElementById("challenge-label").textContent =
+            challengeLabels[state.quizIndex];
+          const challengeDots = document.querySelector(".challenge-dots");
           if (challengeDots.children.length !== questions.length) {
             challengeDots.replaceChildren(
               ...Array.from({ length: questions.length }, () => {
-                const dot = document.createElement('span')
-                dot.className = 'challenge-dot'
-                return dot
+                const dot = document.createElement("span");
+                dot.className = "challenge-dot";
+                return dot;
               })
-            )
+            );
           }
-          challengeDots.querySelectorAll('.challenge-dot').forEach((dot, index) => {
-            dot.classList.toggle('reached', index < state.quizIndex)
-            dot.classList.toggle('current', index === state.quizIndex)
-          })
-          questionTitle.textContent = question.title
-          document.getElementById('mission-instruction').textContent =
-            question.instruction
-          document.getElementById('question-prompt').textContent =
-            question.prompt
-          audioLab.hidden = !question.audio
-          answers.replaceChildren()
+          challengeDots
+            .querySelectorAll(".challenge-dot")
+            .forEach((dot, index) => {
+              dot.classList.toggle("reached", index < state.quizIndex);
+              dot.classList.toggle("current", index === state.quizIndex);
+            });
+          questionTitle.textContent = question.title;
+          document.getElementById("mission-instruction").textContent =
+            question.instruction;
+          document.getElementById("question-prompt").textContent =
+            question.prompt;
+          audioLab.hidden = !question.audio;
+          answers.replaceChildren();
           question.choices.forEach(([value, text]) => {
-            const button = document.createElement('button')
-            button.className = 'answer'
-            button.type = 'button'
-            button.dataset.answer = value
-            button.textContent = text
-            button.setAttribute('aria-pressed', 'false')
-            button.addEventListener('click', () => {
-              if (state.answered) return
-              state.answer = value
-              answers.querySelectorAll('.answer').forEach((item) => {
-                item.classList.remove('selected')
-                item.setAttribute('aria-pressed', 'false')
-              })
-              button.classList.add('selected')
-              button.setAttribute('aria-pressed', 'true')
-              revealButton.disabled = false
-            })
-            answers.appendChild(button)
-          })
-          reveal.classList.remove('show')
-          reveal.classList.remove('success', 'learning', 'complete')
-          revealButton.hidden = false
-          revealButton.disabled = true
-          nextQuestionButton.hidden = true
+            const button = document.createElement("button");
+            button.className = "answer";
+            button.type = "button";
+            button.dataset.answer = value;
+            button.textContent = text;
+            button.setAttribute("aria-pressed", "false");
+            button.addEventListener("click", () => {
+              if (state.answered) return;
+              state.answer = value;
+              answers.querySelectorAll(".answer").forEach((item) => {
+                item.classList.remove("selected");
+                item.setAttribute("aria-pressed", "false");
+              });
+              button.classList.add("selected");
+              button.setAttribute("aria-pressed", "true");
+              revealButton.disabled = false;
+            });
+            answers.appendChild(button);
+          });
+          reveal.classList.remove("show");
+          reveal.classList.remove("success", "learning", "complete");
+          revealButton.hidden = false;
+          revealButton.disabled = true;
+          nextQuestionButton.hidden = true;
           nextQuestionButton.textContent =
             state.quizIndex === questions.length - 1
-              ? 'See my score'
-              : 'Next question'
-          if (moveFocus) questionTitle.focus({ preventScroll: true })
-        }
+              ? "See my score"
+              : "Next question";
+          if (moveFocus) questionTitle.focus({ preventScroll: true });
+        };
 
-        revealButton.addEventListener('click', () => {
-          if (!state.answer || state.answered) return
-          const questions = getQuestions()
-          const question = questions[state.quizIndex]
-          state.answered = true
-          if (state.answer === question.correct) state.score += 1
-          answers.querySelectorAll('.answer').forEach((button) => {
-            button.classList.remove('selected')
-            button.setAttribute('aria-pressed', 'false')
-            button.disabled = true
+        revealButton.addEventListener("click", () => {
+          if (!state.answer || state.answered) return;
+          const questions = getQuestions();
+          const question = questions[state.quizIndex];
+          state.answered = true;
+          if (state.answer === question.correct) state.score += 1;
+          answers.querySelectorAll(".answer").forEach((button) => {
+            button.classList.remove("selected");
+            button.setAttribute("aria-pressed", "false");
+            button.disabled = true;
             if (button.dataset.answer === question.correct)
-              button.classList.add('correct')
-            if (button.dataset.answer === 'unsure' && state.answer === 'unsure')
-              button.classList.add('neutral')
-          })
-          document.getElementById('reveal-title').textContent =
+              button.classList.add("correct");
+            if (button.dataset.answer === "unsure" && state.answer === "unsure")
+              button.classList.add("neutral");
+          });
+          document.getElementById("reveal-title").textContent =
             state.answer === question.correct
               ? `✓ Great listening! ${question.answerTitle}`
-              : `Keep investigating! ${question.answerTitle}`
-          document.getElementById('reveal-copy').textContent =
-            question.explanation
-          const advanced = document.getElementById('reveal-advanced')
-          advanced.textContent = question.advanced
-          advanced.hidden = state.mode !== 'scientist'
-          reveal.classList.add('show')
+              : `Keep investigating! ${question.answerTitle}`;
+          document.getElementById("reveal-copy").textContent =
+            question.explanation;
+          const advanced = document.getElementById("reveal-advanced");
+          advanced.textContent = question.advanced;
+          advanced.hidden = state.mode !== "scientist";
+          reveal.classList.add("show");
           reveal.classList.add(
-            state.answer === question.correct ? 'success' : 'learning'
-          )
-          revealButton.hidden = true
-          nextQuestionButton.hidden = false
-        })
+            state.answer === question.correct ? "success" : "learning"
+          );
+          revealButton.hidden = true;
+          nextQuestionButton.hidden = false;
+        });
 
-        document.getElementById('hint-button').addEventListener('click', () => {
-          const questions = getQuestions()
-          showToast(questions[state.quizIndex].hint)
-        })
+        document.getElementById("hint-button").addEventListener("click", () => {
+          const questions = getQuestions();
+          showToast(questions[state.quizIndex].hint);
+        });
 
-        nextQuestionButton.addEventListener('click', () => {
-          const questions = getQuestions()
+        nextQuestionButton.addEventListener("click", () => {
+          const questions = getQuestions();
           if (state.quizIndex < questions.length - 1) {
-            state.quizIndex += 1
-            renderQuestion(true)
-            return
+            state.quizIndex += 1;
+            renderQuestion(true);
+            return;
           }
           document.getElementById(
-            'reveal-title'
-          ).textContent = `Mission complete: ${state.score} out of ${questions.length}`
-          document.getElementById('reveal-copy').textContent =
+            "reveal-title"
+          ).textContent = `Mission complete: ${state.score} out of ${questions.length}`;
+          document.getElementById("reveal-copy").textContent =
             state.score === questions.length
-              ? state.mode === 'explorer'
-                ? 'Great exploring! You listened to an orca, discovered a hydrophone, and learned how photos help identify orcas.'
-                : 'Excellent evidence work! You listened, checked uncertainty, and learned how people and technology work together.'
-              : state.mode === 'explorer'
-                ? 'Great try! Explorers learn by listening again and trying new answers.'
-                : 'Great investigation! Scientists keep learning by checking explanations and trying again.'
-          document.getElementById('reveal-advanced').hidden = true
-          state.quizComplete = true
-          reveal.classList.add('show')
-          reveal.classList.remove('success', 'learning')
-          reveal.classList.add('complete')
-          reveal.dataset.stars = `${'★'.repeat(state.score)}${'☆'.repeat(
+              ? state.mode === "explorer"
+                ? "Great exploring! You listened to an orca, discovered a hydrophone, and learned how photos help identify orcas."
+                : "Excellent evidence work! You listened, checked uncertainty, and learned how people and technology work together."
+              : state.mode === "explorer"
+              ? "Great try! Explorers learn by listening again and trying new answers."
+              : "Great investigation! Scientists keep learning by checking explanations and trying again.";
+          document.getElementById("reveal-advanced").hidden = true;
+          state.quizComplete = true;
+          reveal.classList.add("show");
+          reveal.classList.remove("success", "learning");
+          reveal.classList.add("complete");
+          reveal.dataset.stars = `${"★".repeat(state.score)}${"☆".repeat(
             questions.length - state.score
-          )}`
+          )}`;
           reveal.setAttribute(
-            'aria-label',
+            "aria-label",
             `Mission complete: ${state.score} out of ${questions.length}, ${state.score} stars out of ${questions.length}`
-          )
-          nextQuestionButton.hidden = true
-          updateAdventureProgress()
-          showToast(`Quiz complete: ${state.score} of ${questions.length}.`)
-        })
+          );
+          nextQuestionButton.hidden = true;
+          updateAdventureProgress();
+          showToast(`Quiz complete: ${state.score} of ${questions.length}.`);
+        });
 
-        renderQuestion()
+        renderQuestion();
 
         const updatePassport = () => {
-          document.querySelectorAll('.passport-stamp').forEach((stamp) => {
-            const earned = state.podStamps.has(stamp.dataset.stamp)
-            stamp.classList.toggle('earned', earned)
+          document.querySelectorAll(".passport-stamp").forEach((stamp) => {
+            const earned = state.podStamps.has(stamp.dataset.stamp);
+            stamp.classList.toggle("earned", earned);
             stamp.setAttribute(
-              'aria-label',
-              `${stamp.dataset.stamp} badge ${earned ? 'earned' : 'not earned'}`
-            )
-          })
-          document.getElementById('passport-progress').textContent =
+              "aria-label",
+              `${stamp.dataset.stamp} badge ${earned ? "earned" : "not earned"}`
+            );
+          });
+          document.getElementById("passport-progress").textContent =
             state.podStamps.size === 3
-              ? 'All 3 calls mapped—Call Passport complete!'
-              : `${state.podStamps.size} of 3 calls mapped`
-          document.getElementById('certificate-pod').textContent =
+              ? "All 3 calls mapped—Call Passport complete!"
+              : `${state.podStamps.size} of 3 calls mapped`;
+          document.getElementById("certificate-pod").textContent =
             state.podStamps.size === 3
-              ? 'S03, S16, and S19 calls'
-              : 'orca call repertoires'
-          updateAdventureProgress()
-        }
+              ? "S03, S16, and S19 calls"
+              : "orca call repertoires";
+          updateAdventureProgress();
+        };
 
-        document.querySelectorAll('.mystery-pod-card').forEach((card) => {
-          const callId = card.dataset.callId
-          const validPods = card.dataset.validPods.split('|')
-          const call = callData[callId]
-          const podAudio = card.querySelector('.mystery-pod-audio')
-          const choices = [...card.querySelectorAll('.mystery-guess button')]
-          const submit = card.querySelector('.submit-pod-guess')
-          const feedback = card.querySelector('.mystery-feedback')
-          let selectedGuess = ''
+        document.querySelectorAll(".mystery-pod-card").forEach((card) => {
+          const callId = card.dataset.callId;
+          const validPods = card.dataset.validPods.split("|");
+          const call = callData[callId];
+          const podAudio = card.querySelector(".mystery-pod-audio");
+          const choices = [...card.querySelectorAll(".mystery-guess button")];
+          const submit = card.querySelector(".submit-pod-guess");
+          const feedback = card.querySelector(".mystery-feedback");
+          let selectedGuess = "";
 
-          podAudio.addEventListener('play', () => {
+          podAudio.addEventListener("play", () => {
             if (state.podStamps.has(callId)) {
               choices.forEach((choice) => {
-                choice.disabled = true
-              })
-              submit.disabled = true
-              submit.textContent = `${callId} badge earned ✓`
-              feedback.hidden = false
+                choice.disabled = true;
+              });
+              submit.disabled = true;
+              submit.textContent = `${callId} badge earned ✓`;
+              feedback.hidden = false;
               feedback.textContent =
-                state.mode === 'explorer'
+                state.mode === "explorer"
                   ? `You already mapped the ${callId} call.`
-                  : `${callId} is already mapped to ${call.repertoires}.`
-              return
+                  : `${callId} is already mapped to ${call.repertoires}.`;
+              return;
             }
             choices.forEach((choice) => {
-              choice.disabled = false
-            })
+              choice.disabled = false;
+            });
             submit.textContent =
-              state.mode === 'explorer'
-                ? 'Now pick J, K, or L Pod'
-                : 'Choose J, K, or L Pod'
-            feedback.hidden = false
+              state.mode === "explorer"
+                ? "Now pick J, K, or L Pod"
+                : "Choose J, K, or L Pod";
+            feedback.hidden = false;
             feedback.textContent =
-              state.mode === 'explorer'
-                ? 'Pick one pod. Then check your answer.'
-                : 'Step 2: Choose a pod, then lock in your answer.'
-          })
+              state.mode === "explorer"
+                ? "Pick one pod. Then check your answer."
+                : "Step 2: Choose a pod, then lock in your answer.";
+          });
 
           choices.forEach((choice) => {
-            choice.setAttribute('aria-pressed', 'false')
-            choice.addEventListener('click', () => {
-              selectedGuess = choice.dataset.guess
+            choice.setAttribute("aria-pressed", "false");
+            choice.addEventListener("click", () => {
+              selectedGuess = choice.dataset.guess;
               choices.forEach((item) => {
-                item.setAttribute('aria-pressed', String(item === choice))
-              })
-              submit.disabled = false
+                item.setAttribute("aria-pressed", String(item === choice));
+              });
+              submit.disabled = false;
               submit.textContent =
-                state.mode === 'explorer'
-                  ? 'Check my pod'
-                  : 'Lock in my answer'
-            })
-          })
+                state.mode === "explorer"
+                  ? "Check my pod"
+                  : "Lock in my answer";
+            });
+          });
 
-          submit.addEventListener('click', () => {
-            if (!selectedGuess) return
+          submit.addEventListener("click", () => {
+            if (!selectedGuess) return;
             if (state.podStamps.has(callId)) {
               choices.forEach((choice) => {
-                choice.disabled = true
-              })
-              submit.disabled = true
-              submit.textContent = `${callId} badge earned ✓`
-              feedback.hidden = false
+                choice.disabled = true;
+              });
+              submit.disabled = true;
+              submit.textContent = `${callId} badge earned ✓`;
+              feedback.hidden = false;
               feedback.textContent =
-                state.mode === 'explorer'
+                state.mode === "explorer"
                   ? `You already mapped the ${callId} call.`
-                  : `${callId} is already mapped to ${call.repertoires}.`
-              return
+                  : `${callId} is already mapped to ${call.repertoires}.`;
+              return;
             }
             if (!validPods.includes(selectedGuess)) {
               feedback.textContent =
-                state.mode === 'explorer'
-                  ? 'Good try! Listen again, read the clue, and pick another pod.'
-                  : 'Not this pod yet. Listen again, reread the field note, and try another answer.'
-              card.classList.add('needs-retry')
+                state.mode === "explorer"
+                  ? "Good try! Listen again, read the clue, and pick another pod."
+                  : "Not this pod yet. Listen again, reread the field note, and try another answer.";
+              card.classList.add("needs-retry");
               showToast(
-                state.mode === 'explorer'
-                  ? 'Good try—pick another pod.'
-                  : 'Good investigation—try another pod.'
-              )
-              return
+                state.mode === "explorer"
+                  ? "Good try—pick another pod."
+                  : "Good investigation—try another pod."
+              );
+              return;
             }
 
-            state.podStamps.add(callId)
-            state.pod = selectedGuess
-            card.classList.remove('needs-retry')
-            card.classList.add('solved')
-            card.querySelector('.mystery-state').textContent = 'Correct ✓'
-            card.querySelector(
-              '.mystery-title'
-            ).textContent =
-              state.mode === 'explorer'
+            state.podStamps.add(callId);
+            state.pod = selectedGuess;
+            card.classList.remove("needs-retry");
+            card.classList.add("solved");
+            card.querySelector(".mystery-state").textContent = "Correct ✓";
+            card.querySelector(".mystery-title").textContent =
+              state.mode === "explorer"
                 ? `${selectedGuess} is a match!`
-                : `${callId} mapped to ${selectedGuess}`
+                : `${callId} mapped to ${selectedGuess}`;
             feedback.textContent =
-              state.mode === 'explorer'
+              state.mode === "explorer"
                 ? `Correct! ${call.explanation}`
-                : `Valid repertoire match. ${call.explanation}`
+                : `Valid repertoire match. ${call.explanation}`;
             choices.forEach((choice) => {
-              choice.disabled = true
-            })
-            submit.disabled = true
-            submit.textContent = `${callId} badge earned ✓`
-            updateModeCopy()
-            updatePassport()
+              choice.disabled = true;
+            });
+            submit.disabled = true;
+            submit.textContent = `${callId} badge earned ✓`;
+            updateModeCopy();
+            updatePassport();
             showToast(
               state.podStamps.size === 3
-                ? 'Call Passport complete! You mapped all three calls.'
+                ? "Call Passport complete! You mapped all three calls."
                 : `${callId} badge earned!`
-            )
-          })
-        })
+            );
+          });
+        });
 
-        updatePassport()
+        updatePassport();
 
-        document.querySelectorAll('.action-select').forEach((button) => {
-          button.addEventListener('click', () => {
-            state.action = button.dataset.action
-            state.actionSelected = true
-            selectOne('.action-select', button)
-            document.querySelectorAll('.action-card').forEach((card) => {
-              card.classList.toggle('selected', card.contains(button))
-            })
+        document.querySelectorAll(".action-select").forEach((button) => {
+          button.addEventListener("click", () => {
+            state.action = button.dataset.action;
+            state.actionSelected = true;
+            selectOne(".action-select", button);
+            document.querySelectorAll(".action-card").forEach((card) => {
+              card.classList.toggle("selected", card.contains(button));
+            });
             document.getElementById(
-              'certificate-action'
-            ).textContent = `My ally action: ${state.action}.`
-            updateAdventureProgress()
+              "certificate-action"
+            ).textContent = `My ally action: ${state.action}.`;
+            updateAdventureProgress();
             showToast(
-              state.mode === 'explorer'
-                ? 'You chose a way to help!'
-                : 'Orca Ally action selected.'
-            )
-          })
-        })
+              state.mode === "explorer"
+                ? "You chose a way to help!"
+                : "Orca Ally action selected."
+            );
+          });
+        });
 
-        const dialog = document.getElementById('certificate-dialog')
+        const dialog = document.getElementById("certificate-dialog");
         document
-          .getElementById('certificate-button')
-          .addEventListener('click', () => {
+          .getElementById("certificate-button")
+          .addEventListener("click", () => {
             if (
               !state.quizComplete ||
               state.podStamps.size !== 3 ||
               !state.actionSelected
             ) {
-              const remaining = []
+              const remaining = [];
               if (!state.quizComplete)
                 remaining.push(
-                  state.mode === 'explorer'
-                    ? 'finish the listening game'
-                    : 'finish the sound quiz'
-                )
+                  state.mode === "explorer"
+                    ? "finish the listening game"
+                    : "finish the sound quiz"
+                );
               if (state.podStamps.size !== 3)
                 remaining.push(
                   `map ${3 - state.podStamps.size} more call${
-                    state.podStamps.size === 2 ? '' : 's'
+                    state.podStamps.size === 2 ? "" : "s"
                   }`
-                )
+                );
               if (!state.actionSelected)
                 remaining.push(
-                  state.mode === 'explorer'
-                    ? 'choose one way to help'
-                    : 'choose one ally action'
-                )
+                  state.mode === "explorer"
+                    ? "choose one way to help"
+                    : "choose one ally action"
+                );
               showToast(
-                state.mode === 'explorer'
-                  ? `First, ${remaining.join(', ')}.`
-                  : `To unlock your certificate: ${remaining.join(', ')}.`
-              )
-              return
+                state.mode === "explorer"
+                  ? `First, ${remaining.join(", ")}.`
+                  : `To unlock your certificate: ${remaining.join(", ")}.`
+              );
+              return;
             }
-            document.getElementById('certificate-pod').textContent =
-              'S03, S16, and S19 calls'
+            document.getElementById("certificate-pod").textContent =
+              "S03, S16, and S19 calls";
             document.getElementById(
-              'certificate-action'
-            ).textContent = `My ally action: ${state.action}.`
-            dialog.showModal()
-          })
+              "certificate-action"
+            ).textContent = `My ally action: ${state.action}.`;
+            dialog.showModal();
+          });
         document
-          .querySelectorAll('.dialog-close, .dialog-close-text')
+          .querySelectorAll(".dialog-close, .dialog-close-text")
           .forEach((button) => {
-            button.addEventListener('click', () => dialog.close())
-          })
-        dialog.addEventListener('click', (event) => {
-          if (event.target === dialog) dialog.close()
-        })
+            button.addEventListener("click", () => dialog.close());
+          });
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
 
         document
-          .getElementById('update-certificate')
-          .addEventListener('click', () => {
-            const input = document.getElementById('explorer-name')
-            document.getElementById('certificate-name').textContent =
-              input.value.trim() || 'Young Explorer'
-            showToast('Certificate updated locally.')
-          })
+          .getElementById("update-certificate")
+          .addEventListener("click", () => {
+            const input = document.getElementById("explorer-name");
+            document.getElementById("certificate-name").textContent =
+              input.value.trim() || "Young Explorer";
+            showToast("Certificate updated locally.");
+          });
 
-        const mediaElements = [...document.querySelectorAll('audio, video')]
+        const mediaElements = [...document.querySelectorAll("audio, video")];
         mediaElements.forEach((media) => {
-          media.addEventListener('play', () => {
+          media.addEventListener("play", () => {
             mediaElements.forEach((otherMedia) => {
-              if (otherMedia !== media) otherMedia.pause()
-            })
-          })
-        })
-        updateAdventureProgress()
-      })()
+              if (otherMedia !== media) otherMedia.pause();
+            });
+          });
+        });
+        updateAdventureProgress();
+      })();
     </script>
   </body>
 </html>
