@@ -1756,50 +1756,144 @@
       }
       .certificate {
         position: relative;
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         overflow: hidden;
-        min-height: 430px;
-        padding: 48px;
-        border: 9px double var(--ocean);
+        min-height: 650px;
+        padding: 52px 56px 70px;
+        border: 10px double var(--ocean);
         background: radial-gradient(
             circle at 10% 10%,
-            rgba(89, 216, 206, 0.18),
-            transparent 25%
+            rgba(89, 216, 206, 0.28),
+            transparent 28%
           ),
           radial-gradient(
             circle at 90% 90%,
-            rgba(255, 202, 100, 0.22),
-            transparent 30%
+            rgba(255, 202, 100, 0.32),
+            transparent 32%
           ),
-          var(--white);
+          linear-gradient(180deg, #f4fffe 0%, var(--white) 48%, #fff9eb 100%);
+        box-shadow: inset 0 0 0 4px rgba(89, 216, 206, 0.22);
+        print-color-adjust: exact;
         text-align: center;
+        -webkit-print-color-adjust: exact;
       }
       .certificate::before {
         content: "ORCASOUND";
-        color: var(--ocean);
-        font-size: 0.8rem;
+        display: block;
+        padding: 8px 18px;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--ocean);
+        font-size: 0.95rem;
         font-weight: 900;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.18em;
+      }
+      .certificate::after {
+        position: absolute;
+        right: -5%;
+        bottom: -34px;
+        left: -5%;
+        z-index: -1;
+        height: 105px;
+        border-radius: 50% 50% 0 0;
+        background: linear-gradient(
+          180deg,
+          rgba(89, 216, 206, 0.18),
+          rgba(10, 101, 126, 0.3)
+        );
+        content: "";
+      }
+      .certificate-orca {
+        flex-shrink: 0;
+        display: block;
+        width: 160px;
+        height: 160px;
+        aspect-ratio: 1;
+        margin: 18px auto 0;
+        border: 7px solid rgba(10, 101, 126, 0.18);
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 67% 73%;
+        box-shadow: 0 8px 20px rgba(8, 45, 68, 0.16);
       }
       .certificate h3 {
-        margin: 18px 0 3px;
-        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin: 16px 0 8px;
+        color: var(--ink);
+        font-size: clamp(2.6rem, 6vw, 4rem);
         line-height: 1;
       }
+      .certificate .cert-intro,
+      .certificate .cert-achievement {
+        margin: 8px auto;
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+      .certificate .cert-achievement {
+        max-width: 620px;
+      }
       .certificate .cert-name {
-        margin: 20px auto 8px;
+        min-width: 0;
+        max-width: 100%;
+        margin: 14px auto 8px;
         color: var(--ocean);
-        font-size: 2rem;
+        font-size: clamp(2.25rem, 5vw, 3rem);
         font-weight: 900;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
       }
       .certificate .cert-pod {
+        margin: 10px auto;
+        padding: 8px 20px;
+        border-radius: 999px;
+        color: #503600;
+        background: var(--sun);
+        font-size: 1.2rem;
         font-weight: 800;
       }
       .certificate .cert-action {
-        max-width: 500px;
-        margin: 22px auto;
+        max-width: 620px;
+        margin: 16px auto;
+        padding: 14px 20px;
+        border: 2px solid rgba(10, 101, 126, 0.16);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.78);
+        font-size: 1.15rem;
+        font-weight: 700;
+        line-height: 1.45;
       }
-      .certificate small {
-        color: var(--ink-soft);
+      .cert-badges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px auto 14px;
+      }
+      .cert-badges span {
+        padding: 8px 16px;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--ocean);
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+      }
+      .cert-badges span:nth-child(2) {
+        color: #17323d;
+        background: var(--aqua);
+      }
+      .cert-badges span:nth-child(3) {
+        color: #503600;
+        background: var(--sun);
+      }
+      .certificate .cert-motto {
+        color: var(--ocean);
+        font-size: 1.05rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
       }
       .certificate-form {
         display: grid;
@@ -2301,12 +2395,54 @@
           padding: 0;
           background: white;
         }
+        #certificate-dialog::backdrop {
+          background: transparent;
+          backdrop-filter: none;
+        }
         .certificate {
           box-sizing: border-box;
           min-height: 0;
           height: 9.5in;
+          padding-top: 36px;
+          padding-bottom: 48px;
           break-inside: avoid;
           page-break-inside: avoid;
+        }
+        .certificate-orca {
+          width: 130px;
+          height: 130px;
+          margin-top: 8px;
+        }
+        .certificate h3 {
+          margin: 8px 0 4px;
+          font-size: 3.2rem;
+        }
+        .certificate .cert-intro,
+        .certificate .cert-achievement {
+          margin: 4px auto;
+          font-size: 1.05rem;
+        }
+        .certificate .cert-name {
+          margin: 6px auto 4px;
+          font-size: 2.3rem;
+        }
+        .certificate .cert-pod {
+          margin: 6px auto;
+          padding: 6px 16px;
+        }
+        .certificate .cert-action {
+          margin: 8px auto;
+          padding: 10px 16px;
+          font-size: 1rem;
+        }
+        .cert-badges {
+          margin: 6px auto 8px;
+        }
+        .cert-badges span {
+          padding: 6px 14px;
+        }
+        .certificate .cert-motto {
+          font-size: 0.95rem;
         }
       }
     </style>
@@ -3630,10 +3766,16 @@
           saved.
         </p>
         <div class="certificate" id="print-certificate">
+          <img
+            class="certificate-orca"
+            data-app-image="orca-spyhop.JPG"
+            src="/images/orca-spyhop.JPG"
+            alt="Orca spyhopping above calm water with mountains in the distance"
+          />
           <h3>Orca Ally</h3>
-          <p>This certificate celebrates</p>
+          <p class="cert-intro">This certificate celebrates</p>
           <div class="cert-name" id="certificate-name">Young Explorer</div>
-          <p>
+          <p class="cert-achievement">
             for listening carefully, following the evidence, and learning about
           </p>
           <p class="cert-pod" id="certificate-pod">J Pod</p>
@@ -3641,7 +3783,12 @@
             My ally action: help keep the ocean quieter and learn Be Whale Wise
             rules.
           </p>
-          <small>Hear it · Understand it · Protect it</small>
+          <div class="cert-badges" aria-hidden="true">
+            <span>HEAR</span>
+            <span>UNDERSTAND</span>
+            <span>PROTECT</span>
+          </div>
+          <small class="cert-motto">Hear it · Understand it · Protect it</small>
         </div>
         <div
           class="dialog-actions"
