@@ -69,7 +69,12 @@ const Nav = () => {
   // jump. Rendering both and toggling `display` avoids that layout shift.
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="relative" sx={{ zIndex: theme.zIndex.drawer + 1 }}>
+      <AppBar
+        sx={{
+          position: { xs: 'sticky', lg: 'relative' },
+          zIndex: theme.zIndex.drawer + 1,
+        }}
+      >
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box
