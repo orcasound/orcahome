@@ -3,10 +3,19 @@
 A child-friendly Orcasound concept for elementary and middle-school students,
 organized around **Hear, Meet, and Protect**.
 
-## Why these files are in `docs/young-explorers`
+## Where these files live
 
-This folder keeps the hackathon prototype, product specification, and printable
-teacher materials together for review. It is not the recommended production
+The prototype pages and their media are served as static files from
+`public/young-explorers/`, so they can be opened directly on the site:
+
+- `/young-explorers/mockup.html` - interactive standalone prototype
+- `/young-explorers/option-b.html` - guided elementary alternative
+- `/young-explorers/kiosk.html` - touch-friendly kiosk variant
+- `/young-explorers/teacher-guide.html` and `/young-explorers/teacher-guide.pdf`
+
+This README and the product specification stay in `docs/young-explorers/`.
+
+These static pages are a prototype for review, not the recommended production
 architecture. If Orcasound adopts the concept, the student experience should
 be implemented as a dedicated application route such as `/young-explorers` or
 `/explore`, reusing Orcahome components and reviewed content.
@@ -57,23 +66,30 @@ clear prior visitor data.
 
 ## Files
 
-- `Orcasound Young Explorers Mockup.html` - interactive standalone prototype
-- `Orcasound Young Explorers Mockup - Kiosk.html` - touch-friendly Option A
-  variant with a tap-to-begin screen, fullscreen and confirmed start-over
-  controls, blocked external navigation, and an automatic reset warning after
-  four and a half minutes without activity
-- `Orcasound Young Explorers Mockup - Option B.html` - guided elementary
-  alternative with an illustrated title page; it shows Listen, Match Pods, Help
-  Orcas, and Certificate one at a time and includes tap-friendly Word Help
-- `Orcasound Kids Experience Spec and UI Audit.md` - product specification,
-  science guardrails, and beta UI audit
-- `Orcasound Teacher Activity Guide.html` - printable teacher packet source
-- `Orcasound Teacher Activity Guide.pdf` - eight-page printable packet
+In `public/young-explorers/`:
+
+- `mockup.html` - interactive standalone prototype
+- `kiosk.html` - touch-friendly Option A variant with a tap-to-begin screen,
+  fullscreen and confirmed start-over controls, blocked external navigation,
+  and an automatic reset warning after four and a half minutes without
+  activity
+- `option-b.html` - guided elementary alternative with an illustrated title
+  page; it shows Listen, Match Pods, Help Orcas, and Certificate one at a time
+  and includes tap-friendly Word Help
+- `teacher-guide.html` - printable teacher packet source
+- `teacher-guide.pdf` - eight-page printable packet
 - `audio/` - seven three-second WAV clips derived from the corresponding
   Orcasound call recordings
 - `videos/` - three MP4 conservation simulations, poster images, and caption
   files
 
-Open the mockup HTML in a browser. Keep the teacher HTML and PDF in the same
-folder, and keep the `audio` and `videos` subfolders beside the mockup, so its
-relative resource links continue to work.
+In `docs/young-explorers/`:
+
+- `spec-and-ui-audit.md` - product specification, science guardrails, and beta
+  UI audit
+- `README.md` - this file
+
+The pages use relative links for audio, video, and the teacher guide, and
+root-relative `/images/...` links for photographs and spectrograms from
+`public/images`. Keep the files together in `public/young-explorers/` so those
+links keep working.
