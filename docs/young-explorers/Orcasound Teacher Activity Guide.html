@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orcasound Young Explorers - Teacher Activity Guide</title>
+    <style>
+      :root {
+        --ink: #071f36;
+        --ocean: #075e78;
+        --aqua: #59d8ce;
+        --foam: #f4fffd;
+        --sun: #ffca64;
+        --purple: #6957b8;
+        --coral: #ff826e;
+        --line: #bdd8dc;
+        --muted: #36546a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: #dceeed;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.42;
+      }
+      a {
+        color: var(--ocean);
+      }
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        padding: 12px;
+        color: white;
+        background: var(--ink);
+      }
+      .toolbar button,
+      .toolbar a {
+        padding: 9px 15px;
+        border: 0;
+        border-radius: 999px;
+        color: var(--ink);
+        background: var(--sun);
+        font: inherit;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .page {
+        position: relative;
+        width: 8.5in;
+        min-height: 11in;
+        margin: 22px auto;
+        padding: 0.58in 0.62in 0.55in;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 16px 45px rgba(7, 31, 54, 0.16);
+        page-break-after: always;
+      }
+      .page:last-child {
+        page-break-after: auto;
+      }
+      .page.compact {
+        font-size: 9.4pt;
+        line-height: 1.3;
+      }
+      .page.compact h2 {
+        margin-bottom: 10px;
+      }
+      .page.compact h3 {
+        margin: 11px 0 4px;
+      }
+      .page.compact ul,
+      .page.compact ol {
+        margin-bottom: 8px;
+      }
+      .page.compact table {
+        margin: 7px 0 10px;
+        font-size: 8.4pt;
+      }
+      .page.compact th,
+      .page.compact td {
+        padding: 5px 6px;
+      }
+      .page.compact .callout {
+        margin: 9px 0;
+        padding: 9px 12px;
+      }
+      .page-number {
+        position: absolute;
+        right: 0.6in;
+        bottom: 0.28in;
+        color: var(--muted);
+        font-size: 8pt;
+      }
+      .cover {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: white;
+        background: radial-gradient(
+            circle at 82% 16%,
+            rgba(89, 216, 206, 0.35),
+            transparent 24%
+          ),
+          linear-gradient(145deg, var(--ink), var(--ocean));
+      }
+      .cover::after {
+        content: '';
+        position: absolute;
+        left: -12%;
+        right: -12%;
+        bottom: -45px;
+        height: 160px;
+        border-radius: 50% 50% 0 0;
+        background: var(--aqua);
+        opacity: 0.35;
+      }
+      .kicker {
+        color: var(--ocean);
+        font-size: 8.5pt;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .cover .kicker {
+        color: var(--aqua);
+      }
+      h1 {
+        max-width: 6.4in;
+        margin: 14px 0;
+        font-size: 38pt;
+        line-height: 0.98;
+        letter-spacing: -0.04em;
+      }
+      h2 {
+        margin: 7px 0 15px;
+        font-size: 23pt;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+      }
+      h3 {
+        margin: 15px 0 6px;
+        font-size: 14pt;
+      }
+      h4 {
+        margin: 10px 0 4px;
+        font-size: 11pt;
+      }
+      p {
+        margin: 5px 0 10px;
+      }
+      ul,
+      ol {
+        margin: 6px 0 12px;
+        padding-left: 22px;
+      }
+      li {
+        margin: 3px 0;
+      }
+      .subtitle {
+        max-width: 5.5in;
+        color: #dffbf6;
+        font-size: 15pt;
+      }
+      .mission-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 28px 0;
+      }
+      .mission {
+        padding: 14px;
+        border-radius: 14px;
+        color: var(--ink);
+        background: white;
+      }
+      .mission strong {
+        display: block;
+        font-size: 14pt;
+      }
+      .mission:nth-child(2) {
+        background: #e9e2ff;
+      }
+      .mission:nth-child(3) {
+        background: #fff0c9;
+      }
+      .cover-note {
+        max-width: 5.8in;
+        padding: 14px 17px;
+        border-left: 5px solid var(--sun);
+        border-radius: 0 12px 12px 0;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+      }
+      .card {
+        padding: 13px 15px;
+        border: 1.5px solid var(--line);
+        border-radius: 14px;
+        background: var(--foam);
+      }
+      .card h3,
+      .card h4 {
+        margin-top: 0;
+      }
+      .card-purple {
+        background: #f1edff;
+        border-color: #d7cef7;
+      }
+      .card-yellow {
+        background: #fff7df;
+        border-color: #ecd99e;
+      }
+      .card-blue {
+        background: #e8f7ff;
+        border-color: #c0dfea;
+      }
+      .callout {
+        margin: 14px 0;
+        padding: 12px 15px;
+        border-left: 5px solid var(--aqua);
+        border-radius: 0 12px 12px 0;
+        background: #e7faf7;
+      }
+      .warning {
+        border-left-color: var(--sun);
+        background: #fff7df;
+      }
+      .teacher-say {
+        padding: 12px 15px;
+        border-radius: 12px;
+        color: white;
+        background: var(--ocean);
+      }
+      .teacher-say::before {
+        content: 'SAY: ';
+        color: var(--sun);
+        font-weight: 900;
+      }
+      table {
+        width: 100%;
+        margin: 9px 0 15px;
+        border-collapse: collapse;
+        font-size: 9pt;
+      }
+      th,
+      td {
+        padding: 7px 8px;
+        border: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        color: white;
+        background: var(--ocean);
+      }
+      tr:nth-child(even) td {
+        background: #f3faf9;
+      }
+      .answer {
+        color: #075c3f;
+        font-weight: 800;
+      }
+      .worksheet {
+        min-height: 1.02in;
+        margin: 8px 0 13px;
+        padding: 12px;
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+      }
+      .lines {
+        min-height: 0.46in;
+        margin-top: 9px;
+        background: repeating-linear-gradient(transparent 0 22px, #b7cdd2 23px);
+      }
+      .choice-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        margin-top: 9px;
+      }
+      .choice::before {
+        content: '○ ';
+        font-size: 13pt;
+      }
+      .stamp-row {
+        display: flex;
+        justify-content: center;
+        gap: 0.35in;
+        margin: 22px 0;
+      }
+      .stamp {
+        display: grid;
+        place-items: center;
+        width: 0.85in;
+        height: 0.85in;
+        border: 2px dashed var(--purple);
+        border-radius: 50%;
+        color: var(--purple);
+        font-size: 24pt;
+        font-weight: 900;
+      }
+      .source-list {
+        font-size: 8.5pt;
+        overflow-wrap: anywhere;
+      }
+      .footer-note {
+        position: absolute;
+        left: 0.62in;
+        bottom: 0.28in;
+        color: var(--muted);
+        font-size: 8pt;
+      }
+      @media print {
+        @page {
+          size: Letter;
+          margin: 0;
+        }
+        body {
+          background: white;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .toolbar {
+          display: none;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+      @media (max-width: 850px) {
+        .page {
+          width: 100%;
+          min-height: auto;
+          margin: 0;
+          padding: 28px 22px 55px;
+        }
+        .grid-2,
+        .grid-3,
+        .mission-row {
+          grid-template-columns: 1fr;
+        }
+        .footer-note {
+          left: 22px;
+        }
+        .page-number {
+          right: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button type="button" onclick="window.print()">Print this guide</button>
+      <a href="Orcasound Young Explorers Mockup.html">Open student activity</a>
+    </div>
+
+    <section class="page cover">
+      <span class="kicker">Classroom-ready teacher packet</span>
+      <h1>Orcasound Young Explorers</h1>
+      <p class="subtitle">
+        Help students investigate real underwater recordings and spectrograms,
+        think like bioacousticians, meet J, K, and L pods, and choose one action
+        that helps Southern Resident Killer Whales.
+      </p>
+      <div class="mission-row">
+        <div class="mission">
+          <strong>1. Hear</strong>Investigate sound evidence
+        </div>
+        <div class="mission">
+          <strong>2. Meet</strong>Explore three local pods
+        </div>
+        <div class="mission">
+          <strong>3. Protect</strong>Choose an Orca Ally action
+        </div>
+      </div>
+      <div class="cover-note">
+        <strong>Designed for grades 3-8</strong><br />
+        Flexible 5-, 15-, and 30-minute formats. No student account, upload,
+        public post, or personal information is required.
+      </div>
+      <p class="footer-note" style="color: #dffbf6">
+        Interactive concept for Orcasound subject-matter review
+      </p>
+      <span class="page-number" style="color: #dffbf6">1</span>
+    </section>
+
+    <section class="page compact">
+      <span class="kicker">Teacher quick start</span>
+      <h2>Prepare the room</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>What you need</h3>
+          <ul>
+            <li>A computer with internet access</li>
+            <li>Projector or student devices</li>
+            <li>
+              Speakers or headphones at a comfortable volume, or the visual-only
+              spectrogram path
+            </li>
+            <li>This guide or the student observation sheet</li>
+          </ul>
+        </div>
+        <div class="card card-purple">
+          <h3>Before students arrive</h3>
+          <ol>
+            <li>Open the Young Explorers HTML activity.</li>
+            <li>Test one audio clip and the volume.</li>
+            <li>Choose Ocean Explorer or Junior Bioacoustician.</li>
+            <li>Decide whether students work together or independently.</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>Learning objective</h3>
+      <p>
+        Students will use an audio recording and/or spectrogram to make one
+        evidence-based observation about a Southern Resident call, explain one
+        limit of that evidence, and choose one relevant conservation action.
+      </p>
+      <p>Students will also be able to:</p>
+      <ul>
+        <li>describe a hydrophone as an underwater microphone;</li>
+        <li>
+          make an observation from an audio clip without overstating certainty;
+        </li>
+        <li>
+          explain that sound can support pod recognition but usually does not
+          identify one whale;
+        </li>
+        <li>distinguish an AI candidate from an expert-confirmed detection;</li>
+        <li>
+          connect quieter water, healthy Chinook salmon, and clean waterways to
+          orca recovery.
+        </li>
+      </ul>
+
+      <h3>Essential vocabulary</h3>
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>Student-friendly meaning</th>
+        </tr>
+        <tr>
+          <td>Hydrophone</td>
+          <td>
+            An underwater microphone that records sounds traveling through
+            water.
+          </td>
+        </tr>
+        <tr>
+          <td>Bioacoustics</td>
+          <td>
+            The study of sounds made by living things and the places where they
+            live.
+          </td>
+        </tr>
+        <tr>
+          <td>Spectrogram</td>
+          <td>
+            A picture showing how a sound's pitch and strength change over time.
+          </td>
+        </tr>
+        <tr>
+          <td>Pod</td>
+          <td>A family-based social group of orcas.</td>
+        </tr>
+        <tr>
+          <td>Echolocation</td>
+          <td>
+            Sending clicks and listening for echoes to find objects or prey.
+          </td>
+        </tr>
+        <tr>
+          <td>Evidence</td>
+          <td>Information used to support an explanation.</td>
+        </tr>
+      </table>
+
+      <div class="callout warning">
+        <strong>Science guardrail:</strong> Loudness alone does not give an
+        exact whale location. Calls can help experts recognize a pod, but
+        identifying an individual usually requires a suitable dorsal-fin and
+        saddle-patch photograph reviewed by a qualified source.
+      </div>
+      <p>
+        <strong>Population scope:</strong> This activity covers fish-eating
+        Southern Residents. Bigg's killer whales also use the Salish Sea,
+        primarily hunt marine mammals, and are often quieter while hunting.
+      </p>
+      <p class="footer-note">
+        Orcasound Young Explorers - Teacher Activity Guide
+      </p>
+      <span class="page-number">2</span>
+    </section>
+
+    <section class="page compact">
+      <span class="kicker">Choose your lesson length</span>
+      <h2>Three ways to teach it</h2>
+      <div class="card card-blue">
+        <h3>5-minute launch: Hear</h3>
+        <ol>
+          <li>
+            <strong>1 minute:</strong> Ask, "How could we know an orca is nearby
+            if we cannot see it?"
+          </li>
+          <li>
+            <strong>3 minutes:</strong> Complete one Ocean Explorer question as
+            a class.
+          </li>
+          <li>
+            <strong>1 minute:</strong> Exit prompt: "What did you observe, and
+            what are you not yet sure about?"
+          </li>
+        </ol>
+      </div>
+      <div class="card card-purple">
+        <h3>15-minute exploration: Hear + Meet</h3>
+        <ol>
+          <li>
+            <strong>2 minutes:</strong> Introduce hydrophones and comfortable
+            listening volume.
+          </li>
+          <li>
+            <strong>7 minutes:</strong> Complete the three-question Ocean
+            Explorer quiz or five-question Junior Bioacoustician quiz using
+            audio, spectrograms, or both.
+          </li>
+          <li>
+            <strong>4 minutes:</strong> Map S03 to J Pod, S16 to K or L Pod, and
+            S19 to L Pod.
+          </li>
+          <li>
+            <strong>2 minutes:</strong> Collect call badges and share one
+            evidence-based observation.
+          </li>
+        </ol>
+      </div>
+      <div class="card card-yellow">
+        <h3>30-minute investigation: Hear + Meet + Protect</h3>
+        <ol>
+          <li><strong>3 minutes:</strong> Hook and vocabulary.</li>
+          <li><strong>10 minutes:</strong> Complete and discuss the quiz.</li>
+          <li>
+            <strong>7 minutes:</strong> Compare all three call examples using
+            the observation sheet.
+          </li>
+          <li>
+            <strong>7 minutes:</strong> Teams investigate quiet water, healthy
+            salmon, or clean water.
+          </li>
+          <li>
+            <strong>3 minutes:</strong> Each student chooses an Orca Ally action
+            and completes an exit ticket.
+          </li>
+        </ol>
+      </div>
+
+      <h3>Opening script</h3>
+      <p class="teacher-say">
+        Today we are ocean sound detectives. Orcasound uses underwater
+        microphones called hydrophones to listen to the Salish Sea. We can
+        investigate recordings, real spectrograms, or both. We will use "not
+        sure" when evidence is limited and discover how careful review can help
+        people protect Southern Resident Killer Whales.
+      </p>
+
+      <h3>Discussion norms</h3>
+      <div class="grid-3">
+        <div class="card">
+          <strong>I notice...</strong><br />Describe what you actually hear or
+          see.
+        </div>
+        <div class="card">
+          <strong>I think...</strong><br />Offer an explanation based on
+          evidence.
+        </div>
+        <div class="card">
+          <strong>I wonder...</strong><br />Name what more you would need to
+          know.
+        </div>
+      </div>
+      <p class="footer-note">
+        Orcasound Young Explorers - Teacher Activity Guide
+      </p>
+      <span class="page-number">3</span>
+    </section>
+
+    <section class="page">
+      <span class="kicker">Facilitation guide</span>
+      <h2>Hear, Meet, Protect</h2>
+      <h3>Mission 1: Hear</h3>
+      <ul>
+        <li>
+          Remind students that nothing autoplays and they control pause and
+          volume.
+        </li>
+        <li>
+          Invite every student to use the recording, matching spectrogram, or
+          both; hearing is not required for success.
+        </li>
+        <li>
+          Ask for observations before interpretations: patterned, tonal,
+          repeated, steady, rising, falling, bright, or faint.
+        </li>
+        <li>Celebrate "not sure" as a responsible scientific response.</li>
+        <li>
+          After each reveal, ask: "What evidence supports that explanation?"
+        </li>
+      </ul>
+      <p class="teacher-say">
+        A recording is evidence from one listening location. It tells us what
+        reached that hydrophone; it does not automatically tell us the exact
+        location or identity of a whale.
+      </p>
+
+      <h3>Mission 2: Meet</h3>
+      <table>
+        <tr>
+          <th>Call</th>
+          <th>Documented pod repertoire</th>
+          <th>Listening prompt</th>
+          <th>Important reminder</th>
+        </tr>
+        <tr>
+          <td>S03</td>
+          <td>J Pod</td>
+          <td>Notice the short tonal pattern.</td>
+          <td>A call can support pod recognition.</td>
+        </tr>
+        <tr>
+          <td>S16</td>
+          <td>K and L Pods</td>
+          <td>Does it remind you of a mewing sound?</td>
+          <td>A familiar call is not an individual ID.</td>
+        </tr>
+        <tr>
+          <td>S19</td>
+          <td>L Pod</td>
+          <td>Compare its pitch and pattern.</td>
+          <td>Some call types may be shared.</td>
+        </tr>
+      </table>
+      <p>
+        These examples sit within Orcasound's larger learning ladder of 46
+        characterized Southern Resident call types, S01-S46. The prototype
+        starts with S01-S05, then uses S03, S16, and S19 for repertoire mapping.
+        S16 is shared by K and L Pods.
+      </p>
+      <p class="teacher-say">
+        Sound and photographs answer different questions. Calls may help experts
+        recognize a pod. Researchers usually identify an individual using
+        dorsal-fin shape, nicks, scars, and saddle-patch patterns in suitable
+        photographs.
+      </p>
+
+      <h3>Mission 3: Protect</h3>
+      <div class="grid-3">
+        <div class="card card-blue">
+          <strong>Quiet water</strong><br />Vessel noise can interfere with
+          communication and echolocation used during hunting.
+        </div>
+        <div class="card card-yellow">
+          <strong>Healthy salmon</strong><br />Southern Residents specialize in
+          fish and strongly prefer Chinook salmon.
+        </div>
+        <div class="card">
+          <strong>Clean water</strong><br />Reducing pollution supports
+          healthier habitat, prey, and marine food webs.
+        </div>
+      </div>
+      <div class="callout">
+        Student choices are learning commitments, not operational reports.
+        Student answers must never create vessel alerts, public sightings, or
+        confirmed detections.
+      </div>
+      <p class="footer-note">
+        Orcasound Young Explorers - Teacher Activity Guide
+      </p>
+      <span class="page-number">4</span>
+    </section>
+
+    <section class="page">
+      <span class="kicker">Printable student sheet</span>
+      <h2>Ocean Sound Detective Notes</h2>
+      <p>
+        Name or team (optional): __________________________________ Date:
+        ______________
+      </p>
+      <div class="worksheet">
+        <strong>1. My sound observation</strong>
+        <div class="choice-row">
+          <span class="choice">patterned call</span
+          ><span class="choice">flat tone</span
+          ><span class="choice">changing pitch</span
+          ><span class="choice">not sure</span>
+        </div>
+        <div class="lines"></div>
+      </div>
+      <div class="worksheet">
+        <strong>2. Observation versus inference</strong><br />
+        I directly noticed...
+        <div class="lines"></div>
+        I think it might mean...
+        <div class="lines"></div>
+      </div>
+      <div class="worksheet">
+        <strong>3. Compare two pod calls</strong>
+        <table>
+          <tr>
+            <th>Call</th>
+            <th>Pitch or tone</th>
+            <th>Pattern or rhythm</th>
+            <th>One question I have</th>
+          </tr>
+          <tr>
+            <td>____________</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>____________</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="worksheet">
+        <strong>4. My evidence confidence</strong>
+        <div class="choice-row">
+          <span class="choice">I need more evidence</span
+          ><span class="choice">Some evidence supports this</span
+          ><span class="choice">Strong evidence supports this</span>
+        </div>
+        <div class="lines"></div>
+      </div>
+      <div class="worksheet">
+        <strong>5. My Orca Ally action</strong>
+        <div class="choice-row">
+          <span class="choice">quiet water</span
+          ><span class="choice">healthy salmon</span
+          ><span class="choice">clean water</span>
+        </div>
+        <div class="lines"></div>
+      </div>
+      <p class="footer-note">
+        This sheet does not need to be uploaded or submitted to Orcasound.
+      </p>
+      <span class="page-number">5</span>
+    </section>
+
+    <section class="page">
+      <span class="kicker">Answer key</span>
+      <h2>Ocean Explorer: grades 3-5</h2>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Teaching point</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>What does this sound like?</td>
+          <td class="answer">An orca call with a pattern</td>
+          <td>Orcas use patterned calls to communicate with their families.</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Which tool listens underwater?</td>
+          <td class="answer">An underwater microphone</td>
+          <td>A hydrophone records orcas and other underwater sounds.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Which clue helps identify one orca?</td>
+          <td class="answer">A clear dorsal-fin and saddle-patch photograph</td>
+          <td>
+            Researchers compare fin shapes and saddle patches with a verified
+            photo catalog.
+          </td>
+        </tr>
+      </table>
+
+      <h3>Suggested follow-up prompts</h3>
+      <ol>
+        <li>What did the orca call remind you of?</li>
+        <li>What other sounds might a hydrophone hear underwater?</li>
+        <li>What is one difference between a sound clue and a photo clue?</li>
+      </ol>
+
+      <div class="callout warning">
+        <strong>Accept thoughtful language:</strong> Students do not need the
+        exact scientific vocabulary if they can describe the observation
+        accurately. Reward careful evidence use rather than confident guessing.
+      </div>
+
+      <h3>Quick scoring interpretation</h3>
+      <table>
+        <tr>
+          <th>Mode</th>
+          <th>Strong</th>
+          <th>Developing</th>
+          <th>Needs support</th>
+        </tr>
+        <tr>
+          <td>Ocean Explorer</td>
+          <td><strong>3:</strong> Explain one observation.</td>
+          <td><strong>2:</strong> Replay one clip.</td>
+          <td><strong>0-1:</strong> Model one question.</td>
+        </tr>
+        <tr>
+          <td>Junior Bioacoustician</td>
+          <td><strong>4-5:</strong> Explain supporting evidence.</td>
+          <td><strong>2-3:</strong> Replay and compare.</td>
+          <td><strong>0-1:</strong> Model one question.</td>
+        </tr>
+      </table>
+      <p>
+        In either mode, emphasize listening comfort and that "not sure" is a
+        valid scientific response.
+      </p>
+      <p class="footer-note">
+        Orcasound Young Explorers - Teacher Activity Guide
+      </p>
+      <span class="page-number">6</span>
+    </section>
+
+    <section class="page compact">
+      <span class="kicker">Answer key</span>
+      <h2>Junior Bioacoustician: grades 6-8</h2>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Teaching point</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Classify the mystery sound</td>
+          <td class="answer">A discrete, tonal call</td>
+          <td>
+            Classification should use the recording and spectrogram together.
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>What does a spectrogram add?</td>
+          <td class="answer">Frequency and intensity over time</td>
+          <td>
+            A spectrogram visualizes sound structure, not exact location or
+            identity.
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Can one call prove which pod is present?</td>
+          <td class="answer">It can support identification with context</td>
+          <td>Shared calls and recording quality limit certainty.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>What provides stronger location evidence?</td>
+          <td class="answer">
+            Synchronized signals from multiple known sensors
+          </td>
+          <td>
+            Arrival-time differences can support localization when the system is
+            suitable.
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Which AI workflow is responsible?</td>
+          <td class="answer">
+            Candidate -> expert review -> confirmed status -> approved use
+          </td>
+          <td>Preserve provenance, uncertainty, and review status.</td>
+        </tr>
+      </table>
+
+      <h3>Extension: evidence ladder</h3>
+      <p>
+        Ask teams to rank these statements from weakest to strongest evidence,
+        then revise each claim:
+      </p>
+      <ol>
+        <li>"The audio was loud, so the whale was exactly 100 meters away."</li>
+        <li>"A listener thought the sound resembled an orca call."</li>
+        <li>"An AI model flagged a possible call."</li>
+        <li>"A trained reviewer confirmed an orca call in the recording."</li>
+        <li>
+          "Multiple synchronized sensors and reviewed sightings support a
+          pod-level interpretation."
+        </li>
+      </ol>
+      <p class="teacher-say">
+        Good science keeps the observation, source, uncertainty, and review
+        status visible. It does not turn every clue into certainty.
+      </p>
+
+      <h3>Extension: design challenge</h3>
+      <p>
+        Explain that students are practicing a simplified version of the
+        evidence review done by Orcasound's volunteer moderators. Have students
+        sketch a responsible detection card with:
+      </p>
+      <div class="grid-2">
+        <div class="card">
+          <ul>
+            <li>hydrophone name</li>
+            <li>date and time</li>
+            <li>audio clip</li>
+            <li>spectrogram</li>
+          </ul>
+        </div>
+        <div class="card card-purple">
+          <ul>
+            <li>evidence label</li>
+            <li>review status</li>
+            <li>confidence or uncertainty</li>
+            <li>source attribution</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">
+        Orcasound Young Explorers - Teacher Activity Guide
+      </p>
+      <span class="page-number">7</span>
+    </section>
+
+    <section class="page">
+      <span class="kicker">Classroom inclusion and safety</span>
+      <h2>Make the activity work for everyone</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Accessibility</h3>
+          <ul>
+            <li>
+              Treat real spectrogram observation and text descriptions as a
+              complete investigation path, not a fallback.
+            </li>
+            <li>Keep volume comfortable and never require headphone use.</li>
+            <li>Read prompts aloud when helpful.</li>
+            <li>Allow replay, extra time, partner work, and "not sure."</li>
+            <li>Do not rely on color alone to communicate an answer.</li>
+          </ul>
+        </div>
+        <div class="card card-purple">
+          <h3>Privacy</h3>
+          <ul>
+            <li>No student account is required.</li>
+            <li>Do not ask students to publish names or locations.</li>
+            <li>Certificate text lasts only for the current page session.</li>
+            <li>Do not upload student work without school approval.</li>
+            <li>Open external resources with an adult.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Live-listening expectations</h3>
+      <p>
+        Live hydrophones may be quiet or may capture vessels, weather, and other
+        animals. Silence is not a failed lesson. Use curated historical clips
+        for predictable instruction and live audio for optional observation.
+      </p>
+
+      <p>
+        <strong>Shared devices and kiosks:</strong> Use the visual path when a
+        room is noisy, start over before the next group, and close or refresh
+        the page so a typed certificate name is not left for the next visitor.
+      </p>
+
+      <h3>Trusted further study</h3>
+      <ul class="source-list">
+        <li>
+          <strong>Orcasound live listening:</strong>
+          <a href="https://live.orcasound.net/">https://live.orcasound.net/</a>
+        </li>
+        <li>
+          <strong>Orcasound learning library:</strong>
+          <a href="https://www.orcasound.net/learn/"
+            >https://www.orcasound.net/learn/</a
+          >
+        </li>
+        <li>
+          <strong>J, K, and L representative calls:</strong>
+          <a
+            href="https://www.orcasound.net/learn/learn-the-favorite-calls-of-the-southern-resident-killer-whales-j-k-and-l-pods/"
+            >Orcasound favorite calls lesson</a
+          >
+        </li>
+        <li>
+          <strong>NOAA killer whale overview:</strong>
+          <a href="https://www.fisheries.noaa.gov/species/killer-whale"
+            >https://www.fisheries.noaa.gov/species/killer-whale</a
+          >
+        </li>
+        <li>
+          <strong>NOAA sound and hunting:</strong>
+          <a
+            href="https://www.fisheries.noaa.gov/feature-story/sound-strategy-hunting-southern-residents-part-2"
+            >Sound Is a Strategy for Hunting</a
+          >
+        </li>
+        <li>
+          <strong>NOAA salmon and orcas:</strong>
+          <a
+            href="https://sanctuaries.noaa.gov/education/teachers/salmon-and-orcas.html"
+            >Salmon & Orcas teacher resources</a
+          >
+        </li>
+        <li>
+          <strong>Be Whale Wise:</strong>
+          <a href="https://www.bewhalewise.org/"
+            >https://www.bewhalewise.org/</a
+          >
+        </li>
+      </ul>
+
+      <div class="callout warning">
+        <strong>Content review note:</strong> This packet supports a concept
+        prototype. Orcasound acoustic and education subject-matter experts
+        should review scientific wording, clip labels, and classroom
+        recommendations before production publication.
+      </div>
+      <p class="footer-note">Hear it. Understand it. Protect it.</p>
+      <span class="page-number">8</span>
+    </section>
+  </body>
+</html>

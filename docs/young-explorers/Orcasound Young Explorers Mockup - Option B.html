@@ -1,0 +1,4827 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#071f36" />
+    <title>Orcasound Young Explorers - Guided Option B</title>
+    <style>
+      :root {
+        --ink: #071f36;
+        --ink-soft: #29485e;
+        --ocean: #075e78;
+        --ocean-dark: #073b56;
+        --aqua: #59d8ce;
+        --aqua-light: #dffbf6;
+        --foam: #f6fffd;
+        --sun: #ffca64;
+        --coral: #ff826e;
+        --purple: #6957b8;
+        --white: #fff;
+        --line: #cbe3e3;
+        --shadow: 0 18px 45px rgba(7, 31, 54, 0.12);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--ink);
+        background: var(--foam);
+        font-family: 'Segoe UI', Arial, sans-serif;
+        line-height: 1.55;
+      }
+      button,
+      input {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 4px solid var(--sun);
+        outline-offset: 3px;
+      }
+      .skip-link {
+        position: fixed;
+        left: 16px;
+        top: -70px;
+        z-index: 100;
+        padding: 12px 18px;
+        border-radius: 0 0 12px 12px;
+        background: var(--sun);
+        color: var(--ink);
+        font-weight: 800;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        min-height: 76px;
+        padding: 12px clamp(18px, 5vw, 72px);
+        color: var(--white);
+        background: rgba(7, 31, 54, 0.96);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 46px;
+        height: 46px;
+        border: 2px solid rgba(255, 255, 255, 0.75);
+        border-radius: 50%;
+        background: var(--white);
+        color: var(--ink);
+      }
+      .brand-mark svg {
+        width: 30px;
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .quiet-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.86rem;
+        opacity: 0.85;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 48px;
+        padding: 11px 19px;
+        border: 2px solid transparent;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: transform 0.18s ease, box-shadow 0.18s ease,
+          background 0.18s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-primary {
+        color: var(--ink);
+        background: var(--sun);
+        box-shadow: 0 9px 20px rgba(255, 202, 100, 0.2);
+      }
+      .btn-secondary {
+        color: var(--white);
+        background: var(--ocean);
+      }
+      .btn-outline {
+        color: var(--ink);
+        background: var(--white);
+        border-color: var(--ink);
+      }
+      .btn-small {
+        min-height: 40px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: 690px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        align-items: center;
+        gap: clamp(36px, 7vw, 100px);
+        padding: clamp(54px, 8vw, 110px) clamp(20px, 7vw, 110px) 130px;
+        color: var(--white);
+        background: radial-gradient(
+            circle at 82% 18%,
+            rgba(89, 216, 206, 0.32),
+            transparent 22%
+          ),
+          linear-gradient(150deg, #071f36 4%, #075e78 62%, #128e9d 100%);
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        left: -10%;
+        right: -10%;
+        bottom: -70px;
+        height: 160px;
+        border-radius: 50% 50% 0 0;
+        background: var(--foam);
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        color: var(--ink);
+        background: var(--aqua);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        max-width: 760px;
+        margin: 19px 0 20px;
+        font-size: clamp(3rem, 6.4vw, 6.4rem);
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+      }
+      .hero h1 span {
+        color: var(--sun);
+      }
+      .hero-copy > p {
+        max-width: 660px;
+        margin: 0;
+        color: #e1f7f5;
+        font-size: clamp(1.08rem, 1.5vw, 1.35rem);
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+      .hero .btn-outline {
+        color: var(--white);
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .orca-scene {
+        position: relative;
+        min-height: 430px;
+        filter: drop-shadow(0 30px 30px rgba(0, 0, 0, 0.2));
+      }
+      .bubble {
+        position: absolute;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        animation: drift 5s ease-in-out infinite;
+      }
+      .bubble.one {
+        width: 26px;
+        height: 26px;
+        top: 9%;
+        left: 15%;
+      }
+      .bubble.two {
+        width: 13px;
+        height: 13px;
+        top: 25%;
+        left: 5%;
+        animation-delay: -2s;
+      }
+      .bubble.three {
+        width: 38px;
+        height: 38px;
+        top: 3%;
+        right: 9%;
+        animation-delay: -3s;
+      }
+      @keyframes drift {
+        50% {
+          transform: translateY(-18px);
+        }
+      }
+      .orca-art {
+        position: absolute;
+        inset: 22px 0 auto;
+        width: 100%;
+        max-height: 340px;
+      }
+      .sound-ring {
+        position: absolute;
+        right: 7%;
+        bottom: 10%;
+        display: grid;
+        place-items: center;
+        width: 140px;
+        height: 140px;
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        border-radius: 50%;
+        background: rgba(7, 31, 54, 0.55);
+        text-align: center;
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+      .sound-ring::before,
+      .sound-ring::after {
+        content: '';
+        position: absolute;
+        border: 2px solid rgba(255, 255, 255, 0.27);
+        border-radius: 50%;
+      }
+      .sound-ring::before {
+        inset: -18px;
+      }
+      .sound-ring::after {
+        inset: -36px;
+      }
+
+      main {
+        display: block;
+      }
+      .adventure-tracker {
+        position: relative;
+        z-index: 5;
+        max-width: 980px;
+        margin: -54px auto 0;
+        padding: 0 20px;
+      }
+      .tracker-shell {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        overflow: hidden;
+        border: 2px solid var(--line);
+        border-radius: 22px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .tracker-step {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 22px;
+        color: var(--ink-soft);
+      }
+      .tracker-step[data-tracker='quiz'] {
+        background: linear-gradient(135deg, #edfffb, #d7f8f3);
+      }
+      .tracker-step[data-tracker='pods'] {
+        background: linear-gradient(135deg, #f5f1ff, #e5ddff);
+      }
+      .tracker-step[data-tracker='action'] {
+        background: linear-gradient(135deg, #fffaf0, #fff0c9);
+      }
+      .tracker-step + .tracker-step {
+        border-left: 2px solid var(--line);
+      }
+      .tracker-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 42px;
+        width: 42px;
+        height: 42px;
+        border: 2px solid var(--line);
+        border-radius: 50%;
+        background: var(--foam);
+        font-weight: 900;
+      }
+      .tracker-step strong {
+        display: block;
+        color: var(--ink);
+      }
+      .tracker-step small {
+        display: block;
+      }
+      .tracker-art {
+        flex: 0 0 68px;
+        width: 68px;
+        height: 48px;
+        margin-left: auto;
+        overflow: visible;
+      }
+      .tracker-art .art-ink {
+        fill: var(--ink);
+      }
+      .tracker-art .art-ocean {
+        fill: var(--ocean);
+      }
+      .tracker-art .art-aqua {
+        fill: var(--aqua);
+      }
+      .tracker-art .art-sun {
+        fill: var(--sun);
+      }
+      .tracker-art .art-coral {
+        fill: var(--coral);
+      }
+      .tracker-art .art-line {
+        fill: none;
+        stroke: var(--ocean);
+        stroke-width: 3;
+        stroke-linecap: round;
+      }
+      .tracker-step.active .tracker-icon {
+        border-color: var(--sun);
+        background: var(--sun);
+        box-shadow: 0 0 0 5px rgba(255, 202, 100, 0.2);
+      }
+      .tracker-step.done .tracker-icon {
+        color: var(--ink);
+        border-color: var(--aqua);
+        background: var(--aqua);
+      }
+      .section {
+        padding: 82px clamp(20px, 7vw, 110px);
+      }
+      .section-inner {
+        max-width: 1240px;
+        margin: auto;
+      }
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 34px;
+      }
+      .section-head h2 {
+        margin: 9px 0 0;
+        font-size: clamp(2.2rem, 4vw, 4.2rem);
+        line-height: 1;
+        letter-spacing: -0.045em;
+      }
+      .section-head p {
+        max-width: 550px;
+        margin: 0;
+        color: var(--ink-soft);
+      }
+      .section-kicker {
+        color: var(--ocean);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mode-grid,
+      .pod-grid,
+      .action-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+      }
+      .mode-card,
+      .pod-card,
+      .action-card {
+        position: relative;
+        overflow: hidden;
+        padding: 28px;
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        text-align: left;
+      }
+      .mode-card {
+        min-height: 230px;
+      }
+      .mode-card[aria-pressed='true'],
+      .pod-card[aria-pressed='true'],
+      .action-card.selected {
+        border-color: var(--ocean);
+        box-shadow: 0 0 0 5px rgba(89, 216, 206, 0.26), var(--shadow);
+      }
+      .mode-card h3,
+      .pod-card h3,
+      .action-card h3 {
+        margin: 14px 0 6px;
+        font-size: 1.45rem;
+      }
+      .mode-card p,
+      .pod-card p,
+      .action-card p {
+        color: var(--ink-soft);
+      }
+      .mode-icon,
+      .action-icon {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 17px;
+        color: var(--ink);
+        background: var(--aqua-light);
+        font-size: 1.6rem;
+      }
+      .mode-check {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        display: none;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--ocean);
+        font-weight: 900;
+      }
+      [aria-pressed='true'] .mode-check {
+        display: grid;
+      }
+
+      .mission-section {
+        background: #dff4fb;
+      }
+      .mission-shell {
+        overflow: hidden;
+        overflow-anchor: none;
+        border: 2px solid var(--line);
+        border-radius: 32px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .mission-main {
+        min-height: 820px;
+        padding: clamp(24px, 5vw, 54px);
+        overflow-anchor: none;
+      }
+      .challenge-meter {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        color: var(--ink-soft);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+      .challenge-dots {
+        display: flex;
+        gap: 7px;
+      }
+      .challenge-dot {
+        width: 12px;
+        height: 12px;
+        border: 2px solid #8eb6bb;
+        border-radius: 50%;
+        background: var(--white);
+      }
+      .challenge-dot.reached {
+        border-color: var(--ocean);
+        background: var(--ocean);
+      }
+      .challenge-dot.current {
+        border-color: var(--sun);
+        background: var(--sun);
+        box-shadow: 0 0 0 4px rgba(255, 202, 100, 0.2);
+      }
+      .mission-main h3 {
+        margin: 7px 0 8px;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+      }
+      .mission-main > p {
+        color: var(--ink-soft);
+      }
+      .explorer-guide {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .explorer-guide span {
+        padding: 10px 12px;
+        border-radius: 14px;
+        color: var(--ink);
+        background: var(--aqua-light);
+        font-weight: 800;
+        text-align: center;
+      }
+      .mission-shell.explorer-mode .quiz-briefing {
+        display: none;
+      }
+      .mission-shell.explorer-mode .player-card {
+        min-height: 0;
+      }
+      .mission-shell.scientist-mode .explorer-guide {
+        display: none;
+      }
+      .quiz-briefing {
+        margin: 20px 0;
+        padding: 15px 18px;
+        border-left: 5px solid var(--ocean);
+        background: #f5fafb;
+      }
+      .quiz-briefing h4 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+      .quiz-briefing ul {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding-left: 21px;
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+      }
+
+      .audio-lab {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.75fr) minmax(320px, 1.25fr);
+        gap: 26px;
+        align-items: stretch;
+        margin: 28px 0;
+      }
+      .player-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 25px;
+        border-radius: 22px;
+        color: var(--white);
+        background: linear-gradient(145deg, var(--ocean-dark), var(--ocean));
+      }
+      .player-card audio {
+        width: 100%;
+        margin-top: 16px;
+      }
+      .headphone-note {
+        margin: 0;
+        color: #d3f2ee;
+        font-size: 0.88rem;
+      }
+      .spectrogram {
+        display: flex;
+        flex-direction: column;
+        min-height: 240px;
+        overflow: hidden;
+        margin: 0;
+        border-radius: 22px;
+        background: var(--white);
+      }
+      .spectrogram img {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+      }
+      .spectrogram figcaption {
+        position: static;
+        padding: 10px 16px;
+        color: var(--ink-soft);
+        background: #eef9f8;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .answers {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 24px 0;
+      }
+      .answer {
+        min-height: 62px;
+        padding: 13px 16px;
+        border: 2px solid var(--line);
+        border-radius: 16px;
+        color: var(--ink);
+        background: var(--white);
+        font-weight: 800;
+      }
+      .answer:hover {
+        border-color: var(--ocean);
+        background: var(--aqua-light);
+      }
+      .answer.selected {
+        border-color: var(--ocean);
+        background: var(--aqua-light);
+      }
+      .answer.correct {
+        border-color: #208658;
+        background: #dff8e9;
+      }
+      .answer.neutral {
+        border-color: #7b6dbb;
+        background: #f0edff;
+      }
+      .mission-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+        align-items: center;
+      }
+      .mission-actions #hint-button {
+        margin-left: auto;
+      }
+      .next-question-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+      }
+      .reveal {
+        display: none;
+        margin-top: 25px;
+        padding: 20px;
+        border-left: 6px solid var(--aqua);
+        border-radius: 0 16px 16px 0;
+        background: var(--aqua-light);
+      }
+      .reveal.show {
+        display: block;
+      }
+      .reveal h4 {
+        margin: 0 0 5px;
+        font-size: 1.2rem;
+      }
+      .reveal.success {
+        border-color: #208658;
+        background: #dff8e9;
+      }
+      .reveal.learning {
+        border-color: var(--sun);
+        background: #fff7dc;
+      }
+      .reveal.complete {
+        position: relative;
+        overflow: hidden;
+        border: 0;
+        border-radius: 18px;
+        color: var(--white);
+        background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
+      }
+      .reveal.complete::after {
+        content: attr(data-stars);
+        position: absolute;
+        right: 18px;
+        top: 14px;
+        color: var(--sun);
+        font-size: 1.25rem;
+        letter-spacing: 0.25em;
+      }
+      @media (min-width: 900px) {
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main {
+          min-height: 0;
+          padding: 24px 30px 28px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .challenge-meter {
+          margin-bottom: 8px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main h3 {
+          margin: 5px 0 6px;
+          font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main > p {
+          margin: 0 0 10px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .audio-lab {
+          gap: 16px;
+          margin: 14px 0;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .player-card {
+          padding: 14px 16px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .player-card audio {
+          margin-top: 10px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .headphone-note {
+          line-height: 1.35;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .spectrogram {
+          height: 215px;
+          min-height: 0;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .spectrogram img {
+          flex: 1 1 auto;
+          min-height: 0;
+          object-position: left center;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .spectrogram
+          figcaption {
+          padding: 6px 12px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .answers {
+          gap: 8px;
+          margin: 8px 0;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .answer {
+          min-height: 46px;
+          padding: 8px 12px;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .reveal {
+          margin-top: 8px;
+          padding: 10px 14px;
+          font-size: 0.9rem;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete) {
+          display: block;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete)
+          h4 {
+          display: inline;
+          font-size: 1.05rem;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete)
+          h4::after,
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .reveal.show:not(.complete)
+          #reveal-copy::after {
+          content: ' ';
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .reveal p {
+          display: inline;
+          margin: 0;
+          line-height: 1.35;
+        }
+        .mission-shell:is(.scientist-mode, .explorer-mode) .next-question-row {
+          margin-top: 6px;
+        }
+        .mission-shell.explorer-mode .explorer-guide {
+          gap: 8px;
+          margin: 6px 0 8px;
+        }
+        .mission-shell.explorer-mode .explorer-guide span {
+          padding: 7px 10px;
+        }
+        .mission-shell.explorer-mode .mission-main {
+          padding: 8px 20px;
+        }
+        .mission-shell.explorer-mode .audio-lab {
+          margin: 8px 0;
+        }
+        .mission-shell.explorer-mode .spectrogram {
+          height: 200px;
+        }
+        .mission-shell.explorer-mode .answers {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          margin: 6px 0;
+        }
+        .mission-shell.explorer-mode .answer {
+          min-height: 44px;
+        }
+      }
+
+      .pods-section {
+        position: relative;
+        background: #f1edff;
+      }
+      .pods-section::before {
+        content: '';
+        position: absolute;
+        top: -34px;
+        left: -5%;
+        width: 110%;
+        height: 68px;
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        background: #f1edff;
+        pointer-events: none;
+      }
+      .pods-section .section-inner {
+        position: relative;
+      }
+      .pod-ocean-scene {
+        position: relative;
+        height: 132px;
+        margin: -4px 0 24px;
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.4),
+            transparent 45%
+          ),
+          #dcd4ff;
+      }
+      .pod-ocean-scene::after {
+        content: '';
+        position: absolute;
+        left: -5%;
+        right: -5%;
+        bottom: -42px;
+        height: 78px;
+        border-radius: 50% 50% 0 0;
+        background: rgba(105, 87, 184, 0.14);
+      }
+      .pod-scene-orca {
+        position: absolute;
+        left: clamp(25px, 9vw, 130px);
+        top: 18px;
+        width: 190px;
+        filter: drop-shadow(0 10px 12px rgba(53, 38, 110, 0.18));
+        animation: swim 5s ease-in-out infinite;
+      }
+      @keyframes swim {
+        50% {
+          transform: translate(14px, -4px) rotate(-1deg);
+        }
+      }
+      .pod-scene-copy {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        transform: translate(-15%, -50%);
+        color: #35266e;
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        font-weight: 900;
+      }
+      .scene-bubble {
+        position: absolute;
+        border: 2px solid rgba(53, 38, 110, 0.35);
+        border-radius: 50%;
+        animation: bubble-rise 4s ease-in-out infinite;
+      }
+      .scene-bubble.one {
+        width: 18px;
+        height: 18px;
+        left: 31%;
+        top: 24px;
+      }
+      .scene-bubble.two {
+        width: 11px;
+        height: 11px;
+        left: 35%;
+        top: 68px;
+        animation-delay: -1.3s;
+      }
+      .scene-bubble.three {
+        width: 28px;
+        height: 28px;
+        right: 13%;
+        top: 24px;
+        animation-delay: -2.1s;
+      }
+      .scene-bubble.four {
+        width: 14px;
+        height: 14px;
+        right: 8%;
+        top: 76px;
+        animation-delay: -0.7s;
+      }
+      @keyframes bubble-rise {
+        50% {
+          transform: translateY(-9px);
+          opacity: 0.65;
+        }
+      }
+      .pod-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .pod-card {
+        min-height: 385px;
+        padding: 0 0 24px;
+        overflow: hidden;
+        color: var(--white);
+        border: 0;
+        box-shadow: none;
+      }
+      .pod-card-image {
+        position: relative;
+        width: 100%;
+        height: 155px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      .pod-card-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+      }
+      .pod-card:hover .pod-card-image img,
+      .pod-card[aria-pressed='true'] .pod-card-image img {
+        transform: scale(1.05);
+      }
+      .pod-photo-label {
+        position: absolute;
+        left: 12px;
+        bottom: 10px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        color: var(--white);
+        background: rgba(7, 31, 54, 0.8);
+        font-size: 0.67rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .pod-card-copy {
+        position: relative;
+        min-height: 200px;
+        padding: 20px 26px 0;
+        text-align: left;
+      }
+      .pod-card:nth-child(1) {
+        background: linear-gradient(150deg, #126b82, #073b56);
+      }
+      .pod-card:nth-child(2) {
+        background: linear-gradient(150deg, #6957b8, #35266e);
+      }
+      .pod-card:nth-child(3) {
+        background: linear-gradient(150deg, #ef775e, #9f3b4d);
+      }
+      .pod-card p {
+        color: rgba(255, 255, 255, 0.86);
+      }
+      .pod-card::after {
+        content: 'Tap to explore →';
+        position: absolute;
+        right: 22px;
+        bottom: 18px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+      }
+      .pod-letter {
+        display: grid;
+        place-items: center;
+        width: 54px;
+        height: 54px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: 1.55rem;
+        font-weight: 900;
+      }
+      .pod-card small {
+        display: block;
+        margin-top: 14px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .pod-quest-intro {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin: 0 0 20px;
+        padding: 15px 18px;
+        border: 2px solid #c9bfef;
+        border-radius: 16px;
+        color: #35266e;
+        background: rgba(255, 255, 255, 0.72);
+      }
+      .pod-quest-intro strong {
+        font-size: 1.05rem;
+      }
+      .quest-points {
+        flex: 0 0 auto;
+        padding: 7px 11px;
+        border-radius: 999px;
+        color: var(--ink);
+        background: var(--sun);
+        font-size: 0.8rem;
+        font-weight: 900;
+      }
+      .mystery-pod-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .mystery-pod-card {
+        overflow: hidden;
+        border: 2px solid #c9bfef;
+        border-radius: var(--radius);
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .mystery-pod-card.solved {
+        border-color: #208658;
+        box-shadow: 0 0 0 5px rgba(32, 134, 88, 0.12), var(--shadow);
+      }
+      .mystery-pod-image {
+        position: relative;
+        height: 220px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      .mystery-pod-image img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .mystery-pod-card:nth-child(2) .mystery-pod-image img {
+        object-position: 78% 82%;
+      }
+      .mystery-number,
+      .mystery-state {
+        display: inline-flex;
+        padding: 6px 9px;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .mystery-number {
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        color: var(--white);
+        background: rgba(7, 31, 54, 0.84);
+      }
+      .mystery-pod-body {
+        padding: 20px;
+      }
+      .mystery-state {
+        color: #35266e;
+        background: #eee9ff;
+      }
+      .mystery-pod-card.solved .mystery-state {
+        color: #0a4f35;
+        background: #dff8e9;
+      }
+      .mystery-pod-body h3 {
+        margin: 12px 0 8px;
+        font-size: 1.35rem;
+      }
+      .mystery-pod-body p {
+        color: var(--ink-soft);
+      }
+      .mystery-pod-audio {
+        width: 100%;
+        margin: 12px 0;
+      }
+      .mystery-guess {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px;
+        margin: 12px 0;
+      }
+      .mystery-guess button {
+        min-height: 46px;
+        border: 2px solid #bdb1e8;
+        border-radius: 12px;
+        color: var(--ink);
+        background: var(--white);
+        font-weight: 900;
+      }
+      .mystery-guess button:hover:not(:disabled) {
+        border-color: #6957b8;
+        background: #f1edff;
+      }
+      .mystery-guess button[aria-pressed='true'] {
+        color: var(--white);
+        border-color: #6957b8;
+        background: #6957b8;
+      }
+      .mystery-guess button:disabled {
+        cursor: not-allowed;
+        opacity: 0.48;
+      }
+      .submit-pod-guess {
+        width: 100%;
+      }
+      .mystery-feedback {
+        min-height: 2.8em;
+        margin: 10px 0 0;
+        font-size: 0.85rem;
+        font-weight: 800;
+      }
+      .mystery-passport {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.75fr) auto;
+        align-items: center;
+        gap: 28px;
+        margin-top: 24px;
+      }
+      .mystery-passport .stamp-row {
+        margin: 0;
+      }
+      .pod-note {
+        margin-top: 25px;
+        padding: 18px 21px;
+        border-radius: 16px;
+        color: var(--ink-soft);
+        background: #edf8f7;
+      }
+      .pod-activity {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+        gap: 24px;
+        margin-top: 26px;
+      }
+      .pod-spotlight,
+      .passport-card {
+        padding: clamp(24px, 4vw, 38px);
+        border: 2px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .pod-spotlight {
+        position: relative;
+        overflow: hidden;
+      }
+      .pod-spotlight::after {
+        content: '';
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        right: -100px;
+        top: -105px;
+        border: 28px solid var(--aqua-light);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .pod-spotlight h3,
+      .passport-card h3 {
+        margin: 8px 0;
+        font-size: clamp(1.7rem, 3vw, 2.5rem);
+      }
+      .pod-spotlight > p {
+        max-width: 680px;
+        color: var(--ink-soft);
+      }
+      .pod-sound-player {
+        display: grid;
+        grid-template-columns: auto minmax(230px, 1fr);
+        align-items: center;
+        gap: 18px;
+        margin: 22px 0;
+        padding: 17px;
+        border-radius: 18px;
+        color: var(--white);
+        background: var(--ink);
+      }
+      .pod-sound-player audio {
+        width: 100%;
+      }
+      .pod-sound-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 150px;
+        font-weight: 900;
+      }
+      .pod-pulse {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        color: var(--ink);
+        background: var(--aqua);
+      }
+      .pod-facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .pod-fact {
+        padding: 14px;
+        border-radius: 14px;
+        color: var(--ink-soft);
+        background: #eff9f8;
+        font-size: 0.9rem;
+      }
+      .pod-fact strong {
+        display: block;
+        color: var(--ink);
+      }
+      .pod-quest {
+        margin: 20px 0;
+        padding: 18px;
+        border: 2px solid #d6cef5;
+        border-radius: 18px;
+        background: #f7f4ff;
+      }
+      .pod-quest-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .pod-quest-head strong {
+        color: #35266e;
+        font-size: 1rem;
+      }
+      .pod-quest-status {
+        color: var(--ink-soft);
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+      .pod-quest h4 {
+        margin: 0 0 12px;
+        font-size: 1.08rem;
+      }
+      .pod-quest-answers {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+      .pod-quest-answer {
+        min-height: 48px;
+        padding: 10px 12px;
+        border: 2px solid #bdb1e8;
+        border-radius: 12px;
+        color: var(--ink);
+        background: var(--white);
+        font-weight: 800;
+        text-align: left;
+      }
+      .pod-quest-answer:hover {
+        border-color: #6957b8;
+        background: #eee9ff;
+      }
+      .pod-quest-answer.correct {
+        border-color: #208658;
+        background: #dff8e9;
+      }
+      .pod-quest-answer.try-again {
+        border-color: #cf704e;
+        background: #fff1e9;
+      }
+      .pod-quest-feedback {
+        min-height: 1.4em;
+        margin: 10px 0 0;
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+      .pod-mission-track {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 18px 0;
+      }
+      .pod-mission-step {
+        padding: 9px 6px;
+        border: 1px solid #517185;
+        border-radius: 10px;
+        color: #9eb8c4;
+        text-align: center;
+        font-size: 0.74rem;
+        font-weight: 900;
+      }
+      .pod-mission-step.done {
+        color: var(--ink);
+        border-color: var(--aqua);
+        background: var(--aqua);
+      }
+      .photo-detective {
+        margin-top: 25px;
+        padding: 20px 22px;
+        border: 2px solid #c9bfef;
+        border-radius: 18px;
+        color: var(--ink-soft);
+        background: #fff;
+      }
+      .photo-detective h3 {
+        margin: 0 0 6px;
+        color: var(--ink);
+      }
+      .photo-detective-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: 12px;
+      }
+      .photo-detective-feedback {
+        margin: 12px 0 0;
+        font-weight: 800;
+      }
+      .passport-card {
+        color: var(--white);
+        background: linear-gradient(150deg, var(--ink), var(--ocean-dark));
+        border-color: transparent;
+      }
+      .passport-card p {
+        color: #c9e5e5;
+      }
+      .stamp-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 11px;
+        margin: 24px 0;
+      }
+      .passport-stamp {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 1;
+        border: 2px dashed #6c8a98;
+        border-radius: 50%;
+        color: #91aab5;
+        font-size: 1.35rem;
+        font-weight: 900;
+        transition: 0.2s ease;
+      }
+      .passport-stamp.earned {
+        position: relative;
+        color: var(--ink);
+        border-style: solid;
+        border-color: var(--sun);
+        background: var(--sun);
+        transform: rotate(-7deg);
+      }
+      .passport-stamp.earned::after {
+        content: '✓';
+        position: absolute;
+        right: 9%;
+        top: 4%;
+        display: grid;
+        place-items: center;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        color: var(--white);
+        background: #208658;
+        font-size: 0.95rem;
+      }
+      .passport-card .btn {
+        width: 100%;
+      }
+      .passport-progress {
+        display: block;
+        margin-top: 12px;
+        color: var(--aqua);
+        text-align: center;
+        font-weight: 800;
+      }
+      @media (min-width: 951px) {
+        .mystery-passport.passport-card {
+          grid-template-columns: minmax(0, 1fr) 250px minmax(180px, auto);
+          gap: 22px;
+          margin-top: 16px;
+          padding: 18px 28px;
+        }
+        .mystery-passport.passport-card h3 {
+          margin: 4px 0;
+          font-size: 2rem;
+        }
+        .mystery-passport.passport-card p {
+          margin: 6px 0 0;
+          line-height: 1.4;
+        }
+        .mystery-passport .stamp-row {
+          gap: 8px;
+        }
+        .mystery-passport .passport-stamp.earned::after {
+          width: 20px;
+          height: 20px;
+          font-size: 0.78rem;
+        }
+        .mystery-passport .passport-progress {
+          margin-top: 0;
+          line-height: 1.3;
+        }
+      }
+
+      .protect-section {
+        background: #fff7e6;
+      }
+      .ally-ocean-scene {
+        position: relative;
+        height: 132px;
+        margin: -4px 0 24px;
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: radial-gradient(
+            circle at 12% 22%,
+            rgba(255, 255, 255, 0.7),
+            transparent 18%
+          ),
+          #dff4ff;
+      }
+      .ally-ocean-scene::after {
+        content: '';
+        position: absolute;
+        left: -5%;
+        right: -5%;
+        bottom: -38px;
+        height: 76px;
+        border-radius: 50% 50% 0 0;
+        background: rgba(89, 216, 206, 0.38);
+      }
+      .ally-scene-art {
+        position: absolute;
+        left: clamp(24px, 8vw, 120px);
+        top: 10px;
+        width: 230px;
+        filter: drop-shadow(0 10px 12px rgba(7, 94, 120, 0.15));
+      }
+      .ally-scene-copy {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        transform: translate(-12%, -50%);
+        color: var(--ocean-dark);
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        font-weight: 900;
+      }
+      .ally-heart {
+        position: absolute;
+        right: 10%;
+        top: 22px;
+        color: var(--coral);
+        font-size: 2.5rem;
+        animation: heartbeat 2.8s ease-in-out infinite;
+      }
+      @keyframes heartbeat {
+        50% {
+          transform: scale(1.1) rotate(3deg);
+        }
+      }
+      .action-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .action-item {
+        position: relative;
+        min-width: 0;
+      }
+      .action-card {
+        width: 100%;
+        height: 100%;
+        min-height: 520px;
+        padding-bottom: 76px;
+        box-shadow: none;
+      }
+      .action-video {
+        display: block;
+        width: 100%;
+        margin: 20px 0 16px;
+        border: 2px solid var(--line);
+        border-radius: 18px;
+        background: var(--ink);
+        aspect-ratio: 16 / 9;
+      }
+      .action-card > p:first-of-type {
+        min-height: 104px;
+      }
+      .action-card .video-note {
+        min-height: 38px;
+        margin: -5px 0 14px;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+      .action-select {
+        width: 100%;
+        margin-top: 4px;
+      }
+      .action-item:nth-child(1) .action-icon {
+        background: #dff4ff;
+      }
+      .action-item:nth-child(2) .action-icon {
+        background: #e5f7df;
+      }
+      .action-item:nth-child(3) .action-icon {
+        background: #fff0d2;
+      }
+      .action-learn {
+        position: absolute;
+        left: 28px;
+        bottom: 25px;
+        z-index: 2;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 0;
+        color: var(--ocean);
+        font-weight: 900;
+        text-underline-offset: 4px;
+      }
+      .action-learn:hover {
+        color: var(--purple);
+      }
+
+      .finish-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 28px;
+        margin-top: 28px;
+        padding: 28px 30px;
+        border-radius: var(--radius);
+        color: var(--white);
+        background: var(--ink);
+      }
+      .finish-card h3 {
+        margin: 0 0 5px;
+        font-size: 1.5rem;
+      }
+      .finish-card p {
+        margin: 0;
+        color: #c5e2e4;
+      }
+      .finish-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .finish-badge {
+        padding: 6px 10px;
+        border: 1px solid #55788a;
+        border-radius: 999px;
+        color: #b9d4dc;
+        font-size: 0.78rem;
+        font-weight: 800;
+      }
+      .finish-badge.done {
+        color: var(--ink);
+        border-color: var(--aqua);
+        background: var(--aqua);
+      }
+
+      .learn-section {
+        color: var(--white);
+        background: radial-gradient(
+            circle at 90% 10%,
+            rgba(89, 216, 206, 0.22),
+            transparent 25%
+          ),
+          var(--ink);
+      }
+      .learn-section .section-kicker {
+        color: var(--aqua);
+      }
+      .learn-section .section-head p {
+        color: #c5e2e4;
+      }
+      .learn-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .learn-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 310px;
+        padding: 24px;
+        border: 2px solid rgba(255, 255, 255, 0.14);
+        border-radius: var(--radius);
+        color: var(--ink);
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .learn-icon {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        background: var(--aqua-light);
+        font-size: 1.65rem;
+      }
+      .learn-card:nth-child(2) .learn-icon {
+        background: #fff0bc;
+      }
+      .learn-card:nth-child(3) .learn-icon {
+        background: #e3ddff;
+      }
+      .learn-card:nth-child(4) .learn-icon {
+        background: #dff4ff;
+      }
+      .learn-card h3 {
+        margin: 17px 0 6px;
+        font-size: 1.35rem;
+      }
+      .learn-card p {
+        margin: 0 0 18px;
+        color: var(--ink-soft);
+      }
+      .learn-card .btn {
+        width: 100%;
+        margin-top: auto;
+      }
+      .external-note {
+        display: block;
+        margin-top: 10px;
+        color: var(--ink-soft);
+        font-size: 0.76rem;
+        text-align: center;
+      }
+      .learn-safety {
+        margin: 24px 0 0;
+        color: #c5e2e4;
+        font-size: 0.88rem;
+        text-align: center;
+      }
+
+      .teacher-strip {
+        padding: 60px clamp(20px, 7vw, 110px);
+        color: var(--white);
+        background: var(--ocean);
+      }
+      .teacher-inner {
+        max-width: 1240px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 36px;
+      }
+      .teacher-strip h2 {
+        margin: 0 0 7px;
+        font-size: clamp(1.9rem, 3vw, 3rem);
+      }
+      .teacher-strip p {
+        max-width: 700px;
+        margin: 0;
+        color: #d5f3f1;
+      }
+      .teacher-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      footer {
+        padding: 34px clamp(20px, 7vw, 110px);
+        color: #c4dcdf;
+        background: #041522;
+      }
+      .footer-inner {
+        max-width: 1240px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+      }
+      footer p {
+        max-width: 760px;
+        margin: 0;
+        font-size: 0.86rem;
+      }
+      footer a {
+        color: var(--aqua);
+      }
+
+      dialog {
+        width: min(760px, calc(100% - 30px));
+        padding: 0;
+        border: 0;
+        border-radius: 28px;
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+      }
+      dialog::backdrop {
+        background: rgba(3, 20, 32, 0.78);
+        backdrop-filter: blur(4px);
+      }
+      .dialog-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 23px;
+        color: var(--white);
+        background: var(--ink);
+      }
+      .dialog-head h2 {
+        margin: 0;
+        font-size: 1.25rem;
+      }
+      .dialog-close {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 0;
+        border-radius: 50%;
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.12);
+        font-size: 1.4rem;
+      }
+      .dialog-body {
+        padding: 24px;
+        background: #eefaf8;
+      }
+      .certificate {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        min-height: 650px;
+        padding: 52px 56px 70px;
+        border: 10px double var(--ocean);
+        background: radial-gradient(
+            circle at 10% 10%,
+            rgba(89, 216, 206, 0.28),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 90% 90%,
+            rgba(255, 202, 100, 0.32),
+            transparent 32%
+          ),
+          linear-gradient(180deg, #f4fffe 0%, var(--white) 48%, #fff9eb 100%);
+        box-shadow: inset 0 0 0 4px rgba(89, 216, 206, 0.22);
+        print-color-adjust: exact;
+        text-align: center;
+        -webkit-print-color-adjust: exact;
+      }
+      .certificate::before {
+        content: 'ORCASOUND';
+        display: block;
+        padding: 8px 18px;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--ocean);
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+      }
+      .certificate::after {
+        position: absolute;
+        right: -5%;
+        bottom: -34px;
+        left: -5%;
+        z-index: -1;
+        height: 105px;
+        border-radius: 50% 50% 0 0;
+        background: linear-gradient(
+          180deg,
+          rgba(89, 216, 206, 0.18),
+          rgba(10, 101, 126, 0.3)
+        );
+        content: '';
+      }
+      .certificate-orca {
+        flex-shrink: 0;
+        display: block;
+        width: 160px;
+        height: 160px;
+        aspect-ratio: 1;
+        margin: 18px auto 0;
+        border: 7px solid rgba(10, 101, 126, 0.18);
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 67% 73%;
+        box-shadow: 0 8px 20px rgba(8, 45, 68, 0.16);
+      }
+      .certificate h3 {
+        margin: 16px 0 8px;
+        color: var(--ink);
+        font-size: clamp(2.6rem, 6vw, 4rem);
+        line-height: 1;
+      }
+      .certificate .cert-intro,
+      .certificate .cert-achievement {
+        margin: 8px auto;
+        font-size: 1.2rem;
+        line-height: 1.5;
+      }
+      .certificate .cert-achievement {
+        max-width: 620px;
+      }
+      .certificate .cert-name {
+        min-width: 0;
+        max-width: 100%;
+        margin: 14px auto 8px;
+        color: var(--ocean);
+        font-size: clamp(2.25rem, 5vw, 3rem);
+        font-weight: 900;
+        line-height: 1.1;
+        overflow-wrap: anywhere;
+      }
+      .certificate .cert-pod {
+        margin: 10px auto;
+        padding: 8px 20px;
+        border-radius: 999px;
+        color: #503600;
+        background: var(--sun);
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+      .certificate .cert-action {
+        max-width: 620px;
+        margin: 16px auto;
+        padding: 14px 20px;
+        border: 2px solid rgba(10, 101, 126, 0.16);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.78);
+        font-size: 1.15rem;
+        font-weight: 700;
+        line-height: 1.45;
+      }
+      .cert-badges {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 10px auto 14px;
+      }
+      .cert-badges span {
+        padding: 8px 16px;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--ocean);
+        font-size: 0.95rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+      }
+      .cert-badges span:nth-child(2) {
+        color: #17323d;
+        background: var(--aqua);
+      }
+      .cert-badges span:nth-child(3) {
+        color: #503600;
+        background: var(--sun);
+      }
+      .certificate .cert-motto {
+        color: var(--ocean);
+        font-size: 1.05rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+      }
+      .certificate-form {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .certificate-form label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+      .certificate-form input {
+        min-height: 48px;
+        padding: 10px 14px;
+        border: 2px solid var(--line);
+        border-radius: 12px;
+      }
+      .privacy-copy {
+        margin: 7px 0 18px;
+        color: var(--ink-soft);
+        font-size: 0.78rem;
+      }
+
+      .toast {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 90;
+        max-width: 360px;
+        padding: 14px 17px;
+        border-radius: 14px;
+        color: var(--white);
+        background: var(--ink);
+        box-shadow: var(--shadow);
+        opacity: 0;
+        transform: translateY(15px);
+        pointer-events: none;
+        transition: 0.2s ease;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 950px) {
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+        }
+        .orca-scene {
+          min-height: 330px;
+        }
+        .audio-lab {
+          grid-template-columns: 1fr;
+        }
+        .explorer-guide {
+          grid-template-columns: 1fr;
+        }
+        .pod-grid,
+        .mystery-pod-grid,
+        .action-grid {
+          grid-template-columns: 1fr;
+        }
+        .action-card > p:first-of-type {
+          min-height: 0;
+        }
+        .pod-activity {
+          grid-template-columns: 1fr;
+        }
+        .mystery-passport {
+          grid-template-columns: 1fr;
+        }
+        .learn-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .teacher-inner,
+        .finish-card {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 680px) {
+        .site-header {
+          display: none;
+        }
+        .hero {
+          padding: 46px 20px 100px;
+        }
+        .hero h1 {
+          width: calc(100vw - 40px);
+          max-width: 350px;
+          font-size: clamp(2.45rem, 11vw, 2.8rem);
+          overflow-wrap: break-word;
+        }
+        .hero-copy {
+          width: calc(100vw - 40px);
+          max-width: 350px;
+          overflow: hidden;
+        }
+        .hero-copy > p {
+          max-width: 100%;
+          font-size: 1rem;
+        }
+        .hero-actions {
+          width: 100%;
+        }
+        .hero-actions .btn {
+          flex: 1 1 150px;
+          padding-inline: 14px;
+        }
+        .hero-copy,
+        .orca-scene,
+        .mission-main,
+        .player-card {
+          min-width: 0;
+        }
+        .orca-scene {
+          min-height: 260px;
+        }
+        .sound-ring {
+          width: 100px;
+          height: 100px;
+          font-size: 0.7rem;
+        }
+        .adventure-tracker {
+          margin-top: -42px;
+          padding: 0 18px;
+        }
+        .tracker-shell {
+          grid-template-columns: 1fr;
+        }
+        .tracker-step {
+          padding: 12px 15px;
+        }
+        .tracker-step + .tracker-step {
+          border-left: 0;
+          border-top: 2px solid var(--line);
+        }
+        .tracker-icon {
+          width: 36px;
+          height: 36px;
+          flex-basis: 36px;
+        }
+        .tracker-step small {
+          display: none;
+        }
+        .tracker-art {
+          width: 60px;
+          height: 40px;
+          flex-basis: 60px;
+        }
+        .section {
+          padding: 65px 18px;
+        }
+        .section-head {
+          display: block;
+        }
+        .section-head p {
+          margin-top: 15px;
+        }
+        .mode-grid,
+        .answers {
+          grid-template-columns: 1fr;
+        }
+        .mode-card {
+          min-height: 210px;
+        }
+        .steps li span:last-child {
+          display: none;
+        }
+        .mission-main {
+          padding: 24px 18px 32px;
+        }
+        .mission-main {
+          min-height: 980px;
+        }
+        .spectrogram {
+          min-height: 190px;
+        }
+        .pod-sound-player,
+        .pod-facts,
+        .pod-quest-answers {
+          grid-template-columns: 1fr;
+        }
+        .pod-quest-intro {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .pod-ocean-scene {
+          height: 108px;
+        }
+        .pod-scene-orca {
+          left: 15px;
+          top: 24px;
+          width: 125px;
+        }
+        .pod-scene-copy {
+          left: 47%;
+          transform: translate(0, -50%);
+          font-size: 0.88rem;
+        }
+        .scene-bubble.one {
+          left: 38%;
+        }
+        .scene-bubble.two {
+          left: 43%;
+        }
+        .ally-ocean-scene {
+          height: 108px;
+        }
+        .ally-scene-art {
+          left: 8px;
+          top: 18px;
+          width: 150px;
+        }
+        .ally-scene-copy {
+          left: 47%;
+          transform: translate(0, -50%);
+          font-size: 0.88rem;
+        }
+        .ally-heart {
+          right: 5%;
+          top: 10px;
+          font-size: 1.7rem;
+        }
+        .learn-grid {
+          grid-template-columns: 1fr;
+        }
+        .learn-card {
+          min-height: 0;
+        }
+        .finish-card {
+          padding: 24px 20px;
+        }
+        .teacher-strip {
+          padding: 48px 18px;
+        }
+        .footer-inner {
+          display: block;
+        }
+        .certificate {
+          padding: 35px 20px;
+        }
+        .certificate-form {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+      body.option-b .hero,
+      body.option-b .adventure-tracker,
+      body.option-b #choose-mode,
+      body.option-b .learn-section,
+      body.option-b .teacher-strip,
+      body.option-b footer {
+        display: none;
+      }
+      body.option-b main {
+        min-height: calc(100vh - 82px);
+      }
+      body.option-b-welcome .hero {
+        display: grid;
+        min-height: calc(100vh - 74px);
+      }
+      body.option-b-welcome .guided-progress,
+      body.option-b-welcome main {
+        display: none;
+      }
+      .welcome-steps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 22px 0 0;
+      }
+      .welcome-steps span {
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 999px;
+        color: var(--white);
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+      .guided-progress {
+        position: sticky;
+        z-index: 20;
+        top: 74px;
+        padding: 14px 22px;
+        border-bottom: 1px solid #cce8ea;
+        background: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(12px);
+      }
+      .guided-progress-inner {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .guided-step {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        min-height: 54px;
+        padding: 9px 12px;
+        border: 2px solid #b9dde0;
+        border-radius: 16px;
+        color: var(--ink);
+        background: var(--white);
+        font: inherit;
+        font-weight: 800;
+        text-align: left;
+        cursor: pointer;
+      }
+      .guided-step-number {
+        display: grid;
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--ocean);
+      }
+      .guided-step[aria-current='step'] {
+        border-color: var(--coral);
+        background: #fff4ef;
+        box-shadow: 0 0 0 3px rgba(255, 130, 110, 0.18);
+      }
+      .guided-step.done .guided-step-number {
+        color: var(--ink);
+        background: var(--aqua);
+      }
+      .guided-step:disabled {
+        color: #71808d;
+        background: #eef3f4;
+        cursor: not-allowed;
+        opacity: 0.72;
+      }
+      .guided-stage[hidden] {
+        display: none !important;
+      }
+      body.guided-certificate #protect-stage .section-head,
+      body.guided-certificate #protect-stage .ally-ocean-scene,
+      body.guided-certificate #protect-stage .action-grid {
+        display: none;
+      }
+      body.option-b:not(.guided-certificate) #protect-stage .finish-card {
+        display: none;
+      }
+      body.guided-certificate #protect-stage {
+        min-height: calc(100vh - 160px);
+        padding-top: 80px;
+      }
+      .guided-controls {
+        position: sticky;
+        z-index: 15;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 14px max(20px, calc((100vw - 1120px) / 2));
+        border-top: 1px solid #cce8ea;
+        background: rgba(255, 255, 255, 0.97);
+        box-shadow: 0 -8px 25px rgba(5, 56, 78, 0.09);
+      }
+      .guided-next-message {
+        align-self: center;
+        margin: 0;
+        color: var(--ink-soft);
+        font-weight: 700;
+        text-align: center;
+      }
+      .word-help-button {
+        border: 2px solid var(--aqua);
+        color: var(--white);
+        background: transparent;
+      }
+      .glossary-intro {
+        margin-top: 0;
+        color: var(--ink-soft);
+      }
+      .glossary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .glossary-term {
+        padding: 16px;
+        border: 2px solid #cce8ea;
+        border-radius: 16px;
+        color: var(--ink);
+        background: #f6fcfc;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+      }
+      .glossary-term strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ocean-dark);
+        font-size: 1.05rem;
+      }
+      .glossary-term span {
+        display: none;
+        color: var(--ink-soft);
+      }
+      .glossary-term[aria-expanded='true'] {
+        border-color: var(--aqua);
+        background: var(--aqua-light);
+      }
+      .glossary-term[aria-expanded='true'] span {
+        display: block;
+      }
+      @media (max-width: 760px) {
+        body.option-b .site-header {
+          display: flex;
+          padding: 10px 14px;
+        }
+        body.option-b .header-actions {
+          display: flex;
+        }
+        body.option-b .header-actions .quiet-note {
+          display: none;
+        }
+        body.option-b .brand-label {
+          font-size: 0.88rem;
+        }
+        body.option-b .word-help-button {
+          padding: 8px 12px;
+        }
+        .guided-progress {
+          top: 68px;
+          padding: 10px;
+          overflow-x: auto;
+        }
+        .guided-progress-inner {
+          grid-template-columns: repeat(4, minmax(135px, 1fr));
+          width: max-content;
+          min-width: 100%;
+        }
+        .guided-step {
+          min-height: 48px;
+          font-size: 0.86rem;
+        }
+        .guided-controls {
+          padding: 12px;
+        }
+        .guided-next-message {
+          display: none;
+        }
+        .glossary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media print {
+        @page {
+          size: letter portrait;
+          margin: 0.4in;
+        }
+        html,
+        body {
+          width: auto;
+          height: auto;
+          margin: 0;
+          background: white;
+        }
+        body > :not(#certificate-dialog) {
+          display: none !important;
+        }
+        dialog[open] {
+          position: static;
+          display: block;
+          width: auto;
+          max-width: none;
+          margin: 0;
+          padding: 0;
+          overflow: visible;
+          border: 0;
+          box-shadow: none;
+        }
+        .dialog-head,
+        .certificate-form,
+        .privacy-copy,
+        .dialog-actions {
+          display: none !important;
+        }
+        .dialog-body {
+          padding: 0;
+          background: white;
+        }
+        #certificate-dialog::backdrop {
+          background: transparent;
+          backdrop-filter: none;
+        }
+        .certificate {
+          box-sizing: border-box;
+          min-height: 0;
+          height: 9.5in;
+          padding-top: 36px;
+          padding-bottom: 48px;
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        .certificate-orca {
+          width: 130px;
+          height: 130px;
+          margin-top: 8px;
+        }
+        .certificate h3 {
+          margin: 8px 0 4px;
+          font-size: 3.2rem;
+        }
+        .certificate .cert-intro,
+        .certificate .cert-achievement {
+          margin: 4px auto;
+          font-size: 1.05rem;
+        }
+        .certificate .cert-name {
+          margin: 6px auto 4px;
+          font-size: 2.3rem;
+        }
+        .certificate .cert-pod {
+          margin: 6px auto;
+          padding: 6px 16px;
+        }
+        .certificate .cert-action {
+          margin: 8px auto;
+          padding: 10px 16px;
+          font-size: 1rem;
+        }
+        .cert-badges {
+          margin: 6px auto 8px;
+        }
+        .cert-badges span {
+          padding: 6px 14px;
+        }
+        .certificate .cert-motto {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="option-b option-b-welcome">
+    <a class="skip-link" href="#main">Skip to the adventure</a>
+
+    <header class="site-header">
+      <a
+        id="option-b-home"
+        class="brand"
+        href="#top"
+        aria-label="Return to the Orcasound Young Explorers title page"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 60 60" role="img">
+            <path
+              fill="currentColor"
+              d="M8 31c8-16 26-20 43-9-7 1-9 6-10 12-7 10-21 13-33-3Z"
+            />
+            <path fill="#fff" d="M20 29c8-4 15-3 21 2-7 8-15 9-21-2Z" />
+            <circle cx="42" cy="23" r="2.5" fill="#fff" />
+          </svg>
+        </span>
+        <span class="brand-label"
+          >Orcasound <strong>Young Explorers</strong></span
+        >
+      </a>
+      <div class="header-actions">
+        <span class="quiet-note"
+          ><span aria-hidden="true">✨</span> Option B · Guided adventure</span
+        >
+        <button
+          id="open-glossary"
+          class="btn btn-small word-help-button"
+          type="button"
+        >
+          Word Help
+        </button>
+      </div>
+    </header>
+
+    <nav class="guided-progress" aria-label="Guided adventure steps">
+      <div class="guided-progress-inner">
+        <button class="guided-step" type="button" data-guided-step="1">
+          <span class="guided-step-number">1</span>
+          <span>Listen</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="2" disabled>
+          <span class="guided-step-number">2</span>
+          <span>Match Pods</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="3" disabled>
+          <span class="guided-step-number">3</span>
+          <span>Help Orcas</span>
+        </button>
+        <button class="guided-step" type="button" data-guided-step="4" disabled>
+          <span class="guided-step-number">4</span>
+          <span>Certificate</span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="top" class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Orcasound Young Explorers · Option B</span>
+        <h1>Ready for an <span>orca adventure?</span></h1>
+        <p>
+          Listen to real orca calls, match three orca families, choose a way to
+          help, and earn your Orca Ally certificate.
+        </p>
+        <div class="welcome-steps" aria-label="Four adventure steps">
+          <span>1. Listen</span>
+          <span>2. Match Pods</span>
+          <span>3. Help Orcas</span>
+          <span>4. Certificate</span>
+        </div>
+        <div class="hero-actions">
+          <button
+            id="start-guided-adventure"
+            class="btn btn-primary"
+            type="button"
+          >
+            <span aria-hidden="true">▶</span> Start the adventure
+          </button>
+          <button id="welcome-word-help" class="btn btn-outline" type="button">
+            What do these words mean?
+          </button>
+          >
+        </div>
+      </div>
+      <div
+        class="orca-scene"
+        aria-label="Illustration of an orca swimming through underwater sound waves"
+      >
+        <span class="bubble one" aria-hidden="true"></span>
+        <span class="bubble two" aria-hidden="true"></span>
+        <span class="bubble three" aria-hidden="true"></span>
+        <svg class="orca-art" viewBox="0 0 700 420" aria-hidden="true">
+          <path
+            fill="rgba(255,255,255,.13)"
+            d="M45 276c91-99 207-146 347-140 102 4 178 43 229 113-69-28-134-26-193 8-107 61-239 68-383 19Z"
+          />
+          <path
+            fill="#071f36"
+            d="M93 254c97-97 219-128 367-93 50 12 93 33 130 64-43 2-77 22-101 60-68 84-185 98-351 44-30 24-67 31-111 21 28-17 50-39 66-67-8-9-8-19 0-29Z"
+          />
+          <path
+            fill="#fff"
+            d="M208 258c83-51 180-56 290-15-44 7-79 31-104 72-73 40-147 27-222-38l36-19Z"
+          />
+          <path
+            fill="#fff"
+            d="M466 191c35 3 62 13 82 30-29 2-52 15-69 39-15-19-19-42-13-69Z"
+          />
+          <path
+            fill="#071f36"
+            d="M310 174c14-66 50-111 108-135 4 57-13 105-51 145l-57-10Z"
+          />
+          <path
+            fill="#071f36"
+            d="M287 315c11 52 3 90-25 115-22-42-28-81-18-116l43 1Z"
+          />
+          <circle cx="535" cy="212" r="5" fill="#fff" />
+        </svg>
+        <div class="sound-ring">
+          <span>8 ocean ears<br />listen nearby</span>
+        </div>
+      </div>
+    </div>
+
+    <main id="main">
+      <div
+        class="adventure-tracker"
+        role="group"
+        aria-label="Adventure progress"
+      >
+        <div class="tracker-shell">
+          <div class="tracker-step active" data-tracker="quiz">
+            <span class="tracker-icon" aria-hidden="true">1</span>
+            <span
+              ><strong>Hear</strong><small>Solve the sound mystery</small></span
+            >
+            <svg class="tracker-art" viewBox="0 0 80 52" aria-hidden="true">
+              <path
+                class="art-ink"
+                d="M7 29c10-12 24-15 39-9 6 2 11 6 16 10-8 0-13 3-17 9-11 8-24 7-39-3 4-2 7-5 9-8-3-1-6-1-8 1Z"
+              />
+              <path
+                fill="#fff"
+                d="M22 29c9-5 19-5 29 0-5 1-9 4-12 8-7 3-14 1-21-5l4-3Z"
+              />
+              <path
+                class="art-ink"
+                d="M31 20c2-8 6-13 13-16 1 7-1 13-6 18l-7-2Z"
+              />
+              <path
+                class="art-line"
+                d="M57 17c5 4 8 9 8 15M64 11c7 6 11 13 11 21"
+              />
+            </svg>
+          </div>
+          <div class="tracker-step" data-tracker="pods">
+            <span class="tracker-icon" aria-hidden="true">2</span>
+            <span
+              ><strong>Meet</strong
+              ><small>Collect three pod stamps</small></span
+            >
+            <svg class="tracker-art" viewBox="0 0 80 52" aria-hidden="true">
+              <path
+                class="art-ocean"
+                d="M3 21c8-8 17-10 27-6 5 2 8 4 11 8-7 0-11 3-14 7-8 4-16 2-25-5 3-1 5-2 7-4-2-1-4-1-6 0Z"
+              />
+              <path
+                class="art-coral"
+                d="M31 35c8-8 17-10 27-6 5 2 8 4 11 8-7 0-11 3-14 7-8 4-16 2-25-5 3-1 5-2 7-4-2-1-4-1-6 0Z"
+              />
+              <path
+                fill="#6957b8"
+                d="M41 11c8-8 17-10 27-6 5 2 8 4 11 8-7 0-11 3-14 7-8 4-16 2-25-5 3-1 5-2 7-4-2-1-4-1-6 0Z"
+              />
+              <circle cx="18" cy="20" r="1.5" fill="#fff" />
+              <circle cx="56" cy="10" r="1.5" fill="#fff" />
+              <circle cx="46" cy="34" r="1.5" fill="#fff" />
+            </svg>
+          </div>
+          <div class="tracker-step" data-tracker="action">
+            <span class="tracker-icon" aria-hidden="true">3</span>
+            <span
+              ><strong>Protect</strong
+              ><small>Choose an Orca Ally action</small></span
+            >
+            <svg class="tracker-art" viewBox="0 0 80 52" aria-hidden="true">
+              <circle class="art-ocean" cx="38" cy="27" r="22" />
+              <path
+                class="art-aqua"
+                d="M19 24c7-2 11 0 14 5 4-5 9-7 16-5 1 5-1 9-5 12-8 5-16 5-23 0-3-3-4-7-2-12Z"
+              />
+              <path
+                class="art-sun"
+                d="M58 5c3-5 10-4 11 2 2-6 10-6 12-1 3 7-8 13-12 17-4-4-14-11-11-18Z"
+                transform="translate(-5 3) scale(.72)"
+              />
+              <path
+                fill="#fff"
+                d="M27 14c4-3 8-3 11 0-2 3-5 5-9 4l-2-4ZM43 34c4-3 9-3 13 0-3 4-7 5-11 3l-2-3Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <section id="choose-mode" class="section" aria-labelledby="mode-title">
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">Choose your path</span>
+              <h2 id="mode-title">How do you want to explore?</h2>
+            </div>
+            <p>
+              Ocean Explorers try three short activities. Junior Bioacousticians
+              explore five detailed science questions. Choose the path that
+              feels right. We never ask for your age.
+            </p>
+          </div>
+          <div class="mode-grid">
+            <button
+              class="mode-card"
+              type="button"
+              aria-pressed="true"
+              data-mode="explorer"
+            >
+              <span class="mode-check" aria-hidden="true">✓</span>
+              <span class="mode-icon" aria-hidden="true">🌊</span>
+              <h3>Ocean Explorer</h3>
+              <p>Three short listening games with one simple idea at a time.</p>
+              <strong>Great for grades 3-5 · about 3 minutes</strong>
+            </button>
+            <button
+              class="mode-card"
+              type="button"
+              aria-pressed="false"
+              data-mode="scientist"
+            >
+              <span class="mode-check" aria-hidden="true">✓</span>
+              <span class="mode-icon" aria-hidden="true">🔬</span>
+              <h3>Junior Bioacoustician</h3>
+              <p>
+                Read a spectrogram, compare evidence, and learn how AI and
+                experts work together.
+              </p>
+              <strong>Great for grades 6-8 · about 8 minutes</strong>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="mission"
+        class="section mission-section guided-stage"
+        data-guided-stage="1"
+        aria-labelledby="mission-title"
+      >
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <span class="section-kicker">Mission 01</span>
+              <h2 id="mission-title">Orca Sound Detective</h2>
+            </div>
+            <p>
+              Scientists listen carefully, record what they notice, and stay
+              comfortable saying "not sure."
+            </p>
+          </div>
+
+          <div class="mission-shell explorer-mode">
+            <div class="mission-main">
+              <aside
+                class="quiz-briefing"
+                aria-labelledby="quiz-briefing-title"
+              >
+                <h4 id="quiz-briefing-title">Before you begin</h4>
+                <ul>
+                  <li>
+                    <strong>Explore your way:</strong> Listen to the recording,
+                    study the sound picture, or use both.
+                  </li>
+                  <li>
+                    <strong>About the clip:</strong> It is a historical
+                    Orcasound recording from the Salish Sea that was reviewed by
+                    an expert.
+                  </li>
+                  <li>
+                    <strong>What you will study:</strong> Southern Resident
+                    calls. This activity does not teach Bigg’s killer whale
+                    calls.
+                  </li>
+                </ul>
+              </aside>
+
+              <div class="challenge-meter" aria-label="Question difficulty">
+                <span id="challenge-label">Warm-up</span>
+                <span class="challenge-dots" aria-hidden="true">
+                  <span class="challenge-dot current"></span>
+                  <span class="challenge-dot"></span>
+                  <span class="challenge-dot"></span>
+                  <span class="challenge-dot"></span>
+                  <span class="challenge-dot"></span>
+                </span>
+              </div>
+              <span id="question-count" class="section-kicker"
+                >Question 1 of 5 · Listen closely</span
+              >
+              <h3 id="question-title" tabindex="-1">What do you notice?</h3>
+              <p id="mission-instruction">
+                Put on headphones at a comfortable volume. Play the clip, then
+                choose your best observation.
+              </p>
+              <div class="explorer-guide" aria-label="Three activity steps">
+                <span>1. Listen</span>
+                <span>2. Pick one answer</span>
+                <span>3. Learn why</span>
+              </div>
+
+              <div id="audio-lab" class="audio-lab">
+                <div class="player-card">
+                  <strong id="clip-label"
+                    >Mystery clip #01 · Orca call S01</strong
+                  >
+                  <p id="clip-note" class="headphone-note">
+                    Three-second classroom clip from a real Orcasound recording.
+                    Short calls use neutral padding and are never repeated.
+                    Nothing will autoplay.
+                  </p>
+                  <audio
+                    id="mystery-audio"
+                    controls
+                    preload="metadata"
+                    aria-labelledby="clip-label"
+                  >
+                    <source
+                      id="mystery-audio-source"
+                      src="audio/FO-S01-3s.wav"
+                      type="audio/wav"
+                    />
+                    Your browser does not support audio. The sound is a short,
+                    patterned orca call.
+                  </audio>
+                </div>
+                <figure class="spectrogram">
+                  <img
+                    id="spectrogram-image"
+                    data-app-image="callcatalog/FO-S01.png"
+                    src="/images/callcatalog/FO-S01.png"
+                    alt="Spectrogram of Southern Resident call S01 showing its frequency pattern over time"
+                  />
+                  <figcaption id="spectrogram-caption">
+                    Visual evidence · S01 spectrogram
+                  </figcaption>
+                </figure>
+              </div>
+
+              <fieldset style="border: 0; padding: 0; margin: 0">
+                <legend
+                  id="question-prompt"
+                  style="font-weight: 900; font-size: 1.05rem"
+                >
+                  What is your best observation?
+                </legend>
+                <div id="answers" class="answers"></div>
+              </fieldset>
+
+              <div class="mission-actions">
+                <button
+                  id="reveal-button"
+                  class="btn btn-secondary"
+                  type="button"
+                  disabled
+                >
+                  Check my answer
+                </button>
+                <button id="hint-button" class="btn btn-outline" type="button">
+                  <span aria-hidden="true">💡</span> Need a clue?
+                </button>
+              </div>
+
+              <div id="reveal" class="reveal" role="status" aria-live="polite">
+                <h4 id="reveal-title"></h4>
+                <p id="reveal-copy"></p>
+                <p id="reveal-advanced" class="advanced-copy" hidden></p>
+              </div>
+              <div class="next-question-row">
+                <button
+                  id="next-question-button"
+                  class="btn btn-primary"
+                  type="button"
+                  hidden
+                >
+                  Next question
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="pods-stage"
+        class="section pods-section guided-stage"
+        data-guided-stage="2"
+        aria-labelledby="pods-title"
+        hidden
+      >
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <span
+                class="section-kicker"
+                data-explorer-text="Pod listening game"
+                data-scientist-text="Meet the community"
+                >Pod listening game</span
+              >
+              <h2
+                id="pods-title"
+                data-explorer-text="Which pods could use these calls?"
+                data-scientist-text="Can you map the mystery calls?"
+              >
+                Which pods could use these calls?
+              </h2>
+            </div>
+            <p
+              data-explorer-text="Press play, read the clue, and choose a pod that could use the call. Some calls are shared."
+              data-scientist-text="Hear each three-second call and map it to a documented pod repertoire. More than one pod may use a call."
+            >
+              Press play, read the clue, and choose a pod that could use the
+              call. Some calls are shared.
+            </p>
+          </div>
+
+          <div class="pod-ocean-scene" aria-hidden="true">
+            <svg class="pod-scene-orca" viewBox="0 0 220 100">
+              <path
+                fill="#071f36"
+                d="M8 57c28-31 65-40 111-29 18 4 34 12 47 23-15 1-27 8-35 21-22 25-58 29-108 12-9 8-18 10-28 7 9-6 16-13 21-21-5-4-7-8-8-13Z"
+              />
+              <path
+                fill="#fff"
+                d="M46 58c25-15 54-17 87-5-13 3-23 10-30 22-22 11-44 7-67-11l10-6Z"
+              />
+              <path
+                fill="#fff"
+                d="M124 38c11 1 20 4 26 9-9 1-16 5-21 12-5-6-6-13-5-21Z"
+              />
+              <path
+                fill="#071f36"
+                d="M76 31c5-18 15-29 31-36 1 16-4 29-14 40l-17-4Z"
+              />
+              <circle cx="146" cy="43" r="2" fill="#fff" />
+            </svg>
+            <strong
+              class="pod-scene-copy"
+              data-explorer-text="Three orca families. Some calls are shared."
+              data-scientist-text="Three pods. Shared repertoires. One Salish Sea."
+              >Three orca families. Some calls are shared.</strong
+            >
+            <span class="scene-bubble one"></span>
+            <span class="scene-bubble two"></span>
+            <span class="scene-bubble three"></span>
+            <span class="scene-bubble four"></span>
+          </div>
+
+          <div class="pod-quest-intro">
+            <div>
+              <strong
+                data-explorer-text="How to play"
+                data-scientist-text="Pod Call Quest"
+                >How to play</strong
+              ><br />
+              <span
+                data-explorer-text="1. Play the sound. 2. Read the clue. 3. Pick a pod that could use it."
+                data-scientist-text="Choose one pod whose documented repertoire includes the call. The answer explains when a call is shared."
+                >1. Play the sound. 2. Read the clue. 3. Pick a pod that could
+                use it.</span
+              >
+            </div>
+            <span
+              class="quest-points"
+              data-explorer-text="3 sounds · 3 badges"
+              data-scientist-text="3 mysteries · 3 badges"
+              >3 sounds · 3 badges</span
+            >
+          </div>
+
+          <div class="mystery-pod-grid">
+            <article
+              class="mystery-pod-card"
+              data-call-id="S16"
+              data-valid-pods="K Pod|L Pod"
+            >
+              <div class="mystery-pod-image">
+                <img
+                  data-app-image="srkw2-3.jpg"
+                  src="/images/srkw2-3.jpg"
+                  alt="Orca swimming at the surface with its tail and dorsal fin visible"
+                />
+                <span class="mystery-number">Mystery call 1</span>
+              </div>
+              <div class="mystery-pod-body">
+                <span class="mystery-state">Listen first</span>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <p>
+                  <strong
+                    data-explorer-text="Clue:"
+                    data-scientist-text="Field note:"
+                    >Clue:</strong
+                  >
+                  <span
+                    data-explorer-text="This pod is the smallest family. Its call can sound a little like a kitten."
+                    data-scientist-text="This is the smallest Southern Resident pod. Many listeners say its familiar call sounds a little like a kitten."
+                    >This pod is the smallest family. Its call can sound a
+                    little like a kitten.</span
+                  >
+                </p>
+                <audio
+                  class="mystery-pod-audio"
+                  controls
+                  preload="metadata"
+                  aria-label="Mystery call 1, S16, three-second recording"
+                >
+                  <source src="audio/FO-S16-3s.wav" type="audio/wav" />
+                </audio>
+                <div class="mystery-guess" aria-label="Mystery call 1 choices">
+                  <button type="button" data-guess="J Pod" disabled>
+                    J Pod
+                  </button>
+                  <button type="button" data-guess="K Pod" disabled>
+                    K Pod
+                  </button>
+                  <button type="button" data-guess="L Pod" disabled>
+                    L Pod
+                  </button>
+                </div>
+                <button
+                  class="btn btn-primary submit-pod-guess"
+                  type="button"
+                  disabled
+                >
+                  Play the sound first
+                </button>
+                <p
+                  class="mystery-feedback"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  Step 1: Play the call.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="mystery-pod-card"
+              data-call-id="S19"
+              data-valid-pods="L Pod"
+            >
+              <div class="mystery-pod-image">
+                <img
+                  data-app-image="orca-spyhop.JPG"
+                  src="/images/orca-spyhop.JPG"
+                  alt="Orca spyhopping above calm water with mountains in the distance"
+                />
+                <span class="mystery-number">Mystery call 2</span>
+              </div>
+              <div class="mystery-pod-body">
+                <span class="mystery-state">Listen first</span>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <p>
+                  <strong
+                    data-explorer-text="Clue:"
+                    data-scientist-text="Field note:"
+                    >Clue:</strong
+                  >
+                  <span
+                    data-explorer-text="This pod is the biggest family. Its members travel far."
+                    data-scientist-text="This is the largest Southern Resident pod, and its family members are wide-ranging travelers."
+                    >This pod is the biggest family. Its members travel
+                    far.</span
+                  >
+                </p>
+                <audio
+                  class="mystery-pod-audio"
+                  controls
+                  preload="metadata"
+                  aria-label="Mystery call 2, S19, three-second recording"
+                >
+                  <source src="audio/FO-S19-3s.wav" type="audio/wav" />
+                </audio>
+                <div class="mystery-guess" aria-label="Mystery call 2 choices">
+                  <button type="button" data-guess="J Pod" disabled>
+                    J Pod
+                  </button>
+                  <button type="button" data-guess="K Pod" disabled>
+                    K Pod
+                  </button>
+                  <button type="button" data-guess="L Pod" disabled>
+                    L Pod
+                  </button>
+                </div>
+                <button
+                  class="btn btn-primary submit-pod-guess"
+                  type="button"
+                  disabled
+                >
+                  Play the sound first
+                </button>
+                <p
+                  class="mystery-feedback"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  Step 1: Play the call.
+                </p>
+              </div>
+            </article>
+
+            <article
+              class="mystery-pod-card"
+              data-call-id="S03"
+              data-valid-pods="J Pod"
+            >
+              <div class="mystery-pod-image">
+                <img
+                  data-app-image="orca-from-above.png"
+                  src="/images/orca-from-above.png"
+                  alt="Orca seen from above, showing its black-and-white body pattern"
+                />
+                <span class="mystery-number">Mystery call 3</span>
+              </div>
+              <div class="mystery-pod-body">
+                <span class="mystery-state">Listen first</span>
+                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <p>
+                  <strong
+                    data-explorer-text="Clue:"
+                    data-scientist-text="Field note:"
+                    >Clue:</strong
+                  >
+                  <span
+                    data-explorer-text="This pod is often heard in the Salish Sea. Listen for its short, song-like call."
+                    data-scientist-text="This family is often heard in the Salish Sea throughout the year. Listen for a short tonal pattern."
+                    >This pod is often heard in the Salish Sea. Listen for its
+                    short, song-like call.</span
+                  >
+                </p>
+                <audio
+                  class="mystery-pod-audio"
+                  controls
+                  preload="metadata"
+                  aria-label="Mystery call 3, S03, three-second recording"
+                >
+                  <source src="audio/FO-S03-3s.wav" type="audio/wav" />
+                </audio>
+                <div class="mystery-guess" aria-label="Mystery call 3 choices">
+                  <button type="button" data-guess="J Pod" disabled>
+                    J Pod
+                  </button>
+                  <button type="button" data-guess="K Pod" disabled>
+                    K Pod
+                  </button>
+                  <button type="button" data-guess="L Pod" disabled>
+                    L Pod
+                  </button>
+                </div>
+                <button
+                  class="btn btn-primary submit-pod-guess"
+                  type="button"
+                  disabled
+                >
+                  Play the sound first
+                </button>
+                <p
+                  class="mystery-feedback"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  Step 1: Play the call.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <aside
+            class="passport-card mystery-passport"
+            aria-labelledby="passport-title"
+          >
+            <div>
+              <span class="section-kicker" style="color: var(--aqua)"
+                >Your collection</span
+              >
+              <h3 id="passport-title">Call Passport</h3>
+              <p
+                data-explorer-text="Get one badge each time you match a call to a pod that uses it."
+                data-scientist-text="A call badge receives its tick only after a valid repertoire match. Progress lasts only for this page session."
+              >
+                Get one badge each time you match a call to a pod that uses it.
+              </p>
+            </div>
+            <div class="stamp-row" aria-label="Call badges earned">
+              <span
+                class="passport-stamp"
+                data-stamp="S16"
+                aria-label="S16 call badge not earned"
+                >S16</span
+              >
+              <span
+                class="passport-stamp"
+                data-stamp="S19"
+                aria-label="S19 call badge not earned"
+                >S19</span
+              >
+              <span
+                class="passport-stamp"
+                data-stamp="S03"
+                aria-label="S03 call badge not earned"
+                >S03</span
+              >
+            </div>
+            <span id="passport-progress" class="passport-progress" role="status"
+              >0 of 3 calls mapped</span
+            >
+          </aside>
+
+          <div class="pod-note">
+            <strong
+              data-explorer-text="Remember:"
+              data-scientist-text="Important photo clue:"
+              >Remember:</strong
+            >
+            <span
+              data-explorer-text="J, K, and L are orca families. A photo alone does not tell us which pod an orca belongs to."
+              data-scientist-text="J, K, and L are family pods, not three visually different types of orca. The photographs above are Orcasound observation images and are not evidence that a whale belongs to the card's pod. Researchers use dorsal fins and saddle patches to identify individuals, then combine photo, sound, and sighting evidence to understand pod membership."
+              >J, K, and L are orca families. A photo alone does not tell us
+              which pod an orca belongs to.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="protect-stage"
+        class="section protect-section guided-stage"
+        data-guided-stage="3"
+        aria-labelledby="protect-title"
+        hidden
+      >
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <span
+                class="section-kicker"
+                data-explorer-text="Help the orcas"
+                data-scientist-text="Become an Orca Ally"
+                >Help the orcas</span
+              >
+              <h2 id="protect-title">Choose one way to help</h2>
+            </div>
+            <p
+              data-explorer-text="Watch the short videos. Then choose one helpful action to share with your family or class."
+              data-scientist-text="Big change begins with many people learning and acting together. Pick an action you can share with your class or family."
+            >
+              Watch the short videos. Then choose one helpful action to share
+              with your family or class.
+            </p>
+          </div>
+
+          <div class="ally-ocean-scene" aria-hidden="true">
+            <svg class="ally-scene-art" viewBox="0 0 260 120">
+              <path
+                fill="#075e78"
+                d="M18 68c24-24 54-31 91-22 15 4 27 10 38 19-12 1-22 6-29 17-18 20-47 23-87 10-7 6-15 8-23 6 8-5 13-11 17-17-4-4-6-8-7-13Z"
+              />
+              <path
+                fill="#fff"
+                d="M49 69c20-12 43-13 70-4-11 3-19 9-24 18-18 9-36 6-54-8l8-6Z"
+              />
+              <path
+                fill="#fff"
+                d="M112 53c9 1 16 3 21 7-7 1-13 4-17 10-4-5-5-10-4-17Z"
+              />
+              <circle cx="130" cy="57" r="2" fill="#fff" />
+              <path
+                fill="#ff826e"
+                d="M166 78c17-14 35-14 53 0-18 15-36 15-53 0Zm52 0 18-13-3 13 3 13-18-13Z"
+              />
+              <circle cx="177" cy="75" r="2" fill="#071f36" />
+              <path
+                fill="#59d8ce"
+                d="M159 104c5-18 12-29 20-34-1 16-7 29-20 34Zm14 2c10-16 20-24 30-24-6 15-16 23-30 24Z"
+              />
+              <path
+                fill="none"
+                stroke="#075e78"
+                stroke-width="3"
+                stroke-linecap="round"
+                d="M145 30c7 4 11 9 13 16M151 20c11 6 17 14 20 24"
+              />
+              <circle
+                cx="206"
+                cy="30"
+                r="8"
+                fill="none"
+                stroke="#59d8ce"
+                stroke-width="3"
+              />
+              <circle
+                cx="224"
+                cy="17"
+                r="4"
+                fill="none"
+                stroke="#59d8ce"
+                stroke-width="2"
+              />
+            </svg>
+            <strong class="ally-scene-copy"
+              >Small actions make big waves.</strong
+            >
+            <span class="ally-heart" aria-hidden="true">♥</span>
+          </div>
+
+          <div class="action-grid">
+            <div class="action-item">
+              <article class="action-card">
+                <span class="action-icon" aria-hidden="true">🔈</span>
+                <h3>Quiet water</h3>
+                <p
+                  id="quiet-water-description"
+                  data-explorer-text="Too much boat noise can make it hard for orcas to hear and find food."
+                  data-scientist-text="Learn with an adult how vessel noise can make it harder for whales to communicate and hunt."
+                >
+                  Too much boat noise can make it hard for orcas to hear and
+                  find food.
+                </p>
+                <video
+                  class="action-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="videos/quiet-water-simulation-poster.jpg"
+                  aria-label="Animated simulation comparing vessel noise with quieter water"
+                  aria-describedby="quiet-water-description quiet-water-audio-note"
+                >
+                  <source
+                    src="videos/quiet-water-simulation.mp4"
+                    type="video/mp4"
+                  />
+                  <track
+                    default
+                    kind="captions"
+                    src="videos/quiet-water-simulation-captions.vtt"
+                    srclang="en"
+                    label="English"
+                  />
+                  Your browser does not support this video.
+                </video>
+                <p
+                  id="quiet-water-audio-note"
+                  class="video-note"
+                  data-explorer-text="This is a pretend sound example. Start with low volume."
+                  data-scientist-text="Illustrative simulation audio—not a real orca recording. Begin at low volume."
+                >
+                  This is a pretend sound example. Start with low volume.
+                </p>
+                <button
+                  class="btn btn-secondary action-select"
+                  type="button"
+                  aria-pressed="false"
+                  data-action="help keep the ocean quieter and learn Be Whale Wise rules"
+                  data-explorer-text="Help make water quieter"
+                  data-scientist-text="Choose quiet water"
+                >
+                  Help make water quieter
+                </button>
+              </article>
+              <a
+                class="action-learn"
+                href="https://www.fisheries.noaa.gov/feature-story/sound-strategy-hunting-southern-residents-part-2"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Learn more about quiet water →"
+                data-scientist-text="Learn why quiet helps →"
+                >Learn more about quiet water →</a
+              >
+            </div>
+            <div class="action-item">
+              <article class="action-card">
+                <span class="action-icon" aria-hidden="true">🐟</span>
+                <h3>Healthy salmon</h3>
+                <p
+                  id="healthy-salmon-description"
+                  data-explorer-text="Orcas need healthy Chinook salmon for food."
+                  data-scientist-text="Follow salmon from a freshwater stream to the ocean and discover how Chinook help nourish Southern Resident orcas."
+                >
+                  Orcas need healthy Chinook salmon for food.
+                </p>
+                <video
+                  class="action-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="videos/healthy-salmon-food-web-poster.jpg"
+                  aria-label="Narrated animated journey connecting salmon habitat, Chinook growth, the ocean food web, and Southern Resident orcas"
+                  aria-describedby="healthy-salmon-description healthy-salmon-video-note"
+                >
+                  <source
+                    src="videos/healthy-salmon-food-web.mp4"
+                    type="video/mp4"
+                  />
+                  <track
+                    default
+                    kind="captions"
+                    src="videos/healthy-salmon-food-web-captions.vtt"
+                    srclang="en"
+                    label="English"
+                  />
+                  Your browser does not support this video.
+                </video>
+                <p
+                  id="healthy-salmon-video-note"
+                  class="video-note"
+                  data-explorer-text="This story has a voice, words on screen, and soft water sounds."
+                  data-scientist-text="Narrated simulation with captions and gentle water ambience."
+                >
+                  This story has a voice, words on screen, and soft water
+                  sounds.
+                </p>
+                <button
+                  class="btn btn-secondary action-select"
+                  type="button"
+                  aria-pressed="false"
+                  data-action="protect salmon habitat and learn how the food web connects"
+                  data-explorer-text="Help protect salmon"
+                  data-scientist-text="Choose healthy salmon"
+                >
+                  Help protect salmon
+                </button>
+              </article>
+              <a
+                class="action-learn"
+                href="https://sanctuaries.noaa.gov/education/teachers/salmon-and-orcas.html"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Learn more about salmon →"
+                data-scientist-text="Learn how salmon help →"
+                >Learn more about salmon →</a
+              >
+            </div>
+            <div class="action-item">
+              <article class="action-card">
+                <span class="action-icon" aria-hidden="true">💧</span>
+                <h3>Clean water</h3>
+                <p
+                  id="clean-water-description"
+                  data-explorer-text="Clean streams help salmon grow. Healthy salmon help feed orcas."
+                  data-scientist-text="Follow water from neighborhood streams to Chinook salmon and discover why cleaner salmon habitat also matters to Southern Resident orcas."
+                >
+                  Clean streams help salmon grow. Healthy salmon help feed
+                  orcas.
+                </p>
+                <video
+                  class="action-video"
+                  controls
+                  playsinline
+                  preload="metadata"
+                  poster="videos/clean-water-actions-poster.jpg"
+                  aria-label="Female-narrated animation explaining how pollution can harm salmon habitat and reduce food opportunities for Southern Resident orcas"
+                  aria-describedby="clean-water-description clean-water-video-note"
+                >
+                  <source
+                    src="videos/clean-water-actions.mp4"
+                    type="video/mp4"
+                  />
+                  <track
+                    default
+                    kind="captions"
+                    src="videos/clean-water-actions-captions.vtt"
+                    srclang="en"
+                    label="English"
+                  />
+                  Your browser does not support this video.
+                </video>
+                <p
+                  id="clean-water-video-note"
+                  class="video-note"
+                  data-explorer-text="This story has a woman narrator, words on screen, and soft water sounds."
+                  data-scientist-text="Female-narrated story with captions and gentle water ambience."
+                >
+                  This story has a woman narrator, words on screen, and soft
+                  water sounds.
+                </p>
+                <button
+                  class="btn btn-secondary action-select"
+                  type="button"
+                  aria-pressed="false"
+                  data-action="keep litter out of streams and save energy safely with an adult"
+                  data-explorer-text="Help keep water clean"
+                  data-scientist-text="Choose clean water"
+                >
+                  Help keep water clean
+                </button>
+              </article>
+              <a
+                class="action-learn"
+                href="https://www.fisheries.noaa.gov/west-coast/endangered-species-conservation/saving-southern-resident-killer-whales"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Learn more about clean water →"
+                data-scientist-text="Learn why clean water matters →"
+                >Learn more about clean water →</a
+              >
+            </div>
+          </div>
+
+          <div class="finish-card">
+            <div>
+              <h3 id="finish-title">Your Orca Ally adventure is underway</h3>
+              <p id="finish-copy">
+                Finish the quiz, hear all three pods, and choose an action.
+                Progress lasts only for this page session.
+              </p>
+              <div class="finish-badges" aria-label="Certificate progress">
+                <span
+                  class="finish-badge"
+                  data-finish="quiz"
+                  data-explorer-text="Listening game"
+                  data-scientist-text="Sound detective"
+                  >Listening game</span
+                >
+                <span
+                  class="finish-badge"
+                  data-finish="pods"
+                  data-explorer-text="Pod matching"
+                  data-scientist-text="Pod passport"
+                  >Pod matching</span
+                >
+                <span
+                  class="finish-badge"
+                  data-finish="action"
+                  data-explorer-text="Way to help"
+                  data-scientist-text="Ally action"
+                  >Way to help</span
+                >
+              </div>
+            </div>
+            <button
+              id="certificate-button"
+              class="btn btn-primary"
+              type="button"
+              aria-describedby="finish-copy"
+            >
+              Create my certificate
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section learn-section" aria-labelledby="learn-title">
+        <div class="section-inner">
+          <div class="section-head">
+            <div>
+              <span
+                class="section-kicker"
+                data-explorer-text="Try more orca activities"
+                data-scientist-text="Keep your adventure going"
+                >Try more orca activities</span
+              >
+              <h2
+                id="learn-title"
+                data-explorer-text="What would you like to do next?"
+                data-scientist-text="What will you explore next?"
+              >
+                What would you like to do next?
+              </h2>
+            </div>
+            <p
+              data-explorer-text="Choose a safe website to hear the ocean or learn more. Ask an adult to explore with you."
+              data-scientist-text="Continue with trusted Orcasound and science resources. Live ocean listening can be quiet—waiting and noticing are part of being a scientist."
+            >
+              Choose a safe website to hear the ocean or learn more. Ask an
+              adult to explore with you.
+            </p>
+          </div>
+
+          <div class="learn-grid">
+            <article class="learn-card">
+              <span class="learn-icon" aria-hidden="true">🎧</span>
+              <h3
+                data-explorer-text="Listen to the ocean"
+                data-scientist-text="Listen to the Salish Sea"
+              >
+                Listen to the ocean
+              </h3>
+              <p
+                data-explorer-text="Hear live sounds from underwater microphones. You may hear boats, rain, waves, or an orca."
+                data-scientist-text="Visit Orcasound’s live hydrophones and practice noticing whales, boats, rain, and waves."
+              >
+                Hear live sounds from underwater microphones. You may hear
+                boats, rain, waves, or an orca.
+              </p>
+              <a
+                class="btn btn-secondary"
+                href="https://live.orcasound.net/"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Listen with an adult ↗"
+                data-scientist-text="Open live listening ↗"
+                >Listen with an adult ↗</a
+              >
+              <small class="external-note">Orcasound · live audio</small>
+            </article>
+
+            <article class="learn-card">
+              <span class="learn-icon" aria-hidden="true">〽️</span>
+              <h3
+                data-explorer-text="Hear more pod calls"
+                data-scientist-text="Learn J, K, and L calls"
+              >
+                Hear more pod calls
+              </h3>
+              <p
+                data-explorer-text="Listen to more sounds from J, K, and L Pod. Do any calls sound alike?"
+                data-scientist-text="Hear Orcasound’s examples of the S03, S16, and S19 calls and compare their documented pod repertoires."
+              >
+                Listen to more sounds from J, K, and L Pod. Do any calls sound
+                alike?
+              </p>
+              <a
+                class="btn btn-secondary"
+                href="https://www.orcasound.net/learn/learn-the-favorite-calls-of-the-southern-resident-killer-whales-j-k-and-l-pods/"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Hear more calls ↗"
+                data-scientist-text="Explore the call library ↗"
+                >Hear more calls ↗</a
+              >
+              <small class="external-note">Orcasound · sound lesson</small>
+            </article>
+
+            <article class="learn-card">
+              <span class="learn-icon" aria-hidden="true">🔬</span>
+              <h3
+                data-explorer-text="Learn about orca families"
+                data-scientist-text="Meet the real science"
+              >
+                Learn about orca families
+              </h3>
+              <p
+                data-explorer-text="Learn where orcas live, what they eat, and how people can help protect them."
+                data-scientist-text="Discover orca families, diets, habitats, threats, and conservation work with NOAA Fisheries."
+              >
+                Learn where orcas live, what they eat, and how people can help
+                protect them.
+              </p>
+              <a
+                class="btn btn-secondary"
+                href="https://www.fisheries.noaa.gov/species/killer-whale"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Learn with an adult ↗"
+                data-scientist-text="Visit NOAA Fisheries ↗"
+                >Learn with an adult ↗</a
+              >
+              <small class="external-note">U.S. government science</small>
+            </article>
+
+            <article class="learn-card">
+              <span class="learn-icon" aria-hidden="true">🌎</span>
+              <h3
+                data-explorer-text="Give whales space"
+                data-scientist-text="Practice being Whale Wise"
+              >
+                Give whales space
+              </h3>
+              <p
+                data-explorer-text="Learn how boats and people can stay a safe distance away from whales."
+                data-scientist-text="Learn safe, respectful ways people can give whales space and reduce disturbance on the water."
+              >
+                Learn how boats and people can stay a safe distance away from
+                whales.
+              </p>
+              <a
+                class="btn btn-secondary"
+                href="https://www.bewhalewise.org/"
+                target="_blank"
+                rel="noopener"
+                data-explorer-text="Learn the safe rules ↗"
+                data-scientist-text="Take the ally challenge ↗"
+                >Learn the safe rules ↗</a
+              >
+              <small class="external-note"
+                >Be Whale Wise · conservation guidance</small
+              >
+            </article>
+          </div>
+
+          <p
+            class="learn-safety"
+            data-explorer-text="Ask a teacher, parent, or guardian before opening these websites. You do not need an account."
+            data-scientist-text="Young explorers: open external websites with a teacher, parent, or guardian. No account is needed for this activity."
+          >
+            Ask a teacher, parent, or guardian before opening these websites.
+            You do not need an account.
+          </p>
+        </div>
+      </section>
+
+      <section
+        id="teachers"
+        class="teacher-strip"
+        aria-labelledby="teacher-title"
+      >
+        <div class="teacher-inner">
+          <div>
+            <h2 id="teacher-title">
+              Built for classrooms. Light on volunteers.
+            </h2>
+            <p>
+              Run a 5-, 15-, or 30-minute lesson from the UI. Use curated clips
+              when the live ocean is quiet, reveal reviewed answers
+              automatically, and print materials without creating student
+              accounts.
+            </p>
+          </div>
+          <div class="teacher-actions">
+            <a
+              class="btn btn-primary"
+              href="Orcasound Teacher Activity Guide.pdf"
+              target="_blank"
+              >Teacher guide (PDF)</a
+            >
+            <a
+              class="btn btn-outline"
+              href="Orcasound Teacher Activity Guide.html"
+              target="_blank"
+              >Printable guide</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="guided-controls" aria-label="Guided adventure controls">
+        <button id="guided-back" class="btn btn-outline" type="button" disabled>
+          Back
+        </button>
+        <p id="guided-next-message" class="guided-next-message" role="status">
+          Finish this listening game to unlock Match Pods.
+        </p>
+        <button id="guided-next" class="btn btn-primary" type="button" disabled>
+          Next: Match Pods
+        </button>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <p>
+          <strong>Interactive concept mockup.</strong> Educational content and
+          evidence labels should receive Orcasound subject-matter review before
+          production. Safety decisions must use approved, confirmed operational
+          information—not student guesses, raw loudness, or unconfirmed AI
+          candidates.
+        </p>
+        <p>
+          Sources:
+          <a href="https://www.orcasound.net/" target="_blank" rel="noopener"
+            >Orcasound</a
+          >
+          ·
+          <a
+            href="https://www.fisheries.noaa.gov/feature-story/sound-strategy-hunting-southern-residents-part-2"
+            target="_blank"
+            rel="noopener"
+            >NOAA Fisheries</a
+          >
+        </p>
+      </div>
+    </footer>
+
+    <dialog id="certificate-dialog" aria-labelledby="certificate-title">
+      <div class="dialog-head">
+        <h2 id="certificate-title">Your Orca Ally certificate</h2>
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="Close certificate"
+        >
+          ×
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="certificate-form">
+          <label for="explorer-name"
+            >Name shown on this local certificate</label
+          >
+          <input
+            id="explorer-name"
+            maxlength="40"
+            placeholder="Type a first name, class, or team name"
+          />
+          <button
+            id="update-certificate"
+            class="btn btn-secondary"
+            type="button"
+          >
+            Update
+          </button>
+        </div>
+        <p class="privacy-copy">
+          This mockup uses your entry only on this page. It is not uploaded or
+          saved.
+        </p>
+        <div class="certificate" id="print-certificate">
+          <img
+            class="certificate-orca"
+            data-app-image="orca-spyhop.JPG"
+            src="/images/orca-spyhop.JPG"
+            alt="Orca spyhopping above calm water with mountains in the distance"
+          />
+          <h3>Orca Ally</h3>
+          <p class="cert-intro">This certificate celebrates</p>
+          <div class="cert-name" id="certificate-name">Young Explorer</div>
+          <p class="cert-achievement">
+            for listening carefully, following the evidence, and learning about
+          </p>
+          <p class="cert-pod" id="certificate-pod">J Pod</p>
+          <p class="cert-action" id="certificate-action">
+            My ally action: help keep the ocean quieter and learn Be Whale Wise
+            rules.
+          </p>
+          <div class="cert-badges" aria-hidden="true">
+            <span>HEAR</span>
+            <span>UNDERSTAND</span>
+            <span>PROTECT</span>
+          </div>
+          <small class="cert-motto">Hear it · Understand it · Protect it</small>
+        </div>
+        <div
+          class="dialog-actions"
+          style="
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 18px;
+          "
+        >
+          <button class="btn btn-outline dialog-close-text" type="button">
+            Close
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            onclick="window.print()"
+          >
+            Print certificate
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="glossary-dialog" aria-labelledby="glossary-title">
+      <div class="dialog-head">
+        <h2 id="glossary-title">Word Help</h2>
+        <button
+          class="glossary-close"
+          type="button"
+          aria-label="Close Word Help"
+        >
+          ×
+        </button>
+      </div>
+      <div class="dialog-body">
+        <p class="glossary-intro">Tap a word to see a short meaning.</p>
+        <div class="glossary-grid">
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Hydrophone</strong>
+            <span>A microphone that listens underwater.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Pod</strong>
+            <span>An orca family that lives and travels together.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Salish Sea</strong>
+            <span>
+              Coastal waters shared by Washington State and British Columbia.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Southern Residents</strong>
+            <span>
+              The J, K, and L orca families that rely heavily on Chinook salmon.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Dorsal fin</strong>
+            <span>The tall fin on an orca's back.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Saddle patch</strong>
+            <span>The light-colored patch behind an orca's dorsal fin.</span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Echolocation</strong>
+            <span>
+              Clicks and echoes that help an orca learn what is nearby.
+            </span>
+          </button>
+          <button class="glossary-term" type="button" aria-expanded="false">
+            <strong>Chinook salmon</strong>
+            <span>
+              A large salmon that is an important food for Southern Resident
+              orcas.
+            </span>
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      ;(() => {
+        const imageAssetPath = (relativePath) =>
+          window.location.protocol === 'file:'
+            ? `../../public/images/${relativePath}`
+            : `/images/${relativePath}`
+
+        document.querySelectorAll('[data-app-image]').forEach((image) => {
+          image.src = imageAssetPath(image.dataset.appImage)
+        })
+
+        const state = {
+          mode: 'explorer',
+          answer: '',
+          quizIndex: 0,
+          score: 0,
+          answered: false,
+          quizComplete: false,
+          pod: 'J Pod',
+          podStamps: new Set(),
+          action: 'help keep the ocean quieter and learn Be Whale Wise rules',
+          actionSelected: false,
+          guidedStep: 1,
+        }
+
+        const questionSets = {
+          explorer: [
+            {
+              label: 'Listening game',
+              title: 'What does this sound like?',
+              instruction:
+                'Press play. Listen to the short sound. Then pick one answer.',
+              prompt: 'What did you hear?',
+              audio: true,
+              audioUrl: 'audio/FO-S01-3s.wav',
+              clipLabel: 'Mystery clip #01 · Orca call S01',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
+              choices: [
+                ['call', 'An orca call with a pattern'],
+                ['steady', 'One long sound that stays the same'],
+                ['unsure', 'I am not sure yet'],
+              ],
+              correct: 'call',
+              answerTitle: 'You heard an orca call.',
+              explanation:
+                'Orcas make calls to communicate with their families. This call has a short pattern you can hear.',
+              advanced:
+                'J, K, and L pods have recognizable call repertoires, but some calls are shared. This sound alone does not identify an individual whale.',
+              hint: 'Listen for a sound that changes like a tiny song.',
+            },
+            {
+              label: 'Ocean listening tool',
+              title: 'What recorded this sound?',
+              instruction:
+                'Orcasound listens from eight places around Puget Sound and the Salish Sea.',
+              prompt: 'Which tool listens underwater?',
+              audio: true,
+              audioUrl: 'audio/FO-S02-3s.wav',
+              clipLabel: 'Mystery clip #02 · Orca call S02',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
+              choices: [
+                ['microphone', 'An underwater microphone'],
+                ['camera', 'A camera in the sky'],
+                ['unsure', 'I am not sure yet'],
+              ],
+              correct: 'microphone',
+              answerTitle: 'A hydrophone listens underwater.',
+              explanation:
+                'A hydrophone is an underwater microphone. It can record orcas, boats, waves, and rain.',
+              advanced:
+                'A hydrophone records acoustic evidence from its location. It does not attach to a whale or automatically provide an exact animal position.',
+              hint: 'A microphone listens to sound. This special one works in water.',
+            },
+            {
+              label: 'Orca photo clues',
+              title: 'How can we tell orcas apart?',
+              instruction:
+                'Researchers look carefully at clear photographs of each orca.',
+              prompt: 'Which clue helps identify one orca?',
+              audio: true,
+              audioUrl: 'audio/FO-S04-3s.wav',
+              clipLabel: 'Mystery clip #03 · Orca call S04',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
+              choices: [
+                ['fin', 'A clear photo of its fin and saddle patch'],
+                ['volume', 'How loud one call sounds'],
+                ['unsure', 'I am not sure yet'],
+              ],
+              correct: 'fin',
+              answerTitle: 'Each orca has special photo clues.',
+              explanation:
+                'Researchers compare the fin shape, small marks, and the light saddle patch behind the fin.',
+              advanced:
+                'The photo needs a suitable angle and enough detail, and a qualified source should confirm the match before the UI names an individual.',
+              hint: 'Look at the fin and the light patch just behind it.',
+            },
+          ],
+          scientist: [
+            {
+              label: 'Acoustic observation',
+              title: 'Classify the mystery sound',
+              instruction:
+                "Listen at a comfortable volume and focus on the sound's shape, timing, and repetition.",
+              prompt: 'Which acoustic category best describes this clip?',
+              audio: true,
+              audioUrl: 'audio/FO-S01-3s.wav',
+              clipLabel: 'Research clip A · Orca call S01',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S01.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S01 showing several connected bands that rise and fall over time',
+              choices: [
+                ['discrete', 'A discrete, tonal call'],
+                ['flat', 'One continuous flat tone'],
+                ['single', 'One isolated sound'],
+                ['rumble', 'An unchanging low rumble'],
+              ],
+              correct: 'discrete',
+              answerTitle: 'This is a discrete call.',
+              explanation:
+                'The short, patterned tonal structure is characteristic of a discrete call used in communication.',
+              advanced:
+                'Calls, whistles, and echolocation clicks have different structures and functions. Classification should use the recording and spectrogram together.',
+              hint: 'Listen for a short tonal pattern rather than many separate clicks.',
+            },
+            {
+              label: 'Read the data',
+              title: 'What does a spectrogram add?',
+              instruction:
+                'A spectrogram turns sound into a visual display across time.',
+              prompt: 'What information does a spectrogram primarily show?',
+              audio: true,
+              audioUrl: 'audio/FO-S02-3s.wav',
+              clipLabel: 'Research clip B · Orca call S02',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S02.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S02 showing a distinct arrangement of frequency bands across time',
+              choices: [
+                ['frequency', 'How frequency and intensity change over time'],
+                ['distance', "The whale's exact distance from the sensor"],
+                ['identity', 'The confirmed identity of the caller'],
+                ['photo', "The whale's saddle-patch photograph"],
+              ],
+              correct: 'frequency',
+              answerTitle: 'A spectrogram is a picture of sound.',
+              explanation:
+                'It displays time on one axis, frequency on another, and usually represents intensity through color or brightness.',
+              advanced:
+                'A spectrogram helps reveal tonal contours, harmonics, click timing, and noise, but interpretation still requires context and expertise.',
+              hint: 'Think about pitch, timing, and brightness—not geographic position.',
+            },
+            {
+              label: 'Reason under uncertainty',
+              title: 'Can one call prove which pod is present?',
+              instruction:
+                'J, K, and L pods have recognizable repertoires, but some call types are shared.',
+              prompt:
+                'What is the strongest scientifically responsible conclusion?',
+              audio: true,
+              audioUrl: 'audio/FO-S03-3s.wav',
+              clipLabel: 'Research clip C · Orca call S03',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S03.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S03 showing a call pattern with visible frequency changes',
+              choices: [
+                ['proof', 'One call always proves a specific pod'],
+                [
+                  'support',
+                  'The call can support pod identification when combined with context',
+                ],
+                ['individual', 'The call identifies the individual whale'],
+                ['location', 'The call gives an exact latitude and longitude'],
+              ],
+              correct: 'support',
+              answerTitle:
+                'A call can support—but not always prove—a pod identification.',
+              explanation:
+                'Experts consider the repertoire, recording quality, repeated calls, other acoustic evidence, and available sighting context.',
+              advanced:
+                'Evidence should be expressed with an appropriate confidence level. Shared call types and noisy recordings limit certainty.',
+              hint: 'Look for the answer that combines evidence instead of claiming certainty from one clue.',
+            },
+            {
+              label: 'Localization limits',
+              title: 'Why is amplitude alone insufficient?',
+              instruction:
+                'The same sound source can be recorded at different volumes for several reasons.',
+              prompt:
+                'Which approach would provide stronger location evidence than loudness from one hydrophone?',
+              audio: true,
+              audioUrl: 'audio/FO-S04-3s.wav',
+              clipLabel: 'Research clip D · Orca call S04',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S04.png'),
+              spectrogramAlt:
+                'Spectrogram of Southern Resident call S04 showing multiple visible sound bands and changes through time',
+              choices: [
+                ['single', 'Use one uncalibrated amplitude reading'],
+                [
+                  'array',
+                  'Compare synchronized signals from multiple known sensors',
+                ],
+                ['guess', 'Ask listeners which direction feels correct'],
+                [
+                  'photo',
+                  'Assume the latest community photo is at the hydrophone',
+                ],
+              ],
+              correct: 'array',
+              answerTitle:
+                'Multiple synchronized sensors provide stronger localization evidence.',
+              explanation:
+                'Arrival-time differences across known hydrophone positions can support localization when the sensors and analysis are suitable.',
+              advanced:
+                'Orientation, propagation loss, depth, bathymetry, ambient noise, source level, and sensor response can all change received amplitude.',
+              hint: 'Triangulation-like reasoning needs observations from more than one known place.',
+            },
+            {
+              label: 'AI evidence pipeline',
+              title: 'Design a responsible detection workflow',
+              instruction:
+                'OrcaHello can flag candidates from live hydrophone audio. Some candidates will be false positives.',
+              prompt:
+                'Which workflow best protects scientific quality and operational safety?',
+              audio: true,
+              audioUrl: 'audio/FO-S05-3s.wav',
+              clipLabel: 'Research clip E · Orca call S05',
+              spectrogramUrl: imageAssetPath('callcatalog/FO-S05.png'),
+              spectrogramAlt:
+                "Spectrogram of Southern Resident call S05 showing the call's frequency pattern across the clip",
+              choices: [
+                [
+                  'automatic',
+                  'AI candidate → exact public location → vessel alert',
+                ],
+                [
+                  'review',
+                  'AI candidate → expert review → confirmed status → approved use',
+                ],
+                ['student', 'Student vote → confirmed status → public alert'],
+                ['hide', 'Discard every uncertain candidate without review'],
+              ],
+              correct: 'review',
+              answerTitle:
+                'Separate detection, review, confirmation, and approved use.',
+              explanation:
+                'The UI should visibly distinguish an AI candidate from an expert-confirmed detection and restrict safety-shaped outputs to approved workflows.',
+              advanced:
+                "A useful system preserves provenance, model version, timestamps, review status, and uncertainty instead of collapsing every stage into 'orca detected.'",
+              hint: 'Choose the pipeline that preserves evidence status and human oversight.',
+            },
+          ],
+        }
+
+        const getQuestions = () => questionSets[state.mode]
+
+        const callData = {
+          S16: {
+            repertoires: 'K and L Pod repertoires',
+            explanation:
+              'S16 is documented in both K and L Pod repertoires, so either answer is a valid match.',
+          },
+          S19: {
+            repertoires: 'the L Pod repertoire',
+            explanation: 'S19 is documented in the L Pod repertoire.',
+          },
+          S03: {
+            repertoires: 'the J Pod repertoire',
+            explanation: 'S03 is documented in the J Pod repertoire.',
+          },
+        }
+
+        const toast = document.getElementById('toast')
+        const showToast = (message) => {
+          toast.textContent = message
+          toast.classList.add('show')
+          window.clearTimeout(showToast.timer)
+          showToast.timer = window.setTimeout(
+            () => toast.classList.remove('show'),
+            2600
+          )
+        }
+
+        const selectOne = (selector, selected) => {
+          document.querySelectorAll(selector).forEach((item) => {
+            item.setAttribute('aria-pressed', String(item === selected))
+          })
+        }
+
+        const guidedBack = document.getElementById('guided-back')
+        const guidedNext = document.getElementById('guided-next')
+        const guidedNextMessage = document.getElementById('guided-next-message')
+        const guidedSteps = [...document.querySelectorAll('.guided-step')]
+        const guidedStages = [...document.querySelectorAll('.guided-stage')]
+
+        const guidedCompletion = () => ({
+          1: state.quizComplete,
+          2: state.podStamps.size === 3,
+          3: state.actionSelected,
+          4: true,
+        })
+
+        const guidedUnlocked = () => ({
+          1: true,
+          2: state.quizComplete,
+          3: state.quizComplete && state.podStamps.size === 3,
+          4:
+            state.quizComplete &&
+            state.podStamps.size === 3 &&
+            state.actionSelected,
+        })
+
+        const guidedLabels = {
+          1: {
+            next: 'Next: Match Pods',
+            waiting: 'Finish this listening game to unlock Match Pods.',
+            ready: 'Great listening! Match Pods is ready.',
+          },
+          2: {
+            next: 'Next: Help Orcas',
+            waiting: 'Map all three calls to unlock Help Orcas.',
+            ready: 'All pods matched! Help Orcas is ready.',
+          },
+          3: {
+            next: 'Next: Certificate',
+            waiting: 'Choose one way to help to unlock your certificate.',
+            ready: 'You chose a way to help! Your certificate is ready.',
+          },
+          4: {
+            next: '',
+            waiting: 'Your Orca Ally certificate is ready.',
+            ready: 'Your Orca Ally certificate is ready.',
+          },
+        }
+
+        const updateGuidedJourney = () => {
+          const completed = guidedCompletion()
+          const unlocked = guidedUnlocked()
+          guidedSteps.forEach((button) => {
+            const step = Number(button.dataset.guidedStep)
+            button.disabled = !unlocked[step]
+            button.classList.toggle('done', step < 4 && completed[step])
+            if (step === state.guidedStep) {
+              button.setAttribute('aria-current', 'step')
+            } else {
+              button.removeAttribute('aria-current')
+            }
+            button.querySelector('.guided-step-number').textContent =
+              step < state.guidedStep && completed[step] ? '✓' : String(step)
+          })
+          guidedBack.disabled = state.guidedStep === 1
+          guidedNext.hidden = state.guidedStep === 4
+          guidedNext.disabled = !completed[state.guidedStep]
+          guidedNext.textContent = guidedLabels[state.guidedStep].next
+          guidedNextMessage.textContent = completed[state.guidedStep]
+            ? guidedLabels[state.guidedStep].ready
+            : guidedLabels[state.guidedStep].waiting
+        }
+
+        const showGuidedStep = (step, moveFocus = true) => {
+          if (!guidedUnlocked()[step]) return
+          state.guidedStep = step
+          document.body.classList.toggle('guided-certificate', step === 4)
+          guidedStages.forEach((section) => {
+            const visible =
+              step === 4
+                ? section.id === 'protect-stage'
+                : Number(section.dataset.guidedStage) === step
+            section.hidden = !visible
+          })
+          updateGuidedJourney()
+          if (moveFocus) {
+            const heading =
+              step === 1
+                ? document.getElementById('mission-title')
+                : step === 2
+                ? document.getElementById('pods-title')
+                : step === 3
+                ? document.getElementById('protect-title')
+                : document.getElementById('finish-title')
+            heading.setAttribute('tabindex', '-1')
+            heading.focus({ preventScroll: true })
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+        }
+
+        guidedSteps.forEach((button) => {
+          button.addEventListener('click', () => {
+            showGuidedStep(Number(button.dataset.guidedStep))
+          })
+        })
+        guidedBack.addEventListener('click', () => {
+          showGuidedStep(Math.max(1, state.guidedStep - 1))
+        })
+        guidedNext.addEventListener('click', () => {
+          showGuidedStep(Math.min(4, state.guidedStep + 1))
+        })
+
+        const updateModeCopy = () => {
+          const copyKey =
+            state.mode === 'explorer' ? 'explorerText' : 'scientistText'
+          document
+            .querySelectorAll('[data-explorer-text][data-scientist-text]')
+            .forEach((item) => {
+              item.textContent = item.dataset[copyKey]
+            })
+        }
+
+        const updateAdventureProgress = () => {
+          const completed = {
+            quiz: state.quizComplete,
+            pods: state.podStamps.size === 3,
+            action: state.actionSelected,
+          }
+          const next = !completed.quiz
+            ? 'quiz'
+            : !completed.pods
+            ? 'pods'
+            : 'action'
+          document.querySelectorAll('.tracker-step').forEach((step) => {
+            const key = step.dataset.tracker
+            step.classList.toggle('done', completed[key])
+            step.classList.toggle('active', !completed[key] && key === next)
+            step.querySelector('.tracker-icon').textContent = completed[key]
+              ? '✓'
+              : String(['quiz', 'pods', 'action'].indexOf(key) + 1)
+          })
+          document.querySelectorAll('.finish-badge').forEach((badge) => {
+            badge.classList.toggle('done', completed[badge.dataset.finish])
+          })
+          const total = Object.values(completed).filter(Boolean).length
+          document.getElementById('finish-title').textContent =
+            total === 3
+              ? state.mode === 'explorer'
+                ? 'You finished your Orca Ally adventure!'
+                : 'Orca Ally adventure complete!'
+              : state.mode === 'explorer'
+              ? `${total} of 3 activities finished`
+              : `${total} of 3 adventure goals complete`
+          document.getElementById('finish-copy').textContent =
+            total === 3
+              ? state.mode === 'explorer'
+                ? 'Great job! You listened, matched the pods, and chose a way to help. Your certificate is ready!'
+                : 'You practiced a simplified version of Orcasound volunteer moderation, met the pods, and chose a way to help. Your local certificate is ready!'
+              : state.mode === 'explorer'
+              ? 'Finish the listening game, match all three pods, and choose one way to help.'
+              : 'Finish the quiz, hear all three pods, and choose an action. Progress lasts only for this page session.'
+          const certificateButton =
+            document.getElementById('certificate-button')
+          certificateButton.setAttribute(
+            'aria-label',
+            total === 3
+              ? 'Create my certificate'
+              : `Certificate locked. Select to learn which ${
+                  3 - total
+                } adventure goal${total === 2 ? '' : 's'} remain.`
+          )
+          certificateButton.title =
+            total === 3
+              ? 'Create your certificate'
+              : `Complete ${3 - total} more adventure goal${
+                  total === 2 ? '' : 's'
+                } to unlock`
+          updateGuidedJourney()
+        }
+
+        document.querySelectorAll('.mode-card').forEach((button) => {
+          button.addEventListener('click', () => {
+            state.mode = button.dataset.mode
+            state.quizIndex = 0
+            state.score = 0
+            state.answer = ''
+            state.answered = false
+            state.quizComplete = false
+            selectOne('.mode-card', button)
+            const missionShell = document.querySelector('.mission-shell')
+            missionShell.classList.toggle(
+              'explorer-mode',
+              state.mode === 'explorer'
+            )
+            missionShell.classList.toggle(
+              'scientist-mode',
+              state.mode === 'scientist'
+            )
+            document.querySelectorAll('.advanced-copy').forEach((item) => {
+              item.hidden = state.mode !== 'scientist'
+            })
+            updateModeCopy()
+            renderQuestion()
+            updatePassport()
+            showToast(
+              state.mode === 'scientist'
+                ? 'Junior Bioacoustician challenge selected: advanced questions begin now.'
+                : 'Ocean Explorer challenge selected: start with the clues and build your knowledge.'
+            )
+          })
+        })
+
+        const answers = document.getElementById('answers')
+        const revealButton = document.getElementById('reveal-button')
+        const nextQuestionButton = document.getElementById(
+          'next-question-button'
+        )
+        const reveal = document.getElementById('reveal')
+        const audioLab = document.getElementById('audio-lab')
+        const audio = document.getElementById('mystery-audio')
+        const audioSource = document.getElementById('mystery-audio-source')
+        const clipLabel = document.getElementById('clip-label')
+        const clipNote = document.getElementById('clip-note')
+        const spectrogramImage = document.getElementById('spectrogram-image')
+        const spectrogramCaption = document.getElementById(
+          'spectrogram-caption'
+        )
+        const questionTitle = document.getElementById('question-title')
+
+        const renderQuestion = (moveFocus = false) => {
+          const questions = getQuestions()
+          const question = questions[state.quizIndex]
+          state.answer = ''
+          state.answered = false
+          audio.pause()
+          audioSource.src = question.audioUrl
+          clipLabel.textContent =
+            state.mode === 'explorer'
+              ? 'Listen to this short Orcasound clip'
+              : question.clipLabel
+          clipNote.textContent =
+            state.mode === 'explorer'
+              ? 'Turn the volume down first. Press play, listen, and pick one answer. Evidence: expert-reviewed historical Orcasound recording from the Salish Sea.'
+              : 'Three-second classroom clip from a real Orcasound recording. Short calls use neutral padding and are never repeated. Nothing will autoplay.'
+          spectrogramImage.src = question.spectrogramUrl
+          spectrogramImage.alt = question.spectrogramAlt
+          spectrogramCaption.textContent = `Visual evidence · ${question.clipLabel
+            .split('·')
+            .at(-1)
+            .trim()} spectrogram`
+          audio.load()
+          document.getElementById('question-count').textContent = `${
+            state.mode === 'scientist'
+              ? 'Junior Bioacoustician · Advanced'
+              : 'Ocean Explorer'
+          } · Question ${state.quizIndex + 1} of ${questions.length} · ${
+            question.label
+          }`
+          const challengeLabels =
+            state.mode === 'explorer'
+              ? ['Let’s begin', 'Great listening', 'Last one']
+              : [
+                  'Warm-up',
+                  'Explore',
+                  'Think deeper',
+                  'Evidence challenge',
+                  'Final challenge',
+                ]
+          document.getElementById('challenge-label').textContent =
+            challengeLabels[state.quizIndex]
+          const challengeDots = document.querySelector('.challenge-dots')
+          if (challengeDots.children.length !== questions.length) {
+            challengeDots.replaceChildren(
+              ...Array.from({ length: questions.length }, () => {
+                const dot = document.createElement('span')
+                dot.className = 'challenge-dot'
+                return dot
+              })
+            )
+          }
+          challengeDots
+            .querySelectorAll('.challenge-dot')
+            .forEach((dot, index) => {
+              dot.classList.toggle('reached', index < state.quizIndex)
+              dot.classList.toggle('current', index === state.quizIndex)
+            })
+          questionTitle.textContent = question.title
+          document.getElementById('mission-instruction').textContent =
+            question.instruction
+          document.getElementById('question-prompt').textContent =
+            question.prompt
+          audioLab.hidden = !question.audio
+          answers.replaceChildren()
+          question.choices.forEach(([value, text]) => {
+            const button = document.createElement('button')
+            button.className = 'answer'
+            button.type = 'button'
+            button.dataset.answer = value
+            button.textContent = text
+            button.setAttribute('aria-pressed', 'false')
+            button.addEventListener('click', () => {
+              if (state.answered) return
+              state.answer = value
+              answers.querySelectorAll('.answer').forEach((item) => {
+                item.classList.remove('selected')
+                item.setAttribute('aria-pressed', 'false')
+              })
+              button.classList.add('selected')
+              button.setAttribute('aria-pressed', 'true')
+              revealButton.disabled = false
+            })
+            answers.appendChild(button)
+          })
+          reveal.classList.remove('show')
+          reveal.classList.remove('success', 'learning', 'complete')
+          revealButton.hidden = false
+          revealButton.disabled = true
+          nextQuestionButton.hidden = true
+          nextQuestionButton.textContent =
+            state.quizIndex === questions.length - 1
+              ? 'See my score'
+              : 'Next question'
+          if (moveFocus) questionTitle.focus({ preventScroll: true })
+        }
+
+        revealButton.addEventListener('click', () => {
+          if (!state.answer || state.answered) return
+          const questions = getQuestions()
+          const question = questions[state.quizIndex]
+          state.answered = true
+          if (state.answer === question.correct) state.score += 1
+          answers.querySelectorAll('.answer').forEach((button) => {
+            button.classList.remove('selected')
+            button.setAttribute('aria-pressed', 'false')
+            button.disabled = true
+            if (button.dataset.answer === question.correct)
+              button.classList.add('correct')
+            if (button.dataset.answer === 'unsure' && state.answer === 'unsure')
+              button.classList.add('neutral')
+          })
+          document.getElementById('reveal-title').textContent =
+            state.answer === question.correct
+              ? `✓ Great listening! ${question.answerTitle}`
+              : `Keep investigating! ${question.answerTitle}`
+          document.getElementById('reveal-copy').textContent =
+            question.explanation
+          const advanced = document.getElementById('reveal-advanced')
+          advanced.textContent = question.advanced
+          advanced.hidden = state.mode !== 'scientist'
+          reveal.classList.add('show')
+          reveal.classList.add(
+            state.answer === question.correct ? 'success' : 'learning'
+          )
+          revealButton.hidden = true
+          nextQuestionButton.hidden = false
+        })
+
+        document.getElementById('hint-button').addEventListener('click', () => {
+          const questions = getQuestions()
+          showToast(questions[state.quizIndex].hint)
+        })
+
+        nextQuestionButton.addEventListener('click', () => {
+          const questions = getQuestions()
+          if (state.quizIndex < questions.length - 1) {
+            state.quizIndex += 1
+            renderQuestion(true)
+            return
+          }
+          document.getElementById(
+            'reveal-title'
+          ).textContent = `Mission complete: ${state.score} out of ${questions.length}`
+          document.getElementById('reveal-copy').textContent =
+            state.score === questions.length
+              ? state.mode === 'explorer'
+                ? 'Great exploring! You listened to an orca, discovered a hydrophone, and learned how photos help identify orcas.'
+                : 'Excellent evidence work! You listened, checked uncertainty, and learned how people and technology work together.'
+              : state.mode === 'explorer'
+              ? 'Great try! Explorers learn by listening again and trying new answers.'
+              : 'Great investigation! Scientists keep learning by checking explanations and trying again.'
+          document.getElementById('reveal-advanced').hidden = true
+          state.quizComplete = true
+          reveal.classList.add('show')
+          reveal.classList.remove('success', 'learning')
+          reveal.classList.add('complete')
+          reveal.dataset.stars = `${'★'.repeat(state.score)}${'☆'.repeat(
+            questions.length - state.score
+          )}`
+          reveal.setAttribute(
+            'aria-label',
+            `Mission complete: ${state.score} out of ${questions.length}, ${state.score} stars out of ${questions.length}`
+          )
+          nextQuestionButton.hidden = true
+          updateAdventureProgress()
+          showToast(`Quiz complete: ${state.score} of ${questions.length}.`)
+        })
+
+        renderQuestion()
+
+        const updatePassport = () => {
+          document.querySelectorAll('.passport-stamp').forEach((stamp) => {
+            const earned = state.podStamps.has(stamp.dataset.stamp)
+            stamp.classList.toggle('earned', earned)
+            stamp.setAttribute(
+              'aria-label',
+              `${stamp.dataset.stamp} badge ${earned ? 'earned' : 'not earned'}`
+            )
+          })
+          document.getElementById('passport-progress').textContent =
+            state.podStamps.size === 3
+              ? 'All 3 calls mapped—Call Passport complete!'
+              : `${state.podStamps.size} of 3 calls mapped`
+          document.getElementById('certificate-pod').textContent =
+            state.podStamps.size === 3
+              ? 'S03, S16, and S19 calls'
+              : 'orca call repertoires'
+          updateAdventureProgress()
+        }
+
+        document.querySelectorAll('.mystery-pod-card').forEach((card) => {
+          const callId = card.dataset.callId
+          const validPods = card.dataset.validPods.split('|')
+          const call = callData[callId]
+          const podAudio = card.querySelector('.mystery-pod-audio')
+          const choices = [...card.querySelectorAll('.mystery-guess button')]
+          const submit = card.querySelector('.submit-pod-guess')
+          const feedback = card.querySelector('.mystery-feedback')
+          let selectedGuess = ''
+
+          podAudio.addEventListener('play', () => {
+            if (state.podStamps.has(callId)) {
+              choices.forEach((choice) => {
+                choice.disabled = true
+              })
+              submit.disabled = true
+              submit.textContent = `${callId} badge earned ✓`
+              feedback.hidden = false
+              feedback.textContent =
+                state.mode === 'explorer'
+                  ? `You already mapped the ${callId} call.`
+                  : `${callId} is already mapped to ${call.repertoires}.`
+              return
+            }
+            choices.forEach((choice) => {
+              choice.disabled = false
+            })
+            submit.textContent =
+              state.mode === 'explorer'
+                ? 'Now pick J, K, or L Pod'
+                : 'Choose J, K, or L Pod'
+            feedback.hidden = false
+            feedback.textContent =
+              state.mode === 'explorer'
+                ? 'Pick one pod. Then check your answer.'
+                : 'Step 2: Choose a pod, then lock in your answer.'
+          })
+
+          choices.forEach((choice) => {
+            choice.setAttribute('aria-pressed', 'false')
+            choice.addEventListener('click', () => {
+              selectedGuess = choice.dataset.guess
+              choices.forEach((item) => {
+                item.setAttribute('aria-pressed', String(item === choice))
+              })
+              submit.disabled = false
+              submit.textContent =
+                state.mode === 'explorer' ? 'Check my pod' : 'Lock in my answer'
+            })
+          })
+
+          submit.addEventListener('click', () => {
+            if (!selectedGuess) return
+            if (state.podStamps.has(callId)) {
+              choices.forEach((choice) => {
+                choice.disabled = true
+              })
+              submit.disabled = true
+              submit.textContent = `${callId} badge earned ✓`
+              feedback.hidden = false
+              feedback.textContent =
+                state.mode === 'explorer'
+                  ? `You already mapped the ${callId} call.`
+                  : `${callId} is already mapped to ${call.repertoires}.`
+              return
+            }
+            if (!validPods.includes(selectedGuess)) {
+              feedback.textContent =
+                state.mode === 'explorer'
+                  ? 'Good try! Listen again, read the clue, and pick another pod.'
+                  : 'Not this pod yet. Listen again, reread the field note, and try another answer.'
+              card.classList.add('needs-retry')
+              showToast(
+                state.mode === 'explorer'
+                  ? 'Good try—pick another pod.'
+                  : 'Good investigation—try another pod.'
+              )
+              return
+            }
+
+            state.podStamps.add(callId)
+            state.pod = selectedGuess
+            card.classList.remove('needs-retry')
+            card.classList.add('solved')
+            card.querySelector('.mystery-state').textContent = 'Correct ✓'
+            card.querySelector('.mystery-title').textContent =
+              state.mode === 'explorer'
+                ? `${selectedGuess} is a match!`
+                : `${callId} mapped to ${selectedGuess}`
+            feedback.textContent =
+              state.mode === 'explorer'
+                ? `Correct! ${call.explanation}`
+                : `Valid repertoire match. ${call.explanation}`
+            choices.forEach((choice) => {
+              choice.disabled = true
+            })
+            submit.disabled = true
+            submit.textContent = `${callId} badge earned ✓`
+            updateModeCopy()
+            updatePassport()
+            showToast(
+              state.podStamps.size === 3
+                ? 'Call Passport complete! You mapped all three calls.'
+                : `${callId} badge earned!`
+            )
+          })
+        })
+
+        updatePassport()
+
+        document.querySelectorAll('.action-select').forEach((button) => {
+          button.addEventListener('click', () => {
+            state.action = button.dataset.action
+            state.actionSelected = true
+            selectOne('.action-select', button)
+            document.querySelectorAll('.action-card').forEach((card) => {
+              card.classList.toggle('selected', card.contains(button))
+            })
+            document.getElementById(
+              'certificate-action'
+            ).textContent = `My ally action: ${state.action}.`
+            updateAdventureProgress()
+            showToast(
+              state.mode === 'explorer'
+                ? 'You chose a way to help!'
+                : 'Orca Ally action selected.'
+            )
+          })
+        })
+
+        const dialog = document.getElementById('certificate-dialog')
+        document
+          .getElementById('certificate-button')
+          .addEventListener('click', () => {
+            if (
+              !state.quizComplete ||
+              state.podStamps.size !== 3 ||
+              !state.actionSelected
+            ) {
+              const remaining = []
+              if (!state.quizComplete)
+                remaining.push(
+                  state.mode === 'explorer'
+                    ? 'finish the listening game'
+                    : 'finish the sound quiz'
+                )
+              if (state.podStamps.size !== 3)
+                remaining.push(
+                  `map ${3 - state.podStamps.size} more call${
+                    state.podStamps.size === 2 ? '' : 's'
+                  }`
+                )
+              if (!state.actionSelected)
+                remaining.push(
+                  state.mode === 'explorer'
+                    ? 'choose one way to help'
+                    : 'choose one ally action'
+                )
+              showToast(
+                state.mode === 'explorer'
+                  ? `First, ${remaining.join(', ')}.`
+                  : `To unlock your certificate: ${remaining.join(', ')}.`
+              )
+              return
+            }
+            document.getElementById('certificate-pod').textContent =
+              'S03, S16, and S19 calls'
+            document.getElementById(
+              'certificate-action'
+            ).textContent = `My ally action: ${state.action}.`
+            dialog.showModal()
+          })
+        document
+          .querySelectorAll('.dialog-close, .dialog-close-text')
+          .forEach((button) => {
+            button.addEventListener('click', () => dialog.close())
+          })
+        dialog.addEventListener('click', (event) => {
+          if (event.target === dialog) dialog.close()
+        })
+
+        const glossaryDialog = document.getElementById('glossary-dialog')
+        const openGlossary = () => glossaryDialog.showModal()
+        document
+          .getElementById('open-glossary')
+          .addEventListener('click', openGlossary)
+        document
+          .getElementById('welcome-word-help')
+          .addEventListener('click', openGlossary)
+        document
+          .querySelector('.glossary-close')
+          .addEventListener('click', () => glossaryDialog.close())
+        glossaryDialog.addEventListener('click', (event) => {
+          if (event.target === glossaryDialog) glossaryDialog.close()
+        })
+        document.querySelectorAll('.glossary-term').forEach((term) => {
+          term.addEventListener('click', () => {
+            const expanded = term.getAttribute('aria-expanded') === 'true'
+            term.setAttribute('aria-expanded', String(!expanded))
+          })
+        })
+
+        document
+          .getElementById('start-guided-adventure')
+          .addEventListener('click', () => {
+            document.body.classList.remove('option-b-welcome')
+            showGuidedStep(state.guidedStep)
+          })
+        document
+          .getElementById('option-b-home')
+          .addEventListener('click', (event) => {
+            event.preventDefault()
+            document.body.classList.add('option-b-welcome')
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+            document
+              .getElementById('start-guided-adventure')
+              .focus({ preventScroll: true })
+          })
+
+        document
+          .getElementById('update-certificate')
+          .addEventListener('click', () => {
+            const input = document.getElementById('explorer-name')
+            document.getElementById('certificate-name').textContent =
+              input.value.trim() || 'Young Explorer'
+            showToast('Certificate updated locally.')
+          })
+
+        const mediaElements = [...document.querySelectorAll('audio, video')]
+        mediaElements.forEach((media) => {
+          media.addEventListener('play', () => {
+            mediaElements.forEach((otherMedia) => {
+              if (otherMedia !== media) otherMedia.pause()
+            })
+          })
+        })
+        showGuidedStep(1, false)
+        updateAdventureProgress()
+      })()
+    </script>
+  </body>
+</html>
