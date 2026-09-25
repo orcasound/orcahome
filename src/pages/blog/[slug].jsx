@@ -87,6 +87,18 @@ const portableComponents = {
   marks: {
     link: ({ value, children }) => {
       const href = value?.href || '#'
+      // Some migrated posts had WordPress audio players that came across as a
+      // bare .mp3 link (#428). Render those as an inline audio player instead.
+      if (/\.(mp3|wav|ogg|m4a)$/i.test(href)) {
+        return (
+          <Box
+            component="audio"
+            controls
+            src={href}
+            sx={{ display: 'block', width: '100%', my: 2 }}
+          />
+        )
+      }
       const external = /^https?:\/\//.test(href)
       return (
         <MuiLink
