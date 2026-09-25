@@ -25,15 +25,60 @@ const formatDate = (value) => {
       })
 }
 
+// Some migrated posts embed audio as a link to a .mp3/.ogg file. Pull those
+// out of a block so they render as a visible <audio> player instead of a bare
+// URL or a bulky mid-sentence player (#428). mp3 + ogg of the same clip
+// collapse into one player with multiple <source>s.
+const audioUrlsOf = (value) => [
+  ...new Set(
+    (value?.markDefs || [])
+      .filter(
+        (d) => d._type === 'link' && /\.(mp3|wav|ogg|m4a)$/i.test(d.href || '')
+      )
+      .map((d) => d.href)
+  ),
+]
+
+const AudioPlayer = ({ urls }) => (
+  <Box
+    component="audio"
+    controls
+    sx={{ display: 'block', width: '100%', my: 1 }}
+  >
+    {urls.map((u) => (
+      <source key={u} src={u} />
+    ))}
+  </Box>
+)
+
 // Render Portable Text with the site's typography, matching the other Sanity
-// pages. Supports headings, lists, links, and inline images.
+// pages. Supports headings, lists, links, inline images, and audio.
 const portableComponents = {
   block: {
-    normal: ({ children }) => (
-      <Typography variant="body1" paragraph>
-        {children}
-      </Typography>
-    ),
+    normal: ({ children, value }) => {
+      const audioUrls = audioUrlsOf(value)
+      if (audioUrls.length === 0) {
+        return (
+          <Typography variant="body1" paragraph>
+            {children}
+          </Typography>
+        )
+      }
+      // A paragraph that is just a bare audio URL shows only the player; one
+      // that references the clip inline in a sentence keeps the sentence.
+      const text = (value.children || []).map((c) => c.text || '').join('')
+      const bareOnly = audioUrls.includes(text.trim())
+      return (
+        <Box sx={{ my: 2 }}>
+          {!bareOnly && (
+            <Typography variant="body1" sx={{ mb: 1 }}>
+              {children}
+            </Typography>
+          )}
+          <AudioPlayer urls={audioUrls} />
+        </Box>
+      )
+    },
     h2: ({ children }) => (
       <Typography variant="h4" component="h2" sx={{ mt: 5, mb: 2 }}>
         {children}
@@ -73,42 +118,28 @@ const portableComponents = {
     ),
   },
   listItem: {
-    bullet: ({ children }) => (
-      <Typography component="li" variant="body1">
-        {children}
-      </Typography>
-    ),
-    number: ({ children }) => (
-      <Typography component="li" variant="body1">
-        {children}
-      </Typography>
-    ),
+    bullet: ({ children, value }) => {
+      const audioUrls = audioUrlsOf(value)
+      return (
+        <Typography component="li" variant="body1">
+          {children}
+          {audioUrls.length > 0 && <AudioPlayer urls={audioUrls} />}
+        </Typography>
+      )
+    },
+    number: ({ children, value }) => {
+      const audioUrls = audioUrlsOf(value)
+      return (
+        <Typography component="li" variant="body1">
+          {children}
+          {audioUrls.length > 0 && <AudioPlayer urls={audioUrls} />}
+        </Typography>
+      )
+    },
   },
   marks: {
     link: ({ value, children }) => {
       const href = value?.href || '#'
-      // Some migrated posts had a WordPress audio player that came across as a
-      // standalone link whose visible text is the audio URL itself (#428).
-      // Render *those* as an audio player. Links with a real label (e.g.
-      // "mp3 | ogg" download links inside a sentence) stay as inline links.
-      const label =
-        typeof children === 'string'
-          ? children
-          : Array.isArray(children)
-          ? children.filter((c) => typeof c === 'string').join('')
-          : ''
-      const isAudio = /\.(mp3|wav|ogg|m4a)$/i.test(href)
-      const labelIsUrl = /^https?:\/\//.test(label.trim())
-      if (isAudio && labelIsUrl) {
-        return (
-          <Box
-            component="audio"
-            controls
-            src={href}
-            sx={{ display: 'block', width: '100%', my: 2 }}
-          />
-        )
-      }
       const external = /^https?:\/\//.test(href)
       return (
         <MuiLink
