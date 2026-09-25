@@ -33,6 +33,9 @@ const formatByline = (authors) => {
   return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`
 }
 
+// Noise tags hidden from the UI without deleting them from the data (#410).
+const HIDDEN_TAGS = new Set(['Uncategorized'])
+
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, and inline images.
 const portableComponents = {
@@ -126,6 +129,7 @@ const portableComponents = {
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
   const byline = formatByline(post.authors)
+  const visibleTags = (post.tags || []).filter((t) => !HIDDEN_TAGS.has(t))
 
   return (
     <>
@@ -156,7 +160,7 @@ export default function BlogPost({ post }) {
           {byline && ` · By ${byline}`}
         </Typography>
 
-        {Array.isArray(post.tags) && post.tags.length > 0 && (
+        {visibleTags.length > 0 && (
           <Stack
             direction="row"
             spacing={1}
@@ -164,7 +168,7 @@ export default function BlogPost({ post }) {
             flexWrap="wrap"
             sx={{ mb: 4 }}
           >
-            {post.tags.map((tag) => (
+            {visibleTags.map((tag) => (
               <Chip key={tag} label={tag} size="small" />
             ))}
           </Stack>
