@@ -119,7 +119,7 @@ const VOLUNTEER_IMAGE_SIZES = '(max-width: 600px) 100vw, 33vw'
 const portableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <Typography variant="p" fontSize="20px" paragraph={true} align="justify">
+      <Typography variant="p" fontSize="20px" paragraph={true} align="left">
         {children}
       </Typography>
     ),
@@ -335,7 +335,7 @@ const DevelopersContent = ({ content }) => (
       <Typography
         variant="p"
         fontSize="30px"
-        align="justify"
+        align="left"
         paragraph={true}
         my="40px"
         textAlign="center"
@@ -410,7 +410,7 @@ const DevelopersContent = ({ content }) => (
     <Typography
       variant="p"
       fontSize="16px"
-      align="justify"
+      align="left"
       paragraph={true}
       mt="40px"
       lineHeight="19.5px"
@@ -431,12 +431,7 @@ const DevelopersContent = ({ content }) => (
           components={portableTextComponents}
         />
       ) : (
-        <Typography
-          variant="p"
-          fontSize="20px"
-          paragraph={true}
-          align="justify"
-        >
+        <Typography variant="p" fontSize="20px" paragraph={true} align="left">
           If you’re based in the Pacific Northwest, you can work with Orcasound
           in-person at a hackathon (see the{' '}
           <Link
@@ -525,12 +520,7 @@ const DevelopersContent = ({ content }) => (
         />
       ) : (
         <>
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-          >
+          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
             The real-time audio streams, citizen science projects, educational
             materials, and outreach projects of Orcasound are brought to you by
             the current network members, listed below, who have e-signed the{' '}
@@ -551,23 +541,13 @@ const DevelopersContent = ({ content }) => (
             free!), either as the host of a hydrophone node, a researcher or
             citizen scientist, an educator/activist, or a general volunteer.
           </Typography>
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-          >
+          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
             If you&apos;re an individual wanting to volunteer, collaborate, or
             donate, check out the many ways you can support Orcasound. Everyone
             can listen for whales, and learn the diverse sounds of the Salish
             Sea.
           </Typography>
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-          >
+          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
             If you&apos;re an organization wanting to join the network as the
             host of a new hydrophone node, an educational/outreach node, or both
             — just read the history, mission, and vision of the network, e-sign
@@ -704,19 +684,14 @@ const SupportContent = ({ content }) => (
             variant="p"
             fontSize="20px"
             paragraph={true}
-            align="justify"
+            align="left"
           >
             {paragraph}
           </Typography>
         ))
       ) : (
         <>
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-          >
+          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
             Help us and our{' '}
             <Typography variant="soft" color="#1B2B7B">
               Orcasound network members
@@ -726,12 +701,7 @@ const SupportContent = ({ content }) => (
             strengthen and grow our network, while supporting our on-going
             conservation, research, and educational efforts.
           </Typography>
-          <Typography
-            variant="p"
-            fontSize="20px"
-            paragraph={true}
-            align="justify"
-          >
+          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
             You can also directly support the many dedicated volunteers who help
             Orcasound keep running and improve over time. Take a look at our
             Hacker hall of fame and our Github repositories and consider
