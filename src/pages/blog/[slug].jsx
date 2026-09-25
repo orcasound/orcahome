@@ -25,6 +25,14 @@ const formatDate = (value) => {
       })
 }
 
+// "Scott Veirs", "Scott Veirs & Val Veirs", "A, B & C" — the post byline.
+const formatByline = (authors) => {
+  const names = (authors || []).filter(Boolean)
+  if (names.length === 0) return ''
+  if (names.length === 1) return names[0]
+  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`
+}
+
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, and inline images.
 const portableComponents = {
@@ -117,6 +125,7 @@ const portableComponents = {
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
+  const byline = formatByline(post.authors)
 
   return (
     <>
@@ -144,6 +153,7 @@ export default function BlogPost({ post }) {
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           {dateLabel}
+          {byline && ` · By ${byline}`}
         </Typography>
 
         {Array.isArray(post.tags) && post.tags.length > 0 && (

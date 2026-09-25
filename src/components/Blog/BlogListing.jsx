@@ -52,6 +52,14 @@ const formatDate = (value) => {
       })
 }
 
+// "Scott Veirs", "Scott Veirs & Val Veirs", "A, B & C" — the card byline.
+const formatByline = (authors) => {
+  const names = (authors || []).filter(Boolean)
+  if (names.length === 0) return ''
+  if (names.length === 1) return names[0]
+  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`
+}
+
 // Build the filter options from the full post list: frequently-used tags, and
 // the years that actually have posts (newest first).
 function useFilterOptions(posts) {
@@ -265,6 +273,8 @@ export default function BlogListing({ posts }) {
                         gutterBottom
                       >
                         {formatDate(post.publishedAt)}
+                        {formatByline(post.authors) &&
+                          ` · By ${formatByline(post.authors)}`}
                       </Typography>
                       <Typography variant="h6" component="h2" gutterBottom>
                         {post.title}
