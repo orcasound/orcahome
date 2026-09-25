@@ -87,9 +87,19 @@ const portableComponents = {
   marks: {
     link: ({ value, children }) => {
       const href = value?.href || '#'
-      // Some migrated posts had WordPress audio players that came across as a
-      // bare .mp3 link (#428). Render those as an inline audio player instead.
-      if (/\.(mp3|wav|ogg|m4a)$/i.test(href)) {
+      // Some migrated posts had a WordPress audio player that came across as a
+      // standalone link whose visible text is the audio URL itself (#428).
+      // Render *those* as an audio player. Links with a real label (e.g.
+      // "mp3 | ogg" download links inside a sentence) stay as inline links.
+      const label =
+        typeof children === 'string'
+          ? children
+          : Array.isArray(children)
+          ? children.filter((c) => typeof c === 'string').join('')
+          : ''
+      const isAudio = /\.(mp3|wav|ogg|m4a)$/i.test(href)
+      const labelIsUrl = /^https?:\/\//.test(label.trim())
+      if (isAudio && labelIsUrl) {
         return (
           <Box
             component="audio"
