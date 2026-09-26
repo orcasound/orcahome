@@ -80,6 +80,30 @@ export const blogPost = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'comments',
+      title: 'Comments (archived from WordPress)',
+      description:
+        'Read-only archive of the original WordPress comment threads (#428). The site does not accept new comments; this is kept as a historical record.',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'comment',
+          fields: [
+            defineField({name: 'author', title: 'Author', type: 'string'}),
+            defineField({name: 'date', title: 'Date', type: 'datetime'}),
+            defineField({name: 'body', title: 'Comment', type: 'text'}),
+            defineField({
+              name: 'depth',
+              title: 'Reply depth (1 = top level)',
+              type: 'number',
+            }),
+          ],
+          preview: {select: {title: 'author', subtitle: 'date'}},
+        }),
+      ],
+    }),
   ],
   orderings: [
     {

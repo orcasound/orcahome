@@ -464,7 +464,8 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   body[]{
     ...,
     _type == "image" => { "url": asset->url, alt }
-  }
+  },
+  comments[]{ author, date, body, depth }
 }`
 
 export interface BlogPostListItem {
