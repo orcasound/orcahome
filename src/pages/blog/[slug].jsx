@@ -10,6 +10,7 @@ import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { formatByline, HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 
@@ -24,17 +25,6 @@ const formatDate = (value) => {
         day: 'numeric',
       })
 }
-
-// "Scott Veirs", "Scott Veirs & Val Veirs", "A, B & C" — the post byline.
-const formatByline = (authors) => {
-  const names = (authors || []).filter(Boolean)
-  if (names.length === 0) return ''
-  if (names.length === 1) return names[0]
-  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`
-}
-
-// Noise tags hidden from the UI without deleting them from the data (#410).
-const HIDDEN_TAGS = new Set(['Uncategorized'])
 
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, and inline images.
