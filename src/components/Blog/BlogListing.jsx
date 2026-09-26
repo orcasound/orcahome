@@ -18,17 +18,14 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 
+import { formatByline, HIDDEN_TAGS } from './blogFormat'
+
 const POSTS_PER_PAGE = 9
 
 // A tag needs at least this many posts to appear in the filter dropdown. The
 // migrated posts carry ~120 tags with a long tail of one-offs (#410); only the
 // frequently-used ones make useful filters.
 const MIN_TAG_COUNT = 5
-
-// Tags that are noise, not topics — hidden from the UI without deleting them
-// from the data (#410). "Uncategorized" is a WordPress default that tells
-// readers nothing.
-const HIDDEN_TAGS = new Set(['Uncategorized'])
 
 const MONTHS = [
   'January',
@@ -55,14 +52,6 @@ const formatDate = (value) => {
         month: 'long',
         day: 'numeric',
       })
-}
-
-// "Scott Veirs", "Scott Veirs & Val Veirs", "A, B & C" — the card byline.
-const formatByline = (authors) => {
-  const names = (authors || []).filter(Boolean)
-  if (names.length === 0) return ''
-  if (names.length === 1) return names[0]
-  return `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`
 }
 
 // Build the filter options from the full post list: frequently-used tags, and

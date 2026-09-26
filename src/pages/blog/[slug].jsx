@@ -11,6 +11,7 @@ import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 
@@ -131,9 +132,6 @@ const MediaPlayers = ({ media }) => (
     ))}
   </>
 )
-
-// Noise tags hidden from the UI without deleting them from the data (#410).
-const HIDDEN_TAGS = new Set(['Uncategorized'])
 
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, inline images, and audio.
