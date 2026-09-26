@@ -18,6 +18,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 
+import { formatByline, HIDDEN_TAGS } from './blogFormat'
+
 const POSTS_PER_PAGE = 9
 
 // A tag needs at least this many posts to appear in the filter dropdown. The
@@ -70,7 +72,7 @@ function useFilterOptions(posts) {
       }
     }
     const tags = [...tagCounts.entries()]
-      .filter(([, n]) => n >= MIN_TAG_COUNT)
+      .filter(([tag, n]) => n >= MIN_TAG_COUNT && !HIDDEN_TAGS.has(tag))
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .map(([tag]) => tag)
     return { tags, years: [...years].sort((a, b) => b - a) }
@@ -265,6 +267,8 @@ export default function BlogListing({ posts }) {
                         gutterBottom
                       >
                         {formatDate(post.publishedAt)}
+                        {formatByline(post.authors) &&
+                          ` · By ${formatByline(post.authors)}`}
                       </Typography>
                       <Typography variant="h6" component="h2" gutterBottom>
                         {post.title}
@@ -282,9 +286,11 @@ export default function BlogListing({ posts }) {
                           flexWrap="wrap"
                           sx={{ mt: 2 }}
                         >
-                          {post.tags.map((t) => (
-                            <Chip key={t} label={t} size="small" />
-                          ))}
+                          {post.tags
+                            .filter((t) => !HIDDEN_TAGS.has(t))
+                            .map((t) => (
+                              <Chip key={t} label={t} size="small" />
+                            ))}
                         </Stack>
                       )}
                     </CardContent>

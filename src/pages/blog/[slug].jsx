@@ -10,6 +10,7 @@ import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
+import { formatByline, HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 
@@ -117,6 +118,8 @@ const portableComponents = {
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
+  const byline = formatByline(post.authors)
+  const visibleTags = (post.tags || []).filter((t) => !HIDDEN_TAGS.has(t))
 
   return (
     <>
@@ -144,9 +147,10 @@ export default function BlogPost({ post }) {
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           {dateLabel}
+          {byline && ` · By ${byline}`}
         </Typography>
 
-        {Array.isArray(post.tags) && post.tags.length > 0 && (
+        {visibleTags.length > 0 && (
           <Stack
             direction="row"
             spacing={1}
@@ -154,7 +158,7 @@ export default function BlogPost({ post }) {
             flexWrap="wrap"
             sx={{ mb: 4 }}
           >
-            {post.tags.map((tag) => (
+            {visibleTags.map((tag) => (
               <Chip key={tag} label={tag} size="small" />
             ))}
           </Stack>

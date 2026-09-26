@@ -448,7 +448,8 @@ export const BLOG_POSTS_QUERY = `*[_type == "blogPost" && defined(slug.current)]
   excerpt,
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
-  tags
+  tags,
+  "authors": authors[]->name
 }`
 
 export const BLOG_SLUGS_QUERY = `*[_type == "blogPost" && defined(slug.current)].slug.current`
@@ -461,6 +462,7 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
   tags,
+  "authors": authors[]->name,
   body[]{
     ...,
     _type == "image" => { "url": asset->url, alt }
@@ -475,6 +477,7 @@ export interface BlogPostListItem {
   featuredImageUrl?: string
   featuredImageAlt?: string
   tags?: string[]
+  authors?: string[]
 }
 
 export interface BlogPost extends BlogPostListItem {
@@ -495,5 +498,6 @@ export const BLOG_POSTS_PAGE_QUERY = `*[_type == "blogPost" && defined(slug.curr
   excerpt,
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
-  tags
+  tags,
+  "authors": authors[]->name
 }`
