@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Chip,
   Container,
@@ -357,41 +358,57 @@ export default function BlogPost({ post }) {
               Archived from the original blog. New comments aren&apos;t accepted
               here.
             </Typography>
-            <Stack spacing={2}>
-              {post.comments.map((comment, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    ml: {
-                      xs: 0,
-                      sm: (Math.max(1, comment.depth || 1) - 1) * 3,
-                    },
-                    p: 2,
-                    bgcolor: 'action.hover',
-                    borderRadius: 1,
-                  }}
-                >
-                  <Typography variant="subtitle2" component="p">
-                    {comment.author}
-                    {comment.date && (
-                      <Typography
-                        component="span"
-                        variant="caption"
-                        color="text.secondary"
-                        sx={{ ml: 1 }}
-                      >
-                        {formatDate(comment.date)}
-                      </Typography>
-                    )}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mt: 0.5, whiteSpace: 'pre-wrap' }}
+            <Stack spacing={3}>
+              {post.comments.map((comment, index) => {
+                const depth = Math.max(1, comment.depth || 1)
+                return (
+                  <Stack
+                    key={index}
+                    direction="row"
+                    spacing={1.5}
+                    sx={{
+                      ml: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
+                      ...(depth > 1 && {
+                        pl: 2,
+                        borderLeft: '2px solid',
+                        borderColor: 'divider',
+                      }),
+                    }}
                   >
-                    {comment.body}
-                  </Typography>
-                </Box>
-              ))}
+                    <Avatar
+                      src={comment.avatar || undefined}
+                      alt={comment.author}
+                      sx={{ width: 40, height: 40, mt: 0.5 }}
+                    >
+                      {(comment.author || '?').charAt(0).toUpperCase()}
+                    </Avatar>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        alignItems="baseline"
+                        flexWrap="wrap"
+                      >
+                        <Typography variant="subtitle2" fontWeight={600}>
+                          {comment.author}
+                        </Typography>
+                        {comment.date && (
+                          <Typography variant="caption" color="text.secondary">
+                            {formatDate(comment.date)}
+                          </Typography>
+                        )}
+                      </Stack>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ mt: 0.5, whiteSpace: 'pre-wrap' }}
+                      >
+                        {comment.body}
+                      </Typography>
+                    </Box>
+                  </Stack>
+                )
+              })}
             </Stack>
           </Box>
         )}

@@ -467,7 +467,7 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
     ...,
     _type == "image" => { "url": asset->url, alt }
   },
-  comments[]{ author, date, body, depth }
+  comments[]{ author, date, body, depth, avatar }
 }`
 
 /** Author archive page (#425): all slugs, and one author with their posts. */
