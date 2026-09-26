@@ -46,6 +46,14 @@ export const blogPost = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'authors',
+      title: 'Authors',
+      description:
+        'Who wrote the post. Pick one or more people; add a new Author if they are not listed yet. Shown as the byline.',
+      type: 'array',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'author'}]})],
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Excerpt / description',
       description:

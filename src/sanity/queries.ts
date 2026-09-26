@@ -448,7 +448,8 @@ export const BLOG_POSTS_QUERY = `*[_type == "blogPost" && defined(slug.current)]
   excerpt,
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
-  tags
+  tags,
+  "authors": authors[]->name
 }`
 
 export const BLOG_SLUGS_QUERY = `*[_type == "blogPost" && defined(slug.current)].slug.current`
@@ -461,11 +462,28 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
   tags,
+  "authors": authors[]->{name, "slug": slug.current},
   body[]{
     ...,
     _type == "image" => { "url": asset->url, alt }
   },
   comments[]{ author, date, body, depth }
+}`
+
+/** Author archive page (#425): all slugs, and one author with their posts. */
+export const AUTHOR_SLUGS_QUERY = `*[_type == "author" && defined(slug.current)].slug.current`
+
+export const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0]{
+  name,
+  "slug": slug.current,
+  "posts": *[_type == "blogPost" && defined(slug.current) && ^._id in authors[]._ref]|order(publishedAt desc){
+    title,
+    "slug": slug.current,
+    publishedAt,
+    excerpt,
+    "featuredImageUrl": featuredImage.asset->url,
+    "featuredImageAlt": featuredImage.alt
+  }
 }`
 
 export interface BlogPostListItem {
@@ -476,6 +494,7 @@ export interface BlogPostListItem {
   featuredImageUrl?: string
   featuredImageAlt?: string
   tags?: string[]
+  authors?: string[]
 }
 
 export interface BlogPost extends BlogPostListItem {
@@ -496,5 +515,6 @@ export const BLOG_POSTS_PAGE_QUERY = `*[_type == "blogPost" && defined(slug.curr
   excerpt,
   "featuredImageUrl": featuredImage.asset->url,
   "featuredImageAlt": featuredImage.alt,
-  tags
+  tags,
+  "authors": authors[]->name
 }`

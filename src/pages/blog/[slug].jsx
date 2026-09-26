@@ -131,6 +131,9 @@ const MediaPlayers = ({ media }) => (
   </>
 )
 
+// Noise tags hidden from the UI without deleting them from the data (#410).
+const HIDDEN_TAGS = new Set(['Uncategorized'])
+
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, inline images, and audio.
 const portableComponents = {
@@ -257,6 +260,8 @@ const portableComponents = {
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
+  const authors = (post.authors || []).filter((a) => a && a.name)
+  const visibleTags = (post.tags || []).filter((t) => !HIDDEN_TAGS.has(t))
 
   return (
     <>
@@ -284,9 +289,20 @@ export default function BlogPost({ post }) {
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           {dateLabel}
+          {authors.length > 0 && ' · By '}
+          {authors.map((a, i) => (
+            <span key={a.slug || a.name}>
+              {i > 0 && (i === authors.length - 1 ? ' & ' : ', ')}
+              {a.slug ? (
+                <MuiLink href={`/blog/author/${a.slug}`}>{a.name}</MuiLink>
+              ) : (
+                a.name
+              )}
+            </span>
+          ))}
         </Typography>
 
-        {Array.isArray(post.tags) && post.tags.length > 0 && (
+        {visibleTags.length > 0 && (
           <Stack
             direction="row"
             spacing={1}
@@ -294,7 +310,7 @@ export default function BlogPost({ post }) {
             flexWrap="wrap"
             sx={{ mb: 4 }}
           >
-            {post.tags.map((tag) => (
+            {visibleTags.map((tag) => (
               <Chip key={tag} label={tag} size="small" />
             ))}
           </Stack>
