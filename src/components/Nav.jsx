@@ -89,10 +89,8 @@ const Nav = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  '@media (max-width: 1200px)': {
-                    position: 'absolute',
-                    left: '15px',
-                  },
+                  position: { xs: 'absolute', sm: 'absolute', md: 'absolute' },
+                  left: { xs: '15px', sm: '15px', md: '15px' },
                 }}
               >
                 <Link href="/">
