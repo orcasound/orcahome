@@ -34,6 +34,7 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
       id={id}
       sx={{
         position: 'sticky',
+        zIndex: 11,
         top: { xs: '56px', sm: '64px', lg: 0 },
 
         bgcolor: 'rgba(255, 255, 255, 0.9)',
