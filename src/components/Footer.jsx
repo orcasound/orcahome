@@ -15,7 +15,7 @@ import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
 import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { pushToDataLayer } from '../utils/gtm'
-import useIsMobile from '../utils/useIsMobile'
+import useIsNotDesktop from '../utils/useIsNotDesktop'
 import Link from './Link'
 
 const currentYear = new Date().getFullYear()
@@ -190,9 +190,9 @@ const iconLinks = [
 ]
 
 export default function Footer() {
-  const isMobile = useIsMobile()
+  const isNotDesktop = useIsNotDesktop()
 
-  return <Box>{isMobile ? <Mobile /> : <Desktop />}</Box>
+  return <Box>{isNotDesktop ? <Mobile /> : <Desktop />}</Box>
 }
 
 function Mobile() {

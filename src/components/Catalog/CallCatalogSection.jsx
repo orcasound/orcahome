@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { CALLS } from './callsData'
 import CatalogCallList from './CatalogCallList'
 import { TOOLTIPS } from './constants'
+import FilterSignal from './FilterSignal'
 import PodFilter from './PodFilter'
 
 // Hard-coded copy, used as a fallback whenever Sanity has no value. The
@@ -57,6 +58,9 @@ export default function CallCatalogSection({
 
       {/* Pod filter tabs */}
       <PodFilter activePod={activePod} onSelect={setActivePod} />
+
+      {/* Active-filter signal (#359): pill + live "Showing N calls" count */}
+      <FilterSignal activePod={activePod} />
 
       <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
         <Typography

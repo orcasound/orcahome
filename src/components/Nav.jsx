@@ -222,8 +222,11 @@ function Mobile() {
     <Box sx={{ display: { xs: 'flex', sm: 'flex' } }}>
       <IconButton
         size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
+        aria-label={
+          menuIsOpen ? 'Close main navigation' : 'Open main navigation'
+        }
+        aria-controls="mobile-nav-drawer"
+        aria-expanded={menuIsOpen}
         aria-haspopup="true"
         onClick={handleMenuToggle}
         color="inherit"
@@ -231,6 +234,7 @@ function Mobile() {
         {menuIsOpen ? <CloseIcon /> : <MenuIcon />}
       </IconButton>
       <Drawer
+        id="mobile-nav-drawer"
         anchor="top"
         open={menuIsOpen}
         onClose={handleMenuToggle}

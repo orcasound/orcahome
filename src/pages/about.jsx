@@ -12,7 +12,7 @@ import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { ABOUT_PAGE_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
-import useIsMobile from '../utils/useIsMobile'
+import useIsNotDesktop from '../utils/useIsNotDesktop'
 
 // Current hard-coded copy, used as a fallback whenever Sanity has no value
 // for a field (or Sanity is unreachable). This keeps the page rendering its
@@ -32,7 +32,7 @@ const DEFAULTS = {
 }
 
 export default function About({ about }) {
-  const mobileActive = useIsMobile()
+  const mobileActive = useIsNotDesktop()
   const [seeMore, setSeeMore] = useState(!mobileActive)
 
   // Per-field fallback: use the Sanity value when present, otherwise the
@@ -78,7 +78,7 @@ export default function About({ about }) {
 
       <Box m={3} id="about">
         <Container>
-          <Typography mt={9} align="justify" variant="body1">
+          <Typography mt={9} align="left" variant="body1">
             {content.intro}
           </Typography>
 
