@@ -32,6 +32,7 @@
       html {
         scroll-behavior: smooth;
         overflow-x: hidden;
+        overscroll-behavior: none;
       }
       body {
         margin: 0;
@@ -2154,7 +2155,6 @@
         }
       }
       body.kiosk-mode {
-        overscroll-behavior: none;
         touch-action: manipulation;
       }
       body.kiosk-mode .btn,
@@ -3729,11 +3729,11 @@
             Close
           </button>
           <button
+            id="kiosk-print-help"
             class="btn btn-primary"
             type="button"
-            onclick="window.print()"
           >
-            Print certificate
+            Ask an admin to print
           </button>
         </div>
       </div>
@@ -4072,6 +4072,14 @@
           )
         }
 
+        document
+          .getElementById('kiosk-print-help')
+          .addEventListener('click', () => {
+            showToast(
+              'Printing is managed by the kiosk admin. Ask an admin for help.'
+            )
+          })
+
         const kioskStartScreen = document.getElementById('kiosk-start-screen')
         const kioskResetDialog = document.getElementById('kiosk-reset-dialog')
         const kioskIdleDialog = document.getElementById('kiosk-idle-dialog')
@@ -4162,13 +4170,17 @@
           'click',
           (event) => {
             const link = event.target.closest('a')
-            if (
-              link &&
-              (link.target === '_blank' || /^https?:/i.test(link.href))
-            ) {
+            if (!link) return
+
+            const destination = new URL(link.href, window.location.href)
+            const opensOutsideKiosk =
+              link.target === '_blank' ||
+              destination.origin !== window.location.origin
+
+            if (opensOutsideKiosk) {
               event.preventDefault()
               showToast(
-                'Outside websites are turned off in kiosk mode. Ask a teacher for help.'
+                'Outside websites are turned off in kiosk mode. Ask an admin for help.'
               )
             }
           },
