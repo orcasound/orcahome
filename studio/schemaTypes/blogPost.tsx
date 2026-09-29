@@ -107,6 +107,7 @@ export const blogPost = defineType({
               title: 'Reply depth (1 = top level)',
               type: 'number',
             }),
+            defineField({name: 'avatar', title: 'Avatar URL', type: 'url'}),
           ],
           preview: {select: {title: 'author', subtitle: 'date'}},
         }),
