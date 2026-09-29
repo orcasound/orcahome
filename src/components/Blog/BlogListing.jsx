@@ -54,11 +54,13 @@ const formatDate = (value) => {
       })
 }
 
-// Build the filter options from the full post list: frequently-used tags, and
-// the years that actually have posts (newest first).
+// Build the filter options from the full post list: frequently-used tags,
+// authors (most posts first), and the years that actually have posts (newest
+// first).
 function useFilterOptions(posts) {
   return useMemo(() => {
     const tagCounts = new Map()
+    const authorCounts = new Map()
     const years = new Set()
     for (const post of posts) {
       if (post.publishedAt) {
@@ -70,25 +72,39 @@ function useFilterOptions(posts) {
           tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)
         }
       }
+      if (Array.isArray(post.authors)) {
+        for (const name of post.authors) {
+          if (name) authorCounts.set(name, (authorCounts.get(name) || 0) + 1)
+        }
+      }
     }
     const tags = [...tagCounts.entries()]
       .filter(([tag, n]) => n >= MIN_TAG_COUNT && !HIDDEN_TAGS.has(tag))
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .map(([tag]) => tag)
-    return { tags, years: [...years].sort((a, b) => b - a) }
+    const authors = [...authorCounts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([name]) => name)
+    return { tags, authors, years: [...years].sort((a, b) => b - a) }
   }, [posts])
 }
 
-// Shared blog listing: filters (tag / year / month) + post grid + numbered
-// pagination. Filtering and paging happen client-side against the full post
-// list and are reflected in the URL (?tag=&year=&month=&page=), so results are
-// shareable and survive refresh. Final visual design is pending UX (#397).
+// Shared blog listing: filters (tag / author / year / month) + post grid +
+// numbered pagination. Filtering and paging happen client-side against the full
+// post list and are reflected in the URL (?tag=&author=&year=&month=&page=), so
+// results are shareable and survive refresh. Final visual design is pending UX (#397).
 export default function BlogListing({ posts }) {
   const router = useRouter()
-  const { tags: tagOptions, years: yearOptions } = useFilterOptions(posts)
+  const {
+    tags: tagOptions,
+    authors: authorOptions,
+    years: yearOptions,
+  } = useFilterOptions(posts)
 
   // Read current filters from the URL.
   const tag = typeof router.query.tag === 'string' ? router.query.tag : ''
+  const author =
+    typeof router.query.author === 'string' ? router.query.author : ''
   const year = typeof router.query.year === 'string' ? router.query.year : ''
   const month = typeof router.query.month === 'string' ? router.query.month : ''
   const page = Math.max(1, Number.parseInt(router.query.page, 10) || 1)
@@ -96,6 +112,7 @@ export default function BlogListing({ posts }) {
   const filtered = useMemo(() => {
     return posts.filter((post) => {
       if (tag && !(post.tags || []).includes(tag)) return false
+      if (author && !(post.authors || []).includes(author)) return false
       if (year || month) {
         if (!post.publishedAt) return false
         const d = new Date(post.publishedAt)
@@ -104,7 +121,7 @@ export default function BlogListing({ posts }) {
       }
       return true
     })
-  }, [posts, tag, year, month])
+  }, [posts, tag, author, year, month])
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / POSTS_PER_PAGE))
   const safePage = Math.min(page, totalPages)
@@ -113,7 +130,7 @@ export default function BlogListing({ posts }) {
     safePage * POSTS_PER_PAGE
   )
 
-  const hasFilters = Boolean(tag || year || month)
+  const hasFilters = Boolean(tag || author || year || month)
 
   // Update the URL query, resetting to page 1 whenever a filter changes.
   const setQuery = (patch) => {
@@ -153,7 +170,7 @@ export default function BlogListing({ posts }) {
           News, updates, and stories from the Orcasound community.
         </Typography>
 
-        {/* Filters: topic (tag) / year / month */}
+        {/* Filters: topic (tag) / author / year / month */}
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}
@@ -174,6 +191,22 @@ export default function BlogListing({ posts }) {
             {tagOptions.map((t) => (
               <MenuItem key={t} value={t}>
                 {t}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
+            select
+            size="small"
+            label="Author"
+            value={author}
+            onChange={(e) => setQuery({ author: e.target.value })}
+            sx={{ minWidth: 200 }}
+          >
+            <MenuItem value="">All authors</MenuItem>
+            {authorOptions.map((a) => (
+              <MenuItem key={a} value={a}>
+                {a}
               </MenuItem>
             ))}
           </TextField>
