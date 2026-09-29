@@ -78,7 +78,7 @@ export default function About({ about }) {
 
       <Box m={3} id="about">
         <Container>
-          <Typography mt={9} align="justify" variant="body1">
+          <Typography mt={9} align="left" variant="body1">
             {content.intro}
           </Typography>
 
