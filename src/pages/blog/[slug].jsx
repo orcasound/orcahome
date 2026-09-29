@@ -550,57 +550,67 @@ export default function BlogPost({ post }) {
               {post.comments.map((comment, index) => {
                 const depth = Math.max(1, comment.depth || 1)
                 return (
-                  <Stack
+                  // Indent with padding on a wrapper: the parent Stack resets
+                  // its children's margins, so `ml` here would be ignored.
+                  <Box
                     key={index}
-                    direction="row"
-                    spacing={1.5}
                     sx={{
-                      ml: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
-                      ...(depth > 1 && {
-                        pl: 2,
-                        borderLeft: '2px solid',
-                        borderColor: 'divider',
-                      }),
+                      pl: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
                     }}
                   >
-                    <Avatar
-                      src={comment.avatar || undefined}
-                      alt={comment.author}
-                      sx={{ width: 40, height: 40, mt: 0.5 }}
+                    <Stack
+                      direction="row"
+                      spacing={1.5}
+                      sx={{
+                        ...(depth > 1 && {
+                          pl: 2,
+                          borderLeft: '2px solid',
+                          borderColor: 'divider',
+                        }),
+                      }}
                     >
-                      {(comment.author || '?').charAt(0).toUpperCase()}
-                    </Avatar>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        alignItems="baseline"
-                        flexWrap="wrap"
+                      <Avatar
+                        src={comment.avatar || undefined}
+                        alt={comment.author}
+                        sx={{ width: 40, height: 40, mt: 0.5 }}
                       >
-                        <Typography variant="subtitle2" fontWeight={600}>
-                          {comment.author}
-                        </Typography>
-                        {comment.date && (
-                          <Typography variant="caption" color="text.secondary">
-                            {formatDate(comment.date)}
+                        {(comment.author || '?').charAt(0).toUpperCase()}
+                      </Avatar>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          alignItems="baseline"
+                          flexWrap="wrap"
+                        >
+                          <Typography variant="subtitle2" fontWeight={600}>
+                            {comment.author}
                           </Typography>
-                        )}
-                      </Stack>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{
-                          mt: 0.5,
-                          whiteSpace: 'pre-wrap',
-                          // Old comments contain long bare URLs; let them wrap
-                          // instead of widening the page on phones.
-                          overflowWrap: 'anywhere',
-                        }}
-                      >
-                        {comment.body}
-                      </Typography>
-                    </Box>
-                  </Stack>
+                          {comment.date && (
+                            <Typography
+                              variant="caption"
+                              color="text.secondary"
+                            >
+                              {formatDate(comment.date)}
+                            </Typography>
+                          )}
+                        </Stack>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            mt: 0.5,
+                            whiteSpace: 'pre-wrap',
+                            // Old comments contain long bare URLs; let them wrap
+                            // instead of widening the page on phones.
+                            overflowWrap: 'anywhere',
+                          }}
+                        >
+                          {comment.body}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Box>
                 )
               })}
             </Stack>
