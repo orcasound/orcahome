@@ -14,6 +14,13 @@ import Image from 'next/image'
 import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
+import { pushToDataLayer } from '../../utils/gtm'
+
+// Width of the article column: Container maxWidth="md" (900) minus its padding.
+const CONTENT_WIDTH = 852
+// srcset candidates (1x/2x of phone and desktop column widths).
+const IMAGE_WIDTHS = [450, 900, 1350, 1800]
+const sanityImageUrl = (url, width) => `${url}?w=${width}&fit=max&auto=format`
 
 const formatDate = (value) => {
   if (!value) return ''
@@ -349,20 +356,59 @@ const portableComponents = {
       // being stretched to the full content column.
       const w = value.width || 1200
       const h = value.height || 800
+      // The Sanity CDN serves the original file as-is unless asked to resize,
+      // and migrated originals can be 10MB+ PNGs (#449). Request only the widths
+      // the column needs, re-encoded to WebP/AVIF; `fit=max` never upscales.
+      // (next/image can't build a srcset here: `images.unoptimized` is global.)
+      const widths = [...IMAGE_WIDTHS.filter((x) => x < w), w]
+      const img = (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={sanityImageUrl(value.url, Math.min(w, CONTENT_WIDTH))}
+          srcSet={widths
+            .map((x) => `${sanityImageUrl(value.url, x)} ${x}w`)
+            .join(', ')}
+          sizes={`(max-width: ${CONTENT_WIDTH}px) 100vw, ${Math.min(
+            w,
+            CONTENT_WIDTH
+          )}px`}
+          alt={value.alt || ''}
+          width={w}
+          height={h}
+          loading="lazy"
+          decoding="async"
+          style={{
+            display: 'block',
+            width: '100%',
+            maxWidth: w,
+            height: 'auto',
+            borderRadius: 8,
+          }}
+        />
+      )
+      // Images wider than a phone screen get scaled down somewhere; clicking
+      // opens the full-size original in a new tab, as on the old WordPress blog.
+      // Small images are always shown at full size, so they aren't linked.
       return (
         <Box sx={{ my: 4 }}>
-          <Image
-            src={value.url}
-            alt={value.alt || ''}
-            width={w}
-            height={h}
-            style={{
-              width: '100%',
-              maxWidth: w,
-              height: 'auto',
-              borderRadius: 8,
-            }}
-          />
+          {w > IMAGE_WIDTHS[0] ? (
+            <MuiLink
+              href={value.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open full-size image${
+                value.alt ? `: ${value.alt}` : ''
+              }`}
+              onClick={() =>
+                pushToDataLayer('blog_image_open', { image_url: value.url })
+              }
+              sx={{ display: 'block', cursor: 'zoom-in' }}
+            >
+              {img}
+            </MuiLink>
+          ) : (
+            img
+          )}
         </Box>
       )
     },
