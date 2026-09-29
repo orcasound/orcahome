@@ -28,9 +28,15 @@ export function sourceComments(html) {
       scope.querySelector('time[datetime]')?.getAttribute('datetime') || null
     const body = norm(scope.querySelector('.comment-content')?.textContent)
     const depth = Number((li.className.match(/depth-(\d+)/) || [])[1] || 1)
+    // Gravatar shown next to the comment; bump the size for crisp rendering.
+    const rawAvatar =
+      scope.querySelector('.comment-author img.avatar, .comment-author img')?.getAttribute('src') ||
+      null
+    const avatar = rawAvatar ? rawAvatar.replace(/([?&]s=)\d+/, '$196') : null
     if (!body && !author) continue
     const comment = {author: author || 'Anonymous', body, depth}
     if (date) comment.date = date
+    if (avatar) comment.avatar = avatar
     comments.push(comment)
   }
   doc.defaultView.close()

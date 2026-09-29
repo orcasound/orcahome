@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Chip,
   Container,
@@ -10,7 +11,7 @@ import { PortableText } from '@portabletext/react'
 import Head from 'next/head'
 import Image from 'next/image'
 
-import { formatByline, HIDDEN_TAGS } from '../../components/Blog/blogFormat'
+import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 
@@ -258,7 +259,7 @@ const portableComponents = {
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
-  const byline = formatByline(post.authors)
+  const authors = (post.authors || []).filter((a) => a && a.name)
   const visibleTags = (post.tags || []).filter((t) => !HIDDEN_TAGS.has(t))
 
   return (
@@ -287,7 +288,17 @@ export default function BlogPost({ post }) {
 
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           {dateLabel}
-          {byline && ` · By ${byline}`}
+          {authors.length > 0 && ' · By '}
+          {authors.map((a, i) => (
+            <span key={a.slug || a.name}>
+              {i > 0 && (i === authors.length - 1 ? ' & ' : ', ')}
+              {a.slug ? (
+                <MuiLink href={`/blog/author/${a.slug}`}>{a.name}</MuiLink>
+              ) : (
+                a.name
+              )}
+            </span>
+          ))}
         </Typography>
 
         {visibleTags.length > 0 && (
@@ -345,41 +356,63 @@ export default function BlogPost({ post }) {
               Archived from the original blog. New comments aren&apos;t accepted
               here.
             </Typography>
-            <Stack spacing={2}>
-              {post.comments.map((comment, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    ml: {
-                      xs: 0,
-                      sm: (Math.max(1, comment.depth || 1) - 1) * 3,
-                    },
-                    p: 2,
-                    bgcolor: 'action.hover',
-                    borderRadius: 1,
-                  }}
-                >
-                  <Typography variant="subtitle2" component="p">
-                    {comment.author}
-                    {comment.date && (
-                      <Typography
-                        component="span"
-                        variant="caption"
-                        color="text.secondary"
-                        sx={{ ml: 1 }}
-                      >
-                        {formatDate(comment.date)}
-                      </Typography>
-                    )}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ mt: 0.5, whiteSpace: 'pre-wrap' }}
+            <Stack spacing={3}>
+              {post.comments.map((comment, index) => {
+                const depth = Math.max(1, comment.depth || 1)
+                return (
+                  <Stack
+                    key={index}
+                    direction="row"
+                    spacing={1.5}
+                    sx={{
+                      ml: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
+                      ...(depth > 1 && {
+                        pl: 2,
+                        borderLeft: '2px solid',
+                        borderColor: 'divider',
+                      }),
+                    }}
                   >
-                    {comment.body}
-                  </Typography>
-                </Box>
-              ))}
+                    <Avatar
+                      src={comment.avatar || undefined}
+                      alt={comment.author}
+                      sx={{ width: 40, height: 40, mt: 0.5 }}
+                    >
+                      {(comment.author || '?').charAt(0).toUpperCase()}
+                    </Avatar>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Stack
+                        direction="row"
+                        spacing={1}
+                        alignItems="baseline"
+                        flexWrap="wrap"
+                      >
+                        <Typography variant="subtitle2" fontWeight={600}>
+                          {comment.author}
+                        </Typography>
+                        {comment.date && (
+                          <Typography variant="caption" color="text.secondary">
+                            {formatDate(comment.date)}
+                          </Typography>
+                        )}
+                      </Stack>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          mt: 0.5,
+                          whiteSpace: 'pre-wrap',
+                          // Old comments contain long bare URLs; let them wrap
+                          // instead of widening the page on phones.
+                          overflowWrap: 'anywhere',
+                        }}
+                      >
+                        {comment.body}
+                      </Typography>
+                    </Box>
+                  </Stack>
+                )
+              })}
             </Stack>
           </Box>
         )}
