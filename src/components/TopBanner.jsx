@@ -51,12 +51,13 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   '&:hover': {
     transform: 'translateY(5px)',
   },
-  //[theme.breakpoints.down('sm')]: {
-  //display: 'none',
-  //},
-  '@media (max-width: 800px)': {
+  [theme.breakpoints.down('sm')]: {
     position: 'relative',
+    //display: 'none',
   },
+  //'@media (max-width: sm)': {
+  //position: 'relative',
+  //},
 }))
 
 const PageDesc = styled(Box)(({ theme }) => ({

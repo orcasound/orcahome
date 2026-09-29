@@ -1,6 +1,7 @@
 import { styled, Typography } from '@mui/material'
 import Image from 'next/image'
 
+import theme from '../styles/theme'
 import Link from './Link'
 
 interface BlogItemProps {
@@ -17,7 +18,8 @@ const BlogItemContainer = styled('div')({
   flexDirection: 'row',
   alignItems: 'center',
   margin: '20px 0',
-  '@media(max-width: 785px)': {
+
+  [theme.breakpoints.up('sm')]: {
     width: '68%',
     flexWrap: 'wrap',
   },

@@ -201,8 +201,18 @@ export const index = ({ home }) => {
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
               }
               sx={{
-                position: 'absolute',
-                bottom: '30px',
+                position: {
+                  xs: 'relative',
+                  sm: 'relative',
+                  md: 'relative',
+                  lg: 'absolute',
+                },
+                bottom: {
+                  xs: '0.25px',
+                  sm: '0.25px',
+                  md: '0.25px',
+                  lg: '30px',
+                },
                 padding: '0',
                 display: 'flex',
                 flexDirection: 'column',
@@ -212,10 +222,6 @@ export const index = ({ home }) => {
                 transition: 'all 0.5s ease-in-out',
                 '&:hover': {
                   transform: 'translateY(5px)',
-                },
-                '@media (max-width: 800px)': {
-                  position: 'relative',
-                  bottom: '0.25px',
                 },
               }}
             >
