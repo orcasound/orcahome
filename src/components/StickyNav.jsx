@@ -34,8 +34,9 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
       id={id}
       sx={{
         position: 'sticky',
-        top: 0,
         zIndex: 11,
+        top: { xs: '56px', sm: '64px', lg: 0 },
+
         bgcolor: 'rgba(255, 255, 255, 0.9)',
         py: 1.25, // equivalent to 10px if using default 8px spacing (1.25 * 8)
       }}
@@ -47,6 +48,9 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
           sx={{
             display: 'flex',
             flexDirection: 'row',
+            flexWrap: 'wrap',
+            gap: 1.5,
+            justifyContent: 'left',
             flexWrap: 'nowrap',
             gap: 1.5,
             justifyContent: 'center',
