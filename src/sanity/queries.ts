@@ -497,7 +497,14 @@ export interface BlogPostListItem {
   authors?: string[]
 }
 
-export interface BlogPost extends BlogPostListItem {
+/** An author as returned by BLOG_POST_QUERY (the listing still returns names only). */
+export interface BlogAuthorRef {
+  name: string
+  slug?: string
+}
+
+export interface BlogPost extends Omit<BlogPostListItem, 'authors'> {
+  authors?: BlogAuthorRef[]
   // Portable Text blocks; typed loosely since the page renders them via
   // @portabletext/react rather than reading the shape directly.
   body?: unknown[]
