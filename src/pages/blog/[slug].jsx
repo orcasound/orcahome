@@ -51,6 +51,105 @@ const mediaOf = (value) => {
 
 const hasMedia = (m) => m.audio.length + m.video.length + m.embeds.length > 0
 
+// Plain text of a Portable Text block (the timestamp + `node=.. dB=.. trigger=`
+// caption line for detection clips).
+const blockText = (b) =>
+  (b?.children || [])
+    .map((c) => c.text || '')
+    .join('')
+    .trim()
+
+const isEmptyBlock = (b) =>
+  b?._type === 'block' && !blockText(b) && !hasMedia(mediaOf(b))
+
+// A caption paragraph is a text block that carries a media (mp3) link.
+const isCaption = (b) => b?._type === 'block' && hasMedia(mediaOf(b))
+
+// A stray metadata fragment: flattening sometimes split `node=.. dB=.. trigger=`
+// off its timestamp into its own linkless block. Fold these back into the
+// preceding caption instead of letting them break the grid.
+const isMeta = (b) =>
+  b?._type === 'block' &&
+  !isCaption(b) &&
+  /node=.*dB=.*trigger=/i.test(blockText(b))
+
+// A migrated detection thumbnail: a small inline image (the 256x170 spectrograms
+// the old WordPress table paired with each clip). Full-size content images are
+// left to render normally.
+const isThumb = (b) => b?._type === 'image' && (b.width || 9999) <= 320
+
+// The original WordPress posts laid these clips out in a 2-column table that
+// htmlToBlocks flattened into a linear image/caption sequence. Re-group each
+// (thumbnail + caption) into a card, and batch consecutive cards so they can
+// render as a grid; everything else stays normal Portable Text.
+const isRegionBlock = (b) =>
+  isThumb(b) || isCaption(b) || isMeta(b) || isEmptyBlock(b)
+
+function groupBody(blocks) {
+  const chunks = []
+  let i = 0
+  while (i < blocks.length) {
+    if (isThumb(blocks[i])) {
+      // Consume a maximal run of thumbnails / captions / metadata / blanks, then
+      // zip the images and captions by order. Zipping (rather than adjacency
+      // pairing) survives the drift where flattening reordered blocks. Stray
+      // metadata fragments are folded into the caption they follow.
+      let start = i
+      while (i < blocks.length && isRegionBlock(blocks[i])) i++
+      // Some posts put each caption *before* its thumbnail, so the first
+      // caption sits just ahead of the run. Pull it in when the run is one
+      // caption short, otherwise every card is paired off by one.
+      const countIn = (from) => {
+        const r = blocks.slice(from, i)
+        return [r.filter(isThumb).length, r.filter(isCaption).length]
+      }
+      const [imgs, caps] = countIn(start)
+      if (caps === imgs - 1 && isCaption(blocks[start - 1])) {
+        const prev = chunks[chunks.length - 1]
+        if (
+          prev?.type === 'normal' &&
+          prev.blocks.at(-1) === blocks[start - 1]
+        ) {
+          prev.blocks = prev.blocks.slice(0, -1)
+          if (!prev.blocks.length) chunks.pop()
+          start -= 1
+        }
+      }
+      const region = blocks.slice(start, i)
+      // Small images with no clip captions are ordinary photos, not a
+      // detection table — leave them as normal Portable Text.
+      if (!region.some(isCaption)) {
+        chunks.push({ type: 'normal', blocks: region })
+        continue
+      }
+      const images = region.filter(isThumb)
+      const captions = []
+      for (const b of region) {
+        if (isCaption(b)) {
+          captions.push({ block: b, text: blockText(b) })
+        } else if (
+          isMeta(b) &&
+          captions.length &&
+          !/node=/i.test(captions[captions.length - 1].text)
+        ) {
+          const last = captions[captions.length - 1]
+          last.text = [last.text, blockText(b)].filter(Boolean).join('\n')
+        }
+      }
+      const cards = []
+      for (let k = 0; k < Math.max(images.length, captions.length); k++) {
+        cards.push({ image: images[k] || null, caption: captions[k] || null })
+      }
+      chunks.push({ type: 'grid', cards })
+    } else {
+      const start = i
+      while (i < blocks.length && !isThumb(blocks[i])) i++
+      chunks.push({ type: 'normal', blocks: blocks.slice(start, i) })
+    }
+  }
+  return chunks
+}
+
 // Normalize a YouTube/Vimeo URL to its embeddable iframe form.
 const embedSrc = (href) => {
   try {
@@ -85,6 +184,7 @@ const MediaPlayers = ({ media }) => (
       <Box
         component="audio"
         controls
+        preload="none"
         sx={{ display: 'block', width: '100%', my: 1 }}
       >
         {media.audio.map((u) => (
@@ -242,20 +342,112 @@ const portableComponents = {
     },
   },
   types: {
-    image: ({ value }) =>
-      value?.url ? (
+    image: ({ value }) => {
+      if (!value?.url) return null
+      // Use the asset's real dimensions and never upscale past them, so small
+      // migrated thumbnails (e.g. 256x170 spectrograms) stay crisp instead of
+      // being stretched to the full content column.
+      const w = value.width || 1200
+      const h = value.height || 800
+      return (
         <Box sx={{ my: 4 }}>
           <Image
             src={value.url}
             alt={value.alt || ''}
-            width={1200}
-            height={800}
-            style={{ width: '100%', height: 'auto', borderRadius: 8 }}
+            width={w}
+            height={h}
+            style={{
+              width: '100%',
+              maxWidth: w,
+              height: 'auto',
+              borderRadius: 8,
+            }}
           />
         </Box>
-      ) : null,
+      )
+    },
   },
 }
+
+// One detection clip: the spectrogram thumbnail, its caption line, and the
+// audio player, boxed as a card. Thumbnails keep their native size so they stay
+// crisp; the audio is lazy (preload="none") so a grid of hundreds costs no
+// requests until a clip is actually played.
+const DetectionCard = ({ image, caption }) => {
+  const media = caption?.block
+    ? mediaOf(caption.block)
+    : { audio: [], video: [], embeds: [] }
+  return (
+    <Box
+      sx={{
+        border: '1px solid',
+        borderColor: 'divider',
+        borderRadius: 2,
+        p: 1.5,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1,
+      }}
+    >
+      {image?.url && (
+        <Image
+          src={image.url}
+          alt={image.alt || ''}
+          width={image.width || 256}
+          height={image.height || 170}
+          loading="lazy"
+          style={{
+            width: '100%',
+            maxWidth: image.width || 256,
+            height: 'auto',
+            borderRadius: 4,
+          }}
+        />
+      )}
+      {caption && (
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ whiteSpace: 'pre-line' }}
+        >
+          {caption.text}
+        </Typography>
+      )}
+      {hasMedia(media) && <MediaPlayers media={media} />}
+    </Box>
+  )
+}
+
+// Render the post body, laying runs of detection clips out as a responsive grid
+// (2-up on desktop, 1-up on narrow screens) and everything else as normal
+// Portable Text.
+const BlogBody = ({ blocks }) => (
+  <>
+    {groupBody(blocks).map((chunk, idx) =>
+      chunk.type === 'grid' ? (
+        <Box
+          key={idx}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+            gap: 2,
+            my: 3,
+          }}
+        >
+          {chunk.cards.map((card, i) => (
+            <DetectionCard key={i} {...card} />
+          ))}
+        </Box>
+      ) : (
+        <PortableText
+          key={idx}
+          value={chunk.blocks}
+          components={portableComponents}
+        />
+      )
+    )}
+  </>
+)
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
@@ -335,9 +527,7 @@ export default function BlogPost({ post }) {
           </Box>
         )}
 
-        {Array.isArray(post.body) && (
-          <PortableText value={post.body} components={portableComponents} />
-        )}
+        {Array.isArray(post.body) && <BlogBody blocks={post.body} />}
 
         {Array.isArray(post.comments) && post.comments.length > 0 && (
           <Box
@@ -360,57 +550,67 @@ export default function BlogPost({ post }) {
               {post.comments.map((comment, index) => {
                 const depth = Math.max(1, comment.depth || 1)
                 return (
-                  <Stack
+                  // Indent with padding on a wrapper: the parent Stack resets
+                  // its children's margins, so `ml` here would be ignored.
+                  <Box
                     key={index}
-                    direction="row"
-                    spacing={1.5}
                     sx={{
-                      ml: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
-                      ...(depth > 1 && {
-                        pl: 2,
-                        borderLeft: '2px solid',
-                        borderColor: 'divider',
-                      }),
+                      pl: { xs: depth > 1 ? 2 : 0, sm: (depth - 1) * 4 },
                     }}
                   >
-                    <Avatar
-                      src={comment.avatar || undefined}
-                      alt={comment.author}
-                      sx={{ width: 40, height: 40, mt: 0.5 }}
+                    <Stack
+                      direction="row"
+                      spacing={1.5}
+                      sx={{
+                        ...(depth > 1 && {
+                          pl: 2,
+                          borderLeft: '2px solid',
+                          borderColor: 'divider',
+                        }),
+                      }}
                     >
-                      {(comment.author || '?').charAt(0).toUpperCase()}
-                    </Avatar>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Stack
-                        direction="row"
-                        spacing={1}
-                        alignItems="baseline"
-                        flexWrap="wrap"
+                      <Avatar
+                        src={comment.avatar || undefined}
+                        alt={comment.author}
+                        sx={{ width: 40, height: 40, mt: 0.5 }}
                       >
-                        <Typography variant="subtitle2" fontWeight={600}>
-                          {comment.author}
-                        </Typography>
-                        {comment.date && (
-                          <Typography variant="caption" color="text.secondary">
-                            {formatDate(comment.date)}
+                        {(comment.author || '?').charAt(0).toUpperCase()}
+                      </Avatar>
+                      <Box sx={{ flex: 1, minWidth: 0 }}>
+                        <Stack
+                          direction="row"
+                          spacing={1}
+                          alignItems="baseline"
+                          flexWrap="wrap"
+                        >
+                          <Typography variant="subtitle2" fontWeight={600}>
+                            {comment.author}
                           </Typography>
-                        )}
-                      </Stack>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{
-                          mt: 0.5,
-                          whiteSpace: 'pre-wrap',
-                          // Old comments contain long bare URLs; let them wrap
-                          // instead of widening the page on phones.
-                          overflowWrap: 'anywhere',
-                        }}
-                      >
-                        {comment.body}
-                      </Typography>
-                    </Box>
-                  </Stack>
+                          {comment.date && (
+                            <Typography
+                              variant="caption"
+                              color="text.secondary"
+                            >
+                              {formatDate(comment.date)}
+                            </Typography>
+                          )}
+                        </Stack>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            mt: 0.5,
+                            whiteSpace: 'pre-wrap',
+                            // Old comments contain long bare URLs; let them wrap
+                            // instead of widening the page on phones.
+                            overflowWrap: 'anywhere',
+                          }}
+                        >
+                          {comment.body}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Box>
                 )
               })}
             </Stack>
