@@ -465,7 +465,12 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   "authors": authors[]->{name, "slug": slug.current},
   body[]{
     ...,
-    _type == "image" => { "url": asset->url, alt }
+    _type == "image" => {
+      "url": asset->url,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height,
+      alt
+    }
   },
   comments[]{ author, date, body, depth, avatar }
 }`
