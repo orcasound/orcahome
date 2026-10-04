@@ -89,8 +89,13 @@ const Nav = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
-                  position: { xs: 'absolute', sm: 'absolute', md: 'absolute' },
-                  left: { xs: '15px', sm: '15px', md: '15px' },
+                  position: {
+                    xs: 'absolute',
+                    sm: 'absolute',
+                    md: 'absolute',
+                    lg: 'static',
+                  },
+                  left: { xs: '15px', sm: '15px', md: '15px', lg: '0px' },
                 }}
               >
                 <Link href="/">

@@ -53,11 +53,7 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   },
   [theme.breakpoints.down('sm')]: {
     position: 'relative',
-    //display: 'none',
   },
-  //'@media (max-width: sm)': {
-  //position: 'relative',
-  //},
 }))
 
 const PageDesc = styled(Box)(({ theme }) => ({
