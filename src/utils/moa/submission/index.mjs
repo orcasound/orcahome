@@ -1,5 +1,5 @@
 /**
- * Pluggable delivery for the MOA join and change-request forms (issue #451).
+ * Pluggable delivery for the MOA join and change-request forms.
  *
  * The handler is chosen at build time by NEXT_PUBLIC_MOA_SUBMISSION_HANDLER:
  * `mailto` (default) or `console` (development only). Adding a handler means

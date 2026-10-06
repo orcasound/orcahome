@@ -4,6 +4,7 @@
 // node:test. The website does not trust Studio validation, because drafts,
 // older documents, or API writes can bypass it, so invalid entries are dropped
 // here.
+import { safeHttpUrl } from './safeUrl.mjs'
 
 const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v)
 
@@ -14,20 +15,6 @@ const pickString = (value, fallbackValue) =>
 
 const cleanStrings = (list) =>
   Array.isArray(list) ? list.map(trimmed).filter(Boolean) : []
-
-// Keep only absolute http(s) URLs so a `javascript:` (or otherwise invalid)
-// value never reaches an href.
-const safeHttpUrl = (v) => {
-  if (typeof v !== 'string' || !v.trim()) return undefined
-  try {
-    const u = new URL(v.trim())
-    return u.protocol === 'http:' || u.protocol === 'https:'
-      ? u.href
-      : undefined
-  } catch {
-    return undefined
-  }
-}
 
 const cleanSections = (sections) =>
   (Array.isArray(sections) ? sections : [])

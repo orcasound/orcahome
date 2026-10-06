@@ -1,5 +1,5 @@
 /**
- * Seed the MOA singleton (issue #451) from the website's bundled fallback,
+ * Seed the MOA singleton from the website's bundled fallback,
  * `src/data/moaContent.json`.
  *
  * Uses createIfNotExists, so it never overwrites a document an editor has

@@ -45,10 +45,15 @@ const MoaJoinForm = ({ values, onChange, onSubmitted, moa, onReadFullMoa }) => {
   const websiteRef = useRef(null)
   const agreeRef = useRef(null)
 
-  // After the first submit attempt, keep per-field errors in sync as the
-  // visitor fixes them. The summary count only changes on submit.
+  // After the first submit attempt, keep per-field errors and the summary
+  // count in sync as the visitor fixes them; the summary hides at zero. Focus
+  // only moves on submit. The alert text changes (and is re-announced) only
+  // when the count changes, not on every keystroke.
   const revalidate = (next) => {
-    if (attempted) setErrors(validateJoin(next).errors)
+    if (!attempted) return
+    const nextErrors = validateJoin(next).errors
+    setErrors(nextErrors)
+    setSummaryCount(Object.keys(nextErrors).length)
   }
 
   const setField = (key, value) => {

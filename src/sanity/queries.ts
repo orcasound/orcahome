@@ -532,7 +532,7 @@ export const BLOG_POSTS_PAGE_QUERY = `*[_type == "blogPost" && defined(slug.curr
 }`
 
 /**
- * MOA singleton for the "Join the network" section on /getinvolved (#451).
+ * MOA singleton for the "Join the network" section on /getinvolved.
  * The page resolves each field against `src/data/moaContent.json`, so an
  * unpublished or partial document still renders the bundled content.
  */

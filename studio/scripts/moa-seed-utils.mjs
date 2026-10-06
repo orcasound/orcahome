@@ -1,6 +1,6 @@
 /**
  * Pure mapping from `src/data/moaContent.json` to a Sanity `moaContent`
- * document (issue #451). Imports nothing so `npm run test` can cover it
+ * document. Imports nothing so `npm run test` can cover it
  * without Studio dependencies or network.
  *
  * `_key`/`_type` go on object-array items only (sections, members). Paragraphs

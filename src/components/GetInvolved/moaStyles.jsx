@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 
-// Scoped accessibility styles for the MOA section and its dialogs (#451). The
+// Scoped accessibility styles for the MOA section and its dialogs. The
 // global theme is left unchanged.
 
 const FOCUS = { outline: '3px solid #1B2B7B', outlineOffset: '2px' }

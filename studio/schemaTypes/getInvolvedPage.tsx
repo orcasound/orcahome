@@ -16,6 +16,23 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
  *
  * Singleton: there is only ever one Get Involved page document.
  */
+// Inline links in the Portable Text fields. The website drops any link that
+// is not one of these (see `src/utils/moa/safeUrl.mjs`), so flag it here too.
+const LINK_HREF_DESCRIPTION =
+  'https:// or http:// URL, mailto: address, a path on this site starting with / (for example /getinvolved), or an in-page #anchor.'
+const validateLinkHref = (href?: string) => {
+  // Same cleanup the browser applies before parsing a URL.
+  const v = (href ?? '')
+    .replace(/^[\u0000-\u0020]+|[\u0000-\u0020]+$/g, '')
+    .replace(/[\t\n\r]/g, '')
+  if (!v) return true
+  if (v.startsWith('#')) return true
+  if (v.startsWith('/')) {
+    return /^\/[\/\\]/.test(v) ? 'Use a single leading / for a path on this site.' : true
+  }
+  return /^(https?:\/\/|mailto:)/i.test(v) || LINK_HREF_DESCRIPTION
+}
+
 export const getInvolvedPage = defineType({
   name: 'getInvolvedPage',
   title: 'Get Involved Page',
@@ -204,7 +221,8 @@ export const getInvolvedPage = defineType({
                     name: 'href',
                     title: 'URL',
                     type: 'string',
-                    validation: (rule) => rule.required(),
+                    description: LINK_HREF_DESCRIPTION,
+                    validation: (rule) => rule.required().custom(validateLinkHref),
                   }),
                 ],
               },
@@ -245,7 +263,8 @@ export const getInvolvedPage = defineType({
                     name: 'href',
                     title: 'URL',
                     type: 'string',
-                    validation: (rule) => rule.required(),
+                    description: LINK_HREF_DESCRIPTION,
+                    validation: (rule) => rule.required().custom(validateLinkHref),
                   }),
                 ],
               },

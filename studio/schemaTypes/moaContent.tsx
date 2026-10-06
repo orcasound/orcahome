@@ -2,7 +2,7 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 /**
  * MOA (Memorandum of Agreement) for the "Join the network" section on the Get
- * Involved page (issue #451).
+ * Involved page.
  *
  * Holds the agreement text (shown as expand/collapse panels) and the current
  * member list. The website falls back to `src/data/moaContent.json` per field

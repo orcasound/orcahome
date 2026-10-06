@@ -52,8 +52,15 @@ const MoaChangeRequestForm = ({ values, onChange, onSubmitted, moa }) => {
   const changeTypeRef = useRef(null)
   const detailsRef = useRef(null)
 
+  // After the first submit attempt, keep per-field errors and the summary
+  // count in sync as the visitor fixes them; the summary hides at zero. Focus
+  // only moves on submit. The alert text changes (and is re-announced) only
+  // when the count changes, not on every keystroke.
   const revalidate = (next) => {
-    if (attempted) setErrors(validateChangeRequest(next, memberNames).errors)
+    if (!attempted) return
+    const nextErrors = validateChangeRequest(next, memberNames).errors
+    setErrors(nextErrors)
+    setSummaryCount(Object.keys(nextErrors).length)
   }
 
   const setField = (key, value) => {

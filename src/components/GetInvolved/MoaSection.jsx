@@ -30,7 +30,7 @@ const EMPTY_CHANGE = {
   details: '',
 }
 
-// "Join the network" section on /getinvolved (#451): intro, the full MOA as
+// "Join the network" section on /getinvolved: intro, the full MOA as
 // expand/collapse panels, the join CTA, the member list, and the
 // change-request CTA. Form drafts live here so closing a dialog keeps them.
 const MoaSection = ({ content, moa }) => {

@@ -1,6 +1,7 @@
 import { Link, Typography } from '@mui/material'
 
 import { pushToDataLayer } from '../../utils/gtm'
+import { safeLinkHref } from '../../utils/moa/safeUrl.mjs'
 
 export const portableTextComponents = {
   block: {
@@ -12,8 +13,11 @@ export const portableTextComponents = {
   },
   marks: {
     link: ({ children, value }) => {
-      const href = value?.href || '#'
-      const isInternal = href.startsWith('/')
+      // Sanity hrefs are untrusted: drop the anchor (keep the text) unless
+      // the value is http(s), mailto:, a same-site path, or an in-page anchor.
+      const href = safeLinkHref(value?.href)
+      if (!href) return <>{children}</>
+      const isInternal = href.startsWith('/') || href.startsWith('#')
 
       return (
         <Link
