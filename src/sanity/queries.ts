@@ -530,3 +530,40 @@ export const BLOG_POSTS_PAGE_QUERY = `*[_type == "blogPost" && defined(slug.curr
   tags,
   "authors": authors[]->name
 }`
+
+/**
+ * MOA singleton for the "Join the network" section on /getinvolved (#451).
+ * The page resolves each field against `src/data/moaContent.json`, so an
+ * unpublished or partial document still renders the bundled content.
+ */
+export const MOA_CONTENT_QUERY = `*[_type == "moaContent"][0]{
+  title,
+  subtitle,
+  sourceDocUrl,
+  sections[]{ heading, paragraphs, items },
+  agreementStatement,
+  members[]{ organization, nodeAndRole, dateJoined, url, "logoUrl": logo.asset->url }
+}`
+
+export interface MoaSection {
+  heading?: string
+  paragraphs?: string[]
+  items?: string[]
+}
+
+export interface MoaMember {
+  organization?: string
+  nodeAndRole?: string
+  dateJoined?: string
+  url?: string
+  logoUrl?: string
+}
+
+export interface MoaContent {
+  title?: string
+  subtitle?: string
+  sourceDocUrl?: string
+  sections?: MoaSection[]
+  agreementStatement?: string
+  members?: MoaMember[]
+}
