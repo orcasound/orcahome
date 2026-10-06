@@ -218,12 +218,15 @@ export const getInvolvedPage = defineType({
     defineField({
       name: 'moaHeading',
       title: 'MOA · heading',
+      description:
+        'Intro shown above the MOA. The agreement text and member list live in the MOA document.',
       type: 'string',
     }),
     defineField({
       name: 'moaBody',
       title: 'MOA · paragraphs',
-      description: 'Use normal paragraphs and select text to add links.',
+      description:
+        'Intro shown above the MOA. The agreement text and member list live in the MOA document. Use normal paragraphs and select text to add links.',
       type: 'array',
       of: [
         defineArrayMember({
