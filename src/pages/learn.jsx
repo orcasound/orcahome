@@ -20,11 +20,12 @@ import TopBanner from '../components/TopBanner'
 import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { getClient } from '../sanity/client'
 import { LEARN_PAGE_QUERY } from '../sanity/queries'
+import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 
-const audioS01 = '/audio/FO-S01.mp3'
-const audioS16 = '/audio/FO-S16.mp3'
-const audioS19 = '/audio/FO-S19.mp3'
+const audioS01 = withBasePath('/audio/FO-S01.mp3')
+const audioS16 = withBasePath('/audio/FO-S16.mp3')
+const audioS19 = withBasePath('/audio/FO-S19.mp3')
 
 // Serializer for the "3 Common Calls" closing sentence when it comes from
 // Sanity as rich text — keeps the centered styling, link colour, and analytics.
@@ -458,9 +459,9 @@ export const learn = ({ learnPage }) => {
 
 export default learn
 
-// Fetch the Learn content from Sanity at build time (revalidated for ISR). If
-// Sanity is unreachable or unconfigured, fall back to null and the component
-// renders its built-in DEFAULTS.
+// Fetch the Learn content from Sanity at build time. If Sanity is unreachable
+// or unconfigured, fall back to null and the component renders its built-in
+// DEFAULTS.
 export async function getStaticProps() {
   let learnPage = null
   try {
@@ -468,5 +469,5 @@ export async function getStaticProps() {
   } catch {
     learnPage = null
   }
-  return { props: { learnPage }, revalidate: 60 }
+  return { props: { learnPage } }
 }

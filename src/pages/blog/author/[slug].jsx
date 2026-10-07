@@ -12,6 +12,7 @@ import Link from 'next/link'
 
 import { getClient } from '../../../sanity/client'
 import { AUTHOR_QUERY, AUTHOR_SLUGS_QUERY } from '../../../sanity/queries'
+import { withBasePath } from '../../../utils/basePath'
 
 const formatDate = (value) => {
   if (!value) return ''
@@ -40,7 +41,7 @@ export default function AuthorPage({ author }) {
 
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <MuiLink
-          href="/blog"
+          href={withBasePath('/blog')}
           variant="body2"
           sx={{ display: 'inline-block', mb: 3 }}
         >
@@ -130,7 +131,7 @@ export async function getStaticPaths() {
   }
   return {
     paths: slugs.map((slug) => ({ params: { slug } })),
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
@@ -143,8 +144,8 @@ export async function getStaticProps({ params }) {
   }
 
   if (!author) {
-    return { notFound: true, revalidate: 60 }
+    return { notFound: true }
   }
 
-  return { props: { author }, revalidate: 60 }
+  return { props: { author } }
 }

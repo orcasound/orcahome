@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles'
 import Image from 'next/image'
 
 import defaultPartners from '../../data/donatePartners.json'
+import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 
 const TitleContainer = styled(Box)(({ theme }) => ({
@@ -112,7 +113,7 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
               <Image
                 width={100}
                 height={100}
-                src={partner.icon}
+                src={withBasePath(partner.icon)}
                 alt={partner.name}
                 style={{
                   width: 'auto',
@@ -160,7 +161,7 @@ const DonatePartners = ({ title, description, partners: sanityPartners }) => {
               <Image
                 width={100}
                 height={100}
-                src={partner.icon}
+                src={withBasePath(partner.icon)}
                 alt={partner.name}
                 style={{
                   width: 'auto',

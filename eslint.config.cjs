@@ -9,7 +9,7 @@ module.exports = [
   {
     // `studio/` is the self-contained Sanity Studio subproject (#317) — it has
     // its own tooling config, so orcahome's lint should not reach into it.
-    ignores: ['**/.next/**', '**/node_modules/**', 'studio/**'],
+    ignores: ['**/.next/**', 'out/**', '**/node_modules/**', 'studio/**'],
   },
 
   // JS/JSX/TS/TSX base config

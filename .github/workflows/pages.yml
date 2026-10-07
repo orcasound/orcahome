@@ -1,0 +1,76 @@
+name: Static site
+
+# Builds the static export (next.config.js `output: 'export'`). Pull requests
+# get the built site as a downloadable artifact; pushes to main deploy it to
+# GitHub Pages, alongside the dev and UX dashboards from docs/.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The Sanity project ID and dataset are public (see .env.example); the build
+# reads published content only, so it needs no token.
+env:
+  NEXT_PUBLIC_SANITY_PROJECT_ID: tncpl9l7
+  NEXT_PUBLIC_SANITY_DATASET: production
+  NEXT_PUBLIC_SANITY_API_VERSION: '2024-01-01'
+
+jobs:
+  artifact:
+    name: Build artifact
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+      # Built for the domain root, so `npx serve out` previews it locally.
+      - run: npm run build
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: static-site
+          path: out/
+          retention-days: 14
+
+  build-pages:
+    name: Build for Pages
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+      - id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      # Pages serves this repo under /<repo>, which Next has to know at build
+      # time to prefix its links and assets.
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      # The dashboards were served from docs/ before Pages switched to this
+      # workflow; keep them at the same URLs.
+      - run: cp docs/dev-status.html docs/ux-status.html out/
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: out/
+
+  deploy-pages:
+    name: Deploy to Pages
+    needs: build-pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

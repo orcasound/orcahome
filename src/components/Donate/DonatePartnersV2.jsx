@@ -1,6 +1,7 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 
 import partners from '../../data/donatePartnersV2.json'
+import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 
 const PARTNERS_COPY_MAX_WIDTH = '1160px'
@@ -71,7 +72,9 @@ const DonatePartnersV2 = () => {
       {/* Cards grid with full-width background */}
       <Box
         sx={{
-          backgroundImage: 'url(/images/orca-from-above.png)',
+          backgroundImage: `url(${withBasePath(
+            '/images/orca-from-above.png'
+          )})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           py: { xs: '64px', lg: '120px' },
@@ -153,7 +156,7 @@ const DonatePartnersV2 = () => {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={partner.icon}
+                      src={withBasePath(partner.icon)}
                       alt={partner.name}
                       style={{
                         width: '100%',

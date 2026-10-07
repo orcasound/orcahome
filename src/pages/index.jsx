@@ -502,9 +502,9 @@ export const index = ({ home }) => {
 
 export default index
 
-// Fetch the Home content from Sanity at build time (revalidated for ISR). If
-// Sanity is unreachable or unconfigured, fall back to null and the component
-// renders its built-in DEFAULTS.
+// Fetch the Home content from Sanity at build time. If Sanity is unreachable or
+// unconfigured, fall back to null and the component renders its built-in
+// DEFAULTS.
 export async function getStaticProps() {
   let home = null
   try {
@@ -512,5 +512,5 @@ export async function getStaticProps() {
   } catch {
     home = null
   }
-  return { props: { home }, revalidate: 60 }
+  return { props: { home } }
 }

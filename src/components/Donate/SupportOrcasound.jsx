@@ -15,6 +15,7 @@ import React, { useState } from 'react'
 import orcaShipsImg from '../../../public/images/about/orca-ships.webp'
 import hackathonImg from '../../../public/images/getinvolved/hackathon.png'
 import srkw2Img from '../../../public/images/srkw2-10.jpg'
+import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 
 const CONTENT_MAX_WIDTH = '1033px'
@@ -218,7 +219,7 @@ const SupportOrcasound = () => {
             <Box
               key={option.href}
               component="a"
-              href={option.href}
+              href={withBasePath(option.href)}
               target={option.external ? '_blank' : undefined}
               rel={option.external ? 'noopener noreferrer' : undefined}
               sx={{

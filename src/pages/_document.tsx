@@ -5,6 +5,7 @@ import createEmotionServer from '@emotion/server/create-instance'
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import theme from '../styles/theme'
+import { withBasePath } from '../utils/basePath'
 import createEmotionCache from '../utils/createEmotionCache'
 
 export default class MyDocument extends Document {
@@ -14,7 +15,11 @@ export default class MyDocument extends Document {
         <Head>
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+          <link
+            rel="icon"
+            href={withBasePath('/favicon.svg')}
+            type="image/svg+xml"
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"

@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import React from 'react'
+import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 
 import topbanner from '../../public/images/srkw2-17.jpg'
 import DonatePartnersV2 from '../components/Donate/DonatePartnersV2'
@@ -9,6 +10,21 @@ import TopBanner from '../components/TopBanner'
 import { DONATE_AB_TEST_ENABLED } from '../utils/donateExperiment'
 
 export const DonateV2 = () => {
+  const router = useRouter()
+
+  // While the A/B test is paused, the V2 variant must not render and
+  // `/donate-v2` must not be reachable (#299, #292). A static export has no
+  // server to redirect, so send visitors to `/donate` from the browser and
+  // render nothing meanwhile.
+  // TODO(static-export): replace with a host-level redirect, or delete this
+  // page while the test is paused. Re-enabling the test needs either a server
+  // or bucketing in the browser, since `src/proxy.ts` is gone.
+  useEffect(() => {
+    if (!DONATE_AB_TEST_ENABLED) router.replace('/donate')
+  }, [router])
+
+  if (!DONATE_AB_TEST_ENABLED) return null
+
   return (
     <>
       <Head>
@@ -26,18 +42,6 @@ export const DonateV2 = () => {
       <DonatePartnersV2 />
     </>
   )
-}
-
-// While the A/B test is paused, the V2 variant must not render in production
-// and `/donate-v2` must not be externally reachable (#299, #292). This page
-// guard is the reliable backstop: it runs in the Pages Router regardless of
-// whether the proxy executes. When the test is re-enabled, the page renders
-// normally so the internal `/donate` → v2 rewrite keeps working.
-export async function getServerSideProps() {
-  if (!DONATE_AB_TEST_ENABLED) {
-    return { redirect: { destination: '/donate', permanent: false } }
-  }
-  return { props: {} }
 }
 
 export default DonateV2

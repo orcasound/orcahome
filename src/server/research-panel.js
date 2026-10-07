@@ -1,3 +1,11 @@
+// Research panel signup handler: validates the opt-in form and creates or
+// updates the contact in Resend.
+//
+// TODO(static-export): this used to be the API route /api/research-panel. A
+// static export can't run server code, and RESEND_API_KEY must never reach the
+// browser, so the form has nowhere to submit until this is hosted elsewhere:
+// a serverless function (Vercel, Netlify, Cloudflare Worker, Lambda) or a
+// hosted signup form that writes to Resend. Kept here unchanged to port.
 const RESEND_CONTACTS_URL = 'https://api.resend.com/contacts'
 
 const SEGMENT_ID = 'e110074e-b6ae-4b53-ada5-24061899f851'

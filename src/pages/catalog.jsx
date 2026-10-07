@@ -64,10 +64,10 @@ export default function Catalog({ catalog }) {
   )
 }
 
-// Fetch the Call Catalog page copy from Sanity at build time (revalidated for
-// ISR). The 46-call dataset stays in callsData.js — only the page copy is
-// fetched. If Sanity is unreachable or unconfigured, fall back to null and the
-// component renders its built-in DEFAULTS.
+// Fetch the Call Catalog page copy from Sanity at build time. The 46-call
+// dataset stays in callsData.js — only the page copy is fetched. If Sanity is
+// unreachable or unconfigured, fall back to null and the component renders its
+// built-in DEFAULTS.
 export async function getStaticProps() {
   let catalog = null
   try {
@@ -75,5 +75,5 @@ export async function getStaticProps() {
   } catch {
     catalog = null
   }
-  return { props: { catalog }, revalidate: 60 }
+  return { props: { catalog } }
 }

@@ -20,7 +20,7 @@ import { useMemo } from 'react'
 
 import { formatByline, HIDDEN_TAGS } from './blogFormat'
 
-const POSTS_PER_PAGE = 9
+export const POSTS_PER_PAGE = 9
 
 // A tag needs at least this many posts to appear in the filter dropdown. The
 // migrated posts carry ~120 tags with a long tail of one-offs (#410); only the

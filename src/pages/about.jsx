@@ -11,6 +11,7 @@ import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { ABOUT_PAGE_QUERY } from '../sanity/queries'
+import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsNotDesktop from '../utils/useIsNotDesktop'
 
@@ -178,7 +179,7 @@ export default function About({ about }) {
                     color: 'white',
                   },
                 }}
-                href={content.ctaHref}
+                href={withBasePath(content.ctaHref)}
                 onClick={() =>
                   pushToDataLayer('cta_click', {
                     cta_text: content.ctaLabel,
@@ -216,9 +217,9 @@ function Mobile({ setSeeMore, seeMore }) {
   )
 }
 
-// Fetch the About content from Sanity at build time (revalidated for ISR).
-// If Sanity is unreachable or unconfigured, fall back to null and the
-// component renders its built-in DEFAULTS.
+// Fetch the About content from Sanity at build time. If Sanity is unreachable
+// or unconfigured, fall back to null and the component renders its built-in
+// DEFAULTS.
 export async function getStaticProps() {
   let about = null
   try {
@@ -226,5 +227,5 @@ export async function getStaticProps() {
   } catch {
     about = null
   }
-  return { props: { about }, revalidate: 60 }
+  return { props: { about } }
 }

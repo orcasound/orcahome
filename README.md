@@ -19,27 +19,26 @@ New here? Start with the [Orcahome dev dashboard](https://orcasound.github.io/or
 
 ## Tech stack
 
-- **Framework:** [Next.js](https://nextjs.org/) 16 (primarily the Pages Router; the App Router is used for the Sanity preview and draft-mode API routes)
+- **Framework:** [Next.js](https://nextjs.org/) 16 (Pages Router), built as a [static export](https://nextjs.org/docs/pages/guides/static-exports): plain HTML/JS/CSS with no server at runtime
 - **UI:** [React](https://react.dev/) 18, [MUI](https://mui.com/) v5, and [Emotion](https://emotion.sh/) for styling
 - **Language:** TypeScript (the codebase mixes `.tsx` and legacy `.jsx` files)
 - **Content:** [Sanity](https://www.sanity.io/) headless CMS via `@sanity/client`, with the Sanity Studio in [`studio/`](studio/)
 - **Audio & visualization:** [wavesurfer.js](https://wavesurfer.xyz/), `react-audio-player`, `use-sound`, and `react-zoom-pan-pinch` (for spectrogram pan/zoom)
 - **Tooling:** ESLint, Prettier, and Husky + lint-staged (pre-commit)
 - **Runtime:** Node 20.9.0 (see [`.node-version`](.node-version))
-- **Hosting & CI:** Vercel for deploys; GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) runs Build, Format, Lint, and Test on each PR
+- **Hosting & CI:** Vercel for deploys; GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) runs Build, Format, Lint, and Test on each PR, and [`pages.yml`](.github/workflows/pages.yml) attaches the built site to each PR and deploys `main` to [GitHub Pages](https://orcasound.github.io/orcahome/)
 
 ## Project structure
 
 ```
 src/
   pages/        Pages Router routes (home, about, catalog, donate, etc.)
-  app/          App Router routes (Sanity draft-mode API + preview)
   components/   React components, grouped by page/feature
   data/         Static JSON/JS content (e.g. donate partners, HHOF contributors)
   sanity/       Sanity client, env, and GROQ queries
+  server/       Server code awaiting a host outside the static site (research panel signup)
   styles/       Global styles
-  utils/        Shared helpers (e.g. the donate A/B experiment config)
-  proxy.ts      Middleware for the /donate A/B experiment bucketing
+  utils/        Shared helpers (e.g. the donate A/B experiment config, base-path URLs)
 studio/         Sanity Studio (schemas + config) for editing CMS content
 docs/           Static status dashboards (dev-status.html, ux-status.html)
 public/         Static assets (audio, images)
@@ -47,19 +46,23 @@ public/         Static assets (audio, images)
 
 ## Routes
 
-| Route                     | Source                                    | Notes                                                        |
-| ------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| `/`                       | `src/pages/index.jsx`                     | Home                                                         |
-| `/about`                  | `src/pages/about.jsx`                     | About page (content editable via Sanity)                     |
-| `/catalog`                | `src/pages/catalog.jsx`                   | Call catalog with spectrograms and audio                     |
-| `/donate`                 | `src/pages/donate.jsx`                    | Donate page (A/B test entry point, bucketed in `proxy.ts`)   |
-| `/donate-v2`              | `src/pages/donate-v2.jsx`                 | Internal A/B variant only; direct hits redirect to `/donate` |
-| `/getinvolved`            | `src/pages/getinvolved.jsx`               | Ways to get involved                                         |
-| `/hacker-hall-of-fame`    | `src/pages/hacker-hall-of-fame.jsx`       | Contributor hall of fame                                     |
-| `/learn`                  | `src/pages/learn.jsx`                     | Learn/education content                                      |
-| `/sanity-preview/[slug]`  | `src/app/sanity-preview/[slug]/page.tsx`  | Draft preview of Sanity content                              |
-| `/api/draft-mode/enable`  | `src/app/api/draft-mode/enable/route.ts`  | Enables Next.js draft mode for Sanity previews               |
-| `/api/draft-mode/disable` | `src/app/api/draft-mode/disable/route.ts` | Disables draft mode                                          |
+| Route                        | Source                                    | Notes                                                                            |
+| ---------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------- |
+| `/`                          | `src/pages/index.jsx`                     | Home                                                                             |
+| `/about`                     | `src/pages/about.jsx`                     | About page (content editable via Sanity)                                         |
+| `/blog`                      | `src/pages/blog/index.jsx`                | Blog listing; filters and pagination are URL query params                        |
+| `/blog/[slug]`               | `src/pages/blog/[slug].jsx`               | Blog post                                                                        |
+| `/blog/author/[slug]`        | `src/pages/blog/author/[slug].jsx`        | Author page                                                                      |
+| `/blog/page/[page]`          | `src/pages/blog/page/[page].jsx`          | Legacy pagination; redirects to `/blog?page=N`                                   |
+| `/catalog`                   | `src/pages/catalog.jsx`                   | Call catalog with spectrograms and audio                                         |
+| `/donate`                    | `src/pages/donate.jsx`                    | Donate page                                                                      |
+| `/donate-v2`                 | `src/pages/donate-v2.jsx`                 | Paused A/B variant; redirects to `/donate`                                       |
+| `/getinvolved`               | `src/pages/getinvolved.jsx`               | Ways to get involved                                                             |
+| `/hacker-hall-of-fame`       | `src/pages/hacker-hall-of-fame.jsx`       | Contributor hall of fame                                                         |
+| `/learn`                     | `src/pages/learn.jsx`                     | Learn/education content                                                          |
+| `/privacy`                   | `src/pages/privacy.jsx`                   | Privacy notice                                                                   |
+| `/research-opt-in-form`      | `src/pages/research-opt-in-form.jsx`      | Research panel signup (its submit endpoint is not hosted yet; see `src/server/`) |
+| `/research-opt-in-form-conf` | `src/pages/research-opt-in-form-conf.jsx` | Signup confirmation                                                              |
 
 ## Getting started
 
@@ -79,13 +82,15 @@ Open [http://localhost:3000](http://localhost:3000) to view the site. Pages live
 
 ### Environment variables
 
-Sanity-backed content (e.g. the About page and previews) needs environment variables. Copy the example file and fill in the values:
+Sanity-backed content needs environment variables. Copy the example file and fill in the values:
 
 ```bash
 cp .env.example .env.local
 ```
 
-`.env.local` is gitignored. The app is designed to build without these set — Sanity is created lazily, and a friendly error only surfaces if a preview route is hit while unconfigured. See [`.env.example`](.env.example) for the full list and where to get a read token.
+`.env.local` is gitignored. The app builds without these set, but every Sanity-backed page then falls back to its built-in copy and the blog is empty. See [`.env.example`](.env.example) for the full list.
+
+To serve the build under a sub-path (as GitHub Pages does, at `/orcahome`), set `NEXT_PUBLIC_BASE_PATH` at build time. Next adds it to `next/link`, router and static-import URLs itself; any other root-relative URL (a plain `<a href>`, an `<img src>` string, an audio path, a CSS `url()`) must go through `withBasePath()` in [`src/utils/basePath.js`](src/utils/basePath.js).
 
 ### Editing content in Sanity
 
@@ -97,7 +102,7 @@ Content (page copy, images, blog posts) is managed in Sanity — no code needed.
 | ---------------------- | ---------------------------------------- |
 | `npm run dev`          | Start the development server             |
 | `npm run build`        | Production build                         |
-| `npm run start`        | Serve the production build               |
+| `npm run start`        | Serve the static build in `out/`         |
 | `npm run lint`         | Run ESLint                               |
 | `npm run lint:fix`     | Run ESLint with autofix                  |
 | `npm run format`       | Format the codebase with Prettier        |
@@ -105,7 +110,7 @@ Content (page copy, images, blog posts) is managed in Sanity — no code needed.
 
 ## Content management (Sanity)
 
-Editable content is managed in [Sanity](https://www.sanity.io/). The Studio lives in [`studio/`](studio/) (see [`studio/README.md`](studio/README.md) for running it). The web app reads content through the client in [`src/sanity/`](src/sanity/), using Incremental Static Regeneration so published edits appear without a redeploy. Draft mode lets editors preview unpublished content via the `/api/draft-mode/*` routes and `/sanity-preview/[slug]`.
+Editable content is managed in [Sanity](https://www.sanity.io/). The Studio lives in [`studio/`](studio/) (see [`studio/README.md`](studio/README.md) for running it). The web app reads content through the client in [`src/sanity/`](src/sanity/), at build time, so a published edit appears only after the next build.
 
 ## Donate page data
 

@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
+import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 
 // Width of the article column: Container maxWidth="md" (900) minus its padding.
@@ -513,7 +514,7 @@ export default function BlogPost({ post }) {
         sx={{ py: { xs: 5, md: 8 } }}
       >
         <MuiLink
-          href="/blog"
+          href={withBasePath('/blog')}
           variant="body2"
           sx={{ display: 'inline-block', mb: 3 }}
         >
@@ -531,7 +532,9 @@ export default function BlogPost({ post }) {
             <span key={a.slug || a.name}>
               {i > 0 && (i === authors.length - 1 ? ' & ' : ', ')}
               {a.slug ? (
-                <MuiLink href={`/blog/author/${a.slug}`}>{a.name}</MuiLink>
+                <MuiLink href={withBasePath(`/blog/author/${a.slug}`)}>
+                  {a.name}
+                </MuiLink>
               ) : (
                 a.name
               )}
@@ -676,8 +679,11 @@ export async function getStaticPaths() {
   }
   return {
     paths: slugs.map((slug) => ({ params: { slug } })),
-    // 'blocking' so posts added in Sanity after build render without a rebuild.
-    fallback: 'blocking',
+    // Static export can only serve pages that exist at build time, so a post
+    // published in Sanity appears only after the next build.
+    // TODO(static-export): rebuild on publish (Sanity webhook → deploy) so new
+    // posts don't wait for the next unrelated push to main.
+    fallback: false,
   }
 }
 
@@ -690,8 +696,8 @@ export async function getStaticProps({ params }) {
   }
 
   if (!post) {
-    return { notFound: true, revalidate: 60 }
+    return { notFound: true }
   }
 
-  return { props: { post }, revalidate: 60 }
+  return { props: { post } }
 }

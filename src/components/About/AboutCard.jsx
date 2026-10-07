@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material'
 import { Paper } from '@mui/material'
 import Image from 'next/image'
 
+import { withBasePath } from '../../utils/basePath'
+
 const AboutCard = ({ item, mobileActive, onClick }) => {
   return (
     <Box
@@ -33,7 +35,7 @@ const AboutCard = ({ item, mobileActive, onClick }) => {
           <Image
             fill
             alt={item.title}
-            src={item.path}
+            src={withBasePath(item.path)}
             sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
             style={{
               objectFit: 'cover',

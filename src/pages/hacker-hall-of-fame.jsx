@@ -457,9 +457,9 @@ const HackerHallOfFame = ({ hhof }) => {
 
 export default HackerHallOfFame
 
-// Fetch the HHOF content from Sanity at build time (revalidated for ISR). If
-// Sanity is unreachable or unconfigured, fall back to null and the component
-// renders its built-in copy + contributor arrays.
+// Fetch the HHOF content from Sanity at build time. If Sanity is unreachable or
+// unconfigured, fall back to null and the component renders its built-in copy +
+// contributor arrays.
 export async function getStaticProps() {
   let hhof = null
   try {
@@ -467,5 +467,5 @@ export async function getStaticProps() {
   } catch {
     hhof = null
   }
-  return { props: { hhof }, revalidate: 60 }
+  return { props: { hhof } }
 }

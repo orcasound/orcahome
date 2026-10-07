@@ -14,6 +14,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import { withBasePath } from '../utils/basePath'
+
 const initialForm = {
   email: '',
   firstName: '',
@@ -54,6 +56,8 @@ export default function ResearchOptInForm() {
     setError('')
 
     try {
+      // TODO(static-export): this endpoint doesn't exist in a static build; see
+      // src/server/research-panel.js. Until it is hosted, submissions fail.
       const response = await fetch('/api/research-panel', {
         method: 'POST',
         headers: {
@@ -291,7 +295,7 @@ export default function ResearchOptInForm() {
                 occasional research invitations. I understand I can unsubscribe
                 at any time. I have read the{' '}
                 <MuiLink
-                  href="/privacy"
+                  href={withBasePath('/privacy')}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -112,10 +112,9 @@ export const Donate = ({ donate }) => {
 
 export default Donate
 
-// Fetch the Donate (V1) page copy from Sanity at build time (revalidated for
-// ISR). Partner cards stay in donatePartners.json. If Sanity is unreachable or
-// unconfigured, fall back to null and the component renders its built-in
-// DEFAULTS.
+// Fetch the Donate (V1) page copy from Sanity at build time. Partner cards stay
+// in donatePartners.json. If Sanity is unreachable or unconfigured, fall back
+// to null and the component renders its built-in DEFAULTS.
 export async function getStaticProps() {
   let donate = null
   try {
@@ -123,5 +122,5 @@ export async function getStaticProps() {
   } catch {
     donate = null
   }
-  return { props: { donate }, revalidate: 60 }
+  return { props: { donate } }
 }

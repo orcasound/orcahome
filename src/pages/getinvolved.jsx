@@ -33,6 +33,7 @@ import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { GET_INVOLVED_PAGE_QUERY } from '../sanity/queries'
+import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 import ActionButton from './../components/ActionButton'
 
@@ -131,7 +132,7 @@ const portableTextComponents = {
 
       return (
         <Link
-          href={href}
+          href={withBasePath(href)}
           sx={{ textDecoration: 'underline', color: '#1B2B7B' }}
           onClick={(event) =>
             pushToDataLayer(
@@ -478,7 +479,7 @@ const DevelopersContent = ({ content }) => (
           your expertise and innovations with us, and maybe even earn your way
           into the{' '}
           <Link
-            href="/hacker-hall-of-fame"
+            href={withBasePath('/hacker-hall-of-fame')}
             style={{ textDecoration: 'underline', color: '#1B2B7B' }}
             onClick={() =>
               pushToDataLayer('jump_link_click', {
@@ -1261,9 +1262,9 @@ export const GetInvolved = ({ getInvolved }) => {
   )
 }
 
-// Fetch the Get Involved content from Sanity at build time (revalidated for
-// ISR). If Sanity is unreachable or unconfigured, fall back to null and the
-// component renders its built-in DEFAULTS / original JSX.
+// Fetch the Get Involved content from Sanity at build time. If Sanity is
+// unreachable or unconfigured, fall back to null and the component renders its
+// built-in DEFAULTS / original JSX.
 export async function getStaticProps() {
   let getInvolved = null
   try {
@@ -1271,7 +1272,7 @@ export async function getStaticProps() {
   } catch {
     getInvolved = null
   }
-  return { props: { getInvolved }, revalidate: 60 }
+  return { props: { getInvolved } }
 }
 
 export default GetInvolved
