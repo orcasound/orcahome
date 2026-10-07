@@ -11,7 +11,6 @@ import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { ABOUT_PAGE_QUERY } from '../sanity/queries'
-import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsNotDesktop from '../utils/useIsNotDesktop'
 
@@ -179,7 +178,7 @@ export default function About({ about }) {
                     color: 'white',
                   },
                 }}
-                href={withBasePath(content.ctaHref)}
+                href={content.ctaHref}
                 onClick={() =>
                   pushToDataLayer('cta_click', {
                     cta_text: content.ctaLabel,

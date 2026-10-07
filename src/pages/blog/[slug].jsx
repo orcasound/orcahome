@@ -14,7 +14,6 @@ import Image from 'next/image'
 import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
-import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 
 // Width of the article column: Container maxWidth="md" (900) minus its padding.
@@ -340,7 +339,7 @@ const portableComponents = {
       const external = /^https?:\/\//.test(href)
       return (
         <MuiLink
-          href={withBasePath(href)}
+          href={href}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
         >
@@ -514,7 +513,7 @@ export default function BlogPost({ post }) {
         sx={{ py: { xs: 5, md: 8 } }}
       >
         <MuiLink
-          href={withBasePath('/blog')}
+          href="/blog"
           variant="body2"
           sx={{ display: 'inline-block', mb: 3 }}
         >
@@ -532,9 +531,7 @@ export default function BlogPost({ post }) {
             <span key={a.slug || a.name}>
               {i > 0 && (i === authors.length - 1 ? ' & ' : ', ')}
               {a.slug ? (
-                <MuiLink href={withBasePath(`/blog/author/${a.slug}`)}>
-                  {a.name}
-                </MuiLink>
+                <MuiLink href={`/blog/author/${a.slug}`}>{a.name}</MuiLink>
               ) : (
                 a.name
               )}

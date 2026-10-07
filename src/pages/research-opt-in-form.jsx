@@ -14,8 +14,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-import { withBasePath } from '../utils/basePath'
-
 // Where submissions go. The handler (src/server/research-panel.js) can't run in
 // the static export, so there is no endpoint until it is hosted elsewhere.
 // TODO(static-export): host the handler and set NEXT_PUBLIC_RESEARCH_PANEL_URL
@@ -306,7 +304,7 @@ export default function ResearchOptInForm() {
                 occasional research invitations. I understand I can unsubscribe
                 at any time. I have read the{' '}
                 <MuiLink
-                  href={withBasePath('/privacy')}
+                  href="/privacy"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

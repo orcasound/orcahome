@@ -7,7 +7,6 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp'
 import { Box, Divider, IconButton, Typography } from '@mui/material'
 import Image from 'next/image'
 
-import { withBasePath } from '../../utils/basePath'
 import { pushToDataLayer } from '../../utils/gtm'
 import { TOOLTIPS } from './constants'
 import { formatDuration, formatPlaybackTime } from './formatTime'
@@ -42,8 +41,8 @@ export default function CallRow({
 }) {
   const hasAudio = !!call.audio
   const callLabel = call.label ?? call.id
-  const thumbnailSrc = withBasePath(call.colorSpec)
-  const waveformSrc = withBasePath(call.waveform)
+  const thumbnailSrc = call.colorSpec
+  const waveformSrc = call.waveform
   const duration = call.duration ?? 0
 
   return (
@@ -234,7 +233,7 @@ export default function CallRow({
             >
               <Box
                 component={isActive ? WaveformPlayer : StaticWaveform}
-                audioSrc={withBasePath(call.audio)}
+                audioSrc={call.audio}
                 waveformSrc={waveformSrc}
                 isActive={isActive}
                 shouldPlay={isPlaying}
@@ -282,7 +281,7 @@ export default function CallRow({
             {/* Download */}
             <IconButton
               component="a"
-              href={withBasePath(downloadPath)}
+              href={downloadPath}
               download={`${callLabel}.mp3`}
               aria-label={`Download ${callLabel}`}
               sx={{
@@ -332,13 +331,13 @@ export default function CallRow({
             }}
           >
             <SpectrogramPanel
-              src={withBasePath(call.colorSpec)}
+              src={call.colorSpec}
               alt={`Color spectrogram for ${callLabel}`}
               title={TOOLTIPS.SPECTROGRAM}
               maxWidth={432}
             />
             <SpectrogramPanel
-              src={withBasePath(call.bwSpec)}
+              src={call.bwSpec}
               alt={`Ford catalog spectrogram for ${callLabel}`}
               title={TOOLTIPS.SPECTROGRAM}
               maxWidth={434}

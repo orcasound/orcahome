@@ -33,7 +33,6 @@ import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { GET_INVOLVED_PAGE_QUERY } from '../sanity/queries'
-import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 import ActionButton from './../components/ActionButton'
 
@@ -132,7 +131,7 @@ const portableTextComponents = {
 
       return (
         <Link
-          href={withBasePath(href)}
+          href={href}
           sx={{ textDecoration: 'underline', color: '#1B2B7B' }}
           onClick={(event) =>
             pushToDataLayer(
@@ -479,7 +478,7 @@ const DevelopersContent = ({ content }) => (
           your expertise and innovations with us, and maybe even earn your way
           into the{' '}
           <Link
-            href={withBasePath('/hacker-hall-of-fame')}
+            href="/hacker-hall-of-fame"
             style={{ textDecoration: 'underline', color: '#1B2B7B' }}
             onClick={() =>
               pushToDataLayer('jump_link_click', {

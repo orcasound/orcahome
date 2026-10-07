@@ -36,7 +36,6 @@ import {
 } from '../data/hackerHallOfFameContributors'
 import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
-import { withBasePath } from '../utils/basePath'
 import { pushToDataLayer } from '../utils/gtm'
 
 const contributorRail = {
@@ -62,7 +61,7 @@ const introComponents = {
       const isInternal = href.startsWith('/')
       return (
         <Link
-          href={withBasePath(href)}
+          href={href}
           target={isInternal ? undefined : '_blank'}
           rel={isInternal ? undefined : 'noopener'}
           sx={{ textDecoration: 'underline' }}
@@ -97,7 +96,7 @@ const sectionHeaderComponents = {
       const isInternal = href.startsWith('/')
       return (
         <Link
-          href={withBasePath(href)}
+          href={href}
           target={isInternal ? undefined : '_blank'}
           rel={isInternal ? undefined : 'noopener'}
           sx={{ color: 'white', textDecoration: 'underline' }}

@@ -1,7 +1,5 @@
 import Button from '@mui/material/Button'
 
-import { withBasePath } from '../utils/basePath'
-
 // ActionButton receives `link` and `text` as props.
 // `text` receives the text you want to place inside of the button.
 // `link` determines the href that the user is directed to after clicking the button.
@@ -10,7 +8,7 @@ const ActionButton = ({ link, text, onClick }) => {
   return (
     <div>
       <Button
-        href={withBasePath(link)}
+        href={link}
         variant="contained"
         onClick={onClick}
         sx={(theme) => ({

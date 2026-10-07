@@ -3198,7 +3198,7 @@
                   <img
                     id="spectrogram-image"
                     data-app-image="callcatalog/FO-S01.png"
-                    src="../images/callcatalog/FO-S01.png"
+                    src="/images/callcatalog/FO-S01.png"
                     alt="Spectrogram of Southern Resident call S01 showing its frequency pattern over time"
                   />
                   <figcaption id="spectrogram-caption">
@@ -3356,7 +3356,7 @@
               <div class="mystery-pod-image">
                 <img
                   data-app-image="srkw2-3.jpg"
-                  src="../images/srkw2-3.jpg"
+                  src="/images/srkw2-3.jpg"
                   alt="Orca swimming at the surface with its tail and dorsal fin visible"
                 />
                 <span class="mystery-number">Mystery call 1</span>
@@ -3426,7 +3426,7 @@
               <div class="mystery-pod-image">
                 <img
                   data-app-image="orca-spyhop.JPG"
-                  src="../images/orca-spyhop.JPG"
+                  src="/images/orca-spyhop.JPG"
                   alt="Orca spyhopping above calm water with mountains in the distance"
                 />
                 <span class="mystery-number">Mystery call 2</span>
@@ -3496,7 +3496,7 @@
               <div class="mystery-pod-image">
                 <img
                   data-app-image="orca-from-above.png"
-                  src="../images/orca-from-above.png"
+                  src="/images/orca-from-above.png"
                   alt="Orca seen from above, showing its black-and-white body pattern"
                 />
                 <span class="mystery-number">Mystery call 3</span>
@@ -4204,7 +4204,7 @@
           <img
             class="certificate-orca"
             data-app-image="orca-spyhop.JPG"
-            src="../images/orca-spyhop.JPG"
+            src="/images/orca-spyhop.JPG"
             alt="Orca spyhopping above calm water with mountains in the distance"
           />
           <h3>Orca Ally</h3>
@@ -4300,7 +4300,7 @@
         const imageAssetPath = (relativePath) =>
           window.location.protocol === 'file:'
             ? `../../public/images/${relativePath}`
-            : `../images/${relativePath}`
+            : `/images/${relativePath}`
 
         document.querySelectorAll('[data-app-image]').forEach((image) => {
           image.src = imageAssetPath(image.dataset.appImage)

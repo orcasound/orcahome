@@ -12,7 +12,6 @@ import Link from 'next/link'
 
 import { getClient } from '../../../sanity/client'
 import { AUTHOR_QUERY, AUTHOR_SLUGS_QUERY } from '../../../sanity/queries'
-import { withBasePath } from '../../../utils/basePath'
 
 const formatDate = (value) => {
   if (!value) return ''
@@ -41,7 +40,7 @@ export default function AuthorPage({ author }) {
 
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <MuiLink
-          href={withBasePath('/blog')}
+          href="/blog"
           variant="body2"
           sx={{ display: 'inline-block', mb: 3 }}
         >

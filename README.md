@@ -26,7 +26,7 @@ New here? Start with the [Orcahome dev dashboard](https://orcasound.github.io/or
 - **Audio & visualization:** [wavesurfer.js](https://wavesurfer.xyz/), `react-audio-player`, `use-sound`, and `react-zoom-pan-pinch` (for spectrogram pan/zoom)
 - **Tooling:** ESLint, Prettier, and Husky + lint-staged (pre-commit)
 - **Runtime:** Node 20.9.0 (see [`.node-version`](.node-version))
-- **Hosting & CI:** Vercel for deploys; GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) runs Build, Format, Lint, and Test on each PR, and [`pages.yml`](.github/workflows/pages.yml) attaches the built site to each PR and deploys `main` to [GitHub Pages](https://orcasound.github.io/orcahome/)
+- **Hosting & CI:** Vercel for deploys; GitHub Actions ([`ci.yml`](.github/workflows/ci.yml)) runs Build, Format, Lint, and Test on each PR, and [`static-site.yml`](.github/workflows/static-site.yml) attaches the built site to each run as a downloadable artifact
 
 ## Project structure
 
@@ -38,7 +38,7 @@ src/
   sanity/       Sanity client, env, and GROQ queries
   server/       Server code awaiting a host outside the static site (research panel signup)
   styles/       Global styles
-  utils/        Shared helpers (e.g. the donate A/B experiment config, base-path URLs)
+  utils/        Shared helpers (e.g. the donate A/B experiment config)
 studio/         Sanity Studio (schemas + config) for editing CMS content
 docs/           Static status dashboards (dev-status.html, ux-status.html)
 public/         Static assets (audio, images)
@@ -89,8 +89,6 @@ cp .env.example .env.local
 ```
 
 `.env.local` is gitignored. The app builds without these set, but every Sanity-backed page then falls back to its built-in copy and the blog is empty. See [`.env.example`](.env.example) for the full list.
-
-To serve the build under a sub-path (as GitHub Pages does, at `/orcahome`), set `NEXT_PUBLIC_BASE_PATH` at build time. Next adds it to `next/link`, router and static-import URLs itself; any other root-relative URL (a plain `<a href>`, an `<img src>` string, an audio path, a CSS `url()`) must go through `withBasePath()` in [`src/utils/basePath.js`](src/utils/basePath.js).
 
 ### Editing content in Sanity
 
