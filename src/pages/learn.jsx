@@ -49,7 +49,7 @@ const closingComponents = {
       const isInternal = href.startsWith('/')
       return (
         <Link
-          href={href}
+          href={withBasePath(href)}
           target={isInternal ? undefined : '_blank'}
           rel={isInternal ? undefined : 'noopener noreferrer'}
           sx={{

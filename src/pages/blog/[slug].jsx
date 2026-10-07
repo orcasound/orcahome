@@ -340,7 +340,7 @@ const portableComponents = {
       const external = /^https?:\/\//.test(href)
       return (
         <MuiLink
-          href={href}
+          href={withBasePath(href)}
           target={external ? '_blank' : undefined}
           rel={external ? 'noopener noreferrer' : undefined}
         >
