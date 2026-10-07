@@ -46,23 +46,23 @@ public/         Static assets (audio, images)
 
 ## Routes
 
-| Route                        | Source                                    | Notes                                                                            |
-| ---------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------- |
-| `/`                          | `src/pages/index.jsx`                     | Home                                                                             |
-| `/about`                     | `src/pages/about.jsx`                     | About page (content editable via Sanity)                                         |
-| `/blog`                      | `src/pages/blog/index.jsx`                | Blog listing; filters and pagination are URL query params                        |
-| `/blog/[slug]`               | `src/pages/blog/[slug].jsx`               | Blog post                                                                        |
-| `/blog/author/[slug]`        | `src/pages/blog/author/[slug].jsx`        | Author page                                                                      |
-| `/blog/page/[page]`          | `src/pages/blog/page/[page].jsx`          | Legacy pagination; redirects to `/blog?page=N`                                   |
-| `/catalog`                   | `src/pages/catalog.jsx`                   | Call catalog with spectrograms and audio                                         |
-| `/donate`                    | `src/pages/donate.jsx`                    | Donate page                                                                      |
-| `/donate-v2`                 | `src/pages/donate-v2.jsx`                 | Paused A/B variant; redirects to `/donate`                                       |
-| `/getinvolved`               | `src/pages/getinvolved.jsx`               | Ways to get involved                                                             |
-| `/hacker-hall-of-fame`       | `src/pages/hacker-hall-of-fame.jsx`       | Contributor hall of fame                                                         |
-| `/learn`                     | `src/pages/learn.jsx`                     | Learn/education content                                                          |
-| `/privacy`                   | `src/pages/privacy.jsx`                   | Privacy notice                                                                   |
-| `/research-opt-in-form`      | `src/pages/research-opt-in-form.jsx`      | Research panel signup (its submit endpoint is not hosted yet; see `src/server/`) |
-| `/research-opt-in-form-conf` | `src/pages/research-opt-in-form-conf.jsx` | Signup confirmation                                                              |
+| Route                        | Source                                    | Notes                                                                                                           |
+| ---------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `/`                          | `src/pages/index.jsx`                     | Home                                                                                                            |
+| `/about`                     | `src/pages/about.jsx`                     | About page (content editable via Sanity)                                                                        |
+| `/blog`                      | `src/pages/blog/index.jsx`                | Blog listing; filters and pagination are URL query params                                                       |
+| `/blog/[slug]`               | `src/pages/blog/[slug].jsx`               | Blog post                                                                                                       |
+| `/blog/author/[slug]`        | `src/pages/blog/author/[slug].jsx`        | Author page                                                                                                     |
+| `/blog/page/[page]`          | `src/pages/blog/page/[page].jsx`          | Legacy pagination; redirects to `/blog?page=N`                                                                  |
+| `/catalog`                   | `src/pages/catalog.jsx`                   | Call catalog with spectrograms and audio                                                                        |
+| `/donate`                    | `src/pages/donate.jsx`                    | Donate page                                                                                                     |
+| `/donate-v2`                 | `src/pages/donate-v2.jsx`                 | Paused A/B variant; redirects to `/donate`                                                                      |
+| `/getinvolved`               | `src/pages/getinvolved.jsx`               | Ways to get involved                                                                                            |
+| `/hacker-hall-of-fame`       | `src/pages/hacker-hall-of-fame.jsx`       | Contributor hall of fame                                                                                        |
+| `/learn`                     | `src/pages/learn.jsx`                     | Learn/education content                                                                                         |
+| `/privacy`                   | `src/pages/privacy.jsx`                   | Privacy notice                                                                                                  |
+| `/research-opt-in-form`      | `src/pages/research-opt-in-form.jsx`      | Research panel signup; disabled until `NEXT_PUBLIC_RESEARCH_PANEL_URL` points at a hosted `src/server/` handler |
+| `/research-opt-in-form-conf` | `src/pages/research-opt-in-form-conf.jsx` | Signup confirmation                                                                                             |
 
 ## Getting started
 

@@ -16,6 +16,12 @@ import { useState } from 'react'
 
 import { withBasePath } from '../utils/basePath'
 
+// Where submissions go. The handler (src/server/research-panel.js) can't run in
+// the static export, so there is no endpoint until it is hosted elsewhere.
+// TODO(static-export): host the handler and set NEXT_PUBLIC_RESEARCH_PANEL_URL
+// in the build environment; until then the form says signup is unavailable.
+const SIGNUP_URL = process.env.NEXT_PUBLIC_RESEARCH_PANEL_URL
+
 const initialForm = {
   email: '',
   firstName: '',
@@ -56,9 +62,7 @@ export default function ResearchOptInForm() {
     setError('')
 
     try {
-      // TODO(static-export): this endpoint doesn't exist in a static build; see
-      // src/server/research-panel.js. Until it is hosted, submissions fail.
-      const response = await fetch('/api/research-panel', {
+      const response = await fetch(SIGNUP_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,6 +106,13 @@ export default function ResearchOptInForm() {
           Thank you for your interest in Orcasound. Please share the following
           details to join the research panel.
         </Typography>
+
+        {!SIGNUP_URL && (
+          <Alert severity="info" sx={{ mb: 3 }}>
+            Signup for the research panel isn&apos;t available on this version
+            of the site yet. Please check back soon.
+          </Alert>
+        )}
 
         {error && (
           <Alert severity="error" sx={{ mb: 3 }}>
@@ -309,7 +320,7 @@ export default function ResearchOptInForm() {
           <Button
             type="submit"
             variant="contained"
-            disabled={loading || !form.consent}
+            disabled={!SIGNUP_URL || loading || !form.consent}
             sx={{ mt: 3, display: 'block' }}
           >
             {loading ? 'Submitting...' : 'Join the research panel'}
