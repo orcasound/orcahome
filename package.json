@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "npx serve out",
+    "start": "serve out",
     "test": "echo 'No tests configured'",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -53,6 +53,7 @@
     "jsdom": "^29.1.1",
     "lint-staged": "^12.3.2",
     "prettier": "2.5.1",
+    "serve": "^14.2.6",
     "typescript": "^5.3.3"
   }
 }
