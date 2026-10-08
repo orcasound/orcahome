@@ -122,9 +122,13 @@ For any Donate page change, use the [Donate page change issue template](.github/
 
 The Orcasound support flow (Open Collective plus GitHub Sponsors links shown in the Support modal) currently lives inline at [`src/components/Donate/DonateOrcasound.tsx`](src/components/Donate/DonateOrcasound.tsx) and is tracked for a similar data extraction in a follow-up issue.
 
-## Cross-browser testing
+## Testing
 
-This project is tested with BrowserStack. BrowserStack supports Orcasound through its Open Source Program, providing free cross-browser and real-device testing including Safari on macOS and iOS.
+Cross-browser tests run with [Playwright](https://playwright.dev) against Chromium, Firefox, and WebKit. Playwright's WebKit is not Safari, so real-device checks (for example Listen Live audio on iOS Safari) are done manually before releases.
+
+- Install: `npm install`, then `npx playwright install`
+- Run: `npx playwright test`
+- Design doc: [docs/playwright-integration-design-doc.md](docs/playwright-integration-design-doc.md)
 
 ## Contributing
 
