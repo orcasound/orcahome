@@ -1,4 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -73,7 +74,20 @@ const HydrophoneLocationsMapImage = ({ mapEmbedId }) => (
     />
   </Box>
 )
-
+const ScrollDownButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  bottom: '30px',
+  padding: '0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '15px',
+  transition: 'all 0.5s ease-in-out',
+  '&:hover': {
+    transform: 'translateY(5px)',
+  },
+}))
 export const index = ({ home }) => {
   // Per-field fallback: use the Sanity value when present, otherwise the
   // existing hard-coded copy.
@@ -110,6 +124,7 @@ export const index = ({ home }) => {
           position: 'relative',
           width: '100%',
           height: '90vh',
+          '@supports (height: 1svh)': { height: '90svh' },
           overflow: 'hidden',
         }}
       >
@@ -195,45 +210,23 @@ export const index = ({ home }) => {
           </Box>
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
-            <IconButton
-              aria-label="Scroll down to What is Orcasound section"
+            <ScrollDownButton
+              sx={{ bottom: 0 }}
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
               }
-              sx={{
-                position: {
-                  xs: 'relative',
-                  sm: 'relative',
-                  md: 'relative',
-                  lg: 'absolute',
-                },
-                bottom: {
-                  xs: '0.25px',
-                  sm: '0.25px',
-                  md: '0.25px',
-                  lg: '30px',
-                },
-                padding: '0',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '15px',
-                transition: 'all 0.5s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(5px)',
-                },
-              }}
             >
-              <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
+              <ExpandMoreIcon
+                sx={{ fontSize: 'max(32px, 5vw)', color: '#ffffff' }}
+              />
               <ExpandMoreIcon
                 sx={{
-                  fontSize: '5vw',
+                  fontSize: 'max(32px, 5vw)',
                   color: '#ffffff',
-                  transform: 'translateY(-3.5vw)',
+                  transform: 'translateY(calc(-0.7 * max(32px, 5vw)))',
                 }}
               />
-            </IconButton>
+            </ScrollDownButton>
           </ScrollElement>
         </Box>
       </Box>

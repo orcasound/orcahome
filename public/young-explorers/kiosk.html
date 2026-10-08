@@ -406,7 +406,7 @@
         gap: 30px;
         margin-bottom: 34px;
       }
-      .section-head h2 {
+      .section-head :is(h1, h2) {
         margin: 9px 0 0;
         font-size: clamp(2.2rem, 4vw, 4.2rem);
         line-height: 1;
@@ -453,9 +453,9 @@
         border-color: var(--ocean);
         box-shadow: 0 0 0 5px rgba(89, 216, 206, 0.26), var(--shadow);
       }
-      .mode-card h3,
+      .mode-card :is(h2, h3),
       .pod-card h3,
-      .action-card h3 {
+      .action-card :is(h2, h3) {
         margin: 14px 0 6px;
         font-size: 1.45rem;
       }
@@ -537,7 +537,7 @@
         background: var(--sun);
         box-shadow: 0 0 0 4px rgba(255, 202, 100, 0.2);
       }
-      .mission-main h3 {
+      .mission-main :is(h1, h3) {
         margin: 7px 0 8px;
         font-size: clamp(1.8rem, 3vw, 2.8rem);
       }
@@ -691,7 +691,7 @@
       .reveal.show {
         display: block;
       }
-      .reveal h4 {
+      .reveal :is(h1, h2, h4) {
         margin: 0 0 5px;
         font-size: 1.2rem;
       }
@@ -728,7 +728,9 @@
         .mission-shell:is(.scientist-mode, .explorer-mode) .challenge-meter {
           margin-bottom: 8px;
         }
-        .mission-shell:is(.scientist-mode, .explorer-mode) .mission-main h3 {
+        .mission-shell:is(.scientist-mode, .explorer-mode)
+          .mission-main
+          :is(h1, h3) {
           margin: 5px 0 6px;
           font-size: clamp(1.75rem, 2.5vw, 2.25rem);
         }
@@ -1098,7 +1100,7 @@
         color: #0a4f35;
         background: #dff8e9;
       }
-      .mystery-pod-body h3 {
+      .mystery-pod-body :is(h2, h3) {
         margin: 12px 0 8px;
         font-size: 1.35rem;
       }
@@ -1565,7 +1567,7 @@
         color: var(--white);
         background: var(--ink);
       }
-      .finish-card h3 {
+      .finish-card :is(h2, h3) {
         margin: 0 0 5px;
         font-size: 1.5rem;
       }
@@ -1935,7 +1937,7 @@
         opacity: 0;
         transform: translateY(15px);
         pointer-events: none;
-        transition: 0.2s ease;
+        transition: transform 0.2s ease;
       }
       .toast.show {
         opacity: 1;
@@ -2155,6 +2157,8 @@
         }
       }
       body.kiosk-mode {
+        height: 100dvh;
+        overflow: hidden;
         touch-action: manipulation;
       }
       body.kiosk-mode .btn,
@@ -2167,11 +2171,180 @@
       body.kiosk-mode video {
         min-height: 56px;
       }
+      body.kiosk-mode .toast {
+        bottom: 108px;
+      }
       body.kiosk-mode .learn-section,
       body.kiosk-mode .teacher-strip,
       body.kiosk-mode footer,
       body.kiosk-mode .hero-actions .btn-outline {
         display: none;
+      }
+      body.kiosk-mode .adventure-tracker {
+        display: none;
+      }
+      body.kiosk-mode .section.mission-section[data-kiosk-screen] .section-head,
+      body.kiosk-mode .mission-section .quiz-briefing {
+        display: none;
+      }
+      body.kiosk-mode .mission-main {
+        min-height: 0;
+      }
+      body.kiosk-mode
+        .mission-shell.scientist-mode
+        .mission-main:has(.reveal.show)
+        .audio-lab {
+        display: none;
+      }
+      body.kiosk-mode .mission-main:has(.reveal.show) #question-title {
+        display: none;
+      }
+      body.kiosk-mode [data-kiosk-screen] {
+        height: calc(100dvh - 81px);
+        min-height: 0;
+        overflow: hidden;
+      }
+      body.kiosk-mode [data-kiosk-screen][hidden] {
+        display: none !important;
+      }
+      body.kiosk-mode .hero[data-kiosk-screen] {
+        padding-top: clamp(28px, 5vh, 64px);
+        padding-bottom: clamp(72px, 9vh, 110px);
+      }
+      body.kiosk-mode .section[data-kiosk-screen] {
+        display: grid;
+        align-items: center;
+        padding: clamp(16px, 2.5vh, 30px) clamp(20px, 5vw, 72px) 108px;
+      }
+      body.kiosk-mode .section[data-kiosk-screen] .section-inner {
+        width: 100%;
+        max-height: 100%;
+      }
+      body.kiosk-mode .section[data-kiosk-screen] .section-head {
+        align-items: center;
+        margin-bottom: clamp(12px, 2vh, 22px);
+      }
+      body.kiosk-mode .section[data-kiosk-screen] .section-head :is(h1, h2) {
+        font-size: clamp(1.9rem, 3.5vw, 3.4rem);
+      }
+      body.kiosk-mode .section[data-kiosk-screen] .section-head p {
+        font-size: clamp(0.86rem, 1.2vw, 1rem);
+      }
+      body.kiosk-mode .pods-section .pod-ocean-scene,
+      body.kiosk-mode .pods-section .pod-quest-intro,
+      body.kiosk-mode .pods-section .pod-note,
+      body.kiosk-mode .protect-section .ally-ocean-scene {
+        display: none;
+      }
+      body.kiosk-mode .mystery-pod-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      body.kiosk-mode .mystery-pod-card {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.72fr) minmax(360px, 1.28fr);
+        width: min(1050px, 100%);
+        height: min(58vh, 540px);
+        max-width: 1050px;
+        max-height: min(58vh, 540px);
+        margin: 0 auto;
+      }
+      body.kiosk-mode .mystery-pod-card[hidden] {
+        display: none !important;
+      }
+      body.kiosk-mode .mystery-pod-image {
+        height: 100%;
+        min-height: 300px;
+        contain: size;
+      }
+      body.kiosk-mode .mystery-pod-body {
+        align-self: center;
+      }
+      body.kiosk-mode .mystery-feedback[hidden] {
+        display: block !important;
+        visibility: hidden;
+      }
+      body.kiosk-mode .mystery-feedback {
+        height: 4.7em;
+      }
+      body.kiosk-mode .mystery-passport {
+        display: none;
+      }
+      body.kiosk-mode .action-grid {
+        display: block;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      body.kiosk-mode .action-item[hidden] {
+        display: none !important;
+      }
+      body.kiosk-mode .action-card {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.85fr) minmax(360px, 1.15fr);
+        grid-template-rows: repeat(5, auto);
+        column-gap: clamp(20px, 4vw, 48px);
+        align-items: center;
+        max-height: min(60vh, 560px);
+        padding: clamp(18px, 3vh, 30px);
+      }
+      body.kiosk-mode .action-card > :not(.action-video) {
+        grid-column: 1;
+      }
+      body.kiosk-mode .action-card .action-video {
+        grid-column: 2;
+        grid-row: 1 / 6;
+        width: 100%;
+        max-height: min(52vh, 480px);
+      }
+      body.kiosk-mode .action-learn {
+        display: none;
+      }
+      body.kiosk-mode
+        .protect-section:not([data-kiosk-review='true'])
+        .finish-card {
+        display: none;
+      }
+      body.kiosk-mode .protect-section[data-kiosk-review='true'] .action-grid {
+        display: none;
+      }
+      body.kiosk-mode .protect-section[data-kiosk-review='true'] .finish-card {
+        max-width: 980px;
+        margin: 8vh auto 0;
+      }
+      .kiosk-step-navigation {
+        position: fixed;
+        z-index: 80;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) minmax(180px, 2fr) minmax(
+            150px,
+            1fr
+          );
+        align-items: center;
+        gap: 18px;
+        min-height: 88px;
+        padding: 12px clamp(18px, 5vw, 72px);
+        color: var(--white);
+        background: rgba(7, 31, 54, 0.98);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 -12px 30px rgba(7, 31, 54, 0.18);
+      }
+      .kiosk-step-navigation[hidden] {
+        display: none;
+      }
+      .kiosk-step-navigation .btn {
+        min-height: 58px;
+      }
+      .kiosk-step-status {
+        margin: 0;
+        text-align: center;
+        font-weight: 800;
+      }
+      .kiosk-step-status small {
+        display: block;
+        color: #c6efeb;
+        font-weight: 600;
       }
       .kiosk-controls {
         display: flex;
@@ -2188,7 +2361,7 @@
         z-index: 200;
         inset: 0;
         display: grid;
-        overflow: auto;
+        overflow: hidden;
         place-items: center;
         padding: 28px;
         color: var(--white);
@@ -2259,6 +2432,83 @@
         gap: 12px;
         margin-top: 24px;
       }
+      @media (max-height: 820px) and (min-width: 681px) {
+        .kiosk-welcome-art {
+          width: min(420px, 70vw);
+          margin-bottom: 6px;
+        }
+        .kiosk-welcome h1 {
+          margin: 4px 0 8px;
+          font-size: clamp(2.6rem, 6vw, 4rem);
+        }
+        .kiosk-welcome p {
+          margin-bottom: 18px;
+        }
+        .kiosk-note {
+          margin-top: 10px;
+        }
+        body.kiosk-mode .section[data-kiosk-screen] {
+          padding-top: 12px;
+          padding-bottom: 98px;
+        }
+        body.kiosk-mode .section.mission-section[data-kiosk-screen] {
+          align-items: start;
+          padding-bottom: 84px;
+        }
+        body.kiosk-mode .mission-section .section-inner {
+          transform: translateY(-12px);
+        }
+        body.kiosk-mode
+          .section.mission-section[data-kiosk-screen]
+          .section-head {
+          display: none;
+        }
+        body.kiosk-mode
+          .mission-shell:is(.scientist-mode, .explorer-mode)
+          .mission-main {
+          padding: 1px 20px;
+        }
+        body.kiosk-mode .mission-main .explorer-guide {
+          margin: 8px 0;
+        }
+        body.kiosk-mode .mission-main .audio-lab {
+          margin: 8px 0;
+        }
+        body.kiosk-mode .mission-shell.explorer-mode .spectrogram {
+          height: 180px;
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .spectrogram {
+          height: 90px;
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .headphone-note {
+          display: none;
+        }
+        body.kiosk-mode
+          .mission-shell.scientist-mode
+          .mission-main:has(.reveal.show)
+          :is(.challenge-meter, #question-count, #question-title) {
+          display: none;
+        }
+        body.kiosk-mode .mission-main:has(.reveal.show) .audio-lab {
+          display: none;
+        }
+        body.kiosk-mode :is(.pods-section, .protect-section) .section-head {
+          display: none;
+        }
+        body.kiosk-mode .mystery-pod-body {
+          padding: 10px 16px;
+        }
+        body.kiosk-mode .mystery-pod-body :is(h2, h3),
+        body.kiosk-mode .mystery-pod-body p,
+        body.kiosk-mode .mystery-pod-audio,
+        body.kiosk-mode .mystery-guess {
+          margin-top: 6px;
+          margin-bottom: 6px;
+        }
+        body.kiosk-mode .action-card {
+          padding: 16px 24px;
+        }
+      }
       @media (max-width: 680px) {
         body.kiosk-mode .site-header {
           display: flex;
@@ -2272,6 +2522,185 @@
           min-width: 0;
           padding: 8px 11px;
           font-size: 0.82rem;
+        }
+        body.kiosk-mode [data-kiosk-screen] {
+          height: calc(100dvh - 77px);
+        }
+        body.kiosk-mode .section[data-kiosk-screen] {
+          padding: 12px 14px 92px;
+        }
+        body.kiosk-mode
+          :is(.pods-section, .protect-section)[data-kiosk-screen] {
+          padding-bottom: 84px;
+        }
+        body.kiosk-mode .section[data-kiosk-screen] .section-head {
+          display: block;
+        }
+        body.kiosk-mode .section[data-kiosk-screen] .section-head p {
+          display: none;
+        }
+        body.kiosk-mode :is(.pods-section, .protect-section) .section-head {
+          display: none;
+        }
+        body.kiosk-mode
+          .section.mission-section[data-kiosk-screen]
+          .section-head,
+        body.kiosk-mode .mission-section .quiz-briefing,
+        body.kiosk-mode .mission-section .explorer-guide,
+        body.kiosk-mode .mission-section .spectrogram {
+          display: none;
+        }
+        body.kiosk-mode .mode-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+        body.kiosk-mode .mode-card {
+          min-height: 0;
+          padding: 14px 12px;
+        }
+        body.kiosk-mode .mode-card :is(h2, h3) {
+          margin: 8px 0 0;
+          font-size: 1rem;
+        }
+        body.kiosk-mode .mode-card p,
+        body.kiosk-mode .mode-card .mode-meta {
+          display: none;
+        }
+        body.kiosk-mode .mission-main {
+          min-height: 0;
+          padding: 6px 14px;
+        }
+        body.kiosk-mode .mission-main .challenge-meter {
+          margin-bottom: 6px;
+        }
+        body.kiosk-mode .mission-main > :is(h1, h3) {
+          margin: 4px 0;
+          font-size: 1.55rem;
+        }
+        body.kiosk-mode .mission-main > p {
+          margin: 4px 0 8px;
+        }
+        body.kiosk-mode .mission-main .audio-lab {
+          display: block;
+          margin: 8px 0;
+        }
+        body.kiosk-mode .mission-main .player-card {
+          padding: 12px;
+        }
+        body.kiosk-mode .mission-main .player-card audio {
+          margin-top: 8px;
+        }
+        body.kiosk-mode .mission-main .headphone-note {
+          display: none;
+        }
+        body.kiosk-mode .mission-main .answers {
+          gap: 6px;
+          margin: 8px 0;
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .answers {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        body.kiosk-mode
+          .mission-shell.scientist-mode:not(.quiz-answer-stage)
+          fieldset,
+        body.kiosk-mode
+          .mission-shell.scientist-mode:not(.quiz-answer-stage)
+          .mission-actions {
+          display: none;
+        }
+        body.kiosk-mode
+          .mission-shell.scientist-mode.quiz-answer-stage
+          .audio-lab {
+          display: none;
+        }
+        body.kiosk-mode
+          .mission-shell.scientist-mode.quiz-answer-stage
+          :is(.challenge-meter, #question-count) {
+          display: none;
+        }
+        body.kiosk-mode
+          .mission-shell.scientist-mode
+          .mission-main:has(.reveal.show)
+          :is(.challenge-meter, #question-count, #question-title) {
+          display: none;
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .answer {
+          padding: 6px;
+          font-size: 0.85rem;
+          line-height: 1.2;
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .mission-actions {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        body.kiosk-mode .mission-shell.scientist-mode .mission-actions .btn {
+          padding: 8px 5px;
+          font-size: 0.78rem;
+        }
+        body.kiosk-mode .mission-main .answer {
+          min-height: 44px;
+          padding: 7px 10px;
+        }
+        body.kiosk-mode .mission-actions {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+        body.kiosk-mode .mission-actions #hint-button {
+          margin-left: 0;
+        }
+        body.kiosk-mode .mission-main:has(.reveal.show) > p,
+        body.kiosk-mode .mission-main:has(.reveal.show) .audio-lab,
+        body.kiosk-mode .mission-main:has(.reveal.show) fieldset,
+        body.kiosk-mode .mission-main:has(.reveal.show) .mission-actions {
+          display: none;
+        }
+        body.kiosk-mode .mystery-pod-card,
+        body.kiosk-mode .action-card {
+          display: block;
+          height: auto;
+          max-height: none;
+        }
+        body.kiosk-mode .mystery-pod-image {
+          height: 13vh;
+          min-height: 95px;
+        }
+        body.kiosk-mode .mystery-pod-body {
+          padding: 8px 14px;
+        }
+        body.kiosk-mode .mystery-pod-body :is(h2, h3),
+        body.kiosk-mode .mystery-pod-body p {
+          margin: 6px 0;
+        }
+        body.kiosk-mode .mystery-pod-audio {
+          margin: 6px 0;
+        }
+        body.kiosk-mode .mystery-guess {
+          gap: 6px;
+          margin: 6px 0;
+        }
+        body.kiosk-mode .action-card .action-video {
+          max-height: 25vh;
+        }
+        body.kiosk-mode .mystery-passport {
+          display: none;
+        }
+        .kiosk-step-navigation {
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+          min-height: 80px;
+          padding: 8px 12px;
+        }
+        .kiosk-step-navigation .btn {
+          padding: 8px;
+          font-size: 0.8rem;
+          white-space: nowrap;
+        }
+        .kiosk-step-status {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip: rect(0 0 0 0);
         }
       }
       @media print {
@@ -2363,9 +2792,9 @@
     </style>
   </head>
   <body class="kiosk-mode">
-    <a class="skip-link" href="#main">Skip to the adventure</a>
+    <a class="skip-link" href="#main" inert>Skip to the adventure</a>
 
-    <header class="site-header">
+    <header class="site-header" inert>
       <a class="brand" href="#top" aria-label="Orcasound Young Explorers home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 60 60" role="img">
@@ -2405,6 +2834,8 @@
     <section
       id="kiosk-start-screen"
       class="kiosk-start-screen"
+      role="dialog"
+      aria-modal="true"
       aria-labelledby="kiosk-welcome-title"
     >
       <div class="kiosk-welcome">
@@ -2464,7 +2895,13 @@
       </div>
     </section>
 
-    <div id="top" class="hero">
+    <main id="main" inert>
+      <div
+        id="top"
+        class="hero"
+        data-kiosk-screen="welcome"
+        data-kiosk-active="true"
+      >
       <div class="hero-copy">
         <span class="eyebrow">A five-minute sound adventure</span>
         <h1 tabindex="-1">Can you hear who is <span>underwater?</span></h1>
@@ -2485,10 +2922,11 @@
           >
         </div>
       </div>
-      <div
-        class="orca-scene"
-        aria-label="Illustration of an orca swimming through underwater sound waves"
-      >
+        <div
+          class="orca-scene"
+          role="img"
+          aria-label="Illustration of an orca swimming through underwater sound waves"
+        >
         <span class="bubble one" aria-hidden="true"></span>
         <span class="bubble two" aria-hidden="true"></span>
         <span class="bubble three" aria-hidden="true"></span>
@@ -2522,10 +2960,8 @@
         <div class="sound-ring">
           <span>8 ocean ears<br />listen nearby</span>
         </div>
+        </div>
       </div>
-    </div>
-
-    <main id="main">
       <div
         class="adventure-tracker"
         role="group"
@@ -2606,12 +3042,18 @@
         </div>
       </div>
 
-      <section id="choose-mode" class="section" aria-labelledby="mode-title">
+      <section
+        id="choose-mode"
+        class="section"
+        aria-labelledby="mode-title"
+        data-kiosk-screen="mode"
+        hidden
+      >
         <div class="section-inner">
           <div class="section-head">
             <div>
               <span class="section-kicker">Choose your path</span>
-              <h2 id="mode-title">How do you want to explore?</h2>
+              <h1 id="mode-title">How do you want to explore?</h1>
             </div>
             <p>
               Ocean Explorers try three short activities. Junior Bioacousticians
@@ -2628,7 +3070,7 @@
             >
               <span class="mode-check" aria-hidden="true">✓</span>
               <span class="mode-icon" aria-hidden="true">🌊</span>
-              <h3>Ocean Explorer</h3>
+              <h2>Ocean Explorer</h2>
               <p>Three short listening games with one simple idea at a time.</p>
               <strong>Great for grades 3-5 · about 3 minutes</strong>
             </button>
@@ -2640,7 +3082,7 @@
             >
               <span class="mode-check" aria-hidden="true">✓</span>
               <span class="mode-icon" aria-hidden="true">🔬</span>
-              <h3>Junior Bioacoustician</h3>
+              <h2>Junior Bioacoustician</h2>
               <p>
                 Read a spectrogram, compare evidence, and learn how AI and
                 experts work together.
@@ -2655,6 +3097,8 @@
         id="mission"
         class="section mission-section"
         aria-labelledby="mission-title"
+        data-kiosk-screen="quiz"
+        hidden
       >
         <div class="section-inner">
           <div class="section-head">
@@ -2693,7 +3137,11 @@
                 </ul>
               </aside>
 
-              <div class="challenge-meter" aria-label="Question difficulty">
+              <div
+                class="challenge-meter"
+                role="group"
+                aria-label="Question difficulty"
+              >
                 <span id="challenge-label">Warm-up</span>
                 <span class="challenge-dots" aria-hidden="true">
                   <span class="challenge-dot current"></span>
@@ -2706,12 +3154,16 @@
               <span id="question-count" class="section-kicker"
                 >Question 1 of 5 · Listen closely</span
               >
-              <h3 id="question-title" tabindex="-1">What do you notice?</h3>
+              <h1 id="question-title" tabindex="-1">What do you notice?</h1>
               <p id="mission-instruction">
                 Put on headphones at a comfortable volume. Play the clip, then
                 choose your best observation.
               </p>
-              <div class="explorer-guide" aria-label="Three activity steps">
+              <div
+                class="explorer-guide"
+                role="group"
+                aria-label="Three activity steps"
+              >
                 <span>1. Listen</span>
                 <span>2. Pick one answer</span>
                 <span>3. Learn why</span>
@@ -2758,6 +3210,7 @@
               <fieldset style="border: 0; padding: 0; margin: 0">
                 <legend
                   id="question-prompt"
+                  tabindex="-1"
                   style="font-weight: 900; font-size: 1.05rem"
                 >
                   What is your best observation?
@@ -2777,10 +3230,18 @@
                 <button id="hint-button" class="btn btn-outline" type="button">
                   <span aria-hidden="true">💡</span> Need a clue?
                 </button>
+                <button
+                  id="listen-again-button"
+                  class="btn btn-outline"
+                  type="button"
+                  hidden
+                >
+                  Listen again
+                </button>
               </div>
 
               <div id="reveal" class="reveal" role="status" aria-live="polite">
-                <h4 id="reveal-title"></h4>
+                <h1 id="reveal-title"></h1>
                 <p id="reveal-copy"></p>
                 <p id="reveal-advanced" class="advanced-copy" hidden></p>
               </div>
@@ -2799,7 +3260,13 @@
         </div>
       </section>
 
-      <section class="section pods-section" aria-labelledby="pods-title">
+      <section
+        id="pods"
+        class="section pods-section"
+        aria-labelledby="pods-title"
+        data-kiosk-screen="pods"
+        hidden
+      >
         <div class="section-inner">
           <div class="section-head">
             <div>
@@ -2809,13 +3276,13 @@
                 data-scientist-text="Meet the community"
                 >Pod listening game</span
               >
-              <h2
+              <h1
                 id="pods-title"
                 data-explorer-text="Which pods could use these calls?"
                 data-scientist-text="Can you map the mystery calls?"
               >
                 Which pods could use these calls?
-              </h2>
+              </h1>
             </div>
             <p
               data-explorer-text="Press play, read the clue, and choose a pod that could use the call. Some calls are shared."
@@ -2896,7 +3363,7 @@
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <h2 class="mystery-title">Which pod could use this call?</h2>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -2918,7 +3385,11 @@
                 >
                   <source src="audio/FO-S16-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery call 1 choices">
+                <div
+                  class="mystery-guess"
+                  role="group"
+                  aria-label="Mystery call 1 choices"
+                >
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -2962,7 +3433,7 @@
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <h2 class="mystery-title">Which pod could use this call?</h2>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -2984,7 +3455,11 @@
                 >
                   <source src="audio/FO-S19-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery call 2 choices">
+                <div
+                  class="mystery-guess"
+                  role="group"
+                  aria-label="Mystery call 2 choices"
+                >
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -3028,7 +3503,7 @@
               </div>
               <div class="mystery-pod-body">
                 <span class="mystery-state">Listen first</span>
-                <h3 class="mystery-title">Which pod could use this call?</h3>
+                <h2 class="mystery-title">Which pod could use this call?</h2>
                 <p>
                   <strong
                     data-explorer-text="Clue:"
@@ -3050,7 +3525,11 @@
                 >
                   <source src="audio/FO-S03-3s.wav" type="audio/wav" />
                 </audio>
-                <div class="mystery-guess" aria-label="Mystery call 3 choices">
+                <div
+                  class="mystery-guess"
+                  role="group"
+                  aria-label="Mystery call 3 choices"
+                >
                   <button type="button" data-guess="J Pod" disabled>
                     J Pod
                   </button>
@@ -3137,7 +3616,13 @@
         </div>
       </section>
 
-      <section class="section protect-section" aria-labelledby="protect-title">
+      <section
+        id="protect"
+        class="section protect-section"
+        aria-labelledby="protect-title"
+        data-kiosk-screen="protect"
+        hidden
+      >
         <div class="section-inner">
           <div class="section-head">
             <div>
@@ -3147,7 +3632,7 @@
                 data-scientist-text="Become an Orca Ally"
                 >Help the orcas</span
               >
-              <h2 id="protect-title">Choose one way to help</h2>
+              <h1 id="protect-title">Choose one way to help</h1>
             </div>
             <p
               data-explorer-text="Watch the short videos. Then choose one helpful action to share with your family or class."
@@ -3216,7 +3701,7 @@
             <div class="action-item">
               <article class="action-card">
                 <span class="action-icon" aria-hidden="true">🔈</span>
-                <h3>Quiet water</h3>
+                <h2>Quiet water</h2>
                 <p
                   id="quiet-water-description"
                   data-explorer-text="Too much boat noise can make it hard for orcas to hear and find food."
@@ -3279,7 +3764,7 @@
             <div class="action-item">
               <article class="action-card">
                 <span class="action-icon" aria-hidden="true">🐟</span>
-                <h3>Healthy salmon</h3>
+                <h2>Healthy salmon</h2>
                 <p
                   id="healthy-salmon-description"
                   data-explorer-text="Orcas need healthy Chinook salmon for food."
@@ -3342,7 +3827,7 @@
             <div class="action-item">
               <article class="action-card">
                 <span class="action-icon" aria-hidden="true">💧</span>
-                <h3>Clean water</h3>
+                <h2>Clean water</h2>
                 <p
                   id="clean-water-description"
                   data-explorer-text="Clean streams help salmon grow. Healthy salmon help feed orcas."
@@ -3357,7 +3842,7 @@
                   playsinline
                   preload="metadata"
                   poster="videos/clean-water-actions-poster.jpg"
-                  aria-label="Female-narrated animation explaining how pollution can harm salmon habitat and reduce food opportunities for Southern Resident orcas"
+                  aria-label="Animation explaining how pollution can harm salmon habitat and reduce food opportunities for Southern Resident orcas"
                   aria-describedby="clean-water-description clean-water-video-note"
                 >
                   <source
@@ -3376,11 +3861,11 @@
                 <p
                   id="clean-water-video-note"
                   class="video-note"
-                  data-explorer-text="This story has a woman narrator, words on screen, and soft water sounds."
-                  data-scientist-text="Female-narrated story with captions and gentle water ambience."
+                  data-explorer-text="This story has a voice, words on screen, and soft water sounds."
+                  data-scientist-text="Story with captions and gentle water ambience."
                 >
-                  This story has a woman narrator, words on screen, and soft
-                  water sounds.
+                  This story has a voice, words on screen, and soft water
+                  sounds.
                 </p>
                 <button
                   class="btn btn-secondary action-select"
@@ -3407,12 +3892,16 @@
 
           <div class="finish-card">
             <div>
-              <h3 id="finish-title">Your Orca Ally adventure is underway</h3>
+              <h2 id="finish-title">Your Orca Ally adventure is underway</h2>
               <p id="finish-copy">
                 Finish the quiz, hear all three pods, and choose an action.
                 Progress lasts only for this page session.
               </p>
-              <div class="finish-badges" aria-label="Certificate progress">
+              <div
+                class="finish-badges"
+                role="group"
+                aria-label="Certificate progress"
+              >
                 <span
                   class="finish-badge"
                   data-finish="quiz"
@@ -3632,6 +4121,26 @@
         </div>
       </section>
     </main>
+
+    <nav
+      id="kiosk-step-navigation"
+      class="kiosk-step-navigation"
+      aria-label="Adventure steps"
+      hidden
+    >
+      <button id="kiosk-step-back" class="btn btn-outline" type="button">
+        ← Back
+      </button>
+      <p
+        id="kiosk-step-status"
+        class="kiosk-step-status"
+        role="status"
+        aria-live="polite"
+      ></p>
+      <button id="kiosk-step-next" class="btn btn-primary" type="button">
+        Continue →
+      </button>
+    </nav>
 
     <footer>
       <div class="footer-inner">
@@ -4072,6 +4581,192 @@
           )
         }
 
+        const kioskScreens = [
+          document.querySelector('[data-kiosk-screen="welcome"]'),
+          document.querySelector('[data-kiosk-screen="mode"]'),
+          document.querySelector('[data-kiosk-screen="quiz"]'),
+          document.querySelector('[data-kiosk-screen="pods"]'),
+          document.querySelector('[data-kiosk-screen="protect"]'),
+        ]
+        const podCards = [...document.querySelectorAll('.mystery-pod-card')]
+        const actionItems = [...document.querySelectorAll('.action-item')]
+        const kioskStepNavigation = document.getElementById(
+          'kiosk-step-navigation'
+        )
+        const kioskStepBack = document.getElementById('kiosk-step-back')
+        const kioskStepNext = document.getElementById('kiosk-step-next')
+        const kioskStepStatus = document.getElementById('kiosk-step-status')
+        const kioskFlow = {
+          screenIndex: 0,
+          podIndex: 0,
+          actionIndex: 0,
+          review: false,
+        }
+
+        const pauseKioskMedia = () => {
+          document.querySelectorAll('audio, video').forEach((media) => {
+            media.pause()
+          })
+        }
+
+        const updateKioskSubsteps = () => {
+          podCards.forEach((card, index) => {
+            card.hidden = index !== kioskFlow.podIndex
+          })
+          actionItems.forEach((item, index) => {
+            item.hidden = kioskFlow.review || index !== kioskFlow.actionIndex
+          })
+          document
+            .querySelector('.protect-section')
+            .setAttribute('data-kiosk-review', String(kioskFlow.review))
+        }
+
+        const updateKioskNavigation = () => {
+          const screen = kioskScreens[kioskFlow.screenIndex].dataset.kioskScreen
+          kioskStepNavigation.hidden = screen === 'welcome'
+          kioskStepBack.disabled = screen === 'welcome'
+          kioskStepNext.hidden = false
+          kioskStepNext.disabled = false
+
+          if (screen === 'mode') {
+            kioskStepStatus.innerHTML =
+              'Choose your explorer path<small>Then continue to the sound mission</small>'
+            kioskStepNext.textContent = 'Start mission →'
+          } else if (screen === 'quiz') {
+            kioskStepStatus.innerHTML =
+              'Sound mission<small>Finish every question to continue</small>'
+            kioskStepNext.textContent = 'Continue to pod calls →'
+            kioskStepNext.disabled = !state.quizComplete
+          } else if (screen === 'pods') {
+            const callId = podCards[kioskFlow.podIndex].dataset.callId
+            kioskStepStatus.innerHTML = `Pod call ${
+              kioskFlow.podIndex + 1
+            } of ${
+              podCards.length
+            }<small>Earn the ${callId} badge to continue</small>`
+            kioskStepNext.textContent =
+              kioskFlow.podIndex === podCards.length - 1
+                ? 'Continue to Orca Ally actions →'
+                : 'Next pod call →'
+            kioskStepNext.disabled = !state.podStamps.has(callId)
+          } else if (screen === 'protect' && !kioskFlow.review) {
+            kioskStepStatus.innerHTML = `Orca Ally action ${
+              kioskFlow.actionIndex + 1
+            } of ${
+              actionItems.length
+            }<small>Explore each action and choose one</small>`
+            kioskStepNext.textContent =
+              kioskFlow.actionIndex === actionItems.length - 1
+                ? 'Review my adventure →'
+                : 'Next action →'
+            kioskStepNext.disabled =
+              kioskFlow.actionIndex === actionItems.length - 1 &&
+              !state.actionSelected
+          } else if (screen === 'protect') {
+            kioskStepStatus.innerHTML =
+              'Adventure review<small>Your progress and certificate are here</small>'
+            kioskStepNext.hidden = true
+          }
+        }
+
+        const focusKioskScreen = () => {
+          const screen = kioskScreens[kioskFlow.screenIndex]
+          const screenName = screen.dataset.kioskScreen
+          let heading = null
+          if (kioskFlow.review && screenName === 'protect') {
+            heading = document.getElementById('finish-title')
+          } else if (screenName === 'pods') {
+            heading = screen.querySelector('.mystery-pod-card:not([hidden]) h3')
+          } else if (screenName === 'protect') {
+            heading = screen.querySelector('.action-item:not([hidden]) h3')
+          } else {
+            heading = [...screen.querySelectorAll('h1, h2, h3')].find(
+              (candidate) => candidate.getClientRects().length
+            )
+          }
+          if (!heading) return
+          heading.setAttribute('tabindex', '-1')
+          requestAnimationFrame(() => heading.focus({ preventScroll: true }))
+        }
+
+        const showKioskScreen = (screenIndex, moveFocus = true) => {
+          pauseKioskMedia()
+          kioskFlow.screenIndex = Math.max(
+            0,
+            Math.min(screenIndex, kioskScreens.length - 1)
+          )
+          kioskScreens.forEach((screen, index) => {
+            const active = index === kioskFlow.screenIndex
+            screen.hidden = !active
+            screen.setAttribute('data-kiosk-active', String(active))
+          })
+          updateKioskSubsteps()
+          updateKioskNavigation()
+          if (moveFocus) focusKioskScreen()
+        }
+
+        const goToPreviousKioskStep = () => {
+          const screen = kioskScreens[kioskFlow.screenIndex].dataset.kioskScreen
+          if (screen === 'pods' && kioskFlow.podIndex > 0) {
+            kioskFlow.podIndex -= 1
+          } else if (screen === 'protect' && kioskFlow.review) {
+            kioskFlow.review = false
+            kioskFlow.actionIndex = actionItems.length - 1
+          } else if (screen === 'protect' && kioskFlow.actionIndex > 0) {
+            kioskFlow.actionIndex -= 1
+          } else {
+            showKioskScreen(kioskFlow.screenIndex - 1)
+            if (screen === 'protect') kioskFlow.podIndex = podCards.length - 1
+            return
+          }
+          pauseKioskMedia()
+          updateKioskSubsteps()
+          updateKioskNavigation()
+          focusKioskScreen()
+        }
+
+        const goToNextKioskStep = () => {
+          const screen = kioskScreens[kioskFlow.screenIndex].dataset.kioskScreen
+          if (kioskStepNext.disabled) return
+          if (screen === 'pods' && kioskFlow.podIndex < podCards.length - 1) {
+            kioskFlow.podIndex += 1
+          } else if (
+            screen === 'protect' &&
+            kioskFlow.actionIndex < actionItems.length - 1
+          ) {
+            kioskFlow.actionIndex += 1
+          } else if (screen === 'protect') {
+            kioskFlow.review = true
+          } else {
+            showKioskScreen(kioskFlow.screenIndex + 1)
+            return
+          }
+          pauseKioskMedia()
+          updateKioskSubsteps()
+          updateKioskNavigation()
+          focusKioskScreen()
+        }
+
+        kioskStepBack.addEventListener('click', goToPreviousKioskStep)
+        kioskStepNext.addEventListener('click', goToNextKioskStep)
+        document
+          .querySelector('.hero-actions .btn-primary')
+          .addEventListener('click', (event) => {
+            event.preventDefault()
+            showKioskScreen(1)
+          })
+        document.querySelector('.brand').addEventListener('click', (event) => {
+          event.preventDefault()
+          showKioskScreen(0)
+        })
+        document
+          .querySelector('.skip-link')
+          .addEventListener('click', (event) => {
+            event.preventDefault()
+            showKioskScreen(1)
+          })
+        showKioskScreen(0, false)
+
         document
           .getElementById('kiosk-print-help')
           .addEventListener('click', () => {
@@ -4081,6 +4776,11 @@
           })
 
         const kioskStartScreen = document.getElementById('kiosk-start-screen')
+        const kioskPageContent = [
+          document.querySelector('.skip-link'),
+          document.querySelector('.site-header'),
+          document.getElementById('main'),
+        ]
         const kioskResetDialog = document.getElementById('kiosk-reset-dialog')
         const kioskIdleDialog = document.getElementById('kiosk-idle-dialog')
         const kioskCountdown = document.getElementById('kiosk-countdown')
@@ -4123,11 +4823,16 @@
 
         document.getElementById('kiosk-begin').addEventListener('click', () => {
           kioskStartScreen.hidden = true
+          kioskPageContent.forEach((element) =>
+            element.removeAttribute('inert')
+          )
           kioskIdle.active = true
           restartKioskIdleTimer()
-          window.scrollTo({ top: 0 })
-          document.querySelector('.hero h1').focus({ preventScroll: true })
+          showKioskScreen(0)
         })
+        requestAnimationFrame(() =>
+          document.getElementById('kiosk-begin').focus({ preventScroll: true })
+        )
 
         document.getElementById('kiosk-reset').addEventListener('click', () => {
           kioskResetDialog.showModal()
@@ -4290,6 +4995,7 @@
             updateModeCopy()
             renderQuestion()
             updatePassport()
+            updateKioskNavigation()
             showToast(
               state.mode === 'scientist'
                 ? 'Junior Bioacoustician challenge selected: advanced questions begin now.'
@@ -4307,6 +5013,8 @@
         const audioLab = document.getElementById('audio-lab')
         const audio = document.getElementById('mystery-audio')
         const audioSource = document.getElementById('mystery-audio-source')
+        const listenAgainButton = document.getElementById('listen-again-button')
+        const missionShell = document.querySelector('.mission-shell')
         const clipLabel = document.getElementById('clip-label')
         const clipNote = document.getElementById('clip-note')
         const spectrogramImage = document.getElementById('spectrogram-image')
@@ -4320,6 +5028,8 @@
           const question = questions[state.quizIndex]
           state.answer = ''
           state.answered = false
+          missionShell.classList.remove('quiz-answer-stage')
+          listenAgainButton.hidden = true
           audio.pause()
           audioSource.src = question.audioUrl
           clipLabel.textContent =
@@ -4411,6 +5121,27 @@
           if (moveFocus) questionTitle.focus({ preventScroll: true })
         }
 
+        const showMobileScientistAnswers = () => {
+          if (
+            state.mode !== 'scientist' ||
+            !window.matchMedia('(max-width: 680px)').matches
+          )
+            return
+          missionShell.classList.add('quiz-answer-stage')
+          listenAgainButton.hidden = false
+          document
+            .getElementById('question-prompt')
+            .focus({ preventScroll: true })
+        }
+
+        audio.addEventListener('ended', showMobileScientistAnswers)
+        listenAgainButton.addEventListener('click', () => {
+          missionShell.classList.remove('quiz-answer-stage')
+          listenAgainButton.hidden = true
+          audio.currentTime = 0
+          audio.focus({ preventScroll: true })
+        })
+
         revealButton.addEventListener('click', () => {
           if (!state.answer || state.answered) return
           const questions = getQuestions()
@@ -4480,6 +5211,7 @@
           )
           nextQuestionButton.hidden = true
           updateAdventureProgress()
+          updateKioskNavigation()
           showToast(`Quiz complete: ${state.score} of ${questions.length}.`)
         })
 
@@ -4605,6 +5337,7 @@
             submit.textContent = `${callId} badge earned ✓`
             updateModeCopy()
             updatePassport()
+            updateKioskNavigation()
             showToast(
               state.podStamps.size === 3
                 ? 'Call Passport complete! You mapped all three calls.'
@@ -4627,6 +5360,7 @@
               'certificate-action'
             ).textContent = `My ally action: ${state.action}.`
             updateAdventureProgress()
+            updateKioskNavigation()
             showToast(
               state.mode === 'explorer'
                 ? 'You chose a way to help!'

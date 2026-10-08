@@ -1,0 +1,176 @@
+{
+  "title": "Orcasound Memorandum of Agreement",
+  "subtitle": "For Member Organizations & Individuals (1/2021-12/2025)",
+  "sourceDocUrl": "https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing",
+  "sections": [
+    {
+      "heading": "Preamble",
+      "paragraphs": [
+        "Orcasound is an International cooperative partnership with a long history and clear vision of collaboration between hydrophone, educational, and research nodes. The primary goal of Orcasound is to help conserve the endangered Southern Resident Killer Whales (SRKWs) while also monitoring and studying the underwater sounds across their range and educating the public about marine bioacoustics, noise pollution, and marine sustainability. The Network maintains a data archive and an equipment pool for its members. It also helps create and maintain open source software for streaming, archiving, and processing live audio data.",
+        "With collaborative support of the Network, members establish network node(s) consisting of hydrophone(s), computers and software, power, and an Internet connection, and/or related educational outreach infrastructure. Members then are listed on the Network web site(s) -- orcasound.net and variants -- and are connected with a global community of listeners, researchers, and educators."
+      ],
+      "items": []
+    },
+    {
+      "heading": "Benefits of membership",
+      "paragraphs": [],
+      "items": [
+        "free access to the raw data and data products (e.g. recordings, catalogs) collected with Network hardware/software from all hydrophone nodes;",
+        "shared technological, pedagogical, and outreach innovations and resources (e.g. exhibit graphics and sounds; machine learning training data sets and models);",
+        "technical support from network experts (e.g. calibration, deployment, software);",
+        "access to a shared equipment pool, including calibration equipment;",
+        "freedom to write/administer grants or otherwise raise funds or sign agreements on behalf of the Network for its benefit within the terms of this MOA;",
+        "acknowledgement on and participation in Network websites, apps, press releases, social media, and publications;",
+        "the right to cancel your agreement to this MOA with a 30-day written notification to admin@orcasound.net"
+      ]
+    },
+    {
+      "heading": "Member responsibilities",
+      "paragraphs": [],
+      "items": [
+        "secure and maintain the hydrophone or education/outreach infrastructure at one or more nodes, or contribute to the Orcasound open-source software repositories;",
+        "develop projects that support the goals of the Network;",
+        "for hydrophone nodes, use Orcasound (orcanode) software to provide a free real-time stream of audio data and data products to the Network, without filtering, delay, or censoring;",
+        "maintain any Network hardware & software at your node(s) (e.g. troubleshoot after power outage);",
+        "pay costs associated with powering equipment, Internet access, and streaming at your node;",
+        "share with others -- all data collected by Network hard/software and/or data products and/or educational/outreach resources you develop -- in accordance with the Network’s Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license;",
+        "if you leave the Network or alter your node(s), offer any functioning infrastructure to the Network before liquidation or disposal, and transfer any raw data or data products to the Network archives."
+      ]
+    }
+  ],
+  "agreementStatement": "I would like to join the network. I agree to enjoy the benefits and accept the responsibilities described in this Memorandum of Agreement.",
+  "members": [
+    {
+      "organization": "Beam Reach",
+      "nodeAndRole": "Tech support, admin, outreach",
+      "dateJoined": "2016-03-04",
+      "url": "https://beamreach.blue/"
+    },
+    {
+      "organization": "Orcasound 1.0",
+      "nodeAndRole": "Orcasound Lab node\nTech support",
+      "dateJoined": "2016-03-04"
+    },
+    {
+      "organization": "Orca Network",
+      "nodeAndRole": "Whidbey Island node\nAdmin and outreach; Education/outreach, grant-writing",
+      "dateJoined": "2016-11-29",
+      "url": "http://www.orcanetwork.org/",
+      "logoUrl": "/images/donatePartners/Orca-Network-Logo.svg"
+    },
+    {
+      "organization": "Port Townsend Marine Science Center",
+      "nodeAndRole": "Port Townsend node\nAdmin",
+      "dateJoined": "2017-01-11",
+      "url": "http://ptmsc.org/",
+      "logoUrl": "/images/donatePartners/port townsend marine research center.svg"
+    },
+    {
+      "organization": "Orca Behavior Institute",
+      "nodeAndRole": "Research + Education/outreach",
+      "dateJoined": "2016-12-13",
+      "url": "https://orcabehaviorinstitute.org/",
+      "logoUrl": "/images/donatePartners/orca-behavior-institute-logo-white.svg"
+    },
+    {
+      "organization": "Cetacean Research Technology",
+      "nodeAndRole": "Tech support; hydrophones\nPuget Sound node?",
+      "dateJoined": "2016-12-30",
+      "url": "http://www.cetaceanresearch.com/"
+    },
+    {
+      "organization": "Whale Scout",
+      "nodeAndRole": "Puget Sound\nOutreach/Education/Monitoring",
+      "dateJoined": "2017-01-30",
+      "url": "http://www.whalescout.org/"
+    },
+    {
+      "organization": "Deep Green Wilderness",
+      "nodeAndRole": "Puget Sound+\nOutreach/Education/Monitoring",
+      "dateJoined": "2017-02-08",
+      "url": "http://www.deepgreenwilderness.com/",
+      "logoUrl": "/images/donatePartners/DeepGreenWildernes.svg"
+    },
+    {
+      "organization": "LAB-core System Bioacoustics",
+      "nodeAndRole": "CWR & other nodes\nTech support; hydrophones",
+      "dateJoined": "2017-04-28"
+    },
+    {
+      "organization": "Friends of Lime Kiln Society (FOLKS)",
+      "nodeAndRole": "Lime Kiln Interpretive Center & Lighthouse, Eagle Point hydrophone?\nEducation, outreach",
+      "dateJoined": "2017-05-01",
+      "url": "https://folkssji.org/",
+      "logoUrl": "/images/donatePartners/FOLKS-Orange.svg"
+    },
+    {
+      "organization": "The Whale Trail",
+      "nodeAndRole": "West coast viewing locations\nOutreach",
+      "dateJoined": "2017-06-18",
+      "url": "http://thewhaletrail.org/",
+      "logoUrl": "/images/donatePartners/TheWhaleTrail-LogoSpyhop_RGB.svg"
+    },
+    {
+      "organization": "Center for Whale Research",
+      "nodeAndRole": "CWR & other nodes\nResearch/Monitoring/Outreach",
+      "dateJoined": "2017-10-22",
+      "url": "https://www.whaleresearch.com/",
+      "logoUrl": "/images/donatePartners/center for whale research 1.svg"
+    },
+    {
+      "organization": "Oceans Initiative",
+      "nodeAndRole": "Puget Sound+Broughton Archipelago node\nResearch/Monitoring/Outreach",
+      "dateJoined": "2016-03-15",
+      "url": "http://oceansinitiative.org/"
+    },
+    {
+      "organization": "Pacific Mammal Research",
+      "nodeAndRole": "Southeast Rosario node\nResearch/Monitoring/Outreach",
+      "dateJoined": "2019-02-07",
+      "url": "https://pacmam.org/wp/"
+    },
+    {
+      "organization": "International Institute For Critical Studies in Improvisation, Memorial University",
+      "nodeAndRole": "Develop a St. John’s, Newfoundland node.\nOutreach/Education/Monitoring",
+      "dateJoined": "2019-02-23"
+    },
+    {
+      "organization": "Vashon Nature Center",
+      "nodeAndRole": "Education Programs Manager and BeachNET community science coordinator",
+      "dateJoined": "2020-06-16",
+      "url": "https://vashonnaturecenter.org/",
+      "logoUrl": "/images/donatePartners/vashonNatureCenterLogo.svg"
+    },
+    {
+      "organization": "Sound Action",
+      "nodeAndRole": "Puget Sound - Point Robinson\nOutreach/Education/Monitoring",
+      "dateJoined": "2021-04-06",
+      "url": "https://soundaction.org/",
+      "logoUrl": "/images/donatePartners/Sounds Action.svg"
+    },
+    {
+      "organization": "Orca Conservancy",
+      "nodeAndRole": "Beach Camp, Sunset Bay node\nResearch, Monitoring, Outreach, Education.",
+      "dateJoined": "2021-09-30",
+      "url": "https://www.orcaconservancy.org/",
+      "logoUrl": "/images/donatePartners/OrcaConservancy.svg"
+    },
+    {
+      "organization": "Project SeaWolf",
+      "nodeAndRole": "North Puget Sound Outreach and vessel platform provisioning.",
+      "dateJoined": "2022-02-16",
+      "url": "https://www.projectseawolf.org/",
+      "logoUrl": "/images/donatePartners/Rectangle 887.svg"
+    },
+    {
+      "organization": "MaST Center",
+      "nodeAndRole": "Redondo Beach node\nDirector, Marine Science & Tech (MaST) Center",
+      "dateJoined": "2023-02-17"
+    },
+    {
+      "organization": "The Salish Sea School",
+      "nodeAndRole": "Southeast Rosario node\nResearch/Monitoring/Outreach",
+      "dateJoined": "2024-09-30"
+    }
+  ]
+}

@@ -28,12 +28,16 @@ import logo1 from '../../public/images/getinvolved/twt.png'
 import valhacking from '../../public/images/getinvolved/val-hacking.png'
 import logo16 from '../../public/images/getinvolved/VashonNatureCenter-logo.png'
 import logo11 from '../../public/images/getinvolved/ws_logo.png'
+import MoaSection from '../components/GetInvolved/MoaSection'
+import { portableTextComponents } from '../components/GetInvolved/portableTextComponents'
 import TechStackList from '../components/GetInvolved/TechStackList'
 import StickyNav from '../components/StickyNav'
 import TopBanner from '../components/TopBanner'
+import moaFallback from '../data/moaContent.json'
 import { getClient } from '../sanity/client'
-import { GET_INVOLVED_PAGE_QUERY } from '../sanity/queries'
+import { GET_INVOLVED_PAGE_QUERY, MOA_CONTENT_QUERY } from '../sanity/queries'
 import { pushToDataLayer } from '../utils/gtm'
+import { resolveMoaContent } from '../utils/moa/content.mjs'
 import ActionButton from './../components/ActionButton'
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
@@ -100,6 +104,14 @@ const GETINVOLVED_SECTIONS = [
     margin: '30px 25px',
   },
   {
+    id: 'moa',
+    // "Network" overflows the nowrap sticky nav at 320px, so the short label
+    // decided in the design is used.
+    name: 'MOA',
+    heading: 'Join the network',
+    renderKey: 'moa',
+  },
+  {
     id: 'donate',
     name: 'Support',
     renderKey: 'donate',
@@ -111,45 +123,11 @@ const GETINVOLVED_SECTIONS = [
 const SECTION_COMPONENTS = {
   volunteer: (props) => <VolunteerContent {...props} />,
   forDevelopers: (props) => <DevelopersContent {...props} />,
+  moa: (props) => <MoaSection {...props} />,
   donate: (props) => <SupportContent {...props} />,
 }
 
 const VOLUNTEER_IMAGE_SIZES = '(max-width: 600px) 100vw, 33vw'
-
-const portableTextComponents = {
-  block: {
-    normal: ({ children }) => (
-      <Typography variant="p" fontSize="20px" paragraph={true} align="left">
-        {children}
-      </Typography>
-    ),
-  },
-  marks: {
-    link: ({ children, value }) => {
-      const href = value?.href || '#'
-      const isInternal = href.startsWith('/')
-
-      return (
-        <Link
-          href={href}
-          sx={{ textDecoration: 'underline', color: '#1B2B7B' }}
-          onClick={(event) =>
-            pushToDataLayer(
-              isInternal ? 'jump_link_click' : 'external_link_click',
-              {
-                link_text: event.currentTarget.textContent,
-                destination: href,
-                page: 'get_involved',
-              }
-            )
-          }
-        >
-          {children}
-        </Link>
-      )
-    },
-  },
-}
 
 // Next 12's next/image wrapped each image in a span that the grid could
 // stretch to an equal column height. Next 16 renders a bare <img>, which
@@ -490,84 +468,6 @@ const DevelopersContent = ({ content }) => (
             Orcasound Hacker Hall of Fame!
           </Link>
         </Typography>
-      )}
-    </Box>
-    <Box
-      sx={{
-        my: '150px',
-        lineHeight: '28px',
-      }}
-    >
-      <Typography
-        variant="subtitle1"
-        fontSize={{ xs: '28px', sm: '36px', md: '44px' }}
-        align="left"
-        fontWeight="600"
-        mb="40px"
-        sx={(theme) => ({
-          [theme.breakpoints.down('sm')]: {
-            mx: 'auto',
-            fontSize: 'x-large',
-          },
-        })}
-      >
-        {content.moaHeading}
-      </Typography>
-      {content.moaBody ? (
-        <PortableText
-          value={content.moaBody}
-          components={portableTextComponents}
-        />
-      ) : (
-        <>
-          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
-            The real-time audio streams, citizen science projects, educational
-            materials, and outreach projects of Orcasound are brought to you by
-            the current network members, listed below, who have e-signed the{' '}
-            <Link
-              color="#1B2B7B"
-              href="https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing"
-              onClick={() =>
-                pushToDataLayer('external_link_click', {
-                  link_text: '2016-2020 Memorandum of Agreements (MOA)',
-                  destination:
-                    'https://docs.google.com/document/d/1OdKOICgPNHy7CkaHjzWMztH_zNir4UlbZbOdKtyRwI0/edit?usp=sharing',
-                })
-              }
-            >
-              2021-2025 Memorandum of Agreement (MOA)
-            </Link>
-            . Any organization or individual is welcome to join the network (for
-            free!), either as the host of a hydrophone node, a researcher or
-            citizen scientist, an educator/activist, or a general volunteer.
-          </Typography>
-          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
-            If you&apos;re an individual wanting to volunteer, collaborate, or
-            donate, check out the many ways you can support Orcasound. Everyone
-            can listen for whales, and learn the diverse sounds of the Salish
-            Sea.
-          </Typography>
-          <Typography variant="p" fontSize="20px" paragraph={true} align="left">
-            If you&apos;re an organization wanting to join the network as the
-            host of a new hydrophone node, an educational/outreach node, or both
-            — just read the history, mission, and vision of the network, e-sign
-            the MOA, and then email{' '}
-            <Link
-              href="mailto:info@orcasound.net"
-              style={{ textDecoration: 'none', color: '#1B2B7B' }}
-              onClick={() =>
-                pushToDataLayer('external_link_click', {
-                  link_text: 'info@orcasound.net',
-                  destination: 'mailto:info@orcasound.net',
-                })
-              }
-            >
-              info@orcasound.net
-            </Link>{' '}
-            to begin collaborating. There are no membership fees — just
-            benefits, roles, and responsibilities.
-          </Typography>
-        </>
       )}
     </Box>
   </>
@@ -1154,8 +1054,11 @@ const SupportContent = ({ content }) => (
   </>
 )
 
-export const GetInvolved = ({ getInvolved }) => {
+export const GetInvolved = ({ getInvolved, moa: moaSource }) => {
   const source = getInvolved
+  // MOA text and member list: Sanity `moaContent` first, per field, with the
+  // bundled JSON as the fallback.
+  const moa = resolveMoaContent(moaSource, moaFallback)
   // Per-field fallback: use the Sanity value when present, otherwise the
   // existing hard-coded copy. Blocks with bespoke inline markup (support
   // paragraphs, partner grid, tech stack) fall back to their original JSX
@@ -1250,9 +1153,11 @@ export const GetInvolved = ({ getInvolved }) => {
                 variant="h4"
                 sx={{ margin: '40px 0px', fontWeight: '500' }}
               >
-                {section.name}
+                {section.heading || section.name}
               </Typography>
-              {ContentComponent ? <ContentComponent content={content} /> : null}
+              {ContentComponent ? (
+                <ContentComponent content={content} moa={moa} />
+              ) : null}
             </Box>
           )
         })}
@@ -1261,17 +1166,25 @@ export const GetInvolved = ({ getInvolved }) => {
   )
 }
 
-// Fetch the Get Involved content from Sanity at build time (revalidated for
-// ISR). If Sanity is unreachable or unconfigured, fall back to null and the
-// component renders its built-in DEFAULTS / original JSX.
+// Fetch the Get Involved content and the MOA document from Sanity at build
+// time (revalidated for ISR). If Sanity is unreachable or unconfigured, each
+// falls back to null independently and the component renders its built-in
+// DEFAULTS / original JSX / bundled MOA JSON.
 export async function getStaticProps() {
-  let getInvolved = null
-  try {
-    getInvolved = await getClient(false).fetch(GET_INVOLVED_PAGE_QUERY)
-  } catch {
-    getInvolved = null
+  // `async` turns getClient's synchronous "not configured" throw into a caught
+  // rejection, so one failing query never drops the other.
+  const fetchOrNull = async (query) => {
+    try {
+      return await getClient(false).fetch(query)
+    } catch {
+      return null
+    }
   }
-  return { props: { getInvolved }, revalidate: 60 }
+  const [getInvolved, moa] = await Promise.all([
+    fetchOrNull(GET_INVOLVED_PAGE_QUERY),
+    fetchOrNull(MOA_CONTENT_QUERY),
+  ])
+  return { props: { getInvolved, moa }, revalidate: 60 }
 }
 
 export default GetInvolved

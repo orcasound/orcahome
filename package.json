@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo 'No tests configured'",
+    "test": "node --test src/utils/moa/*.test.mjs src/utils/moa/submission/*.test.mjs studio/scripts/moa-seed-utils.test.mjs",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "npm run lint -- --max-warnings 0",
