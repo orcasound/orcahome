@@ -126,9 +126,39 @@ The Orcasound support flow (Open Collective plus GitHub Sponsors links shown in 
 
 Cross-browser tests run with [Playwright](https://playwright.dev) against Chromium, Firefox, and WebKit. Playwright's WebKit is not Safari, so real-device checks (for example Listen Live audio on iOS Safari) are done manually before releases.
 
-- Install: `npm install`, then `npx playwright install`
-- Run: `npx playwright test`
-- Design doc: [docs/playwright-integration-design-doc.md](docs/playwright-integration-design-doc.md)
+This project expects Node 20.9.0 (see [`.node-version`](.node-version)); use that version before running Playwright or the app:
+
+```bash
+nvm install 20
+nvm use 20.9.0
+npm install
+npx playwright install
+```
+
+Useful commands:
+
+```bash
+npx playwright test                 # run the full suite
+npx playwright test --ui            # interactive UI mode
+npx playwright test --project=chromium
+npx playwright test tests/example.spec.ts
+npx playwright test --debug
+npx playwright codegen              # auto-generate a test
+npx playwright show-report          # open the HTML report
+```
+
+Playwright is being rolled out deliberately. The initial smoke test should confirm the app loads without blocking the wider repo on a brand-new suite. Accessibility checks can be added as a non-blocking signal at first, and later made a strict gate once the baseline is clean. (
+use expect.soft(...) for local/CI reporting
+use continue-on-error: true in GitHub Actions if you want it to not block PRs
+)
+
+If you need the app running locally while testing, start it in one terminal:
+
+```bash
+npm run dev
+```
+
+Then run the Playwright commands in another terminal. Design doc: [docs/playwright-integration-design-doc.md](docs/playwright-integration-design-doc.md)
 
 ## Contributing
 
