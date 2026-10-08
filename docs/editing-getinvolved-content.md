@@ -24,20 +24,20 @@ lists — all without touching any code.
 
 ## 3. The fields you can edit
 
-| Field                                                   | What it controls                                         |
-| ------------------------------------------------------- | -------------------------------------------------------- |
-| **Hero title / description / image**                    | The big banner at the top of the page                    |
-| **Volunteer · Citizen Scientist / In Person**           | The two headings + paragraphs in the Volunteer section   |
-| **Volunteer photos**                                    | The grid of up to 4 photos in the Volunteer section      |
-| **Volunteer closing paragraph**                         | The paragraph under the volunteer photos                 |
-| **Developers · intro / crowning jewel**                 | The Developers section paragraphs                        |
-| **Orcasound Web App heading + hackathon photo/caption** | The photo block in the Developers section                |
-| **Tech stack list**                                     | The bulleted tech-stack list (with nested sub-items)     |
-| **Roadmap heading / image / caption**                   | The zoomable roadmap image and its text                  |
-| **DemocracyLab paragraph**                              | The rich-text paragraph with links (see section 5)       |
-| **MOA heading / paragraphs**                            | The Memorandum of Agreement block (rich text, section 5) |
-| **Support paragraphs / button**                         | The Support section text and "Support Now" button        |
-| **Partner logos**                                       | The grid of partner logos (image + name + link)          |
+| Field                                                   | What it controls                                                                                                  |
+| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Hero title / description / image**                    | The big banner at the top of the page                                                                             |
+| **Volunteer · Citizen Scientist / In Person**           | The two headings + paragraphs in the Volunteer section                                                            |
+| **Volunteer photos**                                    | The grid of up to 4 photos in the Volunteer section                                                               |
+| **Volunteer closing paragraph**                         | The paragraph under the volunteer photos                                                                          |
+| **Developers · intro / crowning jewel**                 | The Developers section paragraphs                                                                                 |
+| **Orcasound Web App heading + hackathon photo/caption** | The photo block in the Developers section                                                                         |
+| **Tech stack list**                                     | The bulleted tech-stack list (with nested sub-items)                                                              |
+| **Roadmap heading / image / caption**                   | The zoomable roadmap image and its text                                                                           |
+| **DemocracyLab paragraph**                              | The rich-text paragraph with links (see section 5)                                                                |
+| **MOA heading / paragraphs**                            | Intro of the 'Join the network' section (rich text, section 5). Agreement text and members: see the MOA document. |
+| **Support paragraphs / button**                         | The Support section text and "Support Now" button                                                                 |
+| **Partner logos**                                       | The grid of partner logos (image + name + link)                                                                   |
 
 ### Editing text
 
@@ -146,6 +146,51 @@ Nothing goes live until you **publish**.
 After you publish, the live site (orcasound.tech) updates **within about a
 minute**. Refresh the page (a hard refresh — Cmd/Ctrl + Shift + R) to see it.
 You do **not** need a developer to deploy anything.
+
+---
+
+## Editing the MOA and member list
+
+The "Join the network" section shows the Memorandum of Agreement (MOA) and the
+current member list. Its intro (heading and paragraphs) stays on the Get
+Involved Page document. Everything else lives in its own document:
+
+1. In the left sidebar, click **MOA (Memorandum of Agreement)**.
+2. Edit the fields, then **Publish**.
+
+| Field                               | What it controls                                                                                                                                                               |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **MOA title / subtitle / term**     | The bold title and term line above the panels                                                                                                                                  |
+| **Link to the signed MOA document** | The "View the original MOA document" link (must start with `https://`)                                                                                                         |
+| **MOA sections**                    | One expand/collapse panel per section. Each has a **Panel heading**, optional **Paragraphs**, and optional **Bulleted list items**. Drag to reorder.                           |
+| **Agreement statement**             | Shown as the last panel ("Agreement") **and** used word for word as the required checkbox on the join form. Change it only when the MOA itself changes.                        |
+| **Current members**                 | The member cards. Each has **Organization**, **Node(s) and/or role(s)** (line breaks are kept), **Date joined**, optional **Website**, and optional **Logo**. Drag to reorder. |
+
+Good to know:
+
+- **Until this document is published**, the site shows the built-in copy of the
+  MOA and the 21 members from the MOA Google Doc. If a field (or a whole list)
+  is left empty, the site uses the built-in copy for that field.
+- Changes show on the site **within about a minute** of publishing, like the
+  rest of the page.
+- Visitors can't change the member list. The join and change-request forms
+  send an email to Orcasound leadership, who then update this document.
+- Website links must be full `http://` or `https://` addresses; anything else
+  is ignored on the site.
+
+**First-time setup (admins only).** The document can be created from the
+built-in copy with a script, run from the `studio/` folder after the schema is
+deployed:
+
+```sh
+npx sanity exec scripts/seed-moa-content.mjs --with-user-token              # dry run, prints the document
+npx sanity exec scripts/seed-moa-content.mjs --with-user-token -- --commit  # creates it if missing
+```
+
+It never overwrites an existing document. Logos are not copied; upload them in
+the Studio afterwards.
+
+_Screenshots of the MOA document will be added after the Studio is deployed._
 
 ---
 

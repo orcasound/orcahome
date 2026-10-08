@@ -8,6 +8,7 @@ import {getInvolvedPage} from './getInvolvedPage'
 import {hackerHallOfFamePage} from './hackerHallOfFamePage'
 import {homePage} from './homePage'
 import {learnPage} from './learnPage'
+import {moaContent} from './moaContent'
 
 export const schemaTypes = [
   aboutPage,
@@ -18,6 +19,7 @@ export const schemaTypes = [
   hackerHallOfFamePage,
   catalogPage,
   donatePage,
+  moaContent,
   author,
   blogPost,
 ]

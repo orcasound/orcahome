@@ -63,6 +63,7 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
             <Box component="li" key={link.id}>
               <NavLink
                 to={link.id}
+                href={`#${link.id}`}
                 smooth={true}
                 spy={true}
                 offset={-150}
