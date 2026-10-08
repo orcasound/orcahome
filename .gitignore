@@ -41,3 +41,11 @@ yarn-error.log*
 # but allow files with default or shared to be included as example setups
 !.vscode/*.default*
 !.vscode/*.shared*
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
