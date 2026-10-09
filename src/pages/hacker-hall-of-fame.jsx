@@ -2,7 +2,6 @@
  * File : hacker-hall-of-fame.jsx
  * Desc : Page for the Hacker Hall of Fame contributors page.
  *  */
-
 import {
   Box,
   Breadcrumbs,
@@ -36,6 +35,7 @@ import {
 } from '../data/hackerHallOfFameContributors'
 import { getClient } from '../sanity/client'
 import { HHOF_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 
 const contributorRail = {
@@ -461,11 +461,12 @@ export default HackerHallOfFame
 // Sanity is unreachable or unconfigured, fall back to null and the component
 // renders its built-in copy + contributor arrays.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let hhof = null
   try {
     hhof = await getClient(false).fetch(HHOF_PAGE_QUERY)
   } catch {
     hhof = null
   }
-  return { props: { hhof }, revalidate: 60 }
+  return { props: { hhof, siteChrome: await siteChrome }, revalidate: 60 }
 }

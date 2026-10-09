@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
+import { getSiteChrome } from '../../sanity/siteChrome'
 import { pushToDataLayer } from '../../utils/gtm'
 
 // Width of the article column: Container maxWidth="md" (900) minus its padding.
@@ -682,6 +683,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const siteChrome = getSiteChrome()
   let post = null
   try {
     post = await getClient(false).fetch(BLOG_POST_QUERY, { slug: params.slug })
@@ -693,5 +695,5 @@ export async function getStaticProps({ params }) {
     return { notFound: true, revalidate: 60 }
   }
 
-  return { props: { post }, revalidate: 60 }
+  return { props: { post, siteChrome: await siteChrome }, revalidate: 60 }
 }

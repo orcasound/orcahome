@@ -26,6 +26,8 @@ export default defineConfig({
           {id: 'catalogPage', title: 'Call Catalog Page'},
           {id: 'donatePage', title: 'Donate / Support Page'},
           {id: 'moaContent', title: 'MOA (Memorandum of Agreement)'},
+          {id: 'navigation', title: 'Top Menu'},
+          {id: 'footer', title: 'Footer'},
         ]
         const singletonIds = singletons.map((s) => s.id)
         return S.list()
@@ -70,7 +72,9 @@ export default defineConfig({
           template.schemaType !== 'hackerHallOfFamePage' &&
           template.schemaType !== 'catalogPage' &&
           template.schemaType !== 'donatePage' &&
-          template.schemaType !== 'moaContent',
+          template.schemaType !== 'moaContent' &&
+          template.schemaType !== 'navigation' &&
+          template.schemaType !== 'footer',
       ),
   },
 })

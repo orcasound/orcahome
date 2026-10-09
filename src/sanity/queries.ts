@@ -567,3 +567,48 @@ export interface MoaContent {
   agreementStatement?: string
   members?: MoaMember[]
 }
+
+/** Shared shell content, fetched alongside each page for ISR. */
+export const SITE_CHROME_QUERY = `{
+  "nav": *[_type == "navigation" && _id == "navigation"][0]{
+    links[]{label, url}, notifyLabel, notifyUrl, supportLabel, supportUrl
+  },
+  "footer": *[_type == "footer" && _id == "footer"][0]{
+    leftHeading, leftLinks[]{label, url}, rightHeading,
+    rightLinks[]{label, url}, socialLinks[]{platform, url}
+  }
+}`
+
+export interface SiteLink {
+  label?: string
+  url?: string
+}
+
+export interface NavigationContent {
+  links?: SiteLink[]
+  notifyLabel?: string
+  notifyUrl?: string
+  supportLabel?: string
+  supportUrl?: string
+}
+
+export type SocialPlatform =
+  | 'instagram'
+  | 'x'
+  | 'facebook'
+  | 'youtube'
+  | 'github'
+  | 'linkedin'
+
+export interface FooterContent {
+  leftHeading?: string
+  leftLinks?: SiteLink[]
+  rightHeading?: string
+  rightLinks?: SiteLink[]
+  socialLinks?: { platform?: SocialPlatform; url?: string }[]
+}
+
+export interface SiteChrome {
+  nav?: NavigationContent | null
+  footer?: FooterContent | null
+}

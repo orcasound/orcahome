@@ -6,6 +6,7 @@ import CallCatalogSection from '../components/Catalog/CallCatalogSection'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { CATALOG_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
 // value for a field (or Sanity is unreachable).
@@ -69,11 +70,12 @@ export default function Catalog({ catalog }) {
 // fetched. If Sanity is unreachable or unconfigured, fall back to null and the
 // component renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let catalog = null
   try {
     catalog = await getClient(false).fetch(CATALOG_PAGE_QUERY)
   } catch {
     catalog = null
   }
-  return { props: { catalog }, revalidate: 60 }
+  return { props: { catalog, siteChrome: await siteChrome }, revalidate: 60 }
 }
