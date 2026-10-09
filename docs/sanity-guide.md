@@ -91,3 +91,7 @@ Most of the above is content only. A few things do need a developer:
 ---
 
 _Questions or something looks broken? ping @Vicky on Zulip._
+
+## Top Menu and Footer
+
+See [Editing the Top Menu and Footer](editing-navigation-footer.md) for shared navigation, footer links, and social icons.

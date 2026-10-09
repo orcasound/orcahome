@@ -12,6 +12,7 @@ import Link from 'next/link'
 
 import { getClient } from '../../../sanity/client'
 import { AUTHOR_QUERY, AUTHOR_SLUGS_QUERY } from '../../../sanity/queries'
+import { getSiteChrome } from '../../../sanity/siteChrome'
 
 const formatDate = (value) => {
   if (!value) return ''
@@ -135,6 +136,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const siteChrome = getSiteChrome()
   let author = null
   try {
     author = await getClient(false).fetch(AUTHOR_QUERY, { slug: params.slug })
@@ -146,5 +148,5 @@ export async function getStaticProps({ params }) {
     return { notFound: true, revalidate: 60 }
   }
 
-  return { props: { author }, revalidate: 60 }
+  return { props: { author, siteChrome: await siteChrome }, revalidate: 60 }
 }
