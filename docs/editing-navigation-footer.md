@@ -15,9 +15,9 @@ layout, and the copyright line. Those stay the same.
 1. Go to **https://orcahome.sanity.studio**
 2. Sign in with the Google account that was given access (ask an admin if you
    can't get in — ping @Vicky on Zulip).
-3. In the left sidebar, click **Top Menu** (or **Footer**).
+3. In the left sidebar, under **Navigation**, click **Top Menu** (or **Footer**).
 
-![The Studio sidebar with "Top Menu" selected](images/navigation-footer-guide/01-top-menu.png)
+![The Studio sidebar with "Top Menu" selected under Navigation](images/navigation-footer-guide/01-top-menu.png)
 
 ---
 
@@ -121,7 +121,7 @@ like menu items. The icons can't be changed.
 
 ## 7. The footer
 
-Click **Footer** in the left sidebar. It has two columns, each with a
+Click **Footer** under **Navigation** in the left sidebar. It has two columns, each with a
 **heading** and a list of **links**. Edit them exactly like the top menu
 (sections 3–5).
 
