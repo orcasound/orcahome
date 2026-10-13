@@ -14,10 +14,11 @@ export default defineConfig({
   plugins: [
     structureTool({
       structure: (S) => {
-        // One-of-a-kind pages are pinned as singletons (fixed id, opens
-        // straight to the form, no "create new"). Genuinely multi-doc types
-        // (e.g. `page`) keep the default list.
-        const singletons = [
+        // One-of-a-kind documents are pinned as singletons (fixed id, opens
+        // straight to the form, no "create new"), grouped under titled
+        // dividers: page content, then the site-wide menu and footer.
+        // Genuinely multi-doc types (blog posts, authors) keep the default list.
+        const pageSingletons = [
           {id: 'aboutPage', title: 'About Page'},
           {id: 'getInvolvedPage', title: 'Get Involved Page'},
           {id: 'homePage', title: 'Home Page'},
@@ -26,10 +27,17 @@ export default defineConfig({
           {id: 'catalogPage', title: 'Call Catalog Page'},
           {id: 'donatePage', title: 'Donate / Support Page'},
           {id: 'moaContent', title: 'MOA (Memorandum of Agreement)'},
+        ]
+        const navigationSingletons = [
           {id: 'navigation', title: 'Top Menu'},
           {id: 'footer', title: 'Footer'},
         ]
-        const singletonIds = singletons.map((s) => s.id)
+        const singletonIds = [...pageSingletons, ...navigationSingletons].map((s) => s.id)
+        const singletonItem = (s: {id: string; title: string}) =>
+          S.listItem()
+            .id(s.id)
+            .title(s.title)
+            .child(S.document().title(s.title).schemaType(s.id).documentId(s.id))
         return S.list()
           .title('Content')
           .items([
@@ -42,15 +50,11 @@ export default defineConfig({
                   .id('editingGuide')
                   .title('Editing guide'),
               ),
-            S.divider(),
-            ...singletons.map((s) =>
-              S.listItem()
-                .id(s.id)
-                .title(s.title)
-                .child(
-                  S.document().title(s.title).schemaType(s.id).documentId(s.id),
-                ),
-            ),
+            S.divider().title('Pages'),
+            ...pageSingletons.map(singletonItem),
+            S.divider().title('Navigation'),
+            ...navigationSingletons.map(singletonItem),
+            S.divider().title('Blog'),
             ...S.documentTypeListItems().filter(
               (item) => !singletonIds.includes(item.getId() ?? ''),
             ),
