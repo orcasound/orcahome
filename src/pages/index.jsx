@@ -14,6 +14,7 @@ import orcas from '../../public/images/srkw2-9.jpg'
 import Link from '../components/Link'
 import { getClient } from '../sanity/client'
 import { HOME_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
@@ -290,7 +291,7 @@ export const index = ({ home }) => {
               fontFamily={'Mukta'}
               fontSize="44px"
               fontWeight={'600'}
-              mr={{ xs: 10 }}
+              mr={{ xs: 0 }}
             >
               {content.hydrophoneHeading}
             </Typography>
@@ -499,11 +500,12 @@ export default index
 // Sanity is unreachable or unconfigured, fall back to null and the component
 // renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let home = null
   try {
     home = await getClient(false).fetch(HOME_PAGE_QUERY)
   } catch {
     home = null
   }
-  return { props: { home }, revalidate: 60 }
+  return { props: { home, siteChrome: await siteChrome }, revalidate: 60 }
 }

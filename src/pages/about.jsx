@@ -11,6 +11,7 @@ import Items from '../components/About/db.json'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { ABOUT_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsNotDesktop from '../utils/useIsNotDesktop'
 
@@ -220,11 +221,12 @@ function Mobile({ setSeeMore, seeMore }) {
 // If Sanity is unreachable or unconfigured, fall back to null and the
 // component renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let about = null
   try {
     about = await getClient(false).fetch(ABOUT_PAGE_QUERY)
   } catch {
     about = null
   }
-  return { props: { about }, revalidate: 60 }
+  return { props: { about, siteChrome: await siteChrome }, revalidate: 60 }
 }

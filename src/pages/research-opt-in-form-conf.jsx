@@ -1,6 +1,8 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import Head from 'next/head'
 
+import { getSiteChrome } from '../sanity/siteChrome'
+
 export default function ResearchOptInConfirmation() {
   return (
     <>
@@ -32,4 +34,8 @@ export default function ResearchOptInConfirmation() {
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  return { props: { siteChrome: await getSiteChrome() }, revalidate: 60 }
 }

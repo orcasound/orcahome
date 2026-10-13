@@ -23,43 +23,45 @@ import orcasoundlogo from '../../public/images/logo-white.svg'
 import { pushToDataLayer } from '../utils/gtm'
 import Link from './Link'
 
-const navLinks = [
+const DEFAULT_NAV_LINKS = [
   {
-    name: 'Get Involved',
+    label: 'Get Involved',
     url: '/getinvolved',
-    icon: '',
   },
   {
-    name: 'Learn',
+    label: 'Learn',
     url: '/learn',
-    icon: '',
   },
   {
-    name: 'About Us',
+    label: 'About Us',
     url: '/about',
-    icon: '',
   },
 
   {
-    name: 'Listen',
+    label: 'Listen',
     url: 'https://live.orcasound.net/',
-    icon: '',
-    external: true,
   },
   {
-    name: 'Blog',
+    label: 'Blog',
     url: '/blog',
-    icon: '',
   },
   {
-    name: 'Send Feedback',
+    label: 'Send Feedback',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLScsBwU_ZX0W2GUrxJ5JKb3PfR-NmloHxm7zetkyOBC5RM2ajA/viewform',
-    icon: '',
-    external: true,
   },
 ]
 
-const Nav = () => {
+const isExternal = (url) => /^(https?:|mailto:)/i.test(url)
+
+const Nav = ({ nav }) => {
+  const navLinks = (nav?.links?.length ? nav.links : DEFAULT_NAV_LINKS).map(
+    (item) => ({ ...item, external: isExternal(item.url) })
+  )
+  const notifyLabel = nav?.notifyLabel || 'Notify Me'
+  const notifyUrl = nav?.notifyUrl || 'https://www.orcasound.net/subscribe/'
+  const supportLabel = nav?.supportLabel || 'Support'
+  const supportUrl = nav?.supportUrl || '/donate'
+  const content = { navLinks, notifyLabel, notifyUrl, supportLabel, supportUrl }
   const theme = useTheme()
 
   // Mobile vs desktop is switched with CSS breakpoints (not a JS/media-query
@@ -116,13 +118,13 @@ const Nav = () => {
                 alignItems: 'center',
               }}
             >
-              <Desktop />
+              <Desktop {...content} />
             </Box>
             {/* Mobile nav (below lg) */}
             <Box
               sx={{ display: { xs: 'flex', lg: 'none' }, marginLeft: 'auto' }}
             >
-              <Mobile />
+              <Mobile {...content} />
             </Box>
           </Toolbar>
         </Container>
@@ -132,7 +134,13 @@ const Nav = () => {
 }
 export default Nav
 
-function Mobile() {
+function Mobile({
+  navLinks,
+  notifyLabel,
+  notifyUrl,
+  supportLabel,
+  supportUrl,
+}) {
   const [menuIsOpen, setMenuOpen] = useState(false)
   const handleMenuToggle = () => {
     setMenuOpen(!menuIsOpen)
@@ -153,16 +161,17 @@ function Mobile() {
         {navLinks.map((navLink) =>
           navLink.external ? (
             <ListItem
-              key={navLink.name}
+              key={navLink.label}
               button
-              component="a"
+              component={Link}
+              noLinkStyle
               href={navLink.url}
               target="_blank"
               rel="noopener noreferrer"
               sx={{ borderBottom: '1px solid white' }}
               onClick={() =>
                 pushToDataLayer('nav_click', {
-                  link_text: navLink.name,
+                  link_text: navLink.label,
                   page_location:
                     typeof window !== 'undefined'
                       ? window.location.pathname
@@ -170,16 +179,16 @@ function Mobile() {
                 })
               }
             >
-              <ListItemText primary={navLink.name} />
+              <ListItemText primary={navLink.label} />
             </ListItem>
           ) : (
-            <Link key={navLink.name} href={navLink.url}>
+            <Link key={navLink.label} href={navLink.url}>
               <ListItem
                 button
                 sx={{ borderBottom: '1px solid white', color: 'white' }}
                 onClick={() =>
                   pushToDataLayer('nav_click', {
-                    link_text: navLink.name,
+                    link_text: navLink.label,
                     page_location:
                       typeof window !== 'undefined'
                         ? window.location.pathname
@@ -187,36 +196,41 @@ function Mobile() {
                   })
                 }
               >
-                <ListItemText primary={navLink.name} />
+                <ListItemText primary={navLink.label} />
               </ListItem>
             </Link>
           )
         )}
         <ListItem
           button
-          component="a"
-          href="https://www.orcasound.net/subscribe/"
-          target="_blank"
-          rel="noopener noreferrer"
+          component={Link}
+          noLinkStyle
+          href={notifyUrl}
+          target={isExternal(notifyUrl) ? '_blank' : undefined}
+          rel={isExternal(notifyUrl) ? 'noopener noreferrer' : undefined}
           sx={{ borderBottom: '1px solid white' }}
         >
-          <ListItemText primary="Notify Me" />
+          <ListItemText primary={notifyLabel} />
         </ListItem>
         {/* Support/donate — desktop has this as a button; mirror it here so
             mobile/tablet users can still reach /donate from the menu. */}
-        <Link href="/donate">
+        <Link
+          href={supportUrl}
+          target={isExternal(supportUrl) ? '_blank' : undefined}
+          rel={isExternal(supportUrl) ? 'noopener noreferrer' : undefined}
+        >
           <ListItem
             button
             sx={{ color: 'white' }}
             onClick={() =>
               pushToDataLayer('nav_click', {
-                link_text: 'Support',
+                link_text: supportLabel,
                 page_location:
                   typeof window !== 'undefined' ? window.location.pathname : '',
               })
             }
           >
-            <ListItemText primary="Support" />
+            <ListItemText primary={supportLabel} />
           </ListItem>
         </Link>
       </List>
@@ -257,7 +271,13 @@ function Mobile() {
   )
 }
 
-function Desktop() {
+function Desktop({
+  navLinks,
+  notifyLabel,
+  notifyUrl,
+  supportLabel,
+  supportUrl,
+}) {
   const router = useRouter()
 
   return (
@@ -267,7 +287,7 @@ function Desktop() {
           const isActive = router.pathname === navLink.url
           return (
             <Box
-              key={navLink.name}
+              key={navLink.label}
               sx={{
                 position: 'relative',
                 margin: 3,
@@ -275,7 +295,8 @@ function Desktop() {
             >
               {navLink.external ? (
                 <Button
-                  component="a"
+                  component={Link}
+                  noLinkStyle
                   href={navLink.url}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -290,12 +311,12 @@ function Desktop() {
                   }}
                   onClick={() =>
                     pushToDataLayer('nav_click', {
-                      link_text: navLink.name,
+                      link_text: navLink.label,
                       page_location: router.pathname,
                     })
                   }
                 >
-                  {navLink.name}
+                  {navLink.label}
                 </Button>
               ) : (
                 <Link href={navLink.url}>
@@ -317,12 +338,12 @@ function Desktop() {
                     }}
                     onClick={() =>
                       pushToDataLayer('nav_click', {
-                        link_text: navLink.name,
+                        link_text: navLink.label,
                         page_location: router.pathname,
                       })
                     }
                   >
-                    {navLink.name}
+                    {navLink.label}
                   </Button>
                 </Link>
               )}
@@ -333,10 +354,11 @@ function Desktop() {
       <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 0.1 }}>
         <Button
           variant="outlined"
-          component="a"
-          href="https://www.orcasound.net/subscribe/"
-          target="_blank"
-          rel="noopener noreferrer"
+          component={Link}
+          noLinkStyle
+          href={notifyUrl}
+          target={isExternal(notifyUrl) ? '_blank' : undefined}
+          rel={isExternal(notifyUrl) ? 'noopener noreferrer' : undefined}
           sx={{
             m: 2,
             color: 'white',
@@ -354,9 +376,13 @@ function Desktop() {
             />
           }
         >
-          Notify Me
+          {notifyLabel}
         </Button>
-        <Link href="/donate">
+        <Link
+          href={supportUrl}
+          target={isExternal(supportUrl) ? '_blank' : undefined}
+          rel={isExternal(supportUrl) ? 'noopener noreferrer' : undefined}
+        >
           <Button
             variant="outlined"
             sx={{
@@ -376,7 +402,7 @@ function Desktop() {
               />
             }
           >
-            Support
+            {supportLabel}
           </Button>
         </Link>
       </Box>
