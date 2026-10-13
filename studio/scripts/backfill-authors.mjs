@@ -17,10 +17,8 @@
 import {getCliClient} from 'sanity/cli'
 
 // WordPress author-tag slug -> display name. 16 confirmed against the Hacker
-// Hall of Fame list + post bylines; 2 pending Brendan's confirmation (see #410)
-// but wired now — their display name is just a doc edit away once confirmed:
-//   - diegoroderiguez: Roderiguez vs Rodriguez spelling
-//   - lagoyena: surname unknown (posts signed "–Laurel")
+// Hall of Fame list + post bylines; the last 2 confirmed by Brendan in #410.
+// Existing author docs were renamed by fix-author-names-410.mjs.
 const AUTHORS = {
   scottveirs: 'Scott Veirs',
   valveirs: 'Val Veirs',
@@ -38,8 +36,8 @@ const AUTHORS = {
   nataliemastick: 'Natalie Mastick',
   robwilliams: 'Rob Williams',
   erinashe: 'Erin Ashe',
-  diegoroderiguez: 'Diego Roderiguez', // pending #410
-  lagoyena: 'Laurel', // pending #410 (surname)
+  diegoroderiguez: 'Diego Rodriguez', // slug keeps the WordPress misspelling
+  lagoyena: 'Laurel Yruretagoyena',
 }
 
 const AUTHOR_SLUGS = new Set(Object.keys(AUTHORS))
