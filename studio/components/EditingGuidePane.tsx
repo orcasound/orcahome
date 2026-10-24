@@ -17,8 +17,9 @@ export function EditingGuidePane() {
         <Stack space={4}>
           <Heading size={2}>📖 Start here</Heading>
           <Text size={2}>
-            New to editing the site? This Studio is where you change page content
-            and write blog posts. Nothing goes live until you click Publish.
+            New to editing the site? This Studio is where you change page content,
+            edit the site&apos;s top menu and footer, and write blog posts. Nothing goes
+            live until you click Publish.
           </Text>
           <Text size={2}>
             <a href={GUIDE_URL} target="_blank" rel="noreferrer">

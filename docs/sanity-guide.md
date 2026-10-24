@@ -22,22 +22,34 @@ below.
 
 ---
 
-## 2. Two kinds of content
+## 2. Three kinds of content
 
-### Fixed pages
+The Studio's left sidebar is grouped the same way: **Pages**, **Navigation**,
+and **Blog**.
+
+### Pages
 
 Each main page is a single document in the Studio — you edit its fields (text,
 images, lists). Pick the page you want to edit:
 
-| Page                | Guide                                                            |
-| ------------------- | ---------------------------------------------------------------- |
-| Home                | [editing-home-content.md](editing-home-content.md)               |
-| About               | [editing-about-content.md](editing-about-content.md)             |
-| Learn               | [editing-learn-content.md](editing-learn-content.md)             |
-| Call Catalog        | [editing-catalog-content.md](editing-catalog-content.md)         |
-| Get Involved        | [editing-getinvolved-content.md](editing-getinvolved-content.md) |
-| Hacker Hall of Fame | [editing-hhof-content.md](editing-hhof-content.md)               |
-| Donate / Support    | [editing-donate-content.md](editing-donate-content.md)           |
+| Page                  | Guide                                                            |
+| --------------------- | ---------------------------------------------------------------- |
+| Home                  | [editing-home-content.md](editing-home-content.md)               |
+| About                 | [editing-about-content.md](editing-about-content.md)             |
+| Learn                 | [editing-learn-content.md](editing-learn-content.md)             |
+| Call Catalog          | [editing-catalog-content.md](editing-catalog-content.md)         |
+| Get Involved          | [editing-getinvolved-content.md](editing-getinvolved-content.md) |
+| Hacker Hall of Fame   | [editing-hhof-content.md](editing-hhof-content.md)               |
+| Donate / Support      | [editing-donate-content.md](editing-donate-content.md)           |
+| MOA (on Get Involved) | [editing-getinvolved-content.md](editing-getinvolved-content.md) |
+
+### Navigation (Top Menu and Footer)
+
+The menu at the top of every page and the footer at the bottom of every page
+are edited in two documents under **Navigation**: **Top Menu** and **Footer**.
+You can rename, re-link, reorder, add, and remove links and social icons;
+changes appear on every page. See
+[editing-navigation-footer.md](editing-navigation-footer.md).
 
 ### Blog
 
@@ -87,11 +99,11 @@ Most of the above is content only. A few things do need a developer:
   via `getClient` (`src/sanity/`), with per-field fallback to the built-in
   default, so a page still renders even if a field (or the whole dataset) is
   empty.
+- **Top Menu and Footer** are rendered by the app shell, not a page, so every
+  page's `getStaticProps` also returns `siteChrome` (`src/sanity/siteChrome.ts`),
+  which `_app.tsx` passes to `Layout` → `Nav` / `Footer`. A new page needs that
+  line too, or it shows the built-in menu.
 
 ---
 
 _Questions or something looks broken? ping @Vicky on Zulip._
-
-## Top Menu and Footer
-
-See [Editing the Top Menu and Footer](editing-navigation-footer.md) for shared navigation, footer links, and social icons.
