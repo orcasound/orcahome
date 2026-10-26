@@ -21,6 +21,7 @@ const SITE_PAGES = [
   '/hacker-hall-of-fame',
   '/privacy',
   '/research-opt-in-form',
+  '/subscribe',
 ]
 // Paths under these prefixes are generated per item (blog posts, authors,
 // project pages).

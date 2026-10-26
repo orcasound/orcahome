@@ -62,7 +62,7 @@ const Nav = ({ nav }) => {
     (item) => ({ ...item, external: isExternal(item.url) })
   )
   const notifyLabel = nav?.notifyLabel || 'Notify Me'
-  const notifyUrl = nav?.notifyUrl || 'https://www.orcasound.net/subscribe/'
+  const notifyUrl = nav?.notifyUrl || '/subscribe'
   const supportLabel = nav?.supportLabel || 'Support'
   const supportUrl = nav?.supportUrl || '/donate'
   const content = { navLinks, notifyLabel, notifyUrl, supportLabel, supportUrl }
