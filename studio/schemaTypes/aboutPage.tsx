@@ -1,5 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+import {urlField} from './siteLink'
+
 /**
  * About page (Phase 2 — first real-page content model).
  *
@@ -82,7 +84,8 @@ export const aboutPage = defineType({
               type: 'image',
               options: {hotspot: true},
             }),
-            defineField({name: 'url', title: 'Link URL', type: 'url'}),
+            // A string, not `url`, so a page on this site (/projects/<slug>) is allowed.
+            urlField('url', 'Link URL'),
           ],
           preview: {select: {title: 'title', media: 'image'}},
         }),

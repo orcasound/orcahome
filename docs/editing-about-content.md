@@ -70,11 +70,15 @@ link**.
 
 Each card's fields:
 
-| Field        | Example                                            |
-| ------------ | -------------------------------------------------- |
-| **Title**    | "Orcasound App"                                    |
-| **Image**    | (uploaded photo)                                   |
-| **Link URL** | https://www.orcasound.net/portfolio/orcasound-app/ |
+| Field        | Example                 |
+| ------------ | ----------------------- |
+| **Title**    | "Orcasound App"         |
+| **Image**    | (uploaded photo)        |
+| **Link URL** | /projects/orcasound-app |
+
+A card usually links to one of the site's project pages, written as
+`/projects/<slug>`. The project pages themselves are edited under **Projects**
+in the sidebar; see [editing-projects-content.md](editing-projects-content.md).
 
 ---
 
