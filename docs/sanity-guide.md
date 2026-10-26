@@ -1,7 +1,9 @@
 # Updating the website with Sanity (overview)
 
-> This is the overview. Each individual page also has its own step-by-step guide
-> as a Google Doc in the shared Drive folder (with screenshots).
+> This is the overview. Each page also has its own step-by-step guide (with
+> screenshots), linked below and from the top of that page's form in the Studio.
+> The guides live here in the repo so they're updated together with the site;
+> older Google Doc copies are no longer maintained.
 
 The content on orcasound.tech is managed in **Sanity**, a content management
 system (CMS). You edit everything in the **Sanity Studio** (a website) and your

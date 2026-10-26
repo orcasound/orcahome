@@ -25,7 +25,7 @@ export const catalogPage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1UbX_1g0zRFfNikefapHU5ECvm1kJmfa0Mu2IMrXPG-I/edit"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-catalog-content.md"
             target="_blank"
             rel="noreferrer"
           >

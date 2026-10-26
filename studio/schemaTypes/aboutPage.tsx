@@ -26,7 +26,7 @@ export const aboutPage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-about-content.md"
             target="_blank"
             rel="noreferrer"
           >

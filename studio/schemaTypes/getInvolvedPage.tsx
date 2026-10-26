@@ -50,7 +50,7 @@ export const getInvolvedPage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1iCw3vYiF-s4LBeoMWh-figv7PBq3N_vB3qb05hTA9qg/edit"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-getinvolved-content.md"
             target="_blank"
             rel="noreferrer"
           >

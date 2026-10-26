@@ -29,7 +29,7 @@ export const homePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1tERlrFaHef7tG0mWLI6iaHl-jnPdBUp2I1ltyCc3FA0/edit"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-home-content.md"
             target="_blank"
             rel="noreferrer"
           >

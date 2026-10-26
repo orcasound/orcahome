@@ -28,7 +28,7 @@ export const learnPage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://docs.google.com/document/d/1N_e1M6bmFrDHmyEfWXn7rzyM1hXGH9Qz7ZpXws_WkLM/edit"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-learn-content.md"
             target="_blank"
             rel="noreferrer"
           >
