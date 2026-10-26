@@ -22,43 +22,28 @@ with screenshots, linked below. The same guide also opens from the
 
 ## 2. What you can edit
 
-The Studio's left sidebar is grouped the same way as this section: **📖 Start
-here** (this page), then **Pages**, **Navigation**, **Projects**, and **Blog**.
+Every part of the site has its own guide. The **Where in the Studio** column
+matches the groups in the Studio's left sidebar.
 
-### Pages
+| Part of the site                 | Where in the Studio                                                                                         | What it is                                                                 | Guide                                               |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- |
+| **Blog**                         | Blog → Blog Post                                                                                            | News posts at /blog. A collection: add as many as you like.                | [Blog guide](blog.md)                               |
+| **Projects**                     | Projects → Projects                                                                                         | Hydrophones, research, call catalogs, outreach at /projects. A collection. | [Projects guide](projects.md)                       |
+| Home                             | Pages → Home Page                                                                                           | One page                                                                   | [Home guide](home.md)                               |
+| About                            | Pages → About Page                                                                                          | One page, including the "Our Projects" cards                               | [About guide](about.md)                             |
+| Get Involved                     | Pages → Get Involved Page, and Pages → MOA (Memorandum of Agreement) for the agreement text and member list | One page                                                                   | [Get Involved guide](get-involved.md)               |
+| Learn                            | Pages → Learn Page                                                                                          | One page                                                                   | [Learn guide](learn.md)                             |
+| Call Catalog                     | Pages → Call Catalog Page                                                                                   | The page text around the call list                                         | [Call Catalog guide](call-catalog.md)               |
+| Hacker Hall of Fame              | Pages → Hacker Hall of Fame Page                                                                            | One page, including the contributor lists                                  | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
+| Donate / Support                 | Pages → Donate / Support Page                                                                               | One page                                                                   | [Donate / Support guide](donate.md)                 |
+| Top menu and footer (every page) | Navigation → Top Menu, Footer                                                                               | Links and social icons shown on every page                                 | [Top menu & footer guide](navigation-footer.md)     |
 
-Each main page is one document in the Studio: you edit its fields (text,
-images, lists).
+**Collections vs. pages:** Blog and Projects are collections. You create a new
+document for each post or project. Everything under **Pages** is a single
+document per page that you edit; you don't create new ones.
 
-| Page                | Guide                                               |
-| ------------------- | --------------------------------------------------- |
-| Home                | [Home guide](home.md)                               |
-| About               | [About guide](about.md)                             |
-| Get Involved (+MOA) | [Get Involved guide](get-involved.md)               |
-| Learn               | [Learn guide](learn.md)                             |
-| Call Catalog        | [Call Catalog guide](call-catalog.md)               |
-| Hacker Hall of Fame | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
-| Donate / Support    | [Donate / Support guide](donate.md)                 |
-
-### Navigation: Top Menu and Footer
-
-The menu at the top and the footer at the bottom of every page. You can
-rename, re-link, reorder, add, and remove links and social icons; changes show
-on every page. See the [Top menu & footer guide](navigation-footer.md).
-
-### Projects
-
-Pages about hydrophone locations, research, call catalogs, and outreach,
-listed at orcasound.tech/projects. A **collection**: add, edit, and publish as
-many as you like. See the [Projects guide](projects.md).
-
-### Blog
-
-News posts at orcasound.tech/blog. Also a collection. See the
-[Blog guide](blog.md).
-
-**Authors** (under Blog in the sidebar) are shared by blog posts and projects.
-Add a person once, then pick them on any post or project.
+**Authors** (Blog → Author) are shared by blog posts and projects. Add a person
+once, then pick them on any post or project.
 
 ---
 
