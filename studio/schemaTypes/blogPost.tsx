@@ -1,5 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+import {imageLayoutFields, imageLayoutPreview} from './imageLayout'
+
 /**
  * A single blog post migrated from WordPress (issue #397). Minimal, additive
  * schema that renders now with a simple layout and stays flexible for the
@@ -84,7 +86,11 @@ export const blogPost = defineType({
         defineArrayMember({
           type: 'image',
           options: {hotspot: true},
-          fields: [defineField({name: 'alt', title: 'Alt text', type: 'string'})],
+          fields: [
+            defineField({name: 'alt', title: 'Alt text', type: 'string'}),
+            ...imageLayoutFields,
+          ],
+          preview: imageLayoutPreview,
         }),
         defineArrayMember({type: 'dataTable'}),
       ],

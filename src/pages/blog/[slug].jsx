@@ -18,8 +18,10 @@ import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 import { getSiteChrome } from '../../sanity/siteChrome'
 import { pushToDataLayer } from '../../utils/gtm'
 
-// Width of the article column: Container maxWidth="md" (900) minus its padding.
-const CONTENT_WIDTH = 852
+// Width of the article column: ARTICLE_MAX_WIDTH minus the Container padding.
+// ~700px keeps lines near 75 characters, a comfortable reading measure.
+const ARTICLE_MAX_WIDTH = 748
+const CONTENT_WIDTH = 700
 // srcset candidates (1x/2x of phone and desktop column widths).
 const IMAGE_WIDTHS = [450, 900, 1350, 1800]
 const sanityImageUrl = (url, width) => `${url}?w=${width}&fit=max&auto=format`
@@ -242,6 +244,45 @@ const MediaPlayers = ({ media }) => (
   </>
 )
 
+// Image position/size from Studio. Left/right images float so the following
+// paragraphs wrap beside them (like WordPress "align left/right"); below the
+// `sm` breakpoint they sit on their own line, centred.
+// Sizes are a share of the text column, so they look the same at any width.
+const IMAGE_SIZES = { small: '40%', medium: '50%', large: '66%' }
+// Tall, narrow images would get very tall at a column share, so floated
+// images also stop at this height (their width shrinks to keep the shape).
+const FLOAT_MAX_HEIGHT = 420
+// Large images never float: the text beside them would be too narrow to read.
+const isFloated = (alignment, size) =>
+  (alignment === 'left' || alignment === 'right') &&
+  Boolean(IMAGE_SIZES[size]) &&
+  size !== 'large'
+const imageLayoutSx = (alignment, size) => {
+  const share = IMAGE_SIZES[size]
+  if (!share) return { my: 4 }
+  if (isFloated(alignment, size)) {
+    // The box shrinks to the image, up to the size's share of the column.
+    return {
+      width: { xs: '100%', sm: 'auto' },
+      maxWidth: { xs: 360, sm: share },
+      mx: { xs: 'auto' },
+      my: 3,
+      float: { sm: alignment },
+      mt: { sm: 0.5 },
+      mb: { sm: 2 },
+      ...(alignment === 'left'
+        ? { mr: { sm: 3 }, ml: { sm: 0 } }
+        : { ml: { sm: 3 }, mr: { sm: 0 } }),
+    }
+  }
+  return {
+    width: { xs: '100%', sm: share },
+    maxWidth: { xs: 360, sm: 'none' },
+    mx: alignment === 'none' ? 0 : 'auto',
+    my: 3,
+  }
+}
+
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, inline images, and audio.
 const portableComponents = {
@@ -278,12 +319,20 @@ const portableComponents = {
       )
     },
     h2: ({ children }) => (
-      <Typography variant="h4" component="h2" sx={{ mt: 5, mb: 2 }}>
+      <Typography
+        variant="h4"
+        component="h2"
+        sx={{ mt: 5, mb: 2, clear: 'both' }}
+      >
         {children}
       </Typography>
     ),
     h3: ({ children }) => (
-      <Typography variant="h5" component="h3" sx={{ mt: 4, mb: 2 }}>
+      <Typography
+        variant="h5"
+        component="h3"
+        sx={{ mt: 4, mb: 2, clear: 'both' }}
+      >
         {children}
       </Typography>
     ),
@@ -364,6 +413,7 @@ const portableComponents = {
       // the column needs, re-encoded to WebP/AVIF; `fit=max` never upscales.
       // (next/image can't build a srcset here: `images.unoptimized` is global.)
       const widths = [...IMAGE_WIDTHS.filter((x) => x < w), w]
+      const floated = isFloated(value.alignment, value.size)
       const img = (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -380,39 +430,74 @@ const portableComponents = {
           height={h}
           loading="lazy"
           decoding="async"
-          style={{
-            display: 'block',
-            width: '100%',
-            maxWidth: w,
-            height: 'auto',
-            borderRadius: 8,
-          }}
+          style={
+            floated
+              ? {
+                  display: 'block',
+                  width: 'auto',
+                  maxWidth: '100%',
+                  maxHeight: FLOAT_MAX_HEIGHT,
+                  height: 'auto',
+                  margin: '0 auto',
+                  borderRadius: 8,
+                }
+              : {
+                  display: 'block',
+                  width: '100%',
+                  maxWidth: w,
+                  height: 'auto',
+                  // Only images set to Center are centred; others stay left.
+                  margin: value.alignment === 'center' ? '0 auto' : 0,
+                  borderRadius: 8,
+                }
+          }
         />
       )
       // Images wider than a phone screen get scaled down somewhere; clicking
       // opens the full-size original in a new tab, as on the old WordPress blog.
       // Small images are always shown at full size, so they aren't linked.
       return (
-        <Box sx={{ my: 4 }}>
-          {w > IMAGE_WIDTHS[0] ? (
-            <MuiLink
-              href={value.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open full-size image${
-                value.alt ? `: ${value.alt}` : ''
-              }`}
-              onClick={() =>
-                pushToDataLayer('blog_image_open', { image_url: value.url })
-              }
-              sx={{ display: 'block', cursor: 'zoom-in' }}
-            >
-              {img}
-            </MuiLink>
-          ) : (
-            img
-          )}
-        </Box>
+        <>
+          {/* A floated image and the text after it start below any earlier
+              floated image, so each image + its text reads as one group. */}
+          {floated && <Box sx={{ clear: 'both' }} />}
+          <Box
+            component="figure"
+            sx={{ m: 0, ...imageLayoutSx(value.alignment, value.size) }}
+          >
+            {w > IMAGE_WIDTHS[0] ? (
+              <MuiLink
+                href={value.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open full-size image${
+                  value.alt ? `: ${value.alt}` : ''
+                }`}
+                onClick={() =>
+                  pushToDataLayer('blog_image_open', { image_url: value.url })
+                }
+                sx={{ display: 'block', cursor: 'zoom-in' }}
+              >
+                {img}
+              </MuiLink>
+            ) : (
+              img
+            )}
+            {value.caption && (
+              <Typography
+                component="figcaption"
+                variant="body2"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  textAlign: value.alignment === 'center' ? 'center' : 'left',
+                }}
+              >
+                {value.caption}
+              </Typography>
+            )}
+          </Box>
+        </>
       )
     },
   },
@@ -512,8 +597,13 @@ export default function BlogPost({ post }) {
 
       <Container
         component="article"
-        maxWidth="md"
-        sx={{ py: { xs: 5, md: 8 } }}
+        maxWidth={false}
+        // flow-root keeps floated body images inside the article.
+        sx={{
+          py: { xs: 5, md: 8 },
+          display: 'flow-root',
+          maxWidth: ARTICLE_MAX_WIDTH,
+        }}
       >
         <MuiLink
           href="/blog"

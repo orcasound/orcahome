@@ -469,7 +469,10 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
       "url": asset->url,
       "width": asset->metadata.dimensions.width,
       "height": asset->metadata.dimensions.height,
-      alt
+      alt,
+      caption,
+      alignment,
+      size
     }
   },
   comments[]{ author, date, body, depth, avatar }
