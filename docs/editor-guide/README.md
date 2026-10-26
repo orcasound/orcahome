@@ -1,17 +1,13 @@
-# Updating the website with Sanity (overview)
-
-> This is the overview. Each page also has its own step-by-step guide (with
-> screenshots), linked below and from the top of that page's form in the Studio.
-> The guides live here in the repo so they're updated together with the site;
-> older Google Doc copies are no longer maintained.
+# Updating the website with Sanity
 
 The content on orcasound.tech is managed in **Sanity**, a content management
 system (CMS). You edit everything in the **Sanity Studio** (a website) and your
-changes go live automatically — you do not touch code, and you do not need a
+changes go live automatically. You don't touch code, and you don't need a
 developer to deploy anything.
 
-This page is the overview. Each page has its own step-by-step guide, linked
-below.
+This page is the overview. Each part of the site has its own step-by-step guide
+with screenshots, linked below. The same guide also opens from the
+**📖 Read the step-by-step guide** link at the top of each form in the Studio.
 
 ---
 
@@ -24,94 +20,107 @@ below.
 
 ---
 
-## 2. Four kinds of content
+## 2. What you can edit
 
-The Studio's left sidebar is grouped the same way: **Pages**, **Navigation**,
-**Projects**, and **Blog**.
+The Studio's left sidebar is grouped the same way as this section: **📖 Start
+here** (this page), then **Pages**, **Navigation**, **Projects**, and **Blog**.
 
 ### Pages
 
-Each main page is a single document in the Studio — you edit its fields (text,
-images, lists). Pick the page you want to edit:
+Each main page is one document in the Studio: you edit its fields (text,
+images, lists).
 
-| Page                  | Guide                                               |
-| --------------------- | --------------------------------------------------- |
-| Home                  | [Home guide](home.md)                               |
-| About                 | [About guide](about.md)                             |
-| Learn                 | [Learn guide](learn.md)                             |
-| Call Catalog          | [Call Catalog guide](call-catalog.md)               |
-| Get Involved          | [Get Involved guide](get-involved.md)               |
-| Hacker Hall of Fame   | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
-| Donate / Support      | [Donate / Support guide](donate.md)                 |
-| MOA (on Get Involved) | [Get Involved guide](get-involved.md)               |
+| Page                | Guide                                               |
+| ------------------- | --------------------------------------------------- |
+| Home                | [Home guide](home.md)                               |
+| About               | [About guide](about.md)                             |
+| Get Involved (+MOA) | [Get Involved guide](get-involved.md)               |
+| Learn               | [Learn guide](learn.md)                             |
+| Call Catalog        | [Call Catalog guide](call-catalog.md)               |
+| Hacker Hall of Fame | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
+| Donate / Support    | [Donate / Support guide](donate.md)                 |
 
-### Navigation (Top Menu and Footer)
+### Navigation: Top Menu and Footer
 
-The menu at the top of every page and the footer at the bottom of every page
-are edited in two documents under **Navigation**: **Top Menu** and **Footer**.
-You can rename, re-link, reorder, add, and remove links and social icons;
-changes appear on every page. See
-[Top menu & footer guide](navigation-footer.md).
+The menu at the top and the footer at the bottom of every page. You can
+rename, re-link, reorder, add, and remove links and social icons; changes show
+on every page. See the [Top menu & footer guide](navigation-footer.md).
 
 ### Projects
 
-Project pages (hydrophone locations, research, call catalogs, outreach) are a
-**collection** like the blog: add, edit, and publish as many as you like. They
-show on orcasound.tech/projects. See
-[Projects guide](projects.md).
+Pages about hydrophone locations, research, call catalogs, and outreach,
+listed at orcasound.tech/projects. A **collection**: add, edit, and publish as
+many as you like. See the [Projects guide](projects.md).
 
 ### Blog
 
-The blog is different: it's a **collection of posts** you can add, edit, and
-publish yourself (not a single fixed document). See
+News posts at orcasound.tech/blog. Also a collection. See the
 [Blog guide](blog.md).
 
+**Authors** (under Blog in the sidebar) are shared by blog posts and projects.
+Add a person once, then pick them on any post or project.
+
 ---
 
-## 3. Rules that apply everywhere
+## 3. Writing a blog post or project page
 
-These are the same no matter which page or post you're editing:
+Blog posts and project pages use the **same body editor**, so everything below
+works in both. Details and screenshots are in the
+[Blog guide, section 5](blog.md#5-writing-the-body).
+
+| You want to…                                          | Use                                                                                                              |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Format text, add headings, lists, links               | The toolbar, like a word processor                                                                               |
+| Add an image, with a caption under it                 | **Image**, then fill in **Caption**                                                                              |
+| Put an image on the left or right with text beside it | Open the image: **Position** (Left / Right) and **Size** (Small / Medium)                                        |
+| Show several photos side by side                      | **Gallery** (2 or 3 per row)                                                                                     |
+| Hide long content until clicked (e.g. references)     | **Collapsible section**                                                                                          |
+| Add a table                                           | **Table**                                                                                                        |
+| Add an audio clip or a YouTube video                  | Paste its address on its own line and link it to itself ([how](blog.md#adding-an-audio-clip-or-a-youtube-video)) |
+
+---
+
+## 4. Rules that apply everywhere
 
 - **You must Publish.** Nothing goes live until you click the green **Publish**
-  button. If you see "Unpublished changes", your edits are not live yet — click
-  Publish. Don't leave edits sitting as an unpublished draft.
-- **Empty fields fall back to defaults.** If you leave a field blank, the site
-  shows its built-in default text/image — nothing breaks. Fill the field in to
-  override it.
+  button. "Unpublished changes" means your edits are not live yet. Don't leave
+  edits sitting as an unpublished draft.
+- **Going live takes about a minute.** After publishing, hard-refresh the page
+  (Cmd/Ctrl + Shift + R) to see the change.
+- **Empty fields fall back to defaults.** On the main pages, a blank field
+  shows the site's built-in text or image. Nothing breaks.
 - **Images:** click the image field, remove the current image, then drag in or
-  upload a new one. You can drag the crop/hotspot to control framing.
-- **Going live takes ~1 minute.** After you publish, refresh the page with a
-  hard refresh (Cmd/Ctrl + Shift + R) to see the change.
-- **Don't change existing links/slugs.** For the blog especially, changing a
-  post's slug changes its web address and breaks existing links to it.
+  upload a new one. Drag the crop/hotspot to control the framing.
+- **Don't change an existing slug.** The slug is the web address of a blog post
+  or project. Changing it breaks every link to that page, including links from
+  other posts, the About page cards, and search engines.
 
 ---
 
-## 4. For developers
+## 5. For developers
 
-Most of the above is content only. A few things do need a developer:
-
-- **Content vs. code:** Sanity holds the editable content. Page layout, styling,
-  and behavior stay in the React code (`src/`). Editing content never touches
-  code.
-- **Schema changes need a deploy.** The _fields_ an editor sees are defined in
-  `studio/schemaTypes/`. If you add/rename/remove a field (or a whole document
-  type), run `npx sanity deploy` from `studio/` so the Studio picks it up.
-  (Editing content values does **not** need a deploy — only schema/structure
-  changes do.)
-- **Environment variables** (already set in Vercel):
-  - `NEXT_PUBLIC_SANITY_PROJECT_ID`
-  - `NEXT_PUBLIC_SANITY_DATASET`
-  - `NEXT_PUBLIC_SANITY_API_VERSION`
-  - `SANITY_API_READ_TOKEN` (server-only; used to preview draft content)
+- **Content vs. code:** Sanity holds the editable content. Layout, styling, and
+  behavior stay in the React code (`src/`). Blog posts and project pages share
+  their components (`src/components/Post/`) and their body and comments fields
+  (`studio/schemaTypes/postFields.ts`), so a new body block type is added once.
+- **Schema changes need a Studio deploy.** The fields editors see are defined
+  in `studio/schemaTypes/`. After merging a schema change, run
+  `npx sanity deploy` from `studio/`. Editing content never needs a deploy.
 - **How pages read Sanity:** each page fetches its document in `getStaticProps`
-  via `getClient` (`src/sanity/`), with per-field fallback to the built-in
-  default, so a page still renders even if a field (or the whole dataset) is
-  empty.
-- **Top Menu and Footer** are rendered by the app shell, not a page, so every
-  page's `getStaticProps` also returns `siteChrome` (`src/sanity/siteChrome.ts`),
-  which `_app.tsx` passes to `Layout` → `Nav` / `Footer`. A new page needs that
-  line too, or it shows the built-in menu.
+  via `getClient` (`src/sanity/`), with per-field fallback to built-in content,
+  so a page renders even with an empty dataset. Every page's `getStaticProps`
+  also returns `siteChrome` (`src/sanity/siteChrome.ts`) for the Top Menu and
+  Footer; a new page needs that too, or it shows the built-in menu.
+- **Environment variables** (set in Vercel production; **not** in Vercel
+  Preview, so PR previews show the fallback content):
+  - `NEXT_PUBLIC_SANITY_PROJECT_ID`, `NEXT_PUBLIC_SANITY_DATASET`
+  - `NEXT_PUBLIC_SANITY_API_VERSION` (optional, defaults to `2024-01-01`)
+  - `SANITY_API_READ_TOKEN` (server-only; for previewing drafts)
+- **Keeping these guides current:** this folder is the only copy (the old
+  Google Docs are no longer maintained). When a change affects what editors see
+  or do, update the matching guide in the same PR. Screenshots go in
+  `images/<page>/`. Studio links to the guides on `main`, so a merged guide
+  change reaches editors right away.
 
 ---
 

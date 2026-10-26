@@ -120,6 +120,21 @@ You can:
 
 Just keep typing to add paragraphs — press Enter for a new paragraph.
 
+### Adding an audio clip or a YouTube video
+
+The site turns a link to an audio file or a video into a player. To add one:
+
+1. On its own line, paste the address, for example
+   `https://example.org/clips/humpback-whup.mp3` or
+   `https://www.youtube.com/watch?v=K0vmU_Jf3f4`.
+2. Select that whole address, click the link button, and paste the **same**
+   address as the link.
+
+When the line is _only_ the link, visitors see just the player. If you link an
+audio file from inside a sentence instead, they see the sentence with a player
+under it. Audio files must end in `.mp3`, `.wav`, `.ogg`, or `.m4a`; video can
+be YouTube, Vimeo, or an `.mp4` file.
+
 ---
 
 ## 6. Publish your post

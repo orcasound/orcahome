@@ -86,29 +86,14 @@ The Body works like a simple word processor, the same as in a blog post.
 - **Link**: select some text, click the link button, and paste the address.
   A link to another page on this site can be just the path, e.g.
   `/projects/bush-point-hydrophone` or `/blog/your-post`.
-- **Image**: click **Image** in the toolbar and upload or drag one in. To add a
-  caption, type it as a normal paragraph right under the image.
+- **Image**: click **Image** in the toolbar and upload or drag one in. Open
+  the image to add a **Caption** (shown under it) or set its **Position** and
+  **Size**.
 
 Projects use the same body as blog posts, so everything in the blog guide's
-[Writing the Body](blog.md#5-writing-the-body) works here too:
-image position, size, and caption; galleries; tables; and collapsible
-sections.
-
-### Adding an audio clip or a YouTube video
-
-The site turns a link to an audio file or a YouTube video into a player. To add
-one:
-
-1. On its own line, paste the address — for example
-   `https://example.org/clips/humpback-whup.mp3` or
-   `https://www.youtube.com/watch?v=K0vmU_Jf3f4`.
-2. Select that whole address, click the link button, and paste the **same**
-   address as the link.
-
-When the line is _only_ the link, visitors see just the player. If you link an
-audio file from inside a sentence instead, they see the sentence with a player
-under it. Audio files must end in `.mp3`, `.wav`, `.ogg`, or `.m4a`; video can
-be YouTube, Vimeo, or an `.mp4` file.
+[Writing the Body](blog.md#5-writing-the-body) works here too: image position,
+size, and caption; galleries; tables; collapsible sections; and
+[audio clips and YouTube videos](blog.md#adding-an-audio-clip-or-a-youtube-video).
 
 > The audio in the migrated projects still plays from the old orcasound.net
 > server. That's expected for now; don't remove those links.
@@ -162,14 +147,14 @@ card too, or the card will lead to a "page not found" error.
 
 ## Troubleshooting
 
-| Problem                                              | What's going on                                                                                                                                               |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "I published a project but it's not on the page"     | Give it ~1 minute, then hard-refresh `orcasound.tech/projects`. Check the project shows **Published** in the Studio.                                          |
-| "My new project isn't on the About page"             | That's expected — About cards are picked by hand. See [section 6](#6-show-a-project-on-the-about-page).                                                       |
-| "An About card goes to a 'page not found' page"      | Its **Link URL** doesn't match a published project's slug. Open the project, copy its slug, and set the card to `/projects/<slug>`.                           |
-| "My audio/video shows as a plain link, not a player" | The line must be a link to the file itself (ending in `.mp3` etc.) or to YouTube/Vimeo. See [Adding an audio clip](#adding-an-audio-clip-or-a-youtube-video). |
-| "The card has no picture"                            | Add a **Featured image**.                                                                                                                                     |
-| "I can't sign in"                                    | Ask an admin to grant your Google account access to the Sanity project.                                                                                       |
+| Problem                                              | What's going on                                                                                                                                                      |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "I published a project but it's not on the page"     | Give it ~1 minute, then hard-refresh `orcasound.tech/projects`. Check the project shows **Published** in the Studio.                                                 |
+| "My new project isn't on the About page"             | That's expected — About cards are picked by hand. See [section 6](#6-show-a-project-on-the-about-page).                                                              |
+| "An About card goes to a 'page not found' page"      | Its **Link URL** doesn't match a published project's slug. Open the project, copy its slug, and set the card to `/projects/<slug>`.                                  |
+| "My audio/video shows as a plain link, not a player" | The line must be a link to the file itself (ending in `.mp3` etc.) or to YouTube/Vimeo. See [Adding an audio clip](blog.md#adding-an-audio-clip-or-a-youtube-video). |
+| "The card has no picture"                            | Add a **Featured image**.                                                                                                                                            |
+| "I can't sign in"                                    | Ask an admin to grant your Google account access to the Sanity project.                                                                                              |
 
 ---
 
