@@ -8,18 +8,23 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 
-import { formatByline } from '../Blog/blogFormat'
-
-// One card on /projects, styled like the blog listing cards: image, byline,
-// title, short description, categories. Projects aren't dated news, so the
-// caption line shows only the authors. The empty-dataset fallback links to the
-// old WordPress pages, which open in a new tab.
-const ProjectCard = ({ project, onClick }) => {
-  const external = /^https?:\/\//.test(project.url)
-  const byline = formatByline(project.authors)
+// One card in the /blog and /projects grids: image, a small meta line (date
+// and/or byline), title, excerpt, and chips (tags or categories). A link to
+// another site (the projects page's empty-dataset fallback) opens in a new tab.
+const ContentCard = ({
+  href,
+  imageUrl,
+  imageAlt,
+  meta,
+  title,
+  excerpt,
+  chips = [],
+  onClick,
+}) => {
+  const external = /^https?:\/\//.test(href)
   return (
     <Link
-      href={project.url}
+      href={href}
       onClick={onClick}
       style={{ textDecoration: 'none' }}
       {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
@@ -33,34 +38,34 @@ const ProjectCard = ({ project, onClick }) => {
           '&:hover': { boxShadow: 6 },
         }}
       >
-        {project.imageUrl && (
+        {imageUrl && (
           <CardMedia
             component="img"
-            image={project.imageUrl}
-            alt={project.imageAlt || project.title || ''}
+            image={imageUrl}
+            alt={imageAlt || title || ''}
             sx={{ aspectRatio: '16 / 9', objectFit: 'cover' }}
           />
         )}
         <CardContent sx={{ flexGrow: 1 }}>
-          {byline && (
+          {meta && (
             <Typography
               variant="caption"
               color="text.secondary"
               display="block"
               gutterBottom
             >
-              By {byline}
+              {meta}
             </Typography>
           )}
           <Typography variant="h6" component="h2" gutterBottom>
-            {project.title}
+            {title}
           </Typography>
-          {project.excerpt && (
+          {excerpt && (
             <Typography variant="body2" color="text.secondary">
-              {project.excerpt}
+              {excerpt}
             </Typography>
           )}
-          {project.categories?.length > 0 && (
+          {chips.length > 0 && (
             <Stack
               direction="row"
               spacing={1}
@@ -68,8 +73,8 @@ const ProjectCard = ({ project, onClick }) => {
               flexWrap="wrap"
               sx={{ mt: 2 }}
             >
-              {project.categories.map((category) => (
-                <Chip key={category} label={category} size="small" />
+              {chips.map((chip) => (
+                <Chip key={chip} label={chip} size="small" />
               ))}
             </Stack>
           )}
@@ -79,4 +84,4 @@ const ProjectCard = ({ project, onClick }) => {
   )
 }
 
-export default ProjectCard
+export default ContentCard

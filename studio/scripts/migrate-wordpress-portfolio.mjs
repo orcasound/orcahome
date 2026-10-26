@@ -10,6 +10,11 @@
  * other portfolio pages and to blog posts already on Sanity are rewritten to
  * /projects/<slug> and /blog/<slug>.
  *
+ * WordPress layout blocks are kept: galleries become `gallery` blocks,
+ * <details> becomes a `collapsible` block, and single images keep their
+ * alignment, display width (as a size option), and caption. Comment threads are
+ * archived read-only on `comments`, like the blog's (#428).
+ *
  * Run from studio/, Node 24. Two phases:
  *
  *   1. Projects (safe any time; nothing on the live site links to them yet):
@@ -65,7 +70,29 @@ const blockContentType = Schema.compile({
     {
       name: 'project',
       type: 'document',
-      fields: [{name: 'body', type: 'array', of: [{type: 'block'}, {type: 'image'}]}],
+      fields: [
+        {
+          name: 'body',
+          type: 'array',
+          of: [{type: 'block'}, {type: 'image'}, {type: 'gallery'}, {type: 'collapsible'}],
+        },
+      ],
+    },
+    {
+      name: 'gallery',
+      type: 'object',
+      fields: [
+        {name: 'images', type: 'array', of: [{type: 'image'}]},
+        {name: 'columns', type: 'number'},
+      ],
+    },
+    {
+      name: 'collapsible',
+      type: 'object',
+      fields: [
+        {name: 'title', type: 'string'},
+        {name: 'body', type: 'array', of: [{type: 'block'}, {type: 'image'}]},
+      ],
     },
   ],
 })
@@ -145,10 +172,14 @@ function prepareHtml(html, {projectSlugs, blogSlugs}) {
   // Audio playlist: keep its track list, one titled link per track.
   for (const playlist of doc.querySelectorAll('.wp-playlist')) {
     const noscript = playlist.querySelector('noscript')
-    const list = noscript?.querySelector('ol, ul') || parseHtml(noscript?.textContent || '').querySelector('ol, ul')
+    const list =
+      noscript?.querySelector('ol, ul') ||
+      parseHtml(noscript?.textContent || '').querySelector('ol, ul')
     const items = [...(list?.querySelectorAll('a[href]') || [])].map((a) => {
       const li = doc.createElement('li')
-      li.appendChild(linkParagraph(doc, a.getAttribute('href'), normalize(a.textContent)).firstChild)
+      li.appendChild(
+        linkParagraph(doc, a.getAttribute('href'), normalize(a.textContent)).firstChild,
+      )
       return li
     })
     const ol = doc.createElement('ol')
@@ -192,6 +223,56 @@ function prepareHtml(html, {projectSlugs, blogSlugs}) {
     log.push(`iframe -> link ${href}`)
   }
 
+  // Galleries and collapsible <details> become placeholders that a rule turns
+  // into `gallery` / `collapsible` blocks once their images are uploaded.
+  const placeholders = new Map()
+  const placeholder = (el, spec) => {
+    const id = `ph${placeholders.size}`
+    placeholders.set(id, spec)
+    const div = doc.createElement('div')
+    div.setAttribute('data-block', id)
+    replaceWith(el, [div])
+  }
+  for (const gallery of doc.querySelectorAll('figure.wp-block-gallery')) {
+    const images = [...gallery.querySelectorAll('img[src]')].map((img) => ({
+      src: img.getAttribute('src'),
+      alt: img.getAttribute('alt') || undefined,
+      caption:
+        normalize(img.closest('figure.wp-block-image')?.querySelector('figcaption')?.textContent) ||
+        undefined,
+    }))
+    // WordPress "columns-default" means up to three per row.
+    const columns =
+      Number(gallery.className.match(/columns-(\d)/)?.[1]) || Math.min(images.length, 3)
+    placeholder(gallery, {kind: 'gallery', images, columns: columns >= 3 ? 3 : 2})
+    log.push(`gallery ${images.length} images, ${columns >= 3 ? 3 : 2} per row`)
+  }
+  for (const details of doc.querySelectorAll('details')) {
+    const summary = details.querySelector('summary')
+    const title = normalize(summary?.textContent) || 'More'
+    summary?.remove()
+    placeholder(details, {kind: 'collapsible', title, html: details.innerHTML})
+    log.push(`collapsible "${title}"`)
+  }
+  // Single images: keep WordPress's alignment, display width, and caption as
+  // data attributes for the image rule; the caption leaves the flow.
+  for (const wrapper of doc.querySelectorAll('figure.wp-block-image, div.wp-block-image')) {
+    if (wrapper.closest('figure.wp-block-gallery')) continue
+    const img = wrapper.querySelector('img[src]')
+    if (!img || img.hasAttribute('data-width')) continue
+    const classes = [wrapper, ...wrapper.querySelectorAll('figure')]
+      .map((el) => el.className)
+      .join(' ')
+    const align = classes.match(/align(left|right|center)\b/)?.[1]
+    const styled = Number(img.getAttribute('style')?.match(/(?:^|;)\s*width:\s*(\d+)px/)?.[1])
+    const width = styled || Number(img.getAttribute('width')) || 0
+    const caption = normalize(wrapper.querySelector('figcaption')?.textContent)
+    img.setAttribute('data-width', String(width))
+    if (align) img.setAttribute('data-align', align)
+    if (caption) img.setAttribute('data-caption', caption)
+    wrapper.querySelectorAll('figcaption').forEach((el) => el.remove())
+  }
+
   // Internal links: portfolio -> /projects, blog permalinks -> /blog when that
   // post is on Sanity. Everything else is left pointing where it did.
   for (const a of doc.querySelectorAll('a[href]')) {
@@ -213,7 +294,7 @@ function prepareHtml(html, {projectSlugs, blogSlugs}) {
     }
   }
 
-  return {html: doc.body.innerHTML, log}
+  return {html: doc.body.innerHTML, log, placeholders}
 }
 
 // --- Images -----------------------------------------------------------------
@@ -240,6 +321,18 @@ async function uploadImage(url) {
   return assetCache.get(url)
 }
 
+// Width of the text column on the old WordPress portfolio pages.
+const WP_COLUMN = 660
+
+// WordPress display width -> our size options (a share of the column).
+// Images at (nearly) full width keep the default full-width rendering.
+function layoutFor(width, align) {
+  const share = width / WP_COLUMN
+  if (!width || share >= 0.9) return {}
+  const size = share <= 0.45 ? 'small' : share <= 0.55 ? 'medium' : 'large'
+  return {alignment: align || 'none', size}
+}
+
 const imageRule = (imageMap) => ({
   deserialize(el, next, block) {
     if (el.tagName?.toLowerCase() !== 'img') return undefined
@@ -249,9 +342,89 @@ const imageRule = (imageMap) => ({
       _type: 'image',
       asset: {_type: 'reference', _ref: assetId},
       alt: el.getAttribute('alt') || undefined,
+      caption: el.getAttribute('data-caption') || undefined,
+      ...layoutFor(Number(el.getAttribute('data-width')), el.getAttribute('data-align')),
     })
   },
 })
+
+const placeholderRule = (placeholders, imageMap) => ({
+  deserialize(el, next, block) {
+    const id = el.getAttribute?.('data-block')
+    const spec = id && placeholders.get(id)
+    if (!spec) return undefined
+    if (spec.kind === 'gallery') {
+      const images = spec.images
+        .filter((img) => imageMap.get(img.src))
+        .map((img) => ({
+          _type: 'image',
+          _key: key(img.src),
+          asset: {_type: 'reference', _ref: imageMap.get(img.src)},
+          alt: img.alt,
+          caption: img.caption,
+        }))
+      return block({
+        _type: 'gallery',
+        _key: key(id + images.map((i) => i._key).join()),
+        columns: spec.columns,
+        images,
+      })
+    }
+    return block({
+      _type: 'collapsible',
+      _key: key(id + spec.title),
+      title: spec.title,
+      body: htmlToBlocks(spec.html, blockContentType, {parseHtml, rules: [imageRule(imageMap)]}),
+    })
+  },
+})
+
+// Image URLs anywhere in the page, including inside placeholders.
+const imageSources = (html, placeholders) => [
+  ...[...parseHtml(html).querySelectorAll('img[src]')].map((img) => img.getAttribute('src')),
+  ...[...placeholders.values()].flatMap((spec) =>
+    spec.kind === 'gallery'
+      ? spec.images.map((img) => img.src)
+      : [...parseHtml(spec.html).querySelectorAll('img[src]')].map((img) =>
+          img.getAttribute('src'),
+        ),
+  ),
+]
+
+// --- Comments ---------------------------------------------------------------
+
+// The page's WordPress comments as a read-only archive (same shape as the blog's,
+// #428): threaded oldest first, with reply depth.
+async function fetchComments(postId) {
+  const res = await request(
+    `https://www.orcasound.net/wp-json/wp/v2/comments?post=${postId}&per_page=100&order=asc`,
+  )
+  const all = await res.json()
+  const children = new Map()
+  for (const c of all) children.set(c.parent, [...(children.get(c.parent) || []), c])
+  const toText = (html) => {
+    const doc = parseHtml(`<!doctype html><body>${(html || '').replace(/<br\s*\/?>/gi, '\n')}`)
+    const paragraphs = [...doc.querySelectorAll('p')].map((p) => p.textContent.trim())
+    return (paragraphs.length ? paragraphs.join('\n\n') : doc.body.textContent).trim()
+  }
+  const out = []
+  const walk = (parent, depth) => {
+    for (const c of children.get(parent) || []) {
+      out.push({
+        _type: 'comment',
+        _key: `wpc${c.id}`,
+        author: c.author_name,
+        date: `${c.date_gmt}Z`,
+        body: toText(c.content?.rendered),
+        depth,
+        avatar: c.author_avatar_urls?.['96'] || undefined,
+      })
+      walk(c.id, depth + 1)
+    }
+  }
+  walk(0, 1)
+  return out
+}
 
 // --- Authors ----------------------------------------------------------------
 
@@ -304,20 +477,20 @@ async function migrateProjects() {
   const newAuthors = new Map()
   const projects = []
   for (const item of items) {
-    const {html, log} = prepareHtml(item.content?.rendered || '', {
+    const {html, log, placeholders} = prepareHtml(item.content?.rendered || '', {
       projectSlugs,
       blogSlugs: new Set(blogSlugs),
     })
 
     const imageMap = new Map()
-    for (const img of parseHtml(html).querySelectorAll('img[src]')) {
-      const src = img.getAttribute('src')
+    for (const src of imageSources(html, placeholders)) {
       imageMap.set(src, await uploadImage(src))
     }
     const body = htmlToBlocks(html, blockContentType, {
       parseHtml,
-      rules: [imageRule(imageMap)],
+      rules: [placeholderRule(placeholders, imageMap), imageRule(imageMap)],
     }).filter((b) => !isAnchorMenu(b))
+    const comments = await fetchComments(item.id)
 
     const authors = []
     for (const {slug, name} of wpAuthors(item)) {
@@ -355,11 +528,15 @@ async function migrateProjects() {
         featuredImage: {_type: 'image', asset: {_type: 'reference', _ref: featuredId}, alt: title},
       }),
       body,
+      comments,
     })
-    const images = body.filter((b) => b._type === 'image').length
+    const images =
+      body.filter((b) => b._type === 'image').length +
+      body.filter((b) => b._type === 'gallery').reduce((n, g) => n + g.images.length, 0)
     console.log(
       `  ${item.slug}: ${body.length} blocks, ${images}/${imageMap.size} images, ` +
-        `${authors.length} authors, [${categories.join(', ')}], featured:${Boolean(featuredId)}` +
+        `${authors.length} authors, [${categories.join(', ')}], featured:${Boolean(featuredId)}, ` +
+        `${comments.length} comments` +
         (log.length ? `\n      ${log.join('\n      ')}` : ''),
     )
   }

@@ -1,5 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+import {archivedCommentsField, postBodyField} from './postFields'
+
 /**
  * One Orcasound project page (a hydrophone location, a research project, a
  * call catalog, ...), migrated from the WordPress "portfolio" pages at
@@ -71,24 +73,14 @@ export const project = defineType({
     defineField({
       name: 'featuredImage',
       title: 'Featured image',
-      description: 'The card image on the Projects page. It is not shown on the project page itself (same as the old WordPress portfolio), so put any photo you want on the page in the Body.',
+      description:
+        'The card image on the Projects page. It is not shown on the project page itself (same as the old WordPress portfolio), so put any photo you want on the page in the Body.',
       type: 'image',
       options: {hotspot: true},
       fields: [defineField({name: 'alt', title: 'Alt text', type: 'string'})],
     }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'array',
-      of: [
-        defineArrayMember({type: 'block'}),
-        defineArrayMember({
-          type: 'image',
-          options: {hotspot: true},
-          fields: [defineField({name: 'alt', title: 'Alt text', type: 'string'})],
-        }),
-      ],
-    }),
+    postBodyField,
+    archivedCommentsField,
   ],
   orderings: [
     {

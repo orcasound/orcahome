@@ -2,7 +2,8 @@ import { Box, Container, Typography } from '@mui/material'
 import Head from 'next/head'
 
 import AboutItems from '../../components/About/db.json'
-import ProjectCard from '../../components/Projects/ProjectCard'
+import { formatByline } from '../../components/Blog/blogFormat'
+import ContentCard from '../../components/Post/ContentCard'
 import { getClient } from '../../sanity/client'
 import { PROJECTS_QUERY } from '../../sanity/queries'
 import { getSiteChrome } from '../../sanity/siteChrome'
@@ -57,9 +58,19 @@ export default function Projects({ projects }) {
           }}
         >
           {items.map((project) => (
-            <ProjectCard
+            <ContentCard
               key={project.url}
-              project={project}
+              href={project.url}
+              imageUrl={project.imageUrl}
+              imageAlt={project.imageAlt}
+              // Projects aren't dated news, so the meta line is the byline only.
+              meta={
+                formatByline(project.authors) &&
+                `By ${formatByline(project.authors)}`
+              }
+              title={project.title}
+              excerpt={project.excerpt}
+              chips={project.categories || []}
               onClick={() =>
                 pushToDataLayer('project_card_click', {
                   card_title: project.title,

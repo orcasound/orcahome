@@ -89,6 +89,11 @@ The Body works like a simple word processor, the same as in a blog post.
 - **Image**: click **Image** in the toolbar and upload or drag one in. To add a
   caption, type it as a normal paragraph right under the image.
 
+Projects use the same body as blog posts, so everything in the blog guide's
+[Writing the Body](editing-blog-content.md#5-writing-the-body) works here too:
+image position, size, and caption; galleries; tables; and collapsible
+sections.
+
 ### Adding an audio clip or a YouTube video
 
 The site turns a link to an audio file or a YouTube video into a player. To add

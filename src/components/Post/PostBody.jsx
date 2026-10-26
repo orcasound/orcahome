@@ -275,6 +275,105 @@ const imageLayoutSx = (alignment, size) => {
   }
 }
 
+// A photo grid (WordPress gallery block): 2 or 3 per row on wide screens,
+// 2 on phones. A last row with a single photo lets it span the whole row,
+// like WordPress did. Clicking a photo opens the original.
+const Gallery = ({ value }) => {
+  const images = (value?.images || []).filter((img) => img?.url)
+  if (!images.length) return null
+  const columns = value.columns === 3 ? 3 : 2
+  const spanLast = (count, cols) => count % cols === 1
+  return (
+    <Box
+      sx={{
+        clear: 'both',
+        display: 'grid',
+        gap: 1.5,
+        my: 4,
+        gridTemplateColumns: {
+          xs: 'repeat(2, 1fr)',
+          sm: `repeat(${columns}, 1fr)`,
+        },
+      }}
+    >
+      {images.map((img, i) => {
+        const last = i === images.length - 1
+        return (
+          <Box
+            key={img._key || i}
+            component="figure"
+            sx={{
+              m: 0,
+              ...(last && {
+                gridColumn: {
+                  xs: spanLast(images.length, 2) ? '1 / -1' : 'auto',
+                  sm: spanLast(images.length, columns) ? '1 / -1' : 'auto',
+                },
+              }),
+            }}
+          >
+            <MuiLink
+              href={img.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open full-size image${
+                img.alt ? `: ${img.alt}` : ''
+              }`}
+              sx={{ display: 'block', cursor: 'zoom-in' }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={sanityImageUrl(img.url, last ? CONTENT_WIDTH : 600)}
+                alt={img.alt || img.caption || ''}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  aspectRatio: last ? 'auto' : '4 / 3',
+                  objectFit: 'cover',
+                  borderRadius: 8,
+                }}
+              />
+            </MuiLink>
+            {img.caption && (
+              <Typography
+                component="figcaption"
+                variant="body2"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {img.caption}
+              </Typography>
+            )}
+          </Box>
+        )
+      })}
+    </Box>
+  )
+}
+
+// A section hidden until the reader clicks its title (WordPress "details"
+// block), e.g. a long reference list. Uses native <details>, so it works
+// without JavaScript and with the keyboard.
+const Collapsible = ({ value }) => (
+  <Box
+    component="details"
+    sx={{
+      clear: 'both',
+      my: 3,
+      '& > summary': { cursor: 'pointer', fontWeight: 600, py: 1 },
+    }}
+  >
+    <Typography component="summary" variant="body1">
+      {value?.title || 'More'}
+    </Typography>
+    <Box sx={{ mt: 1 }}>
+      <PortableText value={value?.body || []} components={portableComponents} />
+    </Box>
+  </Box>
+)
+
 // Render Portable Text with the site's typography, matching the other Sanity
 // pages. Supports headings, lists, links, inline images, and audio.
 const portableComponents = {
@@ -393,6 +492,8 @@ const portableComponents = {
   },
   types: {
     dataTable: DataTable,
+    gallery: Gallery,
+    collapsible: Collapsible,
     image: ({ value }) => {
       if (!value?.url) return null
       // Use the asset's real dimensions and never upscale past them, so small

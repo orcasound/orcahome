@@ -104,6 +104,13 @@ You can:
   The editor doesn't show the wrap itself; under each image it shows a short
   label like "⬅ Left · medium". Check the result on the site after publishing.
 
+- **Add a gallery** (photos side by side): choose **Gallery** in the toolbar
+  (it may be under the "add" / **⋯** menu). Add two or more images, give each
+  an optional **Caption**, and pick **2** or **3** images per row. On phones the
+  grid uses two per row. If the last row has a single photo, it fills the row.
+- **Add a collapsible section** (e.g. a long reference list): choose
+  **Collapsible section**, type a **Title**, and put the text in **Content**.
+  Readers see only the title and click it to open the content.
 - **Add a table**: click **Table** in the toolbar (it may be under the "add" /
   **⋯** menu). Click **Add item** under **Rows** for each row, and in each row
   add one **Cell** per column, left to right. Keep the same number of cells in
