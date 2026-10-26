@@ -36,6 +36,10 @@ const DEFAULT_NAV_LINKS = [
     label: 'About Us',
     url: '/about',
   },
+  {
+    label: 'Projects',
+    url: '/projects',
+  },
 
   {
     label: 'Listen',
@@ -290,7 +294,9 @@ function Desktop({
               key={navLink.label}
               sx={{
                 position: 'relative',
-                margin: 3,
+                // Tighter between lg and xl so seven links fit at 1200px.
+                my: 3,
+                mx: { lg: 1, xl: 3 },
               }}
             >
               {navLink.external ? (
@@ -304,6 +310,7 @@ function Desktop({
                     color: 'white',
                     display: 'block',
                     textTransform: 'none',
+                    whiteSpace: 'nowrap',
                     '&:hover': {
                       textDecoration: '3px rgba(0, 139, 223, 1) wavy underline',
                       textUnderlineOffset: '7px',
@@ -325,6 +332,7 @@ function Desktop({
                       color: 'white',
                       display: 'block',
                       textTransform: 'none',
+                      whiteSpace: 'nowrap',
                       ...(isActive && {
                         textDecoration:
                           '3px rgba(0, 139, 223, 1) wavy underline',
@@ -366,6 +374,7 @@ function Desktop({
             borderStyle: 'solid',
             borderRadius: '100px',
             textTransform: 'none',
+            whiteSpace: 'nowrap',
             maxwidth: 150,
           }}
           startIcon={
@@ -392,6 +401,7 @@ function Desktop({
               borderStyle: 'solid',
               borderRadius: '100px',
               textTransform: 'none',
+              whiteSpace: 'nowrap',
               maxwidth: 150,
             }}
             startIcon={

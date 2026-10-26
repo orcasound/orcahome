@@ -12,6 +12,7 @@ import {homePage} from './homePage'
 import {learnPage} from './learnPage'
 import {moaContent} from './moaContent'
 import {navigation} from './navigation'
+import {project} from './project'
 
 export const schemaTypes = [
   aboutPage,
@@ -26,6 +27,7 @@ export const schemaTypes = [
   author,
   blogPost,
   dataTable,
+  project,
   navigation,
   footer,
 ]

@@ -22,10 +22,10 @@ below.
 
 ---
 
-## 2. Three kinds of content
+## 2. Four kinds of content
 
 The Studio's left sidebar is grouped the same way: **Pages**, **Navigation**,
-and **Blog**.
+**Projects**, and **Blog**.
 
 ### Pages
 
@@ -50,6 +50,13 @@ are edited in two documents under **Navigation**: **Top Menu** and **Footer**.
 You can rename, re-link, reorder, add, and remove links and social icons;
 changes appear on every page. See
 [editing-navigation-footer.md](editing-navigation-footer.md).
+
+### Projects
+
+Project pages (hydrophone locations, research, call catalogs, outreach) are a
+**collection** like the blog: add, edit, and publish as many as you like. They
+show on orcasound.tech/projects. See
+[editing-projects-content.md](editing-projects-content.md).
 
 ### Blog
 

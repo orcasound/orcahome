@@ -15,17 +15,19 @@ const SITE_PAGES = [
   '/learn',
   '/about',
   '/blog',
+  '/projects',
   '/donate',
   '/catalog',
   '/hacker-hall-of-fame',
   '/privacy',
   '/research-opt-in-form',
 ]
-// Paths under these prefixes are generated per item (blog posts, authors).
-const SITE_PAGE_PREFIXES = ['/blog/']
+// Paths under these prefixes are generated per item (blog posts, authors,
+// project pages).
+const SITE_PAGE_PREFIXES = ['/blog/', '/projects/']
 
 export const URL_DESCRIPTION =
-  'A page on this site: / (Home), /getinvolved, /learn, /about, /blog, /donate, /catalog, /hacker-hall-of-fame. ' +
+  'A page on this site: / (Home), /getinvolved, /learn, /about, /projects, /blog, /donate, /catalog, /hacker-hall-of-fame. ' +
   'Another website: paste its full address, for example https://live.orcasound.net/ (opens in a new tab).'
 
 const clean = (url?: string) => (url ?? '').trim()

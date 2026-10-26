@@ -478,6 +478,43 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   comments[]{ author, date, body, depth, avatar }
 }`
 
+/**
+ * Projects (/projects and /projects/[slug]), migrated from the WordPress
+ * portfolio pages. The body projection matches BLOG_POST_QUERY so both render
+ * through the shared PostBody component.
+ */
+export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)]|order(publishedAt desc){
+  title,
+  "slug": slug.current,
+  excerpt,
+  categories,
+  "featuredImageUrl": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  "authors": authors[]->name
+}`
+
+export const PROJECT_SLUGS_QUERY = `*[_type == "project" && defined(slug.current)].slug.current`
+
+export const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  excerpt,
+  categories,
+  "authors": authors[]->{name, "slug": slug.current},
+  body[]{
+    ...,
+    _type == "image" => {
+      "url": asset->url,
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height,
+      alt,
+      caption,
+      alignment,
+      size
+    }
+  }
+}`
+
 /** Author archive page (#425): all slugs, and one author with their posts. */
 export const AUTHOR_SLUGS_QUERY = `*[_type == "author" && defined(slug.current)].slug.current`
 
