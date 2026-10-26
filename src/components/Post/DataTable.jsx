@@ -46,7 +46,7 @@ const DataTable = ({ value }) => {
   const [head, body] = value.headerRow ? [rows[0], rows.slice(1)] : [null, rows]
 
   return (
-    <TableContainer sx={{ my: 4, overflowX: 'auto' }}>
+    <TableContainer sx={{ my: 4, overflowX: 'auto', clear: 'both' }}>
       <Table size="small">
         {head && (
           <TableHead>

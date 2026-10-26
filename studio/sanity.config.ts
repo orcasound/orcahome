@@ -54,9 +54,11 @@ export default defineConfig({
             ...pageSingletons.map(singletonItem),
             S.divider().title('Navigation'),
             ...navigationSingletons.map(singletonItem),
+            S.divider().title('Projects'),
+            S.documentTypeListItem('project').title('Projects'),
             S.divider().title('Blog'),
             ...S.documentTypeListItems().filter(
-              (item) => !singletonIds.includes(item.getId() ?? ''),
+              (item) => ![...singletonIds, 'project'].includes(item.getId() ?? ''),
             ),
           ])
       },

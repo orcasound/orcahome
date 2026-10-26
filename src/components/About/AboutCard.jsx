@@ -3,12 +3,14 @@ import { Paper } from '@mui/material'
 import Image from 'next/image'
 
 const AboutCard = ({ item, mobileActive, onClick }) => {
+  // Cards that point to another site (the old WordPress pages) open in a new
+  // tab; /projects/<slug> pages on this site open in place.
+  const external = /^https?:\/\//.test(item.url)
   return (
     <Box
       component="a"
       href={item.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...(external && { target: '_blank', rel: 'noopener noreferrer' })}
       aria-label={`Learn more about ${item.title}`}
       onClick={onClick}
       sx={{
