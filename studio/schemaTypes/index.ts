@@ -3,6 +3,7 @@ import {author} from './author'
 import {blogPost} from './blogPost'
 import {catalogPage} from './catalogPage'
 import {contributor} from './contributor'
+import {dataTable} from './dataTable'
 import {donatePage} from './donatePage'
 import {footer} from './footer'
 import {getInvolvedPage} from './getInvolvedPage'
@@ -24,6 +25,7 @@ export const schemaTypes = [
   moaContent,
   author,
   blogPost,
+  dataTable,
   navigation,
   footer,
 ]

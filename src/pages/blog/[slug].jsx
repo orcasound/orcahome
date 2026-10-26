@@ -12,6 +12,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 
 import { HIDDEN_TAGS } from '../../components/Blog/blogFormat'
+import DataTable from '../../components/Blog/DataTable'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 import { getSiteChrome } from '../../sanity/siteChrome'
@@ -350,6 +351,7 @@ const portableComponents = {
     },
   },
   types: {
+    dataTable: DataTable,
     image: ({ value }) => {
       if (!value?.url) return null
       // Use the asset's real dimensions and never upscale past them, so small

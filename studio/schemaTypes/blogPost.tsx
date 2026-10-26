@@ -86,6 +86,7 @@ export const blogPost = defineType({
           options: {hotspot: true},
           fields: [defineField({name: 'alt', title: 'Alt text', type: 'string'})],
         }),
+        defineArrayMember({type: 'dataTable'}),
       ],
     }),
     defineField({
