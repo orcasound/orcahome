@@ -21,7 +21,7 @@ export const blogPost = defineType({
         <>
           📖 New to editing the blog?{' '}
           <a
-            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-blog-content.md"
+            href="https://github.com/orcasound/orcahome/blob/main/docs/editor-guide/blog.md"
             target="_blank"
             rel="noreferrer"
           >

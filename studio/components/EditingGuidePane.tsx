@@ -5,10 +5,10 @@ import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
  * Studio content list. Sidebar list items can't be plain external links, so
  * this renders a one-line intro plus a link that opens the overview guide in a
  * new tab. Single source of truth: the guide lives in the repo as
- * docs/sanity-guide.md.
+ * docs/editor-guide/README.md (the folder overview).
  */
 const GUIDE_URL =
-  'https://github.com/orcasound/orcahome/blob/main/docs/sanity-guide.md'
+  'https://github.com/orcasound/orcahome/tree/main/docs/editor-guide'
 
 export function EditingGuidePane() {
   return (

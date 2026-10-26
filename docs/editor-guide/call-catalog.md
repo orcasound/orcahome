@@ -21,7 +21,7 @@ description, and the image credit — all without touching any code.
 1. In the left sidebar, click **Call Catalog Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Call Catalog Page" selected](images/catalog-guide/01-sidebar.png)
+![The Studio sidebar with "Call Catalog Page" selected](images/call-catalog/01-sidebar.png)
 
 ---
 
@@ -50,7 +50,7 @@ browse 48 Ford call entries…".
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/catalog-guide/02-text-field.png)
+![Editing a text field](images/call-catalog/02-text-field.png)
 
 ---
 
@@ -61,7 +61,7 @@ Click any text field and type. That's it.
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![The hero image field with the upload/select menu open](images/catalog-guide/03-image-field.png)
+![The hero image field with the upload/select menu open](images/call-catalog/03-image-field.png)
 
 > **If you leave the image blank**, the site falls back to the original built-in
 > photo — nothing breaks.
@@ -76,7 +76,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/catalog-guide/04-publish.png)
+![The Publish button](images/call-catalog/04-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

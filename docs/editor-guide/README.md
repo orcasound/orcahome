@@ -34,16 +34,16 @@ The Studio's left sidebar is grouped the same way: **Pages**, **Navigation**,
 Each main page is a single document in the Studio — you edit its fields (text,
 images, lists). Pick the page you want to edit:
 
-| Page                  | Guide                                                            |
-| --------------------- | ---------------------------------------------------------------- |
-| Home                  | [editing-home-content.md](editing-home-content.md)               |
-| About                 | [editing-about-content.md](editing-about-content.md)             |
-| Learn                 | [editing-learn-content.md](editing-learn-content.md)             |
-| Call Catalog          | [editing-catalog-content.md](editing-catalog-content.md)         |
-| Get Involved          | [editing-getinvolved-content.md](editing-getinvolved-content.md) |
-| Hacker Hall of Fame   | [editing-hhof-content.md](editing-hhof-content.md)               |
-| Donate / Support      | [editing-donate-content.md](editing-donate-content.md)           |
-| MOA (on Get Involved) | [editing-getinvolved-content.md](editing-getinvolved-content.md) |
+| Page                  | Guide                                               |
+| --------------------- | --------------------------------------------------- |
+| Home                  | [Home guide](home.md)                               |
+| About                 | [About guide](about.md)                             |
+| Learn                 | [Learn guide](learn.md)                             |
+| Call Catalog          | [Call Catalog guide](call-catalog.md)               |
+| Get Involved          | [Get Involved guide](get-involved.md)               |
+| Hacker Hall of Fame   | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
+| Donate / Support      | [Donate / Support guide](donate.md)                 |
+| MOA (on Get Involved) | [Get Involved guide](get-involved.md)               |
 
 ### Navigation (Top Menu and Footer)
 
@@ -51,20 +51,20 @@ The menu at the top of every page and the footer at the bottom of every page
 are edited in two documents under **Navigation**: **Top Menu** and **Footer**.
 You can rename, re-link, reorder, add, and remove links and social icons;
 changes appear on every page. See
-[editing-navigation-footer.md](editing-navigation-footer.md).
+[Top menu & footer guide](navigation-footer.md).
 
 ### Projects
 
 Project pages (hydrophone locations, research, call catalogs, outreach) are a
 **collection** like the blog: add, edit, and publish as many as you like. They
 show on orcasound.tech/projects. See
-[editing-projects-content.md](editing-projects-content.md).
+[Projects guide](projects.md).
 
 ### Blog
 
 The blog is different: it's a **collection of posts** you can add, edit, and
 publish yourself (not a single fixed document). See
-[editing-blog-content.md](editing-blog-content.md).
+[Blog guide](blog.md).
 
 ---
 

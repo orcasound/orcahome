@@ -18,7 +18,7 @@ lists — all without touching any code.
 1. In the left sidebar, click **Get Involved Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Get Involved Page" selected](images/getinvolved-guide/01-sidebar.png)
+![The Studio sidebar with "Get Involved Page" selected](images/get-involved/01-sidebar.png)
 
 ---
 
@@ -43,7 +43,7 @@ lists — all without touching any code.
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/getinvolved-guide/02-text-field.png)
+![Editing a text field](images/get-involved/02-text-field.png)
 
 ---
 
@@ -57,7 +57,7 @@ This works the same for the **Hero image**, the **Volunteer photos**, the
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![An image field with the upload/select menu open](images/getinvolved-guide/03-image-field.png)
+![An image field with the upload/select menu open](images/get-involved/03-image-field.png)
 
 > **If you leave an image blank**, the site falls back to the original built-in
 > photo — nothing breaks.
@@ -88,7 +88,7 @@ couple of extra clicks.
 **To remove a link:** click into it, open the link toolbar, and click the
 **remove/trash** option — the words stay, the link is gone.
 
-![Editing a link in a rich-text paragraph](images/getinvolved-guide/04-link-editor.png)
+![Editing a link in a rich-text paragraph](images/get-involved/04-link-editor.png)
 
 ---
 
@@ -102,7 +102,7 @@ of **sub-items**.
 - **Reorder / remove**: drag by the handle, or use the **⋮** menu → Remove.
 - **Add a new item**: click **Add item** at the bottom of the list.
 
-![A tech-stack item expanded, showing its nested sub-items](images/getinvolved-guide/05-techstack.png)
+![A tech-stack item expanded, showing its nested sub-items](images/get-involved/05-techstack.png)
 
 ---
 
@@ -123,7 +123,7 @@ Each partner = an **image + name + link (+ optional caption)**.
 - **Add**: click **Add item** at the bottom.
 - **Remove**: click the **⋮** menu on a partner → Remove.
 
-![The Project SeaWolf partner opened, showing the Name, Logo, Link, and Caption fields](images/getinvolved-guide/06-partner-caption.png)
+![The Project SeaWolf partner opened, showing the Name, Logo, Link, and Caption fields](images/get-involved/06-partner-caption.png)
 
 ---
 
@@ -135,7 +135,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/getinvolved-guide/07-publish.png)
+![The Publish button](images/get-involved/07-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

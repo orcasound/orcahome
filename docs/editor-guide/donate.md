@@ -21,7 +21,7 @@ and the partner cards — all without touching any code.
 1. In the left sidebar, click **Donate / Support Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Donate / Support Page" selected](images/donate-guide/01-sidebar.png)
+![The Studio sidebar with "Donate / Support Page" selected](images/donate/01-sidebar.png)
 
 ---
 
@@ -44,7 +44,7 @@ and the partner cards — all without touching any code.
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/donate-guide/02-text-field.png)
+![Editing a text field](images/donate/02-text-field.png)
 
 ---
 
@@ -57,7 +57,7 @@ This works the same for the **Hero image** and the two card images.
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![An image field with the upload/select menu open](images/donate-guide/03-image-field.png)
+![An image field with the upload/select menu open](images/donate/03-image-field.png)
 
 > **If you leave an image blank**, the site falls back to the original built-in
 > photo — nothing breaks.
@@ -83,7 +83,7 @@ Each donation option (e.g. Open Collective, GitHub) has:
 - **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag
   handle.
 
-![A donation option opened, showing Title, Description, Link URL, and Thumbnail](images/donate-guide/05-donation-option.png)
+![A donation option opened, showing Title, Description, Link URL, and Thumbnail](images/donate/05-donation-option.png)
 
 ---
 
@@ -104,7 +104,7 @@ the page. Each card = a **logo + name + description + link**.
 - **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag
   handle.
 
-![A partner card opened, showing Name, Logo, Description, and link](images/donate-guide/06-partner-card.png)
+![A partner card opened, showing Name, Logo, Description, and link](images/donate/06-partner-card.png)
 
 > **If the partner list is left empty**, the site falls back to its built-in
 > partner cards — nothing breaks.
@@ -119,7 +119,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/donate-guide/04-publish.png)
+![The Publish button](images/donate/04-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

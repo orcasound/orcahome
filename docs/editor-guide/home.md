@@ -18,7 +18,7 @@ embedded — all without touching any code.
 1. In the left sidebar, click **Home Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Home Page" selected](images/home-guide/01-sidebar.png)
+![The Studio sidebar with "Home Page" selected](images/home/01-sidebar.png)
 
 ---
 
@@ -40,7 +40,7 @@ embedded — all without touching any code.
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/home-guide/02-text-field.png)
+![Editing a text field](images/home/02-text-field.png)
 
 ---
 
@@ -51,7 +51,7 @@ Click any text field and type. That's it.
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![The hero image field with the upload/select menu open](images/home-guide/03-image-field.png)
+![The hero image field with the upload/select menu open](images/home/03-image-field.png)
 
 > **If you leave the image blank**, the site falls back to the original built-in
 > photo — nothing breaks.
@@ -90,7 +90,7 @@ part after `mid=` (up to the `&`). Paste that into the field.
 > The map must be shared publicly ("Anyone with the link") for the embed to
 > work. You only need to touch this field when swapping in a whole new map.
 
-![The Hydrophone map ID field](images/home-guide/04-map-id.png)
+![The Hydrophone map ID field](images/home/04-map-id.png)
 
 ---
 
@@ -102,7 +102,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/home-guide/05-publish.png)
+![The Publish button](images/home/05-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

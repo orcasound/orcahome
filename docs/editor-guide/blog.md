@@ -13,7 +13,7 @@ you can add new posts, edit existing ones, and publish them yourself.
 2. Sign in with the Google account that was given access (ask an admin if you
    can't get in — ping @Vicky on Zulip).
 
-![The Studio home with the list of content types in the left menu](images/blog-guide/01-studio-list.png)
+![The Studio home with the list of content types in the left menu](images/blog/01-studio-list.png)
 
 ## 2. Open the Blog
 
@@ -21,7 +21,7 @@ you can add new posts, edit existing ones, and publish them yourself.
 2. You'll see the list of all existing posts (including the ones brought over
    from the old WordPress blog), newest first.
 
-![The list of existing blog posts](images/blog-guide/02-blogpost-list.png)
+![The list of existing blog posts](images/blog/02-blogpost-list.png)
 
 - **To edit an existing post**, click it in the list.
 - **To write a new post**, see [section 4](#4-write-a-new-post).
@@ -42,7 +42,7 @@ When you open (or create) a post, these are the fields you fill in:
 | **Tags**           | Short labels (e.g. "community", "engineering"). Shown as little chips on the post. |
 | **Body**           | The main content of the post — see [section 5](#5-writing-the-body).               |
 
-![The top of a post showing the Title, Slug, Published date, Excerpt, Featured image, and Tags fields](images/blog-guide/03-blogpost-fields.png)
+![The top of a post showing the Title, Slug, Published date, Excerpt, Featured image, and Tags fields](images/blog/03-blogpost-fields.png)
 
 > **About the Slug (the web address):**
 > The slug is the last part of the post's link. For a new post, click
@@ -57,7 +57,7 @@ When you open (or create) a post, these are the fields you fill in:
 1. Click **Blog Post** in the left sidebar.
 2. Click the **＋ / Create new** button (top of the list).
 
-   ![The button to create a new Blog Post](images/blog-guide/05-create-new.png)
+   ![The button to create a new Blog Post](images/blog/05-create-new.png)
 
 3. Fill in the fields from [section 3](#3-the-fields-in-a-post):
    - Type a **Title**.
@@ -76,7 +76,7 @@ When you open (or create) a post, these are the fields you fill in:
 The **Body** is the main text of the post. It works like a simple word
 processor: type your text, and use the toolbar to format it.
 
-![The Body editor with its formatting toolbar](images/blog-guide/04-body-portabletext.png)
+![The Body editor with its formatting toolbar](images/blog/04-body-portabletext.png)
 
 You can:
 
@@ -130,7 +130,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button and document status at the bottom of a post](images/blog-guide/06-publish.png)
+![The Publish button and document status at the bottom of a post](images/blog/06-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site won't show it (or keeps showing the old version).

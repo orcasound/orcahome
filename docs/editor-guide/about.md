@@ -17,7 +17,7 @@ cards — all without touching any code.
 1. In the left sidebar, click **About Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "About Page" selected](images/about-guide/01-sidebar.png)
+![The Studio sidebar with "About Page" selected](images/about/01-sidebar.png)
 
 ---
 
@@ -39,7 +39,7 @@ cards — all without touching any code.
 
 Click any text field and type. That's it.
 
-![Editing the Hero title field](images/about-guide/02-hero-title.png)
+![Editing the Hero title field](images/about/02-hero-title.png)
 
 ### Changing the hero image
 
@@ -48,7 +48,7 @@ Click any text field and type. That's it.
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![The Hero image field with the upload/select menu open](images/about-guide/03-hero-image.png)
+![The Hero image field with the upload/select menu open](images/about/03-hero-image.png)
 
 ---
 
@@ -64,9 +64,9 @@ link**.
 - **Add a card**: click **Add item** at the bottom of the list.
 - **Remove a card**: click the **⋮** menu on a card → Remove.
 
-![The Projects list showing card thumbnails and drag handles](images/about-guide/04-projects-list.png)
+![The Projects list showing card thumbnails and drag handles](images/about/04-projects-list.png)
 
-![One project card opened, showing the Title, Image, and Link URL fields](images/about-guide/05-project-card-open.png)
+![One project card opened, showing the Title, Image, and Link URL fields](images/about/05-project-card-open.png)
 
 Each card's fields:
 
@@ -78,7 +78,7 @@ Each card's fields:
 
 A card usually links to one of the site's project pages, written as
 `/projects/<slug>`. The project pages themselves are edited under **Projects**
-in the sidebar; see [editing-projects-content.md](editing-projects-content.md).
+in the sidebar; see [Projects guide](projects.md).
 
 ---
 
@@ -90,7 +90,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button at the top of the document](images/about-guide/06-publish.png)
+![The Publish button at the top of the document](images/about/06-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

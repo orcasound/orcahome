@@ -18,7 +18,7 @@ exhibits — all without touching any code.
 1. In the left sidebar, click **Learn Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Learn Page" selected](images/learn-guide/01-sidebar.png)
+![The Studio sidebar with "Learn Page" selected](images/learn/01-sidebar.png)
 
 ---
 
@@ -41,7 +41,7 @@ exhibits — all without touching any code.
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/learn-guide/02-text-field.png)
+![Editing a text field](images/learn/02-text-field.png)
 
 ---
 
@@ -55,7 +55,7 @@ image**.
    upload).
 3. Optional: drag the crop/hotspot to control how it's framed.
 
-![An image field with the upload/select menu open](images/learn-guide/03-image-field.png)
+![An image field with the upload/select menu open](images/learn/03-image-field.png)
 
 > **If you leave an image blank**, the site falls back to the original built-in
 > photo — nothing breaks.
@@ -74,7 +74,7 @@ a **title**, a **spectrogram image**, an **audio clip**, and a **description**.
 - **Reorder / remove**: drag by the handle, or use the **⋮** menu → Remove.
 - **Add a card**: click **Add item** at the bottom of the list.
 
-![A call card opened, showing Title, Spectrogram, Audio clip, and Description](images/learn-guide/04-call-card.png)
+![A call card opened, showing Title, Spectrogram, Audio clip, and Description](images/learn/04-call-card.png)
 
 ---
 
@@ -87,7 +87,7 @@ Each = an **image + text**.
 - **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag
   handle.
 
-![An exhibit item opened, showing the Image and Text fields](images/learn-guide/05-exhibit.png)
+![An exhibit item opened, showing the Image and Text fields](images/learn/05-exhibit.png)
 
 ---
 
@@ -99,7 +99,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/learn-guide/06-publish.png)
+![The Publish button](images/learn/06-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click

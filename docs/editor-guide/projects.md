@@ -15,7 +15,7 @@ Each project shows up in two places on the site:
 - **orcasound.tech/projects** — a grid of cards, one per project, newest first.
 - **orcasound.tech/projects/your-slug** — the project's own page.
 
-![The Projects page on the site](images/projects-guide/06-site-projects.png)
+![The Projects page on the site](images/projects/06-site-projects.png)
 
 ---
 
@@ -29,11 +29,11 @@ Each project shows up in two places on the site:
 
 In the left sidebar, under the **Projects** heading, click **Projects**.
 
-![The Studio sidebar with the Projects group between Navigation and Blog](images/projects-guide/01-studio-sidebar.png)
+![The Studio sidebar with the Projects group between Navigation and Blog](images/projects/01-studio-sidebar.png)
 
 You'll see every project. Click one to edit it.
 
-![The list of projects with one open](images/projects-guide/03-project-fields.png)
+![The list of projects with one open](images/projects/03-project-fields.png)
 
 ---
 
@@ -79,7 +79,7 @@ appear on the About page by itself — see [section 6](#6-show-a-project-on-the-
 
 The Body works like a simple word processor, the same as in a blog post.
 
-![The Body editor with its formatting toolbar](images/projects-guide/04-project-body.png)
+![The Body editor with its formatting toolbar](images/projects/04-project-body.png)
 
 - **Bold / italic**, **headings**, and **bulleted or numbered lists** are in the
   toolbar. Use headings (H2, H3) to split a long page into sections.
@@ -90,7 +90,7 @@ The Body works like a simple word processor, the same as in a blog post.
   caption, type it as a normal paragraph right under the image.
 
 Projects use the same body as blog posts, so everything in the blog guide's
-[Writing the Body](editing-blog-content.md#5-writing-the-body) works here too:
+[Writing the Body](blog.md#5-writing-the-body) works here too:
 image position, size, and caption; galleries; tables; and collapsible
 sections.
 
@@ -127,7 +127,7 @@ The **Our Projects** cards on the About page are a separate, hand-picked list
    **Link URL** (`/projects/your-slug`).
 4. Drag the ⋮⋮ handle to reorder the cards. **Publish** the About Page.
 
-![The Projects list on the About Page document](images/projects-guide/05-about-cards.png)
+![The Projects list on the About Page document](images/projects/05-about-cards.png)
 
 The top menu already has a **Projects** link to the Projects page; you don't
 need to add one for each project.
