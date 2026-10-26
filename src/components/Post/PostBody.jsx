@@ -297,19 +297,21 @@ const Gallery = ({ value }) => {
       }}
     >
       {images.map((img, i) => {
+        // Only a last photo that is alone in its row spans the row and keeps
+        // its own shape; every other photo is cropped to the same 4:3 tile.
         const last = i === images.length - 1
+        const spanXs = last && spanLast(images.length, 2)
+        const spanSm = last && spanLast(images.length, columns)
         return (
           <Box
             key={img._key || i}
             component="figure"
             sx={{
               m: 0,
-              ...(last && {
-                gridColumn: {
-                  xs: spanLast(images.length, 2) ? '1 / -1' : 'auto',
-                  sm: spanLast(images.length, columns) ? '1 / -1' : 'auto',
-                },
-              }),
+              gridColumn: {
+                xs: spanXs ? '1 / -1' : 'auto',
+                sm: spanSm ? '1 / -1' : 'auto',
+              },
             }}
           >
             <MuiLink
@@ -321,18 +323,24 @@ const Gallery = ({ value }) => {
               }`}
               sx={{ display: 'block', cursor: 'zoom-in' }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={sanityImageUrl(img.url, last ? CONTENT_WIDTH : 600)}
+              <Box
+                component="img"
+                src={sanityImageUrl(
+                  img.url,
+                  spanXs || spanSm ? CONTENT_WIDTH : 600
+                )}
                 alt={img.alt || img.caption || ''}
                 loading="lazy"
                 decoding="async"
-                style={{
+                sx={{
                   display: 'block',
                   width: '100%',
-                  aspectRatio: last ? 'auto' : '4 / 3',
+                  aspectRatio: {
+                    xs: spanXs ? 'auto' : '4 / 3',
+                    sm: spanSm ? 'auto' : '4 / 3',
+                  },
                   objectFit: 'cover',
-                  borderRadius: 8,
+                  borderRadius: 2,
                 }}
               />
             </MuiLink>
