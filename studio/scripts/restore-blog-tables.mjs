@@ -226,16 +226,19 @@ async function main() {
     console.log('Dry run only. Re-run with -- --commit to write.')
     return
   }
+  // Build each post's new body here and write it with one `set`. (A patch
+  // keeps only one `insert` operation, so chaining one insert per table wrote
+  // just the last table of each post on the first run.)
   const tx = client.transaction()
   for (const post of report.posts) {
-    tx.patch(post._id, (patch) => {
-      let p = patch.ifRevisionId(post._rev)
-      for (const {blockKey, table, before, after} of post.replacements) {
-        const blocks = [before, table, after].filter(Boolean)
-        p = p.insert('replace', `body[_key=="${blockKey}"]`, blocks)
-      }
-      return p
-    })
+    const swap = new Map(
+      post.replacements.map(({blockKey, table, before, after}) => [
+        blockKey,
+        [before, table, after].filter(Boolean),
+      ]),
+    )
+    const body = post.originalBody.flatMap((block) => swap.get(block._key) || [block])
+    tx.patch(post._id, (patch) => patch.ifRevisionId(post._rev).set({body}))
   }
   await tx.commit()
   console.log(`Wrote ${total} tables to ${report.posts.length} posts.`)
