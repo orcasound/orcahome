@@ -470,6 +470,7 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
       "width": asset->metadata.dimensions.width,
       "height": asset->metadata.dimensions.height,
       alt,
+      caption,
       alignment,
       size
     }

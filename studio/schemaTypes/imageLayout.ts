@@ -7,6 +7,12 @@ import {defineField} from 'sanity'
  */
 export const imageLayoutFields = [
   defineField({
+    name: 'caption',
+    title: 'Caption (optional)',
+    description: 'A short line shown right under the image, e.g. what it shows and photo credit.',
+    type: 'string',
+  }),
+  defineField({
     name: 'alignment',
     title: 'Position',
     description:
@@ -45,10 +51,10 @@ const POSITION_LABEL: Record<string, string> = {left: '⬅ Left', center: '↔ C
 
 // Shows the layout in the body editor, since Studio doesn't render the wrap.
 export const imageLayoutPreview = {
-  select: {media: 'asset', alt: 'alt', alignment: 'alignment', size: 'size'},
-  prepare: ({media, alt, alignment, size}: Record<string, any>) => ({
+  select: {media: 'asset', alt: 'alt', caption: 'caption', alignment: 'alignment', size: 'size'},
+  prepare: ({media, alt, caption, alignment, size}: Record<string, any>) => ({
     media,
-    title: alt || 'Image',
+    title: caption || alt || 'Image',
     subtitle: [POSITION_LABEL[alignment], size && size !== 'full' ? size : null]
       .filter(Boolean)
       .join(' · '),

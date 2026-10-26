@@ -249,26 +249,37 @@ const MediaPlayers = ({ media }) => (
 // `sm` breakpoint they sit on their own line, centred.
 // Sizes are a share of the text column, so they look the same at any width.
 const IMAGE_SIZES = { small: '40%', medium: '50%', large: '66%' }
+// Tall, narrow images would get very tall at a column share, so floated
+// images also stop at this height (their width shrinks to keep the shape).
+const FLOAT_MAX_HEIGHT = 420
+// Large images never float: the text beside them would be too narrow to read.
+const isFloated = (alignment, size) =>
+  (alignment === 'left' || alignment === 'right') &&
+  Boolean(IMAGE_SIZES[size]) &&
+  size !== 'large'
 const imageLayoutSx = (alignment, size) => {
   const share = IMAGE_SIZES[size]
   if (!share) return { my: 4 }
-  // Large images don't wrap: the text beside them would be too narrow to read.
-  const floated =
-    (alignment === 'left' || alignment === 'right') && size !== 'large'
-  return {
-    width: { xs: '100%', sm: share },
-    maxWidth: { xs: 360, sm: 'none' },
-    mx: 'auto',
-    my: 3,
-    ...(floated && {
+  if (isFloated(alignment, size)) {
+    // The box shrinks to the image, up to the size's share of the column.
+    return {
+      width: { xs: '100%', sm: 'auto' },
+      maxWidth: { xs: 360, sm: share },
+      mx: { xs: 'auto' },
+      my: 3,
       float: { sm: alignment },
       mt: { sm: 0.5 },
       mb: { sm: 2 },
       ...(alignment === 'left'
         ? { mr: { sm: 3 }, ml: { sm: 0 } }
         : { ml: { sm: 3 }, mr: { sm: 0 } }),
-    }),
-    ...(alignment === 'none' && { mx: 0 }),
+    }
+  }
+  return {
+    width: { xs: '100%', sm: share },
+    maxWidth: { xs: 360, sm: 'none' },
+    mx: alignment === 'none' ? 0 : 'auto',
+    my: 3,
   }
 }
 
@@ -402,6 +413,7 @@ const portableComponents = {
       // the column needs, re-encoded to WebP/AVIF; `fit=max` never upscales.
       // (next/image can't build a srcset here: `images.unoptimized` is global.)
       const widths = [...IMAGE_WIDTHS.filter((x) => x < w), w]
+      const floated = isFloated(value.alignment, value.size)
       const img = (
         // eslint-disable-next-line @next/next/no-img-element
         <img
@@ -418,27 +430,41 @@ const portableComponents = {
           height={h}
           loading="lazy"
           decoding="async"
-          style={{
-            display: 'block',
-            width: '100%',
-            maxWidth: w,
-            height: 'auto',
-            borderRadius: 8,
-          }}
+          style={
+            floated
+              ? {
+                  display: 'block',
+                  width: 'auto',
+                  maxWidth: '100%',
+                  maxHeight: FLOAT_MAX_HEIGHT,
+                  height: 'auto',
+                  margin: '0 auto',
+                  borderRadius: 8,
+                }
+              : {
+                  display: 'block',
+                  width: '100%',
+                  maxWidth: w,
+                  height: 'auto',
+                  // Only images set to Center are centred; others stay left.
+                  margin: value.alignment === 'center' ? '0 auto' : 0,
+                  borderRadius: 8,
+                }
+          }
         />
       )
       // Images wider than a phone screen get scaled down somewhere; clicking
       // opens the full-size original in a new tab, as on the old WordPress blog.
       // Small images are always shown at full size, so they aren't linked.
-      const floated =
-        (value.alignment === 'left' || value.alignment === 'right') &&
-        value.size !== 'large'
       return (
         <>
           {/* A floated image and the text after it start below any earlier
               floated image, so each image + its text reads as one group. */}
           {floated && <Box sx={{ clear: 'both' }} />}
-          <Box sx={imageLayoutSx(value.alignment, value.size)}>
+          <Box
+            component="figure"
+            sx={{ m: 0, ...imageLayoutSx(value.alignment, value.size) }}
+          >
             {w > IMAGE_WIDTHS[0] ? (
               <MuiLink
                 href={value.url}
@@ -456,6 +482,19 @@ const portableComponents = {
               </MuiLink>
             ) : (
               img
+            )}
+            {value.caption && (
+              <Typography
+                component="figcaption"
+                variant="body2"
+                color="text.secondary"
+                sx={{
+                  mt: 1,
+                  textAlign: value.alignment === 'center' ? 'center' : 'left',
+                }}
+              >
+                {value.caption}
+              </Typography>
             )}
           </Box>
         </>
