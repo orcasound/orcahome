@@ -87,6 +87,12 @@ You can:
 - **Add an image inside the post**: use the toolbar's image / "add" option and
   upload or drag an image in. (This is separate from the Featured image at the
   top.)
+- **Add a table**: click **Table** in the toolbar (it may be under the "add" /
+  **⋯** menu). Click **Add item** under **Rows** for each row, and in each row
+  add one **Cell** per column, left to right. Keep the same number of cells in
+  every row. Leave **First row is a header** on if the first row holds column
+  titles. A cell that is just a web address (starting with `https://`) shows as
+  a link.
 
 Just keep typing to add paragraphs — press Enter for a new paragraph.
 
