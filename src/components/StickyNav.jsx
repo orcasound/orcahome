@@ -13,7 +13,8 @@ const NavLink = styled(ScrollLink)(() => ({
   cursor: 'pointer',
   transition: 'background-color 0.2s',
   textDecoration: 'none',
-  '@media (max-width: 600px)': {
+  '@media (max-width: 600px)': {},
+  [theme.breakpoints.down('sm')]: {
     position: 'sticky',
     fontSize: 'clamp(12px, 3vw, 16px)',
     padding: '8px 6px',
@@ -48,9 +49,7 @@ const StickyNav = ({ navLinks, onLinkClick, id }) => {
           sx={{
             display: 'flex',
             flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 1.5,
-            justifyContent: 'left',
+
             flexWrap: 'nowrap',
             gap: 1.5,
             justifyContent: 'center',
