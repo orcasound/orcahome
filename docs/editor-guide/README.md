@@ -16,31 +16,43 @@ the site about a minute after you publish them.
 
 ## What do you want to do?
 
-**Write a new blog post, or fix an old one**
-→ [Blog guide](blog.md)
+### Write or fix a blog post
 
-**Add or update a project page** (a hydrophone, a research project, a call
-catalog, an exhibit)
-→ [Projects guide](projects.md)
+Blog posts are the news on orcasound.tech/blog: what we heard on the
+hydrophones, research updates, events.
 
-**Put pictures, a photo gallery, a table, audio, or a video in a post or
-project**
-→ [Blog guide: what you can put in a post](blog.md#what-you-can-put-in-a-post)
+**→ [Blog guide](blog.md)**
 
-**Change the words or pictures on one of the main pages**
+### Add or update a project page
 
-- Home page → [Home guide](home.md)
-- About page, including the "Our Projects" cards → [About guide](about.md)
-- Get Involved page → [Get Involved guide](get-involved.md)
-- Learn page → [Learn guide](learn.md)
-- Call Catalog page (the text around the list of calls) →
-  [Call Catalog guide](call-catalog.md)
-- Hacker Hall of Fame page (people and their roles) →
-  [Hacker Hall of Fame guide](hacker-hall-of-fame.md)
-- Donate / Support page → [Donate guide](donate.md)
+Project pages describe a hydrophone, a research project, a call catalog, or an
+exhibit, and are listed on orcasound.tech/projects.
 
-**Change the menu at the top or the links at the bottom of every page**
-→ [Menu and footer guide](navigation-footer.md)
+**→ [Projects guide](projects.md)**
+
+### Add pictures, a gallery, a table, audio, or video
+
+Works the same in blog posts and project pages.
+
+**→ [What you can put in a post](blog.md#what-you-can-put-in-a-post)**
+
+### Change the words or pictures on a main page
+
+| Page                                         | Guide                                               |
+| -------------------------------------------- | --------------------------------------------------- |
+| Home                                         | [Home guide](home.md)                               |
+| About (including the "Our Projects" cards)   | [About guide](about.md)                             |
+| Get Involved                                 | [Get Involved guide](get-involved.md)               |
+| Learn                                        | [Learn guide](learn.md)                             |
+| Call Catalog (the text around the call list) | [Call Catalog guide](call-catalog.md)               |
+| Hacker Hall of Fame (people and their roles) | [Hacker Hall of Fame guide](hacker-hall-of-fame.md) |
+| Donate / Support                             | [Donate guide](donate.md)                           |
+
+### Change the menu at the top or the links at the bottom
+
+These show on every page.
+
+**→ [Menu and footer guide](navigation-footer.md)**
 
 ## Four things to remember
 

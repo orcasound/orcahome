@@ -1,161 +1,114 @@
-# Editing Projects (Sanity CMS guide)
+# Projects guide
 
-This guide shows you how to add, edit, and publish **project pages** on
-orcasound.tech using Sanity Studio — no code required. Projects are the
-long-lived pages about what Orcasound does: hydrophone locations, research
-projects, call catalogs, and outreach. They used to live on the old WordPress
-site at `orcasound.net/portfolio/...`; all 13 were brought over.
+Project pages describe what Orcasound does: a hydrophone, a research project,
+a call catalog, an exhibit. They're listed on **orcasound.tech/projects**, and
+each has its own page, like orcasound.tech/projects/bush-point-hydrophone.
 
-Like the blog, Projects is a **collection**: you can add as many as you like.
-The difference from the blog is that a project is not dated news. Its date is
-only used to sort the list, and it has **categories** instead of tags.
+![The Projects page on the website](/editor-guide/images/projects/06-site-projects.png)
 
-Each project shows up in two places on the site:
+Projects work a lot like blog posts. The difference is that a project isn't
+news: its date isn't shown, and it has **categories** instead of tags.
 
-- **orcasound.tech/projects** — a grid of cards, one per project, newest first.
-- **orcasound.tech/projects/your-slug** — the project's own page.
+To start, open **https://orcahome.sanity.studio** and click **Projects** in the
+list on the left.
 
-![The Projects page on the site](/editor-guide/images/projects/06-site-projects.png)
+![The Studio, with Projects in the list on the left](/editor-guide/images/projects/01-studio-sidebar.png)
 
 ---
 
-## 1. Open the Studio and sign in
+## Add a new project
 
-1. Go to **https://orcahome.sanity.studio**
-2. Sign in with the Google account that was given access (ask an admin if you
-   can't get in — ping @Vicky on Zulip).
+1. Click **Projects** on the left, then the **＋** button at the top of the
+   list of projects.
+2. Fill in the boxes:
 
-## 2. Open Projects
+   | Box                   | What to put in it                                                                                                                                                     |
+   | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Title**             | The project's name.                                                                                                                                                   |
+   | **Slug**              | The page's web address. Just click **Generate** and it's made from the title.                                                                                         |
+   | **Published date**    | Only used to put the newest projects first on the Projects page. Visitors don't see it. Today's date is fine.                                                         |
+   | **Categories**        | Reuse the existing ones: **Hydrophone locations**, **Research**, **Education & outreach**. Type one and press Enter.                                                  |
+   | **Authors**           | Who wrote or leads the project, shown as "By …" under the title in this order. Drag to reorder. To add someone new, see [Add a new author](blog.md#add-a-new-author). |
+   | **Short description** | Two or three sentences for the project's card on the Projects page. Longer text gets cut off.                                                                         |
+   | **Featured image**    | The picture on the project's card. It is **not** shown on the project page itself; put pictures for the page in the **Body**.                                         |
+   | **Body**              | The page itself. See [What goes on the page](#what-goes-on-the-page).                                                                                                 |
 
-In the left sidebar, under the **Projects** heading, click **Projects**.
+   ![A project open in the Studio](/editor-guide/images/projects/03-project-fields.png)
 
-![The Studio sidebar with the Projects group between Navigation and Blog](/editor-guide/images/projects/01-studio-sidebar.png)
+3. Click **Publish**. About a minute later the project appears on the Projects
+   page.
 
-You'll see every project. Click one to edit it.
+A new project does **not** appear on the About page by itself. See
+[Show a project on the About page](#show-a-project-on-the-about-page).
 
-![The list of projects with one open](/editor-guide/images/projects/03-project-fields.png)
+## Fix or update a project
 
----
+Click the project in the list, change what you need, and click **Publish**.
 
-## 3. The fields in a project
-
-| Field                 | What it's for                                                                                                                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Title**             | The name of the project, shown on its card and at the top of its page.                                                                                                                                              |
-| **Slug**              | The web address: `orcasound.tech/projects/your-slug`. See the note below.                                                                                                                                           |
-| **Published date**    | Only used to sort the Projects page (newest first). It is **not shown** to visitors.                                                                                                                                |
-| **Categories**        | Little labels on the card and page. Reuse the existing ones: **Hydrophone locations**, **Research**, **Education & outreach**. Type one and press Enter.                                                            |
-| **Authors**           | Who wrote or leads it. Shown as "By …" on the page. Pick existing people; see [section 7](#7-adding-an-author).                                                                                                     |
-| **Short description** | Two or three sentences shown on the project's card. Keep it short; long text gets cut off with "…".                                                                                                                 |
-| **Featured image**    | The card image on the Projects page only — it is **not** shown on the project page itself. If you want the photo on the page too, also add it to the Body. Wide (landscape) photos work best. Fill in **Alt text**. |
-| **Body**              | The page content — see [section 5](#5-writing-the-body).                                                                                                                                                            |
-
-> **About the Slug (the web address):**
-> For a new project, click **Generate** next to the Slug field to make one from
-> the title. For the 13 projects brought over from WordPress, **leave the slug
-> as-is** — it matches the old WordPress address, and the About page cards
-> and other pages link to it. Changing it breaks those links.
+Don't change the **Slug** of a project that's already published. It's the
+page's web address: the About page cards, blog posts, and old links from
+orcasound.net all point to it.
 
 ---
 
-## 4. Add a new project
+## What goes on the page
 
-1. Click **Projects** in the left sidebar.
-2. Click the **＋** button at the top of the list.
-3. Fill in the fields from [section 3](#3-the-fields-in-a-project):
-   - Type a **Title**, then click **Generate** to make the **Slug**.
-   - Set the **Published date** (today is fine; newer projects sort first).
-   - Add **Categories**, **Authors**, and a **Short description**.
-   - Add a **Featured image** and its **Alt text**.
-   - Write the **Body** (next section).
-4. **Publish** when you're done (see [section 8](#8-publish-and-when-it-shows)).
+The **Body** box is the same as in a blog post, with the same toolbar:
+headings, links, pictures (with a caption, and placed left, right, or
+centered), photo galleries, tables, sections readers open with a click, and
+audio or video players.
 
-The new project appears on the Projects page automatically. It does **not**
-appear on the About page by itself — see [section 6](#6-show-a-project-on-the-about-page).
+![The Body box of a project](/editor-guide/images/projects/04-project-body.png)
 
----
+How to use each one is in the Blog guide:
+[What you can put in a post](blog.md#what-you-can-put-in-a-post).
 
-## 5. Writing the Body
-
-The Body works like a simple word processor, the same as in a blog post.
-
-![The Body editor with its formatting toolbar](/editor-guide/images/projects/04-project-body.png)
-
-- **Bold / italic**, **headings**, and **bulleted or numbered lists** are in the
-  toolbar. Use headings (H2, H3) to split a long page into sections.
-- **Link**: select some text, click the link button, and paste the address.
-  A link to another page on this site can be just the path, e.g.
-  `/projects/bush-point-hydrophone` or `/blog/your-post`.
-- **Image**: click **Image** in the toolbar and upload or drag one in. Open
-  the image to add a **Caption** (shown under it) or set its **Position** and
-  **Size**.
-
-Projects use the same body as blog posts, so everything in the blog guide's
-[Writing the Body](blog.md#what-you-can-put-in-a-post) works here too: image position,
-size, and caption; galleries; tables; collapsible sections; and
-[audio clips and YouTube videos](blog.md#audio-or-a-video).
-
-> The audio in the migrated projects still plays from the old orcasound.net
-> server. That's expected for now; don't remove those links.
+The audio in the projects brought over from the old website still plays from
+orcasound.net. That's expected for now; don't remove those links.
 
 ---
 
-## 6. Show a project on the About page
+## Show a project on the About page
 
-The **Our Projects** cards on the About page are a separate, hand-picked list
-(so the About page can feature a few projects rather than all of them).
+The "Our Projects" cards on the About page are picked by hand, so the About
+page can feature a few projects instead of all of them.
 
-1. In the sidebar, open **About Page** and scroll to **Projects**.
-2. To change where a card goes, click it and set **Link URL** to the project's
-   path, for example `/projects/orcasound-lab-hydrophone`.
-3. To add a card, click **Add item**, then fill in **Title**, **Image**, and
-   **Link URL** (`/projects/your-slug`).
-4. Drag the ⋮⋮ handle to reorder the cards. **Publish** the About Page.
+1. On the left, click **About Page** and scroll down to **Projects**.
+2. To add a card, click **Add item** and fill in:
+   - **Title**: the name on the card.
+   - **Image**: the picture on the card.
+   - **Link URL**: `/projects/` followed by the project's **Slug**, for
+     example `/projects/orcasound-lab-hydrophone`.
+3. To change where a card goes, click it and change its **Link URL**.
+4. Drag the ⋮⋮ handle to change the order.
+5. Click **Publish**.
 
-![The Projects list on the About Page document](/editor-guide/images/projects/05-about-cards.png)
+![The Projects list on the About page](/editor-guide/images/projects/05-about-cards.png)
 
-The top menu already has a **Projects** link to the Projects page; you don't
-need to add one for each project.
-
----
-
-## 7. Adding an author
-
-The Authors list is shared with the blog. If the person you need isn't there:
-
-1. In the sidebar under **Blog**, click **Author**, then **＋**.
-2. Type their **Name** (as it should appear, e.g. "Cora Reese"). Leave
-   **Slug** empty or click **Generate**. **Publish**.
-3. Go back to the project and pick them under **Authors**.
+The menu at the top of every page already has a **Projects** link, so you
+don't need to add anything there for a new project.
 
 ---
 
-## 8. Publish and when it shows
+## Hide a project
 
-Nothing goes live until you click the green **Publish** button at the bottom.
-"Unpublished changes" means your edits are not live yet.
+Open the project, click the **⋮** next to **Publish**, and choose
+**Unpublish**. It disappears from the website but stays in the Studio.
 
-After you publish, the site updates **within about a minute**. Go to
-**orcasound.tech/projects** and hard-refresh (Cmd/Ctrl + Shift + R). You do
-**not** need a developer to deploy anything.
-
-**To hide a project:** open it, click the **⋮** menu next to Publish, and
-choose **Unpublish**. If an About page card links to it, remove or relink that
-card too, or the card will lead to a "page not found" error.
+If an About page card links to it, remove or change that card too, or the card
+will lead to a "page not found" error.
 
 ---
 
-## Troubleshooting
+## Something's not right?
 
-| Problem                                              | What's going on                                                                                                                               |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| "I published a project but it's not on the page"     | Give it ~1 minute, then hard-refresh `orcasound.tech/projects`. Check the project shows **Published** in the Studio.                          |
-| "My new project isn't on the About page"             | That's expected — About cards are picked by hand. See [section 6](#6-show-a-project-on-the-about-page).                                       |
-| "An About card goes to a 'page not found' page"      | Its **Link URL** doesn't match a published project's slug. Open the project, copy its slug, and set the card to `/projects/<slug>`.           |
-| "My audio/video shows as a plain link, not a player" | The line must be a link to the file itself (ending in `.mp3` etc.) or to YouTube/Vimeo. See [Adding an audio clip](blog.md#audio-or-a-video). |
-| "The card has no picture"                            | Add a **Featured image**.                                                                                                                     |
-| "I can't sign in"                                    | Ask an admin to grant your Google account access to the Sanity project.                                                                       |
+| What you see                                | What to do                                                                                                                  |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| My project isn't on the Projects page       | Wait a minute and refresh. In the Studio, check the project says **Published**, not "Unpublished changes".                  |
+| My new project isn't on the About page      | That's expected: About cards are picked by hand. See [Show a project on the About page](#show-a-project-on-the-about-page). |
+| An About card leads to "page not found"     | Its **Link URL** doesn't match the project's **Slug**. Copy the slug from the project and fix the link.                     |
+| The card has no picture                     | Add a **Featured image**.                                                                                                   |
+| My featured image isn't on the project page | That's expected: it's only the card picture. Add the picture to the **Body** too.                                           |
+| I can't sign in                             | Ask Vicky on Zulip to add your Google account.                                                                              |
 
----
-
-_Questions or something looks broken? ping @Vicky on Zulip._
+Still stuck? Ask Vicky on Zulip.
