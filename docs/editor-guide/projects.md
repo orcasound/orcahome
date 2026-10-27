@@ -22,16 +22,16 @@ list on the left.
    list of projects.
 2. Fill in the boxes:
 
-   | Box                   | What to put in it                                                                                                                                                     |
-   | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | **Title**             | The project's name.                                                                                                                                                   |
-   | **Slug**              | The page's web address. Just click **Generate** and it's made from the title.                                                                                         |
-   | **Published date**    | Only used to put the newest projects first on the Projects page. Visitors don't see it. Today's date is fine.                                                         |
-   | **Categories**        | Reuse the existing ones: **Hydrophone locations**, **Research**, **Education & outreach**. Type one and press Enter.                                                  |
-   | **Authors**           | Who wrote or leads the project, shown as "By …" under the title in this order. Drag to reorder. To add someone new, see [Add a new author](blog.md#add-a-new-author). |
-   | **Short description** | Two or three sentences for the project's card on the Projects page. Longer text gets cut off.                                                                         |
-   | **Featured image**    | The picture on the project's card. It is **not** shown on the project page itself; put pictures for the page in the **Body**.                                         |
-   | **Body**              | The page itself. See [What goes on the page](#what-goes-on-the-page).                                                                                                 |
+   | Box                   | What to put in it                                                                                                                                                                     |
+   | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Title**             | The project's name.                                                                                                                                                                   |
+   | **Slug**              | The page's web address. Just click **Generate** and it's made from the title.                                                                                                         |
+   | **Published date**    | Only used to put the newest projects first on the Projects page. Visitors don't see it. Today's date is fine.                                                                         |
+   | **Categories**        | Reuse the existing ones: **Hydrophone locations**, **Research**, **Education & outreach**. Type one and press Enter.                                                                  |
+   | **Authors**           | Who wrote or leads the project, shown as "By …" under the title in this order. Drag to reorder. To add someone new, see [Add a new author](blog.md#add-a-new-author).                 |
+   | **Short description** | One or two sentences for the project's card on the Projects page. It isn't shown on the project page itself; the page shows the **Body**. The card shows all of it, so keep it short. |
+   | **Featured image**    | The picture on the project's card. It is **not** shown on the project page itself; put pictures for the page in the **Body**.                                                         |
+   | **Body**              | The page itself. See [What goes on the page](#what-goes-on-the-page).                                                                                                                 |
 
    ![A project open in the Studio](/editor-guide/images/projects/03-project-fields.png)
 

@@ -17,16 +17,16 @@ the list on the left. You'll see every post, newest first.
 
 2. Fill in the boxes:
 
-   | Box                | What to put in it                                                                                               |
-   | ------------------ | --------------------------------------------------------------------------------------------------------------- |
-   | **Title**          | The headline.                                                                                                   |
-   | **Slug**           | The post's web address. Just click **Generate** and it's made from the title.                                   |
-   | **Published date** | The date shown on the post. Posts are listed newest first.                                                      |
-   | **Authors**        | Who wrote it. Pick from the list. If the person isn't there, see [Add a new author](#add-a-new-author).         |
-   | **Excerpt**        | One or two sentences that sum up the post. Shown on the blog list.                                              |
-   | **Featured image** | The big picture at the top of the post, also used on its card in the blog list.                                 |
-   | **Tags**           | A few topic labels, like "Acoustic analysis" or "Orcasound Lab". Type one and press Enter. Reuse existing ones. |
-   | **Body**           | The post itself. See [What you can put in a post](#what-you-can-put-in-a-post).                                 |
+   | Box                | What to put in it                                                                                                                         |
+   | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Title**          | The headline.                                                                                                                             |
+   | **Slug**           | The post's web address. Just click **Generate** and it's made from the title.                                                             |
+   | **Published date** | The date shown on the post. Posts are listed newest first.                                                                                |
+   | **Authors**        | Who wrote it. Pick from the list. If the person isn't there, see [Add a new author](#add-a-new-author).                                   |
+   | **Excerpt**        | One or two sentences that sum up the post, for its card on the blog list. It isn't shown on the post itself; the post shows the **Body**. |
+   | **Featured image** | The big picture at the top of the post, also used on its card in the blog list.                                                           |
+   | **Tags**           | A few topic labels, like "Acoustic analysis" or "Orcasound Lab". Type one and press Enter. Reuse existing ones.                           |
+   | **Body**           | The post itself. See [What you can put in a post](#what-you-can-put-in-a-post).                                                           |
 
    ![The boxes at the top of a post](/editor-guide/images/blog/03-blogpost-fields.png)
 
