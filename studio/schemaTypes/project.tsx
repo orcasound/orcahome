@@ -22,7 +22,7 @@ export const project = defineType({
         <>
           📖 New to editing projects?{' '}
           <a
-            href="https://github.com/orcasound/orcahome/blob/main/docs/editor-guide/projects.md"
+            href="https://www.orcasound.tech/editor-guide/projects"
             target="_blank"
             rel="noreferrer"
           >

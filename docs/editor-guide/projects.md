@@ -15,7 +15,7 @@ Each project shows up in two places on the site:
 - **orcasound.tech/projects** — a grid of cards, one per project, newest first.
 - **orcasound.tech/projects/your-slug** — the project's own page.
 
-![The Projects page on the site](images/projects/06-site-projects.png)
+![The Projects page on the site](/editor-guide/images/projects/06-site-projects.png)
 
 ---
 
@@ -29,11 +29,11 @@ Each project shows up in two places on the site:
 
 In the left sidebar, under the **Projects** heading, click **Projects**.
 
-![The Studio sidebar with the Projects group between Navigation and Blog](images/projects/01-studio-sidebar.png)
+![The Studio sidebar with the Projects group between Navigation and Blog](/editor-guide/images/projects/01-studio-sidebar.png)
 
 You'll see every project. Click one to edit it.
 
-![The list of projects with one open](images/projects/03-project-fields.png)
+![The list of projects with one open](/editor-guide/images/projects/03-project-fields.png)
 
 ---
 
@@ -79,7 +79,7 @@ appear on the About page by itself — see [section 6](#6-show-a-project-on-the-
 
 The Body works like a simple word processor, the same as in a blog post.
 
-![The Body editor with its formatting toolbar](images/projects/04-project-body.png)
+![The Body editor with its formatting toolbar](/editor-guide/images/projects/04-project-body.png)
 
 - **Bold / italic**, **headings**, and **bulleted or numbered lists** are in the
   toolbar. Use headings (H2, H3) to split a long page into sections.
@@ -91,9 +91,9 @@ The Body works like a simple word processor, the same as in a blog post.
   **Size**.
 
 Projects use the same body as blog posts, so everything in the blog guide's
-[Writing the Body](blog.md#5-writing-the-body) works here too: image position,
+[Writing the Body](blog.md#what-you-can-put-in-a-post) works here too: image position,
 size, and caption; galleries; tables; collapsible sections; and
-[audio clips and YouTube videos](blog.md#adding-an-audio-clip-or-a-youtube-video).
+[audio clips and YouTube videos](blog.md#audio-or-a-video).
 
 > The audio in the migrated projects still plays from the old orcasound.net
 > server. That's expected for now; don't remove those links.
@@ -112,7 +112,7 @@ The **Our Projects** cards on the About page are a separate, hand-picked list
    **Link URL** (`/projects/your-slug`).
 4. Drag the ⋮⋮ handle to reorder the cards. **Publish** the About Page.
 
-![The Projects list on the About Page document](images/projects/05-about-cards.png)
+![The Projects list on the About Page document](/editor-guide/images/projects/05-about-cards.png)
 
 The top menu already has a **Projects** link to the Projects page; you don't
 need to add one for each project.
@@ -147,14 +147,14 @@ card too, or the card will lead to a "page not found" error.
 
 ## Troubleshooting
 
-| Problem                                              | What's going on                                                                                                                                                      |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "I published a project but it's not on the page"     | Give it ~1 minute, then hard-refresh `orcasound.tech/projects`. Check the project shows **Published** in the Studio.                                                 |
-| "My new project isn't on the About page"             | That's expected — About cards are picked by hand. See [section 6](#6-show-a-project-on-the-about-page).                                                              |
-| "An About card goes to a 'page not found' page"      | Its **Link URL** doesn't match a published project's slug. Open the project, copy its slug, and set the card to `/projects/<slug>`.                                  |
-| "My audio/video shows as a plain link, not a player" | The line must be a link to the file itself (ending in `.mp3` etc.) or to YouTube/Vimeo. See [Adding an audio clip](blog.md#adding-an-audio-clip-or-a-youtube-video). |
-| "The card has no picture"                            | Add a **Featured image**.                                                                                                                                            |
-| "I can't sign in"                                    | Ask an admin to grant your Google account access to the Sanity project.                                                                                              |
+| Problem                                              | What's going on                                                                                                                               |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| "I published a project but it's not on the page"     | Give it ~1 minute, then hard-refresh `orcasound.tech/projects`. Check the project shows **Published** in the Studio.                          |
+| "My new project isn't on the About page"             | That's expected — About cards are picked by hand. See [section 6](#6-show-a-project-on-the-about-page).                                       |
+| "An About card goes to a 'page not found' page"      | Its **Link URL** doesn't match a published project's slug. Open the project, copy its slug, and set the card to `/projects/<slug>`.           |
+| "My audio/video shows as a plain link, not a player" | The line must be a link to the file itself (ending in `.mp3` etc.) or to YouTube/Vimeo. See [Adding an audio clip](blog.md#audio-or-a-video). |
+| "The card has no picture"                            | Add a **Featured image**.                                                                                                                     |
+| "I can't sign in"                                    | Ask an admin to grant your Google account access to the Sanity project.                                                                       |
 
 ---
 

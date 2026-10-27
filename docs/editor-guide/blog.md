@@ -1,177 +1,180 @@
-# Editing the Blog (Sanity CMS guide)
+# Blog guide
 
-This guide shows you how to write, edit, and publish blog posts on
-orcasound.tech using Sanity Studio — no code required. Unlike the other pages
-(which have fixed fields you fill in), the blog is a **collection of posts**:
-you can add new posts, edit existing ones, and publish them yourself.
+Blog posts are the news on **orcasound.tech/blog**. You can write new posts,
+fix old ones, and add pictures, galleries, tables, audio, and video.
 
----
+To start, open **https://orcahome.sanity.studio** and click **Blog Post** in
+the list on the left. You'll see every post, newest first.
 
-## 1. Open the Studio and sign in
-
-1. Go to **https://orcahome.sanity.studio**
-2. Sign in with the Google account that was given access (ask an admin if you
-   can't get in — ping @Vicky on Zulip).
-
-![The Studio home with the list of content types in the left menu](images/blog/01-studio-list.png)
-
-## 2. Open the Blog
-
-1. In the left sidebar, click **Blog Post**.
-2. You'll see the list of all existing posts (including the ones brought over
-   from the old WordPress blog), newest first.
-
-![The list of existing blog posts](images/blog/02-blogpost-list.png)
-
-- **To edit an existing post**, click it in the list.
-- **To write a new post**, see [section 4](#4-write-a-new-post).
+![The list of blog posts](/editor-guide/images/blog/02-blogpost-list.png)
 
 ---
 
-## 3. The fields in a post
+## Write a new post
 
-When you open (or create) a post, these are the fields you fill in:
+1. Click **Blog Post** on the left, then the **＋** button at the top of the
+   list of posts.
 
-| Field              | What it's for                                                                      |
-| ------------------ | ---------------------------------------------------------------------------------- |
-| **Title**          | The headline of the post.                                                          |
-| **Slug**           | The web address of the post: `orcasound.tech/blog/your-slug`. See the note below.  |
-| **Published date** | The date shown on the post and used to sort the blog (newest first).               |
-| **Excerpt**        | A one- or two-sentence summary. Shows in the blog list and in search results.      |
-| **Featured image** | The main image shown at the top of the post and on its card in the blog list.      |
-| **Tags**           | Short labels (e.g. "community", "engineering"). Shown as little chips on the post. |
-| **Body**           | The main content of the post — see [section 5](#5-writing-the-body).               |
+2. Fill in the boxes:
 
-![The top of a post showing the Title, Slug, Published date, Excerpt, Featured image, and Tags fields](images/blog/03-blogpost-fields.png)
+   | Box                | What to put in it                                                                                               |
+   | ------------------ | --------------------------------------------------------------------------------------------------------------- |
+   | **Title**          | The headline.                                                                                                   |
+   | **Slug**           | The post's web address. Just click **Generate** and it's made from the title.                                   |
+   | **Published date** | The date shown on the post. Posts are listed newest first.                                                      |
+   | **Authors**        | Who wrote it. Pick from the list. If the person isn't there, see [Add a new author](#add-a-new-author).         |
+   | **Excerpt**        | One or two sentences that sum up the post. Shown on the blog list.                                              |
+   | **Featured image** | The big picture at the top of the post, also used on its card in the blog list.                                 |
+   | **Tags**           | A few topic labels, like "Acoustic analysis" or "Orcasound Lab". Type one and press Enter. Reuse existing ones. |
+   | **Body**           | The post itself. See [What you can put in a post](#what-you-can-put-in-a-post).                                 |
 
-> **About the Slug (the web address):**
-> The slug is the last part of the post's link. For a new post, click
-> **Generate** next to the Slug field to create one automatically from the
-> title. For posts brought over from WordPress, **leave the slug as-is** —
-> changing it will break existing links to that post.
+   ![The boxes at the top of a post](/editor-guide/images/blog/03-blogpost-fields.png)
 
----
+3. Click **Publish**. See [Publish and check](#publish-and-check).
 
-## 4. Write a new post
+## Fix or update a post
 
-1. Click **Blog Post** in the left sidebar.
-2. Click the **＋ / Create new** button (top of the list).
+Click the post in the list, change what you need, and click **Publish**.
 
-   ![The button to create a new Blog Post](images/blog/05-create-new.png)
-
-3. Fill in the fields from [section 3](#3-the-fields-in-a-post):
-   - Type a **Title**.
-   - Click **Generate** to make the **Slug** from the title.
-   - Set the **Published date**.
-   - Write a short **Excerpt**.
-   - Add a **Featured image** (drag an image in, or click to upload).
-   - Add any **Tags**.
-   - Write the **Body** (next section).
-4. **Publish** when you're done (see [section 6](#6-publish-your-post)).
+Don't change the **Slug** of a post that's already published. It's the post's
+web address, so changing it breaks every link to it, including links from
+other posts and from search engines.
 
 ---
 
-## 5. Writing the Body
+## What you can put in a post
 
-The **Body** is the main text of the post. It works like a simple word
-processor: type your text, and use the toolbar to format it.
+The **Body** box works like a simple word processor. Type, and use the
+toolbar at the top of the box for everything else. Some buttons may be hidden
+under **⋯** at the right end of the toolbar.
 
-![The Body editor with its formatting toolbar](images/blog/04-body-portabletext.png)
+![The Body box and its toolbar](/editor-guide/images/blog/04-body-portabletext.png)
 
-You can:
+The same box, with the same buttons, is used on project pages.
 
-- **Bold / italic** text, add **headings**, and make **bulleted or numbered
-  lists** using the toolbar.
-- **Add a link**: select some text, then click the link button and paste the
-  URL.
-- **Add an image inside the post**: use the toolbar's image / "add" option and
-  upload or drag an image in. (This is separate from the Featured image at the
-  top.)
-- **Image options**: click an image in the Body to open it. Besides **Alt
-  text** you can set:
+### Text, headings, lists, and links
 
-  - **Caption (optional)**: a short line shown right under the image, e.g. what
-    it shows and the photo credit.
-  - **Position**: _Default_ (own line), _Left, text on the right_, _Center_, or
-    _Right, text on the left_. With Left or Right, the paragraphs that follow
-    the image wrap beside it on computers. On phones the image is always on its
-    own line. To put an image next to a paragraph, place the image **just
-    before** that paragraph.
-  - **Size**: _Small_, _Medium_, _Large_, or _Full width_. Left/Right only wraps
-    text for Small and Medium; a Large image is centred instead, because the
-    text beside it would be too narrow.
+- **Bold**, _italic_, headings, and bulleted or numbered lists are in the
+  toolbar.
+- **A link:** select some words, click the link button, and paste the address.
+  To link to another page on this site, you can paste just the part after
+  `orcasound.tech`, like `/blog/my-post` or `/projects/bush-point-hydrophone`.
+- Press Enter to start a new paragraph.
 
-  The editor doesn't show the wrap itself; under each image it shows a short
-  label like "⬅ Left · medium". Check the result on the site after publishing.
+### A picture
 
-- **Add a gallery** (photos side by side): choose **Gallery** in the toolbar
-  (it may be under the "add" / **⋯** menu). Add two or more images, give each
-  an optional **Caption**, and pick **2** or **3** images per row. On phones the
-  grid uses two per row. If the last row has a single photo, it fills the row.
-- **Add a collapsible section** (e.g. a long reference list): choose
-  **Collapsible section**, type a **Title**, and put the text in **Content**.
-  Readers see only the title and click it to open the content.
-- **Add a table**: click **Table** in the toolbar (it may be under the "add" /
-  **⋯** menu). Click **Add item** under **Rows** for each row, and in each row
-  add one **Cell** per column, left to right. Keep the same number of cells in
-  every row. Leave **First row is a header** on if the first row holds column
-  titles. A cell that is just a web address (starting with `https://`) shows as
-  a link.
+1. Click **Image** in the toolbar and drag a picture in, or click to upload.
+2. Click the picture to open its settings:
+   - **Alt text**: a short description for people who can't see the picture.
+   - **Caption** (optional): a line shown right under the picture, like what it
+     shows and who took it.
+   - **Position**:
+     - **Default**: the picture sits on its own line.
+     - **Left, text on the right** or **Right, text on the left**: the
+       paragraphs after the picture flow beside it. Put the picture just
+       before the paragraph you want next to it.
+     - **Center**: the picture is centered on its own line.
+   - **Size**: **Small**, **Medium**, **Large**, or **Full width**. Text only
+     flows beside **Small** and **Medium** pictures; a **Large** picture is
+     centered.
 
-Just keep typing to add paragraphs — press Enter for a new paragraph.
+![A picture's settings: Alt text, Caption, Position, and Size](/editor-guide/images/blog/07-image-settings.png)
 
-### Adding an audio clip or a YouTube video
+The editor doesn't show text flowing beside a picture. Under each picture it
+shows a short label, like "⬅ Left · medium", and you see the real layout on
+the website. On phones, pictures are always on their own line.
 
-The site turns a link to an audio file or a video into a player. To add one:
+The **Featured image** at the top of the post is separate from pictures in the
+Body.
+
+### Several photos side by side (a gallery)
+
+1. Choose **Gallery** in the toolbar.
+2. Add two or more pictures. Each can have a **Caption**.
+3. Pick **2** or **3** pictures per row.
+
+![A gallery's settings: its pictures and how many per row](/editor-guide/images/blog/09-gallery.png)
+
+On phones, galleries show two per row. If the last row has just one photo, it
+fills the whole row.
+
+### A table
+
+1. Choose **Table** in the toolbar.
+2. Under **Rows**, click **Add item** for each row of the table.
+3. In each row, add one **Cell** for each column, left to right. Give every row
+   the same number of cells.
+4. Leave **First row is a header** on if the first row has the column titles.
+
+![A table's settings: the header switch and its rows](/editor-guide/images/blog/08-table.png)
+
+A cell that's just a web address (starting with `https://`) becomes a link.
+
+### Something readers open with a click
+
+Good for long lists, like references.
+
+1. Choose **Collapsible section** in the toolbar.
+2. Type a **Title**. Readers see only this, with a small arrow.
+3. Put everything else in **Content**. It shows when readers click the title.
+
+### Audio or a video
+
+The website turns a link to an audio file or a video into a player:
 
 1. On its own line, paste the address, for example
    `https://example.org/clips/humpback-whup.mp3` or
    `https://www.youtube.com/watch?v=K0vmU_Jf3f4`.
-2. Select that whole address, click the link button, and paste the **same**
-   address as the link.
+2. Select the whole address, click the link button, and paste the **same**
+   address.
 
-When the line is _only_ the link, visitors see just the player. If you link an
-audio file from inside a sentence instead, they see the sentence with a player
-under it. Audio files must end in `.mp3`, `.wav`, `.ogg`, or `.m4a`; video can
-be YouTube, Vimeo, or an `.mp4` file.
+If the line is only the link, readers see just the player. If the link is
+inside a sentence, they see the sentence with the player under it.
 
----
-
-## 6. Publish your post
-
-Nothing goes live until you **publish**.
-
-1. Click the green **Publish** button at the bottom of the post.
-2. If you see **"Unpublished changes"**, it means you have edits that are NOT
-   live yet — click **Publish** to push them.
-
-![The Publish button and document status at the bottom of a post](images/blog/06-publish.png)
-
-> ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
-> unpublished, the live site won't show it (or keeps showing the old version).
-> Always click **Publish** when you're done.
-
-**To unpublish / hide a post:** open it, click the **⋮** menu next to Publish,
-and choose **Unpublish**. It will disappear from the blog.
-
-## 7. When will it show on the site?
-
-After you publish, the blog updates **within about a minute**. Go to
-**orcasound.tech/blog**, and hard-refresh (Cmd/Ctrl + Shift + R) to see it. New
-posts appear at the top of the list. You do **not** need a developer to deploy
-anything.
+Audio files must end in `.mp3`, `.wav`, `.ogg`, or `.m4a`. Videos can be on
+YouTube or Vimeo, or an `.mp4` file.
 
 ---
 
-## Troubleshooting
+## Publish and check
 
-| Problem                                             | What's going on                                                                                                                                    |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| "I published a post but it's not on the blog"       | Give it ~1 minute, then hard-refresh `orcasound.tech/blog`. Check the post actually shows **Published** (not "Unpublished changes") in the Studio. |
-| "My post has no image on its card"                  | Add a **Featured image** — that's the image used on the blog list and at the top of the post.                                                      |
-| "The post link (URL) is wrong or broke an old link" | The URL comes from the **Slug**. Don't change the slug of an existing/migrated post. For new posts, use **Generate** to make one from the title.   |
-| "I can't sign in"                                   | Ask an admin to grant your Google account access to the Sanity project.                                                                            |
+1. Click the green **Publish** button at the bottom.
+
+   ![The Publish button at the bottom of a post](/editor-guide/images/blog/06-publish.png)
+
+2. Wait about a minute, then open **orcasound.tech/blog** and refresh with
+   Cmd + Shift + R (Mac) or Ctrl + Shift + R (Windows). New posts are at the
+   top.
+
+If you see **"Unpublished changes"** at the bottom, your latest edits aren't
+on the website yet. Click **Publish** again.
+
+## Hide a post
+
+Open the post, click the **⋮** next to **Publish**, and choose **Unpublish**.
+It disappears from the website but stays in the Studio, so you can publish it
+again later.
+
+## Add a new author
+
+Authors are shared by blog posts and project pages.
+
+1. On the left, click **Author**, then **＋**.
+2. Type their **Name** as it should appear on posts, for example "Cora Reese".
+3. Click **Publish**, then go back to your post and pick them under
+   **Authors**.
 
 ---
 
-_Questions or something looks broken? ping @Vicky on Zulip._
+## Something's not right?
+
+| What you see                            | What to do                                                                                                                        |
+| --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| My post isn't on the blog               | Wait a minute and refresh. In the Studio, check the post says **Published**, not "Unpublished changes".                           |
+| The post's card has no picture          | Add a **Featured image**.                                                                                                         |
+| Text isn't flowing beside my picture    | Set **Position** to Left or Right and **Size** to Small or Medium, and put the picture just before that paragraph.                |
+| My audio or video shows as a plain link | The link must point to the file itself (ending in `.mp3` etc.) or to YouTube or Vimeo. See [Audio or a video](#audio-or-a-video). |
+| A link to my post stopped working       | The post's **Slug** was probably changed. Change it back.                                                                         |
+| I can't sign in                         | Ask Vicky on Zulip to add your Google account.                                                                                    |
+
+Still stuck? Ask Vicky on Zulip.

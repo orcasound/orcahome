@@ -24,7 +24,7 @@ export const hackerHallOfFamePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://github.com/orcasound/orcahome/blob/main/docs/editor-guide/hacker-hall-of-fame.md"
+            href="https://www.orcasound.tech/editor-guide/hacker-hall-of-fame"
             target="_blank"
             rel="noreferrer"
           >

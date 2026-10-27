@@ -24,7 +24,7 @@ export const donatePage = defineType({
         <>
           📖 New to editing this page?{' '}
           <a
-            href="https://github.com/orcasound/orcahome/blob/main/docs/editor-guide/donate.md"
+            href="https://www.orcasound.tech/editor-guide/donate"
             target="_blank"
             rel="noreferrer"
           >

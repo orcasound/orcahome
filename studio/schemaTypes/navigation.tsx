@@ -3,7 +3,7 @@ import {defineField, defineType} from 'sanity'
 import {linkListField, urlField} from './siteLink'
 
 const GUIDE_URL =
-  'https://github.com/orcasound/orcahome/blob/main/docs/editor-guide/navigation-footer.md'
+  'https://www.orcasound.tech/editor-guide/navigation-footer'
 
 const guideLink = (
   <>
