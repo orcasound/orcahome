@@ -119,7 +119,7 @@ export const googleContributors = [
     link: 'https://www.linkedin.com/in/kunal-mehta-687a9716a/',
   },
   {
-    name: 'Diego Roderiguez',
+    name: 'Diego Rodriguez',
     country: '(Mexico)',
     roles: ['GSoC contributor (2020)'],
     link: '',

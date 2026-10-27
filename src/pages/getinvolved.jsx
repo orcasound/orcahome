@@ -36,6 +36,7 @@ import TopBanner from '../components/TopBanner'
 import moaFallback from '../data/moaContent.json'
 import { getClient } from '../sanity/client'
 import { GET_INVOLVED_PAGE_QUERY, MOA_CONTENT_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 import { resolveMoaContent } from '../utils/moa/content.mjs'
 import ActionButton from './../components/ActionButton'
@@ -1180,11 +1181,12 @@ export async function getStaticProps() {
       return null
     }
   }
-  const [getInvolved, moa] = await Promise.all([
+  const [getInvolved, moa, siteChrome] = await Promise.all([
     fetchOrNull(GET_INVOLVED_PAGE_QUERY),
     fetchOrNull(MOA_CONTENT_QUERY),
+    getSiteChrome(),
   ])
-  return { props: { getInvolved, moa }, revalidate: 60 }
+  return { props: { getInvolved, moa, siteChrome }, revalidate: 60 }
 }
 
 export default GetInvolved

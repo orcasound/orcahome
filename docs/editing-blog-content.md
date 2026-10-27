@@ -87,6 +87,36 @@ You can:
 - **Add an image inside the post**: use the toolbar's image / "add" option and
   upload or drag an image in. (This is separate from the Featured image at the
   top.)
+- **Image options**: click an image in the Body to open it. Besides **Alt
+  text** you can set:
+
+  - **Caption (optional)**: a short line shown right under the image, e.g. what
+    it shows and the photo credit.
+  - **Position**: _Default_ (own line), _Left, text on the right_, _Center_, or
+    _Right, text on the left_. With Left or Right, the paragraphs that follow
+    the image wrap beside it on computers. On phones the image is always on its
+    own line. To put an image next to a paragraph, place the image **just
+    before** that paragraph.
+  - **Size**: _Small_, _Medium_, _Large_, or _Full width_. Left/Right only wraps
+    text for Small and Medium; a Large image is centred instead, because the
+    text beside it would be too narrow.
+
+  The editor doesn't show the wrap itself; under each image it shows a short
+  label like "⬅ Left · medium". Check the result on the site after publishing.
+
+- **Add a gallery** (photos side by side): choose **Gallery** in the toolbar
+  (it may be under the "add" / **⋯** menu). Add two or more images, give each
+  an optional **Caption**, and pick **2** or **3** images per row. On phones the
+  grid uses two per row. If the last row has a single photo, it fills the row.
+- **Add a collapsible section** (e.g. a long reference list): choose
+  **Collapsible section**, type a **Title**, and put the text in **Content**.
+  Readers see only the title and click it to open the content.
+- **Add a table**: click **Table** in the toolbar (it may be under the "add" /
+  **⋯** menu). Click **Add item** under **Rows** for each row, and in each row
+  add one **Cell** per column, left to right. Keep the same number of cells in
+  every row. Leave **First row is a header** on if the first row holds column
+  titles. A cell that is just a web address (starting with `https://`) shows as
+  a link.
 
 Just keep typing to add paragraphs — press Enter for a new paragraph.
 

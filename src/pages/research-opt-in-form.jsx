@@ -14,6 +14,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
+import { getSiteChrome } from '../sanity/siteChrome'
+
 const initialForm = {
   email: '',
   firstName: '',
@@ -314,4 +316,8 @@ export default function ResearchOptInForm() {
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  return { props: { siteChrome: await getSiteChrome() }, revalidate: 60 }
 }

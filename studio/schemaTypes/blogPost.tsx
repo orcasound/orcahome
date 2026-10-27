@@ -1,5 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+import {archivedCommentsField, postBodyField} from './postFields'
+
 /**
  * A single blog post migrated from WordPress (issue #397). Minimal, additive
  * schema that renders now with a simple layout and stays flexible for the
@@ -56,8 +58,7 @@ export const blogPost = defineType({
     defineField({
       name: 'excerpt',
       title: 'Excerpt / description',
-      description:
-        'Short summary shown in the blog listing and used as the page meta description.',
+      description: 'Short summary shown in the blog listing and used as the page meta description.',
       type: 'text',
       rows: 3,
     }),
@@ -75,44 +76,8 @@ export const blogPost = defineType({
       of: [defineArrayMember({type: 'string'})],
       options: {layout: 'tags'},
     }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'array',
-      of: [
-        defineArrayMember({type: 'block'}),
-        defineArrayMember({
-          type: 'image',
-          options: {hotspot: true},
-          fields: [defineField({name: 'alt', title: 'Alt text', type: 'string'})],
-        }),
-      ],
-    }),
-    defineField({
-      name: 'comments',
-      title: 'Comments (archived from WordPress)',
-      description:
-        'Read-only archive of the original WordPress comment threads (#428). The site does not accept new comments; this is kept as a historical record.',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'comment',
-          fields: [
-            defineField({name: 'author', title: 'Author', type: 'string'}),
-            defineField({name: 'date', title: 'Date', type: 'datetime'}),
-            defineField({name: 'body', title: 'Comment', type: 'text'}),
-            defineField({
-              name: 'depth',
-              title: 'Reply depth (1 = top level)',
-              type: 'number',
-            }),
-            defineField({name: 'avatar', title: 'Avatar URL', type: 'url'}),
-          ],
-          preview: {select: {title: 'author', subtitle: 'date'}},
-        }),
-      ],
-    }),
+    postBodyField,
+    archivedCommentsField,
   ],
   orderings: [
     {

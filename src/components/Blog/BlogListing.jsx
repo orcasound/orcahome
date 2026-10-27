@@ -1,10 +1,6 @@
 import {
   Box,
   Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Chip,
   Container,
   MenuItem,
   Pagination,
@@ -18,6 +14,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 
+import ContentCard from '../Post/ContentCard'
 import { formatByline, HIDDEN_TAGS } from './blogFormat'
 
 const POSTS_PER_PAGE = 9
@@ -270,65 +267,22 @@ export default function BlogListing({ posts }) {
               }}
             >
               {pagePosts.map((post) => (
-                <Link
+                <ContentCard
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Card
-                    sx={{
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      transition: 'box-shadow 0.2s',
-                      '&:hover': { boxShadow: 6 },
-                    }}
-                  >
-                    {post.featuredImageUrl && (
-                      <CardMedia
-                        component="img"
-                        image={post.featuredImageUrl}
-                        alt={post.featuredImageAlt || post.title || ''}
-                        sx={{ aspectRatio: '16 / 9', objectFit: 'cover' }}
-                      />
-                    )}
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        display="block"
-                        gutterBottom
-                      >
-                        {formatDate(post.publishedAt)}
-                        {formatByline(post.authors) &&
-                          ` · By ${formatByline(post.authors)}`}
-                      </Typography>
-                      <Typography variant="h6" component="h2" gutterBottom>
-                        {post.title}
-                      </Typography>
-                      {post.excerpt && (
-                        <Typography variant="body2" color="text.secondary">
-                          {post.excerpt}
-                        </Typography>
-                      )}
-                      {Array.isArray(post.tags) && post.tags.length > 0 && (
-                        <Stack
-                          direction="row"
-                          spacing={1}
-                          useFlexGap
-                          flexWrap="wrap"
-                          sx={{ mt: 2 }}
-                        >
-                          {post.tags
-                            .filter((t) => !HIDDEN_TAGS.has(t))
-                            .map((t) => (
-                              <Chip key={t} label={t} size="small" />
-                            ))}
-                        </Stack>
-                      )}
-                    </CardContent>
-                  </Card>
-                </Link>
+                  imageUrl={post.featuredImageUrl}
+                  imageAlt={post.featuredImageAlt}
+                  meta={[
+                    formatDate(post.publishedAt),
+                    formatByline(post.authors) &&
+                      `By ${formatByline(post.authors)}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  chips={(post.tags || []).filter((t) => !HIDDEN_TAGS.has(t))}
+                />
               ))}
             </Box>
 

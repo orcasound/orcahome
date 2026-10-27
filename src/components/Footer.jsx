@@ -1,8 +1,3 @@
-import FacebookIcon from '@mui/icons-material/Facebook'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import LinkedInIcon from '@mui/icons-material/LinkedIn'
-import TwitterIcon from '@mui/icons-material/Twitter'
-import YouTubeIcon from '@mui/icons-material/YouTube'
 import { AppBar, Box, styled, Typography } from '@mui/material'
 import Image from 'next/image'
 
@@ -15,7 +10,6 @@ import xlogo from '../../public/images/x_invert.png'
 import youtubelogo from '../../public/images/youtube.png'
 import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { pushToDataLayer } from '../utils/gtm'
-import useIsNotDesktop from '../utils/useIsNotDesktop'
 import Link from './Link'
 
 const currentYear = new Date().getFullYear()
@@ -33,180 +27,170 @@ const StyledTypography = styled(Typography)({
   },
 })
 
-const IconLink = styled('a')({
-  marginRight: '4px',
-  color: 'white',
-  '&:hover': {
-    cursor: 'pointer',
-    color: 'white',
-  },
-})
-
-const iconContainer = (
-  <Box sx={{ marginRight: '32px' }}>
-    <IconLink
-      href="https://www.facebook.com/OrcasoundApp/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <FacebookIcon fontSize="large" />
-    </IconLink>
-    <IconLink
-      href="https://www.linkedin.com/company/75491849/admin/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <LinkedInIcon fontSize="large" />
-    </IconLink>
-    <IconLink
-      href={ORCASOUND_YOUTUBE_URL}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <YouTubeIcon fontSize="large" />
-    </IconLink>
-    <IconLink
-      href="https://twitter.com/OrcasoundApp"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <TwitterIcon fontSize="large" />
-    </IconLink>
-    <IconLink
-      href="https://www.instagram.com/orcasoundapp/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <InstagramIcon fontSize="large" />
-    </IconLink>
-  </Box>
-)
-
-const sendFeedbackLink = (
-  <StyledTypography
-    variant="h6"
-    component="a"
-    href={feedbackFormUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Send Feedback
-  </StyledTypography>
-)
-
-const blogLink = (
-  <Link href="/blog">
-    <StyledTypography variant="h6">Blog</StyledTypography>
-  </Link>
-)
-
-const supportUsLink = (
-  <StyledTypography variant="h6" sx={{ '&:hover': { cursor: 'default' } }}>
-    Support Us
-  </StyledTypography>
-)
-
-const learnMoreLink = (
-  <StyledTypography variant="h6" sx={{ '&:hover': { cursor: 'default' } }}>
-    Learn More
-  </StyledTypography>
-)
-
-const navLinksLeftCol = [
+const DEFAULT_LEFT_LINKS = [
   {
-    name: 'Get Involved',
+    label: 'Get Involved',
     url: '/getinvolved',
-    icon: '',
   },
   {
-    name: 'Send Feedback',
+    label: 'Send Feedback',
     url: feedbackFormUrl,
-    icon: '',
-    external: true,
   },
   {
-    name: 'Support',
+    label: 'Support',
     url: '/donate',
-    icon: '',
   },
 ]
 
-const navLinksRightCol = [
+const DEFAULT_RIGHT_LINKS = [
   {
-    name: 'About Us',
+    label: 'About Us',
     url: '/about',
-    icon: '',
   },
 
   {
-    name: 'Learn',
+    label: 'Learn',
     url: '/learn',
-    icon: '',
   },
   {
-    name: 'Listen',
+    label: 'Listen',
     url: 'https://live.orcasound.net/',
-    icon: '',
-    external: true,
   },
   {
-    name: 'Blog',
+    label: 'Blog',
     url: '/blog',
-    icon: '',
   },
 ]
 
-const iconLinks = [
+const DEFAULT_SOCIAL_LINKS = [
   {
-    name: 'Instagram',
     url: 'https://www.instagram.com/orcasoundapp/',
-    icon: instagramlogo,
+    platform: 'instagram',
   },
   {
-    name: 'X',
     url: 'https://twitter.com/OrcasoundApp',
-    icon: xlogo,
+    platform: 'x',
   },
   {
-    name: 'Facebook',
     url: 'https://www.facebook.com/OrcasoundApp/',
-    icon: facebooklogo,
+    platform: 'facebook',
   },
   {
-    name: 'Youtube',
     url: ORCASOUND_YOUTUBE_URL,
-    icon: youtubelogo,
+    platform: 'youtube',
   },
   {
-    name: 'Github',
     url: 'https://github.com/orcasound',
-    icon: githublogo,
+    platform: 'github',
   },
   {
-    name: 'Linkedin',
     url: 'https://www.linkedin.com/company/75491849/admin/',
-    icon: linkedinlogo,
+    platform: 'linkedin',
   },
 ]
 
-export default function Footer() {
-  const isNotDesktop = useIsNotDesktop()
-
-  return <Box>{isNotDesktop ? <Mobile /> : <Desktop />}</Box>
+const SOCIAL_ICONS = {
+  instagram: { icon: instagramlogo, name: 'Instagram' },
+  x: { icon: xlogo, name: 'X' },
+  facebook: { icon: facebooklogo, name: 'Facebook' },
+  youtube: { icon: youtubelogo, name: 'Youtube' },
+  github: { icon: githublogo, name: 'Github' },
+  linkedin: { icon: linkedinlogo, name: 'Linkedin' },
 }
 
-function Mobile() {
+const isExternal = (url) => /^(https?:|mailto:)/i.test(url)
+const resolveLinks = (links, defaults) =>
+  (links?.length ? links : defaults).map((item) => ({
+    ...item,
+    external: isExternal(item.url),
+  }))
+
+export default function Footer({ footer }) {
+  const content = {
+    leftHeading: footer?.leftHeading || 'Support Us',
+    rightHeading: footer?.rightHeading || 'Learn More',
+    navLinksLeftCol: resolveLinks(footer?.leftLinks, DEFAULT_LEFT_LINKS),
+    navLinksRightCol: resolveLinks(footer?.rightLinks, DEFAULT_RIGHT_LINKS),
+    iconLinks: (footer?.socialLinks?.length
+      ? footer.socialLinks
+      : DEFAULT_SOCIAL_LINKS
+    )
+      .filter((item) => Object.hasOwn(SOCIAL_ICONS, item.platform))
+      .map((item) => ({ ...item, ...SOCIAL_ICONS[item.platform] })),
+  }
+
+  return (
+    <Box component="footer">
+      <Box sx={{ display: { xs: 'block', lg: 'none' } }}>
+        <Mobile {...content} />
+      </Box>
+      <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+        <Desktop {...content} />
+      </Box>
+    </Box>
+  )
+}
+
+function Mobile({
+  leftHeading,
+  rightHeading,
+  navLinksLeftCol,
+  navLinksRightCol,
+  iconLinks,
+}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="relative" sx={{ padding: '20px' }}>
-        <div>{sendFeedbackLink}</div>
-        <div>{blogLink}</div>
-        <div>
-          <Link href="/donate">
-            <StyledTypography variant="h6">Support</StyledTypography>
-          </Link>
-        </div>
-        {iconContainer}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: 2,
+          }}
+        >
+          {[
+            { heading: leftHeading, links: navLinksLeftCol },
+            { heading: rightHeading, links: navLinksRightCol },
+          ].map(({ heading, links }, index) => (
+            <Box key={index} sx={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+              <Typography variant="h6" sx={{ mb: 1 }}>
+                {heading}
+              </Typography>
+              {links.map((item, linkIndex) => (
+                <Link
+                  key={`${item.url}-${linkIndex}`}
+                  href={item.url}
+                  target={item.external ? '_blank' : undefined}
+                  rel={item.external ? 'noopener noreferrer' : undefined}
+                  sx={{ display: 'block', color: 'white', py: 0.5 }}
+                  onClick={() =>
+                    pushToDataLayer('footer_nav_click', {
+                      link_text: item.label,
+                    })
+                  }
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </Box>
+          ))}
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 3 }}>
+          {iconLinks.map((item, index) => (
+            <Link
+              key={`${item.platform}-${index}`}
+              href={item.url}
+              target={isExternal(item.url) ? '_blank' : undefined}
+              rel={isExternal(item.url) ? 'noopener noreferrer' : undefined}
+              sx={{ display: 'flex', flexShrink: 0 }}
+              onClick={() =>
+                pushToDataLayer('social_click', { platform: item.name })
+              }
+            >
+              <Image src={item.icon} alt={item.name} width={48} height={48} />
+            </Link>
+          ))}
+        </Box>
         <Box sx={{ marginTop: '20px', textAlign: 'center' }}>
           <Typography variant="body2" color="white">
             &copy; {currentYear} Orcasound. All rights reserved.
@@ -217,7 +201,13 @@ function Mobile() {
   )
 }
 
-function Desktop() {
+function Desktop({
+  leftHeading,
+  rightHeading,
+  navLinksLeftCol,
+  navLinksRightCol,
+  iconLinks,
+}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -263,12 +253,17 @@ function Desktop() {
                 margin: '3px',
               }}
             >
-              {supportUsLink}
+              <StyledTypography
+                variant="h6"
+                sx={{ '&:hover': { cursor: 'default' } }}
+              >
+                {leftHeading}
+              </StyledTypography>
             </Box>
 
             {navLinksLeftCol.map((navLink) => (
               <Box
-                key={navLink.name}
+                key={navLink.label}
                 display="flex"
                 sx={{
                   margin: '3px',
@@ -277,28 +272,29 @@ function Desktop() {
               >
                 {navLink.external ? (
                   <StyledTypography
-                    component="a"
+                    component={Link}
+                    noLinkStyle
                     href={navLink.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() =>
                       pushToDataLayer('footer_nav_click', {
-                        link_text: navLink.name,
+                        link_text: navLink.label,
                       })
                     }
                   >
-                    {navLink.name}
+                    {navLink.label}
                   </StyledTypography>
                 ) : (
                   <Link href={navLink.url}>
                     <StyledTypography
                       onClick={() =>
                         pushToDataLayer('footer_nav_click', {
-                          link_text: navLink.name,
+                          link_text: navLink.label,
                         })
                       }
                     >
-                      {navLink.name}
+                      {navLink.label}
                     </StyledTypography>
                   </Link>
                 )}
@@ -323,12 +319,17 @@ function Desktop() {
                 margin: '3px',
               }}
             >
-              {learnMoreLink}
+              <StyledTypography
+                variant="h6"
+                sx={{ '&:hover': { cursor: 'default' } }}
+              >
+                {rightHeading}
+              </StyledTypography>
             </Box>
 
             {navLinksRightCol.map((navLink) => (
               <Box
-                key={navLink.name}
+                key={navLink.label}
                 display="flex"
                 sx={{
                   margin: '3px',
@@ -337,28 +338,29 @@ function Desktop() {
               >
                 {navLink.external ? (
                   <StyledTypography
-                    component="a"
+                    component={Link}
+                    noLinkStyle
                     href={navLink.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() =>
                       pushToDataLayer('footer_nav_click', {
-                        link_text: navLink.name,
+                        link_text: navLink.label,
                       })
                     }
                   >
-                    {navLink.name}
+                    {navLink.label}
                   </StyledTypography>
                 ) : (
                   <Link href={navLink.url}>
                     <StyledTypography
                       onClick={() =>
                         pushToDataLayer('footer_nav_click', {
-                          link_text: navLink.name,
+                          link_text: navLink.label,
                         })
                       }
                     >
-                      {navLink.name}
+                      {navLink.label}
                     </StyledTypography>
                   </Link>
                 )}
@@ -386,10 +388,13 @@ function Desktop() {
             {iconLinks.map((iconLink) => (
               <Box
                 key={iconLink.name}
-                component="a"
+                component={Link}
+                noLinkStyle
                 href={iconLink.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={isExternal(iconLink.url) ? '_blank' : undefined}
+                rel={
+                  isExternal(iconLink.url) ? 'noopener noreferrer' : undefined
+                }
                 sx={{
                   margin: '10px',
                 }}

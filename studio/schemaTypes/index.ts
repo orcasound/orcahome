@@ -3,12 +3,17 @@ import {author} from './author'
 import {blogPost} from './blogPost'
 import {catalogPage} from './catalogPage'
 import {contributor} from './contributor'
+import {dataTable} from './dataTable'
 import {donatePage} from './donatePage'
+import {footer} from './footer'
 import {getInvolvedPage} from './getInvolvedPage'
 import {hackerHallOfFamePage} from './hackerHallOfFamePage'
 import {homePage} from './homePage'
 import {learnPage} from './learnPage'
 import {moaContent} from './moaContent'
+import {navigation} from './navigation'
+import {collapsible, gallery} from './postFields'
+import {project} from './project'
 
 export const schemaTypes = [
   aboutPage,
@@ -22,4 +27,10 @@ export const schemaTypes = [
   moaContent,
   author,
   blogPost,
+  dataTable,
+  gallery,
+  collapsible,
+  project,
+  navigation,
+  footer,
 ]

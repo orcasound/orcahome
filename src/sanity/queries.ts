@@ -454,6 +454,29 @@ export const BLOG_POSTS_QUERY = `*[_type == "blogPost" && defined(slug.current)]
 
 export const BLOG_SLUGS_QUERY = `*[_type == "blogPost" && defined(slug.current)].slug.current`
 
+/**
+ * The body of a blog post or project page (shared schema in
+ * studio/schemaTypes/postFields.ts). Images anywhere in it, including inside
+ * galleries and collapsible sections, resolve to a CDN URL plus dimensions so
+ * PostBody can size them.
+ */
+const IMAGE_FIELDS = `
+  "url": asset->url,
+  "width": asset->metadata.dimensions.width,
+  "height": asset->metadata.dimensions.height`
+
+const POST_BODY = `body[]{
+  ...,
+  _type == "image" => { ${IMAGE_FIELDS}, alt, caption, alignment, size },
+  _type == "gallery" => { ..., images[]{ ..., ${IMAGE_FIELDS}, alt, caption } },
+  _type == "collapsible" => {
+    ...,
+    body[]{ ..., _type == "image" => { ${IMAGE_FIELDS}, alt } }
+  }
+}`
+
+const ARCHIVED_COMMENTS = `comments[]{ author, date, body, depth, avatar }`
+
 export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][0]{
   title,
   "slug": slug.current,
@@ -463,16 +486,35 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
   "featuredImageAlt": featuredImage.alt,
   tags,
   "authors": authors[]->{name, "slug": slug.current},
-  body[]{
-    ...,
-    _type == "image" => {
-      "url": asset->url,
-      "width": asset->metadata.dimensions.width,
-      "height": asset->metadata.dimensions.height,
-      alt
-    }
-  },
-  comments[]{ author, date, body, depth, avatar }
+  ${POST_BODY},
+  ${ARCHIVED_COMMENTS}
+}`
+
+/**
+ * Projects (/projects and /projects/[slug]), migrated from the WordPress
+ * portfolio pages. The body projection matches BLOG_POST_QUERY so both render
+ * through the shared PostBody component.
+ */
+export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)]|order(publishedAt desc){
+  title,
+  "slug": slug.current,
+  excerpt,
+  categories,
+  "featuredImageUrl": featuredImage.asset->url,
+  "featuredImageAlt": featuredImage.alt,
+  "authors": authors[]->name
+}`
+
+export const PROJECT_SLUGS_QUERY = `*[_type == "project" && defined(slug.current)].slug.current`
+
+export const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0]{
+  title,
+  "slug": slug.current,
+  excerpt,
+  categories,
+  "authors": authors[]->{name, "slug": slug.current},
+  ${POST_BODY},
+  ${ARCHIVED_COMMENTS}
 }`
 
 /** Author archive page (#425): all slugs, and one author with their posts. */
@@ -566,4 +608,49 @@ export interface MoaContent {
   sections?: MoaSection[]
   agreementStatement?: string
   members?: MoaMember[]
+}
+
+/** Shared shell content, fetched alongside each page for ISR. */
+export const SITE_CHROME_QUERY = `{
+  "nav": *[_type == "navigation" && _id == "navigation"][0]{
+    links[]{label, url}, notifyLabel, notifyUrl, supportLabel, supportUrl
+  },
+  "footer": *[_type == "footer" && _id == "footer"][0]{
+    leftHeading, leftLinks[]{label, url}, rightHeading,
+    rightLinks[]{label, url}, socialLinks[]{platform, url}
+  }
+}`
+
+export interface SiteLink {
+  label?: string
+  url?: string
+}
+
+export interface NavigationContent {
+  links?: SiteLink[]
+  notifyLabel?: string
+  notifyUrl?: string
+  supportLabel?: string
+  supportUrl?: string
+}
+
+export type SocialPlatform =
+  | 'instagram'
+  | 'x'
+  | 'facebook'
+  | 'youtube'
+  | 'github'
+  | 'linkedin'
+
+export interface FooterContent {
+  leftHeading?: string
+  leftLinks?: SiteLink[]
+  rightHeading?: string
+  rightLinks?: SiteLink[]
+  socialLinks?: { platform?: SocialPlatform; url?: string }[]
+}
+
+export interface SiteChrome {
+  nav?: NavigationContent | null
+  footer?: FooterContent | null
 }
