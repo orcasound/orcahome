@@ -75,7 +75,7 @@ const HydrophoneLocationsMapImage = ({ mapEmbedId }) => (
     />
   </Box>
 )
-const ScrollDownButton = styled(IconButton)(({ theme }) => ({
+const ScrollDownButton = styled(IconButton)(() => ({
   position: 'absolute',
   bottom: '30px',
   padding: '0',
@@ -83,7 +83,8 @@ const ScrollDownButton = styled(IconButton)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '15px',
+
+  height: 'auto',
   transition: 'all 0.5s ease-in-out',
   '&:hover': {
     transform: 'translateY(5px)',
@@ -212,7 +213,11 @@ export const index = ({ home }) => {
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
             <ScrollDownButton
-              sx={{ bottom: 0 }}
+              href="#what-is-orcasound"
+              to="what-is-orcasound"
+              smooth={true}
+              spy={true}
+              aria-label="Scroll down to What is Orcasound section"
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
               }
@@ -224,7 +229,8 @@ export const index = ({ home }) => {
                 sx={{
                   fontSize: 'max(32px, 5vw)',
                   color: '#ffffff',
-                  transform: 'translateY(calc(-0.7 * max(32px, 5vw)))',
+                  marginTop: '-0.7em',
+                  //transform: 'translateY(calc(-0.7 * max(32px, 5vw)))',
                 }}
               />
             </ScrollDownButton>
