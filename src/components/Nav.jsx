@@ -101,7 +101,7 @@ const Nav = ({ nav }) => {
                     md: 'absolute',
                     lg: 'static',
                   },
-                  left: { xs: '15px', sm: '15px', md: '15px', lg: '0px' },
+                  left: { xs: '15px', sm: '15px', md: '15px' },
                 }}
               >
                 <Link href="/">
