@@ -60,7 +60,7 @@ const documents = [
       },
     ],
     notifyLabel: 'Notify Me',
-    notifyUrl: 'https://www.orcasound.net/subscribe/',
+    notifyUrl: '/subscribe',
     supportLabel: 'Support',
     supportUrl: '/donate',
   },
