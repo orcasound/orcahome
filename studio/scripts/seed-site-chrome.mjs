@@ -35,12 +35,6 @@ const documents = [
         url: '/about',
       },
       {
-        _key: 'projects',
-        _type: 'siteLink',
-        label: 'Projects',
-        url: '/projects',
-      },
-      {
         _key: 'default_nav_links-4',
         _type: 'siteLink',
         label: 'Listen',
