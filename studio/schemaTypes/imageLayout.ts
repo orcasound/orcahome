@@ -47,7 +47,11 @@ export const imageLayoutFields = [
   }),
 ]
 
-const POSITION_LABEL: Record<string, string> = {left: '⬅ Left', center: '↔ Center', right: 'Right ➡'}
+const POSITION_LABEL: Record<string, string> = {
+  left: '⬅ Left',
+  center: '↔ Center',
+  right: 'Right ➡',
+}
 
 // Shows the layout in the body editor, since Studio doesn't render the wrap.
 export const imageLayoutPreview = {

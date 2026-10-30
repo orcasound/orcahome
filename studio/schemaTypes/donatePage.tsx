@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {guideUrl} from '../siteUrl'
 
 /**
  * Donate / Support page (Phase 2 — V1 only).
@@ -23,11 +24,7 @@ export const donatePage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://docs.google.com/document/d/1XLQVhHI1nI8AfpfJ9E8-wf8TRVfurArTM3Fcc1Ki32w/edit"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('donate')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .
@@ -137,8 +134,7 @@ export const donatePage = defineType({
             defineField({
               name: 'usesCardImage',
               title: 'Thumbnail',
-              description:
-                'Which card image to show as the thumbnail for this option.',
+              description: 'Which card image to show as the thumbnail for this option.',
               type: 'string',
               options: {
                 list: [

@@ -89,7 +89,7 @@ cp .env.example .env.local
 
 ### Editing content in Sanity
 
-Content (page copy, images, blog posts) is managed in Sanity — no code needed. See [`docs/sanity-guide.md`](docs/sanity-guide.md) for the overview and per-page guides. (For non-technical editors, the authoritative guides are the Google Doc versions in the shared Drive folder.)
+Content (page copy, images, blog posts) is managed in Sanity — no code needed. See [`docs/editor-guide/README.md`](docs/editor-guide/README.md) for the overview and per-page guides. (For non-technical editors, the authoritative guides are the Google Doc versions in the shared Drive folder.)
 
 ## Available scripts
 

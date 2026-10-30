@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 import {archivedCommentsField, postBodyField} from './postFields'
+import {guideUrl} from '../siteUrl'
 
 /**
  * One Orcasound project page (a hydrophone location, a research project, a
@@ -21,11 +22,7 @@ export const project = defineType({
       description: (
         <>
           📖 New to editing projects?{' '}
-          <a
-            href="https://github.com/orcasound/orcahome/blob/main/docs/editing-projects-content.md"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('projects')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .

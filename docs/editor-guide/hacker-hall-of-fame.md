@@ -18,7 +18,7 @@ their profile links) — all without touching any code.
 1. In the left sidebar, click **Hacker Hall of Fame Page**.
 2. The document opens with all the editable fields.
 
-![The Studio sidebar with "Hacker Hall of Fame Page" selected](images/hhof-guide/01-sidebar.png)
+![The Studio sidebar with "Hacker Hall of Fame Page" selected](/editor-guide/images/hacker-hall-of-fame/01-sidebar.png)
 
 ---
 
@@ -49,13 +49,13 @@ For any image field (banner, hackathon photo, lower photos): click the field,
 click **remove** on the current image, then drag a new one in (or click to
 upload). Leave it blank to keep the built-in photo.
 
-![An image field with the upload/select menu open](images/hhof-guide/06-image-field.png)
+![An image field with the upload/select menu open](/editor-guide/images/hacker-hall-of-fame/06-image-field.png)
 
 ### Editing text
 
 Click any text field and type. That's it.
 
-![Editing a text field](images/hhof-guide/02-text-field.png)
+![Editing a text field](/editor-guide/images/hacker-hall-of-fame/02-text-field.png)
 
 ---
 
@@ -75,7 +75,7 @@ Contributors, Supporters — is a list of **contributors**. Each contributor has
 - **Add a person**: click **Add item** at the bottom of the list.
 - **Reorder / remove**: drag by the handle, or use the **⋮** menu → Remove.
 
-![A contributor opened, showing Name, Roles, and Profile link](images/hhof-guide/03-contributor.png)
+![A contributor opened, showing Name, Roles, and Profile link](/editor-guide/images/hacker-hall-of-fame/03-contributor.png)
 
 ---
 
@@ -89,7 +89,7 @@ its own **title** and its own **contributors** list.
 - **Add / remove / reorder** groups with **Add item**, the **⋮** menu, or the
   drag handle.
 
-![An influencer sub-group opened, showing its title and contributors](images/hhof-guide/04-influencer-group.png)
+![An influencer sub-group opened, showing its title and contributors](/editor-guide/images/hacker-hall-of-fame/04-influencer-group.png)
 
 ---
 
@@ -101,7 +101,7 @@ Nothing goes live until you **publish**.
 2. If you see **"Unpublished changes"**, it means you have edits that are NOT
    live yet — click **Publish** to push them.
 
-![The Publish button](images/hhof-guide/05-publish.png)
+![The Publish button](/editor-guide/images/hacker-hall-of-fame/05-publish.png)
 
 > ⚠️ **Don't leave edits as an unpublished draft.** If a draft sits there
 > unpublished, the live site keeps showing the old content. Always click
