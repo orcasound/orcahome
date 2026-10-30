@@ -36,10 +36,6 @@ const DEFAULT_NAV_LINKS = [
     label: 'About Us',
     url: '/about',
   },
-  {
-    label: 'Projects',
-    url: '/projects',
-  },
 
   {
     label: 'Listen',
@@ -294,9 +290,7 @@ function Desktop({
               key={navLink.label}
               sx={{
                 position: 'relative',
-                // Tighter between lg and xl so seven links fit at 1200px.
-                my: 3,
-                mx: { lg: 1, xl: 3 },
+                margin: 3,
               }}
             >
               {navLink.external ? (

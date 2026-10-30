@@ -23,13 +23,13 @@
  *      Uploads images, creates any missing authors, and creates-or-replaces
  *      one `project-<slug>` document per page (re-running is safe).
  *
- *   2. Repoint (only AFTER the /projects pages are deployed, or the live menu
- *      and About cards would link to a 404):
+ *   2. Repoint (only AFTER the /projects pages are deployed, or the About
+ *      cards would link to a 404):
  *        npx sanity exec scripts/migrate-wordpress-portfolio.mjs --with-user-token -- --repoint           # dry run
  *        npx sanity exec scripts/migrate-wordpress-portfolio.mjs --with-user-token -- --repoint --commit  # write
- *      Points the About page project cards at /projects/<slug> and adds
- *      "Projects" to the top menu after "About Us". The previous values are
- *      saved to /tmp first.
+ *      Points the About page project cards at /projects/<slug>. It does not
+ *      touch the top menu: Projects is deliberately not a top-level nav item.
+ *      The previous values are saved to /tmp first.
  *
  * The dry run writes the converted documents to /tmp/portfolio-migration.json
  * for inspection.
@@ -557,10 +557,7 @@ async function migrateProjects() {
 }
 
 async function repointLinks() {
-  const [about, nav] = await Promise.all([
-    client.fetch(`*[_id == "aboutPage"][0]{_id, _rev, projects}`),
-    client.fetch(`*[_id == "navigation"][0]{_id, _rev, links}`),
-  ])
+  const about = await client.fetch(`*[_id == "aboutPage"][0]{_id, _rev, projects}`)
   const slugs = new Set(await client.fetch(`*[_type == "project"].slug.current`))
   if (!slugs.size) throw new Error('No project documents yet. Run the projects phase first.')
 
@@ -576,32 +573,20 @@ async function repointLinks() {
     console.log(`  About card ${i + 1} "${card.title}": ${card.url} -> /projects/${slug}`)
   }
 
-  const links = nav?.links || []
-  const hasProjects = links.some((l) => l.url === '/projects')
-  const after = links.find((l) => l.url === '/about')
-  if (hasProjects) console.log('  Top menu already has /projects')
-  else console.log(`  Top menu: add "Projects" after "${after?.label || '(end)'}"`)
+  // Projects is deliberately not in the top menu (team decision, 2026-10-29);
+  // visitors reach /projects from the About page.
 
   if (!commit) {
     console.log('\nDry run only. Re-run with -- --repoint --commit to write.')
     return
   }
   const backup = `/tmp/portfolio-repoint-backup-${Date.now()}.json`
-  await writeFile(backup, JSON.stringify({about, nav}, null, 2))
+  await writeFile(backup, JSON.stringify({about}, null, 2))
   console.log(`\nPrevious values saved to ${backup}`)
 
   const tx = client.transaction()
   if (Object.keys(cardPatches).length) {
     tx.patch(about._id, (p) => p.ifRevisionId(about._rev).set(cardPatches))
-  }
-  if (!hasProjects) {
-    const link = {_key: 'projects', _type: 'siteLink', label: 'Projects', url: '/projects'}
-    tx.patch(nav._id, (p) => {
-      const patch = p.ifRevisionId(nav._rev)
-      return after
-        ? patch.insert('after', `links[_key=="${after._key}"]`, [link])
-        : patch.append('links', [link])
-    })
   }
   await tx.commit()
   console.log('Repointed.')
