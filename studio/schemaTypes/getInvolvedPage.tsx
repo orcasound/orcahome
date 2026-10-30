@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {guideUrl} from '../siteUrl'
 
 /**
  * Get Involved page (Phase 2 — second real-page content model).
@@ -49,11 +50,7 @@ export const getInvolvedPage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://www.orcasound.tech/editor-guide/get-involved"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('get-involved')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .

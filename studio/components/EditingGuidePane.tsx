@@ -1,4 +1,5 @@
 import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
+import {guideUrl} from '../siteUrl'
 
 /**
  * A small help pane shown from the "📖 Start here" item at the top of the
@@ -7,7 +8,7 @@ import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
  * new tab. The guides are published on the site at /editor-guide, built from
  * docs/editor-guide/ in the repo.
  */
-const GUIDE_URL = 'https://www.orcasound.tech/editor-guide'
+const GUIDE_URL = guideUrl()
 
 export function EditingGuidePane() {
   return (

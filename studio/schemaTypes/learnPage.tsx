@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {guideUrl} from '../siteUrl'
 
 /**
  * Learn page (Phase 2 — fourth real-page content model).
@@ -27,11 +28,7 @@ export const learnPage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://www.orcasound.tech/editor-guide/learn"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('learn')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .

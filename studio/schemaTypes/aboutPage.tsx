@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 import {urlField} from './siteLink'
+import {guideUrl} from '../siteUrl'
 
 /**
  * About page (Phase 2 — first real-page content model).
@@ -25,11 +26,7 @@ export const aboutPage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://www.orcasound.tech/editor-guide/about"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('about')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .

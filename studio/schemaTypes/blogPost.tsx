@@ -1,6 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 import {archivedCommentsField, postBodyField} from './postFields'
+import {guideUrl} from '../siteUrl'
 
 /**
  * A single blog post migrated from WordPress (issue #397). Minimal, additive
@@ -20,11 +21,7 @@ export const blogPost = defineType({
       description: (
         <>
           📖 New to editing the blog?{' '}
-          <a
-            href="https://www.orcasound.tech/editor-guide/blog"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('blog')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .

@@ -14,6 +14,10 @@ this folder are written for non-developers.
   and are marked `noindex`. Each Studio form links to its guide there.
 - **Screenshots:** `public/editor-guide/images/<guide>/`, referenced as
   `/editor-guide/images/<guide>/<file>.png`.
+- **Links from Studio to the guides** are full URLs built from `SITE_URL` in
+  `studio/siteUrl.ts` (Studio runs on its own domain, so a bare path like
+  `/editor-guide` would open on orcahome.sanity.studio). **When the site moves
+  to another domain, change `SITE_URL` and run `npx sanity deploy`.**
 - **Links between guides:** write them as `blog.md#section`; the site turns
   them into `/editor-guide/blog#section`.
 - **This file** (`developers.md`) and anything else listed in
