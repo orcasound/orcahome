@@ -1,14 +1,14 @@
 import {Box, Card, Heading, Stack, Text} from '@sanity/ui'
+import {guideUrl} from '../siteUrl'
 
 /**
  * A small help pane shown from the "📖 Start here" item at the top of the
  * Studio content list. Sidebar list items can't be plain external links, so
  * this renders a one-line intro plus a link that opens the overview guide in a
- * new tab. Single source of truth: the guide lives in the repo as
- * docs/sanity-guide.md.
+ * new tab. The guides are published on the site at /editor-guide, built from
+ * docs/editor-guide/ in the repo.
  */
-const GUIDE_URL =
-  'https://github.com/orcasound/orcahome/blob/main/docs/sanity-guide.md'
+const GUIDE_URL = guideUrl()
 
 export function EditingGuidePane() {
   return (
@@ -17,9 +17,9 @@ export function EditingGuidePane() {
         <Stack space={4}>
           <Heading size={2}>📖 Start here</Heading>
           <Text size={2}>
-            New to editing the site? This Studio is where you change page content,
-            edit the site&apos;s top menu and footer, and write blog posts. Nothing goes
-            live until you click Publish.
+            New to editing the site? This Studio is where you change the main pages, add project
+            pages, write blog posts, and edit the top menu and footer. Nothing goes live until you
+            click Publish.
           </Text>
           <Text size={2}>
             <a href={GUIDE_URL} target="_blank" rel="noreferrer">

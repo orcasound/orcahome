@@ -30,8 +30,10 @@
     "react": "^18.3.1",
     "react-audio-player": "^0.17.0",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "react-scroll": "^1.8.4",
     "react-zoom-pan-pinch": "^3.7.0",
+    "remark-gfm": "^4.0.1",
     "use-sound": "^4.0.1",
     "wavesurfer.js": "^7.12.7"
   },

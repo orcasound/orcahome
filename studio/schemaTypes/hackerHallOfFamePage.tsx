@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {guideUrl} from '../siteUrl'
 
 /**
  * Hacker Hall of Fame page (Phase 2).
@@ -23,11 +24,7 @@ export const hackerHallOfFamePage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://docs.google.com/document/d/1dBQYL_Xf2XYLTDZYOU3_bJZNAyEyvUKMdOq-LuhI3yw/edit"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('hacker-hall-of-fame')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .
@@ -203,8 +200,7 @@ export const hackerHallOfFamePage = defineType({
     defineField({
       name: 'influencerGroups',
       title: 'Influencers · sub-groups',
-      description:
-        'Each themed team (GSoC, Live app, Arcatia, Project Management, …).',
+      description: 'Each themed team (GSoC, Live app, Arcatia, Project Management, …).',
       type: 'array',
       of: [
         defineArrayMember({

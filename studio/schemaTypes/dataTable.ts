@@ -21,7 +21,8 @@ export const dataTable = defineType({
     defineField({
       name: 'rows',
       title: 'Rows',
-      description: 'Each row is a list of cells, left to right. Keep the same number of cells in every row.',
+      description:
+        'Each row is a list of cells, left to right. Keep the same number of cells in every row.',
       type: 'array',
       of: [
         defineArrayMember({

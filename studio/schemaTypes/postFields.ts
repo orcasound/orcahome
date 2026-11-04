@@ -43,12 +43,21 @@ export const gallery = defineType({
     }),
   ],
   preview: {
-    select: {images: 'images', columns: 'columns', media: 'images.0.asset'},
-    prepare: ({images, columns, media}) => ({
-      title: `Gallery: ${images?.length || 0} images`,
-      subtitle: `${columns || 2} per row`,
-      media,
-    }),
+    // A preview can't select a whole array, so check the first 20 slots
+    // ("images.N.asset") and count the ones that are set.
+    select: {
+      columns: 'columns',
+      media: 'images.0.asset',
+      ...Object.fromEntries(Array.from({length: 20}, (_, i) => [`image${i}`, `images.${i}.asset`])),
+    },
+    prepare: ({columns, media, ...slots}) => {
+      const count = Object.values(slots).filter(Boolean).length
+      return {
+        title: `Gallery: ${count >= 20 ? '20+' : count} ${count === 1 ? 'image' : 'images'}`,
+        subtitle: `${columns || 2} per row`,
+        media,
+      }
+    },
   },
 })
 

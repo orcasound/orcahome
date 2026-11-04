@@ -17,7 +17,7 @@ layout, and the copyright line. Those stay the same.
    can't get in — ping @Vicky on Zulip).
 3. In the left sidebar, under **Navigation**, click **Top Menu** (or **Footer**).
 
-![The Studio sidebar with "Top Menu" selected under Navigation](images/navigation-footer-guide/01-top-menu.png)
+![The Studio sidebar with "Top Menu" selected under Navigation](/editor-guide/images/navigation-footer/01-top-menu.png)
 
 ---
 
@@ -25,7 +25,7 @@ layout, and the copyright line. Those stay the same.
 
 This is the top menu on the website:
 
-![The top menu on the website](images/navigation-footer-guide/06-site-top-menu.png)
+![The top menu on the website](/editor-guide/images/navigation-footer/06-site-top-menu.png)
 
 | In the Studio                  | On the website                                             |
 | ------------------------------ | ---------------------------------------------------------- |
@@ -37,7 +37,7 @@ On phones, the same links appear in the ☰ menu, top to bottom.
 
 This is the footer on the website:
 
-![The footer on the website](images/navigation-footer-guide/07-site-footer.png)
+![The footer on the website](/editor-guide/images/navigation-footer/07-site-footer.png)
 
 | In the Studio                      | On the website                      |
 | ---------------------------------- | ----------------------------------- |
@@ -56,7 +56,7 @@ Phones show the same links and icons as computers.
 3. **Link** is where the visitor goes when they click it (see the next section).
 4. Close the box with the **×** in its top-right corner.
 
-![The "Learn" menu item opened, showing its Text and Link](images/navigation-footer-guide/02-edit-link.png)
+![The "Learn" menu item opened, showing its Text and Link](/editor-guide/images/navigation-footer/02-edit-link.png)
 
 ---
 
@@ -115,7 +115,7 @@ Scroll down in **Top Menu** to find the **Bell button** (Notify Me) and the
 **Heart button** (Support). Each has a **text** and a **link**, which work just
 like menu items. The icons can't be changed.
 
-![The bell and heart button fields](images/navigation-footer-guide/03-buttons-publish.png)
+![The bell and heart button fields](/editor-guide/images/navigation-footer/03-buttons-publish.png)
 
 ---
 
@@ -125,14 +125,14 @@ Click **Footer** under **Navigation** in the left sidebar. It has two columns, e
 **heading** and a list of **links**. Edit them exactly like the top menu
 (sections 3–5).
 
-![The Footer document](images/navigation-footer-guide/04-footer.png)
+![The Footer document](/editor-guide/images/navigation-footer/04-footer.png)
 
 **Social media icons**: each icon has a **Platform** (pick from the list:
 Instagram, X (Twitter), Facebook, YouTube, GitHub, LinkedIn) and a **Link** to
 Orcasound's page on that platform. Reorder, add, and remove them like menu items.
 Only these six platforms are available, because each needs its own icon.
 
-![The social media icons list](images/navigation-footer-guide/05-footer-social.png)
+![The social media icons list](/editor-guide/images/navigation-footer/05-footer-social.png)
 
 ---
 

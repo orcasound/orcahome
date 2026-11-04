@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {guideUrl} from '../siteUrl'
 
 /**
  * Call Catalog page (Phase 2 — page copy only).
@@ -24,11 +25,7 @@ export const catalogPage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://docs.google.com/document/d/1UbX_1g0zRFfNikefapHU5ECvm1kJmfa0Mu2IMrXPG-I/edit"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('call-catalog')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .
