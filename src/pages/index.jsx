@@ -37,7 +37,7 @@ const DEFAULTS = {
                 feeds are online in the live app.`,
   hydrophoneReportText: `Listen live, learn what each hydrophone hears, and report
                   interesting sounds when you notice them.`,
-  mapEmbedId: '10UzMA9tn5vXEBHCzksuE9dEggzBrW-0q',
+  mapEmbedId: '1q10FxfoXv12v3TTM0i7O6jVKhcok86o',
   listenLiveLabel: 'LISTEN LIVE',
   listenLiveHref: 'https://live.orcasound.net/listen',
   getInvolvedLabel: 'GET INVOLVED',
@@ -213,10 +213,6 @@ export const index = ({ home }) => {
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
             <ScrollDownButton
-              href="#what-is-orcasound"
-              to="what-is-orcasound"
-              smooth={true}
-              spy={true}
               aria-label="Scroll down to What is Orcasound section"
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
