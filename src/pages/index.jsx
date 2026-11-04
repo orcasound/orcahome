@@ -213,10 +213,6 @@ export const index = ({ home }) => {
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
             <ScrollDownButton
-              href="#what-is-orcasound"
-              to="what-is-orcasound"
-              smooth={true}
-              spy={true}
               aria-label="Scroll down to What is Orcasound section"
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
