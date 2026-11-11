@@ -85,7 +85,10 @@ export const donatePage = defineType({
     defineField({
       name: 'volunteersButtonHref',
       title: 'Support Volunteers · button link',
+      description:
+        'A full URL, or a page on this site starting with / (e.g. /hacker-hall-of-fame).',
       type: 'url',
+      validation: (rule) => rule.uri({allowRelative: true, scheme: ['http', 'https']}),
     }),
 
     // —— "Ways to Support" dialog ——
