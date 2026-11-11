@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "echo 'No tests configured'",
+    "test": "node --test src/utils/moa/*.test.mjs src/utils/moa/submission/*.test.mjs studio/scripts/moa-seed-utils.test.mjs studio/scripts/wholistener-audio-utils.test.mjs ops/reops-sync/reops_resend_sync.test.mjs",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:ci": "npm run lint -- --max-warnings 0",
@@ -16,6 +16,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",
     "@emotion/server": "^11.4.0",
@@ -29,14 +30,17 @@
     "react": "^18.3.1",
     "react-audio-player": "^0.17.0",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "react-scroll": "^1.8.4",
     "react-zoom-pan-pinch": "^3.7.0",
+    "remark-gfm": "^4.0.1",
     "use-sound": "^4.0.1",
     "wavesurfer.js": "^7.12.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@next/eslint-plugin-next": "^16.2.6",
+    "@playwright/test": "^1.64.0",
     "@sanity/block-tools": "^3.70.0",
     "@sanity/schema": "^6.10.0",
     "@types/node": "^20.10.0",

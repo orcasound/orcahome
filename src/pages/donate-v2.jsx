@@ -6,6 +6,7 @@ import DonatePartnersV2 from '../components/Donate/DonatePartnersV2'
 import SupportBanner from '../components/Donate/SupportBanner'
 import SupportOrcasound from '../components/Donate/SupportOrcasound'
 import TopBanner from '../components/TopBanner'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { DONATE_AB_TEST_ENABLED } from '../utils/donateExperiment'
 
 export const DonateV2 = () => {
@@ -37,7 +38,7 @@ export async function getServerSideProps() {
   if (!DONATE_AB_TEST_ENABLED) {
     return { redirect: { destination: '/donate', permanent: false } }
   }
-  return { props: {} }
+  return { props: { siteChrome: await getSiteChrome() } }
 }
 
 export default DonateV2

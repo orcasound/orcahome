@@ -1,4 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import { styled } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
@@ -13,6 +14,7 @@ import orcas from '../../public/images/srkw2-9.jpg'
 import Link from '../components/Link'
 import { getClient } from '../sanity/client'
 import { HOME_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
@@ -35,7 +37,7 @@ const DEFAULTS = {
                 feeds are online in the live app.`,
   hydrophoneReportText: `Listen live, learn what each hydrophone hears, and report
                   interesting sounds when you notice them.`,
-  mapEmbedId: '10UzMA9tn5vXEBHCzksuE9dEggzBrW-0q',
+  mapEmbedId: '1q10FxfoXv12v3TTM0i7O6jVKhcok86o',
   listenLiveLabel: 'LISTEN LIVE',
   listenLiveHref: 'https://live.orcasound.net/listen',
   getInvolvedLabel: 'GET INVOLVED',
@@ -73,7 +75,21 @@ const HydrophoneLocationsMapImage = ({ mapEmbedId }) => (
     />
   </Box>
 )
+const ScrollDownButton = styled(IconButton)(() => ({
+  position: 'absolute',
+  bottom: '30px',
+  padding: '0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 
+  height: 'auto',
+  transition: 'all 0.5s ease-in-out',
+  '&:hover': {
+    transform: 'translateY(5px)',
+  },
+}))
 export const index = ({ home }) => {
   // Per-field fallback: use the Sanity value when present, otherwise the
   // existing hard-coded copy.
@@ -110,6 +126,7 @@ export const index = ({ home }) => {
           position: 'relative',
           width: '100%',
           height: '90vh',
+          '@supports (height: 1svh)': { height: '90svh' },
           overflow: 'hidden',
         }}
       >
@@ -195,45 +212,24 @@ export const index = ({ home }) => {
           </Box>
 
           <ScrollElement to="what-is-orcasound" smooth={true} spy={true}>
-            <IconButton
+            <ScrollDownButton
               aria-label="Scroll down to What is Orcasound section"
               onClick={() =>
                 pushToDataLayer('scroll_arrow_click', { page: 'home' })
               }
-              sx={{
-                position: {
-                  xs: 'relative',
-                  sm: 'relative',
-                  md: 'relative',
-                  lg: 'absolute',
-                },
-                bottom: {
-                  xs: '0.25px',
-                  sm: '0.25px',
-                  md: '0.25px',
-                  lg: '30px',
-                },
-                padding: '0',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '15px',
-                transition: 'all 0.5s ease-in-out',
-                '&:hover': {
-                  transform: 'translateY(5px)',
-                },
-              }}
             >
-              <ExpandMoreIcon sx={{ fontSize: '5vw', color: '#ffffff' }} />
+              <ExpandMoreIcon
+                sx={{ fontSize: 'max(32px, 5vw)', color: '#ffffff' }}
+              />
               <ExpandMoreIcon
                 sx={{
-                  fontSize: '5vw',
+                  fontSize: 'max(32px, 5vw)',
                   color: '#ffffff',
-                  transform: 'translateY(-3.5vw)',
+                  marginTop: '-0.7em',
+                  //transform: 'translateY(calc(-0.7 * max(32px, 5vw)))',
                 }}
               />
-            </IconButton>
+            </ScrollDownButton>
           </ScrollElement>
         </Box>
       </Box>
@@ -297,7 +293,7 @@ export const index = ({ home }) => {
               fontFamily={'Mukta'}
               fontSize="44px"
               fontWeight={'600'}
-              mr={{ xs: 10 }}
+              mr={{ xs: 0 }}
             >
               {content.hydrophoneHeading}
             </Typography>
@@ -506,11 +502,12 @@ export default index
 // Sanity is unreachable or unconfigured, fall back to null and the component
 // renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let home = null
   try {
     home = await getClient(false).fetch(HOME_PAGE_QUERY)
   } catch {
     home = null
   }
-  return { props: { home }, revalidate: 60 }
+  return { props: { home, siteChrome: await siteChrome }, revalidate: 60 }
 }

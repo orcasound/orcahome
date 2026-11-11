@@ -1,5 +1,8 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
+import {urlField} from './siteLink'
+import {guideUrl} from '../siteUrl'
+
 /**
  * About page (Phase 2 — first real-page content model).
  *
@@ -23,11 +26,7 @@ export const aboutPage = defineType({
       description: (
         <>
           📖 New to editing this page?{' '}
-          <a
-            href="https://docs.google.com/document/d/1kmvkvkVbKbN5ibfVHAJ4o6dhokfEwGbJW1JS8nnbWJc/edit"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={guideUrl('about')} target="_blank" rel="noreferrer">
             Read the step-by-step guide
           </a>
           .
@@ -82,7 +81,8 @@ export const aboutPage = defineType({
               type: 'image',
               options: {hotspot: true},
             }),
-            defineField({name: 'url', title: 'Link URL', type: 'url'}),
+            // A string, not `url`, so a page on this site (/projects/<slug>) is allowed.
+            urlField('url', 'Link URL'),
           ],
           preview: {select: {title: 'title', media: 'image'}},
         }),

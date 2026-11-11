@@ -20,6 +20,7 @@ import TopBanner from '../components/TopBanner'
 import { ORCASOUND_YOUTUBE_URL } from '../constants/links'
 import { getClient } from '../sanity/client'
 import { LEARN_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 
 const audioS01 = '/audio/FO-S01.mp3'
@@ -462,11 +463,12 @@ export default learn
 // Sanity is unreachable or unconfigured, fall back to null and the component
 // renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let learnPage = null
   try {
     learnPage = await getClient(false).fetch(LEARN_PAGE_QUERY)
   } catch {
     learnPage = null
   }
-  return { props: { learnPage }, revalidate: 60 }
+  return { props: { learnPage, siteChrome: await siteChrome }, revalidate: 60 }
 }

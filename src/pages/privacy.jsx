@@ -1,6 +1,8 @@
 import { Box, Container, Link as MuiLink, Typography } from '@mui/material'
 import Head from 'next/head'
 
+import { getSiteChrome } from '../sanity/siteChrome'
+
 const Section = ({ title, children }) => (
   <Box component="section" sx={{ mt: 5 }}>
     <Typography variant="h5" component="h2" gutterBottom>
@@ -257,4 +259,8 @@ export default function PrivacyPolicy() {
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  return { props: { siteChrome: await getSiteChrome() }, revalidate: 60 }
 }

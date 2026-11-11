@@ -10,6 +10,7 @@ import DonatePartners from '../components/Donate/DonatePartners'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { DONATE_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 
 // Current hard-coded copy, used as a per-field fallback whenever Sanity has no
 // value for a field (or Sanity is unreachable).
@@ -117,11 +118,12 @@ export default Donate
 // unconfigured, fall back to null and the component renders its built-in
 // DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let donate = null
   try {
     donate = await getClient(false).fetch(DONATE_PAGE_QUERY)
   } catch {
     donate = null
   }
-  return { props: { donate }, revalidate: 60 }
+  return { props: { donate, siteChrome: await siteChrome }, revalidate: 60 }
 }

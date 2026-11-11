@@ -3,12 +3,12 @@ import { Box } from '@mui/material'
 import Footer from './Footer'
 import Nav from './Nav'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, siteChrome }) => {
   return (
     <>
-      <Nav />
+      <Nav nav={siteChrome?.nav} />
       <Box component="main">{children}</Box>
-      <Footer />
+      <Footer footer={siteChrome?.footer} />
     </>
   )
 }

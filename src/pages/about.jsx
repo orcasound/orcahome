@@ -8,9 +8,11 @@ import { useState } from 'react'
 import AboutBanner from '../../public/images/about.webp'
 import AboutCard from '../components/About/AboutCard'
 import Items from '../components/About/db.json'
+import Link from '../components/Link'
 import TopBanner from '../components/TopBanner'
 import { getClient } from '../sanity/client'
 import { ABOUT_PAGE_QUERY } from '../sanity/queries'
+import { getSiteChrome } from '../sanity/siteChrome'
 import { pushToDataLayer } from '../utils/gtm'
 import useIsNotDesktop from '../utils/useIsNotDesktop'
 
@@ -129,6 +131,26 @@ export default function About({ about }) {
 
           {mobileActive && <Mobile setSeeMore={setSeeMore} seeMore={seeMore} />}
 
+          {/* Entry point to every project: the cards above are hand-picked, and
+              Projects is deliberately not in the top menu (2026-10-29). */}
+          <Box sx={{ mt: { xs: 3, md: 5 }, textAlign: 'center' }}>
+            <Link
+              href="/projects"
+              variant="h6"
+              underline="hover"
+              sx={{ fontFamily: 'Montserrat', fontWeight: 500 }}
+              onClick={() =>
+                pushToDataLayer('cta_click', {
+                  cta_text: 'See all projects',
+                  section: 'projects',
+                  page: 'about',
+                })
+              }
+            >
+              See all projects &rarr;
+            </Link>
+          </Box>
+
           <Box my={13}>
             <Typography
               mt={1}
@@ -220,11 +242,12 @@ function Mobile({ setSeeMore, seeMore }) {
 // If Sanity is unreachable or unconfigured, fall back to null and the
 // component renders its built-in DEFAULTS.
 export async function getStaticProps() {
+  const siteChrome = getSiteChrome()
   let about = null
   try {
     about = await getClient(false).fetch(ABOUT_PAGE_QUERY)
   } catch {
     about = null
   }
-  return { props: { about }, revalidate: 60 }
+  return { props: { about, siteChrome: await siteChrome }, revalidate: 60 }
 }
