@@ -93,6 +93,7 @@ const GETINVOLVED_SECTIONS = [
     name: 'Developers',
     renderKey: 'forDevelopers',
     margin: '30px 25px',
+    headingVariant: 'h5',
   },
   {
     id: 'donate',
@@ -1217,8 +1218,11 @@ export const GetInvolved = ({ getInvolved }) => {
               }}
             >
               <Typography
-                variant="h4"
-                sx={{ margin: '40px 0px', fontWeight: '500' }}
+                variant={section.headingVariant || 'h4'}
+                sx={{
+                  margin: section.headingVariant ? '40px 0 10px' : '40px 0px',
+                  ...(!section.headingVariant && { fontWeight: '500' }),
+                }}
               >
                 {section.name}
               </Typography>
