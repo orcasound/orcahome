@@ -54,8 +54,6 @@ export const GET_INVOLVED_PAGE_QUERY = `*[_type == "getInvolvedPage"][0]{
   "heroImageUrl": heroImage.asset->url,
   citizenScientistHeading,
   citizenScientistText,
-  inPersonHeading,
-  inPersonText,
   volunteerImages[]{
     "url": image.asset->url,
     "width": image.asset->metadata.dimensions.width,
@@ -115,8 +113,6 @@ export interface GetInvolvedPageContent {
   heroImageUrl?: string
   citizenScientistHeading?: string
   citizenScientistText?: string
-  inPersonHeading?: string
-  inPersonText?: string
   volunteerImages?: SanityImageWithDimensions[]
   volunteerClosingText?: string
   developersIntro?: string
