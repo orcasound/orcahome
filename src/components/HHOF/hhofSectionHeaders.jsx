@@ -47,9 +47,7 @@ export const foundersHeader = {
           Like{' '}
           <Link
             sx={{ color: 'white', textDecoration: 'underline' }}
-            href="https://www.orcasound.net/join/"
-            target="_blank"
-            rel="noopener"
+            href="/getinvolved"
           >
             Orcasound organizational members
           </Link>{' '}

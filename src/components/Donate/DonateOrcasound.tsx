@@ -41,8 +41,7 @@ interface DonateOrcasoundProps {
 }
 
 // Built-in dialog copy + options, used as a fallback when Sanity has none.
-const DEFAULT_VOLUNTEERS_BUTTON_HREF =
-  'https://www.orcasound.net/hacker-hall-of-fame/'
+const DEFAULT_VOLUNTEERS_BUTTON_HREF = '/hacker-hall-of-fame'
 const DEFAULT_DIALOG_TITLE = 'Two Ways to Make A Difference'
 const DEFAULT_DIALOG_SUBTITLE = 'Select your preferred method'
 const DEFAULT_DIALOG_HEADING = 'Ways to Support'
@@ -123,6 +122,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
 
   const volunteersButtonHref =
     props.volunteersButtonHref || DEFAULT_VOLUNTEERS_BUTTON_HREF
+  const isInternalVolunteersLink = volunteersButtonHref.startsWith('/')
   const dialogTitle = props.dialogTitle || DEFAULT_DIALOG_TITLE
   const dialogSubtitle = props.dialogSubtitle || DEFAULT_DIALOG_SUBTITLE
   const dialogHeading = props.dialogHeading || DEFAULT_DIALOG_HEADING
@@ -245,8 +245,8 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
             <Button
               variant="contained"
               href={volunteersButtonHref}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={isInternalVolunteersLink ? undefined : '_blank'}
+              rel={isInternalVolunteersLink ? undefined : 'noopener noreferrer'}
               sx={{
                 backgroundColor: '#1B2B7B',
                 borderRadius: '20px',

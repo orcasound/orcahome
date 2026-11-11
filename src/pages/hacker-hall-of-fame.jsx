@@ -136,23 +136,12 @@ const HackerHallOfFame = ({ hhof }) => {
       , these events have brought many talented programmers, designers,
       engineers, researchers, and “geeks for good” to the project. They have
       made it possible to rapidly develop and refine the{' '}
-      <Link
-        href="https://www.orcasound.net/portfolio/orcasound-app/"
-        target="_blank"
-        rel="noopener"
-      >
-        Orcasound app
-      </Link>{' '}
-      — a new way to{' '}
+      <Link href="/projects/orcasound-app">Orcasound app</Link> — a new way to{' '}
       <Link href="https://live.orcasound.net/" target="_blank" rel="noopener">
         listen for whales
       </Link>{' '}
       — based on a{' '}
-      <Link
-        href="https://www.orcasound.net/2018/04/27/orcasounds-new-live-audio-solution-from-hydrophone-to-headphone-with-a-raspberry-pi-computer-and-hls-dash-streaming-software/"
-        target="_blank"
-        rel="noopener"
-      >
+      <Link href="/blog/orcasounds-new-live-audio-solution-from-hydrophone-to-headphone-with-a-raspberry-pi-computer-and-hls-dash-streaming-software">
         cutting-edge suite of inexpensive and open source hardware and software
         for live streaming audio data.
       </Link>
