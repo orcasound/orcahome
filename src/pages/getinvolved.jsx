@@ -49,11 +49,6 @@ const DEFAULTS = {
               Not only can you listen for whales to marvel at the symphony of sounds they make,
               but also you can listen *for* whales — helping to monitor their habitat
               and notifying the network when you hear them or a noise that could endanger them.`,
-  inPersonHeading: 'In Person',
-  inPersonText: `You can also volunteer in-person with any of the current Orcasound network members,
-              or with a new organization in your neighborhood that you convince to become a new member.
-              Volunteer opportunities can include helping deploy or fix hydrophones, teaching groups how to “listen for whales,”
-              or helping create a new educational or outreach project.`,
   volunteerClosingText: `Volunteers are currently helping Orcasound take huge strides forward.
           Orca Network volunteers recently deployed a new hydrophone node at Bush Point
           and built an amazing ocean listening exhibit in Langley out of an antique telephone booth.
@@ -233,29 +228,6 @@ const VolunteerContent = ({ content }) => {
           <Typography variant="body1">
             {content.citizenScientistText}
           </Typography>
-          <ActionButton
-            link="/research-opt-in-form"
-            text="Become a Citizen Scientist"
-            onClick={() =>
-              pushToDataLayer('cta_click', {
-                cta_text: 'Join Now',
-                section: 'research-opt-in-form',
-                page: 'get_involved',
-              })
-            }
-          />
-        </Box>
-        <Box
-          sx={(theme) => ({
-            [theme.breakpoints.up('sm')]: {
-              paddingLeft: '2vw',
-            },
-          })}
-        >
-          <Typography variant="h5" sx={{ marginBottom: '10px' }}>
-            {content.inPersonHeading}
-          </Typography>
-          <Typography variant="body1">{content.inPersonText}</Typography>
         </Box>
       </Box>
       <Box
@@ -1168,8 +1140,6 @@ export const GetInvolved = ({ getInvolved }) => {
       source?.citizenScientistHeading || DEFAULTS.citizenScientistHeading,
     citizenScientistText:
       source?.citizenScientistText || DEFAULTS.citizenScientistText,
-    inPersonHeading: source?.inPersonHeading || DEFAULTS.inPersonHeading,
-    inPersonText: source?.inPersonText || DEFAULTS.inPersonText,
     volunteerImages: source?.volunteerImages || [],
     volunteerClosingText:
       source?.volunteerClosingText || DEFAULTS.volunteerClosingText,
