@@ -111,6 +111,7 @@ const GETINVOLVED_SECTIONS = [
   {
     id: 'donate',
     name: 'Support',
+    heading: 'Donate',
     renderKey: 'donate',
   },
 ]
