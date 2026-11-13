@@ -74,6 +74,7 @@ a:hover { text-decoration: underline; }
 .ferr { color: #b3261e; font-size: 11.5px; margin-top: 3px; display: none; }
 .field.bad input { border-color: #b3261e; }
 .field.bad .ferr { display: block; }
+.sentnote { background: #d8f0e0; color: #155f37; border-radius: 6px; padding: 8px 10px; font-size: 12.5px; margin: 10px 0 0; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
 .modal-close { float: right; cursor: pointer; border: 0; background: none; font-size: 20px; line-height: 1; color: #888; }
 </style>
@@ -123,9 +124,10 @@ a:hover { text-decoration: underline; }
     <div class="field" id="f-zulip"><label>Zulip handle <span class="req">*</span></label><input id="r-zulip" type="text" placeholder="e.g. Jane Designer"><div class="ferr">Please enter your Zulip handle.</div></div>
     <div class="field" id="f-github"><label>GitHub handle <span class="req">*</span></label><input id="r-github" type="text" placeholder="e.g. janedesigner"><div class="ferr">Please enter your GitHub handle.</div></div>
     <div class="field"><label>Note (optional)</label><textarea id="r-note" rows="3" placeholder="Anything you want me to know"></textarea></div>
+    <p class="sentnote" id="sentNote" role="status" hidden></p>
     <div class="modal-actions">
-      <button class="btn ghost sm" onclick="closeRequest()">Cancel</button>
-      <button class="btn sm" onclick="submitRequest()">Send request</button>
+      <button class="btn ghost sm" id="r-cancel" onclick="closeRequest()">Cancel</button>
+      <button class="btn sm" id="r-send" onclick="submitRequest()">Send request</button>
     </div>
   </div>
 </div>
@@ -285,7 +287,7 @@ function render(issues){
 }
 
 let reqIssue=null, reqTitle="";
-function openRequest(num,title){ reqIssue=num; reqTitle=title||""; document.getElementById("modalSub").textContent="Issue #"+num+(reqTitle?": "+reqTitle:""); ["name","email","zulip","github"].forEach(k=>document.getElementById("f-"+k).classList.remove("bad")); document.getElementById("modalBg").classList.add("open"); document.getElementById("r-name").focus(); }
+function openRequest(num,title){ reqIssue=num; reqTitle=title||""; document.getElementById("modalSub").textContent="Issue #"+num+(reqTitle?": "+reqTitle:""); ["name","email","zulip","github"].forEach(k=>document.getElementById("f-"+k).classList.remove("bad")); document.getElementById("sentNote").hidden=true; document.getElementById("r-send").textContent="Send request"; document.getElementById("r-cancel").textContent="Cancel"; document.getElementById("modalBg").classList.add("open"); document.getElementById("r-name").focus(); }
 function closeRequest(){ document.getElementById("modalBg").classList.remove("open"); }
 function submitRequest(){
   const name=document.getElementById("r-name").value.trim();
@@ -308,7 +310,12 @@ function submitRequest(){
   ];
   const href="mailto:"+REQUEST_EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(lines.join("\n"));
   window.location.href=href;
-  closeRequest();
+  // Say what happened: the email app opened, nothing is sent until they press Send there, and nothing is stored here.
+  const sn=document.getElementById("sentNote");
+  sn.textContent="Your email app should now be open with this request filled in. It is not sent until you press Send there, and nothing is stored on this page. To change it, edit the boxes above and press Open the email again. If no email app opened, email "+REQUEST_EMAIL+" with these details.";
+  sn.hidden=false;
+  document.getElementById("r-send").textContent="Open the email again";
+  document.getElementById("r-cancel").textContent="Done";
 }
 document.getElementById("modalBg").addEventListener("click",function(e){ if(e.target===this) closeRequest(); });
 document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeRequest(); });
