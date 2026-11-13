@@ -137,7 +137,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
 
   const handleDonateClick = () => {
     pushToDataLayer('cta_click', {
-      cta_text: 'Support',
+      cta_text: 'Donate',
       section: 'donate_orcasound',
       page: 'donate',
     })
@@ -205,7 +205,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               }}
               onClick={handleDonateClick}
             >
-              Support
+              Donate
             </Button>
           </Box>
         </DonateContainer>
