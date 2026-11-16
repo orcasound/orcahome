@@ -31,6 +31,7 @@ export default function BlogPost({ post }) {
           date={dateLabel}
           authors={authors}
           chips={visibleTags}
+          chipHref={(tag) => `/blog?tag=${encodeURIComponent(tag)}`}
         />
 
         {post.featuredImageUrl && (

@@ -185,7 +185,12 @@ export default function BlogListing({ posts }) {
             sx={{ minWidth: 200 }}
           >
             <MenuItem value="">All topics</MenuItem>
-            {tagOptions.map((t) => (
+            {/* A tag reached from a post's chip may be below MIN_TAG_COUNT;
+                list it too so the dropdown shows what is being filtered. */}
+            {(tag && !tagOptions.includes(tag)
+              ? [tag, ...tagOptions]
+              : tagOptions
+            ).map((t) => (
               <MenuItem key={t} value={t}>
                 {t}
               </MenuItem>

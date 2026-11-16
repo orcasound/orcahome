@@ -26,6 +26,9 @@ export default function Project({ project }) {
           title={project.title}
           authors={project.authors || []}
           chips={project.categories || []}
+          chipHref={(category) =>
+            `/projects?category=${encodeURIComponent(category)}`
+          }
         />
 
         {/* No featured image here, like the old WordPress portfolio pages: it

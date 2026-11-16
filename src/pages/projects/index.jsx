@@ -1,5 +1,15 @@
-import { Box, Container, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Container,
+  MenuItem,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useMemo } from 'react'
 
 import AboutItems from '../../components/About/db.json'
 import { formatByline } from '../../components/Blog/blogFormat'
@@ -21,14 +31,51 @@ const FALLBACK = AboutItems.map((item) => ({
 }))
 
 export default function Projects({ projects }) {
-  const items = projects.length
-    ? projects.map((project) => ({
-        ...project,
-        imageUrl: project.featuredImageUrl,
-        imageAlt: project.featuredImageAlt,
-        url: `/projects/${project.slug}`,
-      }))
-    : FALLBACK
+  const router = useRouter()
+  const allItems = useMemo(
+    () =>
+      projects.length
+        ? projects.map((project) => ({
+            ...project,
+            imageUrl: project.featuredImageUrl,
+            imageAlt: project.featuredImageAlt,
+            url: `/projects/${project.slug}`,
+          }))
+        : FALLBACK,
+    [projects]
+  )
+
+  // Category filter, kept in the URL (?category=) like the blog's tag filter
+  // (BlogListing.jsx), so a link such as
+  // /projects?category=Hydrophone%20locations shows just those projects. The
+  // options come from the data (most projects first), so a category an editor
+  // adds in Sanity appears here without a code change.
+  const categoryOptions = useMemo(() => {
+    const counts = new Map()
+    for (const item of allItems) {
+      for (const c of item.categories || []) {
+        counts.set(c, (counts.get(c) || 0) + 1)
+      }
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+      .map(([c]) => c)
+  }, [allItems])
+
+  const category =
+    typeof router.query.category === 'string' ? router.query.category : ''
+  const items = category
+    ? allItems.filter((item) => (item.categories || []).includes(category))
+    : allItems
+
+  const setCategory = (value) =>
+    router.push(
+      value
+        ? { pathname: '/projects', query: { category: value } }
+        : '/projects',
+      undefined,
+      { shallow: true, scroll: false }
+    )
 
   return (
     <>
@@ -45,6 +92,45 @@ export default function Projects({ projects }) {
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
           {DESCRIPTION}
         </Typography>
+
+        {categoryOptions.length > 0 && (
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            sx={{ mb: 4 }}
+            alignItems={{ sm: 'center' }}
+          >
+            <TextField
+              select
+              size="small"
+              label="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              sx={{ minWidth: 220 }}
+            >
+              <MenuItem value="">All categories</MenuItem>
+              {(category && !categoryOptions.includes(category)
+                ? [category, ...categoryOptions]
+                : categoryOptions
+              ).map((c) => (
+                <MenuItem key={c} value={c}>
+                  {c}
+                </MenuItem>
+              ))}
+            </TextField>
+            {category && (
+              <Button size="small" onClick={() => setCategory('')}>
+                Clear filter
+              </Button>
+            )}
+          </Stack>
+        )}
+
+        {items.length === 0 && (
+          <Typography variant="body1" sx={{ mb: 4 }}>
+            No projects in this category yet.
+          </Typography>
+        )}
 
         <Box
           sx={{
