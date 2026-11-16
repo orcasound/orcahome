@@ -4,8 +4,8 @@ import {guideUrl} from '../siteUrl'
 /**
  * Donate / Support page (Phase 2 — V1 only).
  *
- * Models the editable copy: the hero and the two support cards (title, message,
- * image). The partner cards stay in `src/data/donatePartners.json`, and the
+ * Models the editable copy: the hero and the Support Orcasound card (title,
+ * message, image). The partner cards stay in `src/data/donatePartners.json`, and the
  * "Ways to Support" dialog (Open Collective / GitHub links) stays in the React
  * component. The V2 variant is being retired (#292/#299) and is not modelled.
  *
@@ -64,33 +64,6 @@ export const donatePage = defineType({
       options: {hotspot: true},
     }),
 
-    // —— Support Volunteers card ——
-    defineField({
-      name: 'volunteersTitle',
-      title: 'Support Volunteers · title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'volunteersMessage',
-      title: 'Support Volunteers · message',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'volunteersImage',
-      title: 'Support Volunteers · image',
-      type: 'image',
-      options: {hotspot: true},
-    }),
-    defineField({
-      name: 'volunteersButtonHref',
-      title: 'Support Volunteers · button link',
-      description:
-        'A full URL, or a page on this site starting with / (e.g. /hacker-hall-of-fame).',
-      type: 'url',
-      validation: (rule) => rule.uri({allowRelative: true, scheme: ['http', 'https']}),
-    }),
-
     // —— "Ways to Support" dialog ——
     defineField({
       name: 'dialogTitle',
@@ -137,12 +110,12 @@ export const donatePage = defineType({
             defineField({
               name: 'usesCardImage',
               title: 'Thumbnail',
-              description: 'Which card image to show as the thumbnail for this option.',
+              description: 'Which photo to show as the thumbnail for this option.',
               type: 'string',
               options: {
                 list: [
                   {title: 'Support Orcasound image', value: 'orcasound'},
-                  {title: 'Support Volunteers image', value: 'volunteers'},
+                  {title: 'People at laptops photo', value: 'volunteers'},
                 ],
                 layout: 'radio',
               },
