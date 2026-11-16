@@ -4,10 +4,9 @@ import {guideUrl} from '../siteUrl'
 /**
  * Donate / Support page (Phase 2 — V1 only).
  *
- * Models the editable copy: the hero and the Support Orcasound card (title,
- * message, image). The partner cards stay in `src/data/donatePartners.json`, and the
- * "Ways to Support" dialog (Open Collective / GitHub links) stays in the React
- * component. The V2 variant is being retired (#292/#299) and is not modelled.
+ * Models the editable copy: the hero, the donate cards (a list of 1 to 3, #492),
+ * the "Ways to Support" dialog and the partner cards. Layout and styling stay in
+ * code. The V2 variant is being retired (#292/#299) and is not modelled.
  *
  * Singleton: there is only ever one Donate page document.
  */
@@ -45,23 +44,78 @@ export const donatePage = defineType({
       options: {hotspot: true},
     }),
 
-    // —— Support Orcasound card ——
+    // —— Donate cards ——
     defineField({
-      name: 'orcasoundTitle',
-      title: 'Support Orcasound · title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'orcasoundMessage',
-      title: 'Support Orcasound · message',
-      type: 'text',
-      rows: 3,
-    }),
-    defineField({
-      name: 'orcasoundImage',
-      title: 'Support Orcasound · image',
-      type: 'image',
-      options: {hotspot: true},
+      name: 'cards',
+      title: 'Donate cards',
+      description:
+        'The cards near the top of the page (1 to 3). Add, remove or reorder them here; one card is shown centered.',
+      type: 'array',
+      validation: (rule) => rule.min(1).max(3),
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'donateCard',
+          title: 'Donate card',
+          fields: [
+            defineField({
+              name: 'title',
+              title: 'Title',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'message',
+              title: 'Message',
+              type: 'text',
+              rows: 3,
+            }),
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: {hotspot: true},
+            }),
+            defineField({
+              name: 'buttonLabel',
+              title: 'Button label',
+              description: 'Leave empty to show "Donate".',
+              type: 'string',
+            }),
+            defineField({
+              name: 'buttonAction',
+              title: 'Button action',
+              type: 'string',
+              initialValue: 'dialog',
+              options: {
+                list: [
+                  {title: 'Open the "Ways to Support" pop-up', value: 'dialog'},
+                  {title: 'Go to a link', value: 'link'},
+                ],
+                layout: 'radio',
+              },
+            }),
+            defineField({
+              name: 'buttonHref',
+              title: 'Button link',
+              description:
+                'A full URL, or a page on this site starting with / (e.g. /hacker-hall-of-fame).',
+              type: 'url',
+              hidden: ({parent}) => parent?.buttonAction !== 'link',
+              validation: (rule) =>
+                rule
+                  .uri({allowRelative: true, scheme: ['http', 'https']})
+                  .custom((value, context) => {
+                    const parent = context.parent as {buttonAction?: string} | undefined
+                    return parent?.buttonAction === 'link' && !value
+                      ? 'Add a link, or set the button to open the pop-up.'
+                      : true
+                  }),
+            }),
+          ],
+          preview: {select: {title: 'title', subtitle: 'message', media: 'image'}},
+        }),
+      ],
     }),
 
     // —— "Ways to Support" dialog ——
@@ -108,20 +162,14 @@ export const donatePage = defineType({
               validation: (rule) => rule.required(),
             }),
             defineField({
-              name: 'usesCardImage',
+              name: 'image',
               title: 'Thumbnail',
-              description: 'Which photo to show as the thumbnail for this option.',
-              type: 'string',
-              options: {
-                list: [
-                  {title: 'Support Orcasound image', value: 'orcasound'},
-                  {title: 'People at laptops photo', value: 'volunteers'},
-                ],
-                layout: 'radio',
-              },
+              description: "Leave empty to reuse the first card's image.",
+              type: 'image',
+              options: {hotspot: true},
             }),
           ],
-          preview: {select: {title: 'title', subtitle: 'href'}},
+          preview: {select: {title: 'title', subtitle: 'href', media: 'image'}},
         }),
       ],
     }),

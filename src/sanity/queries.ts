@@ -359,24 +359,29 @@ export interface CatalogPageContent {
 }
 
 /**
- * Donate / Support page (Phase 2 — V1 only). Hero + the Support Orcasound card.
- * The card image is rendered non-`fill` in the card and `fill` in the dialog, so
- * we resolve its asset dimensions for `next/image`. Partner cards stay in
- * `donatePartners.json`.
+ * Donate / Support page (Phase 2 — V1 only). Hero, the donate cards (#492), the
+ * "Ways to Support" dialog and the partner cards. Card images are rendered
+ * non-`fill`, so we resolve their asset dimensions for `next/image`.
  */
 export const DONATE_PAGE_QUERY = `*[_type == "donatePage"][0]{
   heroTitle,
   heroDescription,
   "heroImageUrl": heroImage.asset->url,
-  orcasoundTitle,
-  orcasoundMessage,
-  "orcasoundImageUrl": orcasoundImage.asset->url,
-  "orcasoundImageWidth": orcasoundImage.asset->metadata.dimensions.width,
-  "orcasoundImageHeight": orcasoundImage.asset->metadata.dimensions.height,
+  cards[]{
+    _key,
+    title,
+    message,
+    "imageUrl": image.asset->url,
+    "imageWidth": image.asset->metadata.dimensions.width,
+    "imageHeight": image.asset->metadata.dimensions.height,
+    buttonLabel,
+    buttonAction,
+    buttonHref
+  },
   dialogTitle,
   dialogSubtitle,
   dialogHeading,
-  donationOptions[]{ title, description, href, usesCardImage },
+  donationOptions[]{ title, description, href, "imageUrl": image.asset->url },
   partnersTitle,
   partnersDescription,
   partners[]{
@@ -387,22 +392,30 @@ export const DONATE_PAGE_QUERY = `*[_type == "donatePage"][0]{
   }
 }`
 
+export interface DonateCard {
+  _key?: string
+  title?: string
+  message?: string
+  imageUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+  buttonLabel?: string
+  buttonAction?: 'dialog' | 'link'
+  buttonHref?: string
+}
+
 export interface DonationOption {
   title?: string
   description?: string
   href?: string
-  usesCardImage?: 'orcasound' | 'volunteers'
+  imageUrl?: string
 }
 
 export interface DonatePageContent {
   heroTitle?: string
   heroDescription?: string
   heroImageUrl?: string
-  orcasoundTitle?: string
-  orcasoundMessage?: string
-  orcasoundImageUrl?: string
-  orcasoundImageWidth?: number
-  orcasoundImageHeight?: number
+  cards?: DonateCard[]
   dialogTitle?: string
   dialogSubtitle?: string
   dialogHeading?: string
