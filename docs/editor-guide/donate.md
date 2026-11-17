@@ -1,11 +1,11 @@
 # Editing the Donate / Support page (Sanity CMS guide)
 
 This guide walks you through editing the Support page on orcasound.tech using
-Sanity Studio — the hero, the two support cards, the "Ways to Support" pop-up,
+Sanity Studio — the hero, the support card, the "Ways to Support" pop-up,
 and the partner cards — all without touching any code.
 
 > **What is NOT edited here:** page layout, styling, and analytics stay in code.
-> Everything else on the page — the hero, the two support cards, the "Ways to
+> Everything else on the page — the hero, the support card, the "Ways to
 > Support" pop-up, and the 501(c)3 partner cards — is editable in Sanity.
 
 ---
@@ -27,18 +27,16 @@ and the partner cards — all without touching any code.
 
 ## 3. The fields you can edit
 
-| Field                                            | What it controls                                        |
-| ------------------------------------------------ | ------------------------------------------------------- |
-| **Hero title**                                   | The big title on the top banner (e.g. "Support")        |
-| **Hero description**                             | The sentence under the banner title                     |
-| **Hero image**                                   | The top banner image                                    |
-| **Support Orcasound · title / message / image**  | The left support card                                   |
-| **Support Volunteers · title / message / image** | The right support card                                  |
-| **Support Volunteers · button link**             | Where the right card's Support button goes              |
-| **Dialog · title / subtitle / heading**          | The "Ways to Support" pop-up headings                   |
-| **Dialog · donation options**                    | The clickable support methods in the pop-up (see §5)    |
-| **Partners section · title / description**       | The heading above the partner cards                     |
-| **Partner cards**                                | The 501(c)3 partner cards — logo, name, text, link (§6) |
+| Field                                           | What it controls                                        |
+| ----------------------------------------------- | ------------------------------------------------------- |
+| **Hero title**                                  | The big title on the top banner (e.g. "Support")        |
+| **Hero description**                            | The sentence under the banner title                     |
+| **Hero image**                                  | The top banner image                                    |
+| **Support Orcasound · title / message / image** | The support card                                        |
+| **Dialog · title / subtitle / heading**         | The "Ways to Support" pop-up headings                   |
+| **Dialog · donation options**                   | The clickable support methods in the pop-up (see §5)    |
+| **Partners section · title / description**      | The heading above the partner cards                     |
+| **Partner cards**                               | The 501(c)3 partner cards — logo, name, text, link (§6) |
 
 ### Editing text
 
@@ -50,7 +48,7 @@ Click any text field and type. That's it.
 
 ## 4. Changing an image
 
-This works the same for the **Hero image** and the two card images.
+This works the same for the **Hero image** and the **Support Orcasound · image**.
 
 1. Click the image field.
 2. Click **remove** on the current image, then drag a new image in (or click to
@@ -77,7 +75,7 @@ Each donation option (e.g. Open Collective, GitHub) has:
 | **Title**       | The option's name (e.g. "Support through Open Collective") |
 | **Description** | The short line under the title                             |
 | **Link URL**    | Where the option links to                                  |
-| **Thumbnail**   | Which card image to reuse as the option's thumbnail        |
+| **Thumbnail**   | Which photo to show as the option's thumbnail              |
 
 - **Edit an option**: click it to open, then change the fields.
 - **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag

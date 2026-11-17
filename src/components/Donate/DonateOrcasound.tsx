@@ -12,6 +12,7 @@ import {
 import Image from 'next/image'
 import { useState } from 'react'
 
+import donateVolunteersThumbnail from '../../../public/images/donateOrcasound/volunteers.jpg'
 import theme from '../../styles/theme'
 import { pushToDataLayer } from '../../utils/gtm'
 
@@ -28,12 +29,6 @@ interface DonateOrcasoundProps {
   donateOrcasoundImageHeight?: number
   donateOrcasoundTitle: string
   donateOrcasoundMessage?: string
-  donateVolunteersImage: string
-  donateVolunteersImageWidth?: number
-  donateVolunteersImageHeight?: number
-  donateVolunteersTitle: string
-  donateVolunteersMessage?: string
-  volunteersButtonHref?: string
   dialogTitle?: string
   dialogSubtitle?: string
   dialogHeading?: string
@@ -41,7 +36,6 @@ interface DonateOrcasoundProps {
 }
 
 // Built-in dialog copy + options, used as a fallback when Sanity has none.
-const DEFAULT_VOLUNTEERS_BUTTON_HREF = '/hacker-hall-of-fame'
 const DEFAULT_DIALOG_TITLE = 'Two Ways to Make A Difference'
 const DEFAULT_DIALOG_SUBTITLE = 'Select your preferred method'
 const DEFAULT_DIALOG_HEADING = 'Ways to Support'
@@ -61,9 +55,14 @@ const DEFAULT_DONATION_OPTIONS: DonationOption[] = [
   },
 ]
 
-const DonateContainer = styled(Box)(({}) => ({
+// The single card keeps the width it had when two cards shared the row
+// (half the row minus half the gap), centered by the parent. On phones the
+// parent is a column and the card fills the width.
+const DonateContainer = styled(Box)(({ theme }) => ({
   margin: '2vw 0',
-  flex: 1,
+  [theme.breakpoints.up('sm')]: {
+    width: 'calc(50% - 1vw)',
+  },
   borderRadius: '15px',
   padding: '2vw',
   border: '1px solid black',
@@ -120,9 +119,6 @@ const DonateOptionImage = styled(Box)(({ theme }) => ({
 const DonateOrcasound = (props: DonateOrcasoundProps) => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  const volunteersButtonHref =
-    props.volunteersButtonHref || DEFAULT_VOLUNTEERS_BUTTON_HREF
-  const isInternalVolunteersLink = volunteersButtonHref.startsWith('/')
   const dialogTitle = props.dialogTitle || DEFAULT_DIALOG_TITLE
   const dialogSubtitle = props.dialogSubtitle || DEFAULT_DIALOG_SUBTITLE
   const dialogHeading = props.dialogHeading || DEFAULT_DIALOG_HEADING
@@ -132,7 +128,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
       : DEFAULT_DONATION_OPTIONS
   const cardImageFor = (which?: 'orcasound' | 'volunteers') =>
     which === 'volunteers'
-      ? props.donateVolunteersImage
+      ? donateVolunteersThumbnail
       : props.donateOrcasoundImage
 
   const handleDonateClick = () => {
@@ -206,63 +202,6 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               onClick={handleDonateClick}
             >
               Donate
-            </Button>
-          </Box>
-        </DonateContainer>
-        <DonateContainer>
-          <Typography
-            fontSize={'1.5rem'}
-            textAlign="center"
-            sx={{ marginBottom: '2vw' }}
-          >
-            {props.donateVolunteersTitle}
-          </Typography>
-          <ImageContainer>
-            <Image
-              src={props.donateVolunteersImage}
-              width={props.donateVolunteersImageWidth}
-              height={props.donateVolunteersImageHeight}
-              alt="Support Volunteers"
-              sizes="100vw"
-              style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'contain',
-              }}
-            />
-          </ImageContainer>
-          <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
-            {props.donateVolunteersMessage}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              marginTop: 'auto',
-            }}
-          >
-            <Button
-              variant="contained"
-              href={volunteersButtonHref}
-              target={isInternalVolunteersLink ? undefined : '_blank'}
-              rel={isInternalVolunteersLink ? undefined : 'noopener noreferrer'}
-              sx={{
-                backgroundColor: '#1B2B7B',
-                borderRadius: '20px',
-                margin: '10px',
-                width: 'fit-content',
-                fontSize: '16px',
-              }}
-              onClick={() =>
-                pushToDataLayer('cta_click', {
-                  cta_text: 'Support',
-                  section: 'donate_orcasound',
-                  page: 'donate',
-                })
-              }
-            >
-              Support
             </Button>
           </Box>
         </DonateContainer>

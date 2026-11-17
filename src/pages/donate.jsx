@@ -3,7 +3,6 @@ import Head from 'next/head'
 import React from 'react'
 
 import donateOrcasoundImage from '../../public/images/donateOrcasound/orcasound.jpg'
-import donateVolunteersImage from '../../public/images/donateOrcasound/volunteers.jpg'
 import topbanner from '../../public/images/srkw2-17.jpg'
 import DonateOrcasound from '../components/Donate/DonateOrcasound'
 import DonatePartners from '../components/Donate/DonatePartners'
@@ -21,9 +20,6 @@ const DEFAULTS = {
   orcasoundTitle: 'Support Orcasound',
   orcasoundMessage:
     'Help us build and maintain the technology to listen to orcas in the world.',
-  volunteersTitle: 'Support Volunteers',
-  volunteersMessage:
-    'Support those who keep the orcasound website and hydrophone nodes running.',
 }
 
 export const Donate = ({ donate }) => {
@@ -40,16 +36,6 @@ export const Donate = ({ donate }) => {
     orcasoundImageHeight: donate?.orcasoundImageUrl
       ? donate.orcasoundImageHeight
       : undefined,
-    volunteersTitle: donate?.volunteersTitle || DEFAULTS.volunteersTitle,
-    volunteersMessage: donate?.volunteersMessage || DEFAULTS.volunteersMessage,
-    volunteersImage: donate?.volunteersImageUrl || donateVolunteersImage,
-    volunteersImageWidth: donate?.volunteersImageUrl
-      ? donate.volunteersImageWidth
-      : undefined,
-    volunteersImageHeight: donate?.volunteersImageUrl
-      ? donate.volunteersImageHeight
-      : undefined,
-    volunteersButtonHref: donate?.volunteersButtonHref,
     dialogTitle: donate?.dialogTitle,
     dialogSubtitle: donate?.dialogSubtitle,
     dialogHeading: donate?.dialogHeading,
@@ -88,12 +74,6 @@ export const Donate = ({ donate }) => {
             donateOrcasoundImageHeight={content.orcasoundImageHeight}
             donateOrcasoundTitle={content.orcasoundTitle}
             donateOrcasoundMessage={content.orcasoundMessage}
-            donateVolunteersImage={content.volunteersImage}
-            donateVolunteersImageWidth={content.volunteersImageWidth}
-            donateVolunteersImageHeight={content.volunteersImageHeight}
-            donateVolunteersTitle={content.volunteersTitle}
-            donateVolunteersMessage={content.volunteersMessage}
-            volunteersButtonHref={content.volunteersButtonHref}
             dialogTitle={content.dialogTitle}
             dialogSubtitle={content.dialogSubtitle}
             dialogHeading={content.dialogHeading}
