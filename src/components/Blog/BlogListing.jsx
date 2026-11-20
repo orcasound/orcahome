@@ -12,17 +12,13 @@ import {
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
+import { toSlug } from '../../utils/taxonomySlug'
 import ContentCard from '../Post/ContentCard'
-import { formatByline, HIDDEN_TAGS } from './blogFormat'
+import { formatByline, HIDDEN_TAGS, MIN_TAG_COUNT } from './blogFormat'
 
 const POSTS_PER_PAGE = 9
-
-// A tag needs at least this many posts to appear in the filter dropdown. The
-// migrated posts carry ~120 tags with a long tail of one-offs (#410); only the
-// frequently-used ones make useful filters.
-const MIN_TAG_COUNT = 5
 
 const MONTHS = [
   'January',
@@ -87,10 +83,12 @@ function useFilterOptions(posts) {
 }
 
 // Shared blog listing: filters (tag / author / year / month) + post grid +
-// numbered pagination. Filtering and paging happen client-side against the full
-// post list and are reflected in the URL (?tag=&author=&year=&month=&page=), so
-// results are shareable and survive refresh. Final visual design is pending UX (#397).
-export default function BlogListing({ posts }) {
+// numbered pagination. A tag has its own page, /blog/tag/[slug], which passes
+// `fixedTag`; that page is built already filtered, so a link to it shows the
+// right posts straight away. Author / year / month / page live in the URL query
+// (?author=&year=&month=&page=) and are applied client-side. Final visual design
+// is pending UX (#397).
+export default function BlogListing({ posts, fixedTag = '' }) {
   const router = useRouter()
   const {
     tags: tagOptions,
@@ -98,8 +96,9 @@ export default function BlogListing({ posts }) {
     years: yearOptions,
   } = useFilterOptions(posts)
 
-  // Read current filters from the URL.
-  const tag = typeof router.query.tag === 'string' ? router.query.tag : ''
+  // The tag comes from the page (/blog/tag/[slug]); the rest from the URL.
+  const tag = fixedTag
+  const basePath = tag ? `/blog/tag/${toSlug(tag)}` : '/blog'
   const author =
     typeof router.query.author === 'string' ? router.query.author : ''
   const year = typeof router.query.year === 'string' ? router.query.year : ''
@@ -129,29 +128,64 @@ export default function BlogListing({ posts }) {
 
   const hasFilters = Boolean(tag || author || year || month)
 
+  // The URL query without the route param (`slug` on a tag page) or the old
+  // ?tag= filter, which now has its own page.
+  const filterQuery = () => {
+    const next = { ...router.query }
+    delete next.slug
+    delete next.tag
+    return next
+  }
+
   // Update the URL query, resetting to page 1 whenever a filter changes.
   const setQuery = (patch) => {
-    const next = { ...router.query, ...patch }
+    const next = { ...filterQuery(), ...patch }
     delete next.page
     Object.keys(next).forEach((k) => {
       if (next[k] === '' || next[k] == null) delete next[k]
     })
-    router.push({ pathname: '/blog', query: next }, undefined, {
+    router.push({ pathname: basePath, query: next }, undefined, {
       shallow: true,
       scroll: false,
     })
   }
 
-  const clearFilters = () =>
-    router.push('/blog', undefined, { shallow: true, scroll: false })
+  // Picking a topic opens that tag's page, keeping the other filters.
+  const setTag = (value) => {
+    const next = filterQuery()
+    delete next.page
+    router.push(
+      {
+        pathname: value ? `/blog/tag/${toSlug(value)}` : '/blog',
+        query: next,
+      },
+      undefined,
+      { scroll: false }
+    )
+  }
+
+  const clearFilters = () => router.push('/blog', undefined, { scroll: false })
+
+  // Old links used /blog?tag=Name; send them to the tag's own page.
+  const legacyTag =
+    !fixedTag && typeof router.query.tag === 'string' ? router.query.tag : ''
+  useEffect(() => {
+    if (!legacyTag) return
+    const next = { ...router.query }
+    delete next.tag
+    router.replace({
+      pathname: `/blog/tag/${toSlug(legacyTag)}`,
+      query: next,
+    })
+  }, [legacyTag, router])
 
   return (
     <>
       <Head>
         <title>
-          {safePage > 1
-            ? `Blog (page ${safePage}) | Orcasound`
-            : 'Blog | Orcasound'}
+          {`${tag || 'Blog'}${
+            safePage > 1 ? ` (page ${safePage})` : ''
+          } | Orcasound${tag ? ' Blog' : ''}`}
         </title>
         <meta
           name="description"
@@ -161,10 +195,12 @@ export default function BlogListing({ posts }) {
 
       <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
         <Typography variant="h3" component="h1" gutterBottom>
-          Blog
+          {tag || 'Blog'}
         </Typography>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          News, updates, and stories from the Orcasound community.
+          {tag
+            ? `Blog posts tagged “${tag}”.`
+            : 'News, updates, and stories from the Orcasound community.'}
         </Typography>
 
         {/* Filters: topic (tag) / author / year / month */}
@@ -181,11 +217,16 @@ export default function BlogListing({ posts }) {
             size="small"
             label="Topic"
             value={tag}
-            onChange={(e) => setQuery({ tag: e.target.value })}
+            onChange={(e) => setTag(e.target.value)}
             sx={{ minWidth: 200 }}
           >
             <MenuItem value="">All topics</MenuItem>
-            {tagOptions.map((t) => (
+            {/* A tag reached from a post's chip may be below MIN_TAG_COUNT;
+                list it too so the dropdown shows what is being filtered. */}
+            {(tag && !tagOptions.includes(tag)
+              ? [tag, ...tagOptions]
+              : tagOptions
+            ).map((t) => (
               <MenuItem key={t} value={t}>
                 {t}
               </MenuItem>
@@ -296,11 +337,11 @@ export default function BlogListing({ posts }) {
                     <PaginationItem
                       component={Link}
                       href={{
-                        pathname: '/blog',
+                        pathname: basePath,
                         query:
                           item.page === 1
-                            ? { ...router.query, page: undefined }
-                            : { ...router.query, page: item.page },
+                            ? { ...filterQuery(), page: undefined }
+                            : { ...filterQuery(), page: item.page },
                       }}
                       scroll={false}
                       {...item}

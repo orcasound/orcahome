@@ -1,7 +1,9 @@
 import { Chip, Link as MuiLink, Stack, Typography } from '@mui/material'
 
 // Top of a blog post or project page: back link, title, date and byline, and
-// chips (tags or categories). Authors link to their blog archive.
+// chips (tags or categories). Authors link to their blog archive. When
+// `chipHref` is given, each chip links to the page it returns (e.g. the blog
+// filtered by that tag); without it the chips are plain labels.
 const PostHeader = ({
   backHref,
   backLabel,
@@ -9,6 +11,7 @@ const PostHeader = ({
   date,
   authors = [],
   chips = [],
+  chipHref,
 }) => {
   const people = authors.filter((a) => a && a.name)
   const showMeta = Boolean(date) || people.length > 0
@@ -51,9 +54,20 @@ const PostHeader = ({
           flexWrap="wrap"
           sx={{ mb: 4 }}
         >
-          {chips.map((chip) => (
-            <Chip key={chip} label={chip} size="small" />
-          ))}
+          {chips.map((chip) =>
+            chipHref ? (
+              <Chip
+                key={chip}
+                label={chip}
+                size="small"
+                component="a"
+                href={chipHref(chip)}
+                clickable
+              />
+            ) : (
+              <Chip key={chip} label={chip} size="small" />
+            )
+          )}
         </Stack>
       )}
     </>

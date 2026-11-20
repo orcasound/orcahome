@@ -7,6 +7,7 @@ import PostHeader from '../../components/Post/PostHeader'
 import { getClient } from '../../sanity/client'
 import { PROJECT_QUERY, PROJECT_SLUGS_QUERY } from '../../sanity/queries'
 import { getSiteChrome } from '../../sanity/siteChrome'
+import { toSlug } from '../../utils/taxonomySlug'
 
 export default function Project({ project }) {
   return (
@@ -26,6 +27,7 @@ export default function Project({ project }) {
           title={project.title}
           authors={project.authors || []}
           chips={project.categories || []}
+          chipHref={(category) => `/projects/category/${toSlug(category)}`}
         />
 
         {/* No featured image here, like the old WordPress portfolio pages: it
