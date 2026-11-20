@@ -9,55 +9,71 @@ import {
   styled,
   Typography,
 } from '@mui/material'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { useState } from 'react'
 
+import donateOrcasoundImage from '../../../public/images/donateOrcasound/orcasound.jpg'
+import donateVolunteersImage from '../../../public/images/donateOrcasound/volunteers.jpg'
 import theme from '../../styles/theme'
 import { pushToDataLayer } from '../../utils/gtm'
+
+type ImageSrc = string | StaticImageData
+
+export interface DonateCardData {
+  _key?: string
+  title?: string
+  message?: string
+  imageUrl?: string
+  imageWidth?: number
+  imageHeight?: number
+  buttonLabel?: string
+  buttonAction?: 'dialog' | 'link'
+  buttonHref?: string
+}
 
 interface DonationOption {
   title?: string
   description?: string
   href?: string
-  usesCardImage?: 'orcasound' | 'volunteers'
+  imageUrl?: string
 }
 
 interface DonateOrcasoundProps {
-  donateOrcasoundImage: string
-  donateOrcasoundImageWidth?: number
-  donateOrcasoundImageHeight?: number
-  donateOrcasoundTitle: string
-  donateOrcasoundMessage?: string
-  donateVolunteersImage: string
-  donateVolunteersImageWidth?: number
-  donateVolunteersImageHeight?: number
-  donateVolunteersTitle: string
-  donateVolunteersMessage?: string
-  volunteersButtonHref?: string
+  cards?: DonateCardData[]
   dialogTitle?: string
   dialogSubtitle?: string
   dialogHeading?: string
   donationOptions?: DonationOption[]
 }
 
-// Built-in dialog copy + options, used as a fallback when Sanity has none.
-const DEFAULT_VOLUNTEERS_BUTTON_HREF = '/hacker-hall-of-fame'
+// Built-in content, used when Sanity has none (or is unreachable). Only the
+// Orcasound card is built in: the Volunteers card was removed in #492.
+const DEFAULT_CARDS: DonateCardData[] = [
+  {
+    _key: 'orcasound',
+    title: 'Donate to Orcasound',
+    message:
+      'Help us build and maintain the technology to listen to orcas in the world.',
+    buttonAction: 'dialog',
+  },
+]
+const DEFAULT_BUTTON_LABEL = 'Donate'
 const DEFAULT_DIALOG_TITLE = 'Two Ways to Make A Difference'
 const DEFAULT_DIALOG_SUBTITLE = 'Select your preferred method'
 const DEFAULT_DIALOG_HEADING = 'Ways to Support'
-const DEFAULT_DONATION_OPTIONS: DonationOption[] = [
+const DEFAULT_DONATION_OPTIONS: (DonationOption & { image: ImageSrc })[] = [
   {
     title: 'Support through Open Collective',
     description: 'Open Collective offers transparent financial contributions.',
     href: 'https://opencollective.com/orcasound',
-    usesCardImage: 'orcasound',
+    image: donateOrcasoundImage,
   },
   {
     title: 'Support through GitHub',
     description:
       'GitHub sponsorship is geared toward supporting our technology resources.',
     href: 'https://github.com/sponsors/orcasound',
-    usesCardImage: 'volunteers',
+    image: donateVolunteersImage,
   },
 ]
 
@@ -120,152 +136,113 @@ const DonateOptionImage = styled(Box)(({ theme }) => ({
 const DonateOrcasound = (props: DonateOrcasoundProps) => {
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  const volunteersButtonHref =
-    props.volunteersButtonHref || DEFAULT_VOLUNTEERS_BUTTON_HREF
-  const isInternalVolunteersLink = volunteersButtonHref.startsWith('/')
+  const cards =
+    props.cards && props.cards.length > 0 ? props.cards : DEFAULT_CARDS
   const dialogTitle = props.dialogTitle || DEFAULT_DIALOG_TITLE
   const dialogSubtitle = props.dialogSubtitle || DEFAULT_DIALOG_SUBTITLE
   const dialogHeading = props.dialogHeading || DEFAULT_DIALOG_HEADING
+  // An option without its own thumbnail reuses the first card's image.
+  const fallbackOptionImage: ImageSrc =
+    cards[0]?.imageUrl || donateOrcasoundImage
   const donationOptions =
     props.donationOptions && props.donationOptions.length > 0
-      ? props.donationOptions
+      ? props.donationOptions.map((option) => ({
+          ...option,
+          image: option.imageUrl || fallbackOptionImage,
+        }))
       : DEFAULT_DONATION_OPTIONS
-  const cardImageFor = (which?: 'orcasound' | 'volunteers') =>
-    which === 'volunteers'
-      ? props.donateVolunteersImage
-      : props.donateOrcasoundImage
-
-  const handleDonateClick = () => {
-    pushToDataLayer('cta_click', {
-      cta_text: 'Donate',
-      section: 'donate_orcasound',
-      page: 'donate',
-    })
-    setDialogOpen(true)
-  }
 
   return (
     <>
       <Box
         sx={{
           display: 'flex',
-          /** Uncheck this two lines if donate cards are too large in */
-          // margin: '0 auto',  wide screen
-          // maxWidth: '1000px',
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'stretch',
           gap: '2vw',
-          flexWrap: 'wrap',
           [theme.breakpoints.down('sm')]: {
             flexDirection: 'column',
           },
         }}
       >
-        <DonateContainer>
-          <Typography
-            fontSize={'1.5rem'}
-            textAlign="center"
-            sx={{ marginBottom: '2vw' }}
-          >
-            {props.donateOrcasoundTitle}
-          </Typography>
-          <ImageContainer>
-            <Image
-              src={props.donateOrcasoundImage}
-              width={props.donateOrcasoundImageWidth}
-              height={props.donateOrcasoundImageHeight}
-              alt="Support Orcasound"
-              sizes="100vw"
-              style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'contain',
-              }}
-            />
-          </ImageContainer>
-          <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
-            {props.donateOrcasoundMessage}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              marginTop: 'auto',
-            }}
-          >
-            <Button
-              variant="contained"
+        {cards.map((card, index) => {
+          const label = card.buttonLabel || DEFAULT_BUTTON_LABEL
+          const isLink = card.buttonAction === 'link' && !!card.buttonHref
+          const isInternalLink = isLink && card.buttonHref!.startsWith('/')
+          const image: ImageSrc = card.imageUrl || donateOrcasoundImage
+          return (
+            <DonateContainer
+              key={card._key || index}
               sx={{
-                backgroundColor: '#1B2B7B',
-                borderRadius: '20px',
-                margin: '10px',
-                fontSize: '16px',
+                // A single card keeps the width it has next to a second card.
+                maxWidth: cards.length === 1 ? 'calc(50% - 1vw)' : undefined,
+                [theme.breakpoints.down('sm')]: { maxWidth: '100%' },
               }}
-              onClick={handleDonateClick}
             >
-              Donate
-            </Button>
-          </Box>
-        </DonateContainer>
-        <DonateContainer>
-          <Typography
-            fontSize={'1.5rem'}
-            textAlign="center"
-            sx={{ marginBottom: '2vw' }}
-          >
-            {props.donateVolunteersTitle}
-          </Typography>
-          <ImageContainer>
-            <Image
-              src={props.donateVolunteersImage}
-              width={props.donateVolunteersImageWidth}
-              height={props.donateVolunteersImageHeight}
-              alt="Support Volunteers"
-              sizes="100vw"
-              style={{
-                width: '100%',
-                height: 'auto',
-                objectFit: 'contain',
-              }}
-            />
-          </ImageContainer>
-          <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
-            {props.donateVolunteersMessage}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              marginTop: 'auto',
-            }}
-          >
-            <Button
-              variant="contained"
-              href={volunteersButtonHref}
-              target={isInternalVolunteersLink ? undefined : '_blank'}
-              rel={isInternalVolunteersLink ? undefined : 'noopener noreferrer'}
-              sx={{
-                backgroundColor: '#1B2B7B',
-                borderRadius: '20px',
-                margin: '10px',
-                width: 'fit-content',
-                fontSize: '16px',
-              }}
-              onClick={() =>
-                pushToDataLayer('cta_click', {
-                  cta_text: 'Support',
-                  section: 'donate_orcasound',
-                  page: 'donate',
-                })
-              }
-            >
-              Support
-            </Button>
-          </Box>
-        </DonateContainer>
+              <Typography
+                fontSize={'1.5rem'}
+                textAlign="center"
+                sx={{ marginBottom: '2vw' }}
+              >
+                {card.title}
+              </Typography>
+              <ImageContainer>
+                <Image
+                  src={image}
+                  width={card.imageUrl ? card.imageWidth : undefined}
+                  height={card.imageUrl ? card.imageHeight : undefined}
+                  alt={card.title || ''}
+                  sizes="100vw"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'contain',
+                  }}
+                />
+              </ImageContainer>
+              <Typography fontSize={'1rem'} sx={{ margin: '10px' }}>
+                {card.message}
+              </Typography>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginTop: 'auto',
+                }}
+              >
+                <Button
+                  variant="contained"
+                  {...(isLink
+                    ? {
+                        href: card.buttonHref!,
+                        target: isInternalLink ? undefined : '_blank',
+                        rel: isInternalLink ? undefined : 'noopener noreferrer',
+                      }
+                    : {})}
+                  sx={{
+                    backgroundColor: '#1B2B7B',
+                    borderRadius: '20px',
+                    margin: '10px',
+                    width: 'fit-content',
+                    fontSize: '16px',
+                  }}
+                  onClick={() => {
+                    pushToDataLayer('cta_click', {
+                      cta_text: label,
+                      section: 'donate_orcasound',
+                      page: 'donate',
+                    })
+                    if (!isLink) setDialogOpen(true)
+                  }}
+                >
+                  {label}
+                </Button>
+              </Box>
+            </DonateContainer>
+          )
+        })}
       </Box>
       <Dialog
         open={dialogOpen}
@@ -348,7 +325,7 @@ const DonateOrcasound = (props: DonateOrcasoundProps) => {
               >
                 <DonateOptionImage>
                   <Image
-                    src={cardImageFor(option.usesCardImage)}
+                    src={option.image}
                     alt={option.title || ''}
                     fill
                     sizes="100vw"
