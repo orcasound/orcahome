@@ -10,7 +10,7 @@ import Image from 'next/image'
 import { Fragment } from 'react'
 import { Link as ScrollElement } from 'react-scroll'
 
-import orcas from '../../public/images/srkw2-9.jpg'
+import orcas from '../../public/images/srkw2-9-edited.jpg'
 import Link from '../components/Link'
 import { getClient } from '../sanity/client'
 import { HOME_PAGE_QUERY } from '../sanity/queries'
