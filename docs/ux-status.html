@@ -77,6 +77,17 @@ a:hover { text-decoration: underline; }
 .sentnote { background: #d8f0e0; color: #155f37; border-radius: 6px; padding: 8px 10px; font-size: 12.5px; margin: 10px 0 0; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
 .modal-close { float: right; cursor: pointer; border: 0; background: none; font-size: 20px; line-height: 1; color: #888; }
+/* Phone width: one issue per block instead of a table wider than the screen, and buttons tall enough to tap. */
+@media (max-width: 640px) {
+  .btn, .btn.sm { min-height: 44px; padding: 10px 16px; font-size: 14px; }
+  .modal-close { min-width: 44px; min-height: 44px; }
+  .panel table, .panel tbody, .panel tr, .panel td { display: block; }
+  .panel thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .panel tr { padding: 10px 12px; border-bottom: 1px solid #ececf0; }
+  .panel tr:last-child { border-bottom: 0; }
+  .panel td { border-bottom: 0; padding: 4px 0; }
+  .panel td[data-label]::before { content: attr(data-label); display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: #666; }
+}
 </style>
 </head>
 <body>
@@ -259,7 +270,7 @@ function render(issues){
   html+='<div class="card"><div class="n">'+ux.length+'</div><div class="l">Total open UX issues</div></div>';
   html+='</div>';
 
-  html+='<h2>Open UX issues</h2><div class="panel"><table><thead><tr><th>Issue</th><th>Title</th><th>Owner</th><th>Status</th><th>Brief</th><th>Request</th></tr></thead><tbody>';
+  html+='<h2>Open UX issues</h2><div class="panel"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Issue</th><th role="columnheader">Title</th><th role="columnheader">Owner</th><th role="columnheader">Status</th><th role="columnheader">Brief</th><th role="columnheader">Request</th></tr></thead><tbody role="rowgroup">';
   ux.forEach(x=>{
     const oc=x.owners.length?'<span class="owner">'+x.owners.map(esc).join(", ")+'</span>':'<span class="owner none">open to claim</span>';
     let briefCell;
@@ -271,7 +282,7 @@ function render(issues){
     else if(x.owners.length) reqCell='<span class="muted">taken</span>';
     else reqCell='<span class="muted">brief coming</span>';
     const badge=BADGE[x.status]||"b-flight";
-    html+='<tr><td class="num"><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a></td><td>'+esc(x.title)+'</td><td>'+oc+'</td><td><span class="badge '+badge+'">'+esc(x.status)+'</span></td><td>'+briefCell+'</td><td>'+reqCell+'</td></tr>';
+    html+='<tr role="row"><td role="cell" class="num" data-label="Issue"><a href="'+x.url+'" target="_blank" rel="noopener">#'+x.num+'</a></td><td role="cell" data-label="Title">'+esc(x.title)+'</td><td role="cell" data-label="Owner">'+oc+'</td><td role="cell" data-label="Status"><span class="badge '+badge+'">'+esc(x.status)+'</span></td><td role="cell" data-label="Brief">'+briefCell+'</td><td role="cell" data-label="Request">'+reqCell+'</td></tr>';
   });
   html+='</tbody></table></div>';
 

@@ -10,6 +10,7 @@ import PostHeader from '../../components/Post/PostHeader'
 import { getClient } from '../../sanity/client'
 import { BLOG_POST_QUERY, BLOG_SLUGS_QUERY } from '../../sanity/queries'
 import { getSiteChrome } from '../../sanity/siteChrome'
+import { toSlug } from '../../utils/taxonomySlug'
 
 export default function BlogPost({ post }) {
   const dateLabel = formatDate(post.publishedAt)
@@ -31,6 +32,7 @@ export default function BlogPost({ post }) {
           date={dateLabel}
           authors={authors}
           chips={visibleTags}
+          chipHref={(tag) => `/blog/tag/${toSlug(tag)}`}
         />
 
         {post.featuredImageUrl && (
