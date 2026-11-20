@@ -1,11 +1,11 @@
 # Editing the Donate / Support page (Sanity CMS guide)
 
 This guide walks you through editing the Support page on orcasound.tech using
-Sanity Studio — the hero, the two support cards, the "Ways to Support" pop-up,
+Sanity Studio — the hero, the donate cards, the "Ways to Support" pop-up,
 and the partner cards — all without touching any code.
 
 > **What is NOT edited here:** page layout, styling, and analytics stay in code.
-> Everything else on the page — the hero, the two support cards, the "Ways to
+> Everything else on the page — the hero, the donate cards, the "Ways to
 > Support" pop-up, and the 501(c)3 partner cards — is editable in Sanity.
 
 ---
@@ -27,18 +27,16 @@ and the partner cards — all without touching any code.
 
 ## 3. The fields you can edit
 
-| Field                                            | What it controls                                        |
-| ------------------------------------------------ | ------------------------------------------------------- |
-| **Hero title**                                   | The big title on the top banner (e.g. "Support")        |
-| **Hero description**                             | The sentence under the banner title                     |
-| **Hero image**                                   | The top banner image                                    |
-| **Support Orcasound · title / message / image**  | The left support card                                   |
-| **Support Volunteers · title / message / image** | The right support card                                  |
-| **Support Volunteers · button link**             | Where the right card's Support button goes              |
-| **Dialog · title / subtitle / heading**          | The "Ways to Support" pop-up headings                   |
-| **Dialog · donation options**                    | The clickable support methods in the pop-up (see §5)    |
-| **Partners section · title / description**       | The heading above the partner cards                     |
-| **Partner cards**                                | The 501(c)3 partner cards — logo, name, text, link (§6) |
+| Field                                      | What it controls                                        |
+| ------------------------------------------ | ------------------------------------------------------- |
+| **Hero title**                             | The big title on the top banner (e.g. "Support")        |
+| **Hero description**                       | The sentence under the banner title                     |
+| **Hero image**                             | The top banner image                                    |
+| **Donate cards**                           | The cards near the top of the page (1 to 3, see §4b)    |
+| **Dialog · title / subtitle / heading**    | The "Ways to Support" pop-up headings                   |
+| **Dialog · donation options**              | The clickable support methods in the pop-up (see §5)    |
+| **Partners section · title / description** | The heading above the partner cards                     |
+| **Partner cards**                          | The 501(c)3 partner cards — logo, name, text, link (§6) |
 
 ### Editing text
 
@@ -50,7 +48,7 @@ Click any text field and type. That's it.
 
 ## 4. Changing an image
 
-This works the same for the **Hero image** and the two card images.
+This works the same for the **Hero image** and the card images.
 
 1. Click the image field.
 2. Click **remove** on the current image, then drag a new image in (or click to
@@ -64,9 +62,28 @@ This works the same for the **Hero image** and the two card images.
 
 ---
 
+## 4b. Editing the donate cards
+
+The **Donate cards** field is the list of cards near the top of the page. The
+page shows 1 to 3 cards side by side; a single card is shown centered.
+
+| Field             | What it's for                                                       |
+| ----------------- | ------------------------------------------------------------------- |
+| **Title**         | The card's heading                                                  |
+| **Message**       | The short text under the image                                      |
+| **Image**         | The card's photo                                                    |
+| **Button label**  | The button text (leave empty for "Donate")                          |
+| **Button action** | Open the "Ways to Support" pop-up, or go to a link                  |
+| **Button link**   | Only shown when the action is "Go to a link": a full URL or a /page |
+
+- **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag
+  handle. The list needs at least one card.
+
+---
+
 ## 5. Editing the "Ways to Support" pop-up
 
-The pop-up that opens when someone clicks **Support** has its own editable
+The pop-up that opens when someone clicks a card's **Donate** button has its own editable
 copy — the **Dialog · title / subtitle / heading** fields — plus a list of
 **donation options**.
 
@@ -77,7 +94,7 @@ Each donation option (e.g. Open Collective, GitHub) has:
 | **Title**       | The option's name (e.g. "Support through Open Collective") |
 | **Description** | The short line under the title                             |
 | **Link URL**    | Where the option links to                                  |
-| **Thumbnail**   | Which card image to reuse as the option's thumbnail        |
+| **Thumbnail**   | The option's image (empty = reuse the first card's image)  |
 
 - **Edit an option**: click it to open, then change the fields.
 - **Add / remove / reorder**: use **Add item**, the **⋮** menu, or the drag
